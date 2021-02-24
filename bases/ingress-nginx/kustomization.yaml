@@ -5,4 +5,4 @@ patches:
 - patch-annotations.yaml
 - patch-logging.yaml
 - patch-metrics.yaml
-- patch-antiafinity.yaml
+- patch-antiaffinity.yaml
