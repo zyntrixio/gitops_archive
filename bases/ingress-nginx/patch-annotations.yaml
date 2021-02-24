@@ -8,8 +8,6 @@ spec:
   template:
     metadata:
       annotations:
-        prometheus.io/port: "9100"
-        prometheus.io/scrape: "true"
         linkerd.io/inject: enabled
         config.linkerd.io/skip-inbound-ports: 80,443
         kubectl.kubernetes.io/default-logs-container: controller
