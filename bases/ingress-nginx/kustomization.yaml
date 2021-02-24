@@ -1,0 +1,4 @@
+resources:
+- github.com/kubernetes/ingress-nginx/deploy/static/provider/baremetal?ref=controller-v0.44.0
+patches:
+- patch-nodeport.yaml
