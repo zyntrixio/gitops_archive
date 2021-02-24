@@ -5,6 +5,7 @@ metadata:
   name: ingress-nginx-controller
   namespace: ingress-nginx
 spec:
+  externalTrafficPolicy: Local
   ports:
   - name: http
     nodePort: 30000
