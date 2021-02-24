@@ -3,3 +3,4 @@ resources:
 patches:
 - patch-nodeport.yaml
 - patch-annotations.yaml
+- patch-logging.yaml
