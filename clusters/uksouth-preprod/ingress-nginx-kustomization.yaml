@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-prod/ingress-nginx
+  path: ./overlays/uksouth-preprod/ingress-nginx
   prune: true
   sourceRef:
     kind: GitRepository
