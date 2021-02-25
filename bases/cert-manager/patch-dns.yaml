@@ -5,6 +5,10 @@ metadata:
   namespace: cert-manager
 spec:
   template:
+    metadata:
+      annotations:
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
     spec:
       containers:
       - name: cert-manager
