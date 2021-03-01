@@ -14,4 +14,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/simplenginx
     newName: binkcore.azurecr.io/simplenginx
-    newTag: "1614636001" # {"$imagepolicy": "flux-system:podinfo:tag"}
+    newTag: "1614636001" # {"$imagepolicy": "flux-system:simplenginx:tag"}
