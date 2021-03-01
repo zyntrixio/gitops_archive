@@ -37,7 +37,7 @@ spec:
               topologyKey: kubernetes.io/hostname
             weight: 100
       containers:
-      - image: binkcore.azurecr.io/simplenginx:1614636001
+      - image: binkcore.azurecr.io/simplenginx:master-2021-03-01-223711
         imagePullPolicy: Always
         name: nginx
         ports:
