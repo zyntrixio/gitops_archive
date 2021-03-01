@@ -6,9 +6,6 @@ metadata:
 spec:
   imageRepositoryRef:
     name: simplenginx
-  filterTags:
-    pattern: '^(?P<ts>[0-9-\.]+)'
-    extract: '$ts'
   policy:
     numerical:
       order: asc
