@@ -1,0 +1,14 @@
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: simplenginx
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: simplenginx
+  filterTags:
+    pattern: '-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc
