@@ -7,8 +7,8 @@ spec:
   imageRepositoryRef:
     name: simplenginx
   filterTags:
-    pattern: '\-(?P<ts>.*)'
+    pattern: '-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
     extract: '$ts'
   policy:
-    numerical:
+    alphabetical:
       order: asc
