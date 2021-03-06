@@ -34,6 +34,5 @@ spec:
         securityContext:
           runAsGroup: 65534
           runAsUser: 65534
-      dnsPolicy: ClusterFirst
       imagePullSecrets:
       - name: binkcore.azurecr.io

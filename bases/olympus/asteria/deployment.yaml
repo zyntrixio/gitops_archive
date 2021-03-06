@@ -35,12 +35,5 @@ spec:
           requests:
             cpu: 100m
             memory: 128Mi
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
       imagePullSecrets:
       - name: binkcore.azurecr.io
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30

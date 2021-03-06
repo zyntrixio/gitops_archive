@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: europa
+  name: zephyrus
 spec:
   strategy:
     rollingUpdate:
@@ -13,6 +13,9 @@ spec:
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-logs-container: app
+        prometheus.io/port: '9100'
+        prometheus.io/scrape: 'true'
+        prometheus.io/job: zephyrus
     spec:
       affinity:
         podAntiAffinity:
@@ -23,12 +26,12 @@ spec:
                 - key: app
                   operator: In
                   values:
-                  - europa
+                  - zephyrus
               topologyKey: kubernetes.io/hostname
             weight: 100
       containers:
       - name: app
-        image: binkcore.azurecr.io/europa:latest
+        image: binkcore.azurecr.io/zephyrus:latest
         imagePullPolicy: Always
         securityContext:
           runAsGroup: 65534
