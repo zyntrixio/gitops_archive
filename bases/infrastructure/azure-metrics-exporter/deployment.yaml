@@ -16,6 +16,7 @@ spec:
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
         prometheus.io/job: azure-metrics-exporter
+        kubectl.kubernetes.io/default-logs-container: azure-metrics-exporter
       labels: *labels
     spec:
       containers:
