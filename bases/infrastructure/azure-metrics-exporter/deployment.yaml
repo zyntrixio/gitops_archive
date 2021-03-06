@@ -48,4 +48,4 @@ spec:
       volumes:
       - name: azure-metrics-exporter-volume
         configMap:
-          name: azure-metrics-exporter-conf
+          name: azure-metrics-exporter
