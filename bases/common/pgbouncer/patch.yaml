@@ -8,7 +8,7 @@ spec:
   template:
     spec:
       containers:
-      - image: mcr.microsoft.com/azure-oss-db-tools/pgbouncer-sidecar:latest
+      - image: mcr.microsoft.com/azure-oss-db-tools/pgbouncer-sidecar:pgbouncerv1.13
         imagePullPolicy: Always
         lifecycle:
           preStop:
