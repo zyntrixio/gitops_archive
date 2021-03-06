@@ -1,0 +1,43 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: harmonia
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-perf/harmonia
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+  images:
+  - name: binkcore.azurecr.io/harmonia
+    newName: binkcore.azurecr.io/harmonia
+    newTag: "develop-2021-03-04-184524" # {"$imagepolicy": "flux-system:harmonia:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: harmonia
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/harmonia
+  interval: 10m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: harmonia
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: harmonia
+  filterTags:
+    pattern: '-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc

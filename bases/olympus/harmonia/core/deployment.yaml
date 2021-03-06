@@ -1,8 +1,8 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: atlas
+  name: harmonia
+  namespace: default
 spec:
   strategy:
     rollingUpdate:
@@ -18,22 +18,24 @@ spec:
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - podAffinityTerm:
+          - weight: 100
+            podAffinityTerm:
               labelSelector:
                 matchExpressions:
                 - key: app
                   operator: In
                   values:
-                  - atlas
+                  - harmonia
               topologyKey: kubernetes.io/hostname
-            weight: 100
       containers:
-      - name: app
-        image: binkcore.azurecr.io/atlas:latest
+      - image: binkcore.azurecr.io/harmonia:latest
         imagePullPolicy: Always
-        securityContext:
-          runAsGroup: 65534
-          runAsUser: 65534
-      dnsPolicy: ClusterFirst
+        name: app
+        resources:
+          limits:
+            memory: 384Mi
+          requests:
+            cpu: 100m
+            memory: 384Mi
       imagePullSecrets:
       - name: binkcore.azurecr.io

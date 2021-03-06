@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: harmonia
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        args:
+        - -b
+        - 0.0.0.0:9000
+        - --access-logfile
+        - '-'
+        - --error-logfile
+        - '-'
+        - app.api.app:app
+        command:
+        - gunicorn

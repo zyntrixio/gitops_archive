@@ -1,0 +1,10 @@
+bases:
+- ../core
+
+patches:
+- path: patch-labels.yaml
+- path: patch-env.yaml
+- path: patch-image.yaml
+- path: patch-name.yaml
+  target:
+    kind: Deployment

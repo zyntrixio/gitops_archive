@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: atlas
+  name: harmonia
   namespace: default
 spec:
   template:
@@ -9,4 +9,4 @@ spec:
       annotations:
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
-        prometheus.io/job: atlas
+        prometheus.io/job: harmonia-export-agent-fatface

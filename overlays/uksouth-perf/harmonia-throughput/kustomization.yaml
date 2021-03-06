@@ -1,0 +1,7 @@
+bases:
+- ../../../bases/olympus/harmonia/throughput-test
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
