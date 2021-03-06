@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: atlas
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - atlas
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      containers:
+      - name: app
+        image: binkcore.azurecr.io/atlas:latest
+        imagePullPolicy: Always
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: binkcore.azurecr.io

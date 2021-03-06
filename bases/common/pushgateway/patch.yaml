@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pushgateway
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - name: pushgateway
+        image: binkext.azurecr.io/pushgateway:v1.3.0
+        args:
+        - "--web.listen-address=0.0.0.0:9100"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9100
+          protocol: TCP
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+      imagePullSecrets:
+      - name: binkext.azurecr.io
