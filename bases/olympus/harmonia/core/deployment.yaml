@@ -29,6 +29,9 @@ spec:
               topologyKey: kubernetes.io/hostname
       containers:
       - image: binkcore.azurecr.io/harmonia:latest
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
         imagePullPolicy: Always
         name: app
         resources:
