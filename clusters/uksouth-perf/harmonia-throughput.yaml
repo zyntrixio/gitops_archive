@@ -22,7 +22,7 @@ metadata:
   name: harmonia-throughput
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/harmonia-throughput
+  image: binkcore.azurecr.io/harmonia_bulkload
   interval: 10m0s
   secretRef:
     name: binkcore.azurecr.io
