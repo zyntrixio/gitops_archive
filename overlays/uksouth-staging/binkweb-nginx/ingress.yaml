@@ -14,10 +14,13 @@ spec:
   - host: web.staging0.uksouth.bink.sh
     http:
       paths:
-      - backend:
-          serviceName: binkweb-nginx
-          servicePort: 80
-        path: /
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: binkweb-nginx
+            port: 
+              number: 80
       
   tls:
   - hosts:
