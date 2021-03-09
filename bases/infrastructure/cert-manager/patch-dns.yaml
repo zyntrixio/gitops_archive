@@ -9,6 +9,8 @@ spec:
       annotations:
         prometheus.io/port: "9100"
         prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: cert-manager
     spec:
       containers:
       - name: cert-manager
