@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hermes
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        command:
+        - celery
+        - -A
+        - hermes
+        - worker
+        - --loglevel
+        - info
+        - --pool=solo
+        - --queues=ubiquity-async-midas,record-history
