@@ -5,3 +5,7 @@ patches:
 - path: env.yaml
   target:
     kind: Deployment
+
+resources:
+- cert.yaml
+- ingress.yaml
