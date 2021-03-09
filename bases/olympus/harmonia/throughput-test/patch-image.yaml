@@ -8,4 +8,4 @@ spec:
     spec:
       containers:
       - name: app
-        image: binkcore.azurecr.io/harmonia-bulkload:latest
+        image: binkcore.azurecr.io/harmonia_bulkload:latest
