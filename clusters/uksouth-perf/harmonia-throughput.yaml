@@ -12,8 +12,8 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/harmonia-bulkload
-    newName: binkcore.azurecr.io/harmonia-bulkload
+  - name: binkcore.azurecr.io/harmonia_bulkload
+    newName: binkcore.azurecr.io/harmonia_bulkload
     newTag: "develop-2021-03-04-184524" # {"$imagepolicy": "flux-system:harmonia-throughput:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
@@ -36,7 +36,7 @@ spec:
   imageRepositoryRef:
     name: harmonia-throughput
   filterTags:
-    pattern: '-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    pattern: 'develop-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
     extract: '$ts'
   policy:
     alphabetical:
