@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hades
+  namespace: default
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-logs-container: app
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - hades
+              topologyKey: kubernetes.io/hostname
+      containers:
+      - image: binkcore.azurecr.io/hades:latest
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 384Mi
+          requests:
+            cpu: 100m
+            memory: 384Mi
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
