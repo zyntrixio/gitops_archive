@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metis
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        command:
+        - celery
+        - -A
+        - app.tasks
+        - worker
+        - "--pool=solo"
