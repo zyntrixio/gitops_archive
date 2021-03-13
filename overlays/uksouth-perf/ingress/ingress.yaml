@@ -87,7 +87,7 @@ spec:
             port:
               number: 80
       - path: /admin/
-        pathType: Exact
+        pathType: Prefix
         backend:
           service:
             name: hermes-api
