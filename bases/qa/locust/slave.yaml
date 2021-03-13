@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    fluxcd.io/automated: 'true'
+    fluxcd.io/tag.locust: glob:master-*
+  labels: &labels
+    app: locust
+    role: slave
+  name: locust-slave
+  namespace: default
+spec:
+  selector:
+    matchLabels: *labels
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels: *labels
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - locust
+              topologyKey: kubernetes.io/hostname
+      containers:
+      - command:
+        - locust
+        - --worker
+        - --master-host=locust-master
+        - --master-port=5557
+        - --locustfile=locustfile_peak_hour.py
+        env:
+        - name: CHANNEL_VAULT_PATH
+          value: /channels
+        - name: VAULT_URL
+          value: http://fakicorp:8200
+        - name: VAULT_TOKEN
+          value: abc123
+        - name: HERMES_URL
+          value: http://hermes-api
+        name: locust
+        image: binkcore.azurecr.io/ubiquity-performance:latest
+        resources:
+          limits:
+            memory: 1Gi
+          requests:
+            cpu: 100m
+            memory: 1Gi
+      imagePullSecrets:
+      - name: binkcore.azurecr.io

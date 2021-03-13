@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    fluxcd.io/automated: 'true'
+    fluxcd.io/tag.locust: glob:master-*
+  labels: &labels
+    app: locust
+    role: master
+  name: locust-master
+  namespace: default
+spec:
+  selector:
+    matchLabels: *labels
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels: *labels
+    spec:
+      containers:
+      - command:
+        - locust
+        - --master
+        - --host=http://hermes-api/ubiquity
+        - --master-port=5557
+        - --locustfile=locustfile_peak_hour.py
+        name: locust
+        image: binkcore.azurecr.io/ubiquity-performance:latest
+        ports:
+        - containerPort: 8089
+          name: ui
+        - containerPort: 5557
+          name: master-5557
+        - containerPort: 5558
+          name: master-5558
+        resources:
+          requests:
+            cpu: 100m
+            memory: 1Gi
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
