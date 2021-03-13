@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./bases/qa/locust
+  path: ./overlays/uksouth-perf/locust
   prune: true
   sourceRef:
     kind: GitRepository
