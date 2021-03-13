@@ -2,4 +2,6 @@ bases:
 - ../../../bases/infrastructure/redis-exporter
 
 patches:
-- annotations.yaml
+- path: annotations.yaml
+  target:
+    kind: Deployment
