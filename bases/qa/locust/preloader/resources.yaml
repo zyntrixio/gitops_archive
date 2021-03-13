@@ -4,8 +4,9 @@ metadata:
   name: locust
 spec:
   template:
-    metadata:
+    spec:
       containers:
+      - name: app
         resources:
           requests:
             cpu: 250m
