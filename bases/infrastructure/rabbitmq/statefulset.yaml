@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: rabbitmq
+  name: rabbitmq
+  namespace: default
+spec:
+  podManagementPolicy: OrderedReady
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: rabbitmq
+  serviceName: rabbitmq
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        prometheus.io/port: '9100'
+        prometheus.io/scrape: 'true'
+        prometheus.io/job: rabbitmq
+      labels:
+        app: rabbitmq
+    spec:
+      containers:
+      - env:
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MY_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MY_POD_SERVICE_ACCOUNT
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.serviceAccountName
+        - name: RABBITMQ_USE_LONGNAME
+          value: 'true'
+        - name: RABBITMQ_NODENAME
+          value: rabbit@$(MY_POD_NAME).$(MY_POD_SERVICE_ACCOUNT).$(MY_POD_NAMESPACE).svc.cluster.local
+        - name: K8S_HOSTNAME_SUFFIX
+          value: .$(MY_POD_SERVICE_ACCOUNT).$(MY_POD_NAMESPACE).svc.cluster.local
+        - name: K8S_SERVICE_NAME
+          value: $(MY_POD_SERVICE_ACCOUNT)
+        image: rabbitmq:3-management
+        imagePullPolicy: IfNotPresent
+        name: rabbitmq
+        ports:
+        - containerPort: 5672
+          name: amqp
+          protocol: TCP
+        - containerPort: 15672
+          name: mgmt
+          protocol: TCP
+        resources:
+          limits:
+            memory: 4Gi
+          requests:
+            cpu: 100m
+            memory: 4Gi
+        volumeMounts:
+        - mountPath: /etc/rabbitmq
+          name: config
+        - mountPath: /var/lib/rabbitmq
+          name: data
+      restartPolicy: Always
+      serviceAccount: rabbitmq
+      serviceAccountName: rabbitmq
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: rabbitmq-config
+        name: config
+  updateStrategy:
+    rollingUpdate:
+      partition: 0
+    type: RollingUpdate
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi

@@ -1,0 +1,7 @@
+resources:
+- configmap.yaml
+- role.yaml
+- rolebinding.yaml
+- service.yaml
+- serviceaccount.yaml
+- statefulset.yaml

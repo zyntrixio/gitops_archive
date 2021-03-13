@@ -1,0 +1,16 @@
+apiVersion: v1
+data:
+  enabled_plugins: |
+    [rabbitmq_management,rabbitmq_peer_discovery_k8s,rabbitmq_prometheus].
+  rabbitmq.conf: |
+    loopback_users.guest = false
+    listeners.tcp.default = 5672
+    management.listener.port = 15672
+    management.listener.ssl = false
+    cluster_formation.peer_discovery_backend = rabbit_peer_discovery_k8s
+    cluster_formation.k8s.address_type = hostname
+    prometheus.tcp.port = 9100
+kind: ConfigMap
+metadata:
+  name: rabbitmq-config
+  namespace: default
