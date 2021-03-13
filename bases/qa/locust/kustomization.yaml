@@ -1,4 +1,0 @@
-resources:
-- master.yaml
-- service.yaml
-- slave.yaml

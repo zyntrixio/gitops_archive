@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        command:
+        - tail
+        - -f
+        - /dev/null

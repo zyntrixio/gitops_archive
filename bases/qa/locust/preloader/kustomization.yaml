@@ -1,0 +1,15 @@
+bases:
+- ../core
+
+resources:
+- pvc.yaml
+- storageclass.yaml
+
+patches:
+- path: command.yaml
+- path: labels.yaml
+- path: resources.yaml
+- path: volume.yaml
+- path: name.yaml
+  target:
+    kind: Deployment

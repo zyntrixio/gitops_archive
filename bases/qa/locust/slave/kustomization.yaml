@@ -1,0 +1,10 @@
+bases:
+- ../core
+
+patches:
+- path: command.yaml
+- path: labels.yaml
+- path: resources.yaml
+- path: name.yaml
+  target:
+    kind: Deployment

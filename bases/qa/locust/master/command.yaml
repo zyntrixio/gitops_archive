@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        command:
+        - locust
+        - --master
+        - --host=http://hermes-api/ubiquity
+        - --master-port=5557
+        - --locustfile=locustfile_peak_hour.py

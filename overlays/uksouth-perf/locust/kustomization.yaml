@@ -1,0 +1,9 @@
+bases:
+- ../../../bases/qa/locust/master
+- ../../../bases/qa/locust/slave
+- ../../../bases/qa/locust/preloader
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
