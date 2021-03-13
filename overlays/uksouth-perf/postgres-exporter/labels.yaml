@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels: &labels
+    app: postgres-exporter
+    instance: common
+  name: postgres-exporter
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels: *labels
+  template:
+    metadata:
+      labels: *labels
