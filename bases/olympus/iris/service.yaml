@@ -3,7 +3,8 @@ kind: Service
 metadata:
   labels: &labels
     app: iris
-  name: iris
+    component: api
+  name: iris-api
   namespace: default
 spec:
   ports:
