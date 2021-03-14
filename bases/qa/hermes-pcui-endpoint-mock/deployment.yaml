@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels: &labels
+    app: hermes-pcui-endpoint-mock
+    component: api
+  name: hermes-pcui-endpoint-mock-api
+  namespace: default
+spec:
+  progressDeadlineSeconds: 120
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels: *labels
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels: *labels
+    spec:
+      containers:
+      - image: binkcore.azurecr.io/hermes-pcui-endpoint-mock:latest
+        imagePullPolicy: Always
+        name: hermes-pcui-endpoint-mock
+        ports:
+        - containerPort: 9000
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 9000
+            scheme: HTTP
+          initialDelaySeconds: 15
+          periodSeconds: 60
+          successThreshold: 1
+          timeoutSeconds: 10
+        resources:
+          limits:
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
