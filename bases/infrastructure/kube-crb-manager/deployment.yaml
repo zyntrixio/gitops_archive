@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-crb-manager
+  namespace: kube-system
+  labels: &labels
+    app: kube-crb-manager
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels: *labels
+  template:
+    metadata:
+      labels: *labels
+    spec:
+      serviceAccountName: kube-crb-manager
+      containers:
+      - name: kube-crb-manager
+        image: binkcore.azurecr.io/kube-crb-manager:develop-2c16b6c5
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
