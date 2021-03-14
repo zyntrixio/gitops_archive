@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels: &labels
+    k8s-app: fluentd-logging
+    version: v1
+  name: fluentd
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels: *labels
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-logs-container: app
+      labels: *labels
+    spec:
+      containers:
+      - name: app
+        image: binkext.azurecr.io/fluentd-kubernetes-daemonset:v1-debian-elasticsearch
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        volumeMounts:
+        - mountPath: /var/log
+          name: varlog
+        - mountPath: /fluentd/etc/kubernetes.conf
+          name: fluentd-config
+          subPath: kubernetes.conf
+      serviceAccount: fluentd
+      serviceAccountName: fluentd
+      imagePullSecrets:
+      - name: binkext.azurecr.io
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master
+      volumes:
+      - hostPath:
+          path: /var/log
+        name: varlog
+      - configMap:
+          name: fluentd-config
+        name: fluentd-config
