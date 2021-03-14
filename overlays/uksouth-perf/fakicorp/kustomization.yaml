@@ -1,0 +1,10 @@
+resources:
+- azureidentity.yaml
+
+bases:
+- ../../../bases/infrastructure/fakicorp
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fakicorp
+  namespace: default
+  labels: &labels
+    app: fakicorp
+    aadpodidbinding: fakicorp
+spec:
+  selector:
+    matchLabels: *labels
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-logs-container: app
+      labels: *labels
+    spec:
+      containers:
+      - name: app
+        image: binkcore.azurecr.io/fakicorp:develop-4181d6e3
+        ports:
+        - containerPort: 8200
+        resources:
+          limits:
+            memory: 192Mi
+          requests:
+            cpu: 100m
+            memory: 192Mi
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8200
+          periodSeconds: 60
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8200
+          periodSeconds: 60
+          initialDelaySeconds: 3
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
