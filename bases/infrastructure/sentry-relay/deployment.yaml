@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentry-relay
+  namespace: monitoring
+  labels: &labels
+    app: sentry-relay
+spec:
+  selector:
+      matchLabels: *labels
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels: *labels
+    spec:
+      imagePullSecrets:
+      - name: binkext.azurecr.io
+      containers:
+      - name: sentry-relay
+        image: binkext.azurecr.io/relay:21.1.0
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+          - name: config
+            mountPath: /work/.relay
+        livenessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /api/relay/healthcheck/ready/
+            port: 3000
+            scheme: HTTP
+          initialDelaySeconds: 0
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 10
+          httpGet:
+            path: /api/relay/healthcheck/ready/
+            port: 3000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 60
+          successThreshold: 1
+          timeoutSeconds: 5
+      volumes:
+      - name: config
+        configMap:
+          name: sentry-relay-config
+          defaultMode: 0644

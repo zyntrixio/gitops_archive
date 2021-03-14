@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sentry-relay-config
+  namespace: monitoring
+data:
+  config.yml: |-
+    ---
+    relay:
+      mode: managed
+      upstream: "https://sentry.io/"
+      host: 0.0.0.0
+      port: 3000
+      tls_port: ~
+      tls_identity_path: ~
+      tls_identity_password: ~
+  credentials.json: |-
+    {
+      "secret_key": "na3-7kzc1xRQm8MNfiaPywwRbZOpK4AdGjLmp9Gv4dw",
+      "public_key": "UzV06MBe8fCRl82Zfzd4PysWpBHl-Fm02enOkDHl6mU",
+      "id": "693de6b2-d12a-4e91-8c1a-c1de3c2568e2"
+    }
