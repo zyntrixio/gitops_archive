@@ -14,4 +14,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/simplenginx
     newName: binkcore.azurecr.io/simplenginx
-    newTag: "master-2021-03-14-042014" # {"$imagepolicy": "flux-system:simplenginx:tag"}
+    newTag: "master-2021-03-07-042002" # {"$imagepolicy": "flux-system:simplenginx:tag"}
