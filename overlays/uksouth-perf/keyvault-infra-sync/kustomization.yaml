@@ -1,0 +1,10 @@
+bases:
+- ../../../bases/infrastructure/keyvault-infra-sync
+
+resources:
+- azureidentity.yaml
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
