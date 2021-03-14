@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels: &labels
+    app: cluster-autodiscover
+    component: poster
+  name: cluster-autodiscover-poster
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels: *labels
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-logs-container: app
+      labels: *labels
+    spec:
+      containers:
+      - name: app
+        image: binkcore.azurecr.io/kube-autodiscover-poster:develop-352a0679
+        imagePullPolicy: Always
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
