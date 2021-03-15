@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/hermes-pcui-endpoint-mock
     newName: binkcore.azurecr.io/hermes-pcui-endpoint-mock
-    newTag: "develop-2021-03-09-092140" # {"$imagepolicy": "flux-system:perf-hermes-pcui-endpoint-mock:tag"}
+    newTag: "master-2021-03-15-143105" # {"$imagepolicy": "flux-system:perf-hermes-pcui-endpoint-mock:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
