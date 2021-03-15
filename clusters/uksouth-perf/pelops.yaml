@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/pelops
     newName: binkcore.azurecr.io/pelops
-    newTag: "develop-2021-03-02-155245" # {"$imagepolicy": "flux-system:pelops:tag"}
+    newTag: "develop-2021-03-02-155245" # {"$imagepolicy": "flux-system:uksouth-perf-pelops:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -30,13 +30,13 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: pelops
+  name: uksouth-perf-pelops
   namespace: flux-system
 spec:
   imageRepositoryRef:
     name: pelops
   filterTags:
-    pattern: '-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    pattern: 'develop-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
     extract: '$ts'
   policy:
     alphabetical:

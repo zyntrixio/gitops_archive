@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/hades
     newName: binkcore.azurecr.io/hades
-    newTag: "develop-2021-03-09-145629" # {"$imagepolicy": "flux-system:hades:tag"}
+    newTag: "develop-2021-03-09-145629" # {"$imagepolicy": "flux-system:uksouth-perf-hades:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -30,7 +30,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: hades
+  name: uksouth-perf-hades
   namespace: flux-system
 spec:
   imageRepositoryRef:

@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/iris
     newName: binkcore.azurecr.io/iris
-    newTag: "develop-2021-03-02-153031" # {"$imagepolicy": "flux-system:iris:tag"}
+    newTag: "develop-2021-03-02-153031" # {"$imagepolicy": "flux-system:uksouth-perf-iris:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -30,7 +30,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: iris
+  name: uksouth-perf-iris
   namespace: flux-system
 spec:
   imageRepositoryRef:

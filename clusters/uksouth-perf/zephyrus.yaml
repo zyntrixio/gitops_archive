@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/zephyrus
     newName: binkcore.azurecr.io/zephyrus
-    newTag: "develop-2021-03-06-183707" # {"$imagepolicy": "flux-system:zephyrus:tag"}
+    newTag: "develop-2021-03-06-183707" # {"$imagepolicy": "flux-system:uksouth-perf-zephyrus:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -30,7 +30,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: zephyrus
+  name: uksouth-perf-zephyrus
   namespace: flux-system
 spec:
   imageRepositoryRef:

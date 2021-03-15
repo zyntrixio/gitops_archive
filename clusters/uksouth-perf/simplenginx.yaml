@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/simplenginx
     newName: binkcore.azurecr.io/simplenginx
-    newTag: "master-2021-03-14-042014" # {"$imagepolicy": "flux-system:simplenginx:tag"}
+    newTag: "master-2021-03-14-042014" # {"$imagepolicy": "flux-system:uksouth-perf-simplenginx:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -30,13 +30,13 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: simplenginx
+  name: uksouth-perf-simplenginx
   namespace: flux-system
 spec:
   imageRepositoryRef:
     name: simplenginx
   filterTags:
-    pattern: '-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    pattern: 'master-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
     extract: '$ts'
   policy:
     alphabetical:

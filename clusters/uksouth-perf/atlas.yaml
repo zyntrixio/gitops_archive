@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/atlas
     newName: binkcore.azurecr.io/atlas
-    newTag: "develop-2021-03-02-152049" # {"$imagepolicy": "flux-system:atlas:tag"}
+    newTag: "develop-2021-03-02-152049" # {"$imagepolicy": "flux-system:uksouth-perf-atlas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -30,13 +30,13 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: atlas
+  name: uksouth-perf-atlas
   namespace: flux-system
 spec:
   imageRepositoryRef:
     name: atlas
   filterTags:
-    pattern: '-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    pattern: 'develop-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
     extract: '$ts'
   policy:
     alphabetical:
