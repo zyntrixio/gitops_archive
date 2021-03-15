@@ -8,3 +8,5 @@ patches:
 - path: env.yaml
   target:
     kind: Deployment
+- path: beat-env.yaml
+- path: celery-env.yaml
