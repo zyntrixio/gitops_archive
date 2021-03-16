@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels: &labels
     app: europa
-    component: api
+    component: migrator
   name: europa
   namespace: default
 spec:
