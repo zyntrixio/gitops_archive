@@ -1,0 +1,43 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: binkweb-nginx
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-dev/binkweb-nginx
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+  images:
+  - name: binkcore.azurecr.io/binkweb-nginx
+    newName: binkcore.azurecr.io/binkweb-nginx
+    newTag: "develop-2021-03-09-162125" # {"$imagepolicy": "flux-system:uksouth-dev-binkweb-nginx:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: binkweb-nginx
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/binkweb-nginx
+  interval: 10m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-dev-binkweb-nginx
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: binkweb-nginx
+  filterTags:
+    pattern: 'develop-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc

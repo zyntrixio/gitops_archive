@@ -1,28 +1,28 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: binkweb-nginx
+  name: simplenginx
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/binkweb-nginx
+  path: ./overlays/uksouth-dev/simplenginx
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/binkweb-nginx
-    newName: binkcore.azurecr.io/binkweb-nginx
-    newTag: "develop-2021-03-09-162125" # {"$imagepolicy": "flux-system:dev-binkweb-nginx:tag"}
+  - name: binkcore.azurecr.io/simplenginx
+    newName: binkcore.azurecr.io/simplenginx
+    newTag: "master-2021-03-14-042014" # {"$imagepolicy": "flux-system:uksouth-dev-simplenginx:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: binkweb-nginx
+  name: simplenginx
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/binkweb-nginx
+  image: binkcore.azurecr.io/simplenginx
   interval: 10m0s
   secretRef:
     name: binkcore.azurecr.io
@@ -30,13 +30,13 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: dev-binkweb-nginx
+  name: uksouth-dev-simplenginx
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: binkweb-nginx
+    name: simplenginx
   filterTags:
-    pattern: 'develop-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    pattern: 'master-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
     extract: '$ts'
   policy:
     alphabetical:
