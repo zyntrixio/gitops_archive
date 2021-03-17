@@ -1,0 +1,7 @@
+bases:
+- ../../../bases/infrastructure/postgres-exporter
+
+patches:
+- path: annotations.yaml
+- path: env.yaml
+- path: labels.yaml
