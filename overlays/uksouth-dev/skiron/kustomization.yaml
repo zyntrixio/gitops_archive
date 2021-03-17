@@ -1,0 +1,7 @@
+bases:
+- ../../../bases/olympus/skiron
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
