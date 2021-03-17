@@ -1,0 +1,10 @@
+resources:
+- azureidentity.yaml
+
+bases:
+- ../../../bases/olympus/zephyrus
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
