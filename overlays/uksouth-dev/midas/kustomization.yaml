@@ -1,0 +1,9 @@
+bases:
+- ../../../bases/olympus/midas/api
+- ../../../bases/olympus/midas/beat
+- ../../../bases/olympus/midas/celery
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
