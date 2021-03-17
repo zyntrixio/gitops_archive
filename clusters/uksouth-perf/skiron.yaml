@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/skiron
     newName: binkcore.azurecr.io/skiron
-    newTag: "develop-2021-03-02-162212" # {"$imagepolicy": "flux-system:uksouth-perf-skiron:tag"}
+    newTag: "develop-2021-03-17-180731" # {"$imagepolicy": "flux-system:uksouth-perf-skiron:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
