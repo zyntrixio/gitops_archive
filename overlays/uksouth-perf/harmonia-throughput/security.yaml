@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: harmonia-throughput-test
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        securityContext:
+          runAsGroup: 0
+          runAsUser: 0
