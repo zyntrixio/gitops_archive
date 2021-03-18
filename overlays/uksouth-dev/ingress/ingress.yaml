@@ -76,7 +76,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: helios
+            name: helios-api
             port:
               number: 80
       - path: /admin
@@ -280,27 +280,6 @@ spec:
         backend:
           service:
             name: zephyrus
-            port:
-              number: 80
-      - path: /balance
-        pathType: Prefix
-        backend:
-          service:
-            name: zeus
-            port:
-              number: 80
-      - path: /scheme_accounts
-        pathType: Prefix
-        backend:
-          service:
-            name: zeus
-            port:
-              number: 80
-      - path: /transactions
-        pathType: Prefix
-        backend:
-          service:
-            name: zeus
             port:
               number: 80
   tls:
