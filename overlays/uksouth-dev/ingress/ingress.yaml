@@ -72,6 +72,13 @@ spec:
             name: harmonia-api
             port:
               number: 80
+      - path: /dashboard
+        pathType: Prefix
+        backend:
+          service:
+            name: helios-api
+            port:
+              number: 80
       - path: /admin
         pathType: Prefix
         backend:
