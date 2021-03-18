@@ -1,0 +1,309 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:$service_port;
+      proxy_hide_header l5d-remote-ip;
+      proxy_hide_header l5d-server-id;
+      more_set_headers "X-Frame-Options: DENY";
+      more_set_headers "X-Content-Type-Options: nosniff";
+      more_set_headers "X-Xss-Protection: 1; mode=block";
+  name: api.dev0.uksouth.bink.sh
+  namespace: default
+spec:
+  rules:
+  - host: api.dev0.uksouth.bink.sh
+    http:
+      paths:
+      - path: /audit
+        pathType: Prefix
+        backend:
+          service:
+            name: atlas-api
+            port:
+              number: 80
+      - path: /eos
+        pathType: Prefix
+        backend:
+          service:
+            name: eos
+            port:
+              number: 80
+      - path: /txm/config/keys
+        pathType: Prefix
+        backend:
+          service:
+            name: harmonia-api
+            port:
+              number: 80
+      - path: /txm/import/bink-loyalty/
+        pathType: Prefix
+        backend:
+          service:
+            name: harmonia-api
+            port:
+              number: 80
+      - path: /txm/import/bink-payment/
+        pathType: Prefix
+        backend:
+          service:
+            name: harmonia-api
+            port:
+              number: 80
+      - path: /txm/matching/force_match
+        pathType: Prefix
+        backend:
+          service:
+            name: harmonia-api
+            port:
+              number: 80
+      - path: /txm/mids/
+        pathType: Prefix
+        backend:
+          service:
+            name: harmonia-api
+            port:
+              number: 80
+      - path: /txm/status/
+        pathType: Prefix
+        backend:
+          service:
+            name: harmonia-api
+            port:
+              number: 80
+      - path: /dashboard
+        pathType: Prefix
+        backend:
+          service:
+            name: helios
+            port:
+              number: 80
+      - path: /admin
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /order
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /payment_cards
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /schemes
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /static/
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /ubiquity/membership_card
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /ubiquity/membership_cards
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /ubiquity/membership_plan
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /ubiquity/membership_plans
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /ubiquity/membership_transaction
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /ubiquity/membership_transactions
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /ubiquity/payment_card
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /ubiquity/payment_cards
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /ubiquity/service
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /users
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /content
+        pathType: Prefix
+        backend:
+          service:
+            name: iris
+            port:
+              number: 80
+      - path: /password
+        pathType: Prefix
+        backend:
+          service:
+            name: lethe
+            port:
+              number: 80
+      - path: /payment_service
+        pathType: Prefix
+        backend:
+          service:
+            name: metis-api
+            port:
+              number: 80
+      - path: /join/merchant/
+        pathType: Prefix
+        backend:
+          service:
+            name: midas-api
+            port:
+              number: 80
+      - path: /redoctober
+        pathType: Prefix
+        backend:
+          service:
+            name: red-october
+            port:
+              number: 80
+      - path: /transaction_feed
+        pathType: Prefix
+        backend:
+          service:
+            name: rhodos
+            port:
+              number: 80
+      - path: /mids
+        pathType: Prefix
+        backend:
+          service:
+            name: selene
+            port:
+              number: 80
+      - path: /healthz
+        pathType: Exact
+        backend:
+          service:
+            name: simplenginx
+            port:
+              number: 80
+      - path: /auth_transactions_mock/mastercard
+        pathType: Exact
+        backend:
+          service:
+            name: skiron
+            port:
+              number: 80
+      - path: /tlog/whsmith
+        pathType: Prefix
+        backend:
+          service:
+            name: tlog-receiver
+            port:
+              number: 80
+      - path: /auth_transactions/amex
+        pathType: Prefix
+        backend:
+          service:
+            name: zephyrus
+            port:
+              number: 80
+      - path: /auth_transactions/authorize
+        pathType: Prefix
+        backend:
+          service:
+            name: zephyrus
+            port:
+              number: 80
+      - path: /auth_transactions/mastercard
+        pathType: Prefix
+        backend:
+          service:
+            name: zephyrus
+            port:
+              number: 80
+      - path: /auth_transactions/visa
+        pathType: Prefix
+        backend:
+          service:
+            name: zephyrus
+            port:
+              number: 80
+      - path: /balance
+        pathType: Prefix
+        backend:
+          service:
+            name: zeus
+            port:
+              number: 80
+      - path: /scheme_accounts
+        pathType: Prefix
+        backend:
+          service:
+            name: zeus
+            port:
+              number: 80
+      - path: /transactions
+        pathType: Prefix
+        backend:
+          service:
+            name: zeus
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - api.dev0.uksouth.bink.sh
+    secretName: api.dev0.uksouth.bink.sh
