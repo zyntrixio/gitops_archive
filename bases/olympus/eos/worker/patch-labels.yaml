@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: eos
+    component: worker
+  name: eos
+spec:
+  selector:
+    matchLabels:
+      app: eos
+      component: worker
+  template:
+    metadata:
+      labels:
+        app: eos
+        component: worker

@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: eos
+    component: api
+  name: eos
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: eos
+      component: api
+  template:
+    metadata:
+      labels:
+        app: eos
+        component: api
