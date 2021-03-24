@@ -27,7 +27,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: eos
+            name: eos-api
             port:
               number: 80
       - path: /txm/config/keys
