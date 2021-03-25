@@ -1,14 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: atlas
     component: api
   name: atlas
   namespace: default
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: atlas
+      component: api
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: atlas
+        component: api

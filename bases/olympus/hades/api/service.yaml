@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  labels: &labels
+  labels:
     app: hades
     component: api
   name: hades-api
@@ -13,6 +13,8 @@ spec:
     port: 80
     protocol: TCP
     targetPort: 9000
-  selector: *labels
+  selector:
+    app: hades
+    component: api
   sessionAffinity: None
   type: ClusterIP

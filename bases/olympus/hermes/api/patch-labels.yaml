@@ -1,14 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: hermes
     component: api
   name: hermes
   namespace: default
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: hermes
+      component: api
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: hermes
+        component: api

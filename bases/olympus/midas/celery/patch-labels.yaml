@@ -1,14 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: midas
     component: celery
   name: midas
   namespace: default
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: midas
+      component: celery
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: midas
+        component: celery

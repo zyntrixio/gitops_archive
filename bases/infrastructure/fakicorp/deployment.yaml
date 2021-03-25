@@ -3,18 +3,22 @@ kind: Deployment
 metadata:
   name: fakicorp
   namespace: default
-  labels: &labels
+  labels:
     app: fakicorp
     aadpodidbinding: fakicorp
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: fakicorp
+      aadpodidbinding: fakicorp
   template:
     metadata:
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-logs-container: app
-      labels: *labels
+      labels:
+        app: fakicorp
+        aadpodidbinding: fakicorp
     spec:
       containers:
       - name: app

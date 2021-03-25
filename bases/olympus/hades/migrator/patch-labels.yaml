@@ -1,14 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: hades
     component: migrator
   name: hades
   namespace: default
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: hades
+      component: migrator
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: hades
+        component: migrator

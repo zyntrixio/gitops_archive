@@ -1,14 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: harmonia
     component: export-worker
   name: harmonia
   namespace: default
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: harmonia
+      component: export-worker
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: harmonia
+        component: export-worker

@@ -3,18 +3,20 @@ kind: Deployment
 metadata:
   name: redis-exporter
   namespace: monitoring
-  labels: &labels
+  labels:
     app: redis-exporter
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: redis-exporter
   template:
     metadata:
       annotations:
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
         prometheus.io/job: redis
-      labels: *labels
+      labels:
+        app: redis-exporter
     spec:
       containers:
       - name: redis-exporter

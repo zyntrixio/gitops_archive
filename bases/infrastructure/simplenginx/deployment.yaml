@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: simplenginx
   name: simplenginx
   namespace: default
@@ -10,7 +10,8 @@ spec:
   replicas: 1
   revisionHistoryLimit: 0
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: simplenginx
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -22,7 +23,8 @@ spec:
         kubectl.kubernetes.io/default-logs-container: nginx
         linkerd.io/inject: enabled
       creationTimestamp: null
-      labels: *labels
+      labels:
+        app: simplenginx
     spec:
       affinity:
         podAntiAffinity:

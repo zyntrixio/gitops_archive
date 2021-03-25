@@ -1,14 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: harmonia
     component: migrator
   name: harmonia
   namespace: default
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: harmonia
+      component: migrator
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: harmonia
+        component: migrator

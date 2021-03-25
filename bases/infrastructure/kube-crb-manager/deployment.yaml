@@ -3,17 +3,19 @@ kind: Deployment
 metadata:
   name: kube-crb-manager
   namespace: kube-system
-  labels: &labels
+  labels:
     app: kube-crb-manager
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: kube-crb-manager
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: kube-crb-manager
     spec:
       containers:
       - name: app

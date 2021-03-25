@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  labels: &labels
+  labels:
     app: hermes-pcui-endpoint-mock
     component: api
   name: hermes-pcui-endpoint-mock-api
@@ -12,6 +12,8 @@ spec:
     port: 80
     protocol: TCP
     targetPort: 9000
-  selector: *labels
+  selector:
+    app: hermes-pcui-endpoint-mock
+    component: api
   sessionAffinity: None
   type: ClusterIP
