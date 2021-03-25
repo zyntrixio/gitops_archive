@@ -1,14 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: europa
     component: migrator
   name: europa
   namespace: default
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: europa
+      component: migrator
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: europa
+        component: migrator

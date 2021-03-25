@@ -2,13 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: azure-metrics-exporter
   name: azure-metrics-exporter
   namespace: monitoring
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: azure-metrics-exporter
   template:
     metadata:
       annotations:
@@ -17,7 +18,8 @@ spec:
         prometheus.io/scrape: 'true'
         prometheus.io/job: azure-metrics-exporter
         kubectl.kubernetes.io/default-logs-container: azure-metrics-exporter
-      labels: *labels
+      labels:
+        app: azure-metrics-exporter
     spec:
       containers:
       - command:

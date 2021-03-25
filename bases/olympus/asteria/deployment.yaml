@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: asteria
   name: asteria
   namespace: default
@@ -10,7 +10,8 @@ spec:
   progressDeadlineSeconds: 600
   revisionHistoryLimit: 0
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: asteria
   template:
     metadata:
       annotations:

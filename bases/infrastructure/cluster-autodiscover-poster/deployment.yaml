@@ -1,14 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: cluster-autodiscover
     component: poster
   name: cluster-autodiscover-poster
   namespace: kube-system
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: cluster-autodiscover
+      component: poster
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -19,7 +21,9 @@ spec:
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-logs-container: app
-      labels: *labels
+      labels:
+        app: cluster-autodiscover
+        component: poster
     spec:
       containers:
       - name: app

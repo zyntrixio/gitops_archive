@@ -2,14 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: iris
     component: api
   name: iris-api
   namespace: default
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: iris
+      component: api
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -20,7 +22,9 @@ spec:
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-logs-container: app
-      labels: *labels
+      labels:
+        app: iris
+        component: api
     spec:
       containers:
       - name: app

@@ -2,19 +2,23 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  labels: &labels
+  labels:
     k8s-app: fluentd-logging
     version: v1
   name: fluentd
   namespace: monitoring
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      k8s-app: fluentd-logging
+      version: v1
   template:
     metadata:
       annotations:
         kubectl.kubernetes.io/default-logs-container: app
-      labels: *labels
+      labels:
+        k8s-app: fluentd-logging
+        version: v1
     spec:
       containers:
       - name: app

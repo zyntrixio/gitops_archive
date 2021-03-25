@@ -1,14 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: midas
     component: api
   name: midas
   namespace: default
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: midas
+      component: api
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: midas
+        component: api

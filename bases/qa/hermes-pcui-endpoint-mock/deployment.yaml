@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: hermes-pcui-endpoint-mock
     component: api
   name: hermes-pcui-endpoint-mock-api
@@ -10,7 +10,9 @@ spec:
   progressDeadlineSeconds: 120
   revisionHistoryLimit: 0
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: hermes-pcui-endpoint-mock
+      component: api
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -20,7 +22,9 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
-      labels: *labels
+      labels:
+        app: hermes-pcui-endpoint-mock
+        component: api
     spec:
       containers:
       - image: binkcore.azurecr.io/hermes-pcui-endpoint-mock:latest

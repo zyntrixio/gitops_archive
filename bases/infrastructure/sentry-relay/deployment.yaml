@@ -3,16 +3,18 @@ kind: Deployment
 metadata:
   name: sentry-relay
   namespace: monitoring
-  labels: &labels
+  labels:
     app: sentry-relay
 spec:
   selector:
-      matchLabels: *labels
+      matchLabels:
+        app: sentry-relay
   template:
     metadata:
       annotations:
         linkerd.io/inject: enabled
-      labels: *labels
+      labels:
+        app: sentry-relay
     spec:
       imagePullSecrets:
       - name: binkext.azurecr.io

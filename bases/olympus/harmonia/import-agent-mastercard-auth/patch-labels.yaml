@@ -1,14 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: harmonia
     component: import-agent-mastercard-auth
   name: harmonia
   namespace: default
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: harmonia
+      component: import-agent-mastercard-auth
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: harmonia
+        component: import-agent-mastercard-auth
