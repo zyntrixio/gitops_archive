@@ -1,0 +1,6 @@
+resources:
+- deployment.yaml
+
+components:
+- ../../common/pgbouncer
+- ../../common/pushgateway
