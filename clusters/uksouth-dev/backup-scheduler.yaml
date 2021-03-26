@@ -12,8 +12,8 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/backup-scheduler
-    newName: binkcore.azurecr.io/backup-scheduler
+  - name: binkcore.azurecr.io/backup-utility
+    newName: binkcore.azurecr.io/backup-utility
     newTag: "develop-2021-03-02-143641" # {"$imagepolicy": "flux-system:uksouth-dev-backup-scheduler:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
@@ -22,7 +22,7 @@ metadata:
   name: backup-scheduler
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/backup-scheduler
+  image: binkcore.azurecr.io/backup-utility
   interval: 10m0s
   secretRef:
     name: binkcore.azurecr.io
