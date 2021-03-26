@@ -1,0 +1,7 @@
+bases:
+- ../../../bases/olympus/asteria
+  
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
