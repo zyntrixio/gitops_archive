@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyqa
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        env:
+        - name: FRIENDLY_NAME
+          value: Dev - Barclays
+        - name: BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string
+              name: azure-storage-common
+        - name: TEAMS_WEBHOOK
+          value: https://hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/bb308487c2844f26ae59a707bbdd382e/de80162c-8e52-466b-affd-f3ccc0a66d5d
+        - name: SCHEDULE
+          value: 5 22 * * *
+        - name: COMMAND
+          value: pytest --html report.html --self-contained-html -s -m bmb --channel
+            barclays
+        - name: ALERT_ON_SUCCESS
+          value: "True"
+        - name: ALERT_ON_FAILURE
+          value: "True"
+        - name: VAULT_URL
+          value: http://fakicorp:8200

@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pyqa
+    org: bink
+  name: pyqa
+spec:
+  selector:
+    matchLabels:
+      app: pyqa
+      org: bink
+  template:
+    metadata:
+      labels:
+        app: pyqa
+        org: bink
