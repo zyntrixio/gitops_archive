@@ -1,0 +1,7 @@
+bases:
+- ../../../bases/infrastructure/cluster-autodiscover-poster
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
