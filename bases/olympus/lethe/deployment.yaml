@@ -26,6 +26,18 @@ spec:
       labels:
         app: lethe
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - lethe
+              topologyKey: kubernetes.io/hostname
       containers:
       - name: app
         image: binkcore.azurecr.io/lethe:latest
