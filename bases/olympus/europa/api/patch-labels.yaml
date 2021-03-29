@@ -16,3 +16,4 @@ spec:
       labels:
         app: europa
         component: api
+        aadpodidbinding: europa
