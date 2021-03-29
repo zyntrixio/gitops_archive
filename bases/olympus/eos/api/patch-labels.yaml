@@ -16,3 +16,4 @@ spec:
       labels:
         app: eos
         component: api
+        aadpodidbinding: eos
