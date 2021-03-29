@@ -2,6 +2,7 @@ bases:
 - ../core
 
 patches:
+- path: patch-command.yaml
 - path: patch-labels.yaml
 - path: patch-annotations.yaml
 - path: patch-name.yaml
