@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/atlas
     newName: binkcore.azurecr.io/atlas
-    newTag: "develop-2021-03-02-152049" # {"$imagepolicy": "flux-system:uksouth-perf-atlas:tag"}
+    newTag: "develop-2021-03-30-125728" # {"$imagepolicy": "flux-system:uksouth-perf-atlas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
