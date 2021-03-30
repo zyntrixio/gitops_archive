@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/zagreus
     newName: binkcore.azurecr.io/zagreus
-    newTag: "develop-2021-03-02-161531" # {"$imagepolicy": "flux-system:uksouth-dev-zagreus:tag"}
+    newTag: "develop-2021-03-30-125328" # {"$imagepolicy": "flux-system:uksouth-dev-zagreus:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
