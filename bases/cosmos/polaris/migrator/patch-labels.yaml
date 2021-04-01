@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: polaris
+    component: migrator
+  name: polaris
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: polaris
+      component: migrator
+  template:
+    metadata:
+      labels:
+        app: polaris
+        component: migrator
