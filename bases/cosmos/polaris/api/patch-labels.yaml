@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: polaris
+    component: api
+  name: polaris
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: polaris
+      component: api
+  template:
+    metadata:
+      labels:
+        app: polaris
+        component: api
+        aadpodidbinding: polaris
