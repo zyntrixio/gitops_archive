@@ -212,6 +212,13 @@ spec:
             name: midas-api
             port:
               number: 80
+      - path: /bpl/loyalty
+        pathType: Prefix
+        backend:
+          service:
+            name: polaris-api
+            port:
+              number: 80
       - path: /redoctober
         pathType: Prefix
         backend:

@@ -1,0 +1,11 @@
+bases:
+- ../../../bases/cosmos/polaris/api
+
+resources:
+- aad.yaml
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
+    
