@@ -28,7 +28,7 @@ metadata:
   namespace: flux-system
 spec:
   providerRef:
-    name: slhttp-debug-notificationack
+    name: http-debug-notificationack
   eventSeverity: info
   eventSources:
     - kind: GitRepository
