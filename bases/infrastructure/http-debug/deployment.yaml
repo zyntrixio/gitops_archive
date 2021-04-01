@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: http-debug
+  namespace: default
+  labels:
+    k8s-app: http-debug
+spec:
+  selector:
+    matchLabels:
+      k8s-app: http-debug
+  template:
+    metadata:
+      name: http-debug
+      labels:
+        k8s-app: http-debug
+    spec:
+      containers:
+      - name: http-debug
+        image: mendhak/http-https-echo:18
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
