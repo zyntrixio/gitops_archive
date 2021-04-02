@@ -26,36 +26,6 @@ spec:
       - command:
         - python
         - main.py
-        env:
-        - name: redis_host
-          valueFrom:
-            secretKeyRef:
-              key: host
-              name: azure-redis-common
-        - name: redis_pass
-          valueFrom:
-            secretKeyRef:
-              key: password
-              name: azure-redis-common
-        - name: redis_port
-          valueFrom:
-            secretKeyRef:
-              key: port
-              name: azure-redis-common
-        - name: backup_storage_account_name
-          valueFrom:
-            secretKeyRef:
-              key: account
-              name: azure-storage-common
-        - name: backup_storage_account_pass
-          valueFrom:
-            secretKeyRef:
-              key: key
-              name: azure-storage-common
-        - name: media_storage_account_name
-          value: bink
-        - name: media_storage_account_pass
-          value: xaeP9dmuYEWf/gthvteUj2utPcIM/B4dPRPoyHAd22LEI/6l/XJhYnzu2I66rI7PEdgoyvvDKJNYcmxd9vsLhA==
         image: binkcore.azurecr.io/backup-utility:latest
         imagePullPolicy: Always
         name: backup-scheduler

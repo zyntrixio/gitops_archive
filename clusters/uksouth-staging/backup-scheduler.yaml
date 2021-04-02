@@ -1,0 +1,43 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: backup-scheduler
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-staging/backup-scheduler
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+  images:
+  - name: binkcore.azurecr.io/backup-utility
+    newName: binkcore.azurecr.io/backup-utility
+    newTag: "staging-2.2.6" # {"$imagepolicy": "flux-system:uksouth-staging-backup-scheduler:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: backup-scheduler
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/backup-utility
+  interval: 10m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-staging-backup-scheduler
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: backup-scheduler
+  filterTags:
+    pattern: 'staging-(?P<ts>\d+(\.\d+)*)$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc
