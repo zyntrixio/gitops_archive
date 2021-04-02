@@ -1,4 +1,6 @@
 resources:
-- certificate.yaml
-- ingress.yaml
+- certificate-api.yaml
+- certificate-policies.yaml
+- ingress-api.yaml
+- ingress-policies.yaml
 - issuer.yaml
