@@ -1,0 +1,43 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: policies
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod/policies
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+  images:
+  - name: binkcore.azurecr.io/policies.gb.bink.com
+    newName: binkcore.azurecr.io/policies.gb.bink.com
+    newTag: "production-2021-04-02-153344" # {"$imagepolicy": "flux-system:uksouth-prod-policies:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: policies
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/policies.gb.bink.com
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-prod-policies
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: policies
+  filterTags:
+    pattern: 'production-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc
