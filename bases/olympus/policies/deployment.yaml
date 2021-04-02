@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: policies
+  name: policies
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: policies
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-logs-container: app
+      labels:
+        app: policies
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - policies
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      containers:
+      - name: app
+        image: binkcore.azurecr.io/policies.gb.bink.com:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
+          limits:
+            memory: 150Mi
+          requests:
+            cpu: 10m
+            memory: 150Mi
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
