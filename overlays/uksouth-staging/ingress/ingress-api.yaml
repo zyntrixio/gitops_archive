@@ -1,0 +1,154 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:$service_port;
+      proxy_hide_header l5d-remote-ip;
+      proxy_hide_header l5d-server-id;
+      more_set_headers "X-Frame-Options: DENY";
+      more_set_headers "X-Content-Type-Options: nosniff";
+      more_set_headers "X-Xss-Protection: 1; mode=block";
+  name: api.staging0.uksouth.bink.sh
+  namespace: default
+spec:
+  rules:
+  - host: api.staging0.uksouth.bink.sh
+    http:
+      paths:
+      - backend:
+          serviceName: zephyrus
+          servicePort: 80
+        path: /auth_transactions/authorize
+      - backend:
+          serviceName: zephyrus
+          servicePort: 80
+        path: /auth_transactions/amex
+      - backend:
+          serviceName: zephyrus
+          servicePort: 80
+        path: /auth_transactions/mastercard
+      - backend:
+          serviceName: zephyrus
+          servicePort: 80
+        path: /auth_transactions/visa
+      - backend:
+          serviceName: skiron
+          servicePort: 80
+        path: /auth_transactions_mock/mastercard
+      - backend:
+          serviceName: simplenginx
+          servicePort: 80
+        path: /healthz
+      - backend:
+          serviceName: blackhole
+          servicePort: 80
+        path: /schemes/identify
+      - backend:
+          serviceName: iris
+          servicePort: 80
+        path: /content
+      - backend:
+          serviceName: mnemosyne
+          servicePort: 80
+        path: /analytics
+      - backend:
+          serviceName: hermes-api
+          servicePort: 80
+        path: /admin
+      - backend:
+          serviceName: lethe
+          servicePort: 80
+        path: /password
+      - backend:
+          serviceName: hermes-api
+          servicePort: 80
+        path: /static/
+      - backend:
+          serviceName: hermes-api
+          servicePort: 80
+        path: /users
+      - backend:
+          serviceName: hermes-api
+          servicePort: 80
+        path: /schemes
+      - backend:
+          serviceName: hermes-api
+          servicePort: 80
+        path: /ubiquity
+      - backend:
+          serviceName: hermes-api
+          servicePort: 80
+        path: /payment_cards
+      - backend:
+          serviceName: hermes-api
+          servicePort: 80
+        path: /order
+      - backend:
+          serviceName: zeus-api
+          servicePort: 80
+        path: /balance
+      - backend:
+          serviceName: zeus-api
+          servicePort: 80
+        path: /transactions
+      - backend:
+          serviceName: zeus-api
+          servicePort: 80
+        path: /scheme_accounts
+      - backend:
+          serviceName: metis
+          servicePort: 80
+        path: /payment_service
+      - backend:
+          serviceName: midas-api
+          servicePort: 80
+        path: /join/merchant/
+      - backend:
+          serviceName: thanatos-api
+          servicePort: 80
+        path: /transaction_info
+      - backend:
+          serviceName: atlas-api
+          servicePort: 80
+        path: /audit
+      - backend:
+          serviceName: momus
+          servicePort: 80
+        path: /mock
+      - backend:
+          serviceName: tlog-receiver
+          servicePort: 80
+        path: /tlog/whsmith
+      - backend:
+          serviceName: harmonia-api
+          servicePort: 80
+        path: /txm/config/keys
+      - backend:
+          serviceName: harmonia-api
+          servicePort: 80
+        path: /txm/import/bink-loyalty/
+      - backend:
+          serviceName: harmonia-api
+          servicePort: 80
+        path: /txm/import/bink-payment/
+      - backend:
+          serviceName: harmonia-api
+          servicePort: 80
+        path: /txm/matching/force_match
+      - backend:
+          serviceName: harmonia-api
+          servicePort: 80
+        path: /txm/mids/
+      - backend:
+          serviceName: harmonia-api
+          servicePort: 80
+        path: /txm/status/
+      - backend:
+          serviceName: eos
+          servicePort: 80
+        path: /eos
+  tls:
+  - hosts:
+    - api.staging0.uksouth.bink.sh
+    secretName: api.staging0.uksouth.bink.sh

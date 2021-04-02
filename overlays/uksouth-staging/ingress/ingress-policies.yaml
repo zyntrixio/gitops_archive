@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: policies.staging0.uksouth.bink.sh
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:$service_port;
+      proxy_hide_header l5d-remote-ip;
+      proxy_hide_header l5d-server-id;
+spec:
+  rules:
+  - host: policies.staging0.uksouth.bink.sh
+    http:
+      paths:
+      - backend:
+          serviceName: policies
+          servicePort: 80
+        path: /
+      - backend:
+          serviceName: simplenginx
+          servicePort: 80
+        path: /healthz
+  tls:
+  - hosts:
+    - policies.staging0.uksouth.bink.sh
+    secretName: policies.staging0.uksouth.bink.sh
