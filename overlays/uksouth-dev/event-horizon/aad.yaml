@@ -1,0 +1,19 @@
+---
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentity
+metadata:
+  name: event-horizon-identity
+  namespace: default
+spec:
+  type: 0
+  resourceID: /subscriptions/794aa787-ec6a-40dd-ba82-0ad64ed51639/resourceGroups/uksouth-dev/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-dev-event-horizon
+  clientID: 0eebee92-f0c4-4c08-aa82-246755e3b1c0
+---
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentityBinding
+metadata:
+  name: event-horizon-identity-binding
+  namespace: default
+spec:
+  azureIdentity: event-horizon-identity
+  selector: event-horizon
