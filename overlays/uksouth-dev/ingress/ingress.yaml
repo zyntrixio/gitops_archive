@@ -30,6 +30,13 @@ spec:
             name: eos-api
             port:
               number: 80
+      - path: /bpl/admin
+        pathType: Prefix
+        backend:
+          service:
+            name: event-horizon
+            port:
+              number: 80
       - path: /txm/config/keys
         pathType: Prefix
         backend:

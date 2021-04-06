@@ -1,0 +1,12 @@
+resources:
+- deployment.yaml
+- service.yaml
+
+components:
+- ../../common/pgbouncer
+
+patches:
+- path: patch-labels.yaml
+- path: patch-probes.yaml
+  target:
+    kind: Deployment

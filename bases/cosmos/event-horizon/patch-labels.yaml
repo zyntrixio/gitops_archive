@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: event-horizon
+  name: event-horizon
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: event-horizon
+  template:
+    metadata:
+      labels:
+        app: event-horizon
+        aadpodidbinding: event-horizon
