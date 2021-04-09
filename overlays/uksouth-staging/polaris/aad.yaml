@@ -1,0 +1,19 @@
+---
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentity
+metadata:
+  name: polaris-identity
+  namespace: default
+spec:
+  type: 0
+  resourceID: /subscriptions/457b0db5-6680-480f-9e77-2dafb06bd9dc/resourceGroups/uksouth-staging/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-staging-polaris
+  clientID: 0940e009-547b-4b01-b5a7-83613dbf3e4a
+---
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentityBinding
+metadata:
+  name: polaris-identity-binding
+  namespace: default
+spec:
+  azureIdentity: polaris-identity
+  selector: polaris
