@@ -1,5 +1,5 @@
 bases:
-- ../../../bases/olympus/luna
+- ../../../bases/cosmos/luna
 
 patches:
 - path: env.yaml
