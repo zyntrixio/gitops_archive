@@ -49,4 +49,4 @@ spec:
             cpu: 100m
             memory: 128Mi
       imagePullSecrets:
-      - name: binkext.azurecr.io
+      - name: binkcore.azurecr.io
