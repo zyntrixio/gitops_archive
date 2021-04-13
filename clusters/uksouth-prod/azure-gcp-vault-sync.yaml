@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/azure-gcp-vault-sync
     newName: binkcore.azurecr.io/azure-gcp-vault-sync
-    newTag: "production-2021-04-11-230148" # {"$imagepolicy": "flux-system:uksouth-prod-azure-gcp-vault-sync:tag"}
+    newTag: "develop-2021-04-13-144508" # {"$imagepolicy": "flux-system:uksouth-prod-azure-gcp-vault-sync:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
