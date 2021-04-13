@@ -4,7 +4,7 @@ resources:
 
 patches:
 - path: patch-labels.yaml
-- path: patch-name.yaml
 - path: patch-probes.yaml
+- path: patch-name.yaml
   target:
     kind: Deployment
