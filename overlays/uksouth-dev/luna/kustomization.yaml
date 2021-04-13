@@ -1,0 +1,7 @@
+bases:
+- ../../../bases/olympus/luna
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
