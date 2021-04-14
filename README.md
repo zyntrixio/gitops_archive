@@ -21,9 +21,13 @@ graph TD
     C(clusters)
     D[(Kubernetes)]
 
-    A --> |Generate common config for a project| B
-    B --> |Generate environment specific tweaks| C
-    C --> |Apply Kustomizations to cluster| D
+    X1>Generate common config for a project]
+    X2>Generate environment specific tweaks]
+    X3>Apply Kustomizations to cluster]
+
+    A --> X1 --> B
+    B --> X2 --> C
+    C --> X3 --> D
 ```
 
 ## Bootstrapping
