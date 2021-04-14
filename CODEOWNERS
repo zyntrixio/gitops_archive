@@ -1,1 +1,7 @@
 * @devops
+overlays/uksouth-dev @devops @loyalty @merchant @cosmos @qa
+overlays/uksouth-oat @devops @loyalty @merchant @cosmos @qa
+overlays/uksouth-perf @devops @loyalty @merchant @cosmos @qa
+overlays/uksouth-preprod @devops @loyalty @merchant @cosmos @qa
+overlays/uksouth-staging @devops @loyalty @merchant @cosmos @qa
+overlays/uksouth-sit @devops @loyalty @merchant @cosmos @qa
