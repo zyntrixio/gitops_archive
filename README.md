@@ -16,10 +16,10 @@ Depending on what you're trying to do, you'll need to go to the appropriate dire
 
 ```mermaid
 graph TD
-    A[bases]
-    B[overlays]
-    C[clusters]
-    D{Kubernetes}
+    A(bases)
+    B(overlays)
+    C(clusters)
+    D[(Kubernetes)]
 
     A --> |Generate common config for a project| B
     B --> |Generate environment specific tweaks| C
