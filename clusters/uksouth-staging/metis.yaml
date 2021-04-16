@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/metis
     newName: binkcore.azurecr.io/metis
-    newTag: "staging-2021-03-30-110357" # {"$imagepolicy": "flux-system:uksouth-staging-metis:tag"}
+    newTag: "staging-2021-04-16-075818" # {"$imagepolicy": "flux-system:uksouth-staging-metis:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
