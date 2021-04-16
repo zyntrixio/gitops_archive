@@ -148,6 +148,14 @@ spec:
           serviceName: eos
           servicePort: 80
         path: /eos
+      - backend:
+          serviceName: event-horizon
+          servicePort: 80
+        path: /bpl/admin
+      - backend:
+          serviceName: polaris-api
+          servicePort: 80
+        path: /bpl/loyalty
   tls:
   - hosts:
     - api.staging0.uksouth.bink.sh
