@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/simplenginx
     newName: binkcore.azurecr.io/simplenginx
-    newTag: "master-2021-04-11-040359" # {"$imagepolicy": "flux-system:uksouth-perf-simplenginx:tag"}
+    newTag: "master-2021-04-18-040414" # {"$imagepolicy": "flux-system:uksouth-perf-simplenginx:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
