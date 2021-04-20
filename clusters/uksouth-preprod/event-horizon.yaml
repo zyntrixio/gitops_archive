@@ -1,0 +1,43 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: event-horizon
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-preprod/event-horizon
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+  images:
+  - name: binkcore.azurecr.io/event-horizon
+    newName: binkcore.azurecr.io/event-horizon
+    newTag: "preprod-0.1.2" # {"$imagepolicy": "flux-system:uksouth-preprod-event-horizon:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: event-horizon
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/event-horizon
+  interval: 10m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-preprod-event-horizon
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: event-horizon
+  filterTags:
+    pattern: 'preprod-(?P<ts>\d+(\.\d+)*)$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc

@@ -1,0 +1,43 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: polaris
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-preprod/polaris
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+  images:
+  - name: binkcore.azurecr.io/polaris
+    newName: binkcore.azurecr.io/polaris
+    newTag: "preprod-0.1.1" # {"$imagepolicy": "flux-system:uksouth-preprod-polaris:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: polaris
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/polaris
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-preprod-polaris
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: polaris
+  filterTags:
+    pattern: 'preprod-(?P<ts>\d+(\.\d+)*)$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc
