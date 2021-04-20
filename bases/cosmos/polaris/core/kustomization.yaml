@@ -3,3 +3,4 @@ resources:
 
 components:
 - ../../../common/pgbouncer
+- ../../../common/pushgateway
