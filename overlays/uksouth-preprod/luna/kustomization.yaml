@@ -1,0 +1,7 @@
+bases:
+- ../../../bases/cosmos/luna
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
