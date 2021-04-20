@@ -4,14 +4,17 @@ metadata:
   labels:
     app: pyqa
     org: bink
+    aadpodidbinding: pyqa
   name: pyqa
 spec:
   selector:
     matchLabels:
       app: pyqa
       org: bink
+      aadpodidbinding: pyqa
   template:
     metadata:
       labels:
         app: pyqa
         org: bink
+        aadpodidbinding: pyqa

@@ -27,4 +27,4 @@ spec:
         - name: ALERT_ON_FAILURE
           value: "True"
         - name: VAULT_URL
-          value: http://fakicorp:8200
+          value: https://bink-uksouth-staging-com.vault.azure.net/

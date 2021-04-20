@@ -2,6 +2,9 @@ bases:
 - ../../../bases/qa/pyqa/bink
 - ../../../bases/qa/pyqa/barclays
 
+resources:
+- azureidentity.yaml
+
 patches:
 - path: env-barclays.yaml
   target:
