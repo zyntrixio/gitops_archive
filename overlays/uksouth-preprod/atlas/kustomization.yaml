@@ -1,0 +1,9 @@
+bases:
+- ../../../bases/olympus/atlas/api
+- ../../../bases/olympus/atlas/consumer
+- ../../../bases/olympus/atlas/migrator
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
