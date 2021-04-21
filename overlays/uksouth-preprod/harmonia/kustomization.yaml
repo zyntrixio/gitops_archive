@@ -1,6 +1,6 @@
 bases:
 - ../../../bases/olympus/harmonia/api
-# - ../../../bases/olympus/harmonia/export-agent-fatface
+- ../../../bases/olympus/harmonia/export-agent-fatface
 # - ../../../bases/olympus/harmonia/export-agent-iceland-bonus-card
 # - ../../../bases/olympus/harmonia/export-retry-worker
 # - ../../../bases/olympus/harmonia/export-worker
