@@ -1,0 +1,26 @@
+bases:
+- ../../../bases/olympus/harmonia/api
+- ../../../bases/olympus/harmonia/export-agent-fatface
+- ../../../bases/olympus/harmonia/export-agent-iceland-bonus-card
+- ../../../bases/olympus/harmonia/export-agent-whsmith-rewards
+- ../../../bases/olympus/harmonia/export-retry-worker
+- ../../../bases/olympus/harmonia/export-worker
+- ../../../bases/olympus/harmonia/import-agent-amex
+- ../../../bases/olympus/harmonia/import-agent-amex-auth
+- ../../../bases/olympus/harmonia/import-agent-harvey-nichols
+- ../../../bases/olympus/harmonia/import-agent-iceland-bonus-card
+- ../../../bases/olympus/harmonia/import-agent-mastercard-auth
+- ../../../bases/olympus/harmonia/import-agent-mastercard-settled
+- ../../../bases/olympus/harmonia/import-agent-visa-auth
+- ../../../bases/olympus/harmonia/import-agent-visa-settle
+- ../../../bases/olympus/harmonia/import-agent-wasabi-club
+- ../../../bases/olympus/harmonia/import-agent-whsmith-rewards
+- ../../../bases/olympus/harmonia/import-worker
+- ../../../bases/olympus/harmonia/matching-worker
+- ../../../bases/olympus/harmonia/matching-worker-slow
+- ../../../bases/olympus/harmonia/migrator
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
