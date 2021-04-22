@@ -296,6 +296,13 @@ spec:
             name: zephyrus
             port:
               number: 80
+      - path: /cardstatus
+        pathType: Prefix
+        backend:
+          service:
+            name: pelops
+            port:
+              number: 80
   tls:
   - hosts:
     - api.dev0.uksouth.bink.sh
