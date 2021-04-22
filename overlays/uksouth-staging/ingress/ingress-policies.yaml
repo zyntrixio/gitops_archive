@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: policies.staging0.uksouth.bink.sh
@@ -13,14 +13,20 @@ spec:
   - host: policies.staging0.uksouth.bink.sh
     http:
       paths:
-      - backend:
-          serviceName: policies
-          servicePort: 80
-        path: /
-      - backend:
-          serviceName: simplenginx
-          servicePort: 80
-        path: /healthz
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: policies
+            port:
+              number: 80
+      - path: /healthz
+        pathType: Exact
+        backend:
+          service:
+            name: simplenginx
+            port:
+              number: 80
   tls:
   - hosts:
     - policies.staging0.uksouth.bink.sh

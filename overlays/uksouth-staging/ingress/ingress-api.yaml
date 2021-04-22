@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -16,146 +16,188 @@ spec:
   - host: api.staging0.uksouth.bink.sh
     http:
       paths:
+      - path: /auth_transactions/authorize
+        pathType: Prefix
+        backend:
+          service:
+            name: zephyrus
+            port:
+              number: 80
+      - path: /auth_transactions/amex
+        pathType: Prefix
+        backend:
+          service:
+            name: zephyrus
+            port:
+              number: 80
+      - path: /auth_transactions/mastercard
+        pathType: Prefix
+        backend:
+          service:
+            name: zephyrus
+            port:
+              number: 80
+      - path: /auth_transactions/visa
+        pathType: Prefix
+        backend:
+          service:
+            name: zephyrus
+            port:
+              number: 80
+      - path: /auth_transactions_mock/mastercard
+        pathType: Exact
+        backend:
+          service:
+            name: skiron
+            port:
+              number: 80
+      - path: /healthz
+        pathType: Exact
+        backend:
+          service:
+            name: simplenginx
+            port:
+              number: 80
+      - path: /content
+        pathType: Prefix
+        backend:
+          service:
+            name: iris
+            port:
+              number: 80
+      - path: /admin
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /password
+        pathType: Prefix
+        backend:
+          service:
+            name: lethe
+            port:
+              number: 80
+      - path: /static/
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /users
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /ubiquity
+        pathType: Prefix
+        backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+      - path: /join/merchant/
+        pathType: Prefix
+        backend:
+          service:
+            name: midas-api
+            port:
+              number: 80
+      - path: /audit
+        pathType: Prefix
+        backend:
+          service:
+            name: atlas-api
+            port:
+              number: 80
+      - path: /mock
+        pathType: Prefix
+        backend:
+          service:
+            name: momus
+            port:
+              number: 80
+      - path: /tlog/whsmith
+        pathType: Prefix
+        backend:
+          service:
+            name: tlog-receiver
+            port:
+              number: 80
       - backend:
-          serviceName: zephyrus
-          servicePort: 80
-        path: /auth_transactions/authorize
-      - backend:
-          serviceName: zephyrus
-          servicePort: 80
-        path: /auth_transactions/amex
-      - backend:
-          serviceName: zephyrus
-          servicePort: 80
-        path: /auth_transactions/mastercard
-      - backend:
-          serviceName: zephyrus
-          servicePort: 80
-        path: /auth_transactions/visa
-      - backend:
-          serviceName: skiron
-          servicePort: 80
-        path: /auth_transactions_mock/mastercard
-      - backend:
-          serviceName: simplenginx
-          servicePort: 80
-        path: /healthz
-      - backend:
-          serviceName: blackhole
-          servicePort: 80
-        path: /schemes/identify
-      - backend:
-          serviceName: iris
-          servicePort: 80
-        path: /content
-      - backend:
-          serviceName: mnemosyne
-          servicePort: 80
-        path: /analytics
-      - backend:
-          serviceName: hermes-api
-          servicePort: 80
-        path: /admin
-      - backend:
-          serviceName: lethe
-          servicePort: 80
-        path: /password
-      - backend:
-          serviceName: hermes-api
-          servicePort: 80
-        path: /static/
-      - backend:
-          serviceName: hermes-api
-          servicePort: 80
-        path: /users
-      - backend:
-          serviceName: hermes-api
-          servicePort: 80
-        path: /schemes
-      - backend:
-          serviceName: hermes-api
-          servicePort: 80
-        path: /ubiquity
-      - backend:
-          serviceName: hermes-api
-          servicePort: 80
-        path: /payment_cards
-      - backend:
-          serviceName: hermes-api
-          servicePort: 80
-        path: /order
-      - backend:
-          serviceName: zeus-api
-          servicePort: 80
-        path: /balance
-      - backend:
-          serviceName: zeus-api
-          servicePort: 80
-        path: /transactions
-      - backend:
-          serviceName: zeus-api
-          servicePort: 80
-        path: /scheme_accounts
-      - backend:
-          serviceName: metis
-          servicePort: 80
-        path: /payment_service
-      - backend:
-          serviceName: midas-api
-          servicePort: 80
-        path: /join/merchant/
-      - backend:
-          serviceName: thanatos-api
-          servicePort: 80
-        path: /transaction_info
-      - backend:
-          serviceName: atlas-api
-          servicePort: 80
-        path: /audit
-      - backend:
-          serviceName: momus
-          servicePort: 80
-        path: /mock
-      - backend:
-          serviceName: tlog-receiver
-          servicePort: 80
-        path: /tlog/whsmith
-      - backend:
-          serviceName: harmonia-api
-          servicePort: 80
+          service:
+            name: harmonia-api
+            port:
+              number: 80
         path: /txm/config/keys
-      - backend:
-          serviceName: harmonia-api
-          servicePort: 80
-        path: /txm/import/bink-loyalty/
-      - backend:
-          serviceName: harmonia-api
-          servicePort: 80
-        path: /txm/import/bink-payment/
-      - backend:
-          serviceName: harmonia-api
-          servicePort: 80
-        path: /txm/matching/force_match
-      - backend:
-          serviceName: harmonia-api
-          servicePort: 80
-        path: /txm/mids/
-      - backend:
-          serviceName: harmonia-api
-          servicePort: 80
-        path: /txm/status/
-      - backend:
-          serviceName: eos
-          servicePort: 80
-        path: /eos
-      - backend:
-          serviceName: event-horizon
-          servicePort: 80
-        path: /bpl/admin
-      - backend:
-          serviceName: polaris-api
-          servicePort: 80
-        path: /bpl/loyalty
+        pathType: Prefix
+      - path: /txm/import/bink-loyalty/
+        pathType: Prefix
+        backend:
+          service:
+            name: harmonia-api
+            port:
+              number: 80
+      - path: /txm/import/bink-payment/
+        pathType: Prefix
+        backend:
+          service:
+            name: harmonia-api
+            port:
+              number: 80
+      - path: /txm/matching/force_match
+        pathType: Prefix
+        backend:
+          service:
+            name: harmonia-api
+            port:
+              number: 80
+      - path: /txm/mids/
+        pathType: Prefix
+        backend:
+          service:
+            name: harmonia-api
+            port:
+              number: 80
+      - path: /txm/status/
+        pathType: Prefix
+        backend:
+          service:
+            name: harmonia-api
+            port:
+              number: 80
+      - path: /eos
+        pathType: Prefix
+        backend:
+          service:
+            name: eos
+            port:
+              number: 80
+      - path: /bpl/admin
+        pathType: Prefix
+        backend:
+          service:
+            name: event-horizon
+            port:
+              number: 80
+      - path: /bpl/loyalty
+        pathType: Prefix
+        backend:
+          service:
+            name: polaris-api
+            port:
+              number: 80
+      - path: /cardstatus
+        pathType: Prefix
+        backend:
+          service:
+            name: pelops
+            port:
+              number: 80
   tls:
   - hosts:
     - api.staging0.uksouth.bink.sh
