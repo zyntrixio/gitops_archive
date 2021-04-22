@@ -36,7 +36,7 @@ spec:
   imageRepositoryRef:
     name: europa
   filterTags:
-    pattern: 'preprod-(?P<ts>\d+(\.\d+)*)$'
+    pattern: 'prod-(?P<ts>\d+(\.\d+)*)$'
     extract: '$ts'
   policy:
     alphabetical:
