@@ -4,6 +4,7 @@ metadata:
   labels:
     app: midas
     component: beat
+    aadpodidbinding: midas
   name: midas
   namespace: default
 spec:
@@ -11,8 +12,10 @@ spec:
     matchLabels:
       app: midas
       component: beat
+      aadpodidbinding: midas
   template:
     metadata:
       labels:
         app: midas
         component: beat
+        aadpodidbinding: midas
