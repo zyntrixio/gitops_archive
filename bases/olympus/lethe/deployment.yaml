@@ -22,7 +22,7 @@ spec:
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
         prometheus.io/job: lethe
-        kubectl.kubernetes.io/default-logs-container: app
+        kubectl.kubernetes.io/default-container: app
       labels:
         app: lethe
     spec:

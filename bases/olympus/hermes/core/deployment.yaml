@@ -13,7 +13,7 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
-        kubectl.kubernetes.io/default-logs-container: app
+        kubectl.kubernetes.io/default-container: app
     spec:
       affinity:
         podAntiAffinity:

@@ -18,7 +18,7 @@ spec:
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
         prometheus.io/job: backup-scheduler
-        kubectl.kubernetes.io/default-logs-container: backup-scheduler
+        kubectl.kubernetes.io/default-container: backup-scheduler
       labels:
         app: backup-scheduler
     spec:

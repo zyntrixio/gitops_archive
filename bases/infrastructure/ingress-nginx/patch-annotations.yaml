@@ -10,4 +10,4 @@ spec:
       annotations:
         linkerd.io/inject: enabled
         config.linkerd.io/skip-inbound-ports: 80,443
-        kubectl.kubernetes.io/default-logs-container: controller
+        kubectl.kubernetes.io/default-container: controller
