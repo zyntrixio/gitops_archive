@@ -26,6 +26,8 @@ spec:
       name: shipping
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         name: shipping
     spec:

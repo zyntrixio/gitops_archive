@@ -28,6 +28,8 @@ spec:
       name: queue-master
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         name: queue-master
     spec:

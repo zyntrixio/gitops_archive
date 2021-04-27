@@ -26,6 +26,8 @@ spec:
       name: catalogue
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         name: catalogue
     spec:

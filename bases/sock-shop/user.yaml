@@ -26,6 +26,8 @@ spec:
       name: user
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         name: user
     spec:

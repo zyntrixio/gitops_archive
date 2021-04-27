@@ -26,6 +26,8 @@ spec:
       name: orders-db
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         name: orders-db
     spec:

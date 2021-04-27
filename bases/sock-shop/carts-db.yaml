@@ -26,6 +26,8 @@ spec:
       name: carts-db
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         name: carts-db
     spec:
