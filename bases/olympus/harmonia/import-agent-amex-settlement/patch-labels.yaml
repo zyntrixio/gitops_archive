@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: import-agent-amex-settlement
+  name: harmonia
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: harmonia
+      component: import-agent-amex-settlement
+  template:
+    metadata:
+      labels:
+        app: harmonia
+        component: import-agent-amex-settlement
