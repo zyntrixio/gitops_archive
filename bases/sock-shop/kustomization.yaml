@@ -1,0 +1,14 @@
+resources:
+- carts-db.yaml
+- carts.yaml
+- catalogue-db.yaml
+- catalogue.yaml
+- frontend.yaml
+- orders-db.yaml
+- orders.yaml
+- payment.yaml
+- queue-master.yaml
+- rabbitmq.yaml
+- shipping.yaml
+- user.yaml
+- userdb.yaml
