@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: polaris
+    component: enrolment-callback-scheduler
+  name: polaris
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: polaris
+      component: enrolment-callback-scheduler
+  template:
+    metadata:
+      labels:
+        app: polaris
+        component: enrolment-callback-scheduler
+        aadpodidbinding: polaris
