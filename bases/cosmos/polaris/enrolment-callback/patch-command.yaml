@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polaris
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        args:
+          - "python"
+          - "-m"
+          - "app.callbacks.enrolment"
