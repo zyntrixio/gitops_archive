@@ -1,0 +1,43 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: zagreus
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod/zagreus
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+  images:
+  - name: binkcore.azurecr.io/zagreus
+    newName: binkcore.azurecr.io/zagreus
+    newTag: "prod-1.4" # {"$imagepolicy": "flux-system:uksouth-prod-zagreus:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: zagreus
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/zagreus
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-prod-zagreus
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: zagreus
+  filterTags:
+    pattern: 'prod-(?P<ts>\d+(\.\d+)*)$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc

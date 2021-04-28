@@ -1,0 +1,9 @@
+bases:
+- ../../../bases/olympus/zagreus/api
+- ../../../bases/olympus/zagreus/consumer
+- ../../../bases/olympus/zagreus/migrator
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
