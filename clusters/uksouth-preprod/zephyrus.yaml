@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/zephyrus
     newName: binkcore.azurecr.io/zephyrus
-    newTag: "prod-1.6" # {"$imagepolicy": "flux-system:uksouth-preprod-zephyrus:tag"}
+    newTag: "prod-1.7.1" # {"$imagepolicy": "flux-system:uksouth-preprod-zephyrus:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
