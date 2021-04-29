@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   labels:
     app: postgres-exporter
-    instance: common
+    instance: hermes
   name: postgres-exporter
   namespace: monitoring
 spec:
   selector:
     matchLabels:
       app: postgres-exporter
-      instance: common
+      instance: hermes
   template:
     metadata:
       labels:
         app: postgres-exporter
-        instance: common
+        instance: hermes

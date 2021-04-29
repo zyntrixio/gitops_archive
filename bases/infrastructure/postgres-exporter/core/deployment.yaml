@@ -8,6 +8,7 @@ spec:
   template:
     metadata:
       annotations:
+        linkerd.io/inject: enabled
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
         prometheus.io/job: postgres

@@ -1,7 +1,26 @@
 bases:
-- ../../../bases/infrastructure/postgres-exporter
+- ../../../bases/infrastructure/postgres-exporter/common
+- ../../../bases/infrastructure/postgres-exporter/hades
+- ../../../bases/infrastructure/postgres-exporter/harmonia
+- ../../../bases/infrastructure/postgres-exporter/hermes
+
+resources:
+- configmap.yaml
 
 patches:
-- path: annotations.yaml
-- path: env.yaml
-- path: labels.yaml
+- path: env-common.yaml
+  target:
+    name: postgres-exporter-common
+    kind: Deployment
+- path: env-hades.yaml
+  target:
+    name: postgres-exporter-hades
+    kind: Deployment
+- path: env-harmonia.yaml
+  target:
+    name: postgres-exporter-harmonia
+    kind: Deployment
+- path: env-hermes.yaml
+  target:
+    name: postgres-exporter-hermes
+    kind: Deployment

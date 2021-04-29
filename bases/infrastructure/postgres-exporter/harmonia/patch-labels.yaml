@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   labels:
     app: postgres-exporter
-    instance: common
+    instance: harmonia
   name: postgres-exporter
   namespace: monitoring
 spec:
   selector:
     matchLabels:
       app: postgres-exporter
-      instance: common
+      instance: harmonia
   template:
     metadata:
       labels:
         app: postgres-exporter
-        instance: common
+        instance: harmonia

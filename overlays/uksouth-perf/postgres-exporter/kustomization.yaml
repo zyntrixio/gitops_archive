@@ -1,7 +1,11 @@
 bases:
-- ../../../bases/infrastructure/postgres-exporter
+- ../../../bases/infrastructure/postgres-exporter/common
+
+resources:
+- configmap.yaml
 
 patches:
-- path: annotations.yaml
-- path: env.yaml
-- path: labels.yaml
+- path: env-common.yaml
+  target:
+    name: postgres-exporter-common
+    kind: Deployment
