@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    fluxcd.io/automated: 'false'
+  labels: &labels
+    app: azure-metrics-exporter
+  name: azure-metrics-exporter
+  namespace: default
+spec:
+  progressDeadlineSeconds: 600
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels: *labels
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        prometheus.io/port: '9100'
+        prometheus.io/scrape: 'true'
+        prometheus.io/job: azure-metrics-exporter
+      labels: *labels
+    spec:
+      containers:
+      - command:
+        - /bin/sh
+        - -c
+        - 'sleep 2; cp /etc/azure-metrics-exporter/azure.yml /bin/azure.yml; sleep 2; sed -i "s/^  client_secret:$/  client_secret: $AZURE_METRICS_EXPORTER_KEY/" /bin/azure.yml; sleep 2; /bin/azure_metrics_exporter --config.file="/bin/azure.yml" --web.listen-address=":9100"'
+        env:
+        - name: AZURE_METRICS_EXPORTER_KEY
+          valueFrom:
+            secretKeyRef:
+              key: secret
+              name: azure-metrics-exporter
+        name: azure-metrics-exporter
+        image: robustperception/azure_metrics_exporter
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9100
+        resources:
+          limits:
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        volumeMounts:
+        - name: azure-metrics-exporter-volume
+          mountPath: /etc/azure-metrics-exporter/
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: azure-metrics-exporter-volume
+        configMap:
+          name: azure-metrics-exporter-conf

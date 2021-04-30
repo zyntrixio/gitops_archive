@@ -1,0 +1,71 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blackbox-exporter-conf
+  namespace: default
+  labels:
+    name: blackbox-exporter-conf
+data:
+  config.yaml: |-
+    modules:
+      dns_api_gb_bink_com:
+        prober: dns
+        timeout: 5s
+        dns:
+          query_name: "api.gb.bink.com"
+          query_type: "A"
+          valid_rcodes:
+          - NOERROR
+          validate_answer_rrs:
+            fail_if_none_matches_regexp:
+            - ".+IN\tA\t13.107.246.19"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blackbox-exporter
+  namespace: default
+  labels: &labels
+    app: blackbox-exporter
+spec:
+  selector:
+    matchLabels: *labels
+  template:
+    metadata:
+      labels: *labels
+    spec:
+      containers:
+        - name: blackbox-exporter
+          image: prom/blackbox-exporter:latest
+          args:
+            - "--config.file=/config/config.yaml"
+            - "--log.level=debug"
+          ports:
+            - containerPort: 9115
+          volumeMounts:
+            - name: blackbox-exporter-config-volume
+              mountPath: /config/
+            
+      volumes:
+        - name: blackbox-exporter-config-volume
+          configMap:
+            defaultMode: 420
+            name: blackbox-exporter-conf
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels: &labels
+    app: blackbox-exporter
+  name: blackbox-exporter
+  namespace: default
+spec:
+  ports:
+  - name: tcp
+    port: 80
+    targetPort: 9115
+    protocol: TCP
+  selector: *labels
+  sessionAffinity: None
+  type: ClusterIP

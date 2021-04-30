@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elasticsearch-exporter
+  namespace: default
+  labels: &labels
+    app: elasticsearch-exporter
+spec:
+  selector:
+    matchLabels: *labels
+  template:
+    metadata:
+      labels: *labels
+      annotations:
+        prometheus.io/port: '9114'
+        prometheus.io/scrape: 'true'
+        prometheus.io/job: elasticsearch
+    spec:
+      containers:
+        - name: ssl-exporter
+          image: justwatch/elasticsearch_exporter:1.1.0
+          args:
+            - --es.uri=https://exporter:exporter@elasticsearch.uksouth.bink.host:9200
+            - --es.all
+            - --es.timeout=10s
+            - --es.ssl-skip-verify
+            - --log.level="debug"
+          ports:
+            - containerPort: 9114

@@ -1,0 +1,279 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: azure-metrics-exporter-conf
+  namespace: default
+  labels:
+    name: azure-metrics-exporter-conf
+data:
+  azure.yml: |
+    active_directory_authority_url: "https://login.microsoftonline.com/"
+    resource_manager_url: "https://management.azure.com/"
+    credentials:
+      subscription_id: 0add5c8e-50a6-4821-be0f-7a47c879b009
+      client_id: 81fb8275-fbb2-472d-a0d4-23d03800e0d4
+      client_secret:
+      tenant_id: a6e2367a-92ea-4e5a-b565-723830bcc095
+    targets:
+    resource_groups:
+      - resource_group: "frontdoor"
+        resource_types:
+          - "Microsoft.Network/frontdoors"
+        metrics: &frontdoors
+          - name: "BackendHealthPercentage"
+          - name: "BackendRequestLatency"
+          - name: "BackendRequestCount"
+          - name: "RequestCount"
+          - name: "TotalLatency"
+          - name: "WebApplicationFirewallRequestCount"
+
+      - resource_group: "storage"
+        resource_types:
+          - "Microsoft.Storage/storageAccounts"
+        resource_name_exclude_re:
+          - "binkops.*"
+          - ".*sftp.*"
+        metrics: &storageAccounts
+          - name: "Availability"
+          - name: "Egress"
+          - name: "Ingress"
+          - name: "SuccessE2ELatency"
+          - name: "SuccessServerLatency"
+          - name: "Transactions"
+          - name: "UsedCapacity"
+
+      - resource_group: "uksouth-aqua"
+        resource_types:
+          - "Microsoft.Storage/storageAccounts"
+        metrics: *storageAccounts
+
+      - resource_group: "uksouth-aqua-k0"
+        resource_types:
+          - "Microsoft.Compute/virtualMachines"
+        metrics: &virtualMachines
+          - name: "Disk Read Bytes"
+          - name: "Disk Write Bytes"
+          - name: "Network In Total"
+          - name: "Network Out Total"
+          - name: "Percentage CPU"
+
+      - resource_group: "uksouth-aqua-k0"
+        resource_types:
+          - "Microsoft.Network/loadBalancers"
+        metrics: &loadBalancers
+          - name: "ByteCount"
+          - name: "DipAvailability"
+          - name: "PacketCount"
+          - name: "SnatConnectionCount"
+          - name: "SYNCount"
+          - name: "VipAvailability"
+
+      - resource_group: "uksouth-aqua-k0"
+        resource_types:
+          - "Microsoft.Network/networkInterfaces"
+        metrics: &networkInterfaces
+          - name: "PacketsReceivedRate"
+          - name: "PacketsSentRate"
+
+      - resource_group: "uksouth-bastion"
+        resource_types:
+          - "Microsoft.Compute/virtualMachines"
+        metrics: *virtualMachines
+
+      - resource_group: "uksouth-bastion"
+        resource_types:
+          - "Microsoft.Network/loadBalancers"
+        metrics: *loadBalancers
+
+      - resource_group: "uksouth-bastion"
+        resource_types:
+          - "Microsoft.Network/networkInterfaces"
+        metrics: *networkInterfaces
+
+      - resource_group: "uksouth-chef"
+        resource_types:
+          - "Microsoft.Compute/virtualMachines"
+        metrics: *virtualMachines
+
+      - resource_group: "uksouth-chef"
+        resource_types:
+          - "Microsoft.Network/loadBalancers"
+        metrics: *loadBalancers
+
+      - resource_group: "uksouth-chef"
+        resource_types:
+          - "Microsoft.Network/networkInterfaces"
+        metrics: *networkInterfaces
+
+      - resource_group: "uksouth-common"
+        resource_types:
+          - "Microsoft.KeyVault/vaults"
+        metrics: &vaults
+          - name: "Availability"
+          - name: "ServiceApiHit"
+          - name: "ServiceApiLatency"
+          - name: "ServiceApiResult"
+
+      - resource_group: "uksouth-dns"
+        resource_types:
+          - "Microsoft.Network/dnszones"
+        metrics: &dnszones
+          - name: "QueryVolume"
+          - name: "RecordSetCapacityUtilization"
+          - name: "RecordSetCount"
+
+      - resource_group: "uksouth-elasticsearch"
+        resource_types:
+          - "Microsoft.Compute/virtualMachines"
+        metrics: *virtualMachines
+
+      - resource_group: "uksouth-elasticsearch"
+        resource_types:
+          - "Microsoft.Network/loadBalancers"
+        metrics: *loadBalancers
+
+      - resource_group: "uksouth-elasticsearch"
+        resource_types:
+          - "Microsoft.Network/networkInterfaces"
+        metrics: *networkInterfaces
+
+      - resource_group: "uksouth-eventhubs"
+        resource_types:
+          - "Microsoft.EventHub/namespaces"
+        metrics: &namespaces
+          - name: "ActiveConnections"
+          - name: "IncomingMessages"
+          - name: "IncomingRequests"
+          - name: "OutgoingMessages"
+          - name: "QuotaExceededErrors"
+          - name: "ServerErrors"
+          - name: "Size"
+          - name: "SuccessfulRequests"
+          - name: "UserErrors"
+
+      - resource_group: "uksouth-eventhubs"
+        resource_types:
+          - "Microsoft.Storage/storageAccounts"
+        metrics: *storageAccounts
+
+      - resource_group: "uksouth-firewall"
+        resource_types:
+          - "Microsoft.Network/azurefirewalls"
+        metrics: &azurefirewalls
+          - name: "ApplicationRuleHit"
+          - name: "DataProcessed"
+          - name: "FirewallHealth"
+          - name: "NetworkRuleHit"
+          - name: "SNATPortUtilization"
+          - name: "Throughput"
+
+      - resource_group: "uksouth-gitlab"
+        resource_types:
+          - "Microsoft.Compute/virtualMachines"
+        metrics: *virtualMachines
+
+      - resource_group: "uksouth-gitlab"
+        resource_types:
+          - "Microsoft.Network/loadBalancers"
+        metrics: *loadBalancers
+
+      - resource_group: "uksouth-gitlab"
+        resource_types:
+          - "Microsoft.Network/networkInterfaces"
+        metrics: *networkInterfaces
+
+      - resource_group: "uksouth-mastercard"
+        resource_types:
+          - "Microsoft.Compute/virtualMachines"
+        metrics: *virtualMachines
+
+      - resource_group: "uksouth-mastercard"
+        resource_types:
+          - "Microsoft.Network/loadBalancers"
+        metrics: *loadBalancers
+
+      - resource_group: "uksouth-mastercard"
+        resource_types:
+          - "Microsoft.Network/networkInterfaces"
+        metrics: *networkInterfaces
+
+      - resource_group: "uksouth-sentry"
+        resource_types:
+          - "Microsoft.Compute/virtualMachines"
+        metrics: *virtualMachines
+
+      - resource_group: "uksouth-sentry"
+        resource_types:
+          - "Microsoft.Network/loadBalancers"
+        metrics: *loadBalancers
+
+      - resource_group: "uksouth-sentry"
+        resource_types:
+          - "Microsoft.Network/networkInterfaces"
+        metrics: *networkInterfaces
+
+      - resource_group: "uksouth-sftp"
+        resource_types:
+          - "Microsoft.Compute/virtualMachines"
+        metrics: *virtualMachines
+
+      - resource_group: "uksouth-sftp"
+        resource_types:
+          - "Microsoft.Network/loadBalancers"
+        metrics: *loadBalancers
+
+      - resource_group: "uksouth-sftp"
+        resource_types:
+          - "Microsoft.Network/networkInterfaces"
+        metrics: *networkInterfaces
+
+      - resource_group: "uksouth-tableau"
+        resource_types:
+          - "Microsoft.Compute/virtualMachines"
+        metrics: *virtualMachines
+
+      - resource_group: "uksouth-tableau"
+        resource_types:
+          - "Microsoft.Network/loadBalancers"
+        metrics: *loadBalancers
+
+      - resource_group: "uksouth-tableau"
+        resource_types:
+          - "Microsoft.Network/networkInterfaces"
+        metrics: *networkInterfaces
+
+      - resource_group: "uksouth-tools"
+        resource_types:
+          - "Microsoft.Compute/virtualMachines"
+        metrics: *virtualMachines
+
+      - resource_group: "uksouth-tools"
+        resource_types:
+          - "Microsoft.Network/loadBalancers"
+        metrics: *loadBalancers
+
+      - resource_group: "uksouth-tools"
+        resource_types:
+          - "Microsoft.Network/networkInterfaces"
+        metrics: *networkInterfaces
+
+      - resource_group: "uksouth-tools"
+        resource_types:
+          - "Microsoft.Storage/storageAccounts"
+        metrics: *storageAccounts
+
+      - resource_group: "uksouth-wireguard"
+        resource_types:
+          - "Microsoft.Compute/virtualMachines"
+        metrics: *virtualMachines
+
+      - resource_group: "uksouth-wireguard"
+        resource_types:
+          - "Microsoft.Network/loadBalancers"
+        metrics: *loadBalancers
+
+      - resource_group: "uksouth-wireguard"
+        resource_types:
+          - "Microsoft.Network/networkInterfaces"
+        metrics: *networkInterfaces
