@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: app
+        image: binkext.azurecr.io/redis:6.2-alpine
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: 256Mi
+            cpu: 1000m
+          requests:
+            cpu: 100m
+            memory: 256Mi
+      imagePullSecrets:
+      - name: binkext.azurecr.io
