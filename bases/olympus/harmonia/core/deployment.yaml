@@ -11,6 +11,8 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      labels:
+        aadpodidbinding: harmonia
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
