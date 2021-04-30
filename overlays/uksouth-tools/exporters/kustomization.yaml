@@ -1,0 +1,5 @@
+resources:
+- azure-metrics-exporter-cfm.yaml
+- azure-metrics-exporter-dep.yaml
+- blackbox-exporter.yaml
+- elasticsearch-exporter.yaml
