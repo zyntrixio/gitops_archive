@@ -1,0 +1,204 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:$service_port;
+      proxy_hide_header l5d-remote-ip;
+      proxy_hide_header l5d-server-id;
+      more_set_headers "X-Frame-Options: DENY";
+      more_set_headers "X-Content-Type-Options: nosniff";
+      more_set_headers "X-Xss-Protection: 1; mode=block";
+  name: api.oat0.uksouth.bink.sh
+  namespace: default
+spec:
+  rules:
+  - host: api.oat0.uksouth.bink.sh
+    http:
+      paths:
+      - backend:
+          service:
+            name: zephyrus
+            port:
+              number: 80
+        path: /auth_transactions/authorize
+        pathType: Prefix
+      - backend:
+          service:
+            name: zephyrus
+            port:
+              number: 80
+        path: /auth_transactions/amex
+        pathType: Prefix
+      - backend:
+          service:
+            name: zephyrus
+            port:
+              number: 80
+        path: /auth_transactions/mastercard
+        pathType: Prefix
+      - backend:
+          service:
+            name: zephyrus
+            port:
+              number: 80
+        path: /auth_transactions/visa
+        pathType: Prefix
+      - backend:
+          service:
+            name: skiron
+            port:
+              number: 80
+        path: /auth_transactions_mock/mastercard
+        pathType: Prefix
+      - backend:
+          service:
+            name: simplenginx
+            port:
+              number: 80
+        path: /healthz
+        pathType: Prefix
+      - backend:
+          service:
+            name: blackhole
+            port:
+              number: 80
+        path: /schemes/identify
+        pathType: Prefix
+      - backend:
+          service:
+            name: iris
+            port:
+              number: 80
+        path: /content
+        pathType: Prefix
+      - backend:
+          service:
+            name: mnemosyne
+            port:
+              number: 80
+        path: /analytics
+        pathType: Prefix
+      - backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+        path: /admin
+        pathType: Prefix
+      - backend:
+          service:
+            name: lethe
+            port:
+              number: 80
+        path: /password
+        pathType: Prefix
+      - backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+        path: /static/
+        pathType: Prefix
+      - backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+        path: /users
+        pathType: Prefix
+      - backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+        path: /schemes
+        pathType: Prefix
+      - backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+        path: /ubiquity
+        pathType: Prefix
+      - backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+        path: /payment_cards
+        pathType: Prefix
+      - backend:
+          service:
+            name: hermes-api
+            port:
+              number: 80
+        path: /order
+        pathType: Prefix
+      - backend:
+          service:
+            name: zeus-api
+            port:
+              number: 80
+        path: /balance
+        pathType: Prefix
+      - backend:
+          service:
+            name: zeus-api
+            port:
+              number: 80
+        path: /transactions
+        pathType: Prefix
+      - backend:
+          service:
+            name: zeus-api
+            port:
+              number: 80
+        path: /scheme_accounts
+        pathType: Prefix
+      - backend:
+          service:
+            name: metis
+            port:
+              number: 80
+        path: /payment_service
+        pathType: Prefix
+      - backend:
+          service:
+            name: midas-api
+            port:
+              number: 80
+        path: /join/merchant/
+        pathType: Prefix
+      - backend:
+          service:
+            name: thanatos-api
+            port:
+              number: 80
+        path: /transaction_info
+        pathType: Prefix
+      - backend:
+          service:
+            name: atlas-api
+            port:
+              number: 80
+        path: /audit
+        pathType: Prefix
+      - backend:
+          service:
+            name: momus
+            port:
+              number: 80
+        path: /mock
+        pathType: Prefix
+      - backend:
+          service:
+            name: tlog-receiver
+            port:
+              number: 80
+        path: /tlog/whsmith
+        pathType: Prefix
+  tls:
+  - hosts:
+    - api.oat0.uksouth.bink.sh
+    secretName: api.oat0.uksouth.bink.sh
