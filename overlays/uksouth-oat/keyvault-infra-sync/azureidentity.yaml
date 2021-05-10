@@ -1,0 +1,21 @@
+---
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentity
+metadata:
+  name: keyvault-sync-infra-identity
+  namespace: kube-system
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+spec:
+  type: 0
+  resourceID: /subscriptions/957523d8-bbe2-4f68-8fae-95975157e91c/resourceGroups/uksouth-oat/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-oat-infra-sync
+  clientID: f8d5a27e-ee26-42bf-a57c-6a42001a68ad
+---
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentityBinding
+metadata:
+  name: keyvault-sync-infra-identity-binding
+  namespace: kube-system
+spec:
+  azureIdentity: keyvault-sync-infra-identity
+  selector: keyvault-sync-infra

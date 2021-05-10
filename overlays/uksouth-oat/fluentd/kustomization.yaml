@@ -1,0 +1,10 @@
+bases:
+- ../../../bases/infrastructure/fluentd
+
+resources:
+- configmap.yaml
+
+patches:
+- path: env.yaml
+  target:
+    kind: DaemonSet

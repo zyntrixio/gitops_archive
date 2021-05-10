@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt
+  namespace: default
+spec:
+  acme:
+    email: onlineservices@bink.com
+    privateKeySecretRef:
+      name: letsencrypt
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+    - dns01:
+        azureDNS:
+          subscriptionID: 0add5c8e-50a6-4821-be0f-7a47c879b009
+          resourceGroupName: uksouth-dns
+          hostedZoneName: bink.sh
+          environment: AzurePublicCloud
