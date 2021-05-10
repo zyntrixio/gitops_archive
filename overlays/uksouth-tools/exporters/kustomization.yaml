@@ -3,3 +3,4 @@ resources:
 - azure-metrics-exporter-dep.yaml
 - blackbox-exporter.yaml
 - elasticsearch-exporter.yaml
+- ssl-exporter.yaml
