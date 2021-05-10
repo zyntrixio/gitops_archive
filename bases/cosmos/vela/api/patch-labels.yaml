@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: vela
+    component: api
+  name: vela
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: vela
+      component: api
+  template:
+    metadata:
+      labels:
+        app: vela
+        component: api
+        aadpodidbinding: vela
