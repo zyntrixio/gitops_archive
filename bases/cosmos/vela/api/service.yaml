@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: vela
+    component: api
+  name: vela-api
+  namespace: default
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 9000
+  selector:
+    app: vela
+    component: api
+  sessionAffinity: None
+  type: ClusterIP
