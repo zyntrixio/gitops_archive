@@ -10,6 +10,8 @@ spec:
         prometheus.io/instance: bink-uksouth-oat-common
     spec:
       containers:
+      - name: postgres-exporter
+        env:
         - name: DATA_SOURCE_NAME
           valueFrom:
             secretKeyRef:
