@@ -1,0 +1,43 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: grafana
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-tools/grafana
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+  images:
+  - name: binkcore.azurecr.io/grafana
+    newName: binkcore.azurecr.io/grafana
+    newTag: "develop-2021-05-11-132933" # {"$imagepolicy": "flux-system:uksouth-tools-grafana:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: grafana
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/grafana
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-tools-grafana
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: grafana
+  filterTags:
+    pattern: 'develop-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc
