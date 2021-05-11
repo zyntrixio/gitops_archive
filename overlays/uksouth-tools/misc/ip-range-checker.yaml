@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels: &labels
+    app: ip-range-checker
+  name: ip-range-checker
+  namespace: default
+  annotations:
+    fluxcd.io/tag.iprangechecker: glob:develop-*
+    fluxcd.io/automated: 'true'
+spec:
+  progressDeadlineSeconds: 120
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels: *labels
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels: *labels
+    spec:
+      containers:
+      - image: olympus.azurecr.io/ip_range_checker:develop-0aa7a267
+        name: iprangechecker
+        env:
+        - name: SENTRY_ENVIRONMENT
+          value: tools
+        imagePullPolicy: Always
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      imagePullSecrets:
+      - name: olympus.azurecr.io

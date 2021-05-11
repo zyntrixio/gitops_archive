@@ -1,0 +1,83 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    fluxcd.io/automated: 'true'
+    fluxcd.io/tag.confluence-macro: glob:master-*
+  name: confluence-macro
+  labels: &labels
+    app: confluence-macro
+spec:
+  selector:
+    matchLabels: *labels
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        prometheus.io/port: '9100'
+        prometheus.io/scrape: 'true'
+        prometheus.io/job: confluence-macro
+      labels: *labels
+    spec:
+      containers:
+      - name: confluence-macro
+        image: olympus.azurecr.io/confluence-macro:master-1ed9bd48
+        ports:
+        - containerPort: 9000
+        env:
+        - name: AZURE_CLIENT_ID
+          value: e5422cf3-2a35-4c13-bd39-b2084ee692e2
+        - name: AZURE_CLIENT_SECRET
+          value: 6d~.63kf9.0vb.6oeH_73P9HITw-RVAWUq
+        - name: AZURE_TENANT_ID
+          value: a6e2367a-92ea-4e5a-b565-723830bcc095
+        - name: KEYVAULT_URL
+          value: https://bink-uksouth-tools-com.vault.azure.net/
+        - name: XMATTERS_AUTH
+          valueFrom:
+            secretKeyRef:
+              key: secret
+              name: xmatters-auth
+        resources:
+          limits:
+            memory: 256Mi
+          requests:
+            cpu: 250m
+            memory: 256Mi
+      - name: pushgateway
+        image: prom/pushgateway:master
+        args:
+        - --web.listen-address=0.0.0.0:9100
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9100
+          protocol: TCP
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      imagePullSecrets:
+      - name: olympus.azurecr.io
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: confluence-macro
+  name: confluence-macro
+  namespace: default
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 9000
+  selector:
+    app: confluence-macro
+  sessionAffinity: None
+  type: ClusterIP

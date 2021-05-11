@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels: &labels
+    app: kibana
+  name: kibana
+  namespace: default
+spec:
+  selector:
+    matchLabels: *labels
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels: *labels
+    spec:
+      containers:
+      - image: amazon/opendistro-for-elasticsearch-kibana:1.13.1
+        imagePullPolicy: Always
+        name: kibana
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        ports:
+        - containerPort: 5601
+          protocol: TCP
+        volumeMounts:
+        - name: kibana-config-volume
+          mountPath: /usr/share/kibana/config/
+
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: kibana-config-volume
+          configMap:
+            defaultMode: 420
+            name: kibana-server-conf
