@@ -6,9 +6,6 @@ metadata:
     app: eventhub
   name: eventhub
   namespace: default
-  annotations:
-    fluxcd.io/tag.defenderatp: glob:develop-*
-    fluxcd.io/automated: 'true'
 spec:
   selector:
     matchLabels:
