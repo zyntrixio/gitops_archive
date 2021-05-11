@@ -1,0 +1,9 @@
+bases:
+- ../../../bases/cosmos/vela/api
+- ../../../bases/cosmos/vela/migrator
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
+    

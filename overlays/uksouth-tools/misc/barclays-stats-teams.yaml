@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: barclays-stats
+  namespace: default
+  labels: &labels
+    app: barclays-stats
+  annotations:
+    fluxcd.io/tag.barclays-stats: glob:master-*
+    fluxcd.io/automated: 'true'
+spec:
+  selector:
+    matchLabels: *labels
+  template:
+    metadata:
+      labels: *labels
+    spec:
+      containers:
+      - name: barclays-stats
+        image: olympus.azurecr.io/barclays-teams-stats:master-ad44a927
+        env:
+        - name: BARC_PERC
+          value: "100"
+      imagePullSecrets:
+      - name: olympus.azurecr.io

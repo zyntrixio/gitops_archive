@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: eventhub
+  name: eventhub
+  namespace: default
+  annotations:
+    fluxcd.io/tag.defenderatp: glob:develop-*
+    fluxcd.io/automated: 'true'
+spec:
+  selector:
+    matchLabels:
+      app: eventhub
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        prometheus.io/port: '9100'
+        prometheus.io/scrape: 'true'
+      labels:
+        app: eventhub
+    spec:
+      containers:
+      - image: binkcore.azurecr.io/eventhub-to-elasticsearch:develop-5b7fffc6
+        name: eventhub
+        imagePullPolicy: Always
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
