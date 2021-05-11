@@ -1,0 +1,12 @@
+bases:
+- ../../../bases/infrastructure/eventhub-relay/aad
+- ../../../bases/infrastructure/eventhub-relay/afd
+- ../../../bases/infrastructure/eventhub-relay/afw
+- ../../../bases/infrastructure/eventhub-relay/akv
+- ../../../bases/infrastructure/eventhub-relay/atp
+- ../../../bases/infrastructure/eventhub-relay/nsg
+- ../../../bases/infrastructure/eventhub-relay/postgres
+- ../../../bases/infrastructure/eventhub-relay/sql
+- ../../../bases/infrastructure/eventhub-relay/storage
+- ../../../bases/infrastructure/eventhub-relay/synapse
+

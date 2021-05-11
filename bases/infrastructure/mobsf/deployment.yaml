@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mobsf
+  labels: &labels
+    app: mobsf
+spec:
+  replicas: 1
+  selector:
+    matchLabels: *labels
+  template:
+    metadata:
+      labels: *labels
+    spec:
+      containers:
+      - name: mobsf
+        image: binkext.azurecr.io/mobsf:v3.2.8
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: azure-pg-common
+              key: admin_user
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: azure-pg-common
+              key: password
+        - name: POSTGRES_HOST
+          valueFrom:
+            secretKeyRef:
+              name: azure-pg-common
+              key: host
+        - name: POSTGRES_DB
+          value: mobsf
+        ports:
+        - containerPort: 8000
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 2Gi
+        volumeMounts:
+        - name: mobsf
+          mountPath: /root/.MobSF
+      imagePullSecrets:
+      - name: binkext.azurecr.io
+      volumes:
+      - name: mobsf
+        persistentVolumeClaim:
+          claimName: mobsf

@@ -1,0 +1,7 @@
+resources:
+- deployment.yaml
+- auth-secret.yaml
+- ingress-certificate.yaml
+- ingress.yaml
+- service.yaml
+- volume-claim.yaml
