@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-server-conf
+  namespace: default
+  labels:
+    name: alertmanager-server-conf
+data:
+  alertmanager.yml: |-
+    global:
+      resolve_timeout: 5m
+    
+    route:
+      group_by: ['alertname']
+      group_wait: 10s
+      group_interval: 10s
+      repeat_interval: 24h
+      receiver: 'xmatters-prometheus'
+
+    receivers:
+    - name: 'xmatters-prometheus'
+      webhook_configs:
+      - url: 'https://bink.xmatters.com/api/integration/1/functions/f6d29fd8-7bdb-4d43-b67d-3a18760e747f/triggers?apiKey=e87f0bfd-569e-40b7-aaf4-d45671875ecc'
