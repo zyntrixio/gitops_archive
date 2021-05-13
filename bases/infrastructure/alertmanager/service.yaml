@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels: &labels
+    app: alertmanager
+  name: alertmanager
+  namespace: default
+spec:
+  ports:
+  - name: tcp
+    port: 9093
+    protocol: TCP
+  selector: *labels
+  sessionAffinity: None
+  type: ClusterIP

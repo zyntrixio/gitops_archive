@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alertmanager
+  namespace: default
+  labels: &labels
+    app: alertmanager
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels: *labels
+  template:
+    metadata:
+      labels: *labels
+    spec:
+      initContainers:
+        - name: volume-mount-hack
+          image: busybox
+          command: ["sh", "-c", "chown -R 65534:65534 /alertmanager"]
+          volumeMounts:
+            - name: alertmanager-storage-volume
+              mountPath: /alertmanager
+      containers:
+        - name: alertmanager
+          image: prom/alertmanager:v0.20.0
+          imagePullPolicy: Always
+          args:
+            - "--web.external-url=https://alertmanager.tools.bink.sh"
+            - "--config.file=/etc/alertmanager/alertmanager.yml"
+            - "--storage.path=/alertmanager"
+          ports:
+            - containerPort: 9093
+          volumeMounts:
+            - name: alertmanager-config-volume
+              mountPath: /etc/alertmanager/
+            - name: alertmanager-storage-volume
+              mountPath: /alertmanager/
+          livenessProbe:
+            httpGet:
+              path: /-/healthy
+              port: 9093
+            periodSeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /-/ready
+              port: 9093
+            periodSeconds: 60
+        - name: watch
+          image: weaveworks/watch:master-5b2a6e5
+          imagePullPolicy: Always
+          args: ["-v", "-t", "-p=/etc/alertmanager", "curl", "-X", "POST", "--fail", "-o", "-", "-sS", "http://localhost:9093/-/reload"]
+          volumeMounts:
+          - name: alertmanager-config-volume
+            mountPath: /etc/alertmanager/
+      volumes:
+        - name: alertmanager-config-volume
+          configMap:
+            defaultMode: 420
+            name: alertmanager-server-conf
+        - name: alertmanager-storage-volume
+          persistentVolumeClaim:
+            claimName: alertmanager
