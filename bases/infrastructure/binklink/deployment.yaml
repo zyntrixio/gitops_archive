@@ -24,7 +24,7 @@ spec:
                 - key: app
                   operator: In
                   values:
-                  - eos
+                  - binklink
               topologyKey: kubernetes.io/hostname
             weight: 100
       containers:
