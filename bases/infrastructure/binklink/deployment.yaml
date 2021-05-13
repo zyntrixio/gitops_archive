@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: binklink
+  namespace: default
+  labels:
+    app: binklink
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: binklink
+  template:
+    metadata:
+      labels:
+        app: binklink
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - eos
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      containers:
+      - name: app
+        image: binkcore.azurecr.io/binklink:latest
+        resources:
+          limits:
+            memory: 64Mi
+            cpu: 1000m
+          requests:
+            cpu: 100m
+            memory: 64Mi
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: binkcore.azurecr.io

@@ -1,0 +1,6 @@
+bases:
+- ../../../bases/infrastructure/binklink
+
+resources:
+- ingress.yaml
+- cert.yaml
