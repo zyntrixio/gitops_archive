@@ -12,6 +12,9 @@ spec:
       app: binklink
   template:
     metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
       labels:
         app: binklink
     spec:
