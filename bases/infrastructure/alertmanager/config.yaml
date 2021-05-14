@@ -21,3 +21,65 @@ data:
     - name: 'xmatters-prometheus'
       webhook_configs:
       - url: 'https://bink.xmatters.com/api/integration/1/functions/f6d29fd8-7bdb-4d43-b67d-3a18760e747f/triggers?apiKey=e87f0bfd-569e-40b7-aaf4-d45671875ecc'
+      - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/aaeddfcd407742d398a9e8211e18ad36/de80162c-8e52-466b-affd-f3ccc0a66d5d'
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-msteams-tmpl
+  namespace: default
+  labels:
+    name: prometheus-msteams-tmpl
+data:
+  msteams-message-card.tmpl: |-
+    {{ define "teams.card" }}
+    {
+      "@type": "MessageCard",
+      "@context": "http://schema.org/extensions",
+      "themeColor": "{{- if eq .Status "resolved" -}}2DC72D
+                    {{- else if eq .Status "firing" -}}
+                        {{- if eq .CommonLabels.severity "critical" -}}8C1A1A
+                        {{- else if eq .CommonLabels.severity "warning" -}}FFA500
+                        {{- else -}}FF0000{{- end -}}
+                    {{- else -}}808080{{- end -}}",
+      "summary": "{{- if eq .CommonAnnotations.summary "" -}}
+                      {{- if eq .CommonAnnotations.message "" -}}
+                        {{- if eq .CommonLabels.alertname "" -}}
+                          Prometheus Alert
+                        {{- else -}}
+                          {{- .CommonLabels.alertname -}}
+                        {{- end -}}
+                      {{- else -}}
+                        {{- .CommonAnnotations.message -}}
+                      {{- end -}}
+                  {{- else -}}
+                      {{- .CommonAnnotations.summary -}}
+                  {{- end -}}",
+      "title": "Prometheus Alert ({{ .Status | title }})",
+      "sections": [ {{$externalUrl := .ExternalURL}}
+      {{- range $index, $alert := .Alerts }}{{- if $index }},{{- end }}
+        {
+          "activityTitle": "[{{ $alert.Annotations.description }}]({{ $externalUrl }})",
+          "facts": [
+            {{- range $key, $value := $alert.Annotations }}
+            {
+              {{- if ne $key "description" -}}
+                "name": "{{ $key }}",
+                "value": "{{ $value }}"
+              {{- end -}}
+            },
+            {{- end -}}
+            {{$c := counter}}{{ range $key, $value := $alert.Labels }}{{if call $c}},{{ end }}
+            {
+              "name": "{{ $key }}",
+              "value": "{{ $value }}"
+            }
+            {{- end }}
+          ],
+          "markdown": true
+        }
+        {{- end }}
+      ]
+    }
+    {{ end }}
