@@ -37,43 +37,45 @@ data:
     {
       "@type": "MessageCard",
       "@context": "http://schema.org/extensions",
-      "themeColor": "{{- if eq .Status "resolved" -}}2DC72D
-                    {{- else if eq .Status "firing" -}}
-                        {{- if eq .CommonLabels.severity "critical" -}}8C1A1A
-                        {{- else if eq .CommonLabels.severity "warning" -}}FFA500
-                        {{- else -}}FF0000{{- end -}}
-                    {{- else -}}808080{{- end -}}",
-      "summary": "{{- if eq .CommonAnnotations.summary "" -}}
-                      {{- if eq .CommonAnnotations.message "" -}}
-                        {{- if eq .CommonLabels.alertname "" -}}
-                          Prometheus Alert
-                        {{- else -}}
-                          {{- .CommonLabels.alertname -}}
-                        {{- end -}}
-                      {{- else -}}
-                        {{- .CommonAnnotations.message -}}
-                      {{- end -}}
-                  {{- else -}}
-                      {{- .CommonAnnotations.summary -}}
-                  {{- end -}}",
-      "title": "Prometheus Alert ({{ .Status | title }})",
+      "themeColor": "{{- if eq .Status "firing" -}}FF0000
+                     {{- else if eq .Status "resolved" -}}2DC72D
+                     {{- else -}}808080
+                     {{- end -}}",
+      "summary": "Prometheus Alert",
+      "title": "Prometheus Alert {{ .CommonLabels.severity }}",
       "sections": [ {{$externalUrl := .ExternalURL}}
       {{- range $index, $alert := .Alerts }}{{- if $index }},{{- end }}
         {
-          "activityTitle": "[{{ $alert.Annotations.description }}]({{ $externalUrl }})",
+          "activityTitle": "{{- if eq .Status "firing" -}}<span style=color:red>FIRING</span> -&nbsp;
+                            {{- else if eq .Status "resolved" -}}<span style=color:green>RESOLVED</span> -&nbsp;
+                            {{- else -}}{{- end -}}
+                            {{ $alert.Labels.alertname }}",
           "facts": [
             {{- range $key, $value := $alert.Annotations }}
             {
-              {{- if ne $key "description" -}}
-                "name": "{{ $key }}",
-                "value": "{{ $value }}"
-              {{- end -}}
+              "name": "{{ (title $key) }}",
+              "value": "{{ $value }}"
+            },
+            {{- end -}}
+            {{- if .StartsAt -}}
+            {
+              "name": "Started At",
+              "value": "{{ .StartsAt }}"
+            },
+            {{- end -}}
+            {{$endsAt := .EndsAt}}
+            {{- if ne (.EndsAt | toString | substr 0 10) "0001-01-01" -}}
+            {
+              "name": "Ended At",
+              "value": "{{ .EndsAt }}"
             },
             {{- end -}}
             {{$c := counter}}{{ range $key, $value := $alert.Labels }}{{if call $c}},{{ end }}
             {
-              "name": "{{ $key }}",
-              "value": "{{ $value }}"
+              {{- if and (ne $key "alertname") (ne $key "severity") -}}
+                "name": "{{ (title $key) }}",
+                "value": "{{ $value }}"
+              {{- end -}}
             }
             {{- end }}
           ],
