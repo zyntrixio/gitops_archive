@@ -135,7 +135,7 @@ spec:
             name: metis-api
             port:
               number: 80
-      - path: /join/merchant/
+      - path: /join
         pathType: Prefix
         backend:
           service:
