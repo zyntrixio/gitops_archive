@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    name: prometheus-server-conf
+  name: prometheus-server-conf
+  namespace: default
