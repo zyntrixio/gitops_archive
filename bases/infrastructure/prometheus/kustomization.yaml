@@ -2,7 +2,6 @@ resources:
 - azureidentity.yaml
 - clusterrole.yaml
 - clusterrolebinding.yaml
-- config.yaml
 - deployment.yaml
 - service.yaml
 - serviceaccount.yaml

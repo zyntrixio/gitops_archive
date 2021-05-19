@@ -1,0 +1,145 @@
+groups:
+- name: preprod
+  rules:
+  - alert: preprod media backup tar file size
+    expr: (100 * (1 - ((backup_utility_file_size{kubernetes_cluster="preprod0",type="media"} offset 24h) / (backup_utility_file_size{kubernetes_cluster="preprod0",type="media"}))) < -50) or (100 * (1 - ((backup_utility_file_size{kubernetes_cluster="preprod0",type="media"} offset 24h) / (backup_utility_file_size{kubernetes_cluster="preprod0",type="media"}))) > 50)
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Raw preprod media backup file size has increased/decreased by over 50% within an 8 day window
+
+  - alert: preprod media backup uploads (weekly)
+    expr: (increase(backup_utility_upload_to_blob_count_total{kubernetes_cluster="preprod0",type="media"}[8d]) OR on() vector(0)) < 1
+    for: 8d
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.type }} - {{ $labels.schedule }}"
+      summary: Backup tar file failed to upload from backup-scheduler pod to binkuksouthdpreprod/backups storage account
+
+  - alert: preprod postgres backup failure
+    expr: increase(backup_utility_file_count_total{job="backup-scheduler",resource=~"bink-uksouth-preprod-.+",status="failed",type="postgres"}[61m]) > 1
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check preprod backup-scheduler pod and binkuksouthpreprod/backups storage account - potential backup failure
+
+  - alert: preprod postgres backup sql file size
+    expr: (100 * (1 - ((backup_utility_file_size{resource=~"bink-uksouth-preprod-.+"} offset 24h) / (backup_utility_file_size{resource=~"bink-uksouth-preprod-.+"}))) < -20) or (100 * (1 - ((backup_utility_file_size{resource=~"bink-uksouth-preprod-.+"} offset 24h) / (backup_utility_file_size{resource=~"bink-uksouth-preprod-.+"}))) > 20)
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Raw preprod postgres backup file size has increased/decreased by over 20% within 24 hour window
+
+  - alert: preprod postgres backup uploads (hourly)
+    expr: (increase(backup_utility_upload_to_blob_count_total{resource="binkuksouthpreprod",schedule="hourly",type="postgres"}[61m]) OR on() vector(0)) < 1
+    for: 90m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.type }} - {{ $labels.schedule }}"
+      summary: Backup tar file failed to upload from backup-scheduler pod to binkuksouthpreprod/backups storage account
+
+  - alert: preprod postgres cpu
+    expr: cpu_percent_percent_max{resource_name=~"bink-uksouth-preprod-.+"} > 90
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.resource_name }}"
+      summary: Check preprod postgres - CPU over 90% for 5 minutes
+
+  - alert: preprod postgres storage
+    expr: storage_percent_percent_max{resource_name=~"bink-uksouth-preprod-.+"} > 90
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.resource_name }}"
+      summary: Check preprod postgres - storage over 90% for 5 minutes
+
+  - alert: preprod postgres up state
+    expr: up{job="postgres",instance=~"bink-uksouth-preprod-.+"} < 1
+    for: 3m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check preprod postgres - bad upstate for over 3 minutes
+
+  - alert: preprod redis cpu
+    expr: serverload_percent_max{resource_name=~"bink-uksouth-preprod-.+"} > 90
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.resource_name }}"
+      summary: Check preprod redis - CPU over 90% for over 5 minutes
+
+  - alert: preprod redis memory
+    expr: 100 * (usedmemory_bytes_max{resource_name=~"bink-uksouth-preprod-.+"} / 1000000000) > 90
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.resource_name }}"
+      summary: Check preprod redis - memory over 90% for over 5 minutes
+
+  - alert: preprod redis up state
+    expr: redis_up{instance=~"bink-uksouth-preprod.+"} < 1
+    for: 3m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check preprod redis - bad upstate for over 3 minutes
+
+  - alert: preprod virtual machines cpu
+    expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",env="Pre-Production",mode="idle"}[5m])) * 100) > 90
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check virtual machine - CPU over 90% for over 5 minutes
+
+  - alert: preprod virtual machines memory
+    expr: node_memory_MemAvailable_bytes{job="azure_node",env="Pre-Production"} < 100000000
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check virtual machine - Available memory < 100MB for over 5 minutes
+
+  - alert: preprod virtual machines root filesystem
+    expr: 100 - ((node_filesystem_avail_bytes{job="azure_node",env="Pre-Production",mountpoint="/"} * 100) / node_filesystem_size_bytes{job="azure_node",env="Pre-Production",mountpoint="/"}) > 90
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check virtual machines - Root filesystem over 90% used for over 5 minutes
+
+  - alert: preprod virtual machines up state
+    expr: up{job="azure_node",env="Pre-Production"} < 1
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check virtual machine - bad up state for over 5 minutes
+
+  - alert: preprod0 worker pool depleted
+    expr: 100 * (sum(up{job="azure_node",name=~"preprod0-worker\\d\\d"}) / count(up{job="azure_node",name=~"preprod0-worker\\d\\d"})) <= 60
+    for: 3m
+    labels:
+      severity: P2
+    annotations:
+      summary: Check preprod0 workers - pool depleted by at least 40%

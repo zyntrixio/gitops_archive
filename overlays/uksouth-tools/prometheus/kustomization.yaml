@@ -1,2 +1,19 @@
 bases:
 - ../../../bases/infrastructure/prometheus
+
+configMapGenerator:
+- name: prometheus-server-conf
+  files:
+    - prometheus-core.rules.yaml
+    - prometheus-dev.rules.yaml
+    - prometheus-preprod.rules.yaml
+    - prometheus-prod.rules.yaml
+    - prometheus-sandbox.rules.yaml
+    - prometheus-staging.rules.yaml
+    - prometheus.yml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+patches:
+- path: patch-configmap.yaml

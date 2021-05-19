@@ -1,0 +1,653 @@
+global:
+  scrape_interval: 1m
+  evaluation_interval: 1m
+rule_files:
+  - /etc/prometheus/prometheus-*.rules.yaml
+alerting:
+  alertmanagers:
+  - scheme: http
+    static_configs:
+    - targets:
+      - "alertmanager:9093"
+scrape_configs:
+  - job_name: 'azure_node'
+    scheme: http
+    azure_sd_configs:
+      - authentication_method: ManagedIdentity  # Core
+        subscription_id: 0add5c8e-50a6-4821-be0f-7a47c879b009
+        tenant_id: a6e2367a-92ea-4e5a-b565-723830bcc095
+        client_id: 9119949a-375d-405b-8f4c-4f44be820468
+        port: 9100
+      - authentication_method: ManagedIdentity  # Staging
+        subscription_id: 457b0db5-6680-480f-9e77-2dafb06bd9dc
+        tenant_id: a6e2367a-92ea-4e5a-b565-723830bcc095
+        client_id: 9119949a-375d-405b-8f4c-4f44be820468
+        port: 9100
+      - authentication_method: ManagedIdentity  # Production
+        subscription_id: 79560fde-5831-481d-8c3c-e812ef5046e5
+        tenant_id: a6e2367a-92ea-4e5a-b565-723830bcc095
+        client_id: 9119949a-375d-405b-8f4c-4f44be820468
+        port: 9100
+      - authentication_method: ManagedIdentity  # PreProduction
+        subscription_id: 6e685cd8-73f6-4aa6-857c-04ed9b21d17d
+        tenant_id: a6e2367a-92ea-4e5a-b565-723830bcc095
+        client_id: 9119949a-375d-405b-8f4c-4f44be820468
+        port: 9100
+      - authentication_method: ManagedIdentity  # Development
+        subscription_id: 794aa787-ec6a-40dd-ba82-0ad64ed51639
+        tenant_id: a6e2367a-92ea-4e5a-b565-723830bcc095
+        client_id: 9119949a-375d-405b-8f4c-4f44be820468
+        port: 9100
+      - authentication_method: ManagedIdentity  # Sandbox
+        subscription_id: 957523d8-bbe2-4f68-8fae-95975157e91c
+        tenant_id: a6e2367a-92ea-4e5a-b565-723830bcc095
+        client_id: 9119949a-375d-405b-8f4c-4f44be820468
+        port: 9100
+
+    relabel_configs:
+      - source_labels: ["__meta_azure_machine_name"]
+        regex: wireguard
+        action: replace
+        replacement: 20.49.163.188:9100
+        target_label: __address__
+      - source_labels: ["__meta_azure_machine_name"]
+        target_label: "name"
+      - source_labels: ["__meta_azure_machine_tag_Environment"]
+        target_label: "env"
+      - source_labels: [name]
+        regex: '0365-backup|qa-regression-testing|uksouth-mastercard-vm'
+        action: drop
+
+  - job_name: 'tools-pods'
+    kubernetes_sd_configs:
+      - role: pod
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: kubernetes_pod_name
+
+      # Replace Job name based on attribute
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_job]
+        action: replace
+        target_label: job
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
+        action: replace
+        target_label: instance
+
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: tools
+
+  - job_name: 'dev0-pods'
+    kubernetes_sd_configs:
+      - api_server: https://dev0-controller.uksouth.bink.host:6443
+        role: pod
+        bearer_token_file: /tmp/prometheus-creds/dev0/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/dev0/ca.crt
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: kubernetes_pod_name
+
+      # Replace Job name based on attribute
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_job]
+        action: replace
+        target_label: job
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
+        action: replace
+        target_label: instance
+
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: dev0
+
+  - job_name: 'oat0-pods'
+    kubernetes_sd_configs:
+      - api_server: https://oat0-controller.uksouth.bink.host:6443
+        role: pod
+        bearer_token_file: /tmp/prometheus-creds/oat0/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/oat0/ca.crt
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: kubernetes_pod_name
+
+      # Replace Job name based on attribute
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_job]
+        action: replace
+        target_label: job
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
+        action: replace
+        target_label: instance
+
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: oat0
+
+  - job_name: 'sit0-pods'
+    kubernetes_sd_configs:
+      - api_server: https://sit0-controller.uksouth.bink.host:6443
+        role: pod
+        bearer_token_file: /tmp/prometheus-creds/sit0/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/sit0/ca.crt
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: kubernetes_pod_name
+
+      # Replace Job name based on attribute
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_job]
+        action: replace
+        target_label: job
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
+        action: replace
+        target_label: instance
+
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: sit0
+
+  - job_name: 'staging0-pods'
+    kubernetes_sd_configs:
+      - api_server: https://staging0-controller.uksouth.bink.host:6443
+        role: pod
+        bearer_token_file: /tmp/prometheus-creds/staging0/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/staging0/ca.crt
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: kubernetes_pod_name
+
+      # Replace Job name based on attribute
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_job]
+        action: replace
+        target_label: job
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
+        action: replace
+        target_label: instance
+
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: staging0
+
+  - job_name: 'perf0-pods'
+    kubernetes_sd_configs:
+      - api_server: https://perf0-controller.uksouth.bink.host:6443
+        role: pod
+        bearer_token_file: /tmp/prometheus-creds/perf0/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/perf0/ca.crt
+          insecure_skip_verify: true
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: kubernetes_pod_name
+
+      # Replace Job name based on attribute
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_job]
+        action: replace
+        target_label: job
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
+        action: replace
+        target_label: instance
+
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: perf0
+
+  - job_name: 'preprod0-pods'
+    kubernetes_sd_configs:
+      - api_server: https://preprod0-controller.uksouth.bink.host:6443
+        role: pod
+        bearer_token_file: /tmp/prometheus-creds/preprod0/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/preprod0/ca.crt
+          insecure_skip_verify: true
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: kubernetes_pod_name
+
+      # Replace Job name based on attribute
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_job]
+        action: replace
+        target_label: job
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
+        action: replace
+        target_label: instance
+
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: preprod0
+
+  - job_name: 'prod0-pods'
+    kubernetes_sd_configs:
+      - api_server: https://prod0-controller.uksouth.bink.host:6443
+        role: pod
+        bearer_token_file: /tmp/prometheus-creds/prod0/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/prod0/ca.crt
+          insecure_skip_verify: true
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: kubernetes_pod_name
+
+      # Replace Job name based on attribute
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_job]
+        action: replace
+        target_label: job
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
+        action: replace
+        target_label: instance
+
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: prod0
+
+  - job_name: 'tools-nodes'
+    scheme: https
+    tls_config:
+      ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+    bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+
+    kubernetes_sd_configs:
+      - role: node
+    relabel_configs:
+      - target_label: __address__
+        replacement: kubernetes.default.svc:443
+      - source_labels: [__meta_kubernetes_node_name]
+        regex: (.+)
+        target_label: __metrics_path__
+        replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: tools
+
+  - job_name: 'dev0-nodes'
+    scheme: https
+    # All the hacks, goes to kube to get list of worker nodes
+    # Then relabels to override the address and then hits the
+    # API proxy endpoint for each node to get metrics
+    # Hence the need to specify creds twice
+    tls_config:
+      ca_file: /tmp/prometheus-creds/dev0/ca.crt
+    bearer_token_file: /tmp/prometheus-creds/dev0/token
+
+    kubernetes_sd_configs:
+      - api_server: https://dev0-controller.uksouth.bink.host:6443
+        role: node
+        bearer_token_file: /tmp/prometheus-creds/dev0/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/dev0/ca.crt
+    relabel_configs:
+      - target_label: __address__
+        replacement: dev0-controller.uksouth.bink.host:6443
+      - source_labels: [__meta_kubernetes_node_name]
+        regex: (.+)
+        target_label: __metrics_path__
+        replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: dev0
+
+  - job_name: 'oat0-nodes'
+    scheme: https
+    tls_config:
+      ca_file: /tmp/prometheus-creds/oat0/ca.crt
+    bearer_token_file: /tmp/prometheus-creds/oat0/token
+
+    kubernetes_sd_configs:
+      - api_server: https://oat0-controller.uksouth.bink.host:6443
+        role: node
+        bearer_token_file: /tmp/prometheus-creds/oat0/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/oat0/ca.crt
+    relabel_configs:
+      - target_label: __address__
+        replacement: oat0-controller.uksouth.bink.host:6443
+      - source_labels: [__meta_kubernetes_node_name]
+        regex: (.+)
+        target_label: __metrics_path__
+        replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: oat0
+
+  - job_name: 'sit0-nodes'
+    scheme: https
+    tls_config:
+      ca_file: /tmp/prometheus-creds/sit0/ca.crt
+    bearer_token_file: /tmp/prometheus-creds/sit0/token
+
+    kubernetes_sd_configs:
+      - api_server: https://sit0-controller.uksouth.bink.host:6443
+        role: node
+        bearer_token_file: /tmp/prometheus-creds/sit0/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/sit0/ca.crt
+    relabel_configs:
+      - target_label: __address__
+        replacement: sit0-controller.uksouth.bink.host:6443
+      - source_labels: [__meta_kubernetes_node_name]
+        regex: (.+)
+        target_label: __metrics_path__
+        replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: sit0
+
+  - job_name: 'staging0-nodes'
+    scheme: https
+    tls_config:
+      ca_file: /tmp/prometheus-creds/staging0/ca.crt
+    bearer_token_file: /tmp/prometheus-creds/staging0/token
+
+    kubernetes_sd_configs:
+      - api_server: https://staging0-controller.uksouth.bink.host:6443
+        role: node
+        bearer_token_file: /tmp/prometheus-creds/staging0/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/staging0/ca.crt
+    relabel_configs:
+      - target_label: __address__
+        replacement: staging0-controller.uksouth.bink.host:6443
+      - source_labels: [__meta_kubernetes_node_name]
+        regex: (.+)
+        target_label: __metrics_path__
+        replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: staging0
+
+  - job_name: 'perf0-nodes'
+    scheme: https
+    tls_config:
+      ca_file: /tmp/prometheus-creds/perf0/ca.crt
+      insecure_skip_verify: true
+    bearer_token_file: /tmp/prometheus-creds/perf0/token
+
+    kubernetes_sd_configs:
+      - api_server: https://perf0-controller.uksouth.bink.host:6443
+        role: node
+        bearer_token_file: /tmp/prometheus-creds/perf0/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/perf0/ca.crt
+          insecure_skip_verify: true
+    relabel_configs:
+      - target_label: __address__
+        replacement: perf0-controller.uksouth.bink.host:6443
+      - source_labels: [__meta_kubernetes_node_name]
+        regex: (.+)
+        target_label: __metrics_path__
+        replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: perf0
+
+  - job_name: 'preprod0-nodes'
+    scheme: https
+    tls_config:
+      ca_file: /tmp/prometheus-creds/preprod0/ca.crt
+      insecure_skip_verify: true
+    bearer_token_file: /tmp/prometheus-creds/preprod0/token
+
+    kubernetes_sd_configs:
+      - api_server: https://preprod0-controller.uksouth.bink.host:6443
+        role: node
+        bearer_token_file: /tmp/prometheus-creds/preprod0/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/preprod0/ca.crt
+          insecure_skip_verify: true
+    relabel_configs:
+      - target_label: __address__
+        replacement: preprod0-controller.uksouth.bink.host:6443
+      - source_labels: [__meta_kubernetes_node_name]
+        regex: (.+)
+        target_label: __metrics_path__
+        replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: preprod
+
+  - job_name: 'prod0-nodes'
+    scheme: https
+    tls_config:
+      ca_file: /tmp/prometheus-creds/prod0/ca.crt
+      insecure_skip_verify: true
+    bearer_token_file: /tmp/prometheus-creds/prod0/token
+
+    kubernetes_sd_configs:
+      - api_server: https://prod0-controller.uksouth.bink.host:6443
+        role: node
+        bearer_token_file: /tmp/prometheus-creds/prod0/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/prod0/ca.crt
+          insecure_skip_verify: true
+    relabel_configs:
+      - target_label: __address__
+        replacement: prod0-controller.uksouth.bink.host:6443
+      - source_labels: [__meta_kubernetes_node_name]
+        regex: (.+)
+        target_label: __metrics_path__
+        replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: prod0
+
+  - job_name: ssl
+    metrics_path: /probe
+    params:
+      module: ["https_noverify"]
+    static_configs:
+      - targets:
+        - api.gb.bink.com:443
+        - bink.com:443
+        - git.bink.com:443
+        - core.spreedly.com:443
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: ssl-exporter
+      - source_labels: [cert_use]
+        target_label: cert_use
+        action: replace
+        regex: ()
+        replacement: server
+  
+  - job_name: azurefrontdoor_dns
+    metrics_path: /probe
+    params:
+      module: ["dns_api_gb_bink_com"]
+    static_configs:
+      - targets:
+        - 1.1.1.1
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox-exporter
+  
+  - job_name: wireguard
+    scrape_interval: 120s
+    static_configs:
+      - targets:
+        - 20.49.163.188:9586
+  
+  - job_name: aqua
+    scrape_interval: 60s
+    bearer_token: ab534a41deca5d73c62dcebca893930661af4abc
+    scheme: https
+    static_configs:
+      - targets:
+        - aqua.uksouth.bink.sh:443
+
+  - job_name: checkly
+    scrape_interval: 30s
+    metrics_path: /accounts/da41e9cc-d34a-4cab-b7d6-44740d1c7d2b/prometheus/metrics
+    bearer_token: pUZDW0IXdDBWoDCxAgJ3eRsZ
+    scheme: https
+    static_configs:
+      - targets:
+        - api.checklyhq.com:443
