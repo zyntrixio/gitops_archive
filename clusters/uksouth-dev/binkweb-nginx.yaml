@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/binkweb-nginx
     newName: binkcore.azurecr.io/binkweb-nginx
-    newTag: "develop-2021-03-09-162125" # {"$imagepolicy": "flux-system:uksouth-dev-binkweb-nginx:tag"}
+    newTag: "develop-2021-05-19-092526" # {"$imagepolicy": "flux-system:uksouth-dev-binkweb-nginx:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
