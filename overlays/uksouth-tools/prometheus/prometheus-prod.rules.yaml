@@ -100,7 +100,7 @@ groups:
       resource: "{{ $labels.instance }}"
       summary: Check prod redis - bad upstate for over 3 minutes
 
-  - alert: Harmonia - Failed exports 5 hours
+  - alert: harmonia - Failed exports 5 hours
     expr: failed_requests_total > 1
     for: 5h
     labels:
@@ -109,7 +109,7 @@ groups:
       resource: "{{ $labels.view }} - {{ $labels.status }}"
       summary: There have been failed exports from harmonia for 5 hours.
   
-  - alert: Harmonia - Failed exports 24 hours
+  - alert: harmonia - Failed exports 24 hours
     expr: failed_requests_total > 1
     for: 24h
     labels:
@@ -118,7 +118,25 @@ groups:
       resource: "{{ $labels.view }} - {{ $labels.status }}"
       summary: There have been failed exports from harmonia for 24 hours.
 
-  - alert: Hermes - Http response codes - More than five 400 codes in 2 mins
+  - alert: harmonia - No exported transactions to iceland between 15:00 and 18:00
+    expr: sum(increase(transactions_total{kubernetes_cluster="prod0", slug="iceland-bonus-card"} [12h])) by (slug) < 1 and europe_london_hour != 15 < 18
+    for: 1m
+    labels: 
+      serverity: P2
+    annotations:
+      resource: "{{ $labels.slug }}"
+      summary: There have not been any exports to Iceland between 15:00 and 18:00
+  
+  - alert: harmonia - No exported transactions between 12:00 and 23:00
+    expr: sum(increase(transactions_total{kubernetes_cluster="prod0", slug!="iceland-bonus-card"} [2h])) by (slug) < 1 and europe_london_hour != 12 < 23
+    for: 1m
+    labels:
+      serverity: P2
+    annotations:
+      resource: "{{ $labels.slug }}"
+      sumamry: There have been no exports between 12:00 and 23:00
+
+  - alert: hermes - Http response codes - More than five 400 codes in 2 mins
     expr: sum(rate(django_http_responses_total_by_status_view_method_total{status=~"4\\d\\d", kubernetes_cluster="prod0"} [2m])) > 5
     for: 1m
     labels:
@@ -127,7 +145,7 @@ groups:
       resource: "{{ $labels.view }} - {{$labels.status }}"
       summary: More than five 400 Http responses returning in 1 min
   
-  - alert: Hermes - Http response codes - More than five 500 codes in 2 mins
+  - alert: hermes - Http response codes - More than five 500 codes in 2 mins
     expr: sum(rate(django_http_responses_total_by_status_view_method_total{status=~"5\\d\\d", kubernetes_cluster="prod0"} [2m])) > 5
     for: 1m
     labels:
@@ -136,7 +154,7 @@ groups:
       resource: "{{ $labels.view }} - {{$labels.status }}"
       summary: More than five 500 Http responses returning in 1 min
 
-  - alert: Hermes - Http response latency - Greater than 1 second
+  - alert: hermes - Http response latency - Greater than 1 second
     expr: histogram_quantile(0.99, sum by(view, le)  (rate(django_http_requests_latency_seconds_by_view_method_bucket{job="hermes", view=~"membership-plan.*|service|membership-card.*|payment-card.*|register_user|login", kubernetes_cluster="prod0"}[2m]))) > 1
     for: 3m
     labels:
@@ -145,7 +163,7 @@ groups:
       resource: "{{ $labels.view }}"
       summary: Http responses are returning is over a second for more than 3 minutes
   
-  - alert: Hermes - Http response latency - Greater than 5 second
+  - alert: hermes - Http response latency - Greater than 5 second
     expr: histogram_quantile(0.99, sum by(view, le)  (rate(django_http_requests_latency_seconds_by_view_method_bucket{job="hermes", view=~"membership-plan.*|service|membership-card.*|payment-card.*|register_user|login", kubernetes_cluster="prod0"}[2m]))) > 5
     for: 3m
     labels:
@@ -154,7 +172,7 @@ groups:
       resource: "{{ $labels.view }}"
       summary: Http responses are returning is over five seconds for more than 3 minutes
 
-  - alert: Hermes - No 2XX Barclays traffic detected for over 10 minutes (8am - 8pm only)
+  - alert: hermes - No 2XX Barclays traffic detected for over 10 minutes (8am - 8pm only)
     expr: sum(rate(django_http_responses_total_by_status_view_method_total{channel="com.barclays.bmb", kubernetes_cluster="prod0", status=~"2\\d\\d"} [5m])) == 0 and on() europe_london_hour >= 8 < 20
     for: 10m
     labels:
@@ -162,7 +180,7 @@ groups:
     annotations:
       summary: No 2XX codes have returned for Barclays for 10 minutes
 
-  - alert: Hermes - No 2XX Barclays traffic detected for over 1 hour
+  - alert: hermes - No 2XX Barclays traffic detected for over 1 hour
     expr: sum(rate(django_http_responses_total_by_status_view_method_total{channel="com.barclays.bmb", kubernetes_cluster="prod0", status=~"2\\d\\d"} [5m])) == 0
     for: 1h
     labels:
@@ -170,14 +188,46 @@ groups:
     annotations:
       summary: No 2XX codes have returned for Barclays for 1 hour
 
-  - alert: Hermes - Payment cards stuck increase
+  - alert: hermes - Payment cards stuck increase
     expr: sum(hermes_current_payment_card_pending_overdue_total{kubernetes_cluster="prod0"}) > sum(hermes_current_payment_card_pending_overdue_total{kubernetes_cluster="prod0"} offset 24h +15)
     for: 5m
     labels:
       severity: P2 - Monitoring
     annotations:
       summary: Payment cards have been stuck in a pending state for more than 24 hours
+
+  - alert: hermes - payment cards processing slow
+    expr: sum(rate(payment_card_processing_seconds_histogram_bucket{kubernetes_cluster="prod0"}[2m])) by (le) > 0.3
+    for: 5m
+    labels:
+      serverity: P2
+    annotations:
+      summary: Payment cards are taking longer than 300ms to process in hermes
   
+  - alert: hermes - vop status stuck in transitory state
+    expr: sum(increase(hermes_current_vop_activation_status_total{kubernetes_cluster="prod0", status=~"Deactivating|Activating"}[10m])) by (status) > 1
+    for: 1h
+    labels:
+       severity: P2
+    annotations:
+      summary: "VOP account status in transitory state for over 1 Hour"
+
+  - alert: iris - increase in 4xx responces
+    expr: sum(rate(iris_response_by_status_total{kubernetes_cluster="prod0", status=~"4\\d\\d"}[10m])) by (status) > 10
+    for: 1m
+    labels:
+      serverity: P2
+    annotations:
+      summary: There has been 10 4xx responses from iris in 10 mins
+
+  - alert: iris - increase in 5xx responces
+    expr: sum(rate(iris_response_by_status_total{kubernetes_cluster="prod0", status=~"5\\d\\d"}[10m])) by (status) > 10
+    for: 1m
+    labels:
+      serverity: P2
+    annotations:
+      summary: There has been 10 5xx responces from iris in 10 mins
+
   - alert: Loyalty scheme - Harvey Nichols files not received
     expr: (blobstorage_files_total{type="scheme",name="harvey-nichols"} OR on() vector(0)) < 1
     for: 24h
@@ -204,6 +254,42 @@ groups:
     annotations:
       resource: "{{ $labels.name }}"
       summary: Three missing files over 45 minute period - check latest Wasabi import (Transaction log lands every 15 minutes between the hours of 12pm and 8pm)
+
+  - alert: midas - failed callbacks too Merchant
+    expr: sum(increase(callback_fail_total{kubernetes_cluster="prod0"} [10m])) by (slug) > 5
+    for: 1m
+    labels:
+      serverity: P2
+    annotations:
+      resource: "{{ $labels.slug }}"
+      summary: There has been an increase of 5 failed callbacks in the last 10 mins
+
+  - alert: midas - failed login is increasing
+    expr: sum(increase(log_in_fail_total{kubernetes_cluster="prod0"}[10m])) by (slug) > 5
+    for: 1m
+    labels:
+      serverity: P2
+    annotations:
+      resource: "{{ $labels.slug }}"
+      summary: There has been an increase of 5 in failed logins in 10 mins
+
+  - alert: midas - failed registration events
+    expr: sum(increase(register_fail_total{kubernetes_cluster="prod0"}[10m])) by (slug) > 5
+    for: 1m
+    labels:
+      serverity: P2
+    annotations:
+      resource: "{{ $labels.slug }}"
+      summary: There has been an increase on 5 failed registrations in the last 10 mins
+
+  - alert: midas - Failed HTTP requests to merchants
+    expr: sum(increase(request_fail_total{kubernetes_cluster="prod0"}[1h])) by (error, slug) > 6
+    for: 1m
+    labels:
+      serverity: P2
+    annotations:
+      resource: "{{ $labels.slug }} - {{ $labels.error }}"
+      summary: "There has been an increase in failed HTTP requests from Midas to this merchant"
 
   - alert: Payment card - Amex files not received
     expr: (blobstorage_files_total{type="payment", name="amex"} OR on() vector(0)) < 1
@@ -267,19 +353,4 @@ groups:
     annotations:
       summary: Check prod0 workers - pool depleted by at least 20%
   
-  - alert: Midas - Failed HTTP requests to merchants
-    expr: sum(increase(request_fail_total{kubernetes_cluster="prod0"}[1h])) by (error, slug) > 6
-    for: 1m
-    labels:
-      serverity: P2
-    annotations:
-      resource: "{{ $labels.slug }} - {{ $labels.error }}"
-      summary: "There has been an increase in failed HTTP requests from Midas to this merchant"
   
-  - alert: VOP status stuck in transitory state
-    expr: sum(increase(hermes_current_vop_activation_status_total{kubernetes_cluster="prod0", status=~"Deactivating|Activating"}[10m])) by (status) > 1
-    for: 1h
-    labels:
-      severity: P2
-    annotations:
-      summary: "VOP account status in transitory state for over 1 Hour"
