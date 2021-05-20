@@ -10,7 +10,7 @@ spec:
         - name: eventhub
           env:
           - name: EVENTHUB
-            value: azurefrontdoor
+            value: azurefrontdoorpre
           - name: CONSUMER_GROUP
             value: elasticsearch
           - name: EVENTHUB_SOURCE_TYPE
