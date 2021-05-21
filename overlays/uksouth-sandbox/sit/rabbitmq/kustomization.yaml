@@ -1,5 +1,5 @@
 bases:
-- ../../../bases/infrastructure/rabbitmq
+- ../../../../bases/infrastructure/rabbitmq
 
 patches:
 - path: env.yaml

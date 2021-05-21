@@ -1,4 +1,4 @@
 bases:
-- ../../../bases/infrastructure/simplenginx
+- ../../../../bases/infrastructure/simplenginx
 
 namespace: oat
