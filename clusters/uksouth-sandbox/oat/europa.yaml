@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: europa
+  name: oat-europa
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-sit/europa
+  path: ./overlays/uksouth-sandbox/oat/europa
   prune: true
   sourceRef:
     kind: GitRepository
