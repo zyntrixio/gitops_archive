@@ -6,8 +6,8 @@ metadata:
   namespace: default
 spec:
   type: 0
-  resourceID: /subscriptions/957523d8-bbe2-4f68-8fae-95975157e91c/resourceGroups/uksouth-sit/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-sit-europa
-  clientID: d1432fcd-ed3f-4a42-b01d-a4e26996bfc9
+  resourceID: /subscriptions/957523d8-bbe2-4f68-8fae-95975157e91c/resourceGroups/uksouth-sandbox/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-sandbox-europa
+  clientID: 42350961-c03b-4f39-b62a-fc62250bd9be
 ---
 apiVersion: "aadpodidentity.k8s.io/v1"
 kind: AzureIdentityBinding
