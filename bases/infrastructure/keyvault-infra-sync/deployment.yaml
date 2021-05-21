@@ -18,7 +18,7 @@ spec:
         kubectl.kubernetes.io/default-container: app
       labels:
         app: keyvault-infra-sync
-        aadpodidbinding: keyvault-sync-infra
+        aadpodidbinding: keyvault-infra-sync
     spec:
       serviceAccountName: keyvault-infra-sync
       containers:
