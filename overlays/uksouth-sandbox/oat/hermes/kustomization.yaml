@@ -1,0 +1,12 @@
+bases:
+- ../../../../bases/olympus/hermes/api
+- ../../../../bases/olympus/hermes/beat
+- ../../../../bases/olympus/hermes/celery
+- ../../../../bases/olympus/hermes/migrator
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
+
+namespace: oat
