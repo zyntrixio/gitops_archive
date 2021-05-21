@@ -1,0 +1,17 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: oat-atlas
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-sandbox/oat/atlas
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+  images:
+  - name: binkcore.azurecr.io/atlas
+    newName: binkcore.azurecr.io/atlas
+    newTag: "staging-cb79024c"
