@@ -1,0 +1,9 @@
+bases:
+- ../../../../bases/olympus/pelops
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
+
+namespace: sit
