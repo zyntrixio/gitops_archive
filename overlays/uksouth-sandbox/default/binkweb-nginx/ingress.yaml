@@ -21,7 +21,6 @@ spec:
             name: binkweb-nginx
             port: 
               number: 80
-      
   tls:
   - hosts:
     - web.sandbox0.uksouth.bink.sh
