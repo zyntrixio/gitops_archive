@@ -6,11 +6,12 @@ metadata:
     fluxcd.io/automated: 'true'
     fluxcd.io/tag.confluence-macro: glob:master-*
   name: confluence-macro
-  labels: &labels
+  labels:
     app: confluence-macro
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: confluence-macro
   template:
     metadata:
       annotations:
@@ -18,7 +19,8 @@ spec:
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
         prometheus.io/job: confluence-macro
-      labels: *labels
+      labels:
+        app: confluence-macro
     spec:
       containers:
       - name: confluence-macro

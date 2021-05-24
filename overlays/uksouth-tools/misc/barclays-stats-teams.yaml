@@ -4,17 +4,19 @@ kind: Deployment
 metadata:
   name: barclays-stats
   namespace: default
-  labels: &labels
+  labels:
     app: barclays-stats
   annotations:
     fluxcd.io/tag.barclays-stats: glob:master-*
     fluxcd.io/automated: 'true'
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: barclays-stats
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: barclays-stats
     spec:
       containers:
       - name: barclays-stats

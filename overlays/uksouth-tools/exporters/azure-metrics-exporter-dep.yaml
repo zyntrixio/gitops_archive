@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   annotations:
     fluxcd.io/automated: 'false'
-  labels: &labels
+  labels:
     app: azure-metrics-exporter
   name: azure-metrics-exporter
   namespace: default
@@ -12,7 +12,8 @@ spec:
   progressDeadlineSeconds: 600
   revisionHistoryLimit: 0
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: azure-metrics-exporter
   template:
     metadata:
       annotations:
@@ -20,7 +21,8 @@ spec:
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
         prometheus.io/job: azure-metrics-exporter
-      labels: *labels
+      labels:
+        app: azure-metrics-exporter
     spec:
       containers:
       - command:

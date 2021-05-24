@@ -3,16 +3,18 @@ kind: Deployment
 metadata:
   name: alertmanager
   namespace: default
-  labels: &labels
+  labels:
     app: alertmanager
 spec:
   strategy:
     type: Recreate
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: alertmanager
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: alertmanager
     spec:
       initContainers:
         - name: volume-mount-hack
