@@ -2,7 +2,7 @@ groups:
 - name: sandbox
   rules:
   - alert: oat postgres cpu
-    expr: (cpu_percent_percent_max{resource_name="bink-uksouth-oat-common"} OR on() vector(0)) == 0 or cpu_percent_percent_max{resource_name="bink-uksouth-oat-common"} > 90
+    expr: cpu_percent_percent_max{resource_name="bink-uksouth-oat-common"} > 90
     for: 5m
     labels:
       severity: P2
@@ -20,7 +20,7 @@ groups:
       summary: Check oat postgres - storage over 90% for 5 minutes
 
   - alert: oat postgres up state
-    expr: up{job="postgres",instance="bink-uksouth-oat-common"} < 1
+    expr: (up{instance="bink-uksouth-oat-common",job="postgres"} OR on() vector(0)) < 1
     for: 3m
     labels:
       severity: P2
@@ -47,7 +47,7 @@ groups:
       summary: Check oat redis - memory over 90% for over 5 minutes
 
   - alert: oat redis up state
-    expr: redis_up{instance=~"bink-uksouth-oat.+"} < 1
+    expr: (redis_up{instance=~"bink-uksouth-oat.+"} OR on() vector(0)) < 1
     for: 3m
     labels:
       severity: P2
@@ -56,7 +56,7 @@ groups:
       summary: Check oat redis - bad upstate for over 3 minutes
 
   - alert: oat0 worker pool depleted
-    expr: 100 * (sum(up{job="azure_node",name=~"oat0-worker\\d\\d"}) / count(up{job="azure_node",name=~"oat0-worker\\d\\d"})) <= 50
+    expr: 100 * (sum(up{job="azure_node",name=~"oat0-worker\\d\\d"}) / count(up{job="azure_node",name=~"oat0-worker\\d\\d"})) <= 50 or (up{job="azure_node",name=~"oat0-worker\\d\\d"}  OR on() vector(0)) == 0
     for: 3m
     labels:
       severity: P2
@@ -100,7 +100,7 @@ groups:
       summary: Check virtual machine - bad up state for over 5 minutes
 
   - alert: sit postgres cpu
-    expr: (cpu_percent_percent_max{resource_name="bink-uksouth-sit-common"} OR on() vector(0)) == 0 or cpu_percent_percent_max{resource_name="bink-uksouth-sit-common"} > 90
+    expr: cpu_percent_percent_max{resource_name="bink-uksouth-sit-common"} > 90
     for: 5m
     labels:
       severity: P2
@@ -118,7 +118,7 @@ groups:
       summary: Check sit postgres - storage over 90% for 5 minutes
 
   - alert: sit postgres up state
-    expr: up{job="postgres",instance="bink-uksouth-sit-common"} < 1
+    expr: (up{instance="bink-uksouth-sit-common",job="postgres"} OR on() vector(0)) < 1
     for: 3m
     labels:
       severity: P2
@@ -145,7 +145,7 @@ groups:
       summary: Check sit redis - memory over 90% for over 5 minutes
 
   - alert: sit redis up state
-    expr: redis_up{instance=~"bink-uksouth-sit.+"} < 1
+    expr: (redis_up{instance=~"bink-uksouth-sit.+"} OR on() vector(0)) < 1
     for: 3m
     labels:
       severity: P2
@@ -154,7 +154,7 @@ groups:
       summary: Check sit redis - bad upstate for over 3 minutes
 
   - alert: sit0 worker pool depleted
-    expr: 100 * (sum(up{job="azure_node",name=~"sit0-worker\\d\\d"}) / count(up{job="azure_node",name=~"sit0-worker\\d\\d"})) <= 50
+    expr: 100 * (sum(up{job="azure_node",name=~"sit0-worker\\d\\d"}) / count(up{job="azure_node",name=~"sit0-worker\\d\\d"})) <= 50 or (up{job="azure_node",name=~"sit0-worker\\d\\d"}  OR on() vector(0)) == 0
     for: 3m
     labels:
       severity: P2
