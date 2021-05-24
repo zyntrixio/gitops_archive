@@ -1,0 +1,19 @@
+---
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentity
+metadata:
+  name: vela-identity
+  namespace: default
+spec:
+  type: 0
+  resourceID: /subscriptions/457b0db5-6680-480f-9e77-2dafb06bd9dc/resourceGroups/uksouth-staging/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-staging-vela
+  clientID: 8748f6c3-cbb5-457a-bb53-e6701e18b35c
+---
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentityBinding
+metadata:
+  name: vela-identity-binding
+  namespace: default
+spec:
+  azureIdentity: vela-identity
+  selector: vela
