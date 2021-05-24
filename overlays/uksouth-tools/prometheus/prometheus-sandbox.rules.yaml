@@ -64,7 +64,7 @@ groups:
       summary: Check oat0 workers - pool depleted by at least 50%
 
   - alert: sandbox virtual machines cpu
-    expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",env=~"Barclays .+|Performance",mode="idle"}[5m])) * 100) > 90
+    expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"sandbox0-vmss_.+",mode="idle"}[5m])) * 100) > 90
     for: 5m
     labels:
       severity: P2
@@ -73,7 +73,7 @@ groups:
       summary: Check virtual machine - CPU over 90% for over 5 minutes
 
   - alert: sandbox virtual machines memory
-    expr: node_memory_MemAvailable_bytes{job="azure_node",env=~"Barclays .+|Performance"} < 100000000
+    expr: node_memory_MemAvailable_bytes{job="azure_node",name=~"sandbox0-vmss_.+"} < 100000000
     for: 5m
     labels:
       severity: P2
@@ -82,7 +82,7 @@ groups:
       summary: Check virtual machine - Available memory < 100MB for over 5 minutes
 
   - alert: sanbox virtual machines root filesystem
-    expr: 100 - ((node_filesystem_avail_bytes{job="azure_node",env=~"Barclays .+|Performance",mountpoint="/"} * 100) / node_filesystem_size_bytes{job="azure_node",env=~"Barclays .+|Performance",mountpoint="/"}) > 90
+    expr: 100 - ((node_filesystem_avail_bytes{job="azure_node",name=~"sandbox0-vmss_.+",mountpoint="/"} * 100) / node_filesystem_size_bytes{job="azure_node",name=~"sandbox0-vmss_.+",mountpoint="/"}) > 90
     for: 5m
     labels:
       severity: P2
@@ -91,13 +91,21 @@ groups:
       summary: Check virtual machines - Root filesystem over 90% used for over 5 minutes
 
   - alert: sandbox virtual machines up state
-    expr: up{job="azure_node",env=~"Barclays .+|Performance"} < 1
+    expr: (up{job="azure_node",name=~"sandbox0-vmss_.+"} OR on() vector(0)) < 1
     for: 5m
     labels:
       severity: P2
     annotations:
       resource: "{{ $labels.name }}"
       summary: Check virtual machine - bad up state for over 5 minutes
+
+  - alert: sandbox0 worker pool depleted
+    expr: 100 * (sum(up{job="azure_node",name=~"sandbox0-vmss_.+"}) / count(up{job="azure_node",name=~"sandbox0-vmss_.+"})) <= 50 or (up{job="azure_node",name=~"sandbox0-vmss_.+"}  OR on() vector(0)) == 0
+    for: 3m
+    labels:
+      severity: P2
+    annotations:
+      summary: Check sandbox0 workers - pool depleted by at least 50%
 
   - alert: sit postgres cpu
     expr: cpu_percent_percent_max{resource_name="bink-uksouth-sit-common"} > 90
