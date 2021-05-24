@@ -2,7 +2,7 @@ groups:
 - name: sandbox
   rules:
   - alert: oat postgres cpu
-    expr: cpu_percent_percent_max{resource_name="bink-uksouth-oat-common"} > 90
+    expr: (cpu_percent_percent_max{resource_name="bink-uksouth-oat-common"} OR on() vector(0)) == 0 or cpu_percent_percent_max{resource_name="bink-uksouth-oat-common"} > 90
     for: 5m
     labels:
       severity: P2
@@ -100,7 +100,7 @@ groups:
       summary: Check virtual machine - bad up state for over 5 minutes
 
   - alert: sit postgres cpu
-    expr: cpu_percent_percent_max{resource_name="bink-uksouth-sit-common"} > 90
+    expr: (cpu_percent_percent_max{resource_name="bink-uksouth-sit-common"} OR on() vector(0)) == 0 or cpu_percent_percent_max{resource_name="bink-uksouth-sit-common"} > 90
     for: 5m
     labels:
       severity: P2
