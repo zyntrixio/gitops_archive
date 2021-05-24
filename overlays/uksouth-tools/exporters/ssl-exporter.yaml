@@ -19,14 +19,16 @@ kind: Deployment
 metadata:
   name: ssl-exporter
   namespace: default
-  labels: &labels
+  labels:
     app: ssl-exporter
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: ssl-exporter
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: ssl-exporter
     spec:
       containers:
         - name: ssl-exporter
@@ -48,7 +50,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  labels: &labels
+  labels:
     app: ssl-exporter
   name: ssl-exporter
   namespace: default
@@ -58,6 +60,7 @@ spec:
     port: 80
     targetPort: 9219
     protocol: TCP
-  selector: *labels
+  selector:
+    app: ssl-exporter
   sessionAffinity: None
   type: ClusterIP

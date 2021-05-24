@@ -2,13 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: kibana
   name: kibana
   namespace: default
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: kibana
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -18,7 +19,8 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
-      labels: *labels
+      labels:
+        app: kibana
     spec:
       containers:
       - image: amazon/opendistro-for-elasticsearch-kibana:1.13.1

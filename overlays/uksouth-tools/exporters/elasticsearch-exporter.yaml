@@ -3,14 +3,16 @@ kind: Deployment
 metadata:
   name: elasticsearch-exporter
   namespace: default
-  labels: &labels
+  labels:
     app: elasticsearch-exporter
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: elasticsearch-exporter
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: elasticsearch-exporter
       annotations:
         prometheus.io/port: '9114'
         prometheus.io/scrape: 'true'

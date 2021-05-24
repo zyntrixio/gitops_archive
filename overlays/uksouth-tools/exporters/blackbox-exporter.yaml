@@ -26,14 +26,16 @@ kind: Deployment
 metadata:
   name: blackbox-exporter
   namespace: default
-  labels: &labels
+  labels:
     app: blackbox-exporter
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: blackbox-exporter
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: blackbox-exporter
     spec:
       containers:
         - name: blackbox-exporter
@@ -56,7 +58,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  labels: &labels
+  labels:
     app: blackbox-exporter
   name: blackbox-exporter
   namespace: default
@@ -66,6 +68,7 @@ spec:
     port: 80
     targetPort: 9115
     protocol: TCP
-  selector: *labels
+  selector:
+    app: blackbox-exporter
   sessionAffinity: None
   type: ClusterIP

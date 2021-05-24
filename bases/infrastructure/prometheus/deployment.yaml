@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: prometheus
   namespace: default
-  labels: &labels
+  labels:
     app: prometheus
     aadpodidbinding: prometheus
   annotations:
@@ -14,10 +14,14 @@ spec:
   strategy:
     type: Recreate
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: prometheus
+      aadpodidbinding: prometheus
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: prometheus
+        aadpodidbinding: prometheus
     spec:
       serviceAccountName: prometheus
       initContainers:

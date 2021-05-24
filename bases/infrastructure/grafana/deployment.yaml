@@ -2,13 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: &labels
+  labels:
     app: grafana
   name: grafana
   namespace: default
 spec:
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: grafana
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -18,7 +19,8 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
-      labels: *labels
+      labels:
+        app: grafana
     spec:
       containers:
       - image: binkcore.azurecr.io/grafana:develop-427a5e22
