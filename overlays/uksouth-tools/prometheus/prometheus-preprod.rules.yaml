@@ -65,7 +65,7 @@ groups:
       summary: Check preprod postgres - storage over 90% for 5 minutes
 
   - alert: preprod postgres up state
-    expr: up{job="postgres",instance=~"bink-uksouth-preprod-.+"} < 1
+    expr: (up{instance="bink-uksouth-preprod-.+",job="postgres"} OR on() vector(0)) < 1
     for: 3m
     labels:
       severity: P2
@@ -92,7 +92,7 @@ groups:
       summary: Check preprod redis - memory over 90% for over 5 minutes
 
   - alert: preprod redis up state
-    expr: redis_up{instance=~"bink-uksouth-preprod.+"} < 1
+    expr: (redis_up{instance=~"bink-uksouth-preprod.+"} OR on() vector(0)) < 1
     for: 3m
     labels:
       severity: P2
@@ -137,7 +137,7 @@ groups:
       summary: Check virtual machine - bad up state for over 5 minutes
 
   - alert: preprod0 worker pool depleted
-    expr: 100 * (sum(up{job="azure_node",name=~"preprod0-worker\\d\\d"}) / count(up{job="azure_node",name=~"preprod0-worker\\d\\d"})) <= 60
+    expr: 100 * (sum(up{job="azure_node",name=~"preprod0-worker\\d\\d"}) / count(up{job="azure_node",name=~"preprod0-worker\\d\\d"})) <= 60 or (up{job="azure_node",name=~"preprod0-worker\\d\\d"}  OR on() vector(0)) == 0
     for: 3m
     labels:
       severity: P2
