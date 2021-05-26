@@ -1,67 +1,59 @@
 groups:
 - name: sandbox
   rules:
-  - alert: oat postgres cpu
-    expr: cpu_percent_percent_max{resource_name="bink-uksouth-oat-common"} > 90
+  - alert: sandbox postgres cpu
+    expr: cpu_percent_percent_max{resource_name="bink-uksouth-sandbox-common"} > 90
     for: 5m
     labels:
       severity: P2
     annotations:
       resource: "{{ $labels.resource_name }}"
-      summary: Check oat postgres - CPU over 90% for 5 minutes
+      summary: Check sandbox postgres - CPU over 90% for 5 minutes
 
-  - alert: oat postgres storage
-    expr: storage_percent_percent_max{resource_name="bink-uksouth-oat-common"} > 90
+  - alert: sandbox postgres storage
+    expr: storage_percent_percent_max{resource_name="bink-uksouth-sandbox-common"} > 90
     for: 5m
     labels:
       severity: P2
     annotations:
       resource: "{{ $labels.resource_name }}"
-      summary: Check oat postgres - storage over 90% for 5 minutes
+      summary: Check sandbox postgres - storage over 90% for 5 minutes
 
-  - alert: oat postgres up state
-    expr: (up{instance="bink-uksouth-oat-common",job="postgres"} OR on() vector(0)) < 1
+  - alert: sandbox postgres up state
+    expr: (up{instance="bink-uksouth-sandbox-common",job="postgres"} OR on() vector(0)) < 1
     for: 3m
     labels:
       severity: P2
     annotations:
       resource: "{{ $labels.instance }}"
-      summary: Check oat postgres - bad upstate for over 3 minutes
+      summary: Check sandbox postgres - bad upstate for over 3 minutes
 
-  - alert: oat redis cpu
-    expr: serverload_percent_max{resource_name="bink-uksouth-oat-common"} > 90
+  - alert: sandbox redis cpu
+    expr: serverload_percent_max{resource_name="bink-uksouth-sandbox-common"} > 90
     for: 5m
     labels:
       severity: P2
     annotations:
       resource: "{{ $labels.resource_name }}"
-      summary: Check oat redis - CPU over 90% for over 5 minutes
+      summary: Check sandbox redis - CPU over 90% for over 5 minutes
 
-  - alert: oat redis memory
-    expr: 100 * (usedmemory_bytes_max{resource_name="bink-uksouth-oat-common"} / 1000000000) > 90
+  - alert: sandbox redis memory
+    expr: 100 * (usedmemory_bytes_max{resource_name="bink-uksouth-sandbox-common"} / 1000000000) > 90
     for: 5m
     labels:
       severity: P2
     annotations:
       resource: "{{ $labels.resource_name }}"
-      summary: Check oat redis - memory over 90% for over 5 minutes
+      summary: Check sandbox redis - memory over 90% for over 5 minutes
 
-  - alert: oat redis up state
-    expr: (redis_up{instance=~"bink-uksouth-oat.+"} OR on() vector(0)) < 1
+  - alert: sandbox redis up state
+    expr: (redis_up{instance=~"bink-uksouth-sandbox.+"} OR on() vector(0)) < 1
     for: 3m
     labels:
       severity: P2
     annotations:
       resource: "{{ $labels.instance }}"
-      summary: Check oat redis - bad upstate for over 3 minutes
-
-  - alert: oat0 worker pool depleted
-    expr: 100 * (sum(up{job="azure_node",name=~"oat0-worker\\d\\d"}) / count(up{job="azure_node",name=~"oat0-worker\\d\\d"})) <= 50 or (up{job="azure_node",name=~"oat0-worker\\d\\d"}  OR on() vector(0)) == 0
-    for: 3m
-    labels:
-      severity: P2
-    annotations:
-      summary: Check oat0 workers - pool depleted by at least 50%
+      summary: Check sandbox redis - bad upstate for over 3 minutes
 
   - alert: sandbox virtual machines cpu
     expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"sandbox0-vmss_.+",mode="idle"}[5m])) * 100) > 90
@@ -106,65 +98,3 @@ groups:
       severity: P2
     annotations:
       summary: Check sandbox0 workers - pool depleted by at least 50%
-
-  - alert: sit postgres cpu
-    expr: cpu_percent_percent_max{resource_name="bink-uksouth-sit-common"} > 90
-    for: 5m
-    labels:
-      severity: P2
-    annotations:
-      resource: "{{ $labels.resource_name }}"
-      summary: Check sit postgres - CPU over 90% for 5 minutes
-
-  - alert: sit postgres storage
-    expr: storage_percent_percent_max{resource_name="bink-uksouth-sit-common"} > 90
-    for: 5m
-    labels:
-      severity: P2
-    annotations:
-      resource: "{{ $labels.resource_name }}"
-      summary: Check sit postgres - storage over 90% for 5 minutes
-
-  - alert: sit postgres up state
-    expr: (up{instance="bink-uksouth-sit-common",job="postgres"} OR on() vector(0)) < 1
-    for: 3m
-    labels:
-      severity: P2
-    annotations:
-      resource: "{{ $labels.instance }}"
-      summary: Check sit postgres - bad upstate for over 3 minutes
-
-  - alert: sit redis cpu
-    expr: serverload_percent_max{resource_name="bink-uksouth-sit-common"} > 90
-    for: 5m
-    labels:
-      severity: P2
-    annotations:
-      resource: "{{ $labels.resource_name }}"
-      summary: Check sit redis - CPU over 90% for over 5 minutes
-
-  - alert: sit redis memory
-    expr: 100 * (usedmemory_bytes_max{resource_name="bink-uksouth-sit-common"} / 1000000000) > 90
-    for: 5m
-    labels:
-      severity: P2
-    annotations:
-      resource: "{{ $labels.resource_name }}"
-      summary: Check sit redis - memory over 90% for over 5 minutes
-
-  - alert: sit redis up state
-    expr: (redis_up{instance=~"bink-uksouth-sit.+"} OR on() vector(0)) < 1
-    for: 3m
-    labels:
-      severity: P2
-    annotations:
-      resource: "{{ $labels.instance }}"
-      summary: Check sit redis - bad upstate for over 3 minutes
-
-  - alert: sit0 worker pool depleted
-    expr: 100 * (sum(up{job="azure_node",name=~"sit0-worker\\d\\d"}) / count(up{job="azure_node",name=~"sit0-worker\\d\\d"})) <= 50 or (up{job="azure_node",name=~"sit0-worker\\d\\d"}  OR on() vector(0)) == 0
-    for: 3m
-    labels:
-      severity: P2
-    annotations:
-      summary: Check sit0 workers - pool depleted by at least 50%
