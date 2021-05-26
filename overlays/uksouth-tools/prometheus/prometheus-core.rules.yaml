@@ -176,10 +176,10 @@ groups:
       resource: "{{ $labels.name }}"
       summary: Check sftp virtual machines - bad up state for over 3 minutes
 
-  - alert: tools worker pool depleted
-    expr: 100 * (sum(up{job="azure_node",name=~"tools-worker-\\d\\d"}) / count(up{job="azure_node",name=~"tools-worker-\\d\\d"})) <= 50
+  - alert: tools0 virtual machines worker pool depleted
+    expr: (sum(up{job="azure_node",name=~"tools0-vmss_.+"}) OR on() vector(0)) < 3
     for: 3m
     labels:
       severity: P2
     annotations:
-      summary: Check tools workers - pool depleted by at least 50%
+      summary: Check tools0 cluster - worker count less than 3
