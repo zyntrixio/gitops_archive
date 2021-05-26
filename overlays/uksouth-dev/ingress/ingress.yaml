@@ -195,7 +195,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: iris
+            name: iris-api
             port:
               number: 80
       - path: /password
@@ -226,13 +226,6 @@ spec:
             name: polaris-api
             port:
               number: 80
-      - path: /redoctober
-        pathType: Prefix
-        backend:
-          service:
-            name: red-october
-            port:
-              number: 80
       - path: /transaction_feed
         pathType: Prefix
         backend:
@@ -258,7 +251,7 @@ spec:
         pathType: Exact
         backend:
           service:
-            name: skiron
+            name: skiron-api
             port:
               number: 80
       - path: /tlog/whsmith
@@ -272,35 +265,35 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: zephyrus
+            name: zephyrus-api
             port:
               number: 80
       - path: /auth_transactions/authorize
         pathType: Prefix
         backend:
           service:
-            name: zephyrus
+            name: zephyrus-api
             port:
               number: 80
       - path: /auth_transactions/mastercard
         pathType: Prefix
         backend:
           service:
-            name: zephyrus
+            name: zephyrus-api
             port:
               number: 80
       - path: /auth_transactions/visa
         pathType: Prefix
         backend:
           service:
-            name: zephyrus
+            name: zephyrus-api
             port:
               number: 80
       - path: /cardstatus
         pathType: Prefix
         backend:
           service:
-            name: pelops
+            name: pelops-api
             port:
               number: 80
   tls:
