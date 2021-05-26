@@ -2,5 +2,4 @@ resources:
 - clusterrole.yaml
 - clusterrolebinding.yaml
 - daemonset.yaml
-- namespace.yaml
 - serviceaccount.yaml
