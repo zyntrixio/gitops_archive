@@ -74,16 +74,9 @@ spec:
           defaultMode: 420
           name: rabbitmq-config
         name: config
+      - name: data
+        emptyDir: {}
   updateStrategy:
     rollingUpdate:
       partition: 0
     type: RollingUpdate
-  volumeClaimTemplates:
-  - metadata:
-      name: data
-    spec:
-      accessModes:
-      - ReadWriteOnce
-      resources:
-        requests:
-          storage: 10Gi
