@@ -20,35 +20,35 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: zephyrus
+            name: zephyrus-api
             port:
               number: 80
       - path: /auth_transactions/amex
         pathType: Prefix
         backend:
           service:
-            name: zephyrus
+            name: zephyrus-api
             port:
               number: 80
       - path: /auth_transactions/mastercard
         pathType: Prefix
         backend:
           service:
-            name: zephyrus
+            name: zephyrus-api
             port:
               number: 80
       - path: /auth_transactions/visa
         pathType: Prefix
         backend:
           service:
-            name: zephyrus
+            name: zephyrus-api
             port:
               number: 80
       - path: /auth_transactions_mock/mastercard
         pathType: Exact
         backend:
           service:
-            name: skiron
+            name: skiron-api
             port:
               number: 80
       - path: /healthz
@@ -62,7 +62,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: iris
+            name: iris-api
             port:
               number: 80
       - path: /admin
