@@ -44,7 +44,6 @@ spec:
           limits:
             memory: 256Mi
           requests:
-            cpu: 100m
             memory: 128Mi
         volumeMounts:
         - name: azure-metrics-exporter-volume

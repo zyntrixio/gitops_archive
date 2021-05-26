@@ -36,7 +36,6 @@ spec:
         image: weaveworksdemos/front-end:0.3.12
         resources:
           requests:
-            cpu: 100m
             memory: 100Mi
         ports:
         - containerPort: 8079
