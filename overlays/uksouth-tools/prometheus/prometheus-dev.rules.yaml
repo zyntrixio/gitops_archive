@@ -136,13 +136,13 @@ groups:
       resource: "{{ $labels.name }}"
       summary: Check virtual machine - bad up state for over 5 minutes
 
-  - alert: dev0 worker pool depleted
-    expr: 100 * (sum(up{job="azure_node",name=~"dev0-worker\\d\\d"}) / count(up{job="azure_node",name=~"dev0-worker\\d\\d"})) <= 60 or (up{job="azure_node",name=~"dev0-worker\\d\\d"}  OR on() vector(0)) == 0
+  - alert: dev0 virtual machines worker pool depleted
+    expr: (sum(up{job="azure_node",name=~"dev0-vmss_.+"}) OR on() vector(0)) < 2
     for: 3m
     labels:
       severity: P2
     annotations:
-      summary: Check dev0 workers - pool depleted by at least 40%
+      summary: Check dev0 cluster - worker count less than 2
 
   - alert: Nginx Ingress
     expr: sum(up{kubernetes_cluster="dev",kubernetes_pod_name=~"nginx-ingress-controller.+"}) < 1
