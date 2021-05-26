@@ -4,9 +4,11 @@ kind: Service
 metadata:
   name: http-debug
   namespace: default
+  labels:
+    app: http-debug
 spec:
   selector:
-    k8s-app: http-debug
+    app: http-debug
   ports:
   - port: 80
     protocol: TCP

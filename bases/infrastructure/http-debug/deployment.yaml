@@ -5,19 +5,22 @@ metadata:
   name: http-debug
   namespace: default
   labels:
-    k8s-app: http-debug
+    app: http-debug
 spec:
   selector:
     matchLabels:
-      k8s-app: http-debug
+      app: http-debug
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
       name: http-debug
       labels:
-        k8s-app: http-debug
+        app: http-debug
     spec:
       containers:
-      - name: http-debug
+      - name: app
         image: mendhak/http-https-echo:18
         imagePullPolicy: IfNotPresent
         ports:
