@@ -137,9 +137,9 @@ groups:
       summary: Check virtual machine - bad up state for over 5 minutes
 
   - alert: staging0 virtual machines worker pool depleted
-    expr: (sum(up{job="azure_node",name=~"staging0-worker\\d\\d"}) OR on() vector(0)) < 4
+    expr: (sum(up{job="azure_node",name=~"staging0-vmss_.+"}) OR on() vector(0)) < 2
     for: 3m
     labels:
       severity: P2
     annotations:
-      summary: Check staging0 cluster - worker count less than 4
+      summary: Check staging0 cluster - worker count less than 2
