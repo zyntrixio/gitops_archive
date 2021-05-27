@@ -1,5 +1,5 @@
 bases:
-- ../../../bases/infrastructure/keyvault-infra-sync
+- ../../../../bases/infrastructure/keyvault-infra-sync
 
 resources:
 - azureidentity.yaml
