@@ -1,5 +1,2 @@
 bases:
 - ../../../bases/infrastructure/ingress-nginx
-
-patchesStrategicMerge:
-- logging.yaml
