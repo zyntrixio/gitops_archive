@@ -83,7 +83,7 @@ groups:
       summary: Check virtual machine controller - bad up state for over 5 minutes
 
   - alert: dev kube worker up state
-    expr: up{job="azure_node",name=~"dev0-vmss_.+"} < 1
+    expr: (up{job="azure_node",name=~"dev0-vmss_.+"} OR on() vector(0)) < 1
     for: 5m
     labels:
       severity: P2
