@@ -1,7 +1,7 @@
 bases:
-- ../../../bases/olympus/zagreus/api
-- ../../../bases/olympus/zagreus/consumer
-- ../../../bases/olympus/zagreus/migrator
+- ../../../../bases/olympus/zagreus/api
+- ../../../../bases/olympus/zagreus/consumer
+- ../../../../bases/olympus/zagreus/migrator
 
 patches:
 - path: env.yaml

@@ -2,7 +2,7 @@ resources:
 - azureidentity.yaml
 
 bases:
-- ../../../bases/olympus/zephyrus
+- ../../../../bases/olympus/zephyrus
 
 patches:
 - path: env.yaml

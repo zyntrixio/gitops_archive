@@ -1,5 +1,5 @@
 bases:
-- ../../../bases/infrastructure/binklink
+- ../../../../bases/infrastructure/binklink
 
 resources:
 - ingress.yaml
