@@ -195,7 +195,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: pelops
+            name: pelops-api
             port:
               number: 80
   tls:
