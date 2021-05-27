@@ -28,33 +28,6 @@ groups:
       resource: "{{ $labels.instance }}"
       summary: Check sandbox postgres - bad upstate for over 3 minutes
 
-  - alert: sandbox redis cpu
-    expr: serverload_percent_max{resource_name="bink-uksouth-sandbox-common"} > 90
-    for: 5m
-    labels:
-      severity: P2
-    annotations:
-      resource: "{{ $labels.resource_name }}"
-      summary: Check sandbox redis - CPU over 90% for over 5 minutes
-
-  - alert: sandbox redis memory
-    expr: 100 * (usedmemory_bytes_max{resource_name="bink-uksouth-sandbox-common"} / 1000000000) > 90
-    for: 5m
-    labels:
-      severity: P2
-    annotations:
-      resource: "{{ $labels.resource_name }}"
-      summary: Check sandbox redis - memory over 90% for over 5 minutes
-
-  - alert: sandbox redis up state
-    expr: (redis_up{instance=~"bink-uksouth-sandbox.+"} OR on() vector(0)) < 1
-    for: 3m
-    labels:
-      severity: P2
-    annotations:
-      resource: "{{ $labels.instance }}"
-      summary: Check sandbox redis - bad upstate for over 3 minutes
-
   - alert: sandbox virtual machines cpu
     expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"sandbox0-vmss_.+",mode="idle"}[5m])) * 100) > 90
     for: 5m
