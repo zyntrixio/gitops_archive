@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-prod/policies
+  path: ./overlays/uksouth-prod/default/policies
   prune: true
   sourceRef:
     kind: GitRepository

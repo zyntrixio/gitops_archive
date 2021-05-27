@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-prod/azure-gcp-vault-sync
+  path: ./overlays/uksouth-prod/default/azure-gcp-vault-sync
   prune: true
   sourceRef:
     kind: GitRepository
