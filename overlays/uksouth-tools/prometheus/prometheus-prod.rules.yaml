@@ -308,9 +308,35 @@ groups:
     annotations:
       resource: "{{ $labels.name }} - {{ $labels.type }}"
       summary: Payment files for mastercard haven't been received in over 27 hours
-      
+
+  - alert: prod kube controller up state
+    expr: (up{job="azure_node",name="prod0-controller"} OR on() vector(0)) < 1
+    for: 5m
+    labels:
+      severity: P1
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check virtual machine controller - bad up state for over 5 minutes
+
+  - alert: prod kube worker up state
+    expr: (up{job="azure_node",name=~"prod0-worker\\d\\d"} OR on() vector(0)) < 1
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check virtual machine worker - bad up state for over 5 minutes
+
+  - alert: prod kube worker pool depleted
+    expr: (sum(up{job="azure_node",name=~"prod0-worker\\d\\d"}) OR on() vector(0)) < 11
+    for: 3m
+    labels:
+      severity: P1
+    annotations:
+      summary: Check prod0 cluster - worker count less than 11
+
   - alert: prod virtual machines cpu
-    expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",env="Production",mode="idle"}[5m])) * 100) > 90
+    expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"prod0-.+",mode="idle"}[5m])) * 100) > 90
     for: 5m
     labels:
       severity: P2
@@ -319,7 +345,7 @@ groups:
       summary: Check virtual machine - CPU over 90% for over 5 minutes
 
   - alert: prod virtual machines memory
-    expr: node_memory_MemAvailable_bytes{job="azure_node",env="Production"} < 100000000
+    expr: node_memory_MemAvailable_bytes{job="azure_node",name=~"prod0-.+"} < 100000000
     for: 5m
     labels:
       severity: P2
@@ -328,29 +354,11 @@ groups:
       summary: Check virtual machine - Available memory < 100MB for over 5 minutes
 
   - alert: prod virtual machines root filesystem
-    expr: 100 - ((node_filesystem_avail_bytes{job="azure_node",env="Production",mountpoint="/"} * 100) / node_filesystem_size_bytes{job="azure_node",env="Production",mountpoint="/"}) > 90
+    expr: 100 - ((node_filesystem_avail_bytes{job="azure_node",name=~"prod0-.+",mountpoint="/"} * 100) / node_filesystem_size_bytes{job="azure_node",name=~"prod0-.+",mountpoint="/"}) > 90
     for: 5m
     labels:
       severity: P2
     annotations:
       resource: "{{ $labels.name }}"
       summary: Check virtual machines - Root filesystem over 90% used for over 5 minutes
-
-  - alert: prod virtual machines up state
-    expr: up{job="azure_node",env="Production"} < 1
-    for: 2m
-    labels:
-      severity: P2
-    annotations:
-      resource: "{{ $labels.name }}"
-      summary: Check virtual machine - bad up state for over 2 minutes
-
-  - alert: prod0 worker pool depleted
-    expr: 100 * (sum(up{job="azure_node",name=~"prod0-worker\\d\\d"}) / count(up{job="azure_node",name=~"prod0-worker\\d\\d"})) <= 80
-    for: 3m
-    labels:
-      severity: P1
-    annotations:
-      summary: Check prod0 workers - pool depleted by at least 20%
-  
   
