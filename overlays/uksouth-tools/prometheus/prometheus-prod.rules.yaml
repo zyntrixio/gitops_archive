@@ -64,11 +64,38 @@ groups:
       resource: "{{ $labels.resource_name }}"
       summary: Check prod postgres - storage over 90% for 5 minutes
 
-  - alert: prod postgres up state
-    expr: up{job="postgres",instance=~"bink-uksouth-prod-.+"} < 1
+  - alert: prod postgres common up state
+    expr: (up{job="postgres",instance="bink-uksouth-prod-common"} OR on() vector(0)) < 1
     for: 3m
     labels:
       severity: P2
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check prod postgres - bad upstate for over 3 minutes
+
+  - alert: prod postgres hades up state
+    expr: (up{job="postgres",instance="bink-uksouth-prod-hades"} OR on() vector(0)) < 1
+    for: 3m
+    labels:
+      severity: P1
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check prod postgres - bad upstate for over 3 minutes
+
+  - alert: prod postgres harmonia up state
+    expr: (up{job="postgres",instance="bink-uksouth-prod-harmonia"} OR on() vector(0)) < 1
+    for: 3m
+    labels:
+      severity: P1
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check prod postgres - bad upstate for over 3 minutes
+
+  - alert: prod postgres hermes up state
+    expr: (up{job="postgres",instance="bink-uksouth-prod-hermes"} OR on() vector(0)) < 1
+    for: 3m
+    labels:
+      severity: P1
     annotations:
       resource: "{{ $labels.instance }}"
       summary: Check prod postgres - bad upstate for over 3 minutes
@@ -91,8 +118,17 @@ groups:
       resource: "{{ $labels.resource_name }}"
       summary: Check prod redis - memory over 90% for over 5 minutes
 
-  - alert: prod redis up state
-    expr: redis_up{instance=~"bink-uksouth-prod.+"} < 1
+  - alert: prod redis common up state
+    expr: (redis_up{instance="bink-uksouth-prod-common"} OR on() vector(0)) < 1
+    for: 3m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check prod redis - bad upstate for over 3 minutes
+
+  - alert: prod redis harmonia up state
+    expr: (redis_up{instance="bink-uksouth-prod-harmonia"} OR on() vector(0)) < 1
     for: 3m
     labels:
       severity: P2
