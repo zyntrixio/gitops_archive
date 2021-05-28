@@ -72,7 +72,7 @@ groups:
       resource: "{{ $labels.name }}"
       summary: Check virtual machine - Available memory < 100MB for over 5 minutes
 
-  - alert: sanbox virtual machines root filesystem
+  - alert: perf virtual machines root filesystem
     expr: 100 - ((node_filesystem_avail_bytes{job="azure_node",name=~"perf0-.+",mountpoint="/"} * 100) / node_filesystem_size_bytes{job="azure_node",name=~"perf0-.+",mountpoint="/"}) > 90
     for: 5m
     labels:
