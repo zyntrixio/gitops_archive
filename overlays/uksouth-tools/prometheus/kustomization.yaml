@@ -6,6 +6,7 @@ configMapGenerator:
   files:
     - prometheus-core.rules.yaml
     - prometheus-dev.rules.yaml
+    - prometheus-perf.rules.yaml
     - prometheus-prod.rules.yaml
     - prometheus-sandbox.rules.yaml
     - prometheus-staging.rules.yaml

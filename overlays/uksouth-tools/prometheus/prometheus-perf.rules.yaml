@@ -1,0 +1,82 @@
+groups:
+- name: perf
+  rules:
+  - alert: perf postgres cpu
+    expr: cpu_percent_percent_max{resource_name="bink-uksouth-perf-common"} > 90
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.resource_name }}"
+      summary: Check perf postgres - CPU over 90% for 5 minutes
+
+  - alert: perf postgres storage
+    expr: storage_percent_percent_max{resource_name="bink-uksouth-perf-common"} > 90
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.resource_name }}"
+      summary: Check perf postgres - storage over 90% for 5 minutes
+
+  - alert: perf postgres up state
+    expr: (up{instance="bink-uksouth-perf-common",job="postgres"} OR on() vector(0)) < 1
+    for: 3m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check perf postgres - bad upstate for over 3 minutes
+
+  - alert: perf kube controller up state
+    expr: (up{job="azure_node",name="perf0-controller"} OR on() vector(0)) < 1
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check virtual machine controller - bad up state for over 5 minutes
+
+  - alert: perf kube worker up state
+    expr: (up{job="azure_node",name=~"perf0-vmss_.+"} OR on() vector(0)) < 1
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check virtual machine worker - bad up state for over 5 minutes
+
+  - alert: perf kube worker pool depleted
+    expr: (sum(up{job="azure_node",name=~"perf0-vmss_.+"}) OR on() vector(0)) < 3
+    for: 3m
+    labels:
+      severity: P2
+    annotations:
+      summary: Check perf0 cluster - worker count less than 3
+
+  - alert: perf virtual machines cpu
+    expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"perf0-.+",mode="idle"}[5m])) * 100) > 90
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check virtual machine - CPU over 90% for over 5 minutes
+
+  - alert: perf virtual machines memory
+    expr: node_memory_MemAvailable_bytes{job="azure_node",name=~"perf0-.+"} < 100000000
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check virtual machine - Available memory < 100MB for over 5 minutes
+
+  - alert: sanbox virtual machines root filesystem
+    expr: 100 - ((node_filesystem_avail_bytes{job="azure_node",name=~"perf0-.+",mountpoint="/"} * 100) / node_filesystem_size_bytes{job="azure_node",name=~"perf0-.+",mountpoint="/"}) > 90
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check virtual machines - Root filesystem over 90% used for over 5 minutes
