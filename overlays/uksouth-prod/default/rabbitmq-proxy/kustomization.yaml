@@ -1,3 +1,7 @@
 resources:
-- configmap.yaml
 - deploy.yaml
+
+configMapGenerator:
+- name: rabbitmq-proxy
+  files:
+  - default.conf
