@@ -23,7 +23,7 @@ spec:
         - name: config
           mountPath: /etc/nginx/conf.d
           readOnly: true
-    volumes:
+      volumes:
       - name: config
         configMap:
           name: rabbitmq-proxy
