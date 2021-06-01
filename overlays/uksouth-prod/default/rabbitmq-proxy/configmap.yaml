@@ -9,7 +9,7 @@ data:
             listen 80;
             location / {
                 access_log off;
-                return 302 /rabbitmq0/;
+                return 302 $scheme://$http_host/rabbitmq0/;
             }
             location /rabbitmq0/ {
                 access_log off;
