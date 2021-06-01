@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rabbitmq-proxy
+  namespace: default
+data:
+    default.conf: |
+        server {
+            listen 80;
+            location / {
+                access_log off;
+                return 302 /rabbitmq0/;
+            }
+            location /rabbitmq0/ {
+                access_log off;
+                proxy_pass https://prod-rabbitmq0.uksouth.bink.host:15671/;
+            }
+            location /rabbitmq1/ {
+                access_log off;
+                proxy_pass https://prod-rabbitmq1.uksouth.bink.host:15671/;
+            }
+            location /rabbitmq2/ {
+                access_log off;
+                proxy_pass https://prod-rabbitmq2.uksouth.bink.host:15671/;
+            }
+        }
