@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/grafana
     newName: binkcore.azurecr.io/grafana
-    newTag: "develop-2021-05-13-092609" # {"$imagepolicy": "flux-system:uksouth-tools-grafana:tag"}
+    newTag: "develop-2021-06-02-102435" # {"$imagepolicy": "flux-system:uksouth-tools-grafana:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
