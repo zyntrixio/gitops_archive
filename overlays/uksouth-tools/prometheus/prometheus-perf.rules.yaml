@@ -1,6 +1,41 @@
 groups:
 - name: perf
   rules:
+  - alert: perf kube controller up state
+    expr: (up{job="azure_node",name="perf0-controller"} OR on() vector(0)) < 1
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check virtual machine controller - bad up state for over 5 minutes
+
+  - alert: perf kube worker pool depleted
+    expr: (sum(up{job="azure_node",name=~"perf0-vmss_.+"}) OR on() vector(0)) < 3
+    for: 3m
+    labels:
+      severity: P2
+    annotations:
+      summary: Check perf0 cluster - worker count less than 3
+
+  - alert: perf kube worker up state
+    expr: (up{job="azure_node",name=~"perf0-vmss_.+"} OR on() vector(0)) < 1
+    for: 5m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check virtual machine worker - bad up state for over 5 minutes
+
+  - alert: dev nginx ingress up state
+    expr: (sum(up{kubernetes_cluster="dev0",kubernetes_pod_name=~"ingress-nginx-controller.+"}) OR on() vector(0)) < 2
+    for: 3m
+    labels:
+      severity: P2
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check dev nginx ingress - bad upstate on one or more pods for over 3 minutes
+
   - alert: perf postgres cpu
     expr: cpu_percent_percent_max{resource_name="bink-uksouth-perf-common"} > 90
     for: 5m
@@ -28,31 +63,14 @@ groups:
       resource: "{{ $labels.instance }}"
       summary: Check perf postgres - bad upstate for over 3 minutes
 
-  - alert: perf kube controller up state
-    expr: (up{job="azure_node",name="perf0-controller"} OR on() vector(0)) < 1
-    for: 5m
-    labels:
-      severity: P2
-    annotations:
-      resource: "{{ $labels.name }}"
-      summary: Check virtual machine controller - bad up state for over 5 minutes
-
-  - alert: perf kube worker up state
-    expr: (up{job="azure_node",name=~"perf0-vmss_.+"} OR on() vector(0)) < 1
-    for: 5m
-    labels:
-      severity: P2
-    annotations:
-      resource: "{{ $labels.name }}"
-      summary: Check virtual machine worker - bad up state for over 5 minutes
-
-  - alert: perf kube worker pool depleted
-    expr: (sum(up{job="azure_node",name=~"perf0-vmss_.+"}) OR on() vector(0)) < 3
+  - alert: perf rabbitmq up state
+    expr: (sum(up{kubernetes_cluster="perf0",kubernetes_pod_name=~"rabbitmq-\\d"}) OR on() vector(0)) < 1
     for: 3m
     labels:
       severity: P2
     annotations:
-      summary: Check perf0 cluster - worker count less than 3
+      resource: "{{ $labels.instance }}"
+      summary: Check perf rabbitmq - bad upstate for over 3 minutes
 
   - alert: perf virtual machines cpu
     expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"perf0-.+",mode="idle"}[5m])) * 100) > 90
