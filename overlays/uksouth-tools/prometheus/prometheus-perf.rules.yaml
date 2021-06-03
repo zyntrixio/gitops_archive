@@ -27,14 +27,14 @@ groups:
       resource: "{{ $labels.name }}"
       summary: Check virtual machine worker - bad up state for over 5 minutes
 
-  - alert: dev nginx ingress up state
-    expr: (sum(up{kubernetes_cluster="dev0",kubernetes_pod_name=~"ingress-nginx-controller.+"}) OR on() vector(0)) < 2
+  - alert: perf nginx ingress up state
+    expr: (sum(up{kubernetes_cluster="perf0",kubernetes_pod_name=~"ingress-nginx-controller.+"}) OR on() vector(0)) < 2
     for: 3m
     labels:
       severity: P2
     annotations:
       resource: "{{ $labels.instance }}"
-      summary: Check dev nginx ingress - bad upstate on one or more pods for over 3 minutes
+      summary: Check perf nginx ingress - bad upstate on one or more pods for over 3 minutes
 
   - alert: perf postgres cpu
     expr: cpu_percent_percent_max{resource_name="bink-uksouth-perf-common"} > 90
