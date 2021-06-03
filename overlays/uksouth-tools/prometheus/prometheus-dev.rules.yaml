@@ -144,11 +144,4 @@ groups:
       resource: "{{ $labels.name }}"
       summary: Check virtual machines - Root filesystem over 90% used for over 5 minutes
 
-  - alert: Nginx Ingress
-    expr: sum(up{kubernetes_cluster="dev",kubernetes_pod_name=~"nginx-ingress-controller.+"}) < 1
-    for: 1m
-    labels:
-      severity: P2
-    annotations:
-      summary: No Ingress Nginx pods running
 
