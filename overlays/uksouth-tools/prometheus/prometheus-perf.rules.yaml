@@ -28,7 +28,7 @@ groups:
       summary: Check virtual machine worker - bad up state for over 5 minutes
 
   - alert: perf nginx ingress up state
-    expr: (sum(up{kubernetes_cluster="perf0",kubernetes_pod_name=~"ingress-nginx-controller.+"}) OR on() vector(0)) < 2
+    expr: (sum(up{kubernetes_cluster="perf0",kubernetes_pod_name=~"ingress-nginx-controller.+"}) OR on() vector(0)) < 1
     for: 3m
     labels:
       severity: P2
