@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/hermes
     newName: binkcore.azurecr.io/hermes
-    newTag: "develop-2021-06-02-132452" # {"$imagepolicy": "flux-system:uksouth-dev-hermes:tag"}
+    newTag: "develop-2021-06-04-105045" # {"$imagepolicy": "flux-system:uksouth-dev-hermes:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
