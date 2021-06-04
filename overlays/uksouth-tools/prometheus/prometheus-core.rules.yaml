@@ -17,7 +17,7 @@ groups:
 
 - name: core
   rules:
-  - alert: SSL External (non-letsencrypt) 10 Days
+  - alert: core ssl external (non-letsencrypt) 10 days
     expr: ((ssl_cert_not_after{cn!~".*(COMODO RSA Domain Validation|Sectigo RSA Domain Validation|RSA Certification Authority|Let's Encrypt Authority X3|R3).*",issuer_cn!~".*(Let's Encrypt|COMODO RSA Domain Validation|R3).*"} - time()) / 24 / 60 / 60) < 10
     labels:
       severity: P1
@@ -25,7 +25,7 @@ groups:
       resource: "{{ $labels.instance }}"
       summary: Cert less than 10 days from expiring
 
-  - alert: SSL External (non-letsencrypt) 30 Days
+  - alert: core ssl external (non-letsencrypt) 30 days
     expr: ((ssl_cert_not_after{cn!~".*(COMODO RSA Domain Validation|Sectigo RSA Domain Validation|RSA Certification Authority|Let's Encrypt Authority X3|R3).*",issuer_cn!~".*(Let's Encrypt|COMODO RSA Domain Validation|R3).*"} - time()) / 24 / 60 / 60) < 30
     labels:
       severity: P2
@@ -33,7 +33,7 @@ groups:
       resource: "{{ $labels.instance }}"
       summary: Cert less than 30 days from expiring
 
-  - alert: SSL External (letsencrypt) 05 Days
+  - alert: core ssl external (letsencrypt) 05 days
     expr: ((ssl_cert_not_after{cn!~".*(COMODO RSA Domain Validation|Sectigo RSA Domain Validation|RSA Certification Authority|Let's Encrypt Authority X3).*",issuer_cn=~".*(Let's Encrypt|R3).*"} - time())/24/60/60) < 5
     labels:
       severity: P1
@@ -41,14 +41,14 @@ groups:
       resource: "{{ $labels.instance }}"
       summary: Let's Encrypt cert less than 05 days from expiring
 
-  - alert: SSL External (letsencrypt) 10 Days
+  - alert: core ssl external (letsencrypt) 10 days
     expr: ((ssl_cert_not_after{cn!~".*(COMODO RSA Domain Validation|Sectigo RSA Domain Validation|RSA Certification Authority|Let's Encrypt Authority X3).*",issuer_cn=~".*(Let's Encrypt|R3).*"} - time())/24/60/60) < 10
     labels:
       severity: P2
     annotations:
       summary: Let's Encrypt cert less than 10 days from expiring
 
-  - alert: SSL Kubernetes Internal (letsencrypt) 05 Days
+  - alert: core ssl kubernetes internal (letsencrypt) 05 days
     expr: (certmanager_certificate_expiration_timestamp_seconds - time())/24/60/60 < 5
     labels:
       severity: P1
@@ -56,7 +56,7 @@ groups:
       resource: "{{ $labels.name }}"
       summary: Let's Encrypt Kubernetes cert less than 05 days from expiring
 
-  - alert: SSL Kubernetes Internal (letsencrypt) 10 Days
+  - alert: core ssl kubernetes internal (letsencrypt) 10 days
     expr: (certmanager_certificate_expiration_timestamp_seconds - time())/24/60/60 < 10
     labels:
       severity: P2
@@ -73,7 +73,7 @@ groups:
   #   annotations:
   #     summary: Azure FrontDoor IP is not 13.107.246.19
 
-  - alert: aqua0 worker pool depleted
+  - alert: core aqua0 worker pool depleted
     expr: 100 * (sum(up{job="azure_node",name=~"aqua0-worker\\d\\d"}) / count(up{job="azure_node",name=~"aqua0-worker\\d\\d"})) <= 50
     for: 10m
     labels:
@@ -81,7 +81,7 @@ groups:
     annotations:
       summary: Check aqua0 workers - pool depleted by at least 50%
 
-  - alert: confluence-macro up state
+  - alert: core confluence-macro up state
     expr: (up{job="confluence-macro",kubernetes_cluster="tools"} OR on() vector(0)) < 1
     for: 3m
     labels:
@@ -125,7 +125,7 @@ groups:
       resource: "{{ $labels.name }}"
       summary: Check virtual machine - bad up state for over 5 minutes
 
-  - alert: Elasticsearch degraded
+  - alert: core elasticsearch degraded
     expr: elasticsearch_cluster_health_status{color="yellow"} > 0
     for: 3m
     labels:
@@ -133,7 +133,7 @@ groups:
     annotations:
       summary: Elasticsearch is degraded, monitor, check num(nodes) >= max(index_replica_count), should solve itself
 
-  - alert: Elasticsearch is completely buggered
+  - alert: core elasticsearch is completely buggered
     expr: elasticsearch_cluster_health_status{color="red"} > 0
     for: 3m
     labels:
@@ -141,7 +141,7 @@ groups:
     annotations:
       summary: Elasticsearch is broken, fix now.
 
-  - alert: Elasticsearch Free Memory too log
+  - alert: core elasticsearch free memory too log
     expr: elasticsearch_jvm_memory_used_bytes{area="heap"} / elasticsearch_jvm_memory_max_bytes{area="heap"} > 0.9
     for: 3m
     labels:
@@ -150,7 +150,7 @@ groups:
       resource: "{{ $labels.name }}"
       summary: Elasticsearch needs more RAM, add more RAM / nodes
 
-  - alert: Elasticsearch root filesystem
+  - alert: core elasticsearch root filesystem
     expr: 100 - ((node_filesystem_avail_bytes{job="azure_node",env="Core",mountpoint="/",name=~"elasticsearch-\\d\\d"} * 100) / node_filesystem_size_bytes{job="azure_node",env="Core",mountpoint="/",name=~"elasticsearch-\\d\\d"}) > 94
     for: 5m
     labels:
@@ -159,7 +159,7 @@ groups:
       resource: "{{ $labels.name }}"
       summary: Check virtual machine - Root filesystem over 94% used for over 5 minutes
 
-  - alert: pypi up state
+  - alert: core pypi up state
     expr: (up{job="pypi",kubernetes_cluster="tools"} OR on() vector(0)) < 1
     for: 3m
     labels:
@@ -167,7 +167,7 @@ groups:
     annotations:
       summary: Check pypi (pod in uksouth-tools Kubernetes cluster) - bad up state
       
-  - alert: sftp up state
+  - alert: core sftp up state
     expr: up{job="azure_node",name=~"sftp\\d"} < 1
     for: 3m
     labels:
@@ -176,7 +176,7 @@ groups:
       resource: "{{ $labels.name }}"
       summary: Check sftp virtual machines - bad up state for over 3 minutes
 
-  - alert: tools0 virtual machines worker pool depleted
+  - alert: core tools0 virtual machines worker pool depleted
     expr: (sum(up{job="azure_node",name=~"tools0-vmss_.+"}) OR on() vector(0)) < 3
     for: 3m
     labels:
