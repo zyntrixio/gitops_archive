@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cyclops
+  name: cyclops
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cyclops
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: cyclops
+        aadpodidbinding: cyclops
+    spec:
+      containers:
+      - name: app
+        image: binkcore.azurecr.io/cyclops:latest
+        imagePullPolicy: Always 
+        resources:
+          limits:
+            memory: 128Mi
+            cpu: 1000m
+          requests:
+            memory: 128Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
