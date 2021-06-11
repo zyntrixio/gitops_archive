@@ -9,20 +9,89 @@ data:
   alertmanager.yml: |-
     global:
       resolve_timeout: 5m
-    
+
+    mute_time_intervals:
+      - name: weekday_am_non_business_hours
+        time_intervals:
+          - weekdays: ['monday:friday']
+            times:
+            - start_time: '00:00'
+              end_time: '07:00'
+      - name: weekday_pm_non_business_hours
+        time_intervals:
+          - weekdays: ['monday:friday']
+            times:
+            - start_time: '19:00'
+              end_time: '24:00'
+      - name: weekend_non_business_hours
+        time_intervals:
+          - weekdays: ['saturday', 'sunday']
+
     route:
       group_by: ['alertname']
       group_wait: 10s
       group_interval: 10s
       repeat_interval: 24h
-      receiver: 'xmatters-prometheus'
+      receiver: 'default'
+      routes:
+      - receiver: 'alerts-devops'
+        matchers:
+        # - alertname!~"^prod.*$"
+        - severity=~"^S1.*|S2.*|P1.*|P2.*$"
+        continue: true
+      - receiver: 'alerts-devops_business_hours'
+        matchers:
+        # - alertname!~"^prod.*$"
+        - severity=~"^S3.*|P3.*$"
+        continue: true
+        mute_time_intervals:
+          - weekday_am_non_business_hours
+          - weekday_pm_non_business_hours
+          - weekend_non_business_hours
+      # - receiver: 'alerts-production'
+      #   matchers:
+      #   - alertname=~"^prod.*$"
+      #   - severity=~"^S1.*|S2.*|P1.*|P2.*$"
+      #   continue: true
+      # - receiver: 'alerts-production_business_hours'
+      #   matchers:
+      #   - alertname=~"^prod.*$"
+      #   - severity=~"^S3.*|P3.*$"
+      #   continue: true
+      #   mute_time_intervals:
+      #     - weekday_am_non_business_hours
+      #     - weekday_pm_non_business_hours
+      #     - weekend_non_business_hours
+      - receiver: 'monitoring'
+        matchers:
+        - severity=~"(?i:(^.*monitoring.*$))"
+        continue: true
+      - receiver: 'xmatters'
+        matchers:
+        - severity=~"^S1.*|P1.*$"
 
     receivers:
-    - name: 'xmatters-prometheus'
+    - name: 'default'
+      webhook_configs:
+      - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/aaeddfcd407742d398a9e8211e18ad36/de80162c-8e52-466b-affd-f3ccc0a66d5d'
+    - name: 'alerts-devops'
+      webhook_configs:
+      - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/aaeddfcd407742d398a9e8211e18ad36/de80162c-8e52-466b-affd-f3ccc0a66d5d'
+    - name: 'alerts-devops_business_hours'
+      webhook_configs:
+      - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/aaeddfcd407742d398a9e8211e18ad36/de80162c-8e52-466b-affd-f3ccc0a66d5d'
+    # - name: 'alerts-production'
+    #   webhook_configs:
+    #   - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/e6c8fe14130a4c69a213aebd2384ed14/de80162c-8e52-466b-affd-f3ccc0a66d5d'
+    # - name: 'alerts-production_business_hours'
+    #   webhook_configs:
+    #   - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/e6c8fe14130a4c69a213aebd2384ed14/de80162c-8e52-466b-affd-f3ccc0a66d5d'
+    - name: 'monitoring'
+      webhook_configs:
+      - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/cc573c6a0b0648b5a53967684fe87fb8/de80162c-8e52-466b-affd-f3ccc0a66d5d'
+    - name: 'xmatters'
       webhook_configs:
       - url: 'https://bink.xmatters.com/api/integration/1/functions/f6d29fd8-7bdb-4d43-b67d-3a18760e747f/triggers?apiKey=e87f0bfd-569e-40b7-aaf4-d45671875ecc'
-      - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/aaeddfcd407742d398a9e8211e18ad36/de80162c-8e52-466b-affd-f3ccc0a66d5d'
-
 ---
 apiVersion: v1
 kind: ConfigMap
