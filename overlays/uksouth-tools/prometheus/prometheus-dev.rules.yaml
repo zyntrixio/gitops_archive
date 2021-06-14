@@ -5,7 +5,7 @@ groups:
     expr: (up{job="azure_node",name="dev0-controller"} OR on() vector(0)) < 1
     for: 5m
     labels:
-      severity: P2
+      severity: S2
     annotations:
       resource: "{{ $labels.name }}"
       summary: Check virtual machine controller - bad up state for over 5 minutes
@@ -14,7 +14,7 @@ groups:
     expr: (sum(up{job="azure_node",name=~"dev0-vmss_.+"}) OR on() vector(0)) < 2
     for: 3m
     labels:
-      severity: P2
+      severity: S2
     annotations:
       summary: Check dev0 cluster - worker count less than 2
       
@@ -22,7 +22,7 @@ groups:
     expr: (up{job="azure_node",name=~"dev0-vmss_.+"} OR on() vector(0)) < 1
     for: 5m
     labels:
-      severity: P2
+      severity: S2
     annotations:
       resource: "{{ $labels.name }}"
       summary: Check virtual machine worker - bad up state for over 5 minutes
@@ -31,7 +31,7 @@ groups:
     expr: (100 * (1 - ((backup_utility_file_size{kubernetes_cluster="dev0",type="media"} offset 24h) / (backup_utility_file_size{kubernetes_cluster="dev0",type="media"}))) < -50) or (100 * (1 - ((backup_utility_file_size{kubernetes_cluster="dev0",type="media"} offset 24h) / (backup_utility_file_size{kubernetes_cluster="dev0",type="media"}))) > 50)
     for: 5m
     labels:
-      severity: P2
+      severity: S2
     annotations:
       resource: "{{ $labels.name }}"
       summary: Raw dev media backup file size has increased/decreased by over 50% within an 8 day window
@@ -40,7 +40,7 @@ groups:
     expr: (increase(backup_utility_upload_to_blob_count_total{kubernetes_cluster="dev0",type="media"}[8d]) OR on() vector(0)) < 1
     for: 8d
     labels:
-      severity: P2
+      severity: S2
     annotations:
       resource: "{{ $labels.type }} - {{ $labels.schedule }}"
       summary: Backup tar file failed to upload from backup-scheduler pod to binkuksouthdev/backups storage account
@@ -49,7 +49,7 @@ groups:
     expr: (sum(up{kubernetes_cluster="dev0",kubernetes_pod_name=~"ingress-nginx-controller.+"}) OR on() vector(0)) < 2
     for: 3m
     labels:
-      severity: P2
+      severity: S2
     annotations:
       resource: "{{ $labels.instance }}"
       summary: Check dev nginx ingress - bad upstate on one or more pods for over 3 minutes
@@ -58,7 +58,7 @@ groups:
     expr: increase(backup_utility_file_count_total{job="backup-scheduler",resource=~"bink-uksouth-dev-.+",status="failed",type="postgres"}[61m]) > 1
     for: 5m
     labels:
-      severity: P2
+      severity: S2
     annotations:
       resource: "{{ $labels.name }} - {{ $labels.schedule }}"
       summary: Check dev backup-scheduler pod and binkuksouthdev/backups storage account - potential backup failure
@@ -67,7 +67,7 @@ groups:
     expr: (100 * (1 - ((backup_utility_file_size{resource=~"bink-uksouth-dev-.+"} offset 24h) / (backup_utility_file_size{resource=~"bink-uksouth-dev-.+"}))) < -50) or (100 * (1 - ((backup_utility_file_size{resource=~"bink-uksouth-dev-.+"} offset 24h) / (backup_utility_file_size{resource=~"bink-uksouth-dev-.+"}))) > 50)
     for: 5m
     labels:
-      severity: P2
+      severity: S2
     annotations:
       resource: "{{ $labels.name }}"
       summary: Raw dev postgres backup file size has increased/decreased by over 50% within 24 hour window
@@ -76,7 +76,7 @@ groups:
     expr: (increase(backup_utility_upload_to_blob_count_total{resource="binkuksouthdev",schedule="hourly",type="postgres"}[61m]) OR on() vector(0)) < 1
     for: 90m
     labels:
-      severity: P2
+      severity: S2
     annotations:
       resource: "{{ $labels.type }} - {{ $labels.schedule }}"
       summary: Backup tar file failed to upload from backup-scheduler pod to binkuksouthdev/backups storage account
@@ -85,7 +85,7 @@ groups:
     expr: cpu_percent_percent_max{resource_group="uksouth-dev",resource_name="bink-uksouth-dev-common"} > 90
     for: 5m
     labels:
-      severity: P2
+      severity: S2
     annotations:
       resource: "{{ $labels.resource_name }}"
       summary: Check dev postgres - CPU over 90% for 5 minutes
@@ -94,7 +94,7 @@ groups:
     expr: storage_percent_percent_max{resource_group="uksouth-dev",resource_name="bink-uksouth-dev-common"} > 90
     for: 5m
     labels:
-      severity: P2
+      severity: S2
     annotations:
       resource: "{{ $labels.resource_name }}"
       summary: Check dev postgres - storage over 90% for 5 minutes
@@ -103,7 +103,7 @@ groups:
     expr: (up{instance="bink-uksouth-dev-common",job="postgres"} OR on() vector(0)) < 1
     for: 3m
     labels:
-      severity: P2
+      severity: S2
     annotations:
       resource: "{{ $labels.instance }}"
       summary: Check dev postgres - bad upstate for over 3 minutes
@@ -112,7 +112,7 @@ groups:
     expr: (sum(up{kubernetes_cluster="dev0",kubernetes_pod_name=~"rabbitmq-\\d"}) OR on() vector(0)) < 1
     for: 3m
     labels:
-      severity: P2
+      severity: S2
     annotations:
       resource: "{{ $labels.instance }}"
       summary: Check dev rabbitmq - bad upstate for over 3 minutes
@@ -121,7 +121,7 @@ groups:
     expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"dev0-.+",mode="idle"}[5m])) * 100) > 90
     for: 5m
     labels:
-      severity: P2
+      severity: S2
     annotations:
       resource: "{{ $labels.name }}"
       summary: Check virtual machine - CPU over 90% for over 5 minutes
@@ -130,7 +130,7 @@ groups:
     expr: node_memory_MemAvailable_bytes{job="azure_node",name=~"dev0-.+"} < 100000000
     for: 5m
     labels:
-      severity: P2
+      severity: S2
     annotations:
       resource: "{{ $labels.name }}"
       summary: Check virtual machine - Available memory < 100MB for over 5 minutes
@@ -139,7 +139,7 @@ groups:
     expr: 100 - ((node_filesystem_avail_bytes{job="azure_node",name=~"dev0-.+",mountpoint="/"} * 100) / node_filesystem_size_bytes{job="azure_node",name=~"dev0-.+",mountpoint="/"}) > 90
     for: 5m
     labels:
-      severity: P2
+      severity: S2
     annotations:
       resource: "{{ $labels.name }}"
       summary: Check virtual machines - Root filesystem over 90% used for over 5 minutes
