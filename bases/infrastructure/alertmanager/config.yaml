@@ -143,6 +143,7 @@ data:
     - name: 'xmatters'
       webhook_configs:
       - url: 'https://bink.xmatters.com/api/integration/1/functions/f6d29fd8-7bdb-4d43-b67d-3a18760e747f/triggers?apiKey=e87f0bfd-569e-40b7-aaf4-d45671875ecc'
+        send_resolved: false
 ---
 apiVersion: v1
 kind: ConfigMap
