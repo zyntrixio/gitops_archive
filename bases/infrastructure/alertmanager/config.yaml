@@ -101,6 +101,7 @@ data:
       - receiver: 'xmatters'
         matchers:
         - severity=~"^S1.*|P1.*$"
+        continue: true
 
     receivers:
     - name: 'default'
