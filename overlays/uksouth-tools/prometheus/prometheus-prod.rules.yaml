@@ -318,7 +318,7 @@ groups:
       resource: "{{ $labels.slug }}"
       summary: There has been an increase on 5 failed registrations in the last 10 mins
 
-  - alert: prod midas - Failed HTTP requests to merchants
+  - alert: prod midas - failed HTTP requests to merchants
     expr: sum(increase(request_fail_total{kubernetes_cluster="prod0"}[1h])) by (error, slug) > 6
     for: 1m
     labels:
