@@ -69,7 +69,7 @@ data:
         - alertname=~"^staging.*$"
         - severity=~"^S1.*|S2.*|P1.*|P2.*$"
         continue: true
-      - receiver: 'alerts-development_business_hours'
+      - receiver: 'alerts-staging_business_hours'
         matchers:
         - alertname=~"^staging.*$"
         - severity=~"^S3.*|P3.*$"
