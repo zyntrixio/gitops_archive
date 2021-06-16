@@ -25,7 +25,7 @@ patches:
 - path: env.yaml
   target:
     kind: Deployment
-- path: migrator-patch.yaml
-  target:
-    name: harmonia-migrator
-    kind: Deployment
+# - path: migrator-patch.yaml
+#   target:
+#     name: harmonia-migrator
+#     kind: Deployment
