@@ -12,9 +12,9 @@ spec:
       - name: app
         resources:
           limits:
-            memory: 1024Mi
+            memory: 10240Mi
           requests:
-            memory: 1024Mi
+            memory: 10240Mi
         securityContext:
           runAsGroup: 0
           runAsUser: 0
