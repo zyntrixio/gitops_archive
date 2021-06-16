@@ -25,3 +25,6 @@ patches:
 - path: env.yaml
   target:
     kind: Deployment
+- path: migrator-patch.yaml
+  target:
+    kind: Deployment

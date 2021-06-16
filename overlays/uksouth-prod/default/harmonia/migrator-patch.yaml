@@ -1,0 +1,20 @@
+# Patches the migrator to run as root, for things like CR-657
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: harmonia-migrator
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        resources:
+          limits:
+            memory: 1024Mi
+          requests:
+            memory: 1024Mi
+        securityContext:
+          runAsGroup: 0
+          runAsUser: 0
