@@ -1,0 +1,11 @@
+bases:
+- ../../../../bases/olympus/europa/api
+- ../../../../bases/olympus/europa/migrator
+
+resources:
+- aad.yaml
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
