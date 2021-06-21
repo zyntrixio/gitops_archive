@@ -291,7 +291,7 @@ groups:
       resource: "{{ $labels.name }}"
       summary: Three missing files over 45 minute period - check latest Wasabi import (Transaction log lands every 15 minutes between the hours of 12pm and 8pm)
 
-  - alert: prod midas - failed callbacks too Merchant
+  - alert: prod midas - failed callbacks too merchant
     expr: sum(increase(callback_fail_total{kubernetes_cluster="prod0"} [10m])) by (slug) > 5
     for: 1m
     labels:
@@ -299,6 +299,15 @@ groups:
     annotations:
       resource: "{{ $labels.slug }}"
       summary: There has been an increase of 5 failed callbacks in the last 10 mins
+
+  - alert: prod midas - failed http requests to merchants
+    expr: sum(increase(request_fail_total{kubernetes_cluster="prod0"}[1h])) by (error, slug) > 6
+    for: 1h
+    labels:
+      severity: S2
+    annotations:
+      resource: "{{ $labels.slug }} - {{ $labels.error }}"
+      summary: "There has been an increase in failed HTTP requests from Midas to this merchant"
 
   - alert: prod midas - failed login is increasing
     expr: sum(increase(log_in_fail_total{kubernetes_cluster="prod0"}[10m])) by (slug) > 5
@@ -317,15 +326,6 @@ groups:
     annotations:
       resource: "{{ $labels.slug }}"
       summary: There has been an increase on 5 failed registrations in the last 10 mins
-
-  - alert: prod midas - failed http requests to merchants
-    expr: sum(increase(request_fail_total{kubernetes_cluster="prod0"}[1h])) by (error, slug) > 6
-    for: 1m
-    labels:
-      severity: S2
-    annotations:
-      resource: "{{ $labels.slug }} - {{ $labels.error }}"
-      summary: "There has been an increase in failed HTTP requests from Midas to this merchant"
 
   - alert: prod harmonia - amex files not received
     expr: (blobstorage_files_total{type="payment", name="amex"} OR on() vector(0)) < 1
