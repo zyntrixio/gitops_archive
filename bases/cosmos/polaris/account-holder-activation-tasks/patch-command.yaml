@@ -10,4 +10,5 @@ spec:
         args:
           - "python"
           - "-m"
-          - "app.callbacks.enrolment"
+          - "app.tasks.account_holder"
+          - "worker"
