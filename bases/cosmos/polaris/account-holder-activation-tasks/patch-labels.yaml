@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   labels:
     app: polaris
-    component: enrolment-callback-scheduler
+    component: account-holder-activation-tasks
   name: polaris
   namespace: default
 spec:
   selector:
     matchLabels:
       app: polaris
-      component: enrolment-callback-scheduler
+      component: account-holder-activation-tasks
   template:
     metadata:
       labels:
         app: polaris
-        component: enrolment-callback-scheduler
+        component: account-holder-activation-tasks
         aadpodidbinding: polaris

@@ -1,7 +1,7 @@
 bases:
 - ../../../bases/cosmos/polaris/api
 - ../../../bases/cosmos/polaris/migrator
-- ../../../bases/cosmos/polaris/enrolment-callback
+- ../../../bases/cosmos/polaris/account-holder-activation-tasks
 
 resources:
 - aad.yaml
