@@ -25,6 +25,10 @@ patches:
 - path: env.yaml
   target:
     kind: Deployment
+- path: wasabi-import-agent-patch.yaml
+  target:
+    name: harmonia-import-agent-wasabi-club
+    kind: Deployment
 # - path: migrator-patch.yaml
 #   target:
 #     name: harmonia-migrator

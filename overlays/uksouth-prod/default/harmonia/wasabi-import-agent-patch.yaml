@@ -1,0 +1,17 @@
+# Patches the wasabi import agent to raise the memory limit
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: harmonia-import-agent-wasabi-club
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        resources:
+          limits:
+            memory: 1024Mi
+          requests:
+            memory: 1024Mi
