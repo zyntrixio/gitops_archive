@@ -302,7 +302,7 @@ groups:
 
   - alert: prod midas - failed http requests to merchants
     expr: sum(increase(request_fail_total{kubernetes_cluster="prod0"}[1h])) by (error, slug) > 6
-    for: 1h
+    for: 90m
     labels:
       severity: S2
     annotations:
