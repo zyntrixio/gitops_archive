@@ -311,7 +311,7 @@ groups:
 
   - alert: prod midas - failed login is increasing
     expr: sum(increase(log_in_fail_total{kubernetes_cluster="prod0"}[10m])) by (slug) > 5
-    for: 1m
+    for: 15m
     labels:
       severity: S2
     annotations:
