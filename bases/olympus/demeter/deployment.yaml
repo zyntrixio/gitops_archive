@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: binkcore.azurecr.io/demeter:latest
+        image: binkcore.azurecr.io/demeter:master-6d1262fd
         imagePullPolicy: Always
         resources:
           limits:

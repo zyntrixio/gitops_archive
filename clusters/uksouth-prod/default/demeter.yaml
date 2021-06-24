@@ -11,33 +11,33 @@ spec:
     kind: GitRepository
     name: flux-system
   validation: client
-  images:
-  - name: binkcore.azurecr.io/demeter
-    newName: binkcore.azurecr.io/demeter
-    newTag: "prod-1.1.1" # {"$imagepolicy": "flux-system:uksouth-prod-demeter:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
-kind: ImageRepository
-metadata:
-  name: demeter
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/demeter
-  interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io
----
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
-kind: ImagePolicy
-metadata:
-  name: uksouth-prod-demeter
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: demeter
-  filterTags:
-    pattern: 'prod-(?P<ts>\d+(\.\d+)*)$'
-    extract: '$ts'
-  policy:
-    alphabetical:
-      order: asc
+  # images:
+  # - name: binkcore.azurecr.io/demeter
+  #   newName: binkcore.azurecr.io/demeter
+  #   newTag: "master-6d1262fd" # {"$imagepolicy": "flux-system:uksouth-prod-demeter:tag"}
+# ---
+# apiVersion: image.toolkit.fluxcd.io/v1alpha1
+# kind: ImageRepository
+# metadata:
+#   name: demeter
+#   namespace: flux-system
+# spec:
+#   image: binkcore.azurecr.io/demeter
+#   interval: 1m0s
+#   secretRef:
+#     name: binkcore.azurecr.io
+# ---
+# apiVersion: image.toolkit.fluxcd.io/v1alpha1
+# kind: ImagePolicy
+# metadata:
+#   name: uksouth-prod-demeter
+#   namespace: flux-system
+# spec:
+#   imageRepositoryRef:
+#     name: demeter
+#   filterTags:
+#     pattern: 'master-(?P<ts>[a-z0-9]+)$'
+#     extract: '$ts'
+#   policy:
+#     alphabetical:
+#       order: asc
