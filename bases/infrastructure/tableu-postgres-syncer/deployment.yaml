@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tableau-postgres-syncer
+  name: tableau-postgres-syncer
+  namespace: default
+spec:
+  progressDeadlineSeconds: 120
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: tableau-postgres-syncer
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels:
+        app: tableau-postgres-syncer
+    spec:
+      containers:
+      - image: binkcore.azurecr.io/postgres-syncer:develop-363a056d
+        name: syncer
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
