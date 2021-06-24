@@ -1,0 +1,5 @@
+bases:
+- ../../../../bases/infrastructure/prometheus-pusher
+
+patches:
+- path: env.yaml

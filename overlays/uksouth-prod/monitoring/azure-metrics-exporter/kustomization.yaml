@@ -1,0 +1,5 @@
+bases:
+- ../../../../bases/infrastructure/azure-metrics-exporter
+
+resources:
+- configmap.yaml
