@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: carina
+    component: api
+  name: carina
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: carina
+      component: api
+  template:
+    metadata:
+      labels:
+        app: carina
+        component: api
+        aadpodidbinding: carina
