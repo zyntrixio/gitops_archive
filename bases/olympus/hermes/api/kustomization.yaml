@@ -8,6 +8,7 @@ resources:
 patches:
 - path: patch-annotations.yaml
 - path: patch-labels.yaml
+- path: patch-limits.yaml
 - path: patch-name.yaml
   target:
     kind: Deployment

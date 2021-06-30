@@ -4,6 +4,7 @@ bases:
 patches:
 - path: patch-command.yaml
 - path: patch-labels.yaml
+- path: patch-limits.yaml
 - path: patch-name.yaml
   target:
     kind: Deployment
