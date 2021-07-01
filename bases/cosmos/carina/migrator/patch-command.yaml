@@ -11,4 +11,4 @@ spec:
         command:
         - bash
         - -c
-        - sleep 10; alembic upgrade head; echo Done; tail -f /dev/null
+        - linkerd-await; alembic upgrade head; echo Done; tail -f /dev/null
