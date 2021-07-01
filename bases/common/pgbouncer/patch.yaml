@@ -18,12 +18,16 @@ spec:
               - -c
               - killall -INT pgbouncer && sleep 120
         livenessProbe:
+          failureThreshold: 3
           periodSeconds: 60
+          successThreshold: 1
           tcpSocket:
             port: 5432
+          timeoutSeconds: 1
         name: pgbouncer
         ports:
         - containerPort: 5432
+          protocol: TCP
         resources:
           limits:
             memory: 20Mi
@@ -41,4 +45,5 @@ spec:
       volumes:
       - name: configfiles
         secret:
+          defaultMode: 420
           secretName: azure-pg-all
