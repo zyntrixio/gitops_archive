@@ -93,7 +93,6 @@ spec:
             name: hermes-api
             port:
               number: 80
-
       - path: /payment_service
         pathType: Prefix
         backend:
@@ -115,7 +114,6 @@ spec:
             name: atlas-api
             port:
               number: 80
-
       - path: /txm/config/keys
         pathType: Prefix
         backend:
