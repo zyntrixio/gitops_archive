@@ -241,8 +241,8 @@ groups:
       summary: Payment cards are taking longer than 300ms to process in hermes
   
   - alert: prod hermes - vop status stuck in transitory state
-    expr: sum(increase(hermes_current_vop_activation_status_total{kubernetes_cluster="prod0", status=~"Deactivating|Activating"}[10m])) by (status) > 1
-    for: 1h
+    expr: sum(hermes_current_vop_activation_status_total{kubernetes_cluster="prod0", status=~"Deactivating|Activating"}) > sum(hermes_current_vop_activation_status_total{kubernetes_cluster="prod0", status=~"Deactivating|Activating"} offset 15m)
+    for: 2m
     labels:
       severity: S2
     annotations:
