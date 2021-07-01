@@ -4,9 +4,8 @@ metadata:
   annotations:
     fluxcd.io/automated: 'true'
     fluxcd.io/tag.wasabireport: glob:master-*
-  labels: &labels
+  labels:
     app: wasabireport
-    aadpodidbinding: wasabireport
   name: wasabireport
   namespace: default
 spec:
@@ -14,7 +13,8 @@ spec:
   replicas: 1
   revisionHistoryLimit: 0
   selector:
-    matchLabels: *labels
+    matchLabels:
+      app: wasabireport
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -24,7 +24,9 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
-      labels: *labels
+      labels:
+        app: wasabireport
+        aadpodidbinding: wasabireport
     spec:
       containers:
       - image: binkcore.azurecr.io/wasabi_report:master-af13dc91
