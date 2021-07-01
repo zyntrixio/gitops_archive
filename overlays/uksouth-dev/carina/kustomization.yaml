@@ -1,0 +1,11 @@
+bases:
+- ../../../bases/cosmos/carina/api
+- ../../../bases/cosmos/carina/migrator
+
+resources:
+- aad.yaml
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment

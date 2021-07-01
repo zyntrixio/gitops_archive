@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carina
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - carina
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      containers:
+      - name: app
+        image: binkcore.azurecr.io/carina:latest
+        imagePullPolicy: Always
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
