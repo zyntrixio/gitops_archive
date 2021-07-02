@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/event-horizon
-    newName: binkcore.azurecr.io/event-horizon
-    newTag: "staging-0.4.9" # {"$imagepolicy": "flux-system:uksouth-staging-event-horizon:tag"}
+    - name: binkcore.azurecr.io/event-horizon
+      newName: binkcore.azurecr.io/event-horizon
+      newTag: "staging-0.5.0" # {"$imagepolicy": "flux-system:uksouth-staging-event-horizon:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
