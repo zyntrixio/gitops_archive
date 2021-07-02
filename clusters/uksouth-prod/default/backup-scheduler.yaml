@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/backup-utility
-    newName: binkcore.azurecr.io/backup-utility
-    newTag: "prod-2.2.6" # {"$imagepolicy": "flux-system:uksouth-prod-backup-scheduler:tag"}
+    - name: binkcore.azurecr.io/backup-utility
+      newName: binkcore.azurecr.io/backup-utility
+      newTag: "prod-2.3.0" # {"$imagepolicy": "flux-system:uksouth-prod-backup-scheduler:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
