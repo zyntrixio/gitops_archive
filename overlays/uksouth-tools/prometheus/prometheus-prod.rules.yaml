@@ -240,13 +240,13 @@ groups:
     annotations:
       summary: Payment cards are taking longer than 300ms to process in hermes
   
-  - alert: prod hermes - vop status stuck in transitory state
+  - alert: prod hermes/midas - vop status stuck in transitory state
     expr: sum(hermes_current_vop_activation_status_total{kubernetes_cluster="prod0", status=~"Deactivating|Activating"}) > sum(hermes_current_vop_activation_status_total{kubernetes_cluster="prod0", status=~"Deactivating|Activating"} offset 15m)
-    for: 2m
+    for: 3m
     labels:
-      severity: S2
+      severity: S3 - Monitoring
     annotations:
-      summary: "VOP account status in transitory state for over 1 Hour"
+      summary: "VOP account status in transitory state for over 3 minutes - check https://api.gb.bink.com/admin/periodic_retry/periodicretry/ and search midas logs for Payment Card ID in Kibana https://kibana.uksouth.bink.sh/"
 
   - alert: prod iris - increase in 4xx responces
     expr: sum(rate(iris_response_by_status_total{kubernetes_cluster="prod0", status=~"4\\d\\d"}[10m])) by (status) > 10
