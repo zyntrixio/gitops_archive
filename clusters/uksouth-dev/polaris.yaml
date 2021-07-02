@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/polaris
-    newName: binkcore.azurecr.io/polaris
-    newTag: "develop-2021-07-01-142552" # {"$imagepolicy": "flux-system:uksouth-dev-polaris:tag"}
+    - name: binkcore.azurecr.io/polaris
+      newName: binkcore.azurecr.io/polaris
+      newTag: "develop-2021-07-02-133038" # {"$imagepolicy": "flux-system:uksouth-dev-polaris:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
