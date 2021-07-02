@@ -18,17 +18,14 @@ spec:
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
         prometheus.io/job: backup-scheduler
-        kubectl.kubernetes.io/default-container: backup-scheduler
+        kubectl.kubernetes.io/default-container: app
       labels:
         app: backup-scheduler
     spec:
       containers:
-      - command:
-        - python
-        - main.py
+      - name: app
         image: binkcore.azurecr.io/backup-utility:latest
         imagePullPolicy: Always
-        name: backup-scheduler
         resources:
           limits:
             memory: 256Mi
