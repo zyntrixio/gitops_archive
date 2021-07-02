@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/pyqa
-    newName: binkcore.azurecr.io/pyqa
-    newTag: "develop-2021-07-01-111203" # {"$imagepolicy": "flux-system:uksouth-staging-pyqa:tag"}
+    - name: binkcore.azurecr.io/pyqa
+      newName: binkcore.azurecr.io/pyqa
+      newTag: "develop-2021-07-02-111415" # {"$imagepolicy": "flux-system:uksouth-staging-pyqa:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
