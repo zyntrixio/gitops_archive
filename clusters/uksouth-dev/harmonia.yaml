@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/harmonia
-    newName: binkcore.azurecr.io/harmonia
-    newTag: "develop-2021-07-01-162143" # {"$imagepolicy": "flux-system:uksouth-dev-harmonia:tag"}
+    - name: binkcore.azurecr.io/harmonia
+      newName: binkcore.azurecr.io/harmonia
+      newTag: "develop-2021-07-02-105514" # {"$imagepolicy": "flux-system:uksouth-dev-harmonia:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
