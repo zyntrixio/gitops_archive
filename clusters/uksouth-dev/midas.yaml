@@ -14,7 +14,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/midas
       newName: binkcore.azurecr.io/midas
-      newTag: "develop-2021-07-02-073743" # {"$imagepolicy": "flux-system:uksouth-dev-midas:tag"}
+      newTag: "develop-2021-07-05-131159" # {"$imagepolicy": "flux-system:uksouth-dev-midas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
