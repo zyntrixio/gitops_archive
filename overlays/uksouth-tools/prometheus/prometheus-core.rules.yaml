@@ -182,4 +182,4 @@ groups:
     labels:
       severity: S2
     annotations:
-      summary: Check tools0 cluster - worker count less than 3
+      summary: Check tools0 cluster - worker count less than 2
