@@ -4,10 +4,7 @@ metadata:
   name: blobfile-exporter
   labels:
     app: blobfile-exporter
-  annotations:
-    fluxcd.io/tag.blobfile-exporter: glob:develop-*
-    fluxcd.io/automated: 'true'
-  namespace: default
+  namespace: monitoring
 spec:
   selector:
     matchLabels:
@@ -27,10 +24,5 @@ spec:
         image: binkcore.azurecr.io/blobfile-exporter:develop-388d6464
         ports:
         - containerPort: 9100
-    dnsPolicy: ClusterFirst
-    imagePullSecrets:
-    - name: binkcore.azurecr.io
-    restartPolicy: Always
-    schedulerName: default-scheduler
-    securityContext: {}
-    terminationGracePeriodSeconds: 30
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
