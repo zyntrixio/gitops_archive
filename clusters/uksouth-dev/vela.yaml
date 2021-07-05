@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/vela
-    newName: binkcore.azurecr.io/vela
-    newTag: "develop-2021-06-18-164427" # {"$imagepolicy": "flux-system:uksouth-dev-vela:tag"}
+    - name: binkcore.azurecr.io/vela
+      newName: binkcore.azurecr.io/vela
+      newTag: "dev-2021-07-05T223218Z" # {"$imagepolicy": "flux-system:uksouth-dev-vela:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository

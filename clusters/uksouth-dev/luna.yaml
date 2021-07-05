@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/luna
-    newName: binkcore.azurecr.io/luna
-    newTag: "develop-2021-05-13-174539" # {"$imagepolicy": "flux-system:uksouth-dev-luna:tag"}
+    - name: binkcore.azurecr.io/luna
+      newName: binkcore.azurecr.io/luna
+      newTag: "dev-2021-07-05T225506Z" # {"$imagepolicy": "flux-system:uksouth-dev-luna:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
