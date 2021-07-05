@@ -14,4 +14,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/midas
     newName: binkcore.azurecr.io/midas
-    newTag: "staging-2.29.2"
+    newTag: "staging-3.0.1"

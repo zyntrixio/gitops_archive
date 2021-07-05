@@ -14,4 +14,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/atlas
     newName: binkcore.azurecr.io/atlas
-    newTag: "develop-a799ea55"
+    newTag: "develop-2021-04-06-154427"

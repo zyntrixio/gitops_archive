@@ -14,4 +14,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/atlas
     newName: binkcore.azurecr.io/atlas
-    newTag: "staging-cb79024c"
+    newTag: "staging-2021-04-06-161119"

@@ -14,4 +14,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/midas
     newName: binkcore.azurecr.io/midas
-    newTag: "develop-2021-03-31-125906"
+    newTag: "develop-2021-07-02-073743"
