@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blobfile-exporter
+  labels:
+    app: blobfile-exporter
+  annotations:
+    fluxcd.io/tag.blobfile-exporter: glob:develop-*
+    fluxcd.io/automated: 'true'
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: blobfile-exporter
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        prometheus.io/port: '9100'
+        prometheus.io/scrape: 'true'
+        prometheus.io/job: harmonia-blobs
+      labels:
+        app: blobfile-exporter
