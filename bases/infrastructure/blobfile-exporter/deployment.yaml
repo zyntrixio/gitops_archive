@@ -21,3 +21,16 @@ spec:
         prometheus.io/job: harmonia-blobs
       labels:
         app: blobfile-exporter
+    spec:
+      containers:
+      - name: blobfile-exporter
+        image: binkcore.azurecr.io/blobfile-exporter:develop-388d6464
+        ports:
+        - containerPort: 9100
+    dnsPolicy: ClusterFirst
+    imagePullSecrets:
+    - name: binkcore.azurecr.io
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    terminationGracePeriodSeconds: 30
