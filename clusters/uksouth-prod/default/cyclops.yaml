@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/cyclops
-    newName: binkcore.azurecr.io/cyclops
-    newTag: "master-2021-06-28-120452" # {"$imagepolicy": "flux-system:uksouth-prod-cyclops:tag"}
+    - name: binkcore.azurecr.io/cyclops
+      newName: binkcore.azurecr.io/cyclops
+      newTag: "master-2021-07-05-120515" # {"$imagepolicy": "flux-system:uksouth-prod-cyclops:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
