@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/simplenginx
-    newName: binkcore.azurecr.io/simplenginx
-    newTag: "master-2021-06-28-120347" # {"$imagepolicy": "flux-system:uksouth-perf-simplenginx:tag"}
+    - name: binkcore.azurecr.io/simplenginx
+      newName: binkcore.azurecr.io/simplenginx
+      newTag: "master-2021-07-05-120409" # {"$imagepolicy": "flux-system:uksouth-perf-simplenginx:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
