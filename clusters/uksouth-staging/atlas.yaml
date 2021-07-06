@@ -36,7 +36,7 @@ spec:
   imageRepositoryRef:
     name: atlas
   filterTags:
-    pattern: 'staging-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    pattern: 'staging-(?P<ts>\d+(\.\d+)*)$'
     extract: '$ts'
   policy:
     alphabetical:
