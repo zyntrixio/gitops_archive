@@ -36,7 +36,7 @@ spec:
   imageRepositoryRef:
     name: cyclops
   filterTags:
-    pattern: 'master-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    pattern: 'prod-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
     extract: '$ts'
   policy:
     alphabetical:
