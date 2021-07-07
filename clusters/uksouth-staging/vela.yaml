@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/vela
-    newName: binkcore.azurecr.io/vela
-    newTag: "staging-0.4.2" # {"$imagepolicy": "flux-system:uksouth-staging-vela:tag"}
+    - name: binkcore.azurecr.io/vela
+      newName: binkcore.azurecr.io/vela
+      newTag: "staging-0.4.3" # {"$imagepolicy": "flux-system:uksouth-staging-vela:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
