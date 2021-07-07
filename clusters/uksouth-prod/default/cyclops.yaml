@@ -14,7 +14,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/cyclops
       newName: binkcore.azurecr.io/cyclops
-      newTag: "prod-2021-07-07T192402Z" # {"$imagepolicy": "flux-system:uksouth-prod-cyclops:tag"}
+      newTag: "prod-2021-07-07T194438Z" # {"$imagepolicy": "flux-system:uksouth-prod-cyclops:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
