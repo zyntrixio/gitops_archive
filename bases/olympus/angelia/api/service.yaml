@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: angelia
+    component: api
+  name: angelia-api
+  namespace: default
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 9000
+  selector:
+    app: angelia
+    component: api
+  sessionAffinity: None
+  type: ClusterIP

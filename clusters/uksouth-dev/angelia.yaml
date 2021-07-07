@@ -1,0 +1,43 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: angelia
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-dev/angelia
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+  images:
+    - name: binkcore.azurecr.io/angelia
+      newName: binkcore.azurecr.io/angelia
+      newTag: "dev-2021-07-07T130005Z" # {"$imagepolicy": "flux-system:uksouth-dev-angelia:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: angelia
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/angelia
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-dev-angelia
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: angelia
+  filterTags:
+    pattern: 'dev-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc
