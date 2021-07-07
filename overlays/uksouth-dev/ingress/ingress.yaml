@@ -16,6 +16,13 @@ spec:
   - host: api.dev0.uksouth.bink.sh
     http:
       paths:
+      - path: /v2
+        pathType: Prefix
+        backend:
+          service:
+            name: angelia-api
+            port:
+              number: 80
       - path: /audit
         pathType: Prefix
         backend:
