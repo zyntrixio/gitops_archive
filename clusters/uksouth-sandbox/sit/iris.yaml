@@ -14,4 +14,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/iris
     newName: binkcore.azurecr.io/iris
-    newTag: "develop-8a7f808a"
+    newTag: "dev-2021-07-07T140458Z"
