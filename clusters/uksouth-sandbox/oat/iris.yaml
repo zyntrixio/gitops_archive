@@ -14,4 +14,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/iris
     newName: binkcore.azurecr.io/iris
-    newTag: "staging-1.1.1"
+    newTag: "staging-1.2.0"
