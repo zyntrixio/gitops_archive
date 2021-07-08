@@ -45,6 +45,14 @@ spec:
         ports:
         - containerPort: 9000
           protocol: TCP
+        env:
+        - name: STORAGE_ACCOUNT_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              key: connection_string
+              name: azure-storage-common
+        - name: STORAGE_CONTAINER
+          value: media
         livenessProbe:
           failureThreshold: 3
           httpGet:
@@ -53,16 +61,6 @@ spec:
             scheme: HTTP
           initialDelaySeconds: 15
           periodSeconds: 5
-          successThreshold: 1
-          timeoutSeconds: 10
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /readyz
-            port: 9000
-            scheme: HTTP
-          initialDelaySeconds: 15
-          periodSeconds: 120
           successThreshold: 1
           timeoutSeconds: 10
         resources:
