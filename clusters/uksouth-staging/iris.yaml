@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/iris
-    newName: binkcore.azurecr.io/iris
-    newTag: "staging-1.1.1" # {"$imagepolicy": "flux-system:uksouth-staging-iris:tag"}
+    - name: binkcore.azurecr.io/iris
+      newName: binkcore.azurecr.io/iris
+      newTag: "staging-1.2.0" # {"$imagepolicy": "flux-system:uksouth-staging-iris:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
