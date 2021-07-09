@@ -1,7 +1,3 @@
 bases:
 - ../../../../bases/olympus/iris
 
-patches:
-- path: env.yaml
-  target:
-    kind: Deployment
