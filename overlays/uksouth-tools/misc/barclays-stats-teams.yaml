@@ -20,9 +20,9 @@ spec:
     spec:
       containers:
       - name: barclays-stats
-        image: olympus.azurecr.io/barclays-teams-stats:master-84479727
+        image: binkcore.azurecr.io/barclays-teams-stats/barclays-teams-stats:master-84479727
         env:
         - name: BARC_PERC
           value: "100"
       imagePullSecrets:
-      - name: olympus.azurecr.io
+      - name: binkcore.azurecr.io
