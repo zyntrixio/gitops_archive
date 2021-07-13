@@ -1,6 +1,7 @@
 bases:
 - ../../../bases/cosmos/vela/api
 - ../../../bases/cosmos/vela/migrator
+- ../../../bases/cosmos/vela/rewards-adjustments-tasks
 
 resources:
 - aad.yaml

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: vela
+    component: rewards-adjustments-tasks
+  name: vela
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: vela
+      component: rewards-adjustments-tasks
+  template:
+    metadata:
+      labels:
+        app: vela
+        component: rewards-adjustments-tasks
+        aadpodidbinding: vela
