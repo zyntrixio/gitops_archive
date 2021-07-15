@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: varsub_test
+  name: varsub-test
   labels:
-    app: varsub_test
+    app: varsub-test
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: varsub_test
+      app: varsub-test
   template:
     metadata:
       labels:
-        app: varsub_test
+        app: varsub-test
     spec:
       containers:
       - name: app
