@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: varsub_test
+  labels:
+    app: varsub_test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: varsub_test
+  template:
+    metadata:
+      labels:
+        app: varsub_test
+    spec:
+      containers:
+      - name: app
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        env:
+        - name: jeff
+          value: ${jeff}
