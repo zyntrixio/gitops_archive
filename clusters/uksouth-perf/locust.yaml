@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/ubiquity-performance
-    newName: binkcore.azurecr.io/ubiquity-performance
-    newTag: "develop-2021-03-13-120629" # {"$imagepolicy": "flux-system:uksouth-perf-locust:tag"}
+    - name: binkcore.azurecr.io/ubiquity-performance
+      newName: binkcore.azurecr.io/ubiquity-performance
+      newTag: "develop-2021-07-15-153930" # {"$imagepolicy": "flux-system:uksouth-perf-locust:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
