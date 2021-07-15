@@ -21,4 +21,4 @@ spec:
         - containerPort: 80
         env:
         - name: jeff
-          value: ${jeff}
+          value: ${jeff}-${bob}
