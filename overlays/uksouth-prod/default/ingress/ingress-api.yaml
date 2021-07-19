@@ -121,20 +121,6 @@ spec:
             name: harmonia-api
             port:
               number: 80
-      - path: /txm/import/bink-loyalty/
-        pathType: Prefix
-        backend:
-          service:
-            name: harmonia-api
-            port:
-              number: 80
-      - path: /txm/import/bink-payment/
-        pathType: Prefix
-        backend:
-          service:
-            name: harmonia-api
-            port:
-              number: 80
       - path: /txm/matching/force_match
         pathType: Prefix
         backend:
@@ -143,13 +129,6 @@ spec:
             port:
               number: 80
       - path: /txm/mids/
-        pathType: Prefix
-        backend:
-          service:
-            name: harmonia-api
-            port:
-              number: 80
-      - path: /txm/status/
         pathType: Prefix
         backend:
           service:
