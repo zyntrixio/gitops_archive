@@ -14,7 +14,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/event-horizon
       newName: binkcore.azurecr.io/event-horizon
-      newTag: "dev-2021-07-21T124259Z" # {"$imagepolicy": "flux-system:uksouth-dev-event-horizon:tag"}
+      newTag: "dev-2021-07-21T142819Z" # {"$imagepolicy": "flux-system:uksouth-dev-event-horizon:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
