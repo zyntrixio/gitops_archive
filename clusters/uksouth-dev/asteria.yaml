@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/asteria
-    newName: binkcore.azurecr.io/asteria
-    newTag: "develop-2021-03-02-154728" # {"$imagepolicy": "flux-system:uksouth-dev-asteria:tag"}
+    - name: binkcore.azurecr.io/asteria
+      newName: binkcore.azurecr.io/asteria
+      newTag: "develop-2021-07-21-130328" # {"$imagepolicy": "flux-system:uksouth-dev-asteria:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
