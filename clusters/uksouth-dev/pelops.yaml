@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/pelops
-    newName: binkcore.azurecr.io/pelops
-    newTag: "develop-2021-05-24-104724" # {"$imagepolicy": "flux-system:uksouth-dev-pelops:tag"}
+    - name: binkcore.azurecr.io/pelops
+      newName: binkcore.azurecr.io/pelops
+      newTag: "develop-2021-07-21-122539" # {"$imagepolicy": "flux-system:uksouth-dev-pelops:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
