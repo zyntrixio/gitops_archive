@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/eos
-    newName: binkcore.azurecr.io/eos
-    newTag: "develop-2021-04-27-145345" # {"$imagepolicy": "flux-system:uksouth-dev-eos:tag"}
+    - name: binkcore.azurecr.io/eos
+      newName: binkcore.azurecr.io/eos
+      newTag: "develop-2021-07-21-130804" # {"$imagepolicy": "flux-system:uksouth-dev-eos:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
