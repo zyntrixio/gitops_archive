@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/selene
-    newName: binkcore.azurecr.io/selene
-    newTag: "develop-2021-03-02-195000" # {"$imagepolicy": "flux-system:uksouth-dev-selene:tag"}
+    - name: binkcore.azurecr.io/selene
+      newName: binkcore.azurecr.io/selene
+      newTag: "develop-2021-07-21-131336" # {"$imagepolicy": "flux-system:uksouth-dev-selene:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
