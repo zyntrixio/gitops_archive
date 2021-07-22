@@ -10,5 +10,5 @@ spec:
       - name: app
         command:
         - python
-        - hermes/api_messaging/run.py
+        - api_messaging/run.py
 
