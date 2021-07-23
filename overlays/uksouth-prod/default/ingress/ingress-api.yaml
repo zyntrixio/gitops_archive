@@ -135,6 +135,13 @@ spec:
             name: harmonia-api
             port:
               number: 80
+      - path: /eos
+        pathType: Prefix
+        backend:
+          service:
+            name: eos-api
+            port:
+              number: 80
   tls:
   - hosts:
     - api.prod0.uksouth.bink.sh

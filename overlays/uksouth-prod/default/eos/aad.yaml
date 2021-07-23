@@ -1,0 +1,19 @@
+---
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentity
+metadata:
+  name: eos-identity
+  namespace: default
+spec:
+  type: 0
+  resourceID: /subscriptions/79560fde-5831-481d-8c3c-e812ef5046e5/resourceGroups/uksouth-prod/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-prod-fakicorp
+  clientID: a1768b6c-722d-43f6-93e0-c16eab0a79a9
+---
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentityBinding
+metadata:
+  name: eos-identity-binding
+  namespace: default
+spec:
+  azureIdentity: eos-identity
+  selector: eos
