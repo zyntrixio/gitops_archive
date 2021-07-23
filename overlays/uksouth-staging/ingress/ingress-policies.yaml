@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: policies.staging0.uksouth.bink.sh
+  name: policies.${cluster_name}.${location}.bink.sh
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -10,7 +10,7 @@ metadata:
       proxy_hide_header l5d-server-id;
 spec:
   rules:
-  - host: policies.staging0.uksouth.bink.sh
+  - host: policies.${cluster_name}.${location}.bink.sh
     http:
       paths:
       - path: /
@@ -29,5 +29,5 @@ spec:
               number: 80
   tls:
   - hosts:
-    - policies.staging0.uksouth.bink.sh
-    secretName: policies.staging0.uksouth.bink.sh
+    - policies.${cluster_name}.${location}.bink.sh
+    secretName: policies.${cluster_name}.${location}.bink.sh
