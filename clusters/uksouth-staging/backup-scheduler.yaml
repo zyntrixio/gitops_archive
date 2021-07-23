@@ -14,7 +14,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/backup-utility
       newName: binkcore.azurecr.io/backup-utility
-      newTag: "staging-2.3.4" # {"$imagepolicy": "flux-system:uksouth-staging-backup-scheduler:tag"}
+      newTag: "staging-2.3.5" # {"$imagepolicy": "flux-system:uksouth-staging-backup-scheduler:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
