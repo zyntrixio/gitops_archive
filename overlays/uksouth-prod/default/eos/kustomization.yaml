@@ -1,7 +1,7 @@
 bases:
-- ../../../bases/olympus/eos/api
-- ../../../bases/olympus/eos/worker
-- ../../../bases/olympus/eos/migrator
+- ../../../../bases/olympus/eos/api
+- ../../../../bases/olympus/eos/worker
+- ../../../../bases/olympus/eos/migrator
 
 resources:
 - aad.yaml
