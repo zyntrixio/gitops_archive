@@ -10,6 +10,7 @@ patches:
 - path: labels.yaml
 - path: resources.yaml
 - path: volume.yaml
+- path: strategy.yaml
 - path: name.yaml
   target:
     kind: Deployment

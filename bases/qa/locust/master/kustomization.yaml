@@ -9,6 +9,7 @@ patches:
 - path: labels.yaml
 - path: ports.yaml
 - path: resources.yaml
+- path: strategy.yaml
 - path: name.yaml
   target:
     kind: Deployment
