@@ -29,5 +29,16 @@ spec:
       - name: app
         image: binkcore.azurecr.io/kube-autodiscover-poster:develop-352a0679
         imagePullPolicy: Always
+        env:
+        - name: CLUSTER_NAME
+          value: ${location}-${cluster_name}
+        - name: EXTERNAL_URL
+          value: https://${cluster_name}.${location}.bink.sh:${port}
+        resources:
+          requests:
+            memory: 32Mi
+          limits:
+            memory: 32Mi
+            cpu: 250m
       imagePullSecrets:
       - name: binkcore.azurecr.io

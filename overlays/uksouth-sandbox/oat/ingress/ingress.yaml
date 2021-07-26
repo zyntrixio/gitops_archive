@@ -9,11 +9,11 @@ metadata:
       more_set_headers "X-Frame-Options: DENY";
       more_set_headers "X-Content-Type-Options: nosniff";
       more_set_headers "X-Xss-Protection: 1; mode=block";
-  name: oat.sandbox0.uksouth.bink.sh
+  name: oat.${cluster_name}.${location}.bink.sh
   namespace: default
 spec:
   rules:
-  - host: oat.sandbox0.uksouth.bink.sh
+  - host: oat.${cluster_name}.${location}.bink.sh
     http:
       paths:
       - path: /admin
@@ -137,5 +137,5 @@ spec:
               number: 80
   tls:
   - hosts:
-    - oat.sandbox0.uksouth.bink.sh
-    secretName: oat.sandbox0.uksouth.bink.sh
+    - oat.${cluster_name}.${location}.bink.sh
+    secretName: oat.${cluster_name}.${location}.bink.sh
