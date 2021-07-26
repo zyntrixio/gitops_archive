@@ -9,11 +9,11 @@ metadata:
       more_set_headers "X-Frame-Options: DENY";
       more_set_headers "X-Content-Type-Options: nosniff";
       more_set_headers "X-Xss-Protection: 1; mode=block";
-  name: link.prod0.uksouth.bink.sh
+  name: link.${cluster_name}.${location}.bink.sh
   namespace: default
 spec:
   rules:
-  - host: link.prod0.uksouth.bink.sh
+  - host: link.${cluster_name}.${location}.bink.sh
     http:
       paths:
       - path: /
@@ -25,5 +25,5 @@ spec:
               number: 80
   tls:
   - hosts:
-    - link.prod0.uksouth.bink.sh
-    secretName: link.prod0.uksouth.bink.sh
+    - link.${cluster_name}.${location}.bink.sh
+    secretName: link.${cluster_name}.${location}.bink.sh
