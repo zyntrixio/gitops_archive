@@ -1,13 +1,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: sit.sandbox0.uksouth.bink.sh
+  name: sit.${cluster_name}.${location}.bink.sh
   namespace: default
 spec:
   dnsNames:
-  - sit.sandbox0.uksouth.bink.sh
+  - sit.${cluster_name}.${location}.bink.sh
   issuerRef:
     group: cert-manager.io
     kind: Issuer
     name: letsencrypt
-  secretName: sit.sandbox0.uksouth.bink.sh
+  secretName: sit.${cluster_name}.${location}.bink.sh
