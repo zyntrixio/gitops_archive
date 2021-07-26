@@ -5,6 +5,7 @@ patches:
 - path: command.yaml
 - path: labels.yaml
 - path: resources.yaml
+- path: strategy.yaml
 - path: name.yaml
   target:
     kind: Deployment
