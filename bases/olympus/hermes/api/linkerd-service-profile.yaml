@@ -110,6 +110,12 @@ spec:
     isRetryable: true
     timeout: 2000ms
   - condition:
+      method: PUT
+      pathRegex: /schemes/user_consent/\d*
+    name: PUT /schemes/user_consent/{id}
+    isRetryable: true
+    timeout: 2000ms
+  - condition:
       method: POST
       pathRegex: /ubiquity/membership_cards
     name: POST /ubiquity/membership_cards
