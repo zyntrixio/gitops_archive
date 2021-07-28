@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-exporter
+  namespace: monitoring
+spec:
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        prometheus.io/port: '9100'
+        prometheus.io/scrape: 'true'
+        prometheus.io/job: rabbitmq
+    spec:
+      containers:
+      - name: rabbitmq-exporter
+        image: kbudde/rabbitmq-exporter:v1.0.0-RC8
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9100
+        env:
+        - name: PUBLISH_PORT
+          value: "9100"
+        resources:
+          limits:
+            memory: 256Mi
+          requests:
+            memory: 128Mi
