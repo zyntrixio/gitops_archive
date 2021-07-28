@@ -1,0 +1,7 @@
+bases:
+- ../core
+
+patches:
+- path: patch-name.yaml
+  target:
+    kind: Deployment

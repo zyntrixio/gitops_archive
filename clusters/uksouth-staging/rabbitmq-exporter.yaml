@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/rabbitmq-exporter
+  path: ./overlays/uksouth-staging/rabbitmq-exporter
   prune: true
   sourceRef:
     kind: GitRepository
