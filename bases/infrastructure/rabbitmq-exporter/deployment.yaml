@@ -4,6 +4,9 @@ metadata:
   name: rabbitmq-exporter
   namespace: monitoring
 spec:
+  selector:
+    matchLabels:
+      app: rabbitmq-exporter
   template:
     metadata:
       annotations:
@@ -11,6 +14,8 @@ spec:
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
         prometheus.io/job: rabbitmq
+      labels:
+        app: rabbitmq-exporter
     spec:
       containers:
       - name: rabbitmq-exporter
