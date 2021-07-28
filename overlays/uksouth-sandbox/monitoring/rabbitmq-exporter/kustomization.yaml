@@ -1,0 +1,13 @@
+bases:
+- ../../../../bases/infrastructure/rabbitmq-exporter/sit
+- ../../../../bases/infrastructure/rabbitmq-exporter/oat
+
+patches:
+- path: env-sit.yaml
+  target:
+    name: rabbitmq-exporter-sit
+    kind: Deployment
+- path: env-oat.yaml
+  target:
+    name: rabbitmq-exporter-oat
+    kind: Deployment
