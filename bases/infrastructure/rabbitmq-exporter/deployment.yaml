@@ -13,7 +13,7 @@ spec:
         linkerd.io/inject: enabled
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
-        prometheus.io/job: rabbitmq
+        prometheus.io/job: rabbitmq-exporter
       labels:
         app: rabbitmq-exporter
     spec:

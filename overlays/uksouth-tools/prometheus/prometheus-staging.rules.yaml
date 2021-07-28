@@ -108,14 +108,14 @@ groups:
       resource: "{{ $labels.instance }}"
       summary: Check staging postgres - bad upstate for over 3 minutes
 
-  - alert: staging rabbitmq up state
-    expr: (sum(up{kubernetes_cluster="staging0",kubernetes_pod_name=~"rabbitmq-\\d"}) OR on() vector(0)) < 1
-    for: 3m
-    labels:
-      severity: S2
-    annotations:
-      resource: "{{ $labels.instance }}"
-      summary: Check staging rabbitmq - bad upstate for over 3 minutes
+  # - alert: staging rabbitmq up state
+  #   expr: (sum(up{kubernetes_cluster="staging0",kubernetes_pod_name=~"rabbitmq-\\d"}) OR on() vector(0)) < 1
+  #   for: 3m
+  #   labels:
+  #     severity: S2
+  #   annotations:
+  #     resource: "{{ $labels.instance }}"
+  #     summary: Check staging rabbitmq - bad upstate for over 3 minutes
 
   - alert: staging virtual machines cpu
     expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"staging0-.+",mode="idle"}[5m])) * 100) > 90

@@ -36,14 +36,14 @@ groups:
       resource: "{{ $labels.instance }}"
       summary: Check sandbox nginx ingress - bad upstate on one or more pods for over 3 minutes
 
-  - alert: sandbox oat rabbitmq up state
-    expr: (sum(up{kubernetes_namespace="oat",kubernetes_pod_name=~"rabbitmq-\\d"}) OR on() vector(0)) < 1
-    for: 3m
-    labels:
-      severity: S2
-    annotations:
-      resource: "{{ $labels.instance }}"
-      summary: Check oat rabbitmq - bad upstate for over 3 minutes
+  # - alert: sandbox oat rabbitmq up state
+  #   expr: (sum(up{kubernetes_namespace="oat",kubernetes_pod_name=~"rabbitmq-\\d"}) OR on() vector(0)) < 1
+  #   for: 3m
+  #   labels:
+  #     severity: S2
+  #   annotations:
+  #     resource: "{{ $labels.instance }}"
+  #     summary: Check oat rabbitmq - bad upstate for over 3 minutes
 
   - alert: sandbox postgres cpu
     expr: cpu_percent_percent_max{resource_name="bink-uksouth-sandbox-common"} > 90
@@ -72,14 +72,14 @@ groups:
       resource: "{{ $labels.instance }}"
       summary: Check sandbox postgres - bad upstate for over 3 minutes
 
-  - alert: sandbox sit rabbitmq up state
-    expr: (sum(up{kubernetes_namespace="sit",kubernetes_pod_name=~"rabbitmq-\\d"}) OR on() vector(0)) < 1
-    for: 3m
-    labels:
-      severity: S2
-    annotations:
-      resource: "{{ $labels.instance }}"
-      summary: Check sit rabbitmq - bad upstate for over 3 minutes
+  # - alert: sandbox sit rabbitmq up state
+  #   expr: (sum(up{kubernetes_namespace="sit",kubernetes_pod_name=~"rabbitmq-\\d"}) OR on() vector(0)) < 1
+  #   for: 3m
+  #   labels:
+  #     severity: S2
+  #   annotations:
+  #     resource: "{{ $labels.instance }}"
+  #     summary: Check sit rabbitmq - bad upstate for over 3 minutes
 
   - alert: sandbox virtual machines cpu
     expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"sandbox0-.+",mode="idle"}[5m])) * 100) > 90
