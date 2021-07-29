@@ -1,5 +1,5 @@
 bases:
-- ../../../../bases/infrastructure/rabbitmq-proxy
+- ../../../bases/infrastructure/rabbitmq-proxy
 
 configMapGenerator:
 - name: rabbitmq-proxy
