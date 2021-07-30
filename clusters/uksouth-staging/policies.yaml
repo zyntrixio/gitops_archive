@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/policies.gb.bink.com
-    newName: binkcore.azurecr.io/policies.gb.bink.com
-    newTag: "staging-2021-04-02-153624" # {"$imagepolicy": "flux-system:uksouth-staging-policies:tag"}
+    - name: binkcore.azurecr.io/policies.gb.bink.com
+      newName: binkcore.azurecr.io/policies.gb.bink.com
+      newTag: "staging-2021-07-30-153057" # {"$imagepolicy": "flux-system:uksouth-staging-policies:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
