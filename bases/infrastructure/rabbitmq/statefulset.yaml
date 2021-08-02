@@ -45,7 +45,7 @@ spec:
           value: .$(MY_POD_SERVICE_ACCOUNT).$(MY_POD_NAMESPACE).svc.cluster.local
         - name: K8S_SERVICE_NAME
           value: $(MY_POD_SERVICE_ACCOUNT)
-        image: rabbitmq:3-management
+        image: rabbitmq:3.8-management
         imagePullPolicy: IfNotPresent
         name: rabbitmq
         ports:
