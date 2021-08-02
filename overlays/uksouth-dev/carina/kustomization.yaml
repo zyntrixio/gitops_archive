@@ -1,6 +1,7 @@
 bases:
 - ../../../bases/cosmos/carina/api
 - ../../../bases/cosmos/carina/migrator
+- ../../../bases/cosmos/carina/voucher-allocation-tasks
 
 resources:
 - aad.yaml
