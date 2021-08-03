@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/zephyrus
-    newName: binkcore.azurecr.io/zephyrus
-    newTag: "staging-1.7.1" # {"$imagepolicy": "flux-system:uksouth-staging-zephyrus:tag"}
+    - name: binkcore.azurecr.io/zephyrus
+      newName: binkcore.azurecr.io/zephyrus
+      newTag: "staging-1.8" # {"$imagepolicy": "flux-system:uksouth-staging-zephyrus:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
