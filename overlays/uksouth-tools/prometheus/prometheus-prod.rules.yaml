@@ -100,7 +100,7 @@ groups:
       resource: "{{ $labels.instance }}"
       summary: Check prod postgres - bad upstate for over 3 minutes
 
-  - alert: prod rabbitmq up state
+  - alert: prod rabbitmq virtual machine up state
     expr: (up{job="azure_node",name=~"prod-rabbitmq\\d"} OR on() vector(0)) < 1
     for: 3m
     labels:
@@ -109,14 +109,32 @@ groups:
       resource: "{{ $labels.name }}"
       summary: Check prod RabbitMQ virtual machines - bad up state for over 3 minutes
 
-  - alert: prod rabbitmq cluster depleted
+  - alert: prod rabbitmq virtual machine cluster depleted
     expr: sum(up{job="azure_node",name=~"prod-rabbitmq\\d"} OR on() vector(0)) < 2
     for: 3m
     labels:
       severity: S1
     annotations:
       resource: "{{ $labels.name }}"
-      summary: Check prod RabbitMQ cluster - less than 2 members for over 3 minutes
+      summary: Check prod RabbitMQ virtual machines - less than 2 virtual machines in the cluster for over 3 minutes
+
+  - alert: prod rabbitmq running state
+    expr: (rabbitmq_running{kubernetes_cluster="prod0",job="rabbitmq-exporter"} OR on() vector(0)) < 1
+    for: 3m
+    labels:
+      severity: S2
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check prod RabbitMQ cluster - at least 1 RabbitMQ instance has not been running for over 3 minutes
+
+  - alert: prod rabbitmq less than 2 running instances
+    expr: sum(rabbitmq_running{kubernetes_cluster="prod0",job="rabbitmq-exporter"} OR on() vector(0)) < 2
+    for: 3m
+    labels:
+      severity: S1
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Check prod RabbitMQ cluster - less than 2 RabbitMQ instances have been running for over 3 minutes
 
   - alert: prod redis cpu
     expr: serverload_percent_max{resource_name=~"bink-uksouth-prod-.+"} > 90
