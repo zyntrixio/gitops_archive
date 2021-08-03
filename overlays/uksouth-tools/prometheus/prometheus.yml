@@ -344,6 +344,48 @@ scrape_configs:
         regex: ()
         replacement: prod0
 
+  - job_name: 'prod1-pods'
+    kubernetes_sd_configs:
+      - api_server: https://prod1-controller.uksouth.bink.host:6443
+        role: pod
+        bearer_token_file: /tmp/prometheus-creds/prod1/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/prod1/ca.crt
+          insecure_skip_verify: true
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: kubernetes_pod_name
+
+      # Replace Job name based on attribute
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_job]
+        action: replace
+        target_label: job
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
+        action: replace
+        target_label: instance
+
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: prod1
+
   - job_name: 'tools-nodes'
     scheme: https
     tls_config:
@@ -524,6 +566,33 @@ scrape_configs:
         action: replace
         regex: ()
         replacement: prod0
+
+  - job_name: 'prod1-nodes'
+    scheme: https
+    tls_config:
+      ca_file: /tmp/prometheus-creds/prod1/ca.crt
+      insecure_skip_verify: true
+    bearer_token_file: /tmp/prometheus-creds/prod1/token
+
+    kubernetes_sd_configs:
+      - api_server: https://prod1-controller.uksouth.bink.host:6443
+        role: node
+        bearer_token_file: /tmp/prometheus-creds/prod1/token
+        tls_config:
+          ca_file: /tmp/prometheus-creds/prod1/ca.crt
+          insecure_skip_verify: true
+    relabel_configs:
+      - target_label: __address__
+        replacement: prod1-controller.uksouth.bink.host:6443
+      - source_labels: [__meta_kubernetes_node_name]
+        regex: (.+)
+        target_label: __metrics_path__
+        replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: prod1
 
   - job_name: ssl
     metrics_path: /probe
