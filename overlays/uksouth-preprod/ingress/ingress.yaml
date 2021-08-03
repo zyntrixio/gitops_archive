@@ -156,6 +156,13 @@ spec:
             name: vela-api
             port:
               number: 80
+      - path: /bpl/vouchers
+        pathType: Prefix
+        backend:
+          service:
+            name: carina-api
+            port:
+              number: 80
       - path: /healthz
         pathType: Exact
         backend:
