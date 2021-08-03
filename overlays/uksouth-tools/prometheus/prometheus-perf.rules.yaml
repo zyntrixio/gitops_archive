@@ -78,7 +78,7 @@ groups:
     labels:
       severity: S3
     annotations:
-      resource: "{{ $labels.name }}"
+      resource: "{{ $labels.node }}"
       summary: Check perf RabbitMQ cluster - at least 1 RabbitMQ instance has not been running for over 3 minutes
 
   - alert: perf virtual machines cpu

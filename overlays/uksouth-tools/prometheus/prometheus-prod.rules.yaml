@@ -124,16 +124,16 @@ groups:
     labels:
       severity: S2
     annotations:
-      resource: "{{ $labels.name }}"
+      resource: "{{ $labels.node }}"
       summary: Check prod RabbitMQ cluster - at least 1 RabbitMQ instance has not been running for over 3 minutes
 
-  - alert: prod rabbitmq less than 2 running instances
+  - alert: prod rabbitmq cluster depleted
     expr: sum(rabbitmq_running{kubernetes_cluster="prod0",job="rabbitmq-exporter"} OR on() vector(0)) < 2
     for: 3m
     labels:
       severity: S1
     annotations:
-      resource: "{{ $labels.name }}"
+      resource: "{{ $labels.node }}"
       summary: Check prod RabbitMQ cluster - less than 2 RabbitMQ instances have been running for over 3 minutes
 
   - alert: prod redis cpu
