@@ -154,23 +154,14 @@ groups:
       resource: "{{ $labels.instance }}"
       summary: Check prod redis - bad upstate for over 3 minutes
 
-  - alert: prod harmonia - failed exports 5 hours
-    expr: failed_requests_total > 1
-    for: 5h
+  - alert: prod harmonia - failed exports
+    expr: sum(failed_requests_total{kubernetes_cluster="prod0"}) > sum(failed_requests_total{kubernetes_cluster="prod0"} offset 15m)
+    for: 2m
     labels:
       severity: S2
     annotations:
-      resource: "{{ $labels.view }} - {{ $labels.status }}"
-      summary: There have been failed exports from harmonia for 5 hours.
-  
-  - alert: prod harmonia - failed exports 24 hours
-    expr: failed_requests_total > 1
-    for: 24h
-    labels:
-      severity: S2
-    annotations:
-      resource: "{{ $labels.view }} - {{ $labels.status }}"
-      summary: There have been failed exports from harmonia for 24 hours.
+      resource: "{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }} - {{ $labels.response_result }}"
+      summary: There have been failed exports from harmonia.
 
   - alert: prod harmonia - no exported transactions to iceland between 15:00 and 18:00
     expr: sum(increase(transactions_total{kubernetes_cluster="prod0", slug="iceland-bonus-card"} [12h])) by (slug) < 1 and europe_london_hour != 15 < 18
