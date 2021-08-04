@@ -391,7 +391,7 @@ groups:
       summary: Check virtual machine controller - bad up state for over 5 minutes
 
   - alert: prod kube worker up state
-    expr: (up{job="azure_node",name=~"prod0-worker\\d\\d"} OR on() vector(0)) < 1
+    expr: (up{job="azure_node",name=~"prod\\d-vmss_.+"} OR on() vector(0)) < 1
     for: 5m
     labels:
       severity: S2
@@ -400,12 +400,12 @@ groups:
       summary: Check virtual machine worker - bad up state for over 5 minutes
 
   - alert: prod kube worker pool depleted
-    expr: (sum(up{job="azure_node",name=~"prod0-worker\\d\\d"}) OR on() vector(0)) < 11
+    expr: (sum(up{job="azure_node",name=~"prod\\d-vmss_.+"}) OR on() vector(0)) < 7
     for: 3m
     labels:
       severity: S1
     annotations:
-      summary: Check prod0 cluster - worker count less than 11
+      summary: Check prod clusters - worker count less than 7
 
   - alert: prod virtual machines cpu
     expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"prod0-.+",mode="idle"}[5m])) * 100) > 90
