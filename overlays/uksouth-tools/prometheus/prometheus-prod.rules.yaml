@@ -245,7 +245,7 @@ groups:
       summary: Http responses are returning is over five seconds for more than 3 minutes
 
   - alert: prod hermes - no 2xx barclays traffic detected for over 10 minutes (8am - 8pm only)
-    expr: sum(rate(django_http_responses_total_by_status_view_method_total{channel="com.barclays.bmb", kubernetes_cluster=~"prod\\d", status=~"2\\d\\d"} [5m])) OR on() vector(0)) == 0 and on() europe_london_hour >= 8 < 20
+    expr: (sum(rate(django_http_responses_total_by_status_view_method_total{channel="com.barclays.bmb", kubernetes_cluster=~"prod\\d", status=~"2\\d\\d"} [5m])) OR on() vector(0)) == 0 and on() europe_london_hour >= 8 < 20
     for: 10m
     labels:
       severity: S2
@@ -253,7 +253,7 @@ groups:
       summary: No 2XX codes have returned for Barclays for 10 minutes
 
   - alert: prod hermes - no 2xx barclays traffic detected for over 1 hour
-    expr: sum(rate(django_http_responses_total_by_status_view_method_total{channel="com.barclays.bmb", kubernetes_cluster=~"prod\\d", status=~"2\\d\\d"} [5m])) OR on() vector(0)) == 0 
+    expr: (sum(rate(django_http_responses_total_by_status_view_method_total{channel="com.barclays.bmb", kubernetes_cluster=~"prod\\d", status=~"2\\d\\d"} [5m])) OR on() vector(0)) == 0 
     for: 1h
     labels:
       severity: S1
