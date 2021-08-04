@@ -16,6 +16,13 @@ spec:
   - host: api.${cluster_name}.${location}.bink.sh
     http:
       paths:
+      - path: /v2
+        pathType: Prefix
+        backend:
+          service:
+            name: angelia-api
+            port:
+              number: 80
       - path: /auth_transactions/authorize
         pathType: Prefix
         backend:
