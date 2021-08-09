@@ -158,14 +158,6 @@ groups:
     annotations:
       resource: "{{ $labels.name }}"
       summary: Check virtual machine - Root filesystem over 94% used for over 5 minutes
-
-  - alert: core pypi up state
-    expr: (up{job="pypi",kubernetes_cluster="tools"} OR on() vector(0)) < 1
-    for: 3m
-    labels:
-      severity: S2
-    annotations:
-      summary: Check pypi (pod in uksouth-tools Kubernetes cluster) - bad up state
       
   - alert: core sftp up state
     expr: up{job="azure_node",name=~"sftp\\d"} < 1
