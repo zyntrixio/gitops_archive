@@ -15,6 +15,5 @@ spec:
         - worker
         - --without-gossip
         - --without-mingle
-        - --loglevel
-        - info
+        - --loglevel=info
         - --pool=solo

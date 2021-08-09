@@ -13,4 +13,7 @@ spec:
         - -A
         - app.tasks
         - worker
-        - "--pool=solo"
+        - --without-gossip
+        - --without-mingle
+        - --loglevel=info
+        - --pool=solo

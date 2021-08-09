@@ -13,7 +13,8 @@ spec:
         - -A
         - hermes
         - worker
-        - --loglevel
-        - info
+        - --without-gossip
+        - --without-mingle
+        - --loglevel=info
         - --pool=solo
         - --queues=ubiquity-async-midas,record-history
