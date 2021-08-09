@@ -13,6 +13,8 @@ spec:
         - -A
         - app.celery
         - worker
+        - --without-gossip
+        - --without-mingle
         - --loglevel
         - info
         - --pool=solo
