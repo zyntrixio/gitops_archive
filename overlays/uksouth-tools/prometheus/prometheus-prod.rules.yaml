@@ -11,7 +11,7 @@ groups:
       summary: Raw prod media backup file size has increased/decreased by over 50% within an 8 day window
 
   - alert: prod media backup uploads (weekly)
-    expr: (increase(backup_utility_upload_to_blob_count_total{kubernetes_cluster="prod0",type="media"}[8d]) OR on() vector(0)) < 1
+    expr: sum((increase(backup_utility_upload_to_blob_count_total{kubernetes_cluster=~"prod\\d",type="media"}[8d]) OR on() vector(0))) < 1
     for: 8d
     labels:
       severity: S2
@@ -20,7 +20,7 @@ groups:
       summary: Backup tar file failed to upload from backup-scheduler pod to binkuksouthprod/backups storage account
 
   - alert: prod postgres backup failure
-    expr: increase(backup_utility_file_count_total{job="backup-scheduler",resource=~"bink-uksouth-prod-.+",status="failed",type="postgres"}[61m]) > 1
+    expr: sum(increase(backup_utility_file_count_total{job="backup-scheduler",resource=~"bink-uksouth-prod-.+",status="failed",type="postgres"}[61m])) > 1
     for: 5m
     labels:
       severity: S2
@@ -38,7 +38,7 @@ groups:
       summary: Raw prod postgres backup file size has increased/decreased by over 50% within 24 hour window
 
   - alert: prod postgres backup uploads (hourly)
-    expr: (increase(backup_utility_upload_to_blob_count_total{resource="binkuksouthprod",schedule="hourly",type="postgres"}[61m]) OR on() vector(0)) < 1
+    expr: sum((increase(backup_utility_upload_to_blob_count_total{resource="binkuksouthprod",schedule="hourly",type="postgres"}[65m]) OR on() vector(0))) < 1
     for: 90m
     labels:
       severity: S2
