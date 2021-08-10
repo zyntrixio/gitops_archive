@@ -13,12 +13,12 @@ spec:
   validation: client
   postBuild:
     substituteFrom:
-    - kind: ConfigMap
-      name: cluster-vars
+      - kind: ConfigMap
+        name: cluster-vars
   images:
-  - name: binkcore.azurecr.io/binklink
-    newName: binkcore.azurecr.io/binklink
-    newTag: "master-2021-05-17-114655" # {"$imagepolicy": "flux-system:uksouth-prod-binklink:tag"}
+    - name: binkcore.azurecr.io/binklink
+      newName: binkcore.azurecr.io/binklink
+      newTag: "master-2021-08-10-115252" # {"$imagepolicy": "flux-system:uksouth-prod-binklink:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
