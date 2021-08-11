@@ -178,21 +178,6 @@ data:
           - "Microsoft.Network/networkInterfaces"
         metrics: *networkInterfaces
 
-      - resource_group: "uksouth-sentry"
-        resource_types:
-          - "Microsoft.Compute/virtualMachines"
-        metrics: *virtualMachines
-
-      - resource_group: "uksouth-sentry"
-        resource_types:
-          - "Microsoft.Network/loadBalancers"
-        metrics: *loadBalancers
-
-      - resource_group: "uksouth-sentry"
-        resource_types:
-          - "Microsoft.Network/networkInterfaces"
-        metrics: *networkInterfaces
-
       - resource_group: "uksouth-sftp"
         resource_types:
           - "Microsoft.Compute/virtualMachines"
