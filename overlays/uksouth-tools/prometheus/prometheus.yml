@@ -135,6 +135,9 @@ scrape_configs:
         action: replace
         regex: ()
         replacement: dev0
+      - source_labels: [kubernetes_namespace]
+        regex: 'flux-system'
+        action: drop
 
   - job_name: 'sandbox0-pods'
     kubernetes_sd_configs:
