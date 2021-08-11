@@ -129,15 +129,14 @@ scrape_configs:
       - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
         action: replace
         target_label: instance
-
+      - source_labels: [kubernetes_namespace]
+        regex: 'flux-system'
+        action: drop
       - source_labels: [kubernetes_cluster]
         target_label: kubernetes_cluster
         action: replace
         regex: ()
         replacement: dev0
-      - source_labels: [kubernetes_namespace]
-        regex: 'flux-system'
-        action: drop
 
   - job_name: 'sandbox0-pods'
     kubernetes_sd_configs:
@@ -170,6 +169,9 @@ scrape_configs:
       - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_job]
         action: replace
         target_label: job
+      - source_labels: [kubernetes_namespace]
+        regex: 'flux-system'
+        action: drop
       - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
         action: replace
         target_label: instance
@@ -203,6 +205,9 @@ scrape_configs:
       - source_labels: [__meta_kubernetes_namespace]
         action: replace
         target_label: kubernetes_namespace
+      - source_labels: [kubernetes_namespace]
+        regex: 'flux-system'
+        action: drop
       - source_labels: [__meta_kubernetes_pod_name]
         action: replace
         target_label: kubernetes_pod_name
@@ -245,6 +250,9 @@ scrape_configs:
       - source_labels: [__meta_kubernetes_namespace]
         action: replace
         target_label: kubernetes_namespace
+      - source_labels: [kubernetes_namespace]
+        regex: 'flux-system'
+        action: drop
       - source_labels: [__meta_kubernetes_pod_name]
         action: replace
         target_label: kubernetes_pod_name
@@ -329,6 +337,9 @@ scrape_configs:
       - source_labels: [__meta_kubernetes_namespace]
         action: replace
         target_label: kubernetes_namespace
+      - source_labels: [kubernetes_namespace]
+        regex: 'flux-system'
+        action: drop
       - source_labels: [__meta_kubernetes_pod_name]
         action: replace
         target_label: kubernetes_pod_name
@@ -371,6 +382,9 @@ scrape_configs:
       - source_labels: [__meta_kubernetes_namespace]
         action: replace
         target_label: kubernetes_namespace
+      - source_labels: [kubernetes_namespace]
+        regex: 'flux-system'
+        action: drop
       - source_labels: [__meta_kubernetes_pod_name]
         action: replace
         target_label: kubernetes_pod_name
