@@ -11,3 +11,7 @@ spec:
     kind: GitRepository
     name: flux-system
   validation: client
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: cluster-vars
