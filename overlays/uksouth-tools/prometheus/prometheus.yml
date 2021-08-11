@@ -55,7 +55,7 @@ scrape_configs:
       - source_labels: ["__meta_azure_machine_tag_Environment"]
         target_label: "env"
       - source_labels: [name]
-        regex: '0365-backup|chef-01|qa-regression-testing|uksouth-mastercard-vm|wordpress|uksouth-redscan-windows|nextdns-0|nextdns-1|uksouth-mastercard-scheduler'
+        regex: '0365-backup|chef-01|qa-regression-testing|uksouth-mastercard-vm|wordpress|uksouth-redscan-windows|uksouth-redscan-linux|nextdns-0|nextdns-1|uksouth-mastercard-scheduler'
         action: drop
 
   - job_name: 'tools-pods'
