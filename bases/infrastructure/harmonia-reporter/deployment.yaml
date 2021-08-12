@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: harmonia-reporter
+  labels:
+    app: harmonia-reporter
+spec:
+  selector:
+    matchLabels:
+      app: harmonia-reporter
+  template:
+    metadata:
+      labels:
+        app: harmonia-reporter
+    spec:
+      containers:
+      - name: harmonia-reporter
+        image: binkcore.azurecr.io/harmonia-reporter:latest
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128m
+          requests:
+            cpu: 100m
+            memory: 128m
+        ports:
+        - containerPort: 9000
+        env:
+        - name: DB_NAME
+          value: harmonia
+        - name: DB_PORT
+          value: '5432'
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: azure-pg-harmonia
+              key: admin_user
+        - name: DB_HOST
+          value: 127.0.0.1
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
