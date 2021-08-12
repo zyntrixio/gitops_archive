@@ -11,11 +11,14 @@ spec:
       app: harmonia-reporter
   template:
     metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
       labels:
         app: harmonia-reporter
     spec:
       containers:
-      - name: harmonia-reporter
+      - name: app
         image: binkcore.azurecr.io/harmonia-reporter:latest
         resources:
           limits:
