@@ -8,3 +8,15 @@ patches:
 - path: env.yaml
   target:
     kind: Deployment
+- path: replicas-api.yaml
+  target:
+    kind: Deployment
+    name: hermes-api
+- path: replicas-beat.yaml
+  target:
+    kind: Deployment
+    name: hermes-beat
+- path: replicas-celery.yaml
+  target:
+    kind: Deployment
+    name: hermes-celery

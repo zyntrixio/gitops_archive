@@ -8,3 +8,6 @@ patches:
 - path: patch-name.yaml
   target:
     kind: Deployment
+- path: patch-replicas.yaml
+  target:
+    kind: Deployment
