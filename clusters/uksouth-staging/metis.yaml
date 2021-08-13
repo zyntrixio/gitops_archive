@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/metis
     newName: binkcore.azurecr.io/metis
-    newTag: "staging-2021-06-04-142116" # {"$imagepolicy": "flux-system:uksouth-staging-metis:tag"}
+    newTag: "staging-1.23.0" # {"$imagepolicy": "flux-system:uksouth-staging-metis:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -36,7 +36,7 @@ spec:
   imageRepositoryRef:
     name: metis
   filterTags:
-    pattern: 'staging-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    pattern: 'staging-(?P<ts>\d+(\.\d+)*)$'
     extract: '$ts'
   policy:
     alphabetical:
