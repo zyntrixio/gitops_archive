@@ -9,6 +9,7 @@ spec:
       containers:
       - name: app
         args:
+        - gunicorn
         - -b
         - 0.0.0.0:9000
         - --access-logfile
@@ -16,5 +17,3 @@ spec:
         - --error-logfile
         - '-'
         - app.api.app:app
-        command:
-        - gunicorn

@@ -9,9 +9,8 @@ spec:
       containers:
       - name: app
         args:
+        - tximport
         - --agent
         - visa-auth
         - --no-user-input
         - --quiet
-        command:
-        - tximport

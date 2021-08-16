@@ -9,6 +9,5 @@ spec:
       containers:
       - name: app
         args:
-        - export-retry
-        command:
         - txcore
+        - export-retry
