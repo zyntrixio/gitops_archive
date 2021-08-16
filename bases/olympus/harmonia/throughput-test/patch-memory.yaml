@@ -10,6 +10,6 @@ spec:
       - name: app
         resources:
           limits:
-            memory: 1Gi
+            memory: 2Gi
           requests:
-            memory: 1Gi
+            memory: 2Gi
