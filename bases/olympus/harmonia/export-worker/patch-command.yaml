@@ -9,6 +9,5 @@ spec:
       containers:
       - name: app
         args:
-        - worker
-        command:
         - txcore
+        - worker

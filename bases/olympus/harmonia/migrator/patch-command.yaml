@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
       - name: app
-        command:
+        args:
         - bash
         - -c
-        - sleep 10; alembic upgrade head; echo Done; tail -f /dev/null
+        - alembic upgrade head; echo Done; tail -f /dev/null

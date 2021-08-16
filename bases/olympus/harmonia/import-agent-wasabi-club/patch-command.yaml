@@ -9,9 +9,8 @@ spec:
       containers:
       - name: app
         args:
+        - tximport
         - --agent
         - wasabi-club
         - --no-user-input
         - --quiet
-        command:
-        - tximport
