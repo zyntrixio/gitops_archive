@@ -48,12 +48,12 @@ groups:
 
   - alert: prod postgres cpu
     expr: cpu_percent_percent_max{resource_name=~"bink-uksouth-prod-.+"} > 90
-    for: 5m
+    for: 15m
     labels:
       severity: S2
     annotations:
       resource: "{{ $labels.resource_name }}"
-      summary: Check prod postgres - CPU over 90% for 5 minutes
+      summary: Check prod postgres - CPU over 90% for 15 minutes
 
   - alert: prod postgres storage
     expr: storage_percent_percent_max{resource_name=~"bink-uksouth-prod-.+"} > 90
