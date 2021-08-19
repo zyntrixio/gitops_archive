@@ -1,0 +1,17 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: kubedoom
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./bases/infrastructure/kubedoom
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+  images:
+    - name: storaxdev/kubedoom
+      newName: cpressland/kubedoom
+      newTag: "latest"

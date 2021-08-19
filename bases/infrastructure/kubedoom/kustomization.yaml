@@ -1,0 +1,5 @@
+bases:
+- github.com/binkhq/kubedoom/manifest
+
+patches:
+- env.yaml
