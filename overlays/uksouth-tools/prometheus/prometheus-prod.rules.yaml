@@ -12,7 +12,7 @@ groups:
 
   - alert: prod media backup uploads (weekly)
     expr: sum((increase(backup_utility_upload_to_blob_count_total{kubernetes_cluster=~"prod\\d",type="media"}[8d]) OR on() vector(0))) < 1
-    for: 8d
+    for: 21d
     labels:
       severity: S2
     annotations:
@@ -39,7 +39,7 @@ groups:
 
   - alert: prod postgres backup uploads (hourly)
     expr: sum((increase(backup_utility_upload_to_blob_count_total{resource="binkuksouthprod",schedule="hourly",type="postgres"}[65m]) OR on() vector(0))) < 1
-    for: 90m
+    for: 180m
     labels:
       severity: S2
     annotations:
