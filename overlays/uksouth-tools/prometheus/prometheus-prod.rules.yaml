@@ -278,12 +278,12 @@ groups:
       summary: Payment cards have been stuck in a pending state for more than 24 hours
 
   - alert: prod hermes - payment cards processing slow
-    expr: sum(rate(payment_card_processing_seconds_histogram_bucket{kubernetes_cluster=~"prod\\d"}[2m])) by (le) > 0.3
+    expr: (sum(payment_card_processing_seconds_histogram_sum{kubernetes_cluster=~"prod\\d"}) by (provider) / sum(payment_card_processing_seconds_histogram_count{kubernetes_cluster=~"prod\\d"}) by (provider)) > 4
     for: 5m
     labels:
       severity: S2
     annotations:
-      summary: Payment cards are taking longer than 300ms to process in hermes
+      summary: Payment cards for {{ $labels.provider }} are taking longer than four seconds to process.
   
   - alert: prod hermes/midas - vop status stuck in transitory state
     expr: sum(hermes_current_vop_activation_status_total{kubernetes_cluster=~"prod\\d", status=~"Deactivating|Activating"}) > sum(hermes_current_vop_activation_status_total{kubernetes_cluster=~"prod\\d", status=~"Deactivating|Activating"} offset 15m)
