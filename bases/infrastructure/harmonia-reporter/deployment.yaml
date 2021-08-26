@@ -29,17 +29,5 @@ spec:
             memory: 128Mi
         ports:
         - containerPort: 9000
-        env:
-        - name: DB_NAME
-          value: harmonia
-        - name: DB_PORT
-          value: '5432'
-        - name: DB_USER
-          valueFrom:
-            secretKeyRef:
-              name: azure-pg-harmonia
-              key: admin_user
-        - name: DB_HOST
-          value: 127.0.0.1
       imagePullSecrets:
       - name: binkcore.azurecr.io
