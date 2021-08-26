@@ -10,7 +10,6 @@ metadata:
   namespace: monitoring
 spec:
   progressDeadlineSeconds: 600
-  replicas: 1
   revisionHistoryLimit: 0
   selector:
     matchLabels:
