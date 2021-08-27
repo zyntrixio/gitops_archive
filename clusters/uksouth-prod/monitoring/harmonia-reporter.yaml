@@ -14,7 +14,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/harmonia_archive_reporter
       newName: binkcore.azurecr.io/harmonia_archive_reporter
-      newTag: "prod-2021-08-27T140344Z" # {"$imagepolicy": "flux-system:uksouth-prod-harmonia-reporter:tag"}
+      newTag: "prod-2021-08-27T133958Z" # {"$imagepolicy": "flux-system:uksouth-prod-harmonia-reporter:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
