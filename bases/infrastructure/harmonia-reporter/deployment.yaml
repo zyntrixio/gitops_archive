@@ -29,5 +29,17 @@ spec:
             memory: 128Mi
         ports:
         - containerPort: 9000
+      - name: alerts
+        image: binkcore.azurecr.io/harmonia-reporter:latest
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        args:
+        - python3 
+        - alerts.py
       imagePullSecrets:
       - name: binkcore.azurecr.io
