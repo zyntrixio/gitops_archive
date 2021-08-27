@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carina
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        command: ["linkerd-await", "--"]
+        args: ["python", "-m", "app.imports.agents.file_agent", "voucher-updates-import"]
