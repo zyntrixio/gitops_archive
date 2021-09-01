@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: carina
+    component: voucher-updates
+  name: carina
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: carina
+      component: voucher-updates
+  template:
+    metadata:
+      labels:
+        app: carina
+        component: voucher-updates
+        aadpodidbinding: carina
