@@ -25,7 +25,7 @@ spec:
         app: tableau-postgres-syncer
     spec:
       containers:
-      - image: binkcore.azurecr.io/postgres-syncer:develop-3fae70d0
+      - image: binkcore.azurecr.io/postgres-syncer:develop-8836d450
         name: syncer
       dnsPolicy: ClusterFirst
       imagePullSecrets:
