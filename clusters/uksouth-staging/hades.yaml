@@ -39,5 +39,5 @@ spec:
     pattern: 'staging-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
     extract: '$ts'
   policy:
-    semver:
-      range: ">0.0.1"
+    alphabetical:
+      order: asc
