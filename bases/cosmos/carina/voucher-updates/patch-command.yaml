@@ -9,4 +9,4 @@ spec:
       containers:
       - name: app
         command: ["linkerd-await", "--"]
-        args: ["python", "-m", "app.imports.agents.file_agent", "voucher-updates-import"]
+        args: ["python", "-m", "app.imports.agents.file_agent", "voucher-updates-agent"]
