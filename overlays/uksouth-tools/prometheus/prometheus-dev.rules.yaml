@@ -81,6 +81,15 @@ groups:
       resource: "{{ $labels.type }} - {{ $labels.schedule }}"
       summary: Backup tar file failed to upload from backup-scheduler pod to binkuksouthdev/backups storage account
 
+  - alert: dev postgres backup uploads (weekly)
+    expr: (increase(backup_utility_upload_to_blob_count_total{resource="binkuksouthdev",schedule="weekly",type="postgres"}[8d]) OR on() vector(0)) < 1
+    for: 8d
+    labels:
+      severity: S3
+    annotations:
+      resource: "{{ $labels.type }} - {{ $labels.schedule }}"
+      summary: Backup tar file failed to upload from backup-scheduler pod to binkuksouthdev/backups storage account
+
   - alert: dev postgres cpu
     expr: cpu_percent_percent_max{resource_group="uksouth-dev",resource_name="bink-uksouth-dev-common"} > 90
     for: 5m
