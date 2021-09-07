@@ -81,6 +81,15 @@ groups:
       resource: "{{ $labels.type }} - {{ $labels.schedule }}"
       summary: Backup tar file failed to upload from backup-scheduler pod to binkuksouthstaging/backups storage account
 
+  - alert: staging postgres backup uploads (weekly)
+    expr: (increase(backup_utility_upload_to_blob_count_total{resource="binkuksouthstaging",schedule="weekly",type="postgres"}[8d]) OR on() vector(0)) < 1
+    for: 8d
+    labels:
+      severity: S2
+    annotations:
+      resource: "{{ $labels.type }} - {{ $labels.schedule }}"
+      summary: Backup tar file failed to upload from backup-scheduler pod to binkuksouthstaging/backups storage account
+
   - alert: staging postgres cpu
     expr: cpu_percent_percent_max{resource_name="bink-uksouth-staging-common"} > 90
     for: 5m
