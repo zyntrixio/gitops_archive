@@ -38,7 +38,7 @@ groups:
 
   - alert: dev media backup uploads (weekly)
     expr: sum(increase(backup_utility_upload_to_blob_count_total{kubernetes_cluster="dev0",type="media"}[8d])) < 1
-    for: 1d
+    for: 8d
     labels:
       severity: S3
     annotations:
@@ -83,7 +83,7 @@ groups:
 
   - alert: dev postgres backup uploads (weekly)
     expr: sum(increase(backup_utility_upload_to_blob_count_total{resource="binkuksouthdev",schedule="weekly",type="postgres"}[8d])) < 1
-    for: 1d
+    for: 8d
     labels:
       severity: S3
     annotations:
