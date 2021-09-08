@@ -14,7 +14,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/backup-utility
       newName: binkcore.azurecr.io/backup-utility
-      newTag: "dev-2021-09-07T172508Z" # {"$imagepolicy": "flux-system:uksouth-dev-backup-scheduler:tag"}
+      newTag: "dev-2021-09-08T143530Z" # {"$imagepolicy": "flux-system:uksouth-dev-backup-scheduler:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
