@@ -1,2 +1,2 @@
 bases:
-- ../../../bases/infrastructure/ingress-tools-canary
+- ../../../bases/infrastructure/ingress-tools
