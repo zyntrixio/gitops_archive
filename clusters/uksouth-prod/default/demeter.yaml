@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/demeter
-    newName: binkcore.azurecr.io/demeter
-    newTag: "master-6d1262fd" # {"$imagepolicy": "flux-system:uksouth-prod-demeter:tag"}
+    - name: binkcore.azurecr.io/demeter
+      newName: binkcore.azurecr.io/demeter
+      newTag: "master-2021-09-09-163413" # {"$imagepolicy": "flux-system:uksouth-prod-demeter:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
