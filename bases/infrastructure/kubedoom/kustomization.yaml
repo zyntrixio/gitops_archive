@@ -1,5 +1,5 @@
 bases:
-- github.com/binkhq/kubedoom/manifest
+- github.com/storax/kubedoom/manifest
 
 patches:
 - path: env.yaml
