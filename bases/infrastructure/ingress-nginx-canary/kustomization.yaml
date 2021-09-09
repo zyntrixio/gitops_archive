@@ -7,4 +7,3 @@ patches:
 - path: patch-logging.yaml
 - path: patch-metrics.yaml
 - path: patch-antiaffinity.yaml
-- path: patch-ingressclass.yaml
