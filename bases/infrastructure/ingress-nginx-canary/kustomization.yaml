@@ -1,0 +1,9 @@
+bases:
+- github.com/kubernetes/ingress-nginx/deploy/static/provider/baremetal?ref=controller-v1.0.0
+
+patches:
+- path: patch-nodeport.yaml
+- path: patch-annotations.yaml
+- path: patch-logging.yaml
+- path: patch-metrics.yaml
+- path: patch-antiaffinity.yaml
