@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/lethe
-    newName: binkcore.azurecr.io/lethe
-    newTag: "staging-1.3.0" # {"$imagepolicy": "flux-system:uksouth-staging-lethe:tag"}
+    - name: binkcore.azurecr.io/lethe
+      newName: binkcore.azurecr.io/lethe
+      newTag: "staging-1.3.1" # {"$imagepolicy": "flux-system:uksouth-staging-lethe:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
