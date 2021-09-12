@@ -14,7 +14,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/hades
       newName: binkcore.azurecr.io/hades
-      newTag: "dev-2021-09-09T171928Z" # {"$imagepolicy": "flux-system:uksouth-dev-hades:tag"}
+      newTag: "dev-2021-09-12T233353Z" # {"$imagepolicy": "flux-system:uksouth-dev-hades:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
