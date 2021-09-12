@@ -12,9 +12,9 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/hades
-    newName: binkcore.azurecr.io/hades
-    newTag: "staging-633049c1" # {"$imagepolicy": "flux-system:uksouth-staging-hades:tag"}
+    - name: binkcore.azurecr.io/hades
+      newName: binkcore.azurecr.io/hades
+      newTag: "staging-2.5.1" # {"$imagepolicy": "flux-system:uksouth-staging-hades:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
