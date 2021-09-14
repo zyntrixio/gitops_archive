@@ -39,5 +39,5 @@ spec:
     pattern: 'prod-(?P<ts>\d+(\.\d+)*)$'
     extract: '$ts'
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: ">=1.0.0"

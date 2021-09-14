@@ -40,4 +40,4 @@ spec:
     extract: '$ts'
   policy:
     semver:
-      range: ">0.0.1"
+      range: ">=1.0.0"
