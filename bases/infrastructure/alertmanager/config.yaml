@@ -36,12 +36,12 @@ data:
       routes:
       - receiver: 'alerts-devops'
         matchers:
-        - alertname!~"^dev.*|staging.*$"
+        - alertname!~"^dev.*|staging.*|monitoring.*$"
         - severity=~"^S1.*|S2.*|P1.*|P2.*$"
         continue: true
       - receiver: 'alerts-devops_business_hours'
         matchers:
-        - alertname!~"^dev.*|staging.*$"
+        - alertname!~"^dev.*|staging.*|monitoring.*$"
         - severity=~"^S3.*|P3.*$"
         continue: true
         mute_time_intervals:
@@ -96,7 +96,7 @@ data:
 
       - receiver: 'monitoring'
         matchers:
-        - severity=~"(?i:(^.*monitoring.*$))"
+        - alertname=~"^monitoring.*$"
         continue: true
       - receiver: 'xmatters'
         matchers:
