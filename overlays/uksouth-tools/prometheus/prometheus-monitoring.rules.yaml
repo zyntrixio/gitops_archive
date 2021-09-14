@@ -1,0 +1,81 @@
+groups:
+- name: monitoring
+  rules:
+  - alert: monitoring hermes - http response latency - greater than 1 second
+    expr: histogram_quantile(0.99, sum by(view, le)  (rate(django_http_requests_latency_seconds_by_view_method_bucket{job="hermes", view=~"membership-plan.*|service|membership-card.*|payment-card.*|register_user|login", kubernetes_cluster=~"prod\\d"}[2m]))) > 1
+    for: 3m
+    labels:
+      severity: S2 - Monitoring
+    annotations:
+      resource: "{{ $labels.view }}"
+      summary: Http responses are returning is over a second for more than 3 minutes
+  
+  - alert: monitoring hermes - http response latency - greater than 5 second
+    expr: histogram_quantile(0.99, sum by(view, le)  (rate(django_http_requests_latency_seconds_by_view_method_bucket{job="hermes", view=~"membership-plan.*|service|membership-card.*|payment-card.*|register_user|login", kubernetes_cluster=~"prod\\d"}[2m]))) > 5
+    for: 3m
+    labels:
+      severity: S2 - Monitoring
+    annotations:
+      resource: "{{ $labels.view }}"
+      summary: Http responses are returning is over five seconds for more than 3 minutes
+
+  - alert: monitoring hermes - payment cards stuck increase
+    expr: sum(hermes_current_payment_card_pending_overdue_total{kubernetes_cluster=~"prod\\d"}) > sum(hermes_current_payment_card_pending_overdue_total{kubernetes_cluster=~"prod\\d"} offset 24h +15)
+    for: 5m
+    labels:
+      severity: S2 - Monitoring
+    annotations:
+      summary: Payment cards have been stuck in a pending state for more than 24 hours
+  
+  - alert: monitoring hermes/midas - vop status stuck in transitory state
+    expr: sum(hermes_current_vop_activation_status_total{kubernetes_cluster=~"prod\\d", status=~"Deactivating|Activating"}) > sum(hermes_current_vop_activation_status_total{kubernetes_cluster=~"prod\\d", status=~"Deactivating|Activating"} offset 15m)
+    for: 3m
+    labels:
+      severity: S3 - Monitoring
+    annotations:
+      summary: "VOP account status in transitory state for over 3 minutes - check https://api.gb.bink.com/admin/periodic_retry/periodicretry/ and search midas logs for Payment Card ID in Kibana https://kibana.uksouth.bink.sh/"
+
+  - alert: monitoring harmonia - harvey nichols files not received
+    expr: (blobstorage_files_total{type="scheme",name="harvey-nichols"} OR on() vector(0)) < 1
+    for: 24h
+    labels:
+      severity: S2 - Monitoring
+    annotations:
+      resource: "{{ $labels.name }} - {{ $labels.type }}"
+      summary: Harvey Nichols files haven't been received in over 24 hours
+
+  - alert: monitoring harmonia - iceland files not received (monday - friday only)
+    expr: (blobstorage_files_total{type="scheme",name="iceland"} OR on() vector(0)) < 1 and on() day_of_week() > 0 < 6
+    for: 24h
+    labels:
+      severity: S2 - Monitoring
+    annotations:
+      resource: "{{ $labels.name }} - {{ $labels.type }}"
+      summary: Iceland files haven't been received in over 24 hours
+
+  - alert: monitoring harmonia - wasabi files not received (12pm - 8pm only)
+    expr: (increase(blobstorage_files_total{name="wasabihack"}[46m]) or on() vector(0)) < 1 and on() europe_london_hour >= 12 < 20
+    for: 3m
+    labels:
+      severity: S2 - Monitoring
+    annotations:
+      resource: "{{ $labels.name }}"
+      summary: Three missing files over 45 minute period - check latest Wasabi import (Transaction log lands every 15 minutes between the hours of 12pm and 8pm)
+
+  - alert: monitoring harmonia - amex files not received
+    expr: (blobstorage_files_total{type="payment", name="amex"} OR on() vector(0)) < 1
+    for: 24h
+    labels:
+      severity: S2 - Monitoring
+    annotations:
+      resource: "{{ $labels.name }} - {{ $labels.type }}"
+      summary: Payment files for amex haven't been received in over 24 hours
+  
+  - alert: monitoring harmonia - mastercard files not received
+    expr: (blobstorage_files_total{type="payment", name="mastercard"} OR on() vector(0)) < 1
+    for: 27h
+    labels:
+      severity: S2 - Monitoring
+    annotations:
+      resource: "{{ $labels.name }} - {{ $labels.type }}"
+      summary: Payment files for mastercard haven't been received in over 27 hours
