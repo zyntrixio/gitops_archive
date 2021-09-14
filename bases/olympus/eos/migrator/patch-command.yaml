@@ -7,7 +7,5 @@ spec:
     spec:
       containers:
       - name: app
-        command:
-        - bash
-        - -c
-        - sleep 10; python manage.py migrate; echo Done; tail -f /dev/null
+        command: [ "linkerd-await", "--" ]
+        args: [ "bash", "-c", "python manage.py migrate; echo Done; tail -f /dev/null" ]

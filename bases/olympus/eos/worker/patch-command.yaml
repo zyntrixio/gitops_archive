@@ -7,7 +7,5 @@ spec:
     spec:
       containers:
       - name: app
-        command:
-        - python
-        - manage.py
-        - worker
+        command: [ "linkerd-await", "--" ]
+        args: [ "python", "manage.py", "worker" ]
