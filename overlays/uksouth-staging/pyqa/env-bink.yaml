@@ -9,7 +9,7 @@ spec:
       - name: app
         env:
         - name: FRIENDLY_NAME
-          value: Staging - Bink
+          value: Staging - Bank API V1.2
         - name: BLOB_STORAGE_DSN
           valueFrom:
             secretKeyRef:
