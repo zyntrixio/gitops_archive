@@ -4,6 +4,7 @@ metadata:
   name: demeter
   namespace: default
 spec:
+  replicas: 0
   selector:
     matchLabels:
       app: demeter
