@@ -10,3 +10,12 @@ patches:
 - path: env.yaml
   target:
     kind: Deployment
+- path: celery-command.yaml
+  target:
+    kind: Deployment
+    name: midas-celery
+- path: beat-command.yaml
+  target:
+    kind: Deployment
+    name: midas-beat
+
