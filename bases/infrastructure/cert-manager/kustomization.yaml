@@ -1,5 +1,5 @@
 bases:
-- https://github.com/jetstack/cert-manager/releases/download/v1.1.1/cert-manager.yaml
+- https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
 
 patches:
 - path: patch-dns.yaml
