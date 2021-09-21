@@ -38,7 +38,7 @@ groups:
 
   - alert: staging media backup uploads (weekly)
     expr: sum(increase(backup_utility_upload_to_blob_count_total{kubernetes_cluster="staging0",type="media"}[8d])) < 1
-    for: 8d
+    for: 30d
     labels:
       severity: S2
     annotations:
@@ -83,7 +83,7 @@ groups:
 
   - alert: staging postgres backup uploads (weekly)
     expr: sum(increase(backup_utility_upload_to_blob_count_total{resource="binkuksouthstaging",schedule="weekly",type="postgres"}[8d])) < 1
-    for: 8d
+    for: 30d
     labels:
       severity: S2
     annotations:
