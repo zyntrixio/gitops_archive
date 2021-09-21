@@ -1,5 +1,5 @@
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -22,10 +22,13 @@ spec:
   - host: mobsf.uksouth.bink.sh
     http:
       paths:
-      - backend:
-          serviceName: mobsf
-          servicePort: 80
-        path: /
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mobsf
+            port:
+              number: 80
   tls:
   - hosts:
     - mobsf.uksouth.bink.sh
