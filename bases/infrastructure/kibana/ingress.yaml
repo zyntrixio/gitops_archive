@@ -18,10 +18,13 @@ spec:
   - host: kibana.uksouth.bink.sh
     http:
       paths:
-      - backend:
-          serviceName: kibana
-          servicePort: 80
-        path: /
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kibana
+            port:
+              number: 80
   tls:
   - hosts:
     - kibana.uksouth.bink.sh
