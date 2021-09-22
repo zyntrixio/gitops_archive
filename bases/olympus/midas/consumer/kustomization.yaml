@@ -1,0 +1,13 @@
+bases:
+- ../core
+
+resources:
+- service.yaml
+
+patches:
+- path: patch-annotations.yaml
+- path: patch-command.yaml
+- path: patch-labels.yaml
+- path: patch-name.yaml
+  target:
+    kind: Deployment
