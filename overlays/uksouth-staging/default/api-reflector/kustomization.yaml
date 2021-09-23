@@ -1,0 +1,7 @@
+bases:
+- ../../../../bases/oss/api-reflector
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
