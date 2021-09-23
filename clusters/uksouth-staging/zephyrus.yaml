@@ -14,7 +14,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/zephyrus
       newName: binkcore.azurecr.io/zephyrus
-      newTag: "staging-1.8.0" # {"$imagepolicy": "flux-system:uksouth-staging-zephyrus:tag"}
+      newTag: "staging-1.9.0" # {"$imagepolicy": "flux-system:uksouth-staging-zephyrus:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
