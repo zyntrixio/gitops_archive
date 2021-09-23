@@ -1,0 +1,10 @@
+bases:
+- github.com/binkhq/api-reflector/deploy/kube
+
+components:
+- ../../common/pgbouncer
+
+patches:
+- path: annotations.yaml
+  target:
+    kind: Deployment
