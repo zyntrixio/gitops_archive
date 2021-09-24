@@ -1,0 +1,32 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: jaeger-crd
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: monitoring-namespace
+  interval: 60m0s
+  path: ./bases/infrastructure/jaeger/operator
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: jaeger
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: monitoring-namespace
+    - name: jaeger-crd
+  interval: 60m0s
+  path: ./bases/infrastructure/jaeger/nonprod
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client

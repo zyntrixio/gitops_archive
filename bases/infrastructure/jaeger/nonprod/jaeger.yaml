@@ -1,0 +1,15 @@
+apiVersion: jaegertracing.io/v1
+kind: Jaeger
+metadata:
+  name: jaeger
+spec:
+  strategy: allInOne
+  ingress:
+    enabled: false  # Else it tries to make ingress stuff
+  agent:
+    strategy: DaemonSet
+  storage:  # Should point to ES
+    type: memory
+    options:
+      memory:
+        max-traces: 100000
