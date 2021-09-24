@@ -1,0 +1,13 @@
+bases:
+- ../../../../bases/cosmos/polaris/api
+- ../../../../bases/cosmos/polaris/migrator
+- ../../../../bases/cosmos/polaris/account-holder-activation-tasks
+
+resources:
+- aad.yaml
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
+    

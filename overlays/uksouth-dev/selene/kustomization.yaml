@@ -1,7 +1,0 @@
-bases:
-- ../../../bases/olympus/selene
-
-patches:
-- path: env.yaml
-  target:
-    kind: Deployment

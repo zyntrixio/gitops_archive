@@ -1,0 +1,10 @@
+bases:
+- ../../../../bases/infrastructure/backup-scheduler
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
+
+resources:
+- pvc.yaml
