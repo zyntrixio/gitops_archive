@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/backup-scheduler
+  path: ./overlays/uksouth-dev/default/backup-scheduler
   prune: true
   sourceRef:
     kind: GitRepository

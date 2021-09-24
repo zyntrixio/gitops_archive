@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/vela
+  path: ./overlays/uksouth-dev/default/vela
   prune: true
   sourceRef:
     kind: GitRepository

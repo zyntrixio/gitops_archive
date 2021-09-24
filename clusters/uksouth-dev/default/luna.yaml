@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/luna
+  path: ./overlays/uksouth-dev/default/luna
   prune: true
   sourceRef:
     kind: GitRepository

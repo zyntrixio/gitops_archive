@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/zagreus
+  path: ./overlays/uksouth-dev/default/zagreus
   prune: true
   sourceRef:
     kind: GitRepository

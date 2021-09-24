@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/binkweb-nginx
+  path: ./overlays/uksouth-dev/default/binkweb-nginx
   prune: true
   sourceRef:
     kind: GitRepository
