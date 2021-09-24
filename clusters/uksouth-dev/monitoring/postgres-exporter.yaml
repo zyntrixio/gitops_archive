@@ -1,11 +1,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: fluentd
+  name: postgres-exporter
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: monitoring-namespace
   interval: 60m0s
-  path: ./overlays/uksouth-dev/fluentd
+  path: ./overlays/uksouth-dev/postgres-exporter
   prune: true
   sourceRef:
     kind: GitRepository
