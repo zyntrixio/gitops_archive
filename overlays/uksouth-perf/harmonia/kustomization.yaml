@@ -27,3 +27,6 @@ patches:
 - path: env.yaml
   target:
     kind: Deployment
+- path: nerf-pushgateway.yaml
+  target:
+    kind: Deployment
