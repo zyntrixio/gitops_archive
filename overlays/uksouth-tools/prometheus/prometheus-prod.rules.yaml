@@ -312,7 +312,7 @@ groups:
       summary: There has been an increase of 5 in failed logins in 10 mins
 
   - alert: prod midas - failed registration events
-    expr: sum(increase(register_fail_total{kubernetes_cluster=~"prod\\d"}[10m])) by (slug) > 5
+    expr: sum(increase(join_fail_total{kubernetes_cluster=~"prod\\d"}[10m])) by (slug) > 5
     for: 1m
     labels:
       severity: S2
