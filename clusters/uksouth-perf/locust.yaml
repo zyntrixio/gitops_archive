@@ -14,7 +14,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/ubiquity-performance
       newName: binkcore.azurecr.io/ubiquity-performance
-      newTag: "develop-2021-09-27-170446" # {"$imagepolicy": "flux-system:uksouth-perf-locust:tag"}
+      newTag: "develop-2021-09-28-093531" # {"$imagepolicy": "flux-system:uksouth-perf-locust:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
