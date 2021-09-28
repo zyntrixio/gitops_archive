@@ -1,0 +1,80 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: asset-register-migrator
+  name: asset-register-migrator
+  namespace: default
+spec:
+  progressDeadlineSeconds: 120
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: asset-register-migrator
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels:
+        app: asset-register-migrator
+    spec:
+      containers:
+      - command:
+        - bash
+        - -c
+        - linkerd-await; python manage.py migrate; echo Done; tail -f /dev/null
+        image: binkcore.azurecr.io/asset-register:tools-2021-07-08T203707Z
+        name: assetregister
+        env:
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              key: admin_user
+              name: azure-pg-common
+        imagePullPolicy: Always
+      - image: mcr.microsoft.com/azure-oss-db-tools/pgbouncer-sidecar:pgbouncerv1.13
+        imagePullPolicy: Always
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - killall -INT pgbouncer && sleep 120
+        livenessProbe:
+          periodSeconds: 60
+          tcpSocket:
+            port: 5432
+        name: pgbouncer
+        ports:
+        - containerPort: 5432
+        resources:
+          limits:
+            memory: 20Mi
+          requests:
+            memory: 10Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - all
+        volumeMounts:
+        - mountPath: /etc/pgbouncer
+          name: configfiles
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      volumes:
+      - name: configfiles
+        secret:
+          secretName: azure-pg-all
