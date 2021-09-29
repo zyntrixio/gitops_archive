@@ -14,7 +14,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/angelia
       newName: binkcore.azurecr.io/angelia
-      newTag: "dev-2021-09-29T114245Z" # {"$imagepolicy": "flux-system:uksouth-dev-angelia:tag"}
+      newTag: "dev-2021-09-29T162803Z" # {"$imagepolicy": "flux-system:uksouth-dev-angelia:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
