@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bridge
+  namespace: default
+  labels:
+    app: bridge
+spec:
+  selector:
+    matchLabels:
+      app: bridge
+  template:
+    metadata:
+      labels:
+        app: bridge
+    spec:
+      containers:
+      - name: bridge
+        image: olympus.azurecr.io/bridge:master-bc37ba3c
+        env:
+        - name: CONNECTION_STRING
+          value: DefaultEndpointsProtocol=https;AccountName=binkuksouthprod;AccountKey=91n6awMXsn2TwMFuk18HZJFAbWalexuZR9CVwPO4xMPu0fBcnIkx4ejIUsiLF+8A/Y/Q3Km3ML+uJAsZlSU7Jw==;EndpointSuffix=core.windows.net
+        ports:
+        - containerPort: 9000
+      imagePullSecrets:
+      - name: olympus.azurecr.io
