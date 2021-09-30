@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cluster-autodiscover
+    component: api
+  name: cluster-autodiscover-api
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: cluster-autodiscover
+      component: api
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels:
+        app: cluster-autodiscover
+        component: api
+    spec:
+      containers:
+      - image: olympus.azurecr.io/kube-autodiscover-api:develop-ee57ce44
+        imagePullPolicy: Always
+        name: server
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        ports:
+        - containerPort: 9000
+          protocol: TCP
+
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      imagePullSecrets:
+      - name: olympus.azurecr.io
