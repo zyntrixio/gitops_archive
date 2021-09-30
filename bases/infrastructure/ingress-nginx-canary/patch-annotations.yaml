@@ -9,6 +9,5 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
-        config.linkerd.io/inject: ingress
         config.linkerd.io/skip-inbound-ports: 80,443
         kubectl.kubernetes.io/default-container: controller
