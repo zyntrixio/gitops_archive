@@ -9,4 +9,4 @@ data:
   server-tokens: "false"
   enable-opentracing: "true"
   zipkin-collector-host: jaeger-agent.monitoring.svc.cluster.local
-  zipkin-collector-port: 5775
+  zipkin-collector-port: "5775"
