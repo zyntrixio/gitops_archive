@@ -1,6 +1,10 @@
 bases:
 - ../../../../bases/oss/api-reflector
 
+resources:
+- cert.yaml
+- ingress.yaml
+
 patches:
 - path: env.yaml
   target:
