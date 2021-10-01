@@ -9,3 +9,4 @@ data:
   server-tokens: "false"
   enable-opentracing: "true"
   jaeger-collector-host: jaeger-agent.monitoring.svc.cluster.local
+  jaeger-propagation-format: "b3"
