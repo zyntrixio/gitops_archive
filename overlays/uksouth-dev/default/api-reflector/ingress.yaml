@@ -6,8 +6,6 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/service-upstream: "true"
     nginx.ingress.kubernetes.io/upstream-vhost: reflector.dev.gb.bink.com
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      more_set_headers "X-Forwarded-Host: reflector.dev.gb.bink.com";
   name: reflector.${cluster_name}.${location}.bink.sh
   namespace: default
 spec:
