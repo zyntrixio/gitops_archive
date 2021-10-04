@@ -9,7 +9,7 @@ spec:
       containers:
       - name: kured
         args:
-          - "--drain-grace-period=300"  # Gives 120 seconds for each pod to drain
+          - "--drain-grace-period=300"  # Gives 300 seconds for each pod to drain
           - "--start-time=00:00"  # Start time for reboot
           - "--end-time=04:00"  # End time
           - "--annotate-nodes"  # Adds labels to nodes around reboot status
