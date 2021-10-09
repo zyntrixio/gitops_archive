@@ -12,32 +12,6 @@ spec:
     name: flux-system
   validation: client
   images:
-  - name: binkcore.azurecr.io/simplenginx
-    newName: binkcore.azurecr.io/simplenginx
-    newTag: "master-2021-05-16-040420" # {"$imagepolicy": "flux-system:uksouth-sandbox-simplenginx:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
-kind: ImageRepository
-metadata:
-  name: simplenginx
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/simplenginx
-  interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io
----
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
-kind: ImagePolicy
-metadata:
-  name: uksouth-sandbox-simplenginx
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: simplenginx
-  filterTags:
-    pattern: 'master-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
-    extract: '$ts'
-  policy:
-    alphabetical:
-      order: asc
+  - name: ghcr.io/binkhq/simplenginx
+    newName: ghcr.io/binkhq/simplenginx
+    newTag: "latest" # {"$imagepolicy": "flux-system:simplenginx:tag"}
