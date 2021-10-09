@@ -15,3 +15,44 @@ spec:
   - name: ghcr.io/binkhq/simplenginx
     newName: ghcr.io/binkhq/simplenginx
     newTag: "latest" # {"$imagepolicy": "flux-system:simplenginx:tag"}
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: simplenginx
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod/default/simplenginx
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+  images:
+  - name: ghcr.io/binkhq/simplenginx
+    newName: ghcr.io/binkhq/simplenginx
+    newTag: "latest" # {"$imagepolicy": "flux-system:simplenginx:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: simplenginx
+  namespace: flux-system
+spec:
+  image: ghcr.io/binkhq/simplenginx
+  interval: 120m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: simplenginx
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: simplenginx
+  filterTags:
+    pattern: '\d{4}-\d{2}-\d{2}T\d{6}Z$'
+  policy:
+    alphabetical:
+      order: asc
