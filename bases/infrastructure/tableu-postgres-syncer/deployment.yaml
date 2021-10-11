@@ -21,6 +21,7 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: syncer
       labels:
         app: tableau-postgres-syncer
     spec:
