@@ -3,6 +3,7 @@ bases:
 
 configMapGenerator:
 - name: prometheus-server-conf
+  namespace: default
   files:
     - prometheus-core.rules.yaml
     - prometheus-dev.rules.yaml
