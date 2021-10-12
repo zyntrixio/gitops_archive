@@ -10,7 +10,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  validation: client
   images:
     - name: binkcore.azurecr.io/grafana
       newName: binkcore.azurecr.io/grafana
