@@ -5,6 +5,7 @@ metadata:
   annotations:
     aadpodidentity.k8s.io/Behavior: namespaced
   name: cyclops-identity
+  namespace: default
 spec:
   type: 0
   resourceID: /subscriptions/79560fde-5831-481d-8c3c-e812ef5046e5/resourcegroups/uksouth-prod/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-prod-fakicorp
@@ -14,6 +15,7 @@ apiVersion: "aadpodidentity.k8s.io/v1"
 kind: AzureIdentityBinding
 metadata:
   name: cyclops-identity-binding
+  namespace: default
 spec:
   azureIdentity: cyclops-identity
   selector: cyclops
