@@ -5,16 +5,16 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-staging/simplenginx
+  path: ./overlays/uksouth-sandbox/default/simplenginx
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   validation: client
   images:
-    - name: ghcr.io/binkhq/simplenginx
-      newName: ghcr.io/binkhq/simplenginx
-      newTag: "2021-10-09T155942Z" # {"$imagepolicy": "flux-system:uksouth-staging-simplenginx:tag"}
+  - name: ghcr.io/binkhq/simplenginx
+    newName: ghcr.io/binkhq/simplenginx
+    newTag: "latest" # {"$imagepolicy": "flux-system:uksouth-sandbox-simplenginx:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -28,7 +28,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: uksouth-staging-simplenginx
+  name: uksouth-sandbox-simplenginx
   namespace: flux-system
 spec:
   imageRepositoryRef:
