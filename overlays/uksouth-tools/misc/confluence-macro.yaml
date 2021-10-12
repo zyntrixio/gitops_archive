@@ -8,6 +8,7 @@ metadata:
   name: confluence-macro
   labels:
     app: confluence-macro
+  namespace: default
 spec:
   selector:
     matchLabels:
