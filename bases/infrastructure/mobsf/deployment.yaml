@@ -5,6 +5,7 @@ metadata:
   name: mobsf
   labels:
     app: mobsf
+  namespace: default
 spec:
   replicas: 1
   selector:
