@@ -10,8 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  validation: client
-  images:
+    images:
     - name: binkcore.azurecr.io/harmonia
       newName: binkcore.azurecr.io/harmonia
       newTag: "dev-2021-10-11T162940Z" # {"$imagepolicy": "flux-system:uksouth-perf-harmonia:tag"}

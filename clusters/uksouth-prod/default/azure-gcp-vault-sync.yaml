@@ -10,8 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  validation: client
-  images:
+    images:
   - name: binkcore.azurecr.io/azure-gcp-vault-sync
     newName: binkcore.azurecr.io/azure-gcp-vault-sync
     newTag: "develop-2021-04-30-132251" # {"$imagepolicy": "flux-system:uksouth-prod-azure-gcp-vault-sync:tag"}

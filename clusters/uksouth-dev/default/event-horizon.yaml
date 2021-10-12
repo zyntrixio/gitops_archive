@@ -10,8 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  validation: client
-  images:
+    images:
     - name: binkcore.azurecr.io/event-horizon
       newName: binkcore.azurecr.io/event-horizon
       newTag: "dev-2021-10-07T115239Z" # {"$imagepolicy": "flux-system:uksouth-dev-event-horizon:tag"}

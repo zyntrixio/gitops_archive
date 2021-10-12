@@ -10,8 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  validation: client
-  images:
+    images:
     - name: binkcore.azurecr.io/bink-api-v2-automation-suite
       newName: binkcore.azurecr.io/bink-api-v2-automation-suite
       newTag: "staging-2021-10-07T112559Z" # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-apiv2:tag"}

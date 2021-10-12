@@ -10,8 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  validation: client
-  images:
+    images:
     - name: binkcore.azurecr.io/postgres-syncer
       newName: binkcore.azurecr.io/postgres-syncer
       newTag: "2021-09-21T091556Z" # {"$imagepolicy": "flux-system:uksouth-prod-postgres-syncer:tag"}

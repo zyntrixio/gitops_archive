@@ -10,8 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  validation: client
-  images:
+    images:
     - name: binkcore.azurecr.io/vela
       newName: binkcore.azurecr.io/vela
       newTag: "staging-0.4.10" # {"$imagepolicy": "flux-system:uksouth-staging-vela:tag"}

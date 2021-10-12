@@ -10,8 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  validation: client
-  images:
+    images:
     - name: binkcore.azurecr.io/midas
       newName: binkcore.azurecr.io/midas
       newTag: "prod-3.9.1" # {"$imagepolicy": "flux-system:uksouth-prod-midas:tag"}

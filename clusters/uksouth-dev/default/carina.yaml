@@ -10,8 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  validation: client
-  images:
+    images:
     - name: binkcore.azurecr.io/carina
       newName: binkcore.azurecr.io/carina
       newTag: "dev-2021-10-08T165442Z" # {"$imagepolicy": "flux-system:uksouth-dev-carina:tag"}

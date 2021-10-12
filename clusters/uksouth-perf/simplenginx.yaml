@@ -10,8 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  validation: client
-  images:
+    images:
     - name: ghcr.io/binkhq/simplenginx
       newName: ghcr.io/binkhq/simplenginx
       newTag: "2021-10-09T155942Z" # {"$imagepolicy": "flux-system:uksouth-perf-simplenginx:tag"}

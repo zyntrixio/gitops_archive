@@ -10,8 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  validation: client
-  images:
+    images:
     - name: binkcore.azurecr.io/luna
       newName: binkcore.azurecr.io/luna
       newTag: "dev-2021-07-21T124925Z" # {"$imagepolicy": "flux-system:uksouth-dev-luna:tag"}

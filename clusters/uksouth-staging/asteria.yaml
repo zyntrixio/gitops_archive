@@ -10,8 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  validation: client
-  images:
+    images:
   - name: binkcore.azurecr.io/asteria
     newName: binkcore.azurecr.io/asteria
     newTag: "staging-db0cb856" # {"$imagepolicy": "flux-system:uksouth-staging-asteria:tag"}
