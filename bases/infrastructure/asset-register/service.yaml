@@ -5,6 +5,7 @@ metadata:
   labels:
     app: asset-register
   name: asset-register
+  namespace: default
 spec:
   ports:
   - name: http
