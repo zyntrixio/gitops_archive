@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/europa
       newName: binkcore.azurecr.io/europa
       newTag: "dev-2021-10-06T165350Z" # {"$imagepolicy": "flux-system:uksouth-perf-europa:tag"}

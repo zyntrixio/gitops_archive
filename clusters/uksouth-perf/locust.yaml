@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/ubiquity-performance
       newName: binkcore.azurecr.io/ubiquity-performance
       newTag: "develop-2021-10-11-150410" # {"$imagepolicy": "flux-system:uksouth-perf-locust:tag"}

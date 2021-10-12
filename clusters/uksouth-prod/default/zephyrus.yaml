@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/zephyrus
       newName: binkcore.azurecr.io/zephyrus
       newTag: "prod-1.9.0" # {"$imagepolicy": "flux-system:uksouth-prod-zephyrus:tag"}

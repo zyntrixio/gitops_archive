@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
   - name: binkcore.azurecr.io/metis
     newName: binkcore.azurecr.io/metis
     newTag: "develop-2021-03-30-110457"

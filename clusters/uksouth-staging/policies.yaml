@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/policies.gb.bink.com
       newName: binkcore.azurecr.io/policies.gb.bink.com
       newTag: "staging-2021-07-30-153057" # {"$imagepolicy": "flux-system:uksouth-staging-policies:tag"}

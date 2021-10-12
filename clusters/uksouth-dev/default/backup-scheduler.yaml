@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/backup-utility
       newName: binkcore.azurecr.io/backup-utility
       newTag: "dev-2021-09-08T143530Z" # {"$imagepolicy": "flux-system:uksouth-dev-backup-scheduler:tag"}

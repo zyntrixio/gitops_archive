@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
   - name: binkcore.azurecr.io/pelops
     newName: binkcore.azurecr.io/pelops
     newTag: "develop-2021-04-21-141732"

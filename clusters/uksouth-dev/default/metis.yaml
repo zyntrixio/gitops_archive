@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/metis
       newName: binkcore.azurecr.io/metis
       newTag: "dev-2021-10-06T172630Z" # {"$imagepolicy": "flux-system:uksouth-dev-metis:tag"}

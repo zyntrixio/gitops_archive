@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/pelops
       newName: binkcore.azurecr.io/pelops
       newTag: "develop-2021-07-21-122539" # {"$imagepolicy": "flux-system:uksouth-dev-pelops:tag"}

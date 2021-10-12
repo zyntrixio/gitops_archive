@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/iris
       newName: binkcore.azurecr.io/iris
       newTag: "dev-2021-07-21T113344Z" # {"$imagepolicy": "flux-system:uksouth-dev-iris:tag"}

@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/eos
       newName: binkcore.azurecr.io/eos
       newTag: "prod-1.0.0" # {"$imagepolicy": "flux-system:uksouth-prod-eos:tag"}

@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
   - name: binkcore.azurecr.io/atlas
     newName: binkcore.azurecr.io/atlas
     newTag: "develop-2021-04-06-154427"

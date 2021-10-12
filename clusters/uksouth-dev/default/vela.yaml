@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/vela
       newName: binkcore.azurecr.io/vela
       newTag: "dev-2021-09-14T092907Z" # {"$imagepolicy": "flux-system:uksouth-dev-vela:tag"}

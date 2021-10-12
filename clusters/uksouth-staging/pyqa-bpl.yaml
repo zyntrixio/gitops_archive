@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/pyqa-bpl
       newName: binkcore.azurecr.io/pyqa-bpl
       newTag: "master-2021-09-22-135914" # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-bpl:tag"}

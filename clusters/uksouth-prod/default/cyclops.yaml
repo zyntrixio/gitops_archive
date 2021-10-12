@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/cyclops
       newName: binkcore.azurecr.io/cyclops
       newTag: "prod-2021-10-11T120324Z" # {"$imagepolicy": "flux-system:uksouth-prod-cyclops:tag"}

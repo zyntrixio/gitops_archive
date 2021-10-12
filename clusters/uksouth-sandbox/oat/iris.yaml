@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
   - name: binkcore.azurecr.io/iris
     newName: binkcore.azurecr.io/iris
     newTag: "staging-1.2.0"

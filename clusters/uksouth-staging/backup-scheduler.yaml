@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/backup-utility
       newName: binkcore.azurecr.io/backup-utility
       newTag: "staging-2.3.8" # {"$imagepolicy": "flux-system:uksouth-staging-backup-scheduler:tag"}

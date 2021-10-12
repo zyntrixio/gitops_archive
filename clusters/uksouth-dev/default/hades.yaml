@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/hades
       newName: binkcore.azurecr.io/hades
       newTag: "dev-2021-09-12T234633Z" # {"$imagepolicy": "flux-system:uksouth-dev-hades:tag"}

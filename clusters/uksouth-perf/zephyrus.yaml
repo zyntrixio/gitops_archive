@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/zephyrus
       newName: binkcore.azurecr.io/zephyrus
       newTag: "dev-2021-10-01T154838Z" # {"$imagepolicy": "flux-system:uksouth-perf-zephyrus:tag"}

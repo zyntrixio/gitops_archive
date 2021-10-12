@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/pyqa
       newName: binkcore.azurecr.io/pyqa
       newTag: "develop-2021-09-28-110228" # {"$imagepolicy": "flux-system:uksouth-staging-pyqa:tag"}

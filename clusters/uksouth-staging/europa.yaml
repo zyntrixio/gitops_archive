@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
   - name: binkcore.azurecr.io/europa
     newName: binkcore.azurecr.io/europa
     newTag: "staging-1.4.1" # {"$imagepolicy": "flux-system:uksouth-staging-europa:tag"}

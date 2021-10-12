@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/polaris
       newName: binkcore.azurecr.io/polaris
       newTag: "dev-2021-09-21T082352Z" # {"$imagepolicy": "flux-system:uksouth-dev-polaris:tag"}

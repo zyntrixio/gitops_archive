@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/demeter
       newName: binkcore.azurecr.io/demeter
       newTag: "master-2021-09-09-163413" # {"$imagepolicy": "flux-system:uksouth-prod-demeter:tag"}

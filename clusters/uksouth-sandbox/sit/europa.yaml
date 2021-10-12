@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
   - name: binkcore.azurecr.io/europa
     newName: binkcore.azurecr.io/europa
     newTag: "develop-2021-06-01-160030"

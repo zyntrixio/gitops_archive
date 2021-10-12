@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/skiron
       newName: binkcore.azurecr.io/skiron
       newTag: "develop-2021-07-21-130050" # {"$imagepolicy": "flux-system:uksouth-dev-skiron:tag"}

@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: storaxdev/kubedoom
       newName: cpressland/kubedoom
       newTag: "latest"

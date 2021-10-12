@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/polaris
       newName: binkcore.azurecr.io/polaris
       newTag: "staging-0.6.4" # {"$imagepolicy": "flux-system:uksouth-staging-polaris:tag"}

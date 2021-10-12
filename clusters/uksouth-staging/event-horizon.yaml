@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/event-horizon
       newName: binkcore.azurecr.io/event-horizon
       newTag: "staging-0.6.11" # {"$imagepolicy": "flux-system:uksouth-staging-event-horizon:tag"}

@@ -10,7 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    images:
+  validation: client
+  images:
     - name: binkcore.azurecr.io/asteria
       newName: binkcore.azurecr.io/asteria
       newTag: "develop-2021-07-21-130328" # {"$imagepolicy": "flux-system:uksouth-dev-asteria:tag"}
