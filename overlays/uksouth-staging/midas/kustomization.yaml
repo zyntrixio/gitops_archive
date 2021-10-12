@@ -5,6 +5,7 @@ bases:
 - ../../../bases/olympus/midas/api
 - ../../../bases/olympus/midas/beat
 - ../../../bases/olympus/midas/celery
+- ../../../bases/olympus/midas/consumer
 
 patches:
 - path: env.yaml
