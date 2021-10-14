@@ -1,0 +1,3 @@
+resources:
+  - binkcore.azurecr.io.yaml
+  - binkext.azurecr.io.yaml
