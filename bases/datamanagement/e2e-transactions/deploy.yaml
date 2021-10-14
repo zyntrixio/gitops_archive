@@ -12,11 +12,14 @@ spec:
       app: e2e-transactions
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
       labels:
         app: e2e-transactions
     spec:
       containers:
-      - name: e2e-transactions
+      - name: app
         image: binkcore.azurecr.io/e2e-transactions:prod-2021-10-14T131957Z
         ports:
         - containerPort: 80
