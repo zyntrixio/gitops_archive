@@ -1,0 +1,43 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: e2e-transactions
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./bases/datamanagement/e2e-transactions
+  prune: true
+  targetNamespace: datamanagement
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/e2e-transactions
+      newName: binkcore.azurecr.io/e2e-transactions
+      newTag: "prod-2021-10-14T131957Z" # {"$imagepolicy": "flux-system:e2e-transactions:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: e2e-transactions
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/e2e-transactions
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: e2e-transactions
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: e2e-transactions
+  filterTags:
+    pattern: 'prod-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc

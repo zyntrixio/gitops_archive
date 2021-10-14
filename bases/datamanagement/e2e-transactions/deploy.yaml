@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: e2e-transactions
+  namespace: datamanagement
+  labels:
+    app: e2e-transactions
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: e2e-transactions
+  template:
+    metadata:
+      labels:
+        app: e2e-transactions
+    spec:
+      containers:
+      - name: e2e-transactions
+        image: binkcore.azurecr.io/e2e-transactions:prod-2021-10-14T131957Z
+        ports:
+        - containerPort: 80
+        env:
+        - name: PG_USER
+          value: laadmin@bink-tableau-uksouth
+        - name: PG_PASS
+          value: hbhboGJzguG1hebAkALxvAnL
+        - name: PG_HOST
+          value: bink-tableau-uksouth.postgres.database.azure.com
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 512Mi
+          requests:
+            cpu: 10m
+            memory: 512Mi
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
