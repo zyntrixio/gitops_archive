@@ -243,7 +243,7 @@ groups:
       summary: No 2XX codes have returned for Barclays for 1 hour
 
   - alert: prod hermes - payment cards processing slow
-    expr: (sum(payment_card_processing_seconds_histogram_sum{kubernetes_cluster=~"prod\\d"}) by (provider) / sum(payment_card_processing_seconds_histogram_count{kubernetes_cluster=~"prod\\d"}) by (provider)) > 4
+    expr: (sum(payment_card_processing_seconds_histogram_sum{kubernetes_cluster=~"prod\\d"}) by (provider) / sum(payment_card_processing_seconds_histogram_count{kubernetes_cluster=~"prod\\d"}) by (provider)) > 5
     for: 5m
     labels:
       severity: S2
