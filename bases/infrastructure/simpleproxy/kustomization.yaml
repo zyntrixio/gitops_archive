@@ -1,0 +1,2 @@
+bases:
+  - github.com/binkhq/simpleproxy/deploy
