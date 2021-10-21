@@ -266,15 +266,6 @@ groups:
     annotations:
       summary: There has been 10 5xx responces from iris in 10 mins
 
-  - alert: prod midas - failed callbacks too merchant
-    expr: sum(increase(callback_fail_total{kubernetes_cluster=~"prod\\d"} [10m])) by (slug) > 5
-    for: 1m
-    labels:
-      severity: S2
-    annotations:
-      resource: "{{ $labels.slug }}"
-      summary: There has been an increase of 5 failed callbacks in the last 10 mins
-
   - alert: prod midas - failed http requests to merchants
     expr: sum(increase(request_fail_total{kubernetes_cluster=~"prod\\d"}[1h])) by (error, slug) > 6
     for: 90m
