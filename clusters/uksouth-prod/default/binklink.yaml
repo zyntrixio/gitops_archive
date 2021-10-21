@@ -17,7 +17,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/binklink
       newName: binkcore.azurecr.io/binklink
-      newTag: "master-2021-08-10-120541" # {"$imagepolicy": "flux-system:uksouth-prod-binklink:tag"}
+      newTag: "2021-10-20T204707Z" # {"$imagepolicy": "flux-system:uksouth-prod-binklink:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
