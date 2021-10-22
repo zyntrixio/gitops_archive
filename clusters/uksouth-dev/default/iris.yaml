@@ -35,8 +35,7 @@ spec:
   imageRepositoryRef:
     name: iris
   filterTags:
-    pattern: 'dev-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
-    extract: '$ts'
+    pattern: '\d{4}-\d{2}-\d{2}-\d{6}$'
   policy:
     alphabetical:
       order: asc
