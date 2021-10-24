@@ -13,4 +13,28 @@ spec:
   images:
     - name: ghcr.io/binkhq/simpleproxy
       newName: ghcr.io/binkhq/simpleproxy
-      newTag: "latest"
+      newTag: "latest" # {"$imagepolicy": "flux-system:uksouth-dev-simpleproxy:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: simpleproxy
+  namespace: flux-system
+spec:
+  image: ghcr.io/binkhq/simpleproxy
+  interval: 120m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-dev-simpleproxy
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: simpleproxy
+  filterTags:
+    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc
