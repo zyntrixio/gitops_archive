@@ -1,4 +1,0 @@
-namespace: monitoring
-
-resources:
-  - jaeger.yaml
