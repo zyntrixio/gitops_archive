@@ -1,4 +1,4 @@
-apiVersion: image.toolkit.fluxcd.io/v1alpha2
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
   name: flux-system
@@ -19,4 +19,4 @@ spec:
   interval: 1m0s
   update:
     strategy: Setters
-    path: ./clusters/uksouth-staging
+    path: ./clusters/uksouth-sandbox
