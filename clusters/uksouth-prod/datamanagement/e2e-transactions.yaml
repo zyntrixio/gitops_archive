@@ -11,6 +11,10 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: cluster-vars
   images:
     - name: binkcore.azurecr.io/e2e-transactions
       newName: binkcore.azurecr.io/e2e-transactions
