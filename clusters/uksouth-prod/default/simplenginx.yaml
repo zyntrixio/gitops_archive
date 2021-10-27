@@ -22,7 +22,7 @@ metadata:
   namespace: flux-system
 spec:
   image: ghcr.io/binkhq/simplenginx
-  interval: 120m0s
+  interval: 10m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
