@@ -30,6 +30,10 @@ spec:
           value: hbhboGJzguG1hebAkALxvAnL
         - name: PG_HOST
           value: bink-tableau-uksouth.postgres.database.azure.com
+        - name: use_x_forwarded_proto
+          value: "true"
+        - name: use_x_forwarded_host
+          value: "true"
         resources:
           limits:
             cpu: 1000m
