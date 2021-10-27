@@ -18,7 +18,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/e2e-transactions
       newName: binkcore.azurecr.io/e2e-transactions
-      newTag: "prod-1.1.1" # {"$imagepolicy": "flux-system:e2e-transactions:tag"}
+      newTag: "prod-1.1.2" # {"$imagepolicy": "flux-system:e2e-transactions:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
