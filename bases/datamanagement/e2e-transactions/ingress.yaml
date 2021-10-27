@@ -17,7 +17,7 @@ spec:
           service:
             name: e2e-transactions
             port:
-              number: 80
+              number: 6502
       - path: /healthz
         pathType: Prefix
         backend:
