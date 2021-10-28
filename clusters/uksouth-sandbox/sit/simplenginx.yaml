@@ -11,6 +11,6 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: ghcr.io/binkhq/simplenginx
-    newName: ghcr.io/binkhq/simplenginx
-    newTag: "latest" # {"$imagepolicy": "flux-system:uksouth-sandbox-simplenginx:tag"}
+    - name: ghcr.io/binkhq/simplenginx
+      newName: ghcr.io/binkhq/simplenginx
+      newTag: "2021-10-24-142653" # {"$imagepolicy": "flux-system:uksouth-sandbox-simplenginx:tag"}
