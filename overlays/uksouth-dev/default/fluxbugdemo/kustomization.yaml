@@ -2,4 +2,6 @@ resources:
   - deploy.yaml
 
 patches:
-  - env.yaml
+- path: env.yaml
+  target:
+    kind: Deployment
