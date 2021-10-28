@@ -97,3 +97,12 @@ groups:
     annotations:
       resource: "{{ $labels.name }} - {{ $labels.type }}"
       summary: Payment files for mastercard haven't been received in over 27 hours
+
+  - alert: monitoring midas - failed callbacks too merchant
+    expr: sum(increase(callback_fail_total{kubernetes_cluster=~"prod\\d"} [10m])) by (slug) > 10
+    for: 1m
+    labels:
+      severity: S2 - Monitoring
+    annotations:
+      resource: "{{ $labels.slug }}"
+      summary: There has been an increase of 10 failed callbacks in the last 10 mins
