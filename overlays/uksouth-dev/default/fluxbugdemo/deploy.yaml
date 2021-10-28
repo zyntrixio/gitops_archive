@@ -20,6 +20,3 @@ spec:
         image: docker.io/ubuntu:20.04
         ports:
         - containerPort: 80
-        env:
-          - name: foo
-            value: bar
