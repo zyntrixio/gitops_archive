@@ -1,7 +1,0 @@
-resources:
-  - deploy.yaml
-
-patches:
-- path: env.yaml
-  target:
-    kind: Deployment
