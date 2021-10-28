@@ -16,6 +16,7 @@ spec:
     spec:
       containers:
       - name: app
+        command: [ "tail", "-f", "/dev/null" ]
         image: docker.io/ubuntu:20.04
         ports:
         - containerPort: 80
