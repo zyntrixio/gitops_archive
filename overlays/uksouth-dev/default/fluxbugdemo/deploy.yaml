@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fluxbugdemo
+  labels:
+    app: fluxbugdemo
+spec:
+  selector:
+    matchLabels:
+      app: fluxbugdemo
+  template:
+    metadata:
+      labels:
+        app: fluxbugdemo
+    spec:
+      containers:
+      - name: app
+        image: docker.io/ubuntu:20.04
+        ports:
+        - containerPort: 80
+        env:
+          - name: foo
+            value: bar
