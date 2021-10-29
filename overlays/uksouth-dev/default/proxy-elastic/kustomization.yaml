@@ -1,0 +1,30 @@
+bases:
+  - ../../../../bases/infrastructure/simpleproxy
+
+commonLabels:
+  app: proxy-elastic
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: proxy-elastic
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/args
+        value:
+          - -L
+          - 0.0.0.0:9200
+          - -R
+          - elasticsearch.uksouth.bink.host:9200
+          - -v
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/metadata/annotations/linkerd.io~1inject
+        value: enabled
