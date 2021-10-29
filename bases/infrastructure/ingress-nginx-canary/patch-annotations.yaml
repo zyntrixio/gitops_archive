@@ -9,6 +9,5 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
-        config.linkerd.io/proxy-version: edge-21.10.3
         config.linkerd.io/skip-inbound-ports: 80,443
         kubectl.kubernetes.io/default-container: controller
