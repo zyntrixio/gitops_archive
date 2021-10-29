@@ -14,4 +14,3 @@ spec:
     - name: ghcr.io/binkhq/simpleproxy
       newName: ghcr.io/binkhq/simpleproxy
       newTag: "2021-10-24-142559" # {"$imagepolicy": "flux-system:uksouth-dev-simpleproxy:tag"}
----
