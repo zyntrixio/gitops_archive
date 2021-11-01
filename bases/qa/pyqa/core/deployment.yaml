@@ -8,6 +8,7 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
+        config.linkerd.io/proxy-version: stable-2.11.0
         kubectl.kubernetes.io/default-container: app
     spec:
       containers:
