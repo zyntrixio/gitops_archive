@@ -11,36 +11,31 @@ Depending on what you're trying to do, you'll need to go to the appropriate dire
 * clusters
   - Informs Flux what it should be deploying, each instance of Flux monitors a different subdirectory here.
 
+## Bootstrapping and Upgrading
 
-## So, how does this all flow together?
+### Bootstrapping
 
-```mermaid
-graph TD
-    A(bases)
-    B(overlays)
-    C(clusters)
-    D[(Kubernetes)]
+Flux gets installed by Chef during the Cluster creation phase with a set of pre-defined YAML files, once Flux syncs with this repository it'll upgrade itself to whatever is defined here and deploy all relevant projects.
 
-    X1>Generate common config for a project]
-    X2>Generate environment specific tweaks]
-    X3>Apply Kustomizations to cluster]
+### Upgrading
 
-    A --> X1 --> B
-    B --> X2 --> C
-    C --> X3 --> D
-```
-
-## Bootstrapping
-
-We're currently not bootstrapping Flux 2 within clusters with Chef at cluster creation, as such, see example command below to bootstrap a new cluster. Available environments are pretty much the output of `ls clusters`.
+Flux can be upgraded in Dev with the following command
 
 ```shell
-$ export GITOPS_ENV=uksouth-dev
-$ flux bootstrap gitlab \
-    --components-extra=image-reflector-controller,image-automation-controller \
-    --hostname=git.bink.com \
-    --owner=GitOps \
-    --repository=core \
-    --branch=master \
-    --path=clusters/$GITOPS_ENV
+$ export GITHUB_TOKEN=<token>
+$ flux bootstrap github \
+          --components-extra=image-reflector-controller,image-automation-controller \
+          --owner=binkhq \
+          --repository=gitops \
+          --branch=master \
+          --path=clusters/uksouth-dev
 ```
+
+We then use the following `cp` command to copy the manifest changes to all other environments (fish syntax):
+
+```shell
+$ for i in clusters/*
+      cp clusters/uksouth-dev/flux-system/gotk-components.yaml clusters/$i/flux-system/gotk-components.yaml
+  end
+```
+
