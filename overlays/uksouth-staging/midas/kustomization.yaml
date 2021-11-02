@@ -10,4 +10,4 @@ bases:
 patches:
 - path: env.yaml
   target:
-    kind: Deployment=
+    kind: Deployment
