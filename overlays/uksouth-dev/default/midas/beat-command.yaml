@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: midas
-  namespace: default
 spec:
   template:
     spec:
@@ -11,9 +10,9 @@ spec:
         args:
         - celery
         - -A
-        - app.celery
-        - worker
-        - --without-gossip
-        - --without-mingle
-        - --loglevel=info
-        - --pool=solo
+        - app.api.celery
+        - beat
+        - --schedule
+        - /tmp/beat
+        - --pidfile
+        - /tmp/beat.pid
