@@ -13,7 +13,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/polaris
       newName: binkcore.azurecr.io/polaris
-      newTag: "dev-2021-10-29T155035Z" # {"$imagepolicy": "flux-system:uksouth-dev-polaris:tag"}
+      newTag: "dev-2021-11-02T150917Z" # {"$imagepolicy": "flux-system:uksouth-dev-polaris:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
