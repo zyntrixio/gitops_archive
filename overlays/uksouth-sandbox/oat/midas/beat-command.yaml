@@ -10,7 +10,7 @@ spec:
         args:
         - celery
         - -A
-        - app.api.celery
+        - app
         - beat
         - --schedule
         - /tmp/beat

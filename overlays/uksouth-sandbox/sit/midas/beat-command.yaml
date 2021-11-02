@@ -10,9 +10,9 @@ spec:
         args:
         - celery
         - -A
-        - app.api.celery
-        - worker
-        - --without-gossip
-        - --without-mingle
-        - --loglevel=info
-        - --pool=solo
+        - app
+        - beat
+        - --schedule
+        - /tmp/beat
+        - --pidfile
+        - /tmp/beat.pid
