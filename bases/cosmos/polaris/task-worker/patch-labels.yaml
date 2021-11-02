@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   labels:
     app: polaris
-    component: account-holder-activation-tasks
+    component: task-worker
   name: polaris
   namespace: default
 spec:
   selector:
     matchLabels:
       app: polaris
-      component: account-holder-activation-tasks
+      component: task-worker
   template:
     metadata:
       labels:
         app: polaris
-        component: account-holder-activation-tasks
+        component: task-worker
         aadpodidbinding: polaris
