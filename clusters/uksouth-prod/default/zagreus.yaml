@@ -11,9 +11,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/zagreus
-    newName: binkcore.azurecr.io/zagreus
-    newTag: "prod-1.4" # {"$imagepolicy": "flux-system:uksouth-prod-zagreus:tag"}
+    - name: binkcore.azurecr.io/zagreus
+      newName: binkcore.azurecr.io/zagreus
+      newTag: "prod-1.4.0" # {"$imagepolicy": "flux-system:uksouth-prod-zagreus:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
