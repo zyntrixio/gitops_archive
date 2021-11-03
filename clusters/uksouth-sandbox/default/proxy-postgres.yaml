@@ -1,0 +1,40 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: proxy-postgres
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-sandbox/default/proxy-postgres
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: ghcr.io/binkhq/simpleproxy
+      newName: ghcr.io/binkhq/simpleproxy
+      newTag: "2021-11-01-053104" # {"$imagepolicy": "flux-system:uksouth-sandbox-simpleproxy:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: simpleproxy
+  namespace: flux-system
+spec:
+  image: ghcr.io/binkhq/simpleproxy
+  interval: 120m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-sandbox-simpleproxy
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: simpleproxy
+  filterTags:
+    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc
