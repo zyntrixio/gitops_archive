@@ -1,0 +1,4 @@
+bases:
+- ../../../../bases/infrastructure/simplenginx
+
+namespace: sit-barclays

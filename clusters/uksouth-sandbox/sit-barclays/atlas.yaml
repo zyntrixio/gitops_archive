@@ -1,0 +1,16 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: sit-barclays-atlas
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-sandbox/sit-barclays/atlas
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/atlas
+    newName: binkcore.azurecr.io/atlas
+    newTag: "develop-2021-04-06-154427"

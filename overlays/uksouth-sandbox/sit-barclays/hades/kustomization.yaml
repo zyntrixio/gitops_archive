@@ -1,0 +1,11 @@
+bases:
+- ../../../../bases/olympus/hades/api
+- ../../../../bases/olympus/hades/migrator
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
+
+
+namespace: sit-barclays

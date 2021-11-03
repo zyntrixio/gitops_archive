@@ -1,0 +1,14 @@
+resources:
+- aad.yaml
+
+bases:
+- ../../../../bases/olympus/europa/api
+- ../../../../bases/olympus/europa/migrator
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
+
+
+namespace: sit-barclays
