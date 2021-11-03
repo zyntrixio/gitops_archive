@@ -1,0 +1,13 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: registries-sit-barclays
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./bases/registries
+  prune: true
+  targetNamespace: sit-lbg
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
