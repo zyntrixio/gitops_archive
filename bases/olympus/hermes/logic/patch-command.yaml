@@ -11,4 +11,3 @@ spec:
         command:
         - python
         - api_messaging/run.py
-
