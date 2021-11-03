@@ -9,4 +9,4 @@ spec:
       annotations:
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
-        prometheus.io/job: task-worker
+        prometheus.io/job: carina-task-worker
