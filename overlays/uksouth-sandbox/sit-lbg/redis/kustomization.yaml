@@ -1,0 +1,4 @@
+bases:
+- ../../../../bases/infrastructure/redis
+
+namespace: sit-lbg

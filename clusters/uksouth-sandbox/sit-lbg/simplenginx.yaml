@@ -1,0 +1,16 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: sit-lbg-simplenginx
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-sandbox/sit-lbg/simplenginx
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: ghcr.io/binkhq/simplenginx
+      newName: ghcr.io/binkhq/simplenginx
+      newTag: "2021-11-01-144225" # {"$imagepolicy": "flux-system:uksouth-sandbox-simplenginx:tag"}
