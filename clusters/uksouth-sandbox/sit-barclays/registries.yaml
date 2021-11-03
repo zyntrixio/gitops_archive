@@ -7,7 +7,7 @@ spec:
   interval: 60m0s
   path: ./bases/registries
   prune: true
-  targetNamespace: sit
+  targetNamespace: sit-barclays
   sourceRef:
     kind: GitRepository
     name: flux-system
