@@ -1,0 +1,10 @@
+bases:
+- ../../../../bases/olympus/metis/api
+- ../../../../bases/olympus/metis/celery
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment
+
+namespace: sit-lbg
