@@ -12,4 +12,4 @@ spec:
         - --master
         - --host=http://hermes-api/ubiquity
         - --master-port=5557
-        - --locustfile=locustfile_peak_hour.py
+        - --locustfile=locustfile_peak_second.py
