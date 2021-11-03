@@ -1,5 +1,5 @@
 bases:
-- ../../../bases/olympus/angelia/api
+- ../../../../bases/olympus/angelia/api
 
 patches:
 - path: env.yaml
