@@ -13,4 +13,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/atlas
     newName: binkcore.azurecr.io/atlas
-    newTag: "staging-2.3.1"
+    newTag: "staging-2.3.2"
