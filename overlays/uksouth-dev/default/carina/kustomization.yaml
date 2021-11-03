@@ -1,8 +1,7 @@
 bases:
 - ../../../../bases/cosmos/carina/api
 - ../../../../bases/cosmos/carina/migrator
-- ../../../../bases/cosmos/carina/voucher-allocation-tasks
-- ../../../../bases/cosmos/carina/voucher-status-adjustment-tasks
+- ../../../../bases/cosmos/carina/task-worker
 - ../../../../bases/cosmos/carina/voucher-imports
 - ../../../../bases/cosmos/carina/voucher-updates
 

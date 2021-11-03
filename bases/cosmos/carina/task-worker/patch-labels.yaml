@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   labels:
     app: carina
-    component: voucher-allocation-tasks
+    component: task-worker
   name: carina
   namespace: default
 spec:
   selector:
     matchLabels:
       app: carina
-      component: voucher-allocation-tasks
+      component: task-worker
   template:
     metadata:
       labels:
         app: carina
-        component: voucher-allocation-tasks
+        component: task-worker
         aadpodidbinding: carina
