@@ -1,0 +1,14 @@
+---
+apiVersion: linkerd.io/v1alpha2
+kind: ServiceProfile
+metadata:
+  name: fakicorp.default.svc.cluster.local
+  namespace: default
+spec:
+  routes:
+  - condition:
+      method: GET
+      pathRegex: /v1/secret/[^/]*
+    name: GET /v1/secret/{id}
+    isRetryable: true
+    timeout: 2000ms

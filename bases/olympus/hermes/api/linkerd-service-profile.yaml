@@ -2,7 +2,6 @@
 apiVersion: linkerd.io/v1alpha2
 kind: ServiceProfile
 metadata:
-  creationTimestamp: null
   name: hermes-api.default.svc.cluster.local
   namespace: default
 spec:
