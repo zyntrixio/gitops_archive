@@ -13,7 +13,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/luna
       newName: binkcore.azurecr.io/luna
-      newTag: "dev-2021-07-21T124925Z" # {"$imagepolicy": "flux-system:uksouth-dev-luna:tag"}
+      newTag: "2021-11-04T235452Z" # {"$imagepolicy": "flux-system:uksouth-dev-luna:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
