@@ -11,9 +11,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/asteria
-    newName: binkcore.azurecr.io/asteria
-    newTag: "staging-db0cb856" # {"$imagepolicy": "flux-system:uksouth-staging-asteria:tag"}
+    - name: binkcore.azurecr.io/asteria
+      newName: binkcore.azurecr.io/asteria
+      newTag: "staging-2021-11-04-181850" # {"$imagepolicy": "flux-system:uksouth-staging-asteria:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
