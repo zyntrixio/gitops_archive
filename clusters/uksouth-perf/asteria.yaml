@@ -13,7 +13,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/asteria
       newName: binkcore.azurecr.io/asteria
-      newTag: "develop-2021-07-21-130328" # {"$imagepolicy": "flux-system:uksouth-perf-asteria:tag"}
+      newTag: "develop-2021-11-04-181430" # {"$imagepolicy": "flux-system:uksouth-perf-asteria:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
