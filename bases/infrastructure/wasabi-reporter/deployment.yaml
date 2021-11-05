@@ -1,19 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    fluxcd.io/automated: 'true'
-    fluxcd.io/tag.wasabireport: glob:master-*
   labels:
-    app: wasabireport
-  name: wasabireport
+    app: wasabi-reporter
+  name: wasabi-reporter
   namespace: monitoring
 spec:
   progressDeadlineSeconds: 600
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app: wasabireport
+      app: wasabi-reporter
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -23,14 +20,15 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
       labels:
-        app: wasabireport
+        app: wasabi-reporter
         aadpodidbinding: wasabireport
     spec:
       containers:
-      - image: binkcore.azurecr.io/wasabi_report:master-af13dc91
+      - image: binkcore.azurecr.io/wasabi-reporter:latest
         imagePullPolicy: Always
-        name: wasabireport
+        name: app
         resources:
           limits:
             memory: 128Mi
