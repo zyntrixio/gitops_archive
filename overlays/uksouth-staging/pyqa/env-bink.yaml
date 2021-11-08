@@ -28,3 +28,13 @@ spec:
           value: "True"
         - name: VAULT_URL
           value: https://bink-uksouth-staging-com.vault.azure.net/
+        - name: HERMES_DATABASE_URI
+          valueFrom:
+            secretKeyRef:
+              name: azure-pgfs
+              key: common_hermes
+        - name: HARMONIA_DATABASE_URI
+          valueFrom:
+            secretKeyRef:
+              name: azure-pgfs
+              key: common_harmonia
