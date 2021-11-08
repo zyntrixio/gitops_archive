@@ -13,7 +13,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/pelops
       newName: binkcore.azurecr.io/pelops
-      newTag: "2021-11-08T000311Z" # {"$imagepolicy": "flux-system:uksouth-dev-pelops:tag"}
+      newTag: "2021-11-08T171740Z" # {"$imagepolicy": "flux-system:uksouth-dev-pelops:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
