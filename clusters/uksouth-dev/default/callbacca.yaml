@@ -13,7 +13,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/callbacca
       newName: binkcore.azurecr.io/callbacca
-      newTag: "2021-11-01-135531" # {"$imagepolicy": "flux-system:uksouth-dev-callbacca:tag"}
+      newTag: "2021-11-09-160458" # {"$imagepolicy": "flux-system:uksouth-dev-callbacca:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
