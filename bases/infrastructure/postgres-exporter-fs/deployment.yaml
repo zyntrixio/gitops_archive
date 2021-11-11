@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: postgres-exporter
-        image: binkext.azurecr.io/postgres_exporter:latest
+        image: quay.io/prometheuscommunity/postgres-exporter:v0.10.0
         imagePullPolicy: Always
         ports:
         - containerPort: 9100
