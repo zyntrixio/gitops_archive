@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-exporter-fs
+  namespace: monitoring
+spec:
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        prometheus.io/port: '9100'
+        prometheus.io/scrape: 'true'
+        prometheus.io/job: postgres
+    spec:
+      containers:
+      - name: postgres-exporter
+        image: binkext.azurecr.io/postgres_exporter:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9100
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            cpu: 250m
+            memory: 250Mi
