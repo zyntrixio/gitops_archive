@@ -2,9 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: postgres-exporter
   name: postgres-exporter-fs
   namespace: monitoring
 spec:
+  selector:
+    matchLabels:
+      app: postgres-exporter
   template:
     metadata:
       annotations:
