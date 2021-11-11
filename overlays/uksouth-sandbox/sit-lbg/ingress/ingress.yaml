@@ -159,7 +159,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: test
+            name: angelia-api
             port: 
               number: 80
       - path: /v2/loyalty_cards/add_and_register
@@ -173,7 +173,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: test
+            name: angelia-api
             port: 
               number: 80
       - path: /v2/loyalty_cards/join
