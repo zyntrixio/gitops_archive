@@ -17,6 +17,8 @@ spec:
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
         prometheus.io/job: postgres
+      labels:
+        app: postgres-exporter
     spec:
       containers:
       - name: postgres-exporter
