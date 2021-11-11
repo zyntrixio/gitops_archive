@@ -5,18 +5,11 @@ bases:
 - ../../../../bases/olympus/midas/api
 - ../../../../bases/olympus/midas/beat
 - ../../../../bases/olympus/midas/celery
+- ../../../../bases/olympus/midas/consumer
 
 patches:
 - path: env.yaml
   target:
     kind: Deployment
-- path: celery-command.yaml
-  target:
-    kind: Deployment
-    name: midas-celery
-- path: beat-command.yaml
-  target:
-    kind: Deployment
-    name: midas-beat
 
 namespace: sit-lbg
