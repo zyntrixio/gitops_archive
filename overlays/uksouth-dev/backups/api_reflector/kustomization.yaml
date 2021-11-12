@@ -5,6 +5,12 @@ namespace: backups
 
 patches:
   - target:
+      kind: Namespace
+    patch: |-
+      - op: add
+        path: /metadata/annotations/buoyant.cloud~1excluded
+        value: "true"
+  - target:
       kind: CronJob
     patch: |-
       - op: replace
