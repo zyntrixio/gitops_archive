@@ -1,13 +1,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: backups-api-reflector
+  name: backups-atlas
   namespace: flux-system
 spec:
   dependsOn:
     - name: backups-namespace
   interval: 60m0s
-  path: ./overlays/uksouth-dev/backups/api_reflector
+  path: ./overlays/uksouth-dev/backups/atlas
   prune: true
   force: true
   sourceRef:
