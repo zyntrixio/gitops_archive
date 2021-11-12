@@ -1,2 +1,10 @@
 bases:
-- https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.4.2/components.yaml
+  - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.4.2/components.yaml
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /metadata/annotations/buoyant.cloud~1excluded
+        value: "true"
