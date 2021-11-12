@@ -1,0 +1,12 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: backups-api-reflector
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-dev/backups/api_reflector
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
