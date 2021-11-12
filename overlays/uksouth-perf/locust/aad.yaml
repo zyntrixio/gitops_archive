@@ -1,0 +1,19 @@
+---
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentity
+metadata:
+  name: locust
+  namespace: default
+spec:
+  type: 0
+  resourceID: /subscriptions/957523d8-bbe2-4f68-8fae-95975157e91c/resourceGroups/uksouth-perf/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-perf-locust
+  clientID: fc86a50e-52bc-4011-af84-e91825101801
+---
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentityBinding
+metadata:
+  name: locust
+  namespace: default
+spec:
+  azureIdentity: locust
+  selector: locust
