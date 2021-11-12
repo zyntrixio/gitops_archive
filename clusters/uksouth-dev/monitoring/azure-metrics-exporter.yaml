@@ -4,8 +4,6 @@ metadata:
   name: azure-metrics-exporter
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: monitoring-namespace
   interval: 60m0s
   path: ./overlays/uksouth-dev/monitoring/azure-metrics-exporter
   prune: true
