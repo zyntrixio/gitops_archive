@@ -1,8 +1,14 @@
 bases:
-- ../../../../bases/olympus/metis/api
-- ../../../../bases/olympus/metis/celery
+  - ../../../../bases/olympus/metis/api
+  - ../../../../bases/olympus/metis/celery
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/replicas
+        value: 3

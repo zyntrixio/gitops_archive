@@ -1,2 +1,10 @@
 bases:
 - ../../../../bases/olympus/policies
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/replicas
+        value: 3

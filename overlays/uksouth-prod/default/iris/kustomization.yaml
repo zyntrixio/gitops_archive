@@ -1,3 +1,10 @@
 bases:
 - ../../../../bases/olympus/iris
 
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/replicas
+        value: 3

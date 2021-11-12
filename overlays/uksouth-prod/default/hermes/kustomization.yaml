@@ -1,22 +1,24 @@
 bases:
-- ../../../../bases/olympus/hermes/api
-- ../../../../bases/olympus/hermes/beat
-- ../../../../bases/olympus/hermes/celery
-- ../../../../bases/olympus/hermes/migrator
+  - ../../../../bases/olympus/hermes/api
+  - ../../../../bases/olympus/hermes/beat
+  - ../../../../bases/olympus/hermes/celery
+  - ../../../../bases/olympus/hermes/migrator
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
-- path: replicas-api.yaml
-  target:
-    kind: Deployment
-    name: hermes-api
-- path: replicas-beat.yaml
-  target:
-    kind: Deployment
-    name: hermes-beat
-- path: replicas-celery.yaml
-  target:
-    kind: Deployment
-    name: hermes-celery
+  - path: env.yaml
+    target:
+      kind: Deployment
+  - target:
+      kind: Deployment
+      name: hermes-api
+    patch: |-
+      - op: add
+        path: /spec/replicas
+        value: 3
+  - target:
+      kind: Deployment
+      name: hermes-celery
+    patch: |-
+      - op: add
+        path: /spec/replicas
+        value: 3

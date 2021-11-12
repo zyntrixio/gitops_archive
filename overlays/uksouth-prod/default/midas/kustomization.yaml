@@ -1,13 +1,19 @@
-resources:
-- aad.yaml
-
 bases:
-- ../../../../bases/olympus/midas/api
-- ../../../../bases/olympus/midas/beat
-- ../../../../bases/olympus/midas/celery
-- ../../../../bases/olympus/midas/consumer
+  - ../../../../bases/olympus/midas/api
+  - ../../../../bases/olympus/midas/beat
+  - ../../../../bases/olympus/midas/celery
+  - ../../../../bases/olympus/midas/consumer
+
+resources:
+  - aad.yaml
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/replicas
+        value: 3

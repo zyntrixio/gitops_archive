@@ -4,3 +4,11 @@ bases:
 resources:
 - ingress.yaml
 - cert.yaml
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/replicas
+        value: 3
