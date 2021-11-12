@@ -6,7 +6,7 @@ resources:
 
 patches:
   - target:
-      kind: Namespace
+      kind: Deployment
     patch: |-
       - op: add
         path: /metadata/annotations/buoyant.cloud~1excluded
