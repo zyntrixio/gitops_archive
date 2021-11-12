@@ -1,6 +1,15 @@
 resources:
-- clusterrole.yaml
-- clusterrolebinding.yaml
-- deployment.yaml
-- service.yaml
-- serviceaccount.yaml
+  - clusterrole.yaml
+  - clusterrolebinding.yaml
+  - deployment.yaml
+  - service.yaml
+  - serviceaccount.yaml
+
+patches:
+  - path: patch-args.yaml
+  - target:
+      kind: DaemonSet
+    patch: |-
+      - op: add
+        path: /metadata/annotations/buoyant.cloud~1excluded
+        value: "true"
