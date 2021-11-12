@@ -1,5 +1,11 @@
 bases:
-- https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
+  - https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
 
 patches:
-- path: patch-dns.yaml
+  - path: patch-dns.yaml
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /metadata/annotations/buoyant.cloud~1excluded
+        value: "true"
