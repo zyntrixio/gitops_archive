@@ -3,3 +3,11 @@ resources:
 - clusterrolebinding.yaml
 - deployment.yaml
 - serviceaccount.yaml
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /metadata/annotations/buoyant.cloud~1excluded
+        value: "true"

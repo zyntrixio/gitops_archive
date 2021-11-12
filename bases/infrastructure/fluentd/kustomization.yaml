@@ -4,3 +4,11 @@ resources:
 - daemonset.yaml
 - serviceaccount.yaml
 - namespace.yaml
+
+patches:
+  - target:
+      kind: DaemonSet
+    patch: |-
+      - op: add
+        path: /metadata/annotations/buoyant.cloud~1excluded
+        value: "true"
