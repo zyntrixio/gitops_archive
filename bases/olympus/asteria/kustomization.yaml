@@ -3,3 +3,11 @@ resources:
 
 components:
 - ../../common/pgbouncer
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /metadata/annotations/buoyant.cloud~1excluded
+        value: "true"
