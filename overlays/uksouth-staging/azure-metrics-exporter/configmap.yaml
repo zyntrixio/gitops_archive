@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: azure-metrics-exporter
-  namespace: monitoring
+  namespace: default
   labels:
     name: azure-metrics-exporter
 data:

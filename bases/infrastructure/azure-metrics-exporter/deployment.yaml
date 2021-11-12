@@ -5,7 +5,7 @@ metadata:
   labels:
     app: azure-metrics-exporter
   name: azure-metrics-exporter
-  namespace: monitoring
+  namespace: default
 spec:
   selector:
     matchLabels:

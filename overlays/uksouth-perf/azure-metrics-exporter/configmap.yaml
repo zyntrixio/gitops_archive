@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: azure-metrics-exporter
-  namespace: monitoring
+  namespace: default
 data:
   azure.yml: |
     active_directory_authority_url: "https://login.microsoftonline.com/"
