@@ -217,4 +217,4 @@ data:
 kind: ConfigMap
 metadata:
   name: fluentd-config
-  namespace: monitoring
+  namespace: default

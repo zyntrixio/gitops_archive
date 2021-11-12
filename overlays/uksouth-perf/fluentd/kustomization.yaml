@@ -1,6 +1,8 @@
 bases:
 - ../../../bases/infrastructure/fluentd
 
+namespace: monitoring
+
 resources:
 - configmap.yaml
 

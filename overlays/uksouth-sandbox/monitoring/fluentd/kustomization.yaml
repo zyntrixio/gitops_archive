@@ -1,10 +1,12 @@
 bases:
-- ../../../../bases/infrastructure/fluentd
+  - ../../../../bases/infrastructure/fluentd
+
+namespace: monitoring
 
 resources:
-- configmap.yaml
+  - configmap.yaml
 
 patches:
-- path: env.yaml
-  target:
-    kind: DaemonSet
+  - path: env.yaml
+    target:
+      kind: DaemonSet

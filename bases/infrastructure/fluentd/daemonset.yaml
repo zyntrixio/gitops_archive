@@ -6,7 +6,7 @@ metadata:
     k8s-app: fluentd-logging
     version: v1
   name: fluentd
-  namespace: monitoring
+  namespace: default
 spec:
   selector:
     matchLabels:
