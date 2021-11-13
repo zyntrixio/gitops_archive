@@ -1,8 +1,9 @@
 bases:
-- ../../../bases/infrastructure/keyvault-infra-sync
+- ../../../../bases/binkweb/nginx
 
 resources:
-- azureidentity.yaml
+- cert.yaml
+- ingress.yaml
 
 patches:
 - path: env.yaml

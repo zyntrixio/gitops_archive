@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: ingress
+  name: fluentd
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-staging/ingress
+  path: ./overlays/uksouth-staging/monitoring/fluentd
   prune: true
   sourceRef:
     kind: GitRepository
