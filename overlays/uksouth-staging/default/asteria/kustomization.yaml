@@ -1,6 +1,6 @@
 bases:
-- ../../../bases/olympus/angelia/api
-
+- ../../../../bases/olympus/asteria
+  
 patches:
 - path: env.yaml
   target:

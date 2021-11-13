@@ -1,39 +1,39 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: atlas
+  name: event-horizon
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-staging/atlas
+  path: ./overlays/uksouth-staging/default/event-horizon
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/atlas
-      newName: binkcore.azurecr.io/atlas
-      newTag: "staging-2.3.2" # {"$imagepolicy": "flux-system:uksouth-staging-atlas:tag"}
+    - name: binkcore.azurecr.io/event-horizon
+      newName: binkcore.azurecr.io/event-horizon
+      newTag: "staging-0.7.2" # {"$imagepolicy": "flux-system:uksouth-staging-event-horizon:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: atlas
+  name: event-horizon
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/atlas
-  interval: 1m0s
+  image: binkcore.azurecr.io/event-horizon
+  interval: 10m0s
   secretRef:
     name: binkcore.azurecr.io
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: uksouth-staging-atlas
+  name: uksouth-staging-event-horizon
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: atlas
+    name: event-horizon
   filterTags:
     pattern: 'staging-(?P<ts>\d+(\.\d+)*)$'
     extract: '$ts'

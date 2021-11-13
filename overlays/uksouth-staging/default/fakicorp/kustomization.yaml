@@ -1,8 +1,8 @@
+bases:
+- ../../../../bases/infrastructure/fakicorp
+
 resources:
 - azureidentity.yaml
-
-bases:
-- ../../../bases/infrastructure/fakicorp
 
 patches:
 - path: env.yaml

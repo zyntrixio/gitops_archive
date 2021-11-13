@@ -1,0 +1,10 @@
+bases:
+- ../../../../bases/cosmos/event-horizon
+
+resources:
+- aad.yaml
+
+patches:
+- path: env.yaml
+  target:
+    kind: Deployment

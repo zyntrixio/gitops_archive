@@ -1,27 +1,27 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: angelia
+  name: asteria
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-staging/angelia
+  path: ./overlays/uksouth-staging/default/asteria
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/angelia
-      newName: binkcore.azurecr.io/angelia
-      newTag: "staging-0.5.6" # {"$imagepolicy": "flux-system:uksouth-staging-angelia:tag"}
+    - name: binkcore.azurecr.io/asteria
+      newName: binkcore.azurecr.io/asteria
+      newTag: "2021-11-05T124427Z" # {"$imagepolicy": "flux-system:uksouth-staging-asteria:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: angelia
+  name: asteria
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/angelia
+  image: binkcore.azurecr.io/asteria
   interval: 1m0s
   secretRef:
     name: binkcore.azurecr.io
@@ -29,14 +29,14 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: uksouth-staging-angelia
+  name: uksouth-staging-asteria
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: angelia
+    name: asteria
   filterTags:
-    pattern: 'staging-(?P<ts>\d+(\.\d+)*)$'
+    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
     extract: '$ts'
   policy:
-    semver:
-      range: ">0.0.1"
+    alphabetical:
+      order: asc
