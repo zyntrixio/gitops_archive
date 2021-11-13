@@ -1,5 +1,5 @@
 bases:
-- ../../../bases/infrastructure/postgres-exporter/common
+- ../../../../bases/infrastructure/postgres-exporter/common
 
 resources:
 - configmap.yaml

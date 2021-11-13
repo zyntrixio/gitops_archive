@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: postgres-exporter
+  name: rabbitmq-exporter
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-staging/postgres-exporter
+  path: ./overlays/uksouth-staging/monitoring/rabbitmq-exporter
   prune: true
   sourceRef:
     kind: GitRepository
