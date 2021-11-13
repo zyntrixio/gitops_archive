@@ -1,27 +1,27 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: luna
+  name: iris
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-staging/luna
+  path: ./overlays/uksouth-staging/default/iris
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/luna
-    newName: binkcore.azurecr.io/luna
-    newTag: "staging-0.2.0" # {"$imagepolicy": "flux-system:uksouth-staging-luna:tag"}
+    - name: binkcore.azurecr.io/iris
+      newName: binkcore.azurecr.io/iris
+      newTag: "staging-1.2.1" # {"$imagepolicy": "flux-system:uksouth-staging-iris:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: luna
+  name: iris
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/luna
+  image: binkcore.azurecr.io/iris
   interval: 1m0s
   secretRef:
     name: binkcore.azurecr.io
@@ -29,11 +29,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: uksouth-staging-luna
+  name: uksouth-staging-iris
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: luna
+    name: iris
   filterTags:
     pattern: 'staging-(?P<ts>\d+(\.\d+)*)$'
     extract: '$ts'

@@ -1,27 +1,27 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: metis
+  name: harmonia
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-staging/metis
+  path: ./overlays/uksouth-staging/default/harmonia
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/metis
-      newName: binkcore.azurecr.io/metis
-      newTag: "staging-1.23.1" # {"$imagepolicy": "flux-system:uksouth-staging-metis:tag"}
+    - name: binkcore.azurecr.io/harmonia
+      newName: binkcore.azurecr.io/harmonia
+      newTag: "staging-1.59.0" # {"$imagepolicy": "flux-system:uksouth-staging-harmonia:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: metis
+  name: harmonia
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/metis
+  image: binkcore.azurecr.io/harmonia
   interval: 1m0s
   secretRef:
     name: binkcore.azurecr.io
@@ -29,11 +29,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: uksouth-staging-metis
+  name: uksouth-staging-harmonia
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: metis
+    name: harmonia
   filterTags:
     pattern: 'staging-(?P<ts>\d+(\.\d+)*)$'
     extract: '$ts'

@@ -1,5 +1,5 @@
 bases:
-- ../../../bases/cosmos/luna
+- ../../../../bases/olympus/lethe
 
 patches:
 - path: env.yaml

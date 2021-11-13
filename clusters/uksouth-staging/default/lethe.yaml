@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-staging/lethe
+  path: ./overlays/uksouth-staging/default/lethe
   prune: true
   sourceRef:
     kind: GitRepository
