@@ -34,6 +34,11 @@ spec:
           value: "1"
         - name: use_x_forwarded_host
           value: "1"
+        - name: blob_storage_connection_string
+          valueFrom:
+            secretKeyRef:
+              key: connection_string
+              name: azure-storage-common
         resources:
           limits:
             cpu: 1000m
