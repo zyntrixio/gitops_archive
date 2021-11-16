@@ -1,7 +1,9 @@
+components:
+- ../../common/issuer
+
 resources:
   - namespace.yaml
   - deploy.yaml
   - service.yaml
   - cert.yaml
   - ingress.yaml
-  - issuer.yaml

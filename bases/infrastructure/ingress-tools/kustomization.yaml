@@ -1,4 +1,6 @@
+components:
+- ../../common/issuer
+
 resources:
 - ingress.yaml
 - ingress-certificate.yaml
-- issuer.yaml
