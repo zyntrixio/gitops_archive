@@ -42,3 +42,10 @@ patches:
               secretKeyRef:
                 key: common_zagreus
                 name: azure-pgfs
+          - name: redis_url
+            valueFrom:
+              secretKeyRef:
+                key: uri_ssl
+                name: azure-redis-vnet
+          - name: leader_election_enabled
+            value: 'true'
