@@ -1,5 +1,5 @@
 ---
-piVersion: cert-manager.io/v1
+apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: letsencrypt
