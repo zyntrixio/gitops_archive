@@ -1,5 +1,5 @@
 bases:
-- ../../../../bases/infrastructure/tableu-postgres-syncer
+- ../../../../bases/infrastructure/tableau-postgres-syncer
 
 patches:
 - path: env.yaml
