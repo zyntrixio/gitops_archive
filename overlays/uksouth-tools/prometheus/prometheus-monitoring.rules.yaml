@@ -29,11 +29,11 @@ groups:
   
   - alert: monitoring hermes/midas - vop status stuck in transitory state
     expr: sum(hermes_current_vop_activation_status_total{kubernetes_cluster=~"prod\\d", status=~"Deactivating|Activating"}) > sum(hermes_current_vop_activation_status_total{kubernetes_cluster=~"prod\\d", status=~"Deactivating|Activating"} offset 15m)
-    for: 3m
+    for: 15m
     labels:
       severity: S3 - Monitoring
     annotations:
-      summary: "VOP account status in transitory state for over 3 minutes - check https://api.gb.bink.com/admin/periodic_retry/periodicretry/ and search midas logs for Payment Card ID in Kibana https://kibana.uksouth.bink.sh/"
+      summary: VOP account status in transitory state for over 15 minutes - check https://api.gb.bink.com/admin/ubiquity/vopactivation/ https://api.gb.bink.com/admin/periodic_retry/periodicretry/ and search midas logs for Payment Card ID in Kibana https://kibana.uksouth.bink.sh/
 
   - alert: monitoring harmonia - failed exports for receipt not found
     expr: sum(failed_requests_total{kubernetes_cluster=~"prod\\d",response_result="receipt no not found"}) > 500
