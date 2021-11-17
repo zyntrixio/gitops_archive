@@ -30,6 +30,8 @@ patches:
         value:
           - name: source_psql_connection_string
             value: postgresql://hermes@bink-uksouth-prod-hermes:Iqk311wxWUARc9a31VViUBoq@bink-uksouth-prod-hermes.postgres.database.azure.com/hermes?sslmode=require
+          - name: source_is_single_server
+            value: 'true'
           - name: destination_psql_connection_string
             value: postgresql://laadmin@bink-tableau-uksouth:hbhboGJzguG1hebAkALxvAnL@bink-tableau-uksouth.postgres.database.azure.com/postgres?sslmode=require
           - name: destination_is_single_server
