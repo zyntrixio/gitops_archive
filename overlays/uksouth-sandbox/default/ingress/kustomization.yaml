@@ -1,2 +1,2 @@
-components:
-- ../../../../bases/common/issuer
+resources:
+- issuer.yaml
