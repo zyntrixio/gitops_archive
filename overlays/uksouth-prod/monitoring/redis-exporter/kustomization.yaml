@@ -1,13 +1,7 @@
 bases:
-- ../../../../bases/infrastructure/redis-exporter/common
-- ../../../../bases/infrastructure/redis-exporter/harmonia
+- ../../../../bases/infrastructure/redis-exporter
 
 patches:
-- path: annotations-common.yaml
+- path: env.yaml
   target:
-    name: redis-exporter-common
-    kind: Deployment
-- path: annotations-harmonia.yaml
-  target:
-    name: redis-exporter-harmonia
     kind: Deployment
