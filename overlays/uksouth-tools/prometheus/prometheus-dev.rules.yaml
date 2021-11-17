@@ -117,6 +117,15 @@ groups:
       resource: "{{ $labels.instance }}"
       summary: Check dev postgres - bad upstate for over 3 minutes
 
+  - alert: dev redis up state
+    expr: (redis_up{instance="bink-uksouth-dev0"} OR on() vector(0)) < 1
+    for: 3m
+    labels:
+      severity: S3
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check dev redis - bad upstate for over 3 minutes
+      
   # - alert: dev rabbitmq up state
   #   expr: (sum(up{kubernetes_cluster="dev0",kubernetes_pod_name=~"rabbitmq-\\d"}) OR on() vector(0)) < 1
   #   for: 3m
