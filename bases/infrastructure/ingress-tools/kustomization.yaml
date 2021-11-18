@@ -1,5 +1,5 @@
-components:
-- ../../common/issuer
+bases:
+- ../../common/issuer/
 
 resources:
 - ingress.yaml

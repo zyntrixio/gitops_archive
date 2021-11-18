@@ -1,4 +1,4 @@
-components:
+bases:
 - ../../../../bases/common/issuer
 
 resources:
