@@ -54,6 +54,15 @@ groups:
       resource: "{{ $labels.instance }}"
       summary: Check staging nginx ingress - bad upstate on one or more pods for over 3 minutes
 
+  - alert: staging postgres active connections
+    expr: (active_connections_count_average{resource_name="bink-uksouth-staging"} OR on() vector(0)) < 1
+    for: 3m
+    labels:
+      severity: S2
+    annotations:
+      resource: "{{ $labels.resource_name }}"
+      summary: "Check Postgres {{ $labels.resource_name }}, reporting no current active connections"
+
   - alert: staging postgres backup failure
     expr: increase(backup_utility_file_count_total{job="backup-scheduler",resource=~"bink-uksouth-staging-.+",status="failed",type="postgres"}[61m]) > 1
     for: 5m
