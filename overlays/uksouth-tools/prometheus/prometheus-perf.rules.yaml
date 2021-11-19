@@ -36,6 +36,15 @@ groups:
       resource: "{{ $labels.instance }}"
       summary: Check perf nginx ingress - bad upstate on one or more pods for over 3 minutes
 
+  - alert: perf postgres active connections
+    expr: (active_connections_count_average{resource_name~="bink-uksouth-perf.*"} OR on() vector(0)) < 1
+    for: 5m
+    labels:
+      severity: S3
+    annotations:
+      resource: "{{ $labels.resource_name }}"
+      summary: "Check Postgres {{ $labels.resource_name }}, reporting no current active connections"
+
   - alert: perf postgres cpu
     expr: cpu_percent_percent_max{resource_name="bink-uksouth-perf-common"} > 90
     for: 5m
