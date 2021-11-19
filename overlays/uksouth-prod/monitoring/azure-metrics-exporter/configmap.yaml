@@ -40,6 +40,16 @@ data:
 
       - resource_group: "uksouth-prod"
         resource_types:
+          - "Microsoft.DBforPostgreSQL/flexibleServers"
+        metrics:
+          - name: "active_connections"
+          - name: "connections_failed"
+          - name: "cpu_percent"
+          - name: "memory_percent"
+          - name: "storage_percent"
+
+      - resource_group: "uksouth-prod"
+        resource_types:
           - "Microsoft.KeyVault/vaults"
         metrics:
           - name: "Availability"
