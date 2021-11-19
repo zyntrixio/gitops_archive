@@ -37,7 +37,7 @@ groups:
       summary: Check perf nginx ingress - bad upstate on one or more pods for over 3 minutes
 
   - alert: perf postgres active connections
-    expr: (active_connections_count_average{resource_name~="bink-uksouth-perf.*"} OR on() vector(0)) < 1
+    expr: (active_connections_count_average{resource_name=~"bink-uksouth-perf.*"} OR on() vector(0)) < 1
     for: 5m
     labels:
       severity: S3
