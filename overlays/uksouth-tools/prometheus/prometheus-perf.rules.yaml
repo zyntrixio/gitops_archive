@@ -89,6 +89,15 @@ groups:
     annotations:
       resource: "{{ $labels.resource_name }}"
       summary: Check performance redis - CPU over 90% for over 5 minutes
+      
+  - alert: perf redis memory
+    expr: (usedmemory_bytes_max{resource_name="bink-uksouth-perf"} / 1000000000) > 5.5
+    for: 5m
+    labels:
+      severity: S2
+    annotations:
+      resource: "{{ $labels.resource_name }}"
+      summary: Check perf redis - memory 5.5G out of 6G used for over 5 minutes
 
   - alert: perf redis up state
     expr: (redis_up{instance="bink-uksouth-perf"} OR on() vector(0)) < 1
