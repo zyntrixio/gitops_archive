@@ -146,13 +146,13 @@ groups:
       summary: Check prod redis - CPU over 90% for over 5 minutes
 
   - alert: prod redis memory
-    expr: 100 * (usedmemory_bytes_max{resource_name="bink-uksouth-prod"} / 1000000000) > 90
+    expr: (usedmemory_bytes_max{resource_name="bink-uksouth-prod"} / 1000000000) > 5.5
     for: 5m
     labels:
       severity: S2
     annotations:
       resource: "{{ $labels.resource_name }}"
-      summary: Check prod redis - memory over 90% for over 5 minutes
+      summary: Check prod redis - memory 5.5G out of 6G used for over 5 minutes
 
   - alert: prod redis up state
     expr: (redis_up{instance="bink-uksouth-prod"} OR on() vector(0)) < 1
