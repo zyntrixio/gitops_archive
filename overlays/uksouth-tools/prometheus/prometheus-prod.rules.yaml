@@ -19,6 +19,15 @@ groups:
       resource: "{{ $labels.type }} - {{ $labels.schedule }}"
       summary: Backup tar file failed to upload from backup-scheduler pod to binkuksouthprod/backups storage account
 
+  - alert: prod postgres active connections
+    expr: (active_connections_count_average{resource_name=~"bink-uksouth-prod.*"} OR on() vector(0)) < 1
+    for: 3m
+    labels:
+      severity: S2
+    annotations:
+      resource: "{{ $labels.resource_name }}"
+      summary: "Check Postgres {{ $labels.resource_name }}, reporting no current active connections"
+
   - alert: prod postgres backup failure
     expr: sum(increase(backup_utility_file_count_total{job="backup-scheduler",resource=~"bink-uksouth-prod-.+",status="failed",type="postgres"}[61m])) > 1
     for: 5m
