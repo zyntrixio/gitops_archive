@@ -1,8 +1,11 @@
 bases:
-- ../../../../bases/olympus/metis/api
-- ../../../../bases/olympus/metis/celery
+  - ../../../../bases/olympus/metis/api
+  - ../../../../bases/olympus/metis/celery
+
+resources:
+  - aad.yaml
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment
