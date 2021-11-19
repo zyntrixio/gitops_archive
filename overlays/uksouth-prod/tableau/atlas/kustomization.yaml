@@ -44,3 +44,5 @@ patches:
                 name: azure-redis-vnet
           - name: leader_election_enabled
             value: 'true'
+          - name: extra_dump_args
+            value: --table transactions_*
