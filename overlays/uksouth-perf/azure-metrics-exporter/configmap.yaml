@@ -30,7 +30,7 @@ data:
 
       - resource_group: "uksouth-perf"
         resource_types:
-          - "Microsoft.DBforPostgreSQL/servers"
+          - "Microsoft.DBforPostgreSQL/flexibleServers"
         metrics:
           - name: "active_connections"
           - name: "connections_failed"
