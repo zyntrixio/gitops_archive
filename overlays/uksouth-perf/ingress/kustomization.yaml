@@ -1,4 +1,6 @@
+bases:
+  - ../../../../bases/common/issuer
+
 resources:
 - certificate.yaml
 - ingress.yaml
-- issuer.yaml
