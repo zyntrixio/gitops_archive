@@ -6,6 +6,8 @@ resources:
   - certificate.yaml
   - ingress.yaml
 
+namespace: default
+
 patches:
   - target:
       kind: Deployment
