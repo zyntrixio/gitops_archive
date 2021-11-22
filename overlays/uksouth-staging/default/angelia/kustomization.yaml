@@ -1,7 +1,11 @@
+---
 bases:
-- ../../../../bases/olympus/angelia/api
+  - ../../../../bases/olympus/angelia/api
+
+resources:
+  - aad.yaml
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment
