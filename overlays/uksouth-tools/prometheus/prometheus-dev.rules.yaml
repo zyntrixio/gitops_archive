@@ -117,14 +117,14 @@ groups:
       resource: "{{ $labels.resource_name }}"
       summary: Check dev postgres - storage over 90% for 5 minutes
 
-  - alert: dev postgres up state
-    expr: (up{instance="bink-uksouth-dev-common",job="postgres"} OR on() vector(0)) < 1
-    for: 3m
-    labels:
-      severity: S3
-    annotations:
-      resource: "{{ $labels.instance }}"
-      summary: Check dev postgres - bad upstate for over 3 minutes
+#   - alert: dev postgres up state
+#     expr: (up{instance="bink-uksouth-dev-common",job="postgres"} OR on() vector(0)) < 1
+#     for: 3m
+#     labels:
+#       severity: S3
+#     annotations:
+#       resource: "{{ $labels.instance }}"
+#       summary: Check dev postgres - bad upstate for over 3 minutes
 
   - alert: dev redis up state
     expr: (redis_up{instance="bink-uksouth-dev0"} OR on() vector(0)) < 1
