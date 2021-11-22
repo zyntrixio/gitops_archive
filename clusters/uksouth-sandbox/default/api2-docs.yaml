@@ -1,0 +1,42 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: api2-docs
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-sandbox/default/api2-docs
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/api2-redoc
+      newName: binkcore.azurecr.io/api2-redoc
+      newTag: "latest" # {"$imagepolicy": "flux-system:uksouth-sandbox-api2-docs:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: api2-docs
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/api2-redoc
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-sandbox-api2-docs
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: api2-docs
+  filterTags:
+    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc
