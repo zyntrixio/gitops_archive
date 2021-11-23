@@ -26,7 +26,7 @@ data:
               end_time: '24:00'
       - name: weekend_non_business_hours
         time_intervals:
-          - weekdays: ['saturday:sunday']
+          - weekdays: ['saturday', 'sunday']
 
       # Mute Intervals for alerting at 10am on a Friday only
       - name: friday_alert_pre_mute
@@ -43,7 +43,7 @@ data:
               end_time: '24:00'
       - name: friday_alert_day_mute
         time_intervals:
-          - weekdays: ['monday:thursday', 'saturday:sunday']
+          - weekdays: ['sunday:thursday', 'saturday']
 
     route:
       group_by: ['alertname']
