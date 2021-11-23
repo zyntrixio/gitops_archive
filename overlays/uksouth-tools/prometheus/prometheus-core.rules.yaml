@@ -68,7 +68,7 @@ groups:
     expr: ({job="always_alert"} OR on() vector(0)) == 0
     for: 1m
     labels:
-      severity: S3
+      severity: TEST
     annotations:
       summary: This alert will test the Prometheus, Alertmanager, xMatters alerting chain at 10am every Friday. It should always be red.
 
