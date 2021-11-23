@@ -135,6 +135,24 @@ data:
         matchers:
         - severity=~"^S1.*|P1.*$"
         continue: true
+        
+      # Test Prometheus/Alertmanager/Teams/xMatters alert/callout chain
+      - receiver: 'alerts-devops_friday_test'
+        matchers:
+        - severity="TEST"
+        continue: true
+        mute_time_intervals:
+          - friday_alert_pre_mute
+          - friday_alert_post_mute
+          - friday_alert_day_mute
+      - receiver: 'xmatters_friday_test'
+        matchers:
+        - severity="TEST"
+        continue: true
+        mute_time_intervals:
+          - friday_alert_pre_mute
+          - friday_alert_post_mute
+          - friday_alert_day_mute
 
     receivers:
     - name: 'default'
@@ -181,6 +199,15 @@ data:
       - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/cc573c6a0b0648b5a53967684fe87fb8/de80162c-8e52-466b-affd-f3ccc0a66d5d'
 
     - name: 'xmatters'
+      webhook_configs:
+      - url: 'https://bink.xmatters.com/api/integration/1/functions/f6d29fd8-7bdb-4d43-b67d-3a18760e747f/triggers?apiKey=e87f0bfd-569e-40b7-aaf4-d45671875ecc'
+        send_resolved: false
+
+    # Test Prometheus/Alertmanager/Teams/xMatters alert/callout chain
+    - name: 'alerts-devops_friday_test'
+      webhook_configs:
+      - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/aaeddfcd407742d398a9e8211e18ad36/de80162c-8e52-466b-affd-f3ccc0a66d5d'
+    - name: 'xmatters_friday_test'
       webhook_configs:
       - url: 'https://bink.xmatters.com/api/integration/1/functions/f6d29fd8-7bdb-4d43-b67d-3a18760e747f/triggers?apiKey=e87f0bfd-569e-40b7-aaf4-d45671875ecc'
         send_resolved: false
