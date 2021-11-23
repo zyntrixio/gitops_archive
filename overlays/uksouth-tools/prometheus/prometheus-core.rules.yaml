@@ -64,14 +64,13 @@ groups:
       resource: "{{ $labels.name }}"
       summary: Let's Encrypt Kubernetes cert less than 10 days from expiring
 
-  - alert: core test alerting/callout chain
-    expr: {job="always_alert"} OR on() vector(0) == 0
+  - alert: core test alerting andcallout chain
+    expr: ({job="always_alert"} OR on() vector(0)) == 0
     for: 1m
     labels:
       severity: S3
     annotations:
-      resource: "{{ $labels.name }}"
-      summary: This alert will test the Prometheus/Alertmanager/xMatters alerting chain at 10am every Friday. It should always be red.
+      summary: This alert will test the Prometheus, Alertmanager, xMatters alerting chain at 10am every Friday. It should always be red.
 
   # This does not check AAAA record as we make no use of that.
   # - alert: azure frontdoor ip change
