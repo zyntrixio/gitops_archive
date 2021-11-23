@@ -11,6 +11,7 @@ data:
       resolve_timeout: 5m
 
     mute_time_intervals:
+      # Mute Intervals for office hours only
       - name: weekday_am_non_business_hours
         time_intervals:
           - weekdays: ['monday:friday']
@@ -25,7 +26,24 @@ data:
               end_time: '24:00'
       - name: weekend_non_business_hours
         time_intervals:
-          - weekdays: ['saturday', 'sunday']
+          - weekdays: ['saturday:sunday']
+
+      # Mute Intervals for alerting at 10am on a Friday only
+      - name: friday_alert_pre_mute
+        time_intervals:
+          - weekdays: ['friday']
+            times:
+            - start_time: '00:00'
+              end_time: '10:00'
+      - name: friday_alert_post_mute
+        time_intervals:
+          - weekdays: ['friday']
+            times:
+            - start_time: '11:00'
+              end_time: '24:00'
+      - name: friday_alert_day_mute
+        time_intervals:
+          - weekdays: ['monday:thursday', 'saturday:sunday']
 
     route:
       group_by: ['alertname']
