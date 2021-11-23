@@ -64,7 +64,7 @@ groups:
       resource: "{{ $labels.name }}"
       summary: Let's Encrypt Kubernetes cert less than 10 days from expiring
 
-  - alert: core test alerting and callout chain
+  - alert: core test alerting and callout chain (should be red)
     expr: ({job="always_alert"} OR on() vector(0)) == 0
     for: 1m
     labels:
