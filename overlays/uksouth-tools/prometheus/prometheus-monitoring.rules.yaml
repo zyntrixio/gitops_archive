@@ -53,6 +53,15 @@ groups:
       resource: "{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }} - {{ $labels.response_result }}"
       summary: There have been failed exports from harmonia.
 
+  - alert: monitoring harmonia - failed exports "an error has occured"
+    expr: sum((increasefailed_requests_total{kubernetes_cluster=~"prod\\d",response_result="an error has occurred."} [10m])) >0
+    for: 1m
+    labels:
+      severity: S2 - Monitoring
+    annotations:
+      resource: "{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }} - {{ $labels.response_result }}"
+      summary: There have been failed exports for wasabi.
+
   - alert: monitoring harmonia - harvey nichols files not received
     expr: (blobstorage_files_total{type="scheme",name="harvey-nichols"} OR on() vector(0)) < 1
     for: 24h
