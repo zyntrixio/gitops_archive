@@ -39,7 +39,7 @@ patches:
                 key: tableau_postgres
                 name: azure-pgfs
           - name: destination_is_single_server
-            value: 'true'
+            value: 'false'
           - name: redis_url
             valueFrom:
               secretKeyRef:
