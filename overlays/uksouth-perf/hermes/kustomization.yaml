@@ -99,5 +99,5 @@ patches:
       - op: add
         path: /spec/template/spec/containers/0/env/-
         value:
-          name: jar
-          value: car
+          name: SENTRY_SAMPLE_RATE
+          value: "0.01"
