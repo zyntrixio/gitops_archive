@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,7 +7,7 @@ spec:
   template:
     spec:
       containers:
-      - name: app
-        env:
-        - name: SENTRY_SAMPLE_RATE
-          value: '0.01'
+        - name: app
+          env:
+            - name: SENTRY_SAMPLE_RATE
+              value: '0.01'
