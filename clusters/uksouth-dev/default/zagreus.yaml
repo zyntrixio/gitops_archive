@@ -13,7 +13,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/zagreus
       newName: binkcore.azurecr.io/zagreus
-      newTag: "dev-2021-11-16T125000Z" # {"$imagepolicy": "flux-system:uksouth-dev-zagreus:tag"}
+      newTag: "2021-11-25T220644Z" # {"$imagepolicy": "flux-system:uksouth-dev-zagreus:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
