@@ -83,5 +83,21 @@ patches:
               secretKeyRef:
                 name: azure-pgfs
                 key: common_hermes
-  - path: beat-env.yaml
-  - path: celery-env.yaml
+  - target:
+      kind: Deployment
+      name: hermes-celery
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: SENTRY_SAMPLE_RATE
+          value: "0.01"
+  - target:
+      kind: Deployment
+      name: hermes-beat
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: jar
+          value: car
