@@ -42,7 +42,7 @@ patches:
           - name: HERMES_SENTRY_ENV
             value: performance
           - name: SENTRY_SAMPLE_RATE
-            value: '0.25'
+            value: '0.5'
           - name: CELERY_BROKER_URL
             value: amqps://perf-rabbitmq.uksouth.bink.host:5671
           - name: ATLAS_URL
