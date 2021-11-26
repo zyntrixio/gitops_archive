@@ -1,0 +1,12 @@
+---
+resources:
+  - namespace.yaml
+  - deployment.yaml
+  - service.yaml
+
+namespace: default
+
+secretGenerator:
+  - name: pypi-config
+    files:
+      - config.ini
