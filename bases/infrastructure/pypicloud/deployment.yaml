@@ -43,7 +43,7 @@ spec:
               cpu: 1000m
               memory: 512Mi
       imagePullSecrets:
-        - name: binkcore.azurecr.io
+        - name: binkext.azurecr.io
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       volumes:
