@@ -13,11 +13,11 @@ spec:
   images:
     - name: binkcore.azurecr.io/api2-redoc
       newName: binkcore.azurecr.io/api2-redoc
-      newTag: "2021-11-22T120609Z" # {"$imagepolicy": "flux-system:uksouth-sandbox-api2-docs:tag"}
+      newTag: "2021-11-26T153508Z" # {"$imagepolicy": "flux-system:uksouth-sandbox-api2-docs:tag"}
   postBuild:
     substituteFrom:
-    - kind: ConfigMap
-      name: cluster-vars
+      - kind: ConfigMap
+        name: cluster-vars
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
