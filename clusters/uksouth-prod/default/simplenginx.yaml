@@ -14,27 +14,27 @@ spec:
     - name: ghcr.io/binkhq/simplenginx
       newName: ghcr.io/binkhq/simplenginx
       newTag: "2021-11-01-144225" # {"$imagepolicy": "flux-system:uksouth-prod-simplenginx:tag"}
-# ---
-# apiVersion: image.toolkit.fluxcd.io/v1alpha1
-# kind: ImageRepository
-# metadata:
-#   name: simplenginx
-#   namespace: flux-system
-# spec:
-#   image: ghcr.io/binkhq/simplenginx
-#   interval: 10m0s
-# ---
-# apiVersion: image.toolkit.fluxcd.io/v1alpha1
-# kind: ImagePolicy
-# metadata:
-#   name: uksouth-prod-simplenginx
-#   namespace: flux-system
-# spec:
-#   imageRepositoryRef:
-#     name: simplenginx
-#   filterTags:
-#     pattern: '(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
-#     extract: '$ts'
-#   policy:
-#     alphabetical:
-#       order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: simplenginx
+  namespace: flux-system
+spec:
+  image: ghcr.io/binkhq/simplenginx
+  interval: 10m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-prod-simplenginx
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: simplenginx
+  filterTags:
+    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc
