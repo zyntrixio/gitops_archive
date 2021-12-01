@@ -9,4 +9,4 @@ spec:
       containers:
       - name: app
         command: ["linkerd-await", "--"]
-        args: ["python", "-m", "app.tasks.reward_adjustment", "worker"]
+        args: ["python", "-m", "app.tasks.worker", "worker"]
