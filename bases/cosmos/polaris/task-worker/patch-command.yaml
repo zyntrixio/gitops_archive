@@ -2,13 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: polaris
+  namespace: default
 spec:
   template:
     spec:
       containers:
       - name: app
-        args:
-          - "python"
-          - "-m"
-          - "app.tasks.worker"
-          - "worker"
+        command: ["linkerd-await", "--"]
+        args: ["python", "-m", "app.tasks.worker", "worker"]

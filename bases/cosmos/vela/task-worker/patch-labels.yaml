@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   labels:
     app: vela
-    component: rewards-adjustments-tasks
+    component: task-worker
   name: vela
   namespace: default
 spec:
   selector:
     matchLabels:
       app: vela
-      component: rewards-adjustments-tasks
+      component: task-worker
   template:
     metadata:
       labels:
         app: vela
-        component: rewards-adjustments-tasks
+        component: task-worker
         aadpodidbinding: vela
