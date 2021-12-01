@@ -13,7 +13,7 @@ spec:
   images:
     - name: ghcr.io/binkhq/simplenginx
       newName: ghcr.io/binkhq/simplenginx
-      newTag: "2021-11-01-144225" # {"$imagepolicy": "flux-system:uksouth-prod-simplenginx:tag"}
+      newTag: "2021-12-01-144225" # {"$imagepolicy": "flux-system:uksouth-prod-simplenginx:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
