@@ -26,9 +26,6 @@ spec:
       containers:
         - name: alertmanager
           image: prom/alertmanager:v0.22.1
-          env:
-            - name: TZ
-              value: Europe/London
           imagePullPolicy: Always
           args:
             - "--web.external-url=https://alertmanager.tools.bink.sh"
