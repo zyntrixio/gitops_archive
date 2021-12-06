@@ -1,0 +1,46 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: binklink
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-staging/default/binklink
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
+  images:
+    - name: binkcore.azurecr.io/binklink
+      newName: binkcore.azurecr.io/binklink
+      newTag: "prod-2021-12-06T102838Z" # {"$imagepolicy": "flux-system:uksouth-prod-binklink:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: binklink
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/binklink
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-staging-binklink
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: binklink
+  filterTags:
+    pattern: 'staging-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc
