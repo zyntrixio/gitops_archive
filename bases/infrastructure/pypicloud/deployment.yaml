@@ -38,10 +38,10 @@ spec:
           resources:
             requests:
               cpu: 100m
-              memory: 512Mi
+              memory: 1024Mi
             limits:
               cpu: 1000m
-              memory: 512Mi
+              memory: 1024Mi
       imagePullSecrets:
         - name: binkext.azurecr.io
       dnsPolicy: ClusterFirst
