@@ -1,0 +1,42 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: europa
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-perf/default/europa
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/europa
+      newName: binkcore.azurecr.io/europa
+      newTag: "dev-2021-10-28T101949Z" # {"$imagepolicy": "flux-system:uksouth-perf-europa:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: europa
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/europa
+  interval: 10m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-perf-europa
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: europa
+  filterTags:
+    pattern: 'dev-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc

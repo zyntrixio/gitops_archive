@@ -1,0 +1,42 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: harmonia-throughput
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-perf/default/harmonia-throughput
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/harmonia_bulkload
+      newName: binkcore.azurecr.io/harmonia_bulkload
+      newTag: "dev-2021-11-05T150028Z" # {"$imagepolicy": "flux-system:uksouth-perf-harmonia-throughput:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: harmonia-throughput
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/harmonia_bulkload
+  interval: 10m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-perf-harmonia-throughput
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: harmonia-throughput
+  filterTags:
+    pattern: 'dev-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc
