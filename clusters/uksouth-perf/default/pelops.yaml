@@ -1,0 +1,42 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: pelops
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-perf/default/pelops
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/pelops
+      newName: binkcore.azurecr.io/pelops
+      newTag: "develop-2021-07-21-122539" # {"$imagepolicy": "flux-system:uksouth-perf-pelops:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: pelops
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/pelops
+  interval: 10m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-perf-pelops
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: pelops
+  filterTags:
+    pattern: 'develop-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc
