@@ -82,15 +82,6 @@ groups:
       resource: "{{ $labels.resource_name }}"
       summary: Check prod postgres - storage over 90% for 5 minutes
 
-  - alert: prod postgres hermes up state
-    expr: (up{job="postgres",instance="bink-uksouth-prod-hermes"} OR on() vector(0)) < 1
-    for: 3m
-    labels:
-      severity: S1
-    annotations:
-      resource: "{{ $labels.instance }}"
-      summary: Check prod postgres - bad upstate for over 3 minutes
-
   - alert: prod rabbitmq virtual machine up state
     expr: (up{job="azure_node",name=~"prod-rabbitmq\\d"} OR on() vector(0)) < 1
     for: 3m
