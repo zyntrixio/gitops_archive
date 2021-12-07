@@ -62,6 +62,24 @@ groups:
     annotations:
       resource: "{{ $labels.resource_name }}"
       summary: Check perf postgres - storage over 90% for 5 minutes
+      
+  - alert: perf postgres up state - direct
+    expr: postgres_up_state{instance="bink-uksouth-perf"} < 1
+    for: 3m
+    labels:
+      severity: S3
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check perf postgres flexible server - bad upstate for over 3 minutes
+      
+  - alert: perf postgres up state - pgbouncer
+    expr: pgbouncer_up_state{instance="bink-uksouth-perf"} < 1
+    for: 3m
+    labels:
+      severity: S3
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check perf postgres flexible server pgbouncer - bad upstate for over 3 minutes
 
 #   - alert: perf postgres up state
 #     expr: (up{instance="bink-uksouth-perf-common",job="postgres"} OR on() vector(0)) < 1
