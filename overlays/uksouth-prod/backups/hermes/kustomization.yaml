@@ -37,7 +37,7 @@ patches:
             value: backups
           - name: blob_storage_path_prefix
             value: hourly
-          - name: source_psql_connection_string
+          - name: psql_connection_string
             valueFrom:
               secretKeyRef:
                 key: common_hermes
