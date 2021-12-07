@@ -4,6 +4,9 @@ bases:
   - ../../../../bases/olympus/hermes/celery
   - ../../../../bases/olympus/hermes/migrator
 
+resources:
+  - aad.yaml
+
 patches:
   - path: env.yaml
     target:
