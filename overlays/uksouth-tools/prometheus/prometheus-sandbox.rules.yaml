@@ -63,6 +63,24 @@ groups:
       resource: "{{ $labels.resource_name }}"
       summary: Check sandbox postgres - storage over 90% for 5 minutes
 
+  - alert: sandbox postgres up state - direct
+    expr: postgres_up_state{instance="bink-uksouth-sandbox"} < 1
+    for: 3m
+    labels:
+      severity: S2
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check sandbox postgres flexible server - bad upstate for over 3 minutes
+      
+  - alert: sandbox postgres up state - pgbouncer
+    expr: pgbouncer_up_state{instance="bink-uksouth-sandbox"} < 1
+    for: 3m
+    labels:
+      severity: S2
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check sandbox postgres flexible server pgbouncer - bad upstate for over 3 minutes
+
   # - alert: sandbox sit rabbitmq up state
   #   expr: (sum(up{kubernetes_namespace="sit",kubernetes_pod_name=~"rabbitmq-\\d"}) OR on() vector(0)) < 1
   #   for: 3m
