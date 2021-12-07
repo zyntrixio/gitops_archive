@@ -22,6 +22,7 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: pypi
       labels:
         app: pypi
     spec:
