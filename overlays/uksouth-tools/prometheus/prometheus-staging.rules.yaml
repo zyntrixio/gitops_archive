@@ -117,6 +117,24 @@ groups:
       resource: "{{ $labels.resource_name }}"
       summary: Check staging postgres - storage over 90% for 5 minutes
 
+  - alert: staging postgres up state - direct
+    expr: postgres_up_state{instance="bink-uksouth-staging"} < 1
+    for: 3m
+    labels:
+      severity: S2
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check staging postgres flexible server - bad upstate for over 3 minutes
+      
+  - alert: staging postgres up state - pgbouncer
+    expr: pgbouncer_up_state{instance="bink-uksouth-staging"} < 1
+    for: 3m
+    labels:
+      severity: S2
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check staging postgres flexible server pgbouncer - bad upstate for over 3 minutes
+
 #   - alert: staging postgres up state
 #     expr: (up{instance="bink-uksouth-staging-common",job="postgres"} OR on() vector(0)) < 1
 #     for: 3m
