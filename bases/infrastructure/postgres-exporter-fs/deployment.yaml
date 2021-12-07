@@ -13,6 +13,7 @@ spec:
   template:
     metadata:
       annotations:
+        kubectl.kubernetes.io/default-container: nginx
         linkerd.io/inject: enabled
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
@@ -21,7 +22,7 @@ spec:
         app: postgres-exporter-fs
     spec:
       containers:
-      - name: postgres-exporter-fs
+      - name: app
         image: binkcore.azurecr.io/postgres-exporter-fs:latest
         imagePullPolicy: Always
         ports:
