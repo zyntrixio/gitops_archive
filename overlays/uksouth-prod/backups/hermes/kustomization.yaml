@@ -1,11 +1,11 @@
 bases:
-  - github.com/binkhq/postgres-to-postgres/deploy
+  - github.com/binkhq/postgres-to-azureblob/deploy
 
-namespace: tableau
+namespace: backups
 
 patches:
   - target:
-      kind: CronJob
+      kind: Deployment
     patch: |-
       - op: add
         path: /metadata/annotations/buoyant.cloud~1excluded
@@ -15,28 +15,33 @@ patches:
     patch: |-
       - op: replace
         path: /metadata/name
-        value: harmonia-sync
+        value: hermes-hourly
   - target:
       kind: CronJob
     patch: |-
       - op: replace
         path: /spec/schedule
-        value: "0 4 * * *"
+        value: "0 * * * *"
   - target:
       kind: CronJob
     patch: |-
       - op: replace
         path: /spec/jobTemplate/spec/template/spec/containers/0/env
         value:
+          - name: blob_storage_connection_string
+            valueFrom:
+              secretKeyRef:
+                key: connection_string
+                name: azure-storage-common
+          - name: blob_storage_container
+            value: backups
+          - name: blob_storage_path_prefix
+            value: hourly
           - name: source_psql_connection_string
             valueFrom:
               secretKeyRef:
-                key: common_harmonia
+                key: common_hermes
                 name: azure-pgfs
-          - name: destination_psql_connection_string
-            value: postgresql://laadmin@bink-tableau-uksouth:hbhboGJzguG1hebAkALxvAnL@bink-tableau-uksouth.postgres.database.azure.com/postgres?sslmode=require
-          - name: destination_is_single_server
-            value: 'true'
           - name: redis_url
             valueFrom:
               secretKeyRef:

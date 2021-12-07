@@ -5,7 +5,7 @@ namespace: tableau
 
 patches:
   - target:
-      kind: Deployment
+      kind: CronJob
     patch: |-
       - op: add
         path: /metadata/annotations/buoyant.cloud~1excluded
