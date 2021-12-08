@@ -27,7 +27,7 @@ spec:
         app: ip-range-checker
     spec:
       containers:
-      - image: olympus.azurecr.io/ip_range_checker:develop-0aa7a267
+      - image: binkcore.azurecr.io/ip_range_checker:develop-3374453b
         name: iprangechecker
         env:
         - name: SENTRY_ENVIRONMENT
@@ -37,4 +37,4 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       imagePullSecrets:
-      - name: olympus.azurecr.io
+      - name: binkcore.azurecr.io
