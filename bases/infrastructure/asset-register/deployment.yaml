@@ -36,6 +36,11 @@ spec:
             secretKeyRef:
               key: admin_user
               name: azure-pg-common
+        - name: TOOLS_DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: azure-pgfs
+              key: common_tools
         imagePullPolicy: Always
       - image: mcr.microsoft.com/azure-oss-db-tools/pgbouncer-sidecar:pgbouncerv1.13
         imagePullPolicy: Always
