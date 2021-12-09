@@ -35,7 +35,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: azure-pgfs
-              key: common_tools
+              key: common_asset_register
         imagePullPolicy: Always
         securityContext:
           allowPrivilegeEscalation: false
