@@ -26,7 +26,7 @@ spec:
         app: asset-register
     spec:
       containers:
-      - image: binkcore.azurecr.io/asset-register:tools-2021-07-08T203707Z
+      - image: binkcore.azurecr.io/asset-register:tools-2021-12-08T163142Z
         name: assetregister
         ports:
         - containerPort: 9000
