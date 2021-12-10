@@ -4,6 +4,7 @@ kind: Deployment
 metadata:
   labels:
     app: asset-register
+    component: api
   name: asset-register
   namespace: default
 spec:
@@ -13,6 +14,7 @@ spec:
   selector:
     matchLabels:
       app: asset-register
+      component: api
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -21,17 +23,19 @@ spec:
   template:
     metadata:
       annotations:
+        kubectl.kubernetes.io/default-container: app
         linkerd.io/inject: enabled
       labels:
         app: asset-register
+        component: api
     spec:
       containers:
-      - image: binkcore.azurecr.io/asset-register:2021-12-10T093129Z
-        name: assetregister
+      - image: binkcore.azurecr.io/asset-register:2021-12-10T095611Z
+        name: app
         ports:
         - containerPort: 9000
         env:
-        - name: TOOLS_DATABASE_URL
+        - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
               name: azure-pgfs
