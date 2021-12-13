@@ -56,7 +56,7 @@ groups:
 
   - alert: dev postgres active connections
     expr: (active_connections_count_average{resource_name="bink-uksouth-dev"} OR on() vector(0)) < 1
-    for: 3m
+    for: 5m
     labels:
       severity: S3
     annotations:
