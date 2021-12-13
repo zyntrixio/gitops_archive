@@ -56,12 +56,12 @@ data:
       routes:
       - receiver: 'alerts-devops'
         matchers:
-        - alertname!~"^dev.*|staging.*|perf.*|monitoring.*$"
+        - alertname!~"^dev.*|staging.*|perf.*|monitoring.*|prod.*$"
         - severity=~"^S1.*|S2.*|P1.*|P2.*$"
         continue: true
       - receiver: 'alerts-devops_business_hours'
         matchers:
-        - alertname!~"^dev.*|staging.*|perf.*|monitoring.*$"
+        - alertname!~"^dev.*|staging.*|perf.*|monitoring.*|prod.*$"
         - severity=~"^S3.*|P3.*$"
         continue: true
         mute_time_intervals:
@@ -114,20 +114,20 @@ data:
           - weekday_pm_non_business_hours
           - weekend_non_business_hours
 
-      # - receiver: 'alerts-production'
-      #   matchers:
-      #   - alertname=~"^prod.*$"
-      #   - severity=~"^S1.*|S2.*|P1.*|P2.*$"
-      #   continue: true
-      # - receiver: 'alerts-production_business_hours'
-      #   matchers:
-      #   - alertname=~"^prod.*$"
-      #   - severity=~"^S3.*|P3.*$"
-      #   continue: true
-      #   mute_time_intervals:
-      #     - weekday_am_non_business_hours
-      #     - weekday_pm_non_business_hours
-      #     - weekend_non_business_hours
+      - receiver: 'alerts-production'
+        matchers:
+        - alertname=~"^prod.*$"
+        - severity=~"^S1.*|S2.*|P1.*|P2.*$"
+        continue: true
+      - receiver: 'alerts-production_business_hours'
+        matchers:
+        - alertname=~"^prod.*$"
+        - severity=~"^S3.*|P3.*$"
+        continue: true
+        mute_time_intervals:
+          - weekday_am_non_business_hours
+          - weekday_pm_non_business_hours
+          - weekend_non_business_hours
 
       - receiver: 'monitoring'
         matchers:
@@ -189,12 +189,12 @@ data:
       webhook_configs:
       - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/126cf7d774244b458c2b0e8a891fa0aa/de80162c-8e52-466b-affd-f3ccc0a66d5d'
 
-    # - name: 'alerts-production'
-    #   webhook_configs:
-    #   - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/e6c8fe14130a4c69a213aebd2384ed14/de80162c-8e52-466b-affd-f3ccc0a66d5d'
-    # - name: 'alerts-production_business_hours'
-    #   webhook_configs:
-    #   - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/e6c8fe14130a4c69a213aebd2384ed14/de80162c-8e52-466b-affd-f3ccc0a66d5d'
+    - name: 'alerts-production'
+      webhook_configs:
+      - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/e6c8fe14130a4c69a213aebd2384ed14/de80162c-8e52-466b-affd-f3ccc0a66d5d'
+    - name: 'alerts-production_business_hours'
+      webhook_configs:
+      - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/e6c8fe14130a4c69a213aebd2384ed14/de80162c-8e52-466b-affd-f3ccc0a66d5d'
 
     - name: 'monitoring'
       webhook_configs:
