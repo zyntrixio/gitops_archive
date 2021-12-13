@@ -27,24 +27,6 @@ groups:
       resource: "{{ $labels.name }}"
       summary: Check virtual machine worker - bad up state for over 5 minutes
 
-  - alert: dev media backup tar file size
-    expr: (100 * (1 - ((backup_utility_file_size{kubernetes_cluster="dev0",type="media"} offset 24h) / (backup_utility_file_size{kubernetes_cluster="dev0",type="media"}))) < -50) or (100 * (1 - ((backup_utility_file_size{kubernetes_cluster="dev0",type="media"} offset 24h) / (backup_utility_file_size{kubernetes_cluster="dev0",type="media"}))) > 50)
-    for: 5m
-    labels:
-      severity: S3
-    annotations:
-      resource: "{{ $labels.name }}"
-      summary: Raw dev media backup file size has increased/decreased by over 50% within an 8 day window
-
-  - alert: dev media backup uploads (weekly)
-    expr: sum(increase(backup_utility_upload_to_blob_count_total{kubernetes_cluster="dev0",type="media"}[8d])) < 1
-    for: 30d
-    labels:
-      severity: S3
-    annotations:
-      resource: "{{ $labels.type }} - {{ $labels.schedule }}"
-      summary: Backup tar file failed to upload from backup-scheduler pod to binkuksouthdev/backups storage account
-
   - alert: dev nginx ingress up state
     expr: (sum(up{kubernetes_cluster="dev0",kubernetes_pod_name=~"ingress-nginx-controller.+"}) OR on() vector(0)) < 2
     for: 3m
@@ -62,42 +44,6 @@ groups:
     annotations:
       resource: "{{ $labels.resource_name }}"
       summary: "Check Postgres {{ $labels.resource_name }}, reporting no current active connections"
-
-  - alert: dev postgres backup failure
-    expr: increase(backup_utility_file_count_total{job="backup-scheduler",resource=~"bink-uksouth-dev-.+",status="failed",type="postgres"}[61m]) > 1
-    for: 5m
-    labels:
-      severity: S3
-    annotations:
-      resource: "{{ $labels.name }} - {{ $labels.schedule }}"
-      summary: Check dev backup-scheduler pod and binkuksouthdev/backups storage account - potential backup failure
-
-  - alert: dev postgres backup sql file size
-    expr: (100 * (1 - ((backup_utility_file_size{resource=~"bink-uksouth-dev-.+"} offset 24h) / (backup_utility_file_size{resource=~"bink-uksouth-dev-.+"}))) < -50) or (100 * (1 - ((backup_utility_file_size{resource=~"bink-uksouth-dev-.+"} offset 24h) / (backup_utility_file_size{resource=~"bink-uksouth-dev-.+"}))) > 50)
-    for: 5m
-    labels:
-      severity: S3
-    annotations:
-      resource: "{{ $labels.name }}"
-      summary: Raw dev postgres backup file size has increased/decreased by over 50% within 24 hour window
-
-  - alert: dev postgres backup uploads (hourly)
-    expr: sum(increase(backup_utility_upload_to_blob_count_total{resource="binkuksouthdev",schedule="hourly",type="postgres"}[61m])) < 1
-    for: 90m
-    labels:
-      severity: S3
-    annotations:
-      resource: "{{ $labels.type }} - {{ $labels.schedule }}"
-      summary: Backup tar file failed to upload from backup-scheduler pod to binkuksouthdev/backups storage account
-
-  - alert: dev postgres backup uploads (weekly)
-    expr: sum(increase(backup_utility_upload_to_blob_count_total{resource="binkuksouthdev",schedule="weekly",type="postgres"}[8d])) < 1
-    for: 30d
-    labels:
-      severity: S3
-    annotations:
-      resource: "{{ $labels.type }} - {{ $labels.schedule }}"
-      summary: Backup tar file failed to upload from backup-scheduler pod to binkuksouthdev/backups storage account
 
   - alert: dev postgres cpu
     expr: cpu_percent_percent_max{resource_group="uksouth-dev",resource_name="bink-uksouth-dev-common"} > 90

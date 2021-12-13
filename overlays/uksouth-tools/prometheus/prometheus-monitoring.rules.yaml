@@ -1,6 +1,24 @@
 groups:
 - name: monitoring
   rules:
+  - alert: monitoring harmonia - no exported transactions to iceland between 15:00 and 18:00
+    expr: sum(increase(transactions_total{kubernetes_cluster="prod0", slug="iceland-bonus-card"} [12h])) by (slug) < 1 and europe_london_hour != 15 < 18
+    for: 1m
+    labels:
+      severity: S2
+    annotations:
+      resource: "{{ $labels.slug }}"
+      summary: There have not been any exports to Iceland between 15:00 and 18:00
+
+  - alert: monitoring harmonia - no exported transactions between 12:00 and 23:00
+    expr: sum(increase(transactions_total{kubernetes_cluster=~"prod\\d", slug!="iceland-bonus-card"} [2h])) by (slug) < 1 and europe_london_hour != 12 < 23
+    for: 1m
+    labels:
+      severity: S2
+    annotations:
+      resource: "{{ $labels.slug }}"
+      sumamry: There have been no exports between 12:00 and 23:00
+
   - alert: monitoring hermes - http response latency - greater than 1 second
     expr: histogram_quantile(0.99, sum by(view, le)  (rate(django_http_requests_latency_seconds_by_view_method_bucket{job="hermes", view=~"membership-plan.*|service|membership-card.*|payment-card.*|register_user|login", kubernetes_cluster=~"prod\\d"}[2m]))) > 1
     for: 3m
@@ -18,6 +36,14 @@ groups:
     annotations:
       resource: "{{ $labels.view }}"
       summary: Http responses are returning is over five seconds for more than 3 minutes
+
+  - alert: monitoring hermes - payment cards processing slow
+    expr: (sum(payment_card_processing_seconds_histogram_sum{kubernetes_cluster=~"prod\\d"}) by (provider) / sum(payment_card_processing_seconds_histogram_count{kubernetes_cluster=~"prod\\d"}) by (provider)) > 5
+    for: 5m
+    labels:
+      severity: S2
+    annotations:
+      summary: Payment cards for {{ $labels.provider }} are taking longer than four seconds to process.
 
   - alert: monitoring hermes - payment cards stuck increase
     expr: sum(hermes_current_payment_card_pending_overdue_total{kubernetes_cluster=~"prod\\d"}) > sum(hermes_current_payment_card_pending_overdue_total{kubernetes_cluster=~"prod\\d"} offset 24h +15)
