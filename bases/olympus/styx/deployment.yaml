@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: styx
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: styx
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: styx
+        aadpodidbinding: styx
+    spec:
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/styx:latest
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              memory: 128Mi
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
