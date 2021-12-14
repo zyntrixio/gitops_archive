@@ -13,7 +13,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/angelia
       newName: binkcore.azurecr.io/angelia
-      newTag: "performance-2021-09-16T153800Z" # {"$imagepolicy": "flux-system:uksouth-perf-angelia:tag"}
+      newTag: "staging-0.7.4" # {"$imagepolicy": "flux-system:uksouth-perf-angelia:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -35,8 +35,8 @@ spec:
   imageRepositoryRef:
     name: angelia
   filterTags:
-    pattern: 'performance-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
+    pattern: 'staging-(?P<ts>\d+(\.\d+)*)$'
     extract: '$ts'
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: ">0.0.1"
