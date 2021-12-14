@@ -7,7 +7,7 @@ metadata:
 spec:
   type: 0
   resourceID: /subscriptions/957523d8-bbe2-4f68-8fae-95975157e91c/resourceGroups/uksouth-perf/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-perf-angelia
-  clientID: 789a5a0b-e837-4929-8fc6-94dca8c26c5e
+  clientID: 79fa04a6-cf5b-4670-8bda-8cf6a2936c52
 ---
 apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentityBinding
