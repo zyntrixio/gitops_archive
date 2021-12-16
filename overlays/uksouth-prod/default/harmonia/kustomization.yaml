@@ -16,6 +16,7 @@ bases:
 - ../../../../bases/olympus/harmonia/import-worker
 - ../../../../bases/olympus/harmonia/matching-worker
 - ../../../../bases/olympus/harmonia/matching-worker-slow
+- ../../../../bases/olympus/harmonia/streaming-worker
 - ../../../../bases/olympus/harmonia/migrator
 
 resources:
