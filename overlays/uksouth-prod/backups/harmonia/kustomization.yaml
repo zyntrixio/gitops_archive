@@ -26,6 +26,12 @@ patches:
       kind: CronJob
     patch: |-
       - op: replace
+        path: /spec/suspend
+        value: true
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: replace
         path: /spec/jobTemplate/spec/template/spec/containers/0/env
         value:
           - name: blob_storage_connection_string
