@@ -16,7 +16,7 @@ patches:
             containers:
               - name: app
                 env:
-                  - name: DATABASE_USER
+                  - name: POSTGRES_DSN
                     valueFrom:
                       secretKeyRef:
                         key: common_hermes
