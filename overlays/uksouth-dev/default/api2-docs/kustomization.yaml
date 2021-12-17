@@ -1,3 +1,4 @@
+---
 bases:
   - ../../../../bases/olympus/api2-docs
   - ../../../../bases/common/issuer
@@ -12,8 +13,15 @@ patches:
   - target:
       kind: Deployment
     patch: |-
-      - op: replace
-        path: /spec/template/spec/containers/0/env
-        value:
-          - name: DEPLOYED_ENV
-            value: dev
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: api2-docs
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: DEPLOYED_ENV
+                    value: dev
