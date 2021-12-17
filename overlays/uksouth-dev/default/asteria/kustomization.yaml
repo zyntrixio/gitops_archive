@@ -25,8 +25,8 @@ patches:
                 - configMapRef:
                     name: asteria-config
               env:
-              - name: POSTGRES_DSN
-                valueFrom:
-                  secretKeyRef:
-                    name: azure-pgfs
-                    key: common_hermes
+                - name: POSTGRES_DSN
+                  valueFrom:
+                    secretKeyRef:
+                      name: azure-pgfs
+                      key: common_hermes
