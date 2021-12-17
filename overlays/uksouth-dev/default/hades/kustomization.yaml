@@ -5,6 +5,7 @@ bases:
 
 configMapGenerator:
   - name: hades-config
+    namespace: default
     envs:
       - env.ini
 
