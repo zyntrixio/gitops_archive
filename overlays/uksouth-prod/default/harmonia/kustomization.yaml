@@ -14,6 +14,7 @@ bases:
 - ../../../../bases/olympus/harmonia/import-agent-visa-settle
 - ../../../../bases/olympus/harmonia/import-agent-wasabi-club
 - ../../../../bases/olympus/harmonia/import-worker
+- ../../../../bases/olympus/harmonia/identify-worker
 - ../../../../bases/olympus/harmonia/matching-worker
 - ../../../../bases/olympus/harmonia/matching-worker-slow
 - ../../../../bases/olympus/harmonia/streaming-worker
