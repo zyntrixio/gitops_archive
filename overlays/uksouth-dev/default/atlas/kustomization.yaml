@@ -1,9 +1,34 @@
+---
 bases:
-- ../../../../bases/olympus/atlas/api
-- ../../../../bases/olympus/atlas/consumer
-- ../../../../bases/olympus/atlas/migrator
+  - ../../../../bases/olympus/atlas/api
+  - ../../../../bases/olympus/atlas/consumer
+  - ../../../../bases/olympus/atlas/migrator
+
+configMapGenerator:
+  - name: atlas-config
+    namespace: default
+    envs:
+      - env.ini
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: atlas
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: atlas-config
+                env:
+                  - name: ATLAS_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_atlas
