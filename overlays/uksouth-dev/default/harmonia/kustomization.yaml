@@ -1,31 +1,32 @@
+---
 bases:
-- ../../../../bases/olympus/harmonia/api
-- ../../../../bases/olympus/harmonia/export-agent-fatface
-- ../../../../bases/olympus/harmonia/export-agent-iceland-bonus-card
-- ../../../../bases/olympus/harmonia/export-agent-whsmith-rewards
-- ../../../../bases/olympus/harmonia/export-retry-worker
-- ../../../../bases/olympus/harmonia/export-worker
-- ../../../../bases/olympus/harmonia/import-agent-amex
-- ../../../../bases/olympus/harmonia/import-agent-amex-settlement
-- ../../../../bases/olympus/harmonia/import-agent-amex-auth
-- ../../../../bases/olympus/harmonia/import-agent-harvey-nichols
-- ../../../../bases/olympus/harmonia/import-agent-iceland-bonus-card
-- ../../../../bases/olympus/harmonia/import-agent-mastercard-auth
-- ../../../../bases/olympus/harmonia/import-agent-mastercard-settled
-- ../../../../bases/olympus/harmonia/import-agent-visa-auth
-- ../../../../bases/olympus/harmonia/import-agent-visa-refund
-- ../../../../bases/olympus/harmonia/import-agent-visa-settle
-- ../../../../bases/olympus/harmonia/import-agent-wasabi-club
-- ../../../../bases/olympus/harmonia/import-agent-whsmith-rewards
-- ../../../../bases/olympus/harmonia/import-worker
-- ../../../../bases/olympus/harmonia/identify-worker
-- ../../../../bases/olympus/harmonia/matching-worker
-- ../../../../bases/olympus/harmonia/matching-worker-slow
-- ../../../../bases/olympus/harmonia/streaming-worker
-- ../../../../bases/olympus/harmonia/migrator
+  - ../../../../bases/olympus/harmonia/api
+  - ../../../../bases/olympus/harmonia/export-agent-fatface
+  - ../../../../bases/olympus/harmonia/export-agent-iceland-bonus-card
+  - ../../../../bases/olympus/harmonia/export-agent-whsmith-rewards
+  - ../../../../bases/olympus/harmonia/export-retry-worker
+  - ../../../../bases/olympus/harmonia/export-worker
+  - ../../../../bases/olympus/harmonia/import-agent-amex
+  - ../../../../bases/olympus/harmonia/import-agent-amex-settlement
+  - ../../../../bases/olympus/harmonia/import-agent-amex-auth
+  - ../../../../bases/olympus/harmonia/import-agent-harvey-nichols
+  - ../../../../bases/olympus/harmonia/import-agent-iceland-bonus-card
+  - ../../../../bases/olympus/harmonia/import-agent-mastercard-auth
+  - ../../../../bases/olympus/harmonia/import-agent-mastercard-settled
+  - ../../../../bases/olympus/harmonia/import-agent-visa-auth
+  - ../../../../bases/olympus/harmonia/import-agent-visa-refund
+  - ../../../../bases/olympus/harmonia/import-agent-visa-settle
+  - ../../../../bases/olympus/harmonia/import-agent-wasabi-club
+  - ../../../../bases/olympus/harmonia/import-agent-whsmith-rewards
+  - ../../../../bases/olympus/harmonia/import-worker
+  - ../../../../bases/olympus/harmonia/identify-worker
+  - ../../../../bases/olympus/harmonia/matching-worker
+  - ../../../../bases/olympus/harmonia/matching-worker-slow
+  - ../../../../bases/olympus/harmonia/streaming-worker
+  - ../../../../bases/olympus/harmonia/migrator
 
 resources:
-- aad.yaml
+  - aad.yaml
 
 configMapGenerator:
   - name: harmonia-config
@@ -36,26 +37,27 @@ configMapGenerator:
 patches:
   - target:
       kind: Deployment
-    patch: |-
-      - op: add
-        path: /spec/template/spec/containers/0/envFrom
-        value:
-          - configMapRef:
-              name: harmonia-config
-      - op: add
-        path: /spec/template/spec/containers/0/env
-        value:
-          - name: TXM_BLOB_STORAGE_DSN
-            valueFrom:
-              secretKeyRef:
-                key: connection_string
-                name: azure-storage-common
-          - name: TXM_POSTGRES_URI
-            valueFrom:
-              secretKeyRef:
-                name: azure-pgfs
-                key: common_harmonia
-          - name: TXM_TRACING_AGENT_HOST
-            valueFrom:
-              fieldRef:
-                fieldPath: status.hostIP
+    patch:  |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: harmonia
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: harmonia-config
+                env:
+                  - name: TXM_BLOB_STORAGE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string
+                        name: azure-storage-common
+                  - name: TXM_POSTGRES_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_harmonia
