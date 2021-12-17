@@ -20,13 +20,13 @@ patches:
         template:
           spec:
             containers:
-            - name: app
-              envFrom:
-                - configMapRef:
-                    name: asteria-config
-              env:
-                - name: POSTGRES_DSN
-                  valueFrom:
-                    secretKeyRef:
-                      name: azure-pgfs
-                      key: common_hermes
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: asteria-config
+                env:
+                  - name: POSTGRES_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_hermes
