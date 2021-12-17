@@ -23,7 +23,7 @@ patches:
             - name: app
               envFrom:
                 - configMapRef:
-                    name: hades-config
+                    name: asteria-config
               env:
               - name: POSTGRES_DSN
                 valueFrom:
