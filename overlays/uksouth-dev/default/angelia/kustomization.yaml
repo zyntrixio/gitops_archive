@@ -5,7 +5,31 @@ bases:
 resources:
   - aad.yaml
 
+configMapGenerator:
+  - name: angelia-config
+    namespace: default
+    envs:
+      - env.ini
+
 patches:
-  - path: env.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: angelia-config
+      - op: add
+        path: /spec/template/spec/containers/0/env
+        value:
+          - name: POSTGRES_READ_DSN
+            valueFrom:
+              secretKeyRef:
+                name: azure-pgfs
+                key: common_hermes
+          - name: POSTGRES_WRITE_DSN
+            valueFrom:
+              secretKeyRef:
+                name: azure-pgfs
+                key: common_hermes
