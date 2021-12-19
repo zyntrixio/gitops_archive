@@ -6,7 +6,7 @@ metadata:
   namespace: default
 spec:
   dnsNames:
-  - web.${cluster_name}.${location}.bink.sh
+    - web.${cluster_name}.${location}.bink.sh
   issuerRef:
     group: cert-manager.io
     kind: Issuer
