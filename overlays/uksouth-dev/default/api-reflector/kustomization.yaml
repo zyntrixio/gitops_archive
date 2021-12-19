@@ -27,7 +27,7 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                      name: angelia-config
+                      name: api-reflector-config
                 env:
                   - name: postgres_dsn
                     valueFrom:
