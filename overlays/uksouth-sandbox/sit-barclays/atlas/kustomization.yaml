@@ -3,6 +3,9 @@ bases:
 - ../../../../bases/olympus/atlas/consumer
 - ../../../../bases/olympus/atlas/migrator
 
+components:
+- ../../../common/pgbouncer
+
 patches:
 - path: env.yaml
   target:

@@ -3,7 +3,6 @@ resources:
 
 components:
   - ../../../common/pushgateway
-  - ../../../common/pgbouncer
 
 patches:
   - target:
