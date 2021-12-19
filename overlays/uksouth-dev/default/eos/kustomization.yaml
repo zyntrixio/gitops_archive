@@ -28,7 +28,7 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                    - name: eos-config
+                      name: eos-config
                 env:
                   - name: EOS_DATABASE_URI
                     valueFrom:

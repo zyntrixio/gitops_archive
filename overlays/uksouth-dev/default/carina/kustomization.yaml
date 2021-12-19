@@ -30,7 +30,7 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                      - name: carina-config
+                      name: carina-config
                 env:
                   - name: SQLALCHEMY_DATABASE_URI
                     valueFrom:
