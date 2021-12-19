@@ -1,14 +1,44 @@
+---
 bases:
-- ../../../../bases/cosmos/carina/api
-- ../../../../bases/cosmos/carina/migrator
-- ../../../../bases/cosmos/carina/task-worker
-- ../../../../bases/cosmos/carina/voucher-imports
-- ../../../../bases/cosmos/carina/voucher-updates
+  - ../../../../bases/cosmos/carina/api
+  - ../../../../bases/cosmos/carina/migrator
+  - ../../../../bases/cosmos/carina/task-worker
+  - ../../../../bases/cosmos/carina/voucher-imports
+  - ../../../../bases/cosmos/carina/voucher-updates
+
+configMapGenerator:
+  - name: carina-config
+    namespace: default
+    envs:
+      - env.ini
 
 resources:
-- aad.yaml
+  - aad.yaml
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: carina
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      - name: carina-config
+                env:
+                  - name: SQLALCHEMY_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_carina
+                  - name: BLOB_STORAGE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string
+                        name: azure-storage-common

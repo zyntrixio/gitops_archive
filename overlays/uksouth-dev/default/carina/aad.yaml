@@ -1,5 +1,5 @@
 ---
-apiVersion: "aadpodidentity.k8s.io/v1"
+apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentity
 metadata:
   name: carina-identity
@@ -9,7 +9,7 @@ spec:
   resourceID: /subscriptions/794aa787-ec6a-40dd-ba82-0ad64ed51639/resourceGroups/uksouth-dev/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-dev-carina
   clientID: 2bcccf89-5543-43e3-bb96-b27dd3cfab44
 ---
-apiVersion: "aadpodidentity.k8s.io/v1"
+apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentityBinding
 metadata:
   name: carina-identity-binding
