@@ -10,7 +10,7 @@ resources:
   - aad.yaml
 
 configMapGenerator:
-  - name: hermes-config
+  - name: hermes
     namespace: default
     envs:
       - env.ini
@@ -30,7 +30,7 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                      name: hermes-config
+                      name: hermes
                 env:
                   - name: HERMES_BLOB_STORAGE_DSN
                     valueFrom:

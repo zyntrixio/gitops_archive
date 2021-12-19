@@ -4,7 +4,7 @@ bases:
   - ../../../../bases/olympus/hades/migrator
 
 configMapGenerator:
-  - name: hades-config
+  - name: hades
     namespace: default
     envs:
       - env.ini
@@ -24,7 +24,7 @@ patches:
             - name: app
               envFrom:
                 - configMapRef:
-                    name: hades-config
+                    name: hades
               env:
                 - name: HADES_DATABASE_URL
                   valueFrom:

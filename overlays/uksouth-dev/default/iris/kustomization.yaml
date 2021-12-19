@@ -3,7 +3,7 @@ bases:
   - ../../../../bases/olympus/iris
 
 configMapGenerator:
-  - name: iris-config
+  - name: iris
     namespace: default
     envs:
       - env.ini
@@ -23,7 +23,7 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                      name: iris-config
+                      name: iris
                 env:
                   - name: STORAGE_ACCOUNT_CONNECTION_STRING
                     valueFrom:

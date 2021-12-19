@@ -7,7 +7,7 @@ bases:
   - ../../../../bases/cosmos/carina/voucher-updates
 
 configMapGenerator:
-  - name: carina-config
+  - name: carina
     namespace: default
     envs:
       - env.ini
@@ -30,7 +30,7 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                      name: carina-config
+                      name: carina
                 env:
                   - name: SQLALCHEMY_DATABASE_URI
                     valueFrom:

@@ -29,7 +29,7 @@ resources:
   - aad.yaml
 
 configMapGenerator:
-  - name: harmonia-config
+  - name: harmonia
     namespace: default
     envs:
       - env.ini
@@ -49,7 +49,7 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                      name: harmonia-config
+                      name: harmonia
                 env:
                   - name: TXM_BLOB_STORAGE_DSN
                     valueFrom:

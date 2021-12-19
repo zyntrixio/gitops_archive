@@ -3,7 +3,7 @@ bases:
   - ../../../../bases/olympus/lethe
 
 configMapGenerator:
-  - name: lethe-config
+  - name: lethe
     namespace: default
     envs:
       - env.ini
@@ -23,4 +23,4 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                      name: lethe-config
+                      name: lethe

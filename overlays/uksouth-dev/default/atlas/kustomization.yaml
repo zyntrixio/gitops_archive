@@ -5,7 +5,7 @@ bases:
   - ../../../../bases/olympus/atlas/migrator
 
 configMapGenerator:
-  - name: atlas-config
+  - name: atlas
     namespace: default
     envs:
       - env.ini
@@ -25,7 +25,7 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                      name: atlas-config
+                      name: atlas
                 env:
                   - name: ATLAS_DATABASE_URI
                     valueFrom:

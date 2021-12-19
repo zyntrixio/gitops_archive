@@ -7,7 +7,7 @@ resources:
   - ingress.yaml
 
 configMapGenerator:
-  - name: api-reflector-config
+  - name: api-reflector
     namespace: default
     envs:
       - env.ini
@@ -27,7 +27,7 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                      name: api-reflector-config
+                      name: api-reflector
                 env:
                   - name: postgres_dsn
                     valueFrom:

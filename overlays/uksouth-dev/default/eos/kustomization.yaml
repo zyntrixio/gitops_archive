@@ -8,7 +8,7 @@ resources:
   - aad.yaml
 
 configMapGenerator:
-  - name: eos-config
+  - name: eos
     namespace: default
     envs:
       - env.ini
@@ -28,7 +28,7 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                      name: eos-config
+                      name: eos
                 env:
                   - name: EOS_DATABASE_URI
                     valueFrom:

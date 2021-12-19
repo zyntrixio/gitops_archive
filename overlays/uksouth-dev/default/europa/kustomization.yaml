@@ -7,7 +7,7 @@ resources:
   - aad.yaml
 
 configMapGenerator:
-  - name: europa-config
+  - name: europa
     namespace: default
     envs:
       - env.ini
@@ -27,7 +27,7 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                      name: europa-config
+                      name: europa
                 env:
                   - name: EUROPA_DATABASE_URI
                     valueFrom:

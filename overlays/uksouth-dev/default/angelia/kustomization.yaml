@@ -6,7 +6,7 @@ resources:
   - aad.yaml
 
 configMapGenerator:
-  - name: angelia-config
+  - name: angelia
     namespace: default
     envs:
       - env.ini
@@ -26,7 +26,7 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                      name: angelia-config
+                      name: angelia
                 env:
                   - name: POSTGRES_READ_DSN
                     valueFrom:
