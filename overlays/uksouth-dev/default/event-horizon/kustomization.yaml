@@ -1,11 +1,50 @@
+---
 bases:
-- ../../../../bases/cosmos/event-horizon
+  - ../../../../bases/cosmos/event-horizon
 
 resources:
-- aad.yaml
+  - aad.yaml
+
+configMapGenerator:
+  - name: event-horizon-config
+    namespace: default
+    envs:
+      - env.ini
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
-    
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: event-horizon
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: event-horizon-config
+                env:
+                  - name: POLARIS_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_polaris
+                  - name: VELA_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_vela
+                  - name: CARINA_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_carina
+                  - name: EVENT_HORIZON_CLIENT_SECRET
+                    valueFrom:
+                      secretKeyRef:
+                        key: value
+                        name: bpl-event-horizon-sso-client-secret
