@@ -1,11 +1,15 @@
+---
 bases:
-- ../../../../bases/olympus/hermes/api
-- ../../../../bases/olympus/hermes/beat
-- ../../../../bases/olympus/hermes/celery
-- ../../../../bases/olympus/hermes/migrator
-- ../../../../bases/olympus/hermes/logic
+  - ../../../../bases/olympus/hermes/api
+  - ../../../../bases/olympus/hermes/beat
+  - ../../../../bases/olympus/hermes/celery
+  - ../../../../bases/olympus/hermes/migrator
+  - ../../../../bases/olympus/hermes/logic
+
+resources:
+  - aad.yaml
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment

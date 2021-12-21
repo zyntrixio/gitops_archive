@@ -13,7 +13,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/bink-api-v2-automation-suite
       newName: binkcore.azurecr.io/bink-api-v2-automation-suite
-      newTag: "staging-2021-11-12T153001Z" # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-apiv2:tag"}
+      newTag: "2021-12-14T162654Z" # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-apiv2:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -35,7 +35,7 @@ spec:
   imageRepositoryRef:
     name: pyqa-apiv2
   filterTags:
-    pattern: 'staging-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
+    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
     extract: '$ts'
   policy:
     alphabetical:

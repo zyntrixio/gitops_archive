@@ -1,6 +1,14 @@
 resources:
-- deployment.yaml
+  - deployment.yaml
 
 components:
-- ../../../common/pushgateway
-- ../../../common/pgbouncer
+  - ../../../common/pushgateway
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/metadata/labels
+        value:
+          aadpodidbinding: metis

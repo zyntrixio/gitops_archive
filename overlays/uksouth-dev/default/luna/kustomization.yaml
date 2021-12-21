@@ -1,7 +1,26 @@
+---
 bases:
-- ../../../../bases/cosmos/luna
+  - ../../../../bases/cosmos/luna
+
+configMapGenerator:
+  - name: luna
+    namespace: default
+    envs:
+      - env.ini
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: luna
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: luna

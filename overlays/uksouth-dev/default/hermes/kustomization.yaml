@@ -1,11 +1,49 @@
+---
 bases:
-- ../../../../bases/olympus/hermes/api
-- ../../../../bases/olympus/hermes/beat
-- ../../../../bases/olympus/hermes/celery
-- ../../../../bases/olympus/hermes/migrator
-- ../../../../bases/olympus/hermes/logic
+  - ../../../../bases/olympus/hermes/api
+  - ../../../../bases/olympus/hermes/beat
+  - ../../../../bases/olympus/hermes/celery
+  - ../../../../bases/olympus/hermes/migrator
+  - ../../../../bases/olympus/hermes/logic
+
+resources:
+  - aad.yaml
+
+configMapGenerator:
+  - name: hermes
+    namespace: default
+    envs:
+      - env.ini
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: hermes
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: hermes
+                env:
+                  - name: HERMES_BLOB_STORAGE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string
+                        name: azure-storage-common
+                  - name: HERMES_DATABASE_URL
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_hermes
+                  - name: APPLE_CLIENT_SECRET
+                    valueFrom:
+                      secretKeyRef:
+                        key: key
+                        name: sign-in-with-apple

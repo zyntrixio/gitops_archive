@@ -3,26 +3,27 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: postgres-exporter
+    app: postgres-exporter-fs
   name: postgres-exporter-fs
   namespace: monitoring
 spec:
   selector:
     matchLabels:
-      app: postgres-exporter
+      app: postgres-exporter-fs
   template:
     metadata:
       annotations:
+        kubectl.kubernetes.io/default-container: app
         linkerd.io/inject: enabled
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
         prometheus.io/job: postgres
       labels:
-        app: postgres-exporter
+        app: postgres-exporter-fs
     spec:
       containers:
-      - name: postgres-exporter
-        image: quay.io/prometheuscommunity/postgres-exporter:v0.10.0
+      - name: app
+        image: binkcore.azurecr.io/postgres-exporter-fs:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 9100
@@ -33,4 +34,4 @@ spec:
             cpu: 250m
             memory: 250Mi
       imagePullSecrets:
-      - name: binkext.azurecr.io
+      - name: binkcore.azurecr.io

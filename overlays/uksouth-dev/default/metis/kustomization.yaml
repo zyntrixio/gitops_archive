@@ -1,8 +1,36 @@
+---
 bases:
-- ../../../../bases/olympus/metis/api
-- ../../../../bases/olympus/metis/celery
+  - ../../../../bases/olympus/metis/api
+  - ../../../../bases/olympus/metis/celery
+
+resources:
+  - aad.yaml
+
+configMapGenerator:
+  - name: metis
+    namespace: default
+    envs:
+      - env.ini
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: metis
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: metis
+                env:
+                  - name: PONTUS_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_pontus

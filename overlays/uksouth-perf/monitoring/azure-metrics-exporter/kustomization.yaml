@@ -1,0 +1,7 @@
+bases:
+  - ../../../../bases/infrastructure/azure-metrics-exporter
+
+namespace: monitoring
+
+resources:
+  - configmap.yaml

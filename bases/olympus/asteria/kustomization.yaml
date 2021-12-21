@@ -1,9 +1,6 @@
 resources:
 - deployment.yaml
 
-components:
-- ../../common/pgbouncer
-
 patches:
   - target:
       kind: Deployment

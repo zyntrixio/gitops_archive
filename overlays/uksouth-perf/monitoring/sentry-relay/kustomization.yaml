@@ -1,0 +1,5 @@
+bases:
+- ../../../../bases/infrastructure/sentry-relay
+
+resources:
+- configmap.yaml

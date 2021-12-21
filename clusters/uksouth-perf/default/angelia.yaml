@@ -1,0 +1,42 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: angelia
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-perf/default/angelia
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/angelia
+      newName: binkcore.azurecr.io/angelia
+      newTag: "staging-0.7.4" # {"$imagepolicy": "flux-system:uksouth-perf-angelia:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: angelia
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/angelia
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-perf-angelia
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: angelia
+  filterTags:
+    pattern: 'staging-(?P<ts>\d+(\.\d+)*)$'
+    extract: '$ts'
+  policy:
+    semver:
+      range: ">0.0.1"

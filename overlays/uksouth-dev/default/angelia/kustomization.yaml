@@ -1,7 +1,40 @@
+---
 bases:
-- ../../../../bases/olympus/angelia/api
+  - ../../../../bases/olympus/angelia/api
+
+resources:
+  - aad.yaml
+
+configMapGenerator:
+  - name: angelia
+    namespace: default
+    envs:
+      - env.ini
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: angelia
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: angelia
+                env:
+                  - name: POSTGRES_READ_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_hermes
+                  - name: POSTGRES_WRITE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_hermes

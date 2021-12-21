@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: api2-docs.${cluster_name}.${location}.bink.sh
+  namespace: default
+spec:
+  dnsNames:
+  - api2-docs.${cluster_name}.${location}.bink.sh
+  issuerRef:
+    group: cert-manager.io
+    kind: Issuer
+    name: letsencrypt
+  secretName: api2-docs.${cluster_name}.${location}.bink.sh

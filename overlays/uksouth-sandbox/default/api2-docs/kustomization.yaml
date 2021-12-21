@@ -1,0 +1,19 @@
+bases:
+  - ../../../../bases/olympus/api2-docs
+  - ../../../../bases/common/issuer
+
+resources:
+  - certificate.yaml
+  - ingress.yaml
+
+namespace: default
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env
+        value:
+          - name: DEPLOYED_ENV
+            value: sandbox

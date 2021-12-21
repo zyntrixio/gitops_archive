@@ -13,4 +13,4 @@ spec:
   images:
     - name: ghcr.io/binkhq/simplenginx
       newName: ghcr.io/binkhq/simplenginx
-      newTag: "2021-11-01-144225" # {"$imagepolicy": "flux-system:uksouth-sandbox-simplenginx:tag"}
+      newTag: "2021-12-01-160546" # {"$imagepolicy": "flux-system:uksouth-sandbox-simplenginx:tag"}

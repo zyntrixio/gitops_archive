@@ -13,7 +13,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/pyqa
       newName: binkcore.azurecr.io/pyqa
-      newTag: "develop-2021-11-08-161932" # {"$imagepolicy": "flux-system:uksouth-staging-pyqa:tag"}
+      newTag: "2021-12-15T175804Z" # {"$imagepolicy": "flux-system:uksouth-staging-pyqa:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -35,7 +35,7 @@ spec:
   imageRepositoryRef:
     name: pyqa
   filterTags:
-    pattern: 'develop-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
     extract: '$ts'
   policy:
     alphabetical:

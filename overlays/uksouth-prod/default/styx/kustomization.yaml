@@ -1,0 +1,18 @@
+bases:
+  - ../../../../bases/olympus/styx
+
+resources:
+  - aad.yaml
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env
+        value:
+          - name: redis_url
+            valueFrom:
+              secretKeyRef:
+                name: azure-redis-vnet
+                key: uri_ssl

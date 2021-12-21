@@ -23,18 +23,18 @@ spec:
         - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
-              name: azure-pg-common
-              key: admin_user
+              name: azure-pgfs
+              key: common_username
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: azure-pg-common
-              key: password
+              name: azure-pgfs
+              key: common_password
         - name: POSTGRES_HOST
           valueFrom:
             secretKeyRef:
-              name: azure-pg-common
-              key: host
+              name: azure-pgfs
+              key: common_host
         - name: POSTGRES_DB
           value: mobsf
         ports:

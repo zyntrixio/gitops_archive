@@ -1,11 +1,24 @@
+---
 bases:
-- ../../../../bases/binkweb/nginx
+  - ../../../../bases/binkweb/nginx
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: binkweb-nginx
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: BLOBSTORAGE_STATICSITE
+                    value: https://binkuksouthdevweb.z33.web.core.windows.net
 
 resources:
-- cert.yaml
-- ingress.yaml
+  - cert.yaml
+  - ingress.yaml

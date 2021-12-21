@@ -1,19 +1,19 @@
 ---
-apiVersion: "aadpodidentity.k8s.io/v1"
+apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentity
 metadata:
-  name: europa-identity
+  name: europa
   namespace: default
 spec:
   type: 0
   resourceID: /subscriptions/794aa787-ec6a-40dd-ba82-0ad64ed51639/resourceGroups/uksouth-dev/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-dev-europa
   clientID: 675324e4-7c5e-4e24-8c6d-007a3cbef52a
 ---
-apiVersion: "aadpodidentity.k8s.io/v1"
+apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentityBinding
 metadata:
-  name: europa-identity-binding
+  name: europa
   namespace: default
 spec:
-  azureIdentity: europa-identity
+  azureIdentity: europa
   selector: europa

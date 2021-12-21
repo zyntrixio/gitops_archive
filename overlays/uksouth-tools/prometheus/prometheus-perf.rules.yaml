@@ -36,6 +36,15 @@ groups:
       resource: "{{ $labels.instance }}"
       summary: Check perf nginx ingress - bad upstate on one or more pods for over 3 minutes
 
+  - alert: perf postgres active connections
+    expr: (active_connections_count_average{resource_name=~"bink-uksouth-perf.*"} OR on() vector(0)) < 1
+    for: 5m
+    labels:
+      severity: S3
+    annotations:
+      resource: "{{ $labels.resource_name }}"
+      summary: "Check Postgres {{ $labels.resource_name }}, reporting no current active connections"
+
   - alert: perf postgres cpu
     expr: cpu_percent_percent_max{resource_name="bink-uksouth-perf-common"} > 90
     for: 5m
@@ -53,15 +62,33 @@ groups:
     annotations:
       resource: "{{ $labels.resource_name }}"
       summary: Check perf postgres - storage over 90% for 5 minutes
-
-  - alert: perf postgres up state
-    expr: (up{instance="bink-uksouth-perf-common",job="postgres"} OR on() vector(0)) < 1
+      
+  - alert: perf postgres up state - direct
+    expr: postgres_up_state{instance="bink-uksouth-perf"} < 1
     for: 3m
     labels:
       severity: S3
     annotations:
       resource: "{{ $labels.instance }}"
-      summary: Check perf postgres - bad upstate for over 3 minutes
+      summary: Check perf postgres flexible server - bad upstate for over 3 minutes
+      
+  - alert: perf postgres up state - pgbouncer
+    expr: pgbouncer_up_state{instance="bink-uksouth-perf"} < 1
+    for: 3m
+    labels:
+      severity: S3
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check perf postgres flexible server pgbouncer - bad upstate for over 3 minutes
+
+#   - alert: perf postgres up state
+#     expr: (up{instance="bink-uksouth-perf-common",job="postgres"} OR on() vector(0)) < 1
+#     for: 3m
+#     labels:
+#       severity: S3
+#     annotations:
+#       resource: "{{ $labels.instance }}"
+#       summary: Check perf postgres - bad upstate for over 3 minutes
 
   - alert: perf rabbitmq virtual machine up state
     expr: (up{job="azure_node",name=~"perf-rabbitmq\\d"} OR on() vector(0)) < 1
@@ -80,6 +107,33 @@ groups:
     annotations:
       resource: "{{ $labels.node }}"
       summary: Check perf RabbitMQ cluster - at least 1 RabbitMQ instance has not been running for over 3 minutes
+
+  - alert: perf redis cpu
+    expr: serverload_percent_max{resource_name="bink-uksouth-perf"} > 90
+    for: 5m
+    labels:
+      severity: S3
+    annotations:
+      resource: "{{ $labels.resource_name }}"
+      summary: Check performance redis - CPU over 90% for over 5 minutes
+      
+  - alert: perf redis memory
+    expr: (usedmemory_bytes_max{resource_name="bink-uksouth-perf"} / 1000000000) > 5.5
+    for: 5m
+    labels:
+      severity: S2
+    annotations:
+      resource: "{{ $labels.resource_name }}"
+      summary: Check perf redis - memory 5.5G out of 6G used for over 5 minutes
+
+  - alert: perf redis up state
+    expr: (redis_up{instance="bink-uksouth-perf"} OR on() vector(0)) < 1
+    for: 3m
+    labels:
+      severity: S3
+    annotations:
+      resource: "{{ $labels.instance }}"
+      summary: Check performance redis - bad upstate for over 3 minutes
 
   - alert: perf virtual machines cpu
     expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"perf0-.+",mode="idle"}[5m])) * 100) > 90

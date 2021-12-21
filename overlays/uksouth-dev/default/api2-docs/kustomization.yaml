@@ -1,0 +1,27 @@
+---
+bases:
+  - ../../../../bases/olympus/api2-docs
+  - ../../../../bases/common/issuer
+
+resources:
+  - certificate.yaml
+  - ingress.yaml
+
+namespace: default
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: api2-docs
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: DEPLOYED_ENV
+                    value: dev

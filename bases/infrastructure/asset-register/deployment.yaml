@@ -4,6 +4,7 @@ kind: Deployment
 metadata:
   labels:
     app: asset-register
+    component: api
   name: asset-register
   namespace: default
 spec:
@@ -13,6 +14,7 @@ spec:
   selector:
     matchLabels:
       app: asset-register
+      component: api
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -21,58 +23,31 @@ spec:
   template:
     metadata:
       annotations:
+        kubectl.kubernetes.io/default-container: app
         linkerd.io/inject: enabled
       labels:
         app: asset-register
+        component: api
     spec:
       containers:
-      - image: binkcore.azurecr.io/asset-register:tools-2021-07-08T203707Z
-        name: assetregister
+      - image: binkcore.azurecr.io/asset-register:2021-12-10T095611Z
+        name: app
         ports:
         - containerPort: 9000
         env:
-        - name: DB_USER
+        - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
-              key: admin_user
-              name: azure-pg-common
+              name: azure-pgfs
+              key: common_asset_register
         imagePullPolicy: Always
-      - image: mcr.microsoft.com/azure-oss-db-tools/pgbouncer-sidecar:pgbouncerv1.13
-        imagePullPolicy: Always
-        lifecycle:
-          preStop:
-            exec:
-              command:
-              - /bin/sh
-              - -c
-              - killall -INT pgbouncer && sleep 120
-        livenessProbe:
-          periodSeconds: 60
-          tcpSocket:
-            port: 5432
-        name: pgbouncer
-        ports:
-        - containerPort: 5432
-        resources:
-          limits:
-            memory: 20Mi
-          requests:
-            memory: 10Mi
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
             drop:
             - all
-        volumeMounts:
-        - mountPath: /etc/pgbouncer
-          name: configfiles
-          readOnly: true
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       imagePullSecrets:
       - name: binkcore.azurecr.io
-      volumes:
-      - name: configfiles
-        secret:
-          secretName: azure-pg-all

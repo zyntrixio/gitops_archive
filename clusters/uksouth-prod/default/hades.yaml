@@ -11,9 +11,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/hades
-    newName: binkcore.azurecr.io/hades
-    newTag: "prod-2.5.0" # {"$imagepolicy": "flux-system:uksouth-prod-hades:tag"}
+    - name: binkcore.azurecr.io/hades
+      newName: binkcore.azurecr.io/hades
+      newTag: "prod-2.5.1" # {"$imagepolicy": "flux-system:uksouth-prod-hades:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository

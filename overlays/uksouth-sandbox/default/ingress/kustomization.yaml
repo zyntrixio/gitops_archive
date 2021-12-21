@@ -1,2 +1,2 @@
-resources:
-- issuer.yaml
+bases:
+  - ../../../../bases/common/issuer

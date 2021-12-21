@@ -1,11 +1,36 @@
+---
 bases:
-- ../../../../bases/oss/api-reflector
+  - ../../../../bases/oss/api-reflector
 
 resources:
-- cert.yaml
-- ingress.yaml
+  - cert.yaml
+  - ingress.yaml
+
+configMapGenerator:
+  - name: api-reflector
+    namespace: default
+    envs:
+      - env.ini
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: api-reflector
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: api-reflector
+                env:
+                  - name: postgres_dsn
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_api_reflector

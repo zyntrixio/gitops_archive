@@ -1,0 +1,8 @@
+bases:
+- ../../../../bases/infrastructure/rabbitmq-proxy
+
+configMapGenerator:
+- name: rabbitmq-proxy
+  namespace: default
+  files:
+  - default.conf

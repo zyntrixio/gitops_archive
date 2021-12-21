@@ -1,7 +1,0 @@
-bases:
-- ../../../../bases/infrastructure/tableu-postgres-syncer
-
-patches:
-- path: env.yaml
-  target:
-    kind: Deployment

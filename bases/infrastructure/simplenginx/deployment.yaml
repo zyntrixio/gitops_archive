@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,7 +8,7 @@ metadata:
   namespace: default
 spec:
   progressDeadlineSeconds: 600
-  replicas: 1
+  replicas: 3
   revisionHistoryLimit: 0
   selector:
     matchLabels:
@@ -28,27 +29,39 @@ spec:
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - simplenginx
-              topologyKey: kubernetes.io/hostname
-            weight: 100
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - simplenginx
+                topologyKey: kubernetes.io/hostname
+              weight: 100
       containers:
-      - image: ghcr.io/binkhq/simplenginx:latest
-        name: nginx
-        ports:
-        - containerPort: 80
-          protocol: TCP
-        resources:
-          limits:
-            memory: 10Mi
-            cpu: 1000m
-          requests:
-            memory: 10Mi
-            cpu: 10m
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
+        - image: ghcr.io/binkhq/simplenginx:latest
+          name: nginx
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              memory: 10Mi
+              cpu: 1000m
+            requests:
+              memory: 10Mi
+              cpu: 10m
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 3
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File

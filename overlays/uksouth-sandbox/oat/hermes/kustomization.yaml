@@ -4,6 +4,9 @@ bases:
 - ../../../../bases/olympus/hermes/celery
 - ../../../../bases/olympus/hermes/migrator
 
+components:
+- ../../../common/pgbouncer
+
 patches:
 - path: env.yaml
   target:

@@ -11,9 +11,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/metis
-    newName: binkcore.azurecr.io/metis
-    newTag: "prod-1.22.0" # {"$imagepolicy": "flux-system:uksouth-prod-metis:tag"}
+    - name: binkcore.azurecr.io/metis
+      newName: binkcore.azurecr.io/metis
+      newTag: "prod-1.23.1" # {"$imagepolicy": "flux-system:uksouth-prod-metis:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
