@@ -1,11 +1,12 @@
+---
 bases:
-- github.com/terrycain/keyvault2kube/deploy?ref=2.1.1
+  - github.com/terrycain/keyvault2kube/deploy?ref=2.1.0
 
 configMapGenerator:
   - name: keyvault-infra-sync
     namespace: kube-system
     files:
-    - config/pgbouncer.yaml
+      - config/pgbouncer.yaml
 
 patches:
   - target:
