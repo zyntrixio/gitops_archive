@@ -12,6 +12,12 @@ patches:
       kind: Deployment
     patch: |-
       - op: replace
+        path: /spec/template/metadata/labels/aadpodidbinding
+        value: keyvault-infra-sync
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
         path: /spec/template/spec/containers/0/env
         value:
           - name: KEY_VAULT_URLS
@@ -28,3 +34,27 @@ patches:
       - op: replace
         path: /spec/clientID
         value: a4e207e6-9d04-4a47-937d-a2bc32a18c00
+  - target:
+      kind: AzureIdentity
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: keyvault-infra-sync
+  - target:
+      kind: AzureIdentityBinding
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: keyvault-infra-sync
+  - target:
+      kind: AzureIdentityBinding
+    patch: |-
+      - op: replace
+        path: /spec/azureIdentity
+        value: keyvault-infra-sync
+  - target:
+      kind: AzureIdentityBinding
+    patch: |-
+      - op: replace
+        path: /spec/selector
+        value: keyvault-infra-sync
