@@ -1,10 +1,30 @@
 bases:
-- ../../../../bases/infrastructure/keyvault-infra-sync
-
-resources:
-- azureidentity.yaml
+- github.com/terrycain/keyvault2kube/deploy?ref=2.1.1
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: keyvault-infra-sync
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env
+        value:
+          - name: KEY_VAULT_URLS
+            value: https://bink-uksouth-dev-inf.vault.azure.net/
+  - target:
+      kind: AzureIdentity
+    patch: |-
+      - op: replace
+        path: /spec/resourceID
+        value: /subscriptions/794aa787-ec6a-40dd-ba82-0ad64ed51639/resourceGroups/uksouth-dev/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-dev-infra-sync
+  - target:
+      kind: AzureIdentity
+    patch: |-
+      - op: replace
+        path: /spec/clientID
+        value: a4e207e6-9d04-4a47-937d-a2bc32a18c00
