@@ -5,8 +5,7 @@ configMapGenerator:
   - name: keyvault-infra-sync
     namespace: kube-system
     files:
-    - config/pgbouncer.ini
-    - config/userlist.txt
+    - config/pgbouncer.yaml
 
 patches:
   - target:
