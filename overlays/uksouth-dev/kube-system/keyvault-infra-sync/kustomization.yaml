@@ -1,6 +1,13 @@
 bases:
 - github.com/terrycain/keyvault2kube/deploy?ref=2.1.1
 
+configMapGenerator:
+  - name: keyvault-infra-sync
+    namespace: kube-system
+    files:
+    - config/pgbouncer.ini
+    - config/userlist.txt
+
 patches:
   - target:
       kind: Deployment
@@ -22,6 +29,24 @@ patches:
         value:
           - name: KEY_VAULT_URLS
             value: https://bink-uksouth-dev-inf.vault.azure.net/
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/volumeMounts
+        value:
+          - mountPath: /app/templates
+            name: template-config
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/volumes
+        value:
+          - name: template-config
+            configMap:
+              defaultMode: 420
+              name: keyvault-infra-sync
   - target:
       kind: AzureIdentity
     patch: |-

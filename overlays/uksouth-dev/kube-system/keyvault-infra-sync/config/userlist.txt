@@ -1,0 +1,3 @@
+{%- for server in servers %}
+"{{ server.admin_user }}" "{{ server.password }}"
+{% endfor %}
