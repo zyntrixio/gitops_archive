@@ -6,6 +6,8 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-sandbox/oat/hermes
+  dependsOn:
+    - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository
