@@ -5,6 +5,13 @@ resources:
 - serviceaccount.yaml
 - namespace.yaml
 
+secretGenerator:
+  - name: elasticsearch-auth
+    namespace: monitoring
+    literals:
+      - ELASTICSEARCH_USER=elastic
+      - ELASTICSEARCH_PASSWORD=H~E=*1u1pdSmeoA
+
 patches:
   - target:
       kind: DaemonSet
