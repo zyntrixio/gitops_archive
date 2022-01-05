@@ -1,5 +1,8 @@
-[sinks.stdout]
-type = "console"
+[sinks.loganalytics]
+type = "azure_monitor_logs"
 inputs = ["kubernetes_logs"]
-target = "stdout"
-encoding = "json"
+azure_resource_id = "/subscriptions/794aa787-ec6a-40dd-ba82-0ad64ed51639/resourcegroups/uksouth-dev/providers/microsoft.operationalinsights/workspaces/uksouth-dev"
+customer_id = "73c4f183-c6cc-4d89-8022-1475b3299a10"
+host = "ods.opinsights.azure.com"
+log_type = "kuberentes"
+shared_key = "yZrd29ZeW7yAUWSWVO7xQ11M+YU/fVNfgivdapX7tVUvAgMtvshlusmbadb+0R82B7bZ95B7DdSQTTtnPW3gjg=="
