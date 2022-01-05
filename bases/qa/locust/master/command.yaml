@@ -10,6 +10,6 @@ spec:
         command:
         - locust
         - --master
-        - --host=http://hermes-api/ubiquity
+        - --host=http://hermes-api
         - --master-port=5557
         - --locustfile=locustfile_peak_hour.py
