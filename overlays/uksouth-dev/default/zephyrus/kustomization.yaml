@@ -1,10 +1,29 @@
-resources:
-- azureidentity.yaml
-
+---
 bases:
-- ../../../../bases/olympus/zephyrus
+  - ../../../../bases/olympus/zephyrus
+
+resources:
+  - aad.yaml
+
+configMapGenerator:
+  - name: zephyrus
+    namespace: default
+    envs:
+      - env.ini
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: zephyrus
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: zephyrus
