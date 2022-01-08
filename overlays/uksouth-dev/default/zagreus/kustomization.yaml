@@ -1,9 +1,34 @@
+---
 bases:
-- ../../../../bases/olympus/zagreus/api
-- ../../../../bases/olympus/zagreus/consumer
-- ../../../../bases/olympus/zagreus/migrator
+  - ../../../../bases/olympus/zagreus/api
+  - ../../../../bases/olympus/zagreus/consumer
+  - ../../../../bases/olympus/zagreus/migrator
+
+configMapGenerator:
+  - name: zagreus
+    namespace: default
+    envs:
+      - env.ini
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: zagreus
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: ZAGREUS_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_zagreus
+                envFrom:
+                  - configMapRef:
+                      name: zagreus
