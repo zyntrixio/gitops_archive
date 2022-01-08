@@ -2,6 +2,18 @@ bases:
 - ../../../../bases/infrastructure/rabbitmq
 
 patches:
-- path: env.yaml
-  target:
-    kind: StatefulSet
+  - target:
+      kind: StatefulSet
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: polaris
+      spec:
+        template:
+          spec:
+            containers:
+              - name: rabbitmq
+                env:
+                  - name: RABBITMQ_ERLANG_COOKIE
+                    value: UWo3ofyZ1cC5LHAfyf6LWUTD3iG9nO5hfkW9CJNUX00
