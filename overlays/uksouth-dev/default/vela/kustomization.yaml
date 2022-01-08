@@ -1,13 +1,37 @@
+---
 bases:
-- ../../../../bases/cosmos/vela/api
-- ../../../../bases/cosmos/vela/migrator
-- ../../../../bases/cosmos/vela/task-worker
+  - ../../../../bases/cosmos/vela/api
+  - ../../../../bases/cosmos/vela/migrator
+  - ../../../../bases/cosmos/vela/task-worker
 
 resources:
-- aad.yaml
+  - aad.yaml
+
+configMapGenerator:
+  - name: vela
+    namespace: default
+    envs:
+      - env.ini
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
-    
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: vela
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: SQLALCHEMY_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_vela
+                envFrom:
+                  - configMapRef:
+                      name: vela
