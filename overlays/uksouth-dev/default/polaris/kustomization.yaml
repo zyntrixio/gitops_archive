@@ -6,8 +6,31 @@ bases:
 resources:
 - aad.yaml
 
+configMapGenerator:
+  - name: polaris
+    namespace: default
+    envs:
+      - env.ini
+
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
-    
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: polaris
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: SQLALCHEMY_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_polaris
+                envFrom:
+                  - configMapRef:
+                      name: polaris
