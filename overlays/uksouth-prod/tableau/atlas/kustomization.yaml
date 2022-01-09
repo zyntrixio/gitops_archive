@@ -15,13 +15,13 @@ patches:
     patch: |-
       - op: replace
         path: /metadata/name
-        value: atlas-sync
+        value: atlas-sync-fs
   - target:
       kind: CronJob
     patch: |-
       - op: replace
         path: /spec/schedule
-        value: "0 4 * * *"
+        value: "0 2 * * *"
   - target:
       kind: CronJob
     patch: |-
@@ -34,9 +34,12 @@ patches:
                 key: common_atlas
                 name: azure-pgfs
           - name: destination_psql_connection_string
-            value: postgresql://laadmin@bink-tableau-uksouth:hbhboGJzguG1hebAkALxvAnL@bink-tableau-uksouth.postgres.database.azure.com/postgres?sslmode=require
+            valueFrom:
+              secretKeyRef:
+                key: tableau_postgres
+                name: azure-pgfs
           - name: destination_is_single_server
-            value: 'true'
+            value: 'false'
           - name: redis_url
             valueFrom:
               secretKeyRef:
