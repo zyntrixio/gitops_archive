@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: elasticsearch-to-postgres
+  name: elasticsearch-to-postgres
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elasticsearch-to-postgres
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: elasticsearch-to-postgres
+    spec:
+      containers:
+      - image: binkcore.azurecr.io/elasticsearch-to-postgres:latest
+        name: app
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 256Mi
+          requests:
+            cpu: 1000m
+            memory: 256Mi
+      imagePullSecrets:
+      - name: binkcore.azurecr.io

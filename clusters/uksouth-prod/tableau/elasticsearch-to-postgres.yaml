@@ -1,27 +1,27 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: tableau-postgres-syncer
+  name: tableau-elasticsearch-to-postgres
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-prod/default/tableau-postgres-syncer
+  path: ./overlays/uksouth-prod/tableau/elasticsearch-to-postgres
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/postgres-syncer
-      newName: binkcore.azurecr.io/postgres-syncer
-      newTag: "2021-11-17T151250Z" # {"$imagepolicy": "flux-system:uksouth-prod-postgres-syncer:tag"}
+    - name: binkcore.azurecr.io/elasticsearch-to-postgres
+      newName: binkcore.azurecr.io/elasticsearch-to-postgres
+      newTag: "2021-11-17T151250Z" # {"$imagepolicy": "flux-system:uksouth-prod-elasticsearch-to-postgres:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: postgres-syncer
+  name: elasticsearch-to-postgres
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/postgres-syncer
+  image: binkcore.azurecr.io/elasticsearch-to-postgres
   interval: 1m0s
   secretRef:
     name: binkcore.azurecr.io
@@ -29,11 +29,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: uksouth-prod-postgres-syncer
+  name: uksouth-prod-elasticsearch-to-postgres
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: postgres-syncer
+    name: elasticsearch-to-postgres
   filterTags:
     pattern: '(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
     extract: '$ts'
