@@ -72,6 +72,14 @@ groups:
     annotations:
       summary: This alert will test the Prometheus, Alertmanager, xMatters alerting chain at 10am every Friday. It should always be red.
 
+  - alert: external heathcheck (should be red)
+    expr: ({job="always_alert"} OR on() vector(0)) == 0
+    for: 1m
+    labels:
+      severity: HEALTHCHECK
+    annotations:
+      summary: This will ping healthchecks.io. It should always be red.
+
   # This does not check AAAA record as we make no use of that.
   # - alert: azure frontdoor ip change
   #   expr: probe_success{job="azurefrontdoor_dns"} < 1
