@@ -137,6 +137,10 @@ data:
         matchers:
         - severity=~"^S1.*|P1.*$"
         continue: true
+
+      - receiver: 'healthchecks'
+        matchers:
+        - severity="HEALTHCHECK"
         
       # Test Prometheus/Alertmanager/Teams/OpsGenie alert/callout chain
       - receiver: 'alerts-devops_friday_test'
@@ -199,6 +203,10 @@ data:
     - name: 'monitoring'
       webhook_configs:
       - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/cc573c6a0b0648b5a53967684fe87fb8/de80162c-8e52-466b-affd-f3ccc0a66d5d'
+
+    - name: 'healthchecks'
+      webhook_configs:
+      -url: 'https://hc-ping.com/98316b2f-4581-4620-add2-80c3adb52215'
 
     - name: 'opsgenie'
       opsgenie_configs:
