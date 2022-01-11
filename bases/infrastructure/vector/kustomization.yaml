@@ -1,17 +1,13 @@
+---
 bases:
   - github.com/vectordotdev/vector/distribution/kubernetes/vector-agent?ref=v0.19.0
+
+resources:
+  - namespace.yaml
+
+namespace: vector
 
 images:
   - name: timberio/vector
     newName: timberio/vector
     newTag: 0.19.0-debian
-
-resources:
-  - namespace.yaml
-
-configMapGenerator:
-  - name: vector-agent-config
-    files:
-      - vector.toml
-
-namespace: vector

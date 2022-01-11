@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./bases/infrastructure/vector
+  path: ./overlays/uksouth-dev/vector
   prune: true
   sourceRef:
     kind: GitRepository
