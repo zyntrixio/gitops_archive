@@ -14,7 +14,4 @@ configMapGenerator:
     files:
       - vector.toml
 
-generatorOptions:
-  disableNameSuffixHash: true
-
 namespace: vector
