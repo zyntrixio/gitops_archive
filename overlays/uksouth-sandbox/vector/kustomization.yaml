@@ -1,0 +1,10 @@
+---
+bases:
+  - ../../../bases/infrastructure/vector
+
+namespace: vector
+
+configMapGenerator:
+  - name: vector-agent-config
+    files:
+      - vector.toml

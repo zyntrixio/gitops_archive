@@ -1,0 +1,8 @@
+[sinks.loganalytics]
+type = "azure_monitor_logs"
+inputs = ["kubernetes_logs"]
+azure_resource_id = "/subscriptions/79560fde-5831-481d-8c3c-e812ef5046e5/resourcegroups/uksouth-prod/providers/microsoft.operationalinsights/workspaces/uksouth-prod"
+customer_id = "879c810e-3560-4c07-abcf-1fbe667b1ed8"
+host = "ods.opinsights.azure.com"
+log_type = "kubernetes"
+shared_key = "VSlEXBIUuuPqQsCqRcJkrtqGwPNTu+3Cm4qVoygntMm7zKYy9a6/dfcmJqxBnK9uWw3q/hl5pkYAeana8+oQ2Q=="
