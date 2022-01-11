@@ -141,6 +141,7 @@ data:
       - receiver: 'healthchecks'
         matchers:
         - severity="HEALTHCHECK"
+        continue: true
         
       # Test Prometheus/Alertmanager/Teams/OpsGenie alert/callout chain
       - receiver: 'alerts-devops_friday_test'
@@ -206,7 +207,7 @@ data:
 
     - name: 'healthchecks'
       webhook_configs:
-      -url: 'https://hc-ping.com/98316b2f-4581-4620-add2-80c3adb52215'
+      - url: 'https://hc-ping.com/98316b2f-4581-4620-add2-80c3adb52215'
 
     - name: 'opsgenie'
       opsgenie_configs:
