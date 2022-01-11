@@ -141,7 +141,7 @@ data:
       - receiver: 'healthchecks'
         matchers:
         - severity="HEALTHCHECK"
-        repeat_interval: 1m
+        repeat_interval: 55m
         continue: true
         
       # Test Prometheus/Alertmanager/Teams/OpsGenie alert/callout chain
