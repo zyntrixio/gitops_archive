@@ -4,7 +4,7 @@ bases:
 - ../../../../bases/olympus/atlas/migrator
 
 components:
-- ../../../common/pgbouncer
+- ../../../../common/pgbouncer
 
 patches:
 - path: env.yaml

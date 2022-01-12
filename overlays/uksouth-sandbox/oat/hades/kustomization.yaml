@@ -3,7 +3,7 @@ bases:
 - ../../../../bases/olympus/hades/migrator
 
 components:
-- ../../../common/pgbouncer
+- ../../../../common/pgbouncer
 
 patches:
 - path: env.yaml
