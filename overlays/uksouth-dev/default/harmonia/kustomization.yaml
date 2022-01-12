@@ -1,9 +1,7 @@
 ---
 bases:
   - ../../../../bases/olympus/harmonia/api
-  - ../../../../bases/olympus/harmonia/export-agent-fatface
   - ../../../../bases/olympus/harmonia/export-agent-iceland-bonus-card
-  - ../../../../bases/olympus/harmonia/export-agent-whsmith-rewards
   - ../../../../bases/olympus/harmonia/export-retry-worker
   - ../../../../bases/olympus/harmonia/export-worker
   - ../../../../bases/olympus/harmonia/import-agent-amex
@@ -17,7 +15,6 @@ bases:
   - ../../../../bases/olympus/harmonia/import-agent-visa-refund
   - ../../../../bases/olympus/harmonia/import-agent-visa-settle
   - ../../../../bases/olympus/harmonia/import-agent-wasabi-club
-  - ../../../../bases/olympus/harmonia/import-agent-whsmith-rewards
   - ../../../../bases/olympus/harmonia/import-worker
   - ../../../../bases/olympus/harmonia/identify-worker
   - ../../../../bases/olympus/harmonia/matching-worker
