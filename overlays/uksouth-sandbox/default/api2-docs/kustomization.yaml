@@ -1,3 +1,4 @@
+---
 bases:
   - ../../../../bases/olympus/api2-docs
   - ../../../../bases/common/issuer
@@ -5,6 +6,7 @@ bases:
 resources:
   - certificate.yaml
   - ingress.yaml
+  - ingress-healthz.yaml
 
 namespace: default
 
@@ -17,3 +19,10 @@ patches:
         value:
           - name: DEPLOYED_ENV
             value: sandbox
+
+
+# huge-guilt-meshwork-pizza
+secretGenerator:
+  - name: api2-docs-basicauth
+    files:
+      - auth
