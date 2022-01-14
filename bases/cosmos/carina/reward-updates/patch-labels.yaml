@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   labels:
     app: carina
-    component: voucher-imports
+    component: reward-updates
   name: carina
   namespace: default
 spec:
   selector:
     matchLabels:
       app: carina
-      component: voucher-imports
+      component: reward-updates
   template:
     metadata:
       labels:
         app: carina
-        component: voucher-imports
+        component: reward-updates
         aadpodidbinding: carina

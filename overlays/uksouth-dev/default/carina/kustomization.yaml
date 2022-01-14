@@ -3,8 +3,8 @@ bases:
   - ../../../../bases/cosmos/carina/api
   - ../../../../bases/cosmos/carina/migrator
   - ../../../../bases/cosmos/carina/task-worker
-  - ../../../../bases/cosmos/carina/voucher-imports
-  - ../../../../bases/cosmos/carina/voucher-updates
+  - ../../../../bases/cosmos/carina/reward-imports
+  - ../../../../bases/cosmos/carina/reward-updates
 
 configMapGenerator:
   - name: carina
