@@ -1,4 +1,3 @@
 resources:
 - barclays-stats-teams.yaml
-- confluence-macro.yaml
 - ip-range-checker.yaml

@@ -97,14 +97,6 @@ groups:
     annotations:
       summary: Check aqua0 workers - pool depleted by at least 50%
 
-  - alert: core confluence-macro up state
-    expr: (up{job="confluence-macro",kubernetes_cluster="tools"} OR on() vector(0)) < 1
-    for: 3m
-    labels:
-      severity: S2
-    annotations:
-      summary: Check confluence-macro (pod in uksouth-tools Kubernetes cluster) - bad up state
-
   - alert: core virtual machines cpu
     expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{env="Core",name!~"aqua0-worker0\\d",job="azure_node",mode="idle"}[5m])) * 100) > 90
     for: 10m
