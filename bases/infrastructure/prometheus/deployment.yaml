@@ -59,7 +59,7 @@ spec:
           mountPath: /etc/prometheus/
 
       - name: cluster-credential-refresher
-        image: olympus.azurecr.io/prometheus-pusher-server:develop-29a0e850
+        image: binkcore.azurecr.io/prometheus-pusher-serverlatest
         imagePullPolicy: Always
         env:
         - name: PROMETHEUS_DIR
@@ -73,7 +73,7 @@ spec:
         - containerPort: 8080
 
       imagePullSecrets:
-      - name: olympus.azurecr.io
+      - name: binkcore.azurecr.io
       volumes:
       - name: prometheus-config-volume
         configMap:
