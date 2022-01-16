@@ -59,7 +59,7 @@ spec:
           mountPath: /etc/prometheus/
 
       - name: cluster-credential-refresher
-        image: binkcore.azurecr.io/prometheus-pusher-serverlatest
+        image: binkcore.azurecr.io/prometheus-pusher-server:latest
         imagePullPolicy: Always
         env:
         - name: PROMETHEUS_DIR
