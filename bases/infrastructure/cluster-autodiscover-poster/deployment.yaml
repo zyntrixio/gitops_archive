@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: binkcore.azurecr.io/kube-autodiscover-poster:develop-352a0679
+        image: binkcore.azurecr.io/kube-autodiscover-poster:latest
         imagePullPolicy: Always
         env:
         - name: CLUSTER_NAME

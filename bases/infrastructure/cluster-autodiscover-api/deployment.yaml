@@ -26,7 +26,7 @@ spec:
         component: api
     spec:
       containers:
-      - image: olympus.azurecr.io/kube-autodiscover-api:develop-ee57ce44
+      - image: binkcore.azurecr.io/kube-autodiscover-api:latest
         imagePullPolicy: Always
         name: server
         terminationMessagePath: /dev/termination-log
@@ -41,4 +41,4 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 30
       imagePullSecrets:
-      - name: olympus.azurecr.io
+      - name: binkcore.azurecr.io
