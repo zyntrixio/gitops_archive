@@ -18,3 +18,4 @@ spec:
         - --loglevel=info
         - --pool=solo
         - --queues=ubiquity-async-midas,record-history
+        - --events
