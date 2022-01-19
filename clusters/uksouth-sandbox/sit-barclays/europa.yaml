@@ -15,4 +15,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/europa
     newName: binkcore.azurecr.io/europa
-    newTag: "develop-2021-06-01-160030"
+    newTag: "staging-1.5.0"
