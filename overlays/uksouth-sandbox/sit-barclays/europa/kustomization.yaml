@@ -5,9 +5,6 @@ bases:
 - ../../../../bases/olympus/europa/api
 - ../../../../bases/olympus/europa/migrator
 
-components:
-- ../../../../common/pgbouncer
-
 patches:
 - path: env.yaml
   target:
