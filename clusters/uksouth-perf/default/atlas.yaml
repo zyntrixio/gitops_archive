@@ -35,8 +35,8 @@ spec:
   imageRepositoryRef:
     name: atlas
   filterTags:
-    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
+    pattern: 'staging-(?P<ts>\d+(\.\d+)*)$'
     extract: '$ts'
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: ">0.0.1"
