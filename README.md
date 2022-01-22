@@ -35,7 +35,6 @@ We then use the following `cp` command to copy the manifest changes to all other
 
 ```shell
 $ for i in clusters/*
-      cp clusters/uksouth-dev/flux-system/gotk-components.yaml clusters/$i/flux-system/gotk-components.yaml
+       cp clusters/uksouth-dev/flux-system/gotk-components.yaml $i/flux-system/gotk-components.yaml
   end
 ```
-
