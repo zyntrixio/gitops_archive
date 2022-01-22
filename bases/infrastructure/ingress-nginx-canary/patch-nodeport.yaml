@@ -7,13 +7,13 @@ metadata:
 spec:
   externalTrafficPolicy: Local
   ports:
-  - name: http
-    nodePort: 30000
-    port: 80
-    protocol: TCP
-    targetPort: http
-  - name: https
-    nodePort: 30001
-    port: 443
-    protocol: TCP
-    targetPort: https
+    - name: http
+      nodePort: 30000
+      port: 80
+      protocol: TCP
+      targetPort: http
+    - name: https
+      nodePort: 30001
+      port: 443
+      protocol: TCP
+      targetPort: https
