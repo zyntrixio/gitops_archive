@@ -1,11 +1,12 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: ingress-tools
+  name: bridge
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-tools/ingress-tools
+  path: ./overlays/uksouth-tools/bridge
   prune: true
   sourceRef:
     kind: GitRepository

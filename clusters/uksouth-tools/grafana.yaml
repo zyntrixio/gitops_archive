@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -13,7 +14,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/grafana
       newName: binkcore.azurecr.io/grafana
-      newTag: "develop-2021-12-09-111656" # {"$imagepolicy": "flux-system:uksouth-tools-grafana:tag"}
+      newTag: develop-2021-12-09-111656    # {"$imagepolicy": "flux-system:uksouth-tools-grafana:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -35,8 +36,8 @@ spec:
   imageRepositoryRef:
     name: grafana
   filterTags:
-    pattern: 'develop-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
-    extract: '$ts'
+    pattern: develop-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$
+    extract: $ts
   policy:
     alphabetical:
       order: asc

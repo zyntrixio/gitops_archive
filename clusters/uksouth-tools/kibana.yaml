@@ -1,11 +1,12 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: eventhub-relay
+  name: kibana
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-tools/eventhub-relay
+  path: ./overlays/uksouth-tools/kibana
   prune: true
   sourceRef:
     kind: GitRepository
