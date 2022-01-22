@@ -31,6 +31,12 @@ spec:
           name: pypi
           ports:
             - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
           imagePullPolicy: Always
           volumeMounts:
             - name: config
