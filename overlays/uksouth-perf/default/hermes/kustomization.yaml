@@ -41,8 +41,6 @@ patches:
             value: http://40ec46dd6a8940c4882501427e3e3a66@sentry-relay.monitoring/5589266
           - name: HERMES_SENTRY_ENV
             value: performance
-          - name: SENTRY_SAMPLE_RATE
-            value: '0.5'
           - name: CELERY_BROKER_URL
             value: amqps://perf-rabbitmq.uksouth.bink.host:5671
           - name: ATLAS_URL
@@ -83,6 +81,15 @@ patches:
               secretKeyRef:
                 name: azure-pgfs
                 key: common_hermes
+  - target:
+      kind: Deployment
+      name: hermes-api
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: SENTRY_SAMPLE_RATE
+          value: "0.5"
   - target:
       kind: Deployment
       name: hermes-celery
