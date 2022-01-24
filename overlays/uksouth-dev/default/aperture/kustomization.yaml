@@ -2,26 +2,26 @@
 bases:
   - ../../../../bases/portal/aperture/core
 
-# configMapGenerator:
-#   - name: aperture
-#     namespace: default
-#     envs:
-#       - env.ini
+configMapGenerator:
+  - name: aperture
+    namespace: default
+    envs:
+      - env.ini
 
 
-# patches:
-#   - target:
-#       kind: Deployment
-#     patch: |-
-#       apiVersion: apps/v1
-#       kind: Deployment
-#       metadata:
-#         name: aperture
-#       spec:
-#         template:
-#           spec:
-#             containers:
-#               - name: app
-#                 envFrom:
-#                   - configMapRef:
-#                       name: aperture
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: aperture
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: aperture

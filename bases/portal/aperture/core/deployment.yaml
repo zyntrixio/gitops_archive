@@ -9,6 +9,9 @@ spec:
       maxSurge: 25%
       maxUnavailable: 25%
     type: RollingUpdate
+  selector:
+    matchLabels:
+      app: aperture
   template:
     metadata:
       annotations:
