@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: aperture
   name: aperture
   namespace: default
 spec:
@@ -14,6 +16,8 @@ spec:
       app: aperture
   template:
     metadata:
+      labels:
+        name: aperture
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
