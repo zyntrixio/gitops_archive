@@ -2,6 +2,10 @@
 bases:
   - ../../../../bases/portal/aperture/core
 
+resources:
+  - certificate.yaml
+  - ingress.yaml
+
 configMapGenerator:
   - name: aperture
     namespace: default
