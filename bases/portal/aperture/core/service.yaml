@@ -10,9 +10,7 @@ spec:
   ports:
   - name: http
     port: 80
-
   selector:
     app: aperture
-    component: api
   sessionAffinity: None
   type: ClusterIP
