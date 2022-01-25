@@ -38,8 +38,5 @@ spec:
       - name: app
         image: binkcore.azurecr.io/aperture:latest
         imagePullPolicy: Always
-        securityContext:
-          runAsGroup: 65534
-          runAsUser: 65534
       imagePullSecrets:
       - name: binkcore.azurecr.io
