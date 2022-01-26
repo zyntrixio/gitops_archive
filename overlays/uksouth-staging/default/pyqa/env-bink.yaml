@@ -20,7 +20,7 @@ spec:
         - name: SCHEDULE
           value: 30 22 * * *
         - name: COMMAND
-          value: pytest --html report.html --self-contained-html -s -m bink_regression
+          value: pytest --html report.html --self-contained-html -s -m sanity
             --channel bink --env staging
         - name: ALERT_ON_SUCCESS
           value: "True"

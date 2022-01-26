@@ -20,7 +20,7 @@ spec:
         - name: SCHEDULE
           value: 5 22 * * *
         - name: COMMAND
-          value: pytest --html report.html --self-contained-html -s -m bmb_regression
+          value: pytest --html report.html --self-contained-html -s -m sanity
             --channel barclays --env staging
         - name: ALERT_ON_SUCCESS
           value: "True"
