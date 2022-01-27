@@ -1,0 +1,33 @@
+---
+apiVersion: linkerd.io/v1alpha2
+kind: ServiceProfile
+metadata:
+  creationTimestamp: null
+  name: angelia-api.default.svc.cluster.local
+  namespace: default
+spec:
+  routes:
+  - condition:
+      method: GET
+      pathRegex: /livez
+    name: GET /livez
+    isRetryable: true
+    timeout: 2000ms
+  - condition:
+      method: GET
+      pathRegex: /metrics
+    name: GET /metrics
+    isRetryable: true
+    timeout: 2000ms
+  - condition:
+      method: POST
+      pathRegex: /v2/token
+    name: POST /v2/token
+    isRetryable: true
+    timeout: 2000ms
+  - condition:
+      method: GET
+      pathRegex: /v2/loyalty_plans
+    name: POST /v2/loyalty_plans
+    isRetryable: true
+    timeout: 2000ms

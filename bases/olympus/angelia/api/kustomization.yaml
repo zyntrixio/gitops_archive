@@ -3,7 +3,7 @@ bases:
 
 resources:
 - service.yaml
-# - linkerd-service-profile.yaml  - TODO
+- lsp.yaml
 
 patches:
 - path: patch-annotations.yaml
