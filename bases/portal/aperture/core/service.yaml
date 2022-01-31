@@ -9,7 +9,9 @@ metadata:
 spec:
   ports:
   - name: http
-    port: 3000
+    port: 80
+    protocol: TCP
+    targetPort: 3000
   selector:
     app: aperture
   sessionAffinity: None
