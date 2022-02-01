@@ -28,12 +28,7 @@ patches:
                   - configMapRef:
                       name: angelia
                 env:
-                  - name: POSTGRES_READ_DSN
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-pgfs
-                        key: common_hermes
-                  - name: POSTGRES_WRITE_DSN
+                  - name: POSTGRES_DSN
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
