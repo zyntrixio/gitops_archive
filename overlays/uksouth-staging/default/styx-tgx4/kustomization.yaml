@@ -15,7 +15,4 @@ patches:
           - name: mode
             value: TGX4
           - name: redis_url
-            valueFrom:
-              secretKeyRef:
-                name: azure-redis-vnet
-                key: uri_ssl
+            value: redis://redis:6379/0
