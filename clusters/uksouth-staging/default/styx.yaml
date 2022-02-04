@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-prod/default/styx
+  path: ./overlays/uksouth-staging/default/styx
   prune: true
   sourceRef:
     kind: GitRepository

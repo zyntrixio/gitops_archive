@@ -4,6 +4,8 @@ kind: Deployment
 metadata:
   name: styx
   namespace: default
+  labels:
+    app: styx
 spec:
   selector:
     matchLabels:

@@ -1,0 +1,21 @@
+bases:
+  - ../../../../bases/olympus/styx
+
+nameSuffix: -tgx4
+commonLabels:
+  component: tgx4
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env
+        value:
+          - name: mode
+            value: TGX4
+          - name: redis_url
+            valueFrom:
+              secretKeyRef:
+                name: azure-redis-vnet
+                key: uri_ssl
