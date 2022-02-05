@@ -47,3 +47,26 @@ patches:
                       secretKeyRef:
                         key: key
                         name: sign-in-with-apple
+  - target:
+      kind: Deployment
+      name: hermes-beat
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: hermes
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                command:
+                - single-beat
+                - celery
+                - -A
+                - hermes
+                - beat
+                - --schedule
+                - /tmp/beat
+                - --pidfile
+                - /tmp/beat.pid
