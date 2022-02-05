@@ -1,3 +1,4 @@
+---
 bases:
   - ../../../../bases/olympus/hermes/api
   - ../../../../bases/olympus/hermes/beat
@@ -7,10 +8,59 @@ bases:
 resources:
   - aad.yaml
 
+configMapGenerator:
+  - name: hermes
+    namespace: default
+    envs:
+      - env.ini
+
 patches:
-  - path: env.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: hermes
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: hermes
+                env:
+                  - name: HERMES_BLOB_STORAGE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string
+                        name: azure-storage-common
+                  - name: REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: uri_ssl
+                        name: azure-redis-vnet
+                  - name: SINGLE_BEAT_REDIS_SERVER
+                    valueFrom:
+                      secretKeyRef:
+                        key: uri_ssl
+                        name: azure-redis-vnet
+                  - name: APPLE_CLIENT_SECRET
+                    valueFrom:
+                      secretKeyRef:
+                        key: key
+                        name: sign-in-with-apple
+                  - name: OIDC_CLIENT_SECRET
+                    valueFrom:
+                      secretKeyRef:
+                        key: secret
+                        name: hermes-aad-client-secret
+                  - name: HERMES_DATABASE_URL
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_hermes
   - target:
       kind: Deployment
       name: hermes-api
@@ -25,3 +75,26 @@ patches:
       - op: add
         path: /spec/replicas
         value: 3
+  # - target:
+  #     kind: Deployment
+  #     name: hermes-beat
+  #   patch: |-
+  #     apiVersion: apps/v1
+  #     kind: Deployment
+  #     metadata:
+  #       name: hermes
+  #     spec:
+  #       template:
+  #         spec:
+  #           containers:
+  #             - name: app
+  #               command:
+  #               - single-beat
+  #               - celery
+  #               - -A
+  #               - hermes
+  #               - beat
+  #               - --schedule
+  #               - /tmp/beat
+  #               - --pidfile
+  #               - /tmp/beat.pid
