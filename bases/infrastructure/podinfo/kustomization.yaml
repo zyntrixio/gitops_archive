@@ -1,3 +1,2 @@
-resources:
-- deploy.yaml
-- service.yaml
+bases:
+  - github.com/stefanprodan/podinfo/kustomize?ref=6.0.3
