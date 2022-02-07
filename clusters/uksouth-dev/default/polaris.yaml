@@ -7,15 +7,15 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-dev/default/polaris
   dependsOn:
-    - name: aad-pod-identity
+  - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/polaris
-      newName: binkcore.azurecr.io/polaris
-      newTag: "2022-02-01T154347Z" # {"$imagepolicy": "flux-system:uksouth-dev-polaris:tag"}
+  - name: binkcore.azurecr.io/polaris
+    newName: binkcore.azurecr.io/polaris
+    newTag: "2022-02-07T143601Z" # {"$imagepolicy": "flux-system:uksouth-dev-polaris:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
