@@ -7,15 +7,15 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-dev/default/harmonia
   dependsOn:
-    - name: aad-pod-identity
+  - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/harmonia
-      newName: binkcore.azurecr.io/harmonia
-      newTag: "2022-02-04T114037Z" # {"$imagepolicy": "flux-system:uksouth-dev-harmonia:tag"}
+  - name: binkcore.azurecr.io/harmonia
+    newName: binkcore.azurecr.io/harmonia
+    newTag: "2022-02-07T152026Z" # {"$imagepolicy": "flux-system:uksouth-dev-harmonia:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
