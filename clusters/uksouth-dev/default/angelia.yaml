@@ -7,15 +7,15 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-dev/default/angelia
   dependsOn:
-    - name: aad-pod-identity
+  - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/angelia
-      newName: binkcore.azurecr.io/angelia
-      newTag: "2022-02-04T102235Z" # {"$imagepolicy": "flux-system:uksouth-dev-angelia:tag"}
+  - name: binkcore.azurecr.io/angelia
+    newName: binkcore.azurecr.io/angelia
+    newTag: "2022-02-07T154553Z" # {"$imagepolicy": "flux-system:uksouth-dev-angelia:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
