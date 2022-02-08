@@ -12,12 +12,12 @@ spec:
     name: flux-system
   postBuild:
     substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
+    - kind: ConfigMap
+      name: cluster-vars
   images:
-    - name: ghcr.io/binkhq/api-reflector
-      newName: ghcr.io/binkhq/api-reflector
-      newTag: "0.5.6" # {"$imagepolicy": "flux-system:uksouth-dev-api-reflector:tag"}
+  - name: ghcr.io/binkhq/api-reflector
+    newName: ghcr.io/binkhq/api-reflector
+    newTag: "0.5.7" # {"$imagepolicy": "flux-system:uksouth-dev-api-reflector:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
