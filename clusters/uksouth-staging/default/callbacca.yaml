@@ -11,9 +11,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/callbacca
-      newName: binkcore.azurecr.io/callbacca
-      newTag: "2022-02-04-083625" # {"$imagepolicy": "flux-system:uksouth-staging-callbacca:tag"}
+    - name: ghcr.io/binkhq/callbacca
+      newName: ghcr.io/binkhq/callbacca
+      newTag: "badtag" # {"$imagepolicy": "flux-system:uksouth-staging-callbacca:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -21,10 +21,8 @@ metadata:
   name: callbacca
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/callbacca
-  interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io
+  image: ghcr.io/binkhq/callbacca
+  interval: 120m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
@@ -35,8 +33,8 @@ spec:
   imageRepositoryRef:
     name: callbacca
   filterTags:
-    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
     extract: '$ts'
   policy:
-    semver:
-      range: ">0.0.1"
+    alphabetical:
+      order: asc
