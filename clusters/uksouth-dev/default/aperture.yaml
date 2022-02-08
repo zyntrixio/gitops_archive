@@ -11,13 +11,13 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/aperture
-      newName: binkcore.azurecr.io/aperture
-      newTag: "2022-02-03T145506Z" # {"$imagepolicy": "flux-system:uksouth-dev-aperture:tag"}
+  - name: binkcore.azurecr.io/aperture
+    newName: binkcore.azurecr.io/aperture
+    newTag: "2022-02-08T135401Z" # {"$imagepolicy": "flux-system:uksouth-dev-aperture:tag"}
   postBuild:
     substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
+    - kind: ConfigMap
+      name: cluster-vars
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
