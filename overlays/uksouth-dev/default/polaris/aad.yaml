@@ -2,7 +2,7 @@
 apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentity
 metadata:
-  name: polaris-identity
+  name: polaris
   namespace: default
 spec:
   type: 0
@@ -12,8 +12,8 @@ spec:
 apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentityBinding
 metadata:
-  name: polaris-identity-binding
+  name: polaris
   namespace: default
 spec:
-  azureIdentity: polaris-identity
+  azureIdentity: polaris
   selector: polaris

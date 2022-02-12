@@ -1,10 +1,14 @@
+---
 bases:
-- ../../../../bases/cosmos/polaris/api
-- ../../../../bases/cosmos/polaris/migrator
-- ../../../../bases/cosmos/polaris/task-worker
+  - ../../../../bases/cosmos/polaris/core
+  - ../../../../bases/cosmos/polaris/api
+  - ../../../../bases/cosmos/polaris/migrator
+  - ../../../../bases/cosmos/polaris/task-worker
+
+namespace: default
 
 resources:
-- aad.yaml
+  - aad.yaml
 
 configMapGenerator:
   - name: polaris

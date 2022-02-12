@@ -2,14 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: event-horizon
+  name: polaris
   namespace: default
   labels:
-    app: event-horizon
+    app: polaris
 spec:
   selector:
     matchLabels:
-      app: event-horizon
+      app: polaris
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -21,8 +21,8 @@ spec:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
       labels:
-        app: event-horizon
-        aadpodidbinding: event-horizon
+        app: polaris
+        aadpodidbinding: polaris
     spec:
       affinity:
         podAntiAffinity:
@@ -33,14 +33,16 @@ spec:
                     - key: app
                       operator: In
                       values:
-                        - event-horizon
+                        - polaris
                 topologyKey: kubernetes.io/hostname
               weight: 100
-      serviceAccountName: event-horizon
       containers:
         - name: app
-          image: binkcore.azurecr.io/event-horizon:latest
+          image: binkcore.azurecr.io/polaris:latest
           imagePullPolicy: Always
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
           resources:
             limits:
               cpu: 1000m
@@ -48,28 +50,6 @@ spec:
             requests:
               cpu: 100m
               memory: 256Mi
-          securityContext:
-            runAsGroup: 65534
-            runAsUser: 65534
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /livez
-              port: 9000
-              scheme: HTTP
-            initialDelaySeconds: 15
-            periodSeconds: 60
-            successThreshold: 1
-            timeoutSeconds: 10
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /readyz
-              port: 9000
-              scheme: HTTP
-            initialDelaySeconds: 15
-            periodSeconds: 60
-            successThreshold: 1
-            timeoutSeconds: 10
       imagePullSecrets:
         - name: binkcore.azurecr.io
+      serviceAccountName: polaris

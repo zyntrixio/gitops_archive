@@ -1,9 +1,29 @@
+---
 bases:
-- ../core
+  - ../base
+
+nameSuffix: -reward-updates
 
 patches:
-- path: patch-labels.yaml
-- path: patch-command.yaml
-- path: patch-name.yaml
-  target:
-    kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: carina
+        labels:
+          component: reward-updates
+      spec:
+        selector:
+          matchLabels:
+            component: reward-updates
+        template:
+          metadata:
+            labels:
+              component: reward-updates
+          spec:
+            containers:
+              - name: app
+                command: ["linkerd-await", "--"]
+                args: ["python", "-m", "app.imports.agents.file_agent", "reward-updates-agent"]

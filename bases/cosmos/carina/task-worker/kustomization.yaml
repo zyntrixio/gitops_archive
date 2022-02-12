@@ -1,9 +1,29 @@
+---
 bases:
-- ../core
+  - ../base
+
+nameSuffix: -task-worker
 
 patches:
-- path: patch-labels.yaml
-- path: patch-command.yaml
-- path: patch-name.yaml
-  target:
-    kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: carina
+        labels:
+          component: task-worker
+      spec:
+        selector:
+          matchLabels:
+            component: task-worker
+        template:
+          metadata:
+            labels:
+              component: task-worker
+          spec:
+            containers:
+              - name: app
+                command: ["linkerd-await", "--"]
+                args: ["python", "-m", "app.tasks.worker", "worker"]

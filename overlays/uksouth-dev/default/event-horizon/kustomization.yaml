@@ -2,6 +2,8 @@
 bases:
   - ../../../../bases/cosmos/event-horizon
 
+namespace: default
+
 resources:
   - aad.yaml
 

@@ -1,10 +1,13 @@
 ---
 bases:
+  - ../../../../bases/cosmos/carina/core
   - ../../../../bases/cosmos/carina/api
   - ../../../../bases/cosmos/carina/migrator
   - ../../../../bases/cosmos/carina/task-worker
   - ../../../../bases/cosmos/carina/reward-imports
   - ../../../../bases/cosmos/carina/reward-updates
+
+namespace: default
 
 configMapGenerator:
   - name: carina

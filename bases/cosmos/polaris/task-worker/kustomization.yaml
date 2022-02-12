@@ -1,10 +1,33 @@
+---
 bases:
-- ../core
+  - ../base
+
+nameSuffix: -task-worker
 
 patches:
-- path: patch-annotations.yaml
-- path: patch-labels.yaml
-- path: patch-command.yaml
-- path: patch-name.yaml
-  target:
-    kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: polaris
+        labels:
+          component: task-worker
+      spec:
+        selector:
+          matchLabels:
+            component: task-worker
+        template:
+          metadata:
+            annotations:
+              prometheus.io/port: '9100'
+              prometheus.io/scrape: 'true'
+              prometheus.io/job: task-worker
+            labels:
+              component: task-worker
+          spec:
+            containers:
+              - name: app
+                command: ["linkerd-await", "--"]
+                args: ["python", "-m", "app.tasks.worker", "worker"]

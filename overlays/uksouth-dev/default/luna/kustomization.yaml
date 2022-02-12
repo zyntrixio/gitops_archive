@@ -2,6 +2,8 @@
 bases:
   - ../../../../bases/cosmos/luna
 
+namespace: default
+
 configMapGenerator:
   - name: luna
     namespace: default

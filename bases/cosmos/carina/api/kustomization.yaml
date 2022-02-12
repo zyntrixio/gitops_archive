@@ -1,13 +1,54 @@
+---
 bases:
-- ../core
+  - ../base
+
+nameSuffix: -api
 
 resources:
-- service.yaml
+  - service.yaml
 
 patches:
-- path: patch-annotations.yaml
-- path: patch-labels.yaml
-- path: patch-probes.yaml
-- path: patch-name.yaml
-  target:
-    kind: Deployment
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: carina
+        labels:
+          component: api
+      spec:
+        selector:
+          matchLabels:
+            component: api
+        template:
+          metadata:
+            annotations:
+              prometheus.io/port: '9100'
+              prometheus.io/scrape: 'true'
+              prometheus.io/job: carina
+            labels:
+              component: api
+          spec:
+            containers:
+              - name: app
+                livenessProbe:
+                  failureThreshold: 3
+                  httpGet:
+                    path: /livez
+                    port: 9000
+                    scheme: HTTP
+                  initialDelaySeconds: 15
+                  periodSeconds: 60
+                  successThreshold: 1
+                  timeoutSeconds: 10
+                readinessProbe:
+                  failureThreshold: 3
+                  httpGet:
+                    path: /readyz
+                    port: 9000
+                    scheme: HTTP
+                  initialDelaySeconds: 15
+                  periodSeconds: 60
+                  successThreshold: 1
+                  timeoutSeconds: 10

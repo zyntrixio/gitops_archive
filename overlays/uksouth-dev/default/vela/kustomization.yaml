@@ -1,8 +1,11 @@
 ---
 bases:
+  - ../../../../bases/cosmos/vela/core
   - ../../../../bases/cosmos/vela/api
   - ../../../../bases/cosmos/vela/migrator
   - ../../../../bases/cosmos/vela/task-worker
+
+namespace: default
 
 resources:
   - aad.yaml

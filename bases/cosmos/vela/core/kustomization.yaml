@@ -1,5 +1,4 @@
+---
 resources:
-- deployment.yaml
-
-components:
-- ../../../common/pgbouncer
+  - namespace.yaml
+  - serviceaccount.yaml

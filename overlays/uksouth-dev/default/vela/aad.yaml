@@ -2,7 +2,7 @@
 apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentity
 metadata:
-  name: vela-identity
+  name: vela
   namespace: default
 spec:
   type: 0
@@ -12,8 +12,8 @@ spec:
 apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentityBinding
 metadata:
-  name: vela-identity-binding
+  name: vela
   namespace: default
 spec:
-  azureIdentity: vela-identity
+  azureIdentity: vela
   selector: vela
