@@ -7,15 +7,15 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-staging/default/pyqa-bpl
   dependsOn:
-    - name: aad-pod-identity
+  - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/pyqa-bpl
-      newName: binkcore.azurecr.io/pyqa-bpl
-      newTag: "2022-02-01T214634Z" # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-bpl:tag"}
+  - name: binkcore.azurecr.io/pyqa-bpl
+    newName: binkcore.azurecr.io/pyqa-bpl
+    newTag: "2022-02-14T091520Z" # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-bpl:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
