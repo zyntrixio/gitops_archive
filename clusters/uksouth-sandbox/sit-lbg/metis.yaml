@@ -15,4 +15,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/metis
     newName: binkcore.azurecr.io/metis
-    newTag: "staging-1.23.0"
+    newTag: "staging-1.25.0"
