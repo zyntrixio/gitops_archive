@@ -8,6 +8,8 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-tools/ingress-tools
   prune: true
+  dependsOn:
+    - name: cert-manager
   sourceRef:
     kind: GitRepository
     name: flux-system
