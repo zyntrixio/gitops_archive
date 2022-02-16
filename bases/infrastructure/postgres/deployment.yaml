@@ -14,7 +14,7 @@ spec:
   template:
     metadata:
       labels:
-        app: nginx
+        app: postgres
     spec:
       terminationGracePeriodSeconds: 10
       containers:
