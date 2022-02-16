@@ -13,7 +13,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/api2-redoc
     newName: binkcore.azurecr.io/api2-redoc
-    newTag: "2022-02-16T102119Z" # {"$imagepolicy": "flux-system:uksouth-dev-api2-docs:tag"}
+    newTag: "2022-02-16T111904Z" # {"$imagepolicy": "flux-system:uksouth-dev-api2-docs:tag"}
   postBuild:
     substituteFrom:
     - kind: ConfigMap
