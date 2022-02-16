@@ -57,7 +57,10 @@ patches:
                         key: secret
                         name: hermes-aad-client-secret
                   - name: HERMES_DATABASE_URL
-                    value: postgres://postgres:TFB2248hxq@postgres:5432/hermes
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_hermes
   - target:
       kind: Deployment
       name: hermes-api
