@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/hermes
     newName: binkcore.azurecr.io/hermes-perf
-    newTag: "2022-02-11T105326Z" # {"$imagepolicy": "flux-system:uksouth-perf-hermes:tag"}
+    newTag: "2022-02-16T155708Z" # {"$imagepolicy": "flux-system:uksouth-perf-hermes:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
