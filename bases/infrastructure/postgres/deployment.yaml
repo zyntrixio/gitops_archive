@@ -13,6 +13,8 @@ spec:
   replicas: 1
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: postgres
     spec:
@@ -20,6 +22,9 @@ spec:
       containers:
       - name: app
         image: docker.io/postgres:13.4
+        env:
+        - name: POSTGRES_PASSWORD
+          value: TFB2248hxq
         ports:
         - containerPort: 5432
           name: psql
