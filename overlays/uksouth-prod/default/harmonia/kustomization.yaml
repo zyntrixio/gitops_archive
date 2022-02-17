@@ -46,9 +46,9 @@ patches:
                 args:
                   - gunicorn
                   - timeout
-                  - 600
+                  - '600'
                   - graceful_timeout
-                  - 600
+                  - '600'
                   - -b
                   - 0.0.0.0:9000
                   - --access-logfile
