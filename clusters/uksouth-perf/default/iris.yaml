@@ -13,7 +13,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/iris
       newName: binkcore.azurecr.io/iris
-      newTag: "2021-10-22-203819" # {"$imagepolicy": "flux-system:uksouth-perf-iris:tag"}
+      newTag: "staging-1.2.1" # {"$imagepolicy": "flux-system:uksouth-perf-iris:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -35,8 +35,8 @@ spec:
   imageRepositoryRef:
     name: iris
   filterTags:
-    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
+    pattern: 'staging-(?P<ts>\d+(\.\d+)*)$'
     extract: '$ts'
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: ">0.0.1"

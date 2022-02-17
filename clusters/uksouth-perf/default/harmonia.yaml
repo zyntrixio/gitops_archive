@@ -15,7 +15,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/harmonia
       newName: binkcore.azurecr.io/harmonia
-      newTag: "dev-2021-11-05T150028Z" # {"$imagepolicy": "flux-system:uksouth-perf-harmonia:tag"}
+      newTag: "staging-2.8.2" # {"$imagepolicy": "flux-system:uksouth-perf-harmonia:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -37,8 +37,8 @@ spec:
   imageRepositoryRef:
     name: harmonia
   filterTags:
-    pattern: 'dev-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
+    pattern: 'staging-(?P<ts>\d+(\.\d+)*)$'
     extract: '$ts'
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: ">0.0.1"
