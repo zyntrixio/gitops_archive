@@ -7,15 +7,15 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-perf/default/europa
   dependsOn:
-    - name: aad-pod-identity
+  - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/europa
-      newName: binkcore.azurecr.io/europa
-      newTag: "staging-1.5.0" # {"$imagepolicy": "flux-system:uksouth-perf-europa:tag"}
+  - name: binkcore.azurecr.io/europa
+    newName: binkcore.azurecr.io/europa
+    newTag: "dev-2021-10-28T101949Z" # {"$imagepolicy": "flux-system:uksouth-perf-europa:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository

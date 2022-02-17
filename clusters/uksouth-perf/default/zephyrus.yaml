@@ -7,15 +7,15 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-perf/default/zephyrus
   dependsOn:
-    - name: aad-pod-identity
+  - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/zephyrus
-      newName: binkcore.azurecr.io/zephyrus
-      newTag: "staging-1.10.0" # {"$imagepolicy": "flux-system:uksouth-perf-zephyrus:tag"}
+  - name: binkcore.azurecr.io/zephyrus
+    newName: binkcore.azurecr.io/zephyrus
+    newTag: "dev-2021-10-01T154838Z" # {"$imagepolicy": "flux-system:uksouth-perf-zephyrus:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository

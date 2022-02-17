@@ -11,9 +11,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/iris
-      newName: binkcore.azurecr.io/iris
-      newTag: "staging-1.2.1" # {"$imagepolicy": "flux-system:uksouth-perf-iris:tag"}
+  - name: binkcore.azurecr.io/iris
+    newName: binkcore.azurecr.io/iris
+    newTag: "2021-10-22-203819" # {"$imagepolicy": "flux-system:uksouth-perf-iris:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
