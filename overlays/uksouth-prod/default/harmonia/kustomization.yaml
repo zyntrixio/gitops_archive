@@ -47,7 +47,7 @@ patches:
                   - gunicorn
                   - --timeout
                   - '600'
-                  - --graceful_timeout
+                  - --graceful-timeout
                   - '600'
                   - -b
                   - 0.0.0.0:9000
