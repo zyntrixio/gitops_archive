@@ -32,6 +32,32 @@ configMapGenerator:
 patches:
   - target:
       kind: Deployment
+      name: harmonia-api
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: harmonia
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                args:
+                  - gunicorn
+                  - timeout
+                  - 600
+                  - graceful_timeout
+                  - 600
+                  - -b
+                  - 0.0.0.0:9000
+                  - --access-logfile
+                  - '-'
+                  - --error-logfile
+                  - '-'
+                  - app.api.app:app
+  - target:
+      kind: Deployment
     patch:  |-
       apiVersion: apps/v1
       kind: Deployment
