@@ -1,9 +1,10 @@
+---
 bases:
-- ../../../../bases/olympus/iris
+  - ../../../../bases/olympus/iris
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment
 
 namespace: oat
