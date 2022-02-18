@@ -1,9 +1,10 @@
+---
 bases:
-- ../../../../bases/olympus/pelops
+  - ../../../../bases/olympus/pelops
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment
 
 namespace: sit-barclays
