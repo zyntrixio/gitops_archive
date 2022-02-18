@@ -15,4 +15,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/metis
     newName: binkcore.azurecr.io/metis
-    newTag: "develop-2021-03-30-110457"
+    newTag: "prod-1.25.0"

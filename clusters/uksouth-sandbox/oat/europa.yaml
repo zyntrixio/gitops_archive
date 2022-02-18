@@ -15,4 +15,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/europa
     newName: binkcore.azurecr.io/europa
-    newTag: "staging-1.4.1"
+    newTag: "prod-1.5.0"
