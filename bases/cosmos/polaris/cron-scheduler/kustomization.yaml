@@ -2,7 +2,7 @@
 bases:
   - ../base
 
-nameSuffix: -task-worker
+nameSuffix: -cron-scheduler
 
 patches:
   - target:
@@ -13,21 +13,17 @@ patches:
       metadata:
         name: polaris
         labels:
-          component: task-worker
+          component: cron-scheduler
       spec:
         selector:
           matchLabels:
-            component: task-worker
+            component: cron-scheduler
         template:
           metadata:
-            annotations:
-              prometheus.io/port: '9100'
-              prometheus.io/scrape: 'true'
-              prometheus.io/job: task-worker
             labels:
-              component: task-worker
+              component: cron-scheduler
           spec:
             containers:
               - name: app
                 command: ["linkerd-await", "--"]
-                args: ["python", "-m", "app.core.cli", "task-worker"]
+                args: ["python", "-m", "app.core.cli", "cron-scheduler"]
