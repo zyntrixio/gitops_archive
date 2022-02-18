@@ -7,15 +7,15 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/default/metis
   dependsOn:
-    - name: aad-pod-identity
+  - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/metis
-      newName: binkcore.azurecr.io/metis
-      newTag: "prod-1.23.1" # {"$imagepolicy": "flux-system:uksouth-prod-metis:tag"}
+  - name: binkcore.azurecr.io/metis
+    newName: binkcore.azurecr.io/metis
+    newTag: "prod-1.24.1" # {"$imagepolicy": "flux-system:uksouth-prod-metis:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
