@@ -4,6 +4,7 @@ bases:
   - ../../../../bases/cosmos/polaris/api
   - ../../../../bases/cosmos/polaris/migrator
   - ../../../../bases/cosmos/polaris/task-worker
+  - ../../../../bases/cosmos/polaris/cron-scheduler
 
 namespace: default
 
