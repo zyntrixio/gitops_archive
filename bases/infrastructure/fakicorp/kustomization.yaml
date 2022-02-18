@@ -1,4 +1,0 @@
-resources:
-- deployment.yaml
-- service.yaml
-- linkerd-service-profile.yaml
