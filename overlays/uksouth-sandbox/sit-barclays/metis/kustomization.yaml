@@ -2,9 +2,6 @@ bases:
 - ../../../../bases/olympus/metis/api
 - ../../../../bases/olympus/metis/celery
 
-components:
-- ../../../../common/pgbouncer
-
 patches:
 - path: env.yaml
   target:
