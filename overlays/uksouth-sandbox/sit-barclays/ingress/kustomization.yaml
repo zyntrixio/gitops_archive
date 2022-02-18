@@ -1,8 +1,9 @@
+---
 bases:
   - ../../../../bases/common/issuer
 
 resources:
-- certificate.yaml
-- ingress.yaml
+  - certificate.yaml
+  - ingress.yaml
 
 namespace: sit-barclays
