@@ -1,10 +1,11 @@
+---
 bases:
-- ../../../../bases/olympus/metis/api
-- ../../../../bases/olympus/metis/celery
+  - ../../../../bases/olympus/metis/api
+  - ../../../../bases/olympus/metis/celery
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment
 
 namespace: sit-barclays
