@@ -32,4 +32,4 @@ patches:
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
-                        key: common_oat_barclays_atlas
+                        key: common_barclays_oat_atlas

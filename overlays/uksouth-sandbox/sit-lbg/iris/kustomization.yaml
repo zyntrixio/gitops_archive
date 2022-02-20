@@ -30,4 +30,4 @@ patches:
                     valueFrom:
                       secretKeyRef:
                         key: connection_string
-                        name: azure-storage-sit-lbg
+                        name: azure-storage-lloyds-sit

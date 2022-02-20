@@ -34,4 +34,4 @@ patches:
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
-                        key: common_sit_lbg_europa
+                        key: common_lloyds_sit_europa

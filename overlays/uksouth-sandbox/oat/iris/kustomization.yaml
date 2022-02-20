@@ -30,4 +30,4 @@ patches:
                     valueFrom:
                       secretKeyRef:
                         key: connection_string
-                        name: azure-storage-oat
+                        name: azure-storage-barclays-oat

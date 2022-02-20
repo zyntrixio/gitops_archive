@@ -31,4 +31,4 @@ patches:
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
-                        key: common_oat_barclays_pontus
+                        key: common_barclays_oat_pontus

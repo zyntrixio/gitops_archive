@@ -37,9 +37,9 @@ patches:
                     valueFrom:
                       secretKeyRef:
                         key: connection_string
-                        name: azure-storage-sit-lbg
+                        name: azure-storage-lloyds-sit
                   - name: HERMES_DATABASE_URL
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
-                        key: common_sit_lbg_hermes
+                        key: common_lloyds_sit_hermes

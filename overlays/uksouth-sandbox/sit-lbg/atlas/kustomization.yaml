@@ -32,4 +32,4 @@ patches:
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
-                        key: common_sit_lbg_atlas
+                        key: common_lloyds_sit_atlas
