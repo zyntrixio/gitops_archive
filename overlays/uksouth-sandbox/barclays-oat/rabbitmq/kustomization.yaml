@@ -1,0 +1,10 @@
+---
+bases:
+  - ../../../../bases/infrastructure/rabbitmq
+
+patches:
+  - path: env.yaml
+    target:
+      kind: StatefulSet
+
+namespace: barclays-oat
