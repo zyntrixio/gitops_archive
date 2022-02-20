@@ -7,9 +7,26 @@ bases:
   - ../../../../bases/olympus/midas/beat
   - ../../../../bases/olympus/midas/celery
 
-patches:
-  - path: env.yaml
-    target:
-      kind: Deployment
-
 namespace: oat
+
+configMapGenerator:
+  - name: midas
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: midas
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: midas
