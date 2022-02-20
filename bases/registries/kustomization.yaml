@@ -1,3 +1,5 @@
+---
 resources:
+  - namespace.yaml
   - binkcore.azurecr.io.yaml
   - binkext.azurecr.io.yaml
