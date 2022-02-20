@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-sandbox/sit-lloyds/rabbitmq
+  path: ./overlays/uksouth-sandbox/lloyds-sit/rabbitmq
   prune: true
   sourceRef:
     kind: GitRepository
