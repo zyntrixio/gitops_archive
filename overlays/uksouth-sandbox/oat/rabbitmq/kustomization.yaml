@@ -1,9 +1,10 @@
+---
 bases:
-- ../../../../bases/infrastructure/rabbitmq
+  - ../../../../bases/infrastructure/rabbitmq
 
 patches:
-- path: env.yaml
-  target:
-    kind: StatefulSet
+  - path: env.yaml
+    target:
+      kind: StatefulSet
 
 namespace: oat

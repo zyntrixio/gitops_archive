@@ -1,7 +1,8 @@
+---
 bases:
-- ../../../../bases/infrastructure/kube-crb-manager
+  - ../../../../bases/infrastructure/kube-crb-manager
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment
