@@ -39,3 +39,4 @@ spec:
               memory: 12Gi
       terminationGracePeriodSeconds: 10
       priorityClassName: clickhouse
+      serviceAccountName: clickhouse
