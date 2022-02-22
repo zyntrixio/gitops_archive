@@ -40,4 +40,4 @@ spec:
               cpu: 3000m
               memory: 12Gi
       terminationGracePeriodSeconds: 10
-      # priorityClassName: clickhouse
+      priorityClassName: clickhouse
