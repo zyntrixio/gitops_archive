@@ -1,2 +1,2 @@
 bases:
-  - ./bases/infrastructure/clickhouse
+  - ../../../../bases/infrastructure/clickhouse
