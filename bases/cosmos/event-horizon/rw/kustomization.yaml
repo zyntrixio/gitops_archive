@@ -1,7 +1,6 @@
 ---
-resources:
-  - service.yaml
-  - deployment.yaml
+bases:
+  - ../base
 
 nameSuffix: -rw
 
