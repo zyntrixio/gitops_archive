@@ -1,6 +1,8 @@
 ---
 bases:
-  - ../../../../bases/cosmos/event-horizon
+  - ../../../../bases/cosmos/event-horizon/core
+  - ../../../../bases/cosmos/event-horizon/rw
+  - ../../../../bases/cosmos/event-horizon/ro
 
 namespace: default
 
@@ -14,6 +16,38 @@ configMapGenerator:
       - env.ini
 
 patches:
+  - target:
+      kind: Deployment
+      name: event-horizon-ro
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: event-horizon
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: EVENT_HORIZON_CLIENT_ID
+                    value: 61beab21-6b67-4eb0-be05-be04ef4453a5
+  - target:
+      kind: Deployment
+      name: event-horizon-rw
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: event-horizon
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: EVENT_HORIZON_CLIENT_ID
+                    value: 2043ed95-8a99-45c9-93b5-71317a50a3ee
   - target:
       kind: Deployment
     patch: |-
@@ -45,8 +79,3 @@ patches:
                       secretKeyRef:
                         name: azure-pgfs
                         key: common_carina
-                  - name: EVENT_HORIZON_CLIENT_SECRET
-                    valueFrom:
-                      secretKeyRef:
-                        key: value
-                        name: bpl-event-horizon-sso-client-secret

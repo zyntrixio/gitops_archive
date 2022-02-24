@@ -1,6 +1,9 @@
 ---
 resources:
-  - namespace.yaml
-  - serviceaccount.yaml
   - service.yaml
   - deployment.yaml
+
+nameSuffix: -ro
+
+commonLabels:
+  component: ro

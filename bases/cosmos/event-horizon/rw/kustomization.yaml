@@ -1,0 +1,9 @@
+---
+resources:
+  - service.yaml
+  - deployment.yaml
+
+nameSuffix: -rw
+
+commonLabels:
+  component: rw

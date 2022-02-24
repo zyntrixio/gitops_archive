@@ -183,7 +183,14 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: event-horizon
+            name: event-horizon-rw
+            port:
+              number: 80
+      - path: /bpl/admin-ro
+        pathType: Prefix
+        backend:
+          service:
+            name: event-horizon-ro
             port:
               number: 80
       - path: /bpl/loyalty
