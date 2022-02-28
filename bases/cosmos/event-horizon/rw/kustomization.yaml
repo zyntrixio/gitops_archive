@@ -1,0 +1,8 @@
+---
+bases:
+  - ../base
+
+nameSuffix: -rw
+
+commonLabels:
+  component: rw
