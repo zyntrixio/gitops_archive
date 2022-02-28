@@ -228,14 +228,14 @@ spec:
             name: polaris-api
             port:
               number: 80
-      - path: /bpl/rewards
+      - path: /bpl/campaigns
         pathType: Prefix
         backend:
           service:
             name: vela-api
             port:
               number: 80
-      - path: /bpl/vouchers
+      - path: /bpl/rewards
         pathType: Prefix
         backend:
           service:
