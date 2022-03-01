@@ -23,3 +23,6 @@ patches:
                 containers:
                   - name: app
                     args: ["python3", "main.py", "--rabbit"]
+                    env:
+                      - name: PROMETHEUS_URL
+                        value: http://prometheus:9090/api/v1/query
