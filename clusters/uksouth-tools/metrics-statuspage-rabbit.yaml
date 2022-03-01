@@ -13,4 +13,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/metrics-statuspage
     newName: binkcore.azurecr.io/metrics-statuspage
-    newTag: 2022-03-01T132136Z # {"$imagepolicy": "flux-system:uksouth-tools-metrics-statuspage:tag"}
+    newTag: 2022-03-01T135128Z # {"$imagepolicy": "flux-system:uksouth-tools-metrics-statuspage:tag"}
