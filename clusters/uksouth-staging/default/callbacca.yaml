@@ -11,8 +11,8 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-    - name: ghcr.io/binkhq/callbacca
-      newName: ghcr.io/binkhq/callbacca
+    - name: binkcore.azurecr.io/callbacca
+      newName: binkcore.azurecr.io/callbacca
       newTag: "badtag" # {"$imagepolicy": "flux-system:uksouth-staging-callbacca:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
@@ -21,7 +21,7 @@ metadata:
   name: callbacca
   namespace: flux-system
 spec:
-  image: ghcr.io/binkhq/callbacca
+  image: binkcore.azurecr.io/callbacca
   interval: 120m0s
   secretRef:
     name: binkcore.azurecr.io
