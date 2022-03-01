@@ -1,0 +1,25 @@
+bases:
+  - ../../../bases/infrastructure/metrics-statuspage
+
+namespace: default
+nameSuffix: -generate
+commonLabels:
+  component: generate
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |-
+      apiVersion: batch/v1
+      kind: CronJob
+      metadata:
+        name: metrics-statuspage
+      spec:
+        schedule: "*/15 * * * *"
+        jobTemplate:
+          spec:
+            template:
+              spec:
+                containers:
+                  - name: app
+                    args: ["python3", "main.py", "--generate"]
