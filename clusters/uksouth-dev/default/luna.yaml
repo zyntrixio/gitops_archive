@@ -11,9 +11,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/luna
-      newName: binkcore.azurecr.io/luna
-      newTag: "2021-11-04T235452Z" # {"$imagepolicy": "flux-system:uksouth-dev-luna:tag"}
+  - name: binkcore.azurecr.io/luna
+    newName: binkcore.azurecr.io/luna
+    newTag: "2022-03-02T122003Z" # {"$imagepolicy": "flux-system:uksouth-dev-luna:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
