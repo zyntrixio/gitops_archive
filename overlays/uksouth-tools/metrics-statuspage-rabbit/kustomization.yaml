@@ -1,7 +1,7 @@
 bases:
   - ../../../bases/infrastructure/metrics-statuspage
 
-namespace: default
+namespace: statuspage
 nameSuffix: -rabbit
 commonLabels:
   component: rabbit
