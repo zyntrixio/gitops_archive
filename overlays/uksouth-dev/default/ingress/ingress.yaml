@@ -235,7 +235,7 @@ spec:
             name: polaris-api
             port:
               number: 80
-      - path: /bpl/campaigns
+      - path: /bpl/retailers
         pathType: Prefix
         backend:
           service:
