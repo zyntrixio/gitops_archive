@@ -25,4 +25,4 @@ patches:
                     args: ["python3", "main.py", "--rabbit"]
                     env:
                       - name: PROMETHEUS_URL
-                        value: http://prometheus:9090/api/v1/query
+                        value: http://prometheus.default:9090/api/v1/query
