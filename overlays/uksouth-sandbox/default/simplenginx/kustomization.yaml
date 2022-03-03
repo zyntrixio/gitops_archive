@@ -1,3 +1,7 @@
 ---
 bases:
   - ../../../../bases/infrastructure/simplenginx
+
+replicas:
+  - name: simplenginx
+    count: 3

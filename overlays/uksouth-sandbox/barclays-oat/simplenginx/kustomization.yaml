@@ -3,3 +3,7 @@ bases:
   - ../../../../bases/infrastructure/simplenginx
 
 namespace: barclays-oat
+
+replicas:
+  - name: simplenginx
+    count: 3
