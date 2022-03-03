@@ -32,6 +32,8 @@ patches:
                 env:
                   - name: EVENT_HORIZON_CLIENT_ID
                     value: 61beab21-6b67-4eb0-be05-be04ef4453a5
+                  - name: OAUTH_REDIRECT_URI
+                    value: https://api.staging.gb.bink.com/bpl/admin-ro/authorize/
   - target:
       kind: Deployment
       name: event-horizon-rw
@@ -48,6 +50,8 @@ patches:
                 env:
                   - name: EVENT_HORIZON_CLIENT_ID
                     value: 2043ed95-8a99-45c9-93b5-71317a50a3ee
+                  - name: OAUTH_REDIRECT_URI
+                    value: https://api.staging.gb.bink.com/bpl/admin/authorize/
   - target:
       kind: Deployment
     patch: |-
