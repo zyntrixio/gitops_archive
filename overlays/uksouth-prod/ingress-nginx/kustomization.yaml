@@ -1,2 +1,7 @@
+---
 bases:
-- ../../../bases/infrastructure/ingress-nginx
+  - ../../../bases/infrastructure/ingress-nginx
+
+replicas:
+  - name: ingress-nginx-controller
+    count: 3
