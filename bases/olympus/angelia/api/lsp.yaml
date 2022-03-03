@@ -20,6 +20,12 @@ spec:
     isRetryable: true
     timeout: 2000ms
   - condition:
+      method: DELETE
+      pathRegex: /me
+    name: DELETE /me
+    isRetryable: true
+    timeout: 2000ms
+  - condition:
       method: POST
       pathRegex: /v2/token
     name: POST /v2/token
@@ -29,6 +35,12 @@ spec:
       method: GET
       pathRegex: /v2/wallet
     name: GET /v2/wallet
+    isRetryable: true
+    timeout: 2000ms
+  - condition:
+      method: GET
+      pathRegex: /v2/wallet/loyalty_cards/[^/]*
+    name: GET /v2/wallet/loyalty_cards/{loyalty_card_id}
     isRetryable: true
     timeout: 2000ms
   - condition:
