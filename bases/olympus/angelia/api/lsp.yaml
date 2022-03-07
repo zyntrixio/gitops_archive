@@ -74,6 +74,12 @@ spec:
     isRetryable: true
     timeout: 2000ms
   - condition:
+      method: GET
+      pathRegex: /v2/loyalty_plans/[^/]*/plan_details
+    name: GET /v2/loyalty_plans/{loyalty_plan_id}/plan_details
+    isRetryable: true
+    timeout: 2000ms
+  - condition:
       method: POST
       pathRegex: /v2/loyalty_cards/add
     name: POST /v2/loyalty_cards/add
