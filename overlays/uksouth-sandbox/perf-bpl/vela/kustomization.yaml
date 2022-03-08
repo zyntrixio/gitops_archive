@@ -33,7 +33,7 @@ patches:
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
-                        key: common_vela
+                        key: common_perf_bpl_vela
                 envFrom:
                   - configMapRef:
                       name: vela

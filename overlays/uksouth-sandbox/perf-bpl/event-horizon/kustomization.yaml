@@ -67,14 +67,14 @@ patches:
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
-                        key: common_polaris
+                        key: common_perf_bpl_polaris
                   - name: VELA_DATABASE_URI
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
-                        key: common_vela
+                        key: common_perf_bpl_vela
                   - name: CARINA_DATABASE_URI
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
-                        key: common_carina
+                        key: common_perf_bpl_carina

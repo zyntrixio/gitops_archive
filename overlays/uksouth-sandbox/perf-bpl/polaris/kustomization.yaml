@@ -34,12 +34,12 @@ patches:
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
-                        key: common_polaris
+                        key: common_perf_bpl_polaris
                   - name: BLOB_STORAGE_DSN
                     valueFrom:
                       secretKeyRef:
                         key: connection_string
-                        name: azure-storage-common
+                        name: azure-storage-perf-bpl
                 envFrom:
                   - configMapRef:
                       name: polaris
