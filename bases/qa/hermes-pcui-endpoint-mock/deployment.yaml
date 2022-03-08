@@ -43,7 +43,7 @@ spec:
       containers:
         - image: binkcore.azurecr.io/hermes-pcui-endpoint-mock:latest
           imagePullPolicy: Always
-          name: hermes-pcui-endpoint-mock
+          name: app
           ports:
             - containerPort: 9000
               name: http
