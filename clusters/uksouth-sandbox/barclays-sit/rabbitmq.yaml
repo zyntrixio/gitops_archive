@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -5,8 +6,9 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-sandbox/barclays-sit/rabbitmq
+  path: ./bases/infrastructure/rabbitmq-deploy
   prune: true
+  targetNamespace: barclays-sit
   sourceRef:
     kind: GitRepository
     name: flux-system
