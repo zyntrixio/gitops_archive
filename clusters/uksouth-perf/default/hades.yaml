@@ -11,9 +11,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/hades
-      newName: binkcore.azurecr.io/hades
-      newTag: "develop-2021-07-21-130435" # {"$imagepolicy": "flux-system:uksouth-perf-hades:tag"}
+  - name: binkcore.azurecr.io/hades
+    newName: binkcore.azurecr.io/hades
+    newTag: "staging-2.6.0" # {"$imagepolicy": "flux-system:uksouth-perf-hades:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
