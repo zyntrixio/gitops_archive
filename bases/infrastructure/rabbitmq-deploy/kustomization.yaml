@@ -1,0 +1,12 @@
+---
+resources:
+  - namespace.yaml
+  - service.yaml
+  - serviceaccount.yaml
+  - deploy.yaml
+
+configMapGenerator:
+  - name: rabbitmq
+    files:
+      - config/enabled_plugins
+      - config/rabbitmq.conf
