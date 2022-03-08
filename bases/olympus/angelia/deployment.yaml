@@ -9,8 +9,9 @@ metadata:
     component: api
 spec:
   selector:
-    app: angelia
-    component: api
+    matchLabels:
+      app: angelia
+      component: api
   strategy:
     rollingUpdate:
       maxSurge: 25%
