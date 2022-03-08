@@ -26,7 +26,7 @@ spec:
                   operator: In
                   values:
                   - atlas
-              topologyKey: kubernetes.io/hostname
+              topologyKey: topology.kubernetes.io/zone
             weight: 100
       containers:
       - name: app

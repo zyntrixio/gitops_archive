@@ -31,7 +31,7 @@ spec:
                   operator: In
                   values:
                   - azure-gcp-vault-sync
-              topologyKey: kubernetes.io/hostname
+              topologyKey: topology.kubernetes.io/zone
             weight: 100
       containers:
       - name: app

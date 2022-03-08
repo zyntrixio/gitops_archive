@@ -25,7 +25,7 @@ spec:
                   operator: In
                   values:
                   - skiron
-              topologyKey: kubernetes.io/hostname
+              topologyKey: topology.kubernetes.io/zone
             weight: 100
       containers:
       - name: app

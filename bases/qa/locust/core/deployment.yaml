@@ -21,7 +21,7 @@ spec:
                   operator: In
                   values:
                   - locust
-              topologyKey: kubernetes.io/hostname
+              topologyKey: topology.kubernetes.io/zone
       containers:
       - image: binkcore.azurecr.io/ubiquity-performance:latest
         imagePullPolicy: Always

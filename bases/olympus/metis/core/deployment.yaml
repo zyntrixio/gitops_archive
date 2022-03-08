@@ -26,7 +26,7 @@ spec:
                   operator: In
                   values:
                   - metis
-              topologyKey: kubernetes.io/hostname
+              topologyKey: topology.kubernetes.io/zone
       containers:
       - image: binkcore.azurecr.io/metis:latest
         securityContext:

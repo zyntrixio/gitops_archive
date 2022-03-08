@@ -37,7 +37,7 @@ spec:
                   operator: In
                   values:
                   - iris
-              topologyKey: kubernetes.io/hostname
+              topologyKey: topology.kubernetes.io/zone
       containers:
       - name: app
         image: binkcore.azurecr.io/iris:latest

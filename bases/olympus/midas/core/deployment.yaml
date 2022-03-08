@@ -26,7 +26,7 @@ spec:
                   operator: In
                   values:
                   - midas
-              topologyKey: kubernetes.io/hostname
+              topologyKey: topology.kubernetes.io/zone
       containers:
       - image: binkcore.azurecr.io/midas:latest
         securityContext:

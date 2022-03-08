@@ -22,4 +22,4 @@ spec:
                       operator: In
                       values:
                         - controller
-                topologyKey: kubernetes.io/hostname
+                topologyKey: topology.kubernetes.io/zone

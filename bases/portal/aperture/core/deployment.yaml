@@ -32,7 +32,7 @@ spec:
                   operator: In
                   values:
                   - aperture
-              topologyKey: kubernetes.io/hostname
+              topologyKey: topology.kubernetes.io/zone
             weight: 100
       containers:
       - name: app
