@@ -1,0 +1,19 @@
+---
+bases:
+  - github.com/binkhq/distroless-redis/deploy
+
+namespace: perf-bpl
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: redis
+      spec:
+        template:
+          metadata:
+            annotations:
+              linkerd.io/inject: enabled
