@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: perf-api-v1-redis
+  name: perf-api-v2-redis
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-sandbox/perf-api-v1/redis
+  path: ./overlays/uksouth-sandbox/perf-api-v2/redis
   prune: true
   sourceRef:
     kind: GitRepository

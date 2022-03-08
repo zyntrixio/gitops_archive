@@ -1,0 +1,17 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: luna
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-sandbox/perf-bpl/luna
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/luna
+      newName: binkcore.azurecr.io/luna
+      newTag: 2022-03-02T183939Z  # {"$imagepolicy": "flux-system:perf-luna:tag"}

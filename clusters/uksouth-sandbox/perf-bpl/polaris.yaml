@@ -1,0 +1,19 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: polaris
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-sandbox/perf-bpl/polaris
+  dependsOn:
+    - name: aad-pod-identity
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/polaris
+      newName: binkcore.azurecr.io/polaris
+      newTag: 2022-03-08T131046Z  # {"$imagepolicy": "flux-system:perf-polaris:tag"}
