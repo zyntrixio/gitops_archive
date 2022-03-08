@@ -7,6 +7,7 @@ resources:
 
 configMapGenerator:
   - name: rabbitmq
+    namespace: default
     files:
       - config/enabled_plugins
       - config/rabbitmq.conf
