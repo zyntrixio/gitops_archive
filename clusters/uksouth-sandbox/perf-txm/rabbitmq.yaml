@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./bases/infrastructure/rabbitmq-deploy
+  path: ./bases/infrastructure/rabbitmq
   prune: true
   targetNamespace: perf-txm
   sourceRef:

@@ -1,7 +1,13 @@
+---
 resources:
-- configmap.yaml
-- role.yaml
-- rolebinding.yaml
-- service.yaml
-- serviceaccount.yaml
-- statefulset.yaml
+  - namespace.yaml
+  - service.yaml
+  - serviceaccount.yaml
+  - deploy.yaml
+
+configMapGenerator:
+  - name: rabbitmq
+    namespace: default
+    files:
+      - config/enabled_plugins
+      - config/rabbitmq.conf
