@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: perf-api-v2.${cluster_name}.${location}.bink.sh
+  namespace: default
+spec:
+  dnsNames:
+    - perf-api-v2.${cluster_name}.${location}.bink.sh
+  issuerRef:
+    group: cert-manager.io
+    kind: Issuer
+    name: letsencrypt
+  secretName: perf-api-v2.${cluster_name}.${location}.bink.sh

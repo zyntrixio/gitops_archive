@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: barclays-oat-ingress
+  name: perf-bpl-ingress
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-sandbox/barclays-oat/ingress
+  path: ./overlays/uksouth-sandbox/perf-bpl/ingress
   prune: true
   sourceRef:
     kind: GitRepository
