@@ -4,6 +4,8 @@ kind: AzureIdentity
 metadata:
   name: cert-manager
   namespace: cert-manager
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
 spec:
   type: 0
   resourceID: /subscriptions/0add5c8e-50a6-4821-be0f-7a47c879b009/resourceGroups/uksouth-tools/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-tools-cert-manager

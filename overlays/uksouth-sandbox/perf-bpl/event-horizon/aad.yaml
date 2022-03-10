@@ -4,6 +4,8 @@ kind: AzureIdentity
 metadata:
   name: event-horizon
   namespace: default
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
 spec:
   type: 0
   resourceID: /subscriptions/957523d8-bbe2-4f68-8fae-95975157e91c/resourceGroups/uksouth-sandbox/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-sandbox-event-horizon

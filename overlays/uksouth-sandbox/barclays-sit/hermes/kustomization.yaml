@@ -5,6 +5,9 @@ bases:
   - ../../../../bases/olympus/hermes/celery
   - ../../../../bases/olympus/hermes/migrator
 
+resources:
+  - aad.yaml
+
 namespace: barclays-sit
 
 configMapGenerator:

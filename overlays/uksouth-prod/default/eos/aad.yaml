@@ -4,6 +4,8 @@ kind: AzureIdentity
 metadata:
   name: eos-identity
   namespace: default
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
 spec:
   type: 0
   resourceID: /subscriptions/79560fde-5831-481d-8c3c-e812ef5046e5/resourceGroups/uksouth-prod/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-prod-eos
