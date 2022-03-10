@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -8,15 +7,15 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-staging/default/pyqa
   dependsOn:
-    - name: aad-pod-identity
+  - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/pyqa
-      newName: binkcore.azurecr.io/pyqa
-      newTag: 2022-03-07T182928Z  # {"$imagepolicy": "flux-system:uksouth-staging-pyqa:tag"}
+  - name: binkcore.azurecr.io/pyqa
+    newName: binkcore.azurecr.io/pyqa
+    newTag: 2022-03-10T172714Z # {"$imagepolicy": "flux-system:uksouth-staging-pyqa:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
