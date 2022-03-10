@@ -26,7 +26,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: simplenginx
+                name: healthz
                 port:
                   number: 80
   tls:

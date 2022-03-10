@@ -107,7 +107,7 @@ spec:
             pathType: Exact
             backend:
               service:
-                name: simplenginx
+                name: healthz
                 port:
                   number: 80
           - path: /auth_transactions_mock/mastercard
