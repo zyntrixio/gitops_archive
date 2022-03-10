@@ -31,5 +31,5 @@ patches:
                   - name: POSTGRES_DSN
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
+                        name: azure-pgfs-hack
                         key: common_hermes
