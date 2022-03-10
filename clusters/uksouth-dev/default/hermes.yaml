@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -8,15 +7,15 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-dev/default/hermes
   dependsOn:
-    - name: aad-pod-identity
+  - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/hermes
-      newName: binkcore.azurecr.io/hermes
-      newTag: 2022-03-04T110743Z  # {"$imagepolicy": "flux-system:uksouth-dev-hermes:tag"}
+  - name: binkcore.azurecr.io/hermes
+    newName: binkcore.azurecr.io/hermes
+    newTag: perf-2022-03-10T231156Z # {"$imagepolicy": "flux-system:uksouth-dev-hermes:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
