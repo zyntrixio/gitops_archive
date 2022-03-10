@@ -23,27 +23,27 @@ spec:
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - selene
-              topologyKey: topology.kubernetes.io/zone
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - selene
+                topologyKey: topology.kubernetes.io/zone
       containers:
-      - name: app
-        image: binkcore.azurecr.io/selene:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 9000
-          protocol: TCP
-        resources:
-          limits:
-            cpu: 1000m
-            memory: 384Mi
-          requests:
-            memory: 384Mi
+        - name: app
+          image: binkcore.azurecr.io/selene:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9000
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 384Mi
+            requests:
+              memory: 384Mi
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

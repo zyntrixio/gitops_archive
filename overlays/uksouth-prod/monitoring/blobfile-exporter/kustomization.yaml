@@ -1,5 +1,6 @@
+---
 bases:
-- ../../../../bases/infrastructure/blobfile-exporter
+  - ../../../../bases/infrastructure/blobfile-exporter
 
 patches:
-- path: env.yaml
+  - path: env.yaml

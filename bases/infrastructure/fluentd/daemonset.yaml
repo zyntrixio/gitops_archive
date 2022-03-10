@@ -21,30 +21,30 @@ spec:
         version: v1
     spec:
       containers:
-      - name: app
-        image: binkext.azurecr.io/fluentd-kubernetes-daemonset:v1-debian-elasticsearch
-        resources:
-          limits:
-            memory: 300Mi
-          requests:
-            memory: 300Mi
-        volumeMounts:
-        - mountPath: /var/log
-          name: varlog
-        - mountPath: /fluentd/etc/kubernetes.conf
-          name: fluentd-config
-          subPath: kubernetes.conf
+        - name: app
+          image: binkext.azurecr.io/fluentd-kubernetes-daemonset:v1-debian-elasticsearch
+          resources:
+            limits:
+              memory: 300Mi
+            requests:
+              memory: 300Mi
+          volumeMounts:
+            - mountPath: /var/log
+              name: varlog
+            - mountPath: /fluentd/etc/kubernetes.conf
+              name: fluentd-config
+              subPath: kubernetes.conf
       serviceAccount: fluentd
       serviceAccountName: fluentd
       imagePullSecrets:
-      - name: binkext.azurecr.io
+        - name: binkext.azurecr.io
       tolerations:
-      - effect: NoSchedule
-        key: node-role.kubernetes.io/master
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
       volumes:
-      - hostPath:
-          path: /var/log
-        name: varlog
-      - configMap:
+        - hostPath:
+            path: /var/log
+          name: varlog
+        - configMap:
+            name: fluentd-config
           name: fluentd-config
-        name: fluentd-config

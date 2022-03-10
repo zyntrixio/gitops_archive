@@ -1,24 +1,25 @@
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/service-upstream: "true"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/service-upstream: 'true'
   name: tools.uksouth.bink.sh
   namespace: default
 spec:
   rules:
-  - host: tools.uksouth.bink.sh
-    http:
-      paths:
-      - path: /prometheus-creds
-        pathType: Exact
-        backend:
-          service:
-            name: prometheus
-            port:
-              number: 8080
+    - host: tools.uksouth.bink.sh
+      http:
+        paths:
+          - path: /prometheus-creds
+            pathType: Exact
+            backend:
+              service:
+                name: prometheus
+                port:
+                  number: 8080
   tls:
-  - hosts:
-    - tools.uksouth.bink.sh
-    secretName: tools.uksouth.bink.sh
+    - hosts:
+        - tools.uksouth.bink.sh
+      secretName: tools.uksouth.bink.sh

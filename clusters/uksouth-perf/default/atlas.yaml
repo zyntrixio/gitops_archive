@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -13,7 +14,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/atlas
       newName: binkcore.azurecr.io/atlas
-      newTag: "staging-2.4.0" # {"$imagepolicy": "flux-system:uksouth-perf-atlas:tag"}
+      newTag: staging-2.4.0    # {"$imagepolicy": "flux-system:uksouth-perf-atlas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -35,8 +36,8 @@ spec:
   imageRepositoryRef:
     name: atlas
   filterTags:
-    pattern: 'staging-(?P<ts>\d+(\.\d+)*)$'
-    extract: '$ts'
+    pattern: staging-(?P<ts>\d+(\.\d+)*)$
+    extract: $ts
   policy:
     semver:
-      range: ">0.0.1"
+      range: '>0.0.1'

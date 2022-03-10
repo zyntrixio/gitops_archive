@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -13,7 +14,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/asteria
       newName: binkcore.azurecr.io/asteria
-      newTag: "2021-11-05T124427Z" # {"$imagepolicy": "flux-system:uksouth-perf-asteria:tag"}
+      newTag: 2021-11-05T124427Z    # {"$imagepolicy": "flux-system:uksouth-perf-asteria:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -35,8 +36,8 @@ spec:
   imageRepositoryRef:
     name: asteria
   filterTags:
-    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
-    extract: '$ts'
+    pattern: (?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
   policy:
     alphabetical:
       order: asc

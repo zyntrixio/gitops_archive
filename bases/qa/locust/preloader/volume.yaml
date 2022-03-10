@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,11 +7,11 @@ spec:
   template:
     spec:
       containers:
-      - name: app
-        volumeMounts:
-        - mountPath: /app/tsv
-          name: locust-preloader
+        - name: app
+          volumeMounts:
+            - mountPath: /app/tsv
+              name: locust-preloader
       volumes:
-      - name: locust-preloader
-        persistentVolumeClaim:
-          claimName: locust-preloader
+        - name: locust-preloader
+          persistentVolumeClaim:
+            claimName: locust-preloader

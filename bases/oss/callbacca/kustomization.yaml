@@ -1,8 +1,9 @@
+---
 resources:
-  - "deployment.yaml"
-  - "service.yaml"
+  - deployment.yaml
+  - service.yaml
 
 patches:
-- path: annotations.yaml
-  target:
-    kind: Deployment
+  - path: annotations.yaml
+    target:
+      kind: Deployment

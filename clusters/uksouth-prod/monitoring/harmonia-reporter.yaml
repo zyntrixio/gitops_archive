@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -13,7 +14,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/harmonia_archive_reporter
       newName: binkcore.azurecr.io/harmonia_archive_reporter
-      newTag: "prod-2021-11-04T083228Z" # {"$imagepolicy": "flux-system:uksouth-prod-harmonia-reporter:tag"}
+      newTag: prod-2021-11-04T083228Z    # {"$imagepolicy": "flux-system:uksouth-prod-harmonia-reporter:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -35,8 +36,8 @@ spec:
   imageRepositoryRef:
     name: harmonia-reporter
   filterTags:
-    pattern: 'prod-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
-    extract: '$ts'
+    pattern: prod-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
   policy:
     alphabetical:
       order: asc

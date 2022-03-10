@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -20,23 +21,23 @@ spec:
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: app
-        image: docker.io/postgres:13.4
-        env:
-        - name: POSTGRES_PASSWORD
-          value: TFB2248hxq
-        ports:
-        - containerPort: 5432
-          name: psql
-        volumeMounts:
-        - name: data
-          mountPath: /var/lib/postgresql
+        - name: app
+          image: docker.io/postgres:13.4
+          env:
+            - name: POSTGRES_PASSWORD
+              value: TFB2248hxq
+          ports:
+            - containerPort: 5432
+              name: psql
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql
   volumeClaimTemplates:
-  - metadata:
-      name: data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "default"
-      resources:
-        requests:
-          storage: 1Ti
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ReadWriteOnce]
+        storageClassName: default
+        resources:
+          requests:
+            storage: 1Ti

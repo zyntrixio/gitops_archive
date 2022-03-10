@@ -3,23 +3,23 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/service-upstream: "true"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/service-upstream: 'true'
   name: kibana.uksouth.bink.sh
   namespace: default
 spec:
   rules:
-  - host: kibana.uksouth.bink.sh
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: kibana
-            port:
-              number: 80
+    - host: kibana.uksouth.bink.sh
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kibana
+                port:
+                  number: 80
   tls:
-  - hosts:
-    - kibana.uksouth.bink.sh
-    secretName: kibana.uksouth.bink.sh
+    - hosts:
+        - kibana.uksouth.bink.sh
+      secretName: kibana.uksouth.bink.sh

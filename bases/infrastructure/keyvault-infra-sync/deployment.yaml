@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,13 +21,13 @@ spec:
     spec:
       serviceAccountName: keyvault-infra-sync
       containers:
-      - name: app
-        image: terrycain/keyvault2kube:1.1.0
-        volumeMounts:
-        - mountPath: /app/templates
-          name: template-config
+        - name: app
+          image: terrycain/keyvault2kube:1.1.0
+          volumeMounts:
+            - mountPath: /app/templates
+              name: template-config
       volumes:
-      - name: template-config
-        configMap:
-          defaultMode: 420
-          name: keyvault-infra-sync
+        - name: template-config
+          configMap:
+            defaultMode: 420
+            name: keyvault-infra-sync

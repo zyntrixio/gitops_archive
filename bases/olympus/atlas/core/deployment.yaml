@@ -19,21 +19,21 @@ spec:
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - atlas
-              topologyKey: topology.kubernetes.io/zone
-            weight: 100
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - atlas
+                topologyKey: topology.kubernetes.io/zone
+              weight: 100
       containers:
-      - name: app
-        image: binkcore.azurecr.io/atlas:latest
-        imagePullPolicy: Always
-        securityContext:
-          runAsGroup: 65534
-          runAsUser: 65534
+        - name: app
+          image: binkcore.azurecr.io/atlas:latest
+          imagePullPolicy: Always
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

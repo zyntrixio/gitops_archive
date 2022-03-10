@@ -1,3 +1,4 @@
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -7,6 +8,6 @@ roleRef:
   kind: ClusterRole
   name: kube-crb-manager
 subjects:
-- kind: ServiceAccount
-  name: kube-crb-manager
-  namespace: kube-system
+  - kind: ServiceAccount
+    name: kube-crb-manager
+    namespace: kube-system

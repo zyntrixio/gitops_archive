@@ -1,5 +1,5 @@
 ---
-apiVersion: "aadpodidentity.k8s.io/v1"
+apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentity
 metadata:
   name: prometheus-identity
@@ -9,7 +9,7 @@ spec:
   resourceID: /subscriptions/0add5c8e-50a6-4821-be0f-7a47c879b009/resourceGroups/uksouth-tools/providers/Microsoft.ManagedIdentity/userAssignedIdentities/prometheus
   clientID: 9119949a-375d-405b-8f4c-4f44be820468
 ---
-apiVersion: "aadpodidentity.k8s.io/v1"
+apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentityBinding
 metadata:
   name: prometheus-identity-binding

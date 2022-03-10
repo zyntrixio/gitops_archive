@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -11,9 +12,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/luna
-    newName: binkcore.azurecr.io/luna
-    newTag: "2022-03-02T183939Z" # {"$imagepolicy": "flux-system:uksouth-dev-luna:tag"}
+    - name: binkcore.azurecr.io/luna
+      newName: binkcore.azurecr.io/luna
+      newTag: 2022-03-02T183939Z  # {"$imagepolicy": "flux-system:uksouth-dev-luna:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -35,8 +36,8 @@ spec:
   imageRepositoryRef:
     name: luna
   filterTags:
-    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
-    extract: '$ts'
+    pattern: (?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
   policy:
     alphabetical:
       order: asc

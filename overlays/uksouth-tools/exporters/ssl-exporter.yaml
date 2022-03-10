@@ -34,13 +34,13 @@ spec:
         - name: ssl-exporter
           image: ribbybibby/ssl-exporter:latest
           args:
-            - "--config.file=/etc/ssl-exporter/config.yaml"
+            - --config.file=/etc/ssl-exporter/config.yaml
           ports:
             - containerPort: 9219
           volumeMounts:
             - name: ssl-exporter-config-volume
               mountPath: /etc/ssl-exporter/
-            
+
       volumes:
         - name: ssl-exporter-config-volume
           configMap:
@@ -56,10 +56,10 @@ metadata:
   namespace: default
 spec:
   ports:
-  - name: tcp
-    port: 80
-    targetPort: 9219
-    protocol: TCP
+    - name: tcp
+      port: 80
+      targetPort: 9219
+      protocol: TCP
   selector:
     app: ssl-exporter
   sessionAffinity: None

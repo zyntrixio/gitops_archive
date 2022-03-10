@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -7,15 +8,15 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-staging/default/pyqa-bpl
   dependsOn:
-  - name: aad-pod-identity
+    - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/pyqa-bpl
-    newName: binkcore.azurecr.io/pyqa-bpl
-    newTag: "2022-03-07T142041Z" # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-bpl:tag"}
+    - name: binkcore.azurecr.io/pyqa-bpl
+      newName: binkcore.azurecr.io/pyqa-bpl
+      newTag: 2022-03-07T142041Z  # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-bpl:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -37,8 +38,8 @@ spec:
   imageRepositoryRef:
     name: pyqa-bpl
   filterTags:
-    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
-    extract: '$ts'
+    pattern: (?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
   policy:
     alphabetical:
       order: asc

@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,10 +8,10 @@ spec:
   template:
     spec:
       containers:
-      - name: app
-        args:
-        - tximport
-        - --agent
-        - visa-settlement
-        - --no-user-input
-        - --quiet
+        - name: app
+          args:
+            - tximport
+            - --agent
+            - visa-settlement
+            - --no-user-input
+            - --quiet

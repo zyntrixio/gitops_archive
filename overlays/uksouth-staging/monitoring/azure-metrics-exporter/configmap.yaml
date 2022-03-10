@@ -7,7 +7,7 @@ metadata:
   labels:
     name: azure-metrics-exporter
 data:
-  azure.yml: |
+  azure.yml: |-
     active_directory_authority_url: "https://login.microsoftonline.com/"
     resource_manager_url: "https://management.azure.com/"
     credentials:

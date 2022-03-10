@@ -1,8 +1,9 @@
+---
 resources:
-- clusterrole.yaml
-- clusterrolebinding.yaml
-- deployment.yaml
-- serviceaccount.yaml
+  - clusterrole.yaml
+  - clusterrolebinding.yaml
+  - deployment.yaml
+  - serviceaccount.yaml
 
 patches:
   - target:

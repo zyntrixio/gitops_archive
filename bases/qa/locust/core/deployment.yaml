@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,18 +14,18 @@ spec:
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - locust
-              topologyKey: topology.kubernetes.io/zone
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - locust
+                topologyKey: topology.kubernetes.io/zone
       containers:
-      - image: binkcore.azurecr.io/ubiquity-performance:latest
-        imagePullPolicy: Always
-        name: app
+        - image: binkcore.azurecr.io/ubiquity-performance:latest
+          imagePullPolicy: Always
+          name: app
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

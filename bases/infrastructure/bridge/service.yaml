@@ -8,9 +8,9 @@ metadata:
   namespace: default
 spec:
   ports:
-  - name: tcp
-    port: 9000
-    protocol: TCP
+    - name: tcp
+      port: 9000
+      protocol: TCP
   selector:
     app: bridge
   sessionAffinity: None

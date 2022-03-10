@@ -1,7 +1,8 @@
+---
 bases:
-- ../../../../bases/infrastructure/harmonia-reporter
+  - ../../../../bases/infrastructure/harmonia-reporter
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment

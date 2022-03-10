@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,20 +21,20 @@ spec:
         app: redis-exporter
     spec:
       containers:
-      - name: redis-exporter
-        image: binkext.azurecr.io/redis_exporter:v1.13.1
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 9100
-        env:
-        - name: REDIS_EXPORTER_PING_ON_CONNECT
-          value: "true"
-        - name: REDIS_EXPORTER_WEB_LISTEN_ADDRESS
-          value: 0.0.0.0:9100
-        resources:
-          limits:
-            memory: 256Mi
-          requests:
-            memory: 128Mi
+        - name: redis-exporter
+          image: binkext.azurecr.io/redis_exporter:v1.13.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9100
+          env:
+            - name: REDIS_EXPORTER_PING_ON_CONNECT
+              value: 'true'
+            - name: REDIS_EXPORTER_WEB_LISTEN_ADDRESS
+              value: 0.0.0.0:9100
+          resources:
+            limits:
+              memory: 256Mi
+            requests:
+              memory: 128Mi
       imagePullSecrets:
-      - name: binkext.azurecr.io
+        - name: binkext.azurecr.io

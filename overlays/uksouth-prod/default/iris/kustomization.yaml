@@ -1,5 +1,6 @@
+---
 bases:
-- ../../../../bases/olympus/iris
+  - ../../../../bases/olympus/iris
 
 patches:
   - target:

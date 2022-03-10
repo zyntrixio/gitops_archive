@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,6 +7,6 @@ spec:
   template:
     spec:
       containers:
-      - name: app
-        command: [ "linkerd-await", "--" ]
-        args: [ "bash", "-c", "python manage.py migrate; echo Done; tail -f /dev/null" ]
+        - name: app
+          command: [linkerd-await, --]
+          args: [bash, -c, python manage.py migrate; echo Done; tail -f /dev/null]

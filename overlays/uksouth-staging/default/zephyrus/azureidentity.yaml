@@ -1,5 +1,5 @@
 ---
-apiVersion: "aadpodidentity.k8s.io/v1"
+apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentity
 metadata:
   name: zephyrus-identity
@@ -9,7 +9,7 @@ spec:
   resourceID: /subscriptions/457b0db5-6680-480f-9e77-2dafb06bd9dc/resourceGroups/uksouth-staging/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-staging-zephyrus
   clientID: 8920dfed-4ec1-4eec-999a-da0e648535b7
 ---
-apiVersion: "aadpodidentity.k8s.io/v1"
+apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentityBinding
 metadata:
   name: zephyrus-identity-binding

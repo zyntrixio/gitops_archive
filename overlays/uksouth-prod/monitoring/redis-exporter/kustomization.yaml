@@ -1,7 +1,8 @@
+---
 bases:
-- ../../../../bases/infrastructure/redis-exporter
+  - ../../../../bases/infrastructure/redis-exporter
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment

@@ -1,7 +1,8 @@
+---
 bases:
-- github.com/binkhq/api-reflector/deploy/kube
+  - github.com/binkhq/api-reflector/deploy/kube
 
 patches:
-- path: annotations.yaml
-  target:
-    kind: Deployment
+  - path: annotations.yaml
+    target:
+      kind: Deployment

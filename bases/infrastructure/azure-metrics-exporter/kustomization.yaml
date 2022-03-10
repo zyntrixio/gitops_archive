@@ -1,6 +1,7 @@
+---
 resources:
-- namespace.yaml
-- deployment.yaml
+  - namespace.yaml
+  - deployment.yaml
 
 patches:
   - target:

@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -13,9 +14,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/azure-gcp-vault-sync
-    newName: binkcore.azurecr.io/azure-gcp-vault-sync
-    newTag: "develop-2021-04-30-132251" # {"$imagepolicy": "flux-system:uksouth-prod-azure-gcp-vault-sync:tag"}
+    - name: binkcore.azurecr.io/azure-gcp-vault-sync
+      newName: binkcore.azurecr.io/azure-gcp-vault-sync
+      newTag: develop-2021-04-30-132251  # {"$imagepolicy": "flux-system:uksouth-prod-azure-gcp-vault-sync:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -37,8 +38,8 @@ spec:
   imageRepositoryRef:
     name: azure-gcp-vault-sync
   filterTags:
-    pattern: 'develop-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
-    extract: '$ts'
+    pattern: develop-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$
+    extract: $ts
   policy:
     alphabetical:
       order: asc

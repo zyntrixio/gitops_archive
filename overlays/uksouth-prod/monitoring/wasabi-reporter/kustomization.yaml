@@ -1,10 +1,11 @@
+---
 bases:
-- ../../../../bases/infrastructure/wasabi-reporter
+  - ../../../../bases/infrastructure/wasabi-reporter
 
 resources:
   - aad.yaml
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment

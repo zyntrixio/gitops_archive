@@ -1,8 +1,9 @@
+---
 resources:
-- deployment.yaml
+  - deployment.yaml
 
 components:
-- ../../../common/pushgateway
+  - ../../../common/pushgateway
 
 patches:
   - target:

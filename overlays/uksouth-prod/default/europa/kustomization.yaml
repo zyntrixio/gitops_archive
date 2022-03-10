@@ -1,3 +1,4 @@
+---
 bases:
   - ../../../../bases/olympus/europa/api
   - ../../../../bases/olympus/europa/migrator

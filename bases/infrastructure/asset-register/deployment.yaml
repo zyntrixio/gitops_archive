@@ -30,24 +30,24 @@ spec:
         component: api
     spec:
       containers:
-      - image: binkcore.azurecr.io/asset-register:2021-12-10T095611Z
-        name: app
-        ports:
-        - containerPort: 9000
-        env:
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              name: azure-pgfs
-              key: common_asset_register
-        imagePullPolicy: Always
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-            - all
+        - image: binkcore.azurecr.io/asset-register:2021-12-10T095611Z
+          name: app
+          ports:
+            - containerPort: 9000
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: azure-pgfs
+                  key: common_asset_register
+          imagePullPolicy: Always
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

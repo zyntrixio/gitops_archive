@@ -59,7 +59,7 @@ patches:
                   - app.api.app:app
   - target:
       kind: Deployment
-    patch:  |-
+    patch: |-
       apiVersion: apps/v1
       kind: Deployment
       metadata:

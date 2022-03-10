@@ -24,16 +24,16 @@ spec:
         app: asteria
     spec:
       containers:
-      - image: binkcore.azurecr.io/asteria:latest
-        imagePullPolicy: Always
-        name: app
-        ports:
-        - containerPort: 9100
-          protocol: TCP
-        resources:
-          limits:
-            memory: 128Mi
-          requests:
-            memory: 128Mi
+        - image: binkcore.azurecr.io/asteria:latest
+          imagePullPolicy: Always
+          name: app
+          ports:
+            - containerPort: 9100
+              protocol: TCP
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              memory: 128Mi
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

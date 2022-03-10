@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -11,12 +12,12 @@ spec:
         kubectl.kubernetes.io/default-container: app
     spec:
       containers:
-      - name: app
-        image: binkcore.azurecr.io/pyqa:latest
-        resources:
-          limits:
-            memory: 256Mi
-          requests:
-            memory: 256Mi
+        - name: app
+          image: binkcore.azurecr.io/pyqa:latest
+          resources:
+            limits:
+              memory: 256Mi
+            requests:
+              memory: 256Mi
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

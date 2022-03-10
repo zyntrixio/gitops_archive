@@ -27,27 +27,27 @@ spec:
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - policies
-              topologyKey: topology.kubernetes.io/zone
-            weight: 100
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - policies
+                topologyKey: topology.kubernetes.io/zone
+              weight: 100
       containers:
-      - name: app
-        image: binkcore.azurecr.io/policies.gb.bink.com:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
-          protocol: TCP
-        resources:
-          limits:
-            memory: 150Mi
-          requests:
-            cpu: 10m
-            memory: 150Mi
+        - name: app
+          image: binkcore.azurecr.io/policies.gb.bink.com:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              memory: 150Mi
+            requests:
+              cpu: 10m
+              memory: 150Mi
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,5 +8,5 @@ spec:
   template:
     spec:
       containers:
-      - name: app
-        image: binkcore.azurecr.io/harmonia_bulkload:latest
+        - name: app
+          image: binkcore.azurecr.io/harmonia_bulkload:latest

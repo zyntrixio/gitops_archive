@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -11,9 +12,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/callbacca
-    newName: binkcore.azurecr.io/callbacca
-    newTag: "2022-02-25T172047Z" # {"$imagepolicy": "flux-system:uksouth-staging-callbacca:tag"}
+    - name: binkcore.azurecr.io/callbacca
+      newName: binkcore.azurecr.io/callbacca
+      newTag: 2022-02-25T172047Z  # {"$imagepolicy": "flux-system:uksouth-staging-callbacca:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -35,8 +36,8 @@ spec:
   imageRepositoryRef:
     name: callbacca
   filterTags:
-    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
-    extract: '$ts'
+    pattern: (?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
   policy:
     alphabetical:
       order: asc

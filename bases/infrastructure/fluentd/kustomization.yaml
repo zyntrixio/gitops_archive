@@ -1,9 +1,10 @@
+---
 resources:
-- clusterrole.yaml
-- clusterrolebinding.yaml
-- daemonset.yaml
-- serviceaccount.yaml
-- namespace.yaml
+  - clusterrole.yaml
+  - clusterrolebinding.yaml
+  - daemonset.yaml
+  - serviceaccount.yaml
+  - namespace.yaml
 
 secretGenerator:
   - name: elasticsearch-auth

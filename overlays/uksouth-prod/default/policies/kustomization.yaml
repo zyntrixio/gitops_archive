@@ -1,5 +1,6 @@
+---
 bases:
-- ../../../../bases/olympus/policies
+  - ../../../../bases/olympus/policies
 
 patches:
   - target:

@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -11,6 +12,6 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/hermes-pcui-endpoint-mock
-    newName: binkcore.azurecr.io/hermes-pcui-endpoint-mock
-    newTag: "master-2021-03-15-143105" # {"$imagepolicy": "flux-system:perf-hermes-pcui-endpoint-mock:tag"}
+    - name: binkcore.azurecr.io/hermes-pcui-endpoint-mock
+      newName: binkcore.azurecr.io/hermes-pcui-endpoint-mock
+      newTag: master-2021-03-15-143105  # {"$imagepolicy": "flux-system:perf-hermes-pcui-endpoint-mock:tag"}

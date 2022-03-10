@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -12,12 +13,12 @@ spec:
     name: flux-system
   postBuild:
     substituteFrom:
-    - kind: ConfigMap
-      name: cluster-vars
+      - kind: ConfigMap
+        name: cluster-vars
   images:
-  - name: ghcr.io/binkhq/api-reflector
-    newName: ghcr.io/binkhq/api-reflector
-    newTag: "0.5.10" # {"$imagepolicy": "flux-system:uksouth-staging-api-reflector:tag"}
+    - name: ghcr.io/binkhq/api-reflector
+      newName: ghcr.io/binkhq/api-reflector
+      newTag: 0.5.10  # {"$imagepolicy": "flux-system:uksouth-staging-api-reflector:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -37,8 +38,8 @@ spec:
   imageRepositoryRef:
     name: api-reflector
   filterTags:
-    pattern: '(?P<ts>\d+(\.\d+)*)$'
-    extract: '$ts'
+    pattern: (?P<ts>\d+(\.\d+)*)$
+    extract: $ts
   policy:
     semver:
-      range: ">0.1.0"
+      range: '>0.1.0'

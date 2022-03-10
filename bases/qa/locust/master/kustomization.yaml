@@ -1,15 +1,16 @@
+---
 bases:
-- ../core
+  - ../core
 
 resources:
-- service.yaml
+  - service.yaml
 
 patches:
-- path: command.yaml
-- path: labels.yaml
-- path: ports.yaml
-- path: resources.yaml
-- path: strategy.yaml
-- path: name.yaml
-  target:
-    kind: Deployment
+  - path: command.yaml
+  - path: labels.yaml
+  - path: ports.yaml
+  - path: resources.yaml
+  - path: strategy.yaml
+  - path: name.yaml
+    target:
+      kind: Deployment

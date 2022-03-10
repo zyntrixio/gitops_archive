@@ -6,7 +6,7 @@ metadata:
   namespace: default
 spec:
   dnsNames:
-  - cluster-autodiscover.uksouth.bink.sh
+    - cluster-autodiscover.uksouth.bink.sh
   issuerRef:
     group: cert-manager.io
     kind: Issuer

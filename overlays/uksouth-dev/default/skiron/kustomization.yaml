@@ -1,5 +1,6 @@
+---
 bases:
-- ../../../../bases/olympus/skiron
+  - ../../../../bases/olympus/skiron
 
 configMapGenerator:
   - name: skiron

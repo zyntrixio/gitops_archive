@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,25 +22,25 @@ spec:
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - binklink
-              topologyKey: topology.kubernetes.io/zone
-            weight: 100
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - binklink
+                topologyKey: topology.kubernetes.io/zone
+              weight: 100
       containers:
-      - name: app
-        image: binkcore.azurecr.io/binklink:latest
-        resources:
-          limits:
-            memory: 64Mi
-            cpu: 1000m
-          requests:
-            memory: 64Mi
-        ports:
-        - containerPort: 80
+        - name: app
+          image: binkcore.azurecr.io/binklink:latest
+          resources:
+            limits:
+              memory: 64Mi
+              cpu: 1000m
+            requests:
+              memory: 64Mi
+          ports:
+            - containerPort: 80
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

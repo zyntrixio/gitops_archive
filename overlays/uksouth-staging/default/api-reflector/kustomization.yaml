@@ -1,9 +1,10 @@
+---
 bases:
-- ../../../../bases/oss/api-reflector
+  - ../../../../bases/oss/api-reflector
 
 resources:
-- cert.yaml
-- ingress.yaml
+  - cert.yaml
+  - ingress.yaml
 
 configMapGenerator:
   - name: api-reflector

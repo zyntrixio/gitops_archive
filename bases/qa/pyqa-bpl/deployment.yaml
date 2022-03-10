@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,12 +22,12 @@ spec:
         aadpodidbinding: pyqa-bpl
     spec:
       containers:
-      - name: app
-        image: binkcore.azurecr.io/pyqa-bpl:latest
-        resources:
-          limits:
-            memory: 256Mi
-          requests:
-            memory: 256Mi
+        - name: app
+          image: binkcore.azurecr.io/pyqa-bpl:latest
+          resources:
+            limits:
+              memory: 256Mi
+            requests:
+              memory: 256Mi
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

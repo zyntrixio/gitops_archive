@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,32 +20,32 @@ spec:
         app: e2e-transactions
     spec:
       containers:
-      - name: app
-        image: binkcore.azurecr.io/e2e-transactions:prod
-        ports:
-        - containerPort: 6502
-        env:
-        - name: PG_USER
-          value: laadmin@bink-tableau-uksouth
-        - name: PG_PASS
-          value: hbhboGJzguG1hebAkALxvAnL
-        - name: PG_HOST
-          value: bink-tableau-uksouth.postgres.database.azure.com
-        - name: use_x_forwarded_proto
-          value: "1"
-        - name: use_x_forwarded_host
-          value: "1"
-        - name: blob_storage_connection_string
-          valueFrom:
-            secretKeyRef:
-              key: connection_string
-              name: azure-storage-common
-        resources:
-          limits:
-            cpu: 1000m
-            memory: 512Mi
-          requests:
-            cpu: 10m
-            memory: 512Mi
+        - name: app
+          image: binkcore.azurecr.io/e2e-transactions:prod
+          ports:
+            - containerPort: 6502
+          env:
+            - name: PG_USER
+              value: laadmin@bink-tableau-uksouth
+            - name: PG_PASS
+              value: hbhboGJzguG1hebAkALxvAnL
+            - name: PG_HOST
+              value: bink-tableau-uksouth.postgres.database.azure.com
+            - name: use_x_forwarded_proto
+              value: '1'
+            - name: use_x_forwarded_host
+              value: '1'
+            - name: blob_storage_connection_string
+              valueFrom:
+                secretKeyRef:
+                  key: connection_string
+                  name: azure-storage-common
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 512Mi
+            requests:
+              cpu: 10m
+              memory: 512Mi
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

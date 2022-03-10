@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -9,13 +10,13 @@ spec:
       containers:
         - name: eventhub
           env:
-          - name: EVENTHUB
-            value: azuresynapse
-          - name: EH_CONNECTION_STRING
-            value: EH_CONNECTION_STRING_2
-          - name: CONSUMER_GROUP
-            value: elasticsearch
-          - name: EVENTHUB_SOURCE_TYPE
-            value: azure
-          - name: ES_INDEX_DATE_PATTERN
-            value: YYYY-MM
+            - name: EVENTHUB
+              value: azuresynapse
+            - name: EH_CONNECTION_STRING
+              value: EH_CONNECTION_STRING_2
+            - name: CONSUMER_GROUP
+              value: elasticsearch
+            - name: EVENTHUB_SOURCE_TYPE
+              value: azure
+            - name: ES_INDEX_DATE_PATTERN
+              value: YYYY-MM

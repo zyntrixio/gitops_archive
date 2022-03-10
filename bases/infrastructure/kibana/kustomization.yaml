@@ -1,6 +1,7 @@
+---
 resources:
-- deployment.yaml
-- service.yaml
-- config.yaml
-- ingress.yaml
-- ingress-certificate.yaml
+  - deployment.yaml
+  - service.yaml
+  - config.yaml
+  - ingress.yaml
+  - ingress-certificate.yaml

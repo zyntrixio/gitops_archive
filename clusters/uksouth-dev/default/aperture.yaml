@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -11,13 +12,13 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/aperture
-    newName: binkcore.azurecr.io/aperture
-    newTag: "2022-03-07T195448Z" # {"$imagepolicy": "flux-system:uksouth-dev-aperture:tag"}
+    - name: binkcore.azurecr.io/aperture
+      newName: binkcore.azurecr.io/aperture
+      newTag: 2022-03-07T195448Z  # {"$imagepolicy": "flux-system:uksouth-dev-aperture:tag"}
   postBuild:
     substituteFrom:
-    - kind: ConfigMap
-      name: cluster-vars
+      - kind: ConfigMap
+        name: cluster-vars
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -39,8 +40,8 @@ spec:
   imageRepositoryRef:
     name: aperture
   filterTags:
-    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
-    extract: '$ts'
+    pattern: (?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
   policy:
     alphabetical:
       order: asc

@@ -41,14 +41,14 @@ spec:
         - name: blackbox-exporter
           image: prom/blackbox-exporter:latest
           args:
-            - "--config.file=/config/config.yaml"
-            - "--log.level=debug"
+            - --config.file=/config/config.yaml
+            - --log.level=debug
           ports:
             - containerPort: 9115
           volumeMounts:
             - name: blackbox-exporter-config-volume
               mountPath: /config/
-            
+
       volumes:
         - name: blackbox-exporter-config-volume
           configMap:
@@ -64,10 +64,10 @@ metadata:
   namespace: default
 spec:
   ports:
-  - name: tcp
-    port: 80
-    targetPort: 9115
-    protocol: TCP
+    - name: tcp
+      port: 80
+      targetPort: 9115
+      protocol: TCP
   selector:
     app: blackbox-exporter
   sessionAffinity: None

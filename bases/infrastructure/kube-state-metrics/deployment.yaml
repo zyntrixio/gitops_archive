@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -22,27 +23,27 @@ spec:
         prometheus.io/job: kube_state_metrics
     spec:
       containers:
-      - image: quay.io/coreos/kube-state-metrics:v1.9.8
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 9100
-          initialDelaySeconds: 5
-          timeoutSeconds: 5
-        name: kube-state-metrics
-        args:
-          - --port=9100
-        ports:
-        - containerPort: 9100
-          name: http-metrics
-        - containerPort: 8081
-          name: telemetry
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 8081
-          initialDelaySeconds: 5
-          timeoutSeconds: 5
+        - image: quay.io/coreos/kube-state-metrics:v1.9.8
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 9100
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+          name: kube-state-metrics
+          args:
+            - --port=9100
+          ports:
+            - containerPort: 9100
+              name: http-metrics
+            - containerPort: 8081
+              name: telemetry
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8081
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
       nodeSelector:
         kubernetes.io/os: linux
       serviceAccountName: kube-state-metrics

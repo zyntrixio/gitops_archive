@@ -1,12 +1,13 @@
+---
 resources:
-- aad.yaml
+  - aad.yaml
 
 bases:
-- ../../../../bases/qa/locust/master
-- ../../../../bases/qa/locust/slave
-- ../../../../bases/qa/locust/preloader
+  - ../../../../bases/qa/locust/master
+  - ../../../../bases/qa/locust/slave
+  - ../../../../bases/qa/locust/preloader
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment

@@ -26,17 +26,17 @@ spec:
         aadpodidbinding: cyclops
     spec:
       containers:
-      - name: app
-        image: binkcore.azurecr.io/cyclops:latest
-        imagePullPolicy: Always 
-        resources:
-          limits:
-            memory: 128Mi
-            cpu: 1000m
-          requests:
-            memory: 128Mi
-        securityContext:
-          runAsGroup: 65534
-          runAsUser: 65534
+        - name: app
+          image: binkcore.azurecr.io/cyclops:latest
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 1000m
+            requests:
+              memory: 128Mi
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

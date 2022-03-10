@@ -1,10 +1,11 @@
+---
 bases:
-- ../../../../bases/qa/pyqa-bpl
+  - ../../../../bases/qa/pyqa-bpl
 
 resources:
-- azureidentity.yaml
+  - azureidentity.yaml
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment

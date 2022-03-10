@@ -1,6 +1,7 @@
+---
 resources:
-- azure-metrics-exporter-cfm.yaml
-- azure-metrics-exporter-dep.yaml
-- blackbox-exporter.yaml
-- elasticsearch-exporter.yaml
-- ssl-exporter.yaml
+  - azure-metrics-exporter-cfm.yaml
+  - azure-metrics-exporter-dep.yaml
+  - blackbox-exporter.yaml
+  - elasticsearch-exporter.yaml
+  - ssl-exporter.yaml

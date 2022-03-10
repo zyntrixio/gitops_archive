@@ -1,2 +1,3 @@
+---
 bases:
-- ../../../bases/infrastructure/ingress-tools
+  - ../../../bases/infrastructure/ingress-tools

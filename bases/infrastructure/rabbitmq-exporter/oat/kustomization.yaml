@@ -1,7 +1,8 @@
+---
 bases:
-- ../core
+  - ../core
 
 patches:
-- path: patch-name.yaml
-  target:
-    kind: Deployment
+  - path: patch-name.yaml
+    target:
+      kind: Deployment

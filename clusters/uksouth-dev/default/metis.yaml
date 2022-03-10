@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -15,7 +16,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/metis
       newName: binkcore.azurecr.io/metis
-      newTag: "2022-01-18T141030Z" # {"$imagepolicy": "flux-system:uksouth-dev-metis:tag"}
+      newTag: 2022-01-18T141030Z    # {"$imagepolicy": "flux-system:uksouth-dev-metis:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -37,8 +38,8 @@ spec:
   imageRepositoryRef:
     name: metis
   filterTags:
-    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$'
-    extract: '$ts'
+    pattern: (?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
   policy:
     alphabetical:
       order: asc

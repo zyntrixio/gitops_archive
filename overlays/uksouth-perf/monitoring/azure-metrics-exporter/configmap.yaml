@@ -1,10 +1,11 @@
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: azure-metrics-exporter
   namespace: default
 data:
-  azure.yml: |
+  azure.yml: |-
     active_directory_authority_url: "https://login.microsoftonline.com/"
     resource_manager_url: "https://management.azure.com/"
     credentials:

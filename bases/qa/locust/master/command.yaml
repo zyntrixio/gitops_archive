@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,10 +7,10 @@ spec:
   template:
     spec:
       containers:
-      - name: app
-        command:
-        - locust
-        - --master
-        - --host=http://angelia-api
-        - --master-port=5557
-        - --locustfile=locust_angelia/locustfile.py
+        - name: app
+          command:
+            - locust
+            - --master
+            - --host=http://angelia-api
+            - --master-port=5557
+            - --locustfile=locust_angelia/locustfile.py

@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,10 +22,10 @@ spec:
         aadpodidbinding: pyqa-apiv2
     spec:
       containers:
-      - name: app
-        image: binkcore.azurecr.io/bink-api-v2-automation-suite:latest
-        resources:
-          limits:
-            memory: 512Mi
+        - name: app
+          image: binkcore.azurecr.io/bink-api-v2-automation-suite:latest
+          resources:
+            limits:
+              memory: 512Mi
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

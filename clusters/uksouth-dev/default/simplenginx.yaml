@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -11,9 +12,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: ghcr.io/binkhq/simplenginx
-    newName: ghcr.io/binkhq/simplenginx
-    newTag: "2022-03-09-171039" # {"$imagepolicy": "flux-system:uksouth-dev-simplenginx:tag"}
+    - name: ghcr.io/binkhq/simplenginx
+      newName: ghcr.io/binkhq/simplenginx
+      newTag: 2022-03-09-171039  # {"$imagepolicy": "flux-system:uksouth-dev-simplenginx:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -33,8 +34,8 @@ spec:
   imageRepositoryRef:
     name: simplenginx
   filterTags:
-    pattern: '(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$'
-    extract: '$ts'
+    pattern: (?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$
+    extract: $ts
   policy:
     alphabetical:
       order: asc

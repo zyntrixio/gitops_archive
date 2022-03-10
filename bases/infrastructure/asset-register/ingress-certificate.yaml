@@ -6,7 +6,7 @@ metadata:
   namespace: default
 spec:
   dnsNames:
-  - asset-register.tools.bink.sh
+    - asset-register.tools.bink.sh
   issuerRef:
     group: cert-manager.io
     kind: Issuer

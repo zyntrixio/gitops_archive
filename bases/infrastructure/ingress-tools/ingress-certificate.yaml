@@ -6,8 +6,8 @@ metadata:
   namespace: default
 spec:
   dnsNames:
-  - tools.uksouth.bink.sh
-  - tools0.uksouth.bink.sh
+    - tools.uksouth.bink.sh
+    - tools0.uksouth.bink.sh
   issuerRef:
     group: cert-manager.io
     kind: Issuer

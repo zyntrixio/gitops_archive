@@ -8,10 +8,10 @@ metadata:
   namespace: default
 spec:
   ports:
-  - name: http
-    port: 80
-    protocol: TCP
-    targetPort: 3000
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 3000
   selector:
     app: aperture
   sessionAffinity: None

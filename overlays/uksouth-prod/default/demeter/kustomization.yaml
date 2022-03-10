@@ -1,7 +1,8 @@
+---
 bases:
-- ../../../../bases/olympus/demeter
+  - ../../../../bases/olympus/demeter
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment

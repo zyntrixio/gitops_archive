@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,28 +19,28 @@ spec:
         app: harmonia-reporter
     spec:
       containers:
-      - name: app
-        image: binkcore.azurecr.io/harmonia_archive_reporter:prod-2021-08-27T132214Z
-        resources:
-          limits:
-            cpu: 100m
-            memory: 128Mi
-          requests:
-            cpu: 100m
-            memory: 128Mi
-        ports:
-        - containerPort: 9000
-      - name: alerts
-        image: binkcore.azurecr.io/harmonia_archive_reporter:prod-2021-08-27T132214Z
-        resources:
-          limits:
-            cpu: 100m
-            memory: 128Mi
-          requests:
-            cpu: 100m
-            memory: 128Mi
-        args:
-        - python3 
-        - alerts.py
+        - name: app
+          image: binkcore.azurecr.io/harmonia_archive_reporter:prod-2021-08-27T132214Z
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          ports:
+            - containerPort: 9000
+        - name: alerts
+          image: binkcore.azurecr.io/harmonia_archive_reporter:prod-2021-08-27T132214Z
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          args:
+            - python3
+            - alerts.py
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

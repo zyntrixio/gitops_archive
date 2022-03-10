@@ -1,5 +1,6 @@
+---
 resources:
-- deployment.yaml
+  - deployment.yaml
 
 #         prometheus.io/job: eventhub-azureactivedirectory
 #         env:

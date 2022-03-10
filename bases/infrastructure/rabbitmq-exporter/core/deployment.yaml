@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,16 +19,16 @@ spec:
         app: rabbitmq-exporter
     spec:
       containers:
-      - name: rabbitmq-exporter
-        image: kbudde/rabbitmq-exporter:v1.0.0-RC8
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 9100
-        env:
-        - name: PUBLISH_PORT
-          value: "9100"
-        resources:
-          limits:
-            memory: 256Mi
-          requests:
-            memory: 128Mi
+        - name: rabbitmq-exporter
+          image: kbudde/rabbitmq-exporter:v1.0.0-RC8
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9100
+          env:
+            - name: PUBLISH_PORT
+              value: '9100'
+          resources:
+            limits:
+              memory: 256Mi
+            requests:
+              memory: 128Mi

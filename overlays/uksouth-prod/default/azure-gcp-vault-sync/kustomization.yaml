@@ -1,5 +1,6 @@
+---
 resources:
-- azureidentity.yaml
+  - azureidentity.yaml
 
 bases:
-- ../../../../bases/infrastructure/azure-gcp-vault-sync
+  - ../../../../bases/infrastructure/azure-gcp-vault-sync

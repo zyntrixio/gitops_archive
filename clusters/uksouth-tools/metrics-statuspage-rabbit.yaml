@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -11,6 +12,6 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/metrics-statuspage
-    newName: binkcore.azurecr.io/metrics-statuspage
-    newTag: 2022-03-01T135846Z # {"$imagepolicy": "flux-system:uksouth-tools-metrics-statuspage:tag"}
+    - name: binkcore.azurecr.io/metrics-statuspage
+      newName: binkcore.azurecr.io/metrics-statuspage
+      newTag: 2022-03-01T135846Z # {"$imagepolicy": "flux-system:uksouth-tools-metrics-statuspage:tag"}

@@ -1,10 +1,11 @@
+---
 bases:
-- ../core
+  - ../core
 
 patches:
-- path: patch-annotations.yaml
-- path: patch-command.yaml
-- path: patch-labels.yaml
-- path: patch-name.yaml
-  target:
-    kind: Deployment
+  - path: patch-annotations.yaml
+  - path: patch-command.yaml
+  - path: patch-labels.yaml
+  - path: patch-name.yaml
+    target:
+      kind: Deployment

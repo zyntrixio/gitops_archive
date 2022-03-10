@@ -1,3 +1,4 @@
+---
 bases:
   - ../../../../bases/olympus/atlas/api
   - ../../../../bases/olympus/atlas/consumer

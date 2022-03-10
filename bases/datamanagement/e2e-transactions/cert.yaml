@@ -1,3 +1,4 @@
+---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -5,7 +6,7 @@ metadata:
   namespace: datamanagement
 spec:
   dnsNames:
-  - data.${cluster_name}.${location}.bink.sh
+    - data.${cluster_name}.${location}.bink.sh
   issuerRef:
     group: cert-manager.io
     kind: Issuer

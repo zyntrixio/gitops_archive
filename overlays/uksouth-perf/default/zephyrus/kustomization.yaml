@@ -1,10 +1,11 @@
+---
 resources:
-- azureidentity.yaml
+  - azureidentity.yaml
 
 bases:
-- ../../../../bases/olympus/zephyrus
+  - ../../../../bases/olympus/zephyrus
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment

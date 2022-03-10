@@ -27,14 +27,14 @@ spec:
         app: ip-range-checker
     spec:
       containers:
-      - image: binkcore.azurecr.io/ip_range_checker:develop-3374453b
-        name: iprangechecker
-        env:
-        - name: SENTRY_ENVIRONMENT
-          value: tools
-        imagePullPolicy: Always
+        - image: binkcore.azurecr.io/ip_range_checker:develop-3374453b
+          name: iprangechecker
+          env:
+            - name: SENTRY_ENVIRONMENT
+              value: tools
+          imagePullPolicy: Always
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

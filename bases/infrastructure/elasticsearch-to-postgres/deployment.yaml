@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,14 +25,14 @@ spec:
         app: elasticsearch-to-postgres
     spec:
       containers:
-      - image: binkcore.azurecr.io/elasticsearch-to-postgres:latest
-        name: app
-        resources:
-          limits:
-            cpu: 1000m
-            memory: 256Mi
-          requests:
-            cpu: 1000m
-            memory: 256Mi
+        - image: binkcore.azurecr.io/elasticsearch-to-postgres:latest
+          name: app
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              cpu: 1000m
+              memory: 256Mi
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

@@ -1,3 +1,4 @@
+---
 bases:
   - ../../../../bases/olympus/midas/api
   - ../../../../bases/olympus/midas/beat

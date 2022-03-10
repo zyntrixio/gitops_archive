@@ -1,10 +1,11 @@
+---
 bases:
-- ../../../../bases/olympus/cyclops
+  - ../../../../bases/olympus/cyclops
 
 resources:
-- aad.yaml
+  - aad.yaml
 
 patches:
-- path: env.yaml
-  target:
-    kind: Deployment
+  - path: env.yaml
+    target:
+      kind: Deployment

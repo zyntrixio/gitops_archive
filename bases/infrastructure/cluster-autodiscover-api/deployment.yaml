@@ -26,14 +26,14 @@ spec:
         component: api
     spec:
       containers:
-      - image: binkcore.azurecr.io/kube-autodiscover-api:latest
-        imagePullPolicy: Always
-        name: server
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-        ports:
-        - containerPort: 9000
-          protocol: TCP
+        - image: binkcore.azurecr.io/kube-autodiscover-api:latest
+          imagePullPolicy: Always
+          name: server
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          ports:
+            - containerPort: 9000
+              protocol: TCP
 
       dnsPolicy: ClusterFirst
       restartPolicy: Always
@@ -41,4 +41,4 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 30
       imagePullSecrets:
-      - name: binkcore.azurecr.io
+        - name: binkcore.azurecr.io

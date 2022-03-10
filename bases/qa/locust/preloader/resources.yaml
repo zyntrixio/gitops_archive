@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,8 +7,8 @@ spec:
   template:
     spec:
       containers:
-      - name: app
-        resources:
-          requests:
-            cpu: 250m
-            memory: 8Gi
+        - name: app
+          resources:
+            requests:
+              cpu: 250m
+              memory: 8Gi
