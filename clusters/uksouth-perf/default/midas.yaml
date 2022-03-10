@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -8,15 +7,15 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-perf/default/midas
   dependsOn:
-    - name: aad-pod-identity
+  - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/midas
-      newName: binkcore.azurecr.io/midas
-      newTag: staging-3.25.2  # {"$imagepolicy": "flux-system:uksouth-perf-midas:tag"}
+  - name: binkcore.azurecr.io/midas
+    newName: binkcore.azurecr.io/midas
+    newTag: staging-3.25.3 # {"$imagepolicy": "flux-system:uksouth-perf-midas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
