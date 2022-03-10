@@ -1,0 +1,13 @@
+---
+bases:
+  - ../../../../bases/infrastructure/healthz
+
+namespace: lloyds-sit
+
+patches:
+  - target:
+      kind: ServiceProfile
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: healthz.lloyds-sit.svc.cluster.local

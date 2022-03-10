@@ -1,0 +1,13 @@
+---
+bases:
+  - ../../../../bases/infrastructure/healthz
+
+namespace: barclays-sit
+
+patches:
+  - target:
+      kind: ServiceProfile
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: healthz.barclays-sit.svc.cluster.local
