@@ -61,4 +61,4 @@ patches:
                     valueFrom:
                       secretKeyRef:
                         key: uri_ssl
-                        name: azure-redis-vnet
+                        name: azure-redis-txm
