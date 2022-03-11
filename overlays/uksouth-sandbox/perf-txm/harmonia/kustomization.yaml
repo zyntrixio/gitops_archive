@@ -33,8 +33,6 @@ namespace: perf-txm
 
 replicas:
   - name: harmonia
-    count: 0
-  - name: harmonia-migrator
     count: 1
 
 patches:
