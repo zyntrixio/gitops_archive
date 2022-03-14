@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -12,9 +11,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/ubiquity-performance
-      newName: binkcore.azurecr.io/ubiquity-performance
-      newTag: 2022-03-09-155319  # {"$imagepolicy": "flux-system:uksouth-perf-locust:tag"}
+  - name: binkcore.azurecr.io/ubiquity-performance
+    newName: binkcore.azurecr.io/ubiquity-performance
+    newTag: 2022-03-14-163331 # {"$imagepolicy": "flux-system:uksouth-perf-locust:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
