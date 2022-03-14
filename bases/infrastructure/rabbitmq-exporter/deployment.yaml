@@ -20,8 +20,7 @@ spec:
     spec:
       containers:
         - name: rabbitmq-exporter
-          image: kbudde/rabbitmq-exporter:v1.0.0-RC8
-          imagePullPolicy: Always
+          image: docker.io/kbudde/rabbitmq-exporter:v1.0.0-RC13
           ports:
             - containerPort: 9100
           env:

@@ -1,6 +1,6 @@
 ---
 bases:
-  - ../../../../bases/infrastructure/rabbitmq-exporter/core
+  - ../../../../bases/infrastructure/rabbitmq-exporter
 
 patches:
   - path: env.yaml
