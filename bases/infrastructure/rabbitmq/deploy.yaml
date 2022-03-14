@@ -20,9 +20,6 @@ spec:
       annotations:
         kubectl.kubernetes.io/default-container: app
         linkerd.io/inject: enabled
-        prometheus.io/port: '9100'
-        prometheus.io/scrape: 'true'
-        prometheus.io/job: rabbitmq
       labels:
         app: rabbitmq
     spec:
