@@ -19,6 +19,7 @@ bases:
   - ../../../../bases/olympus/harmonia/matching-worker-slow
   - ../../../../bases/olympus/harmonia/streaming-worker
   - ../../../../bases/olympus/harmonia/migrator
+  - ../../../../bases/olympus/harmonia/throughput-test
 
 resources:
   - aad.yaml
