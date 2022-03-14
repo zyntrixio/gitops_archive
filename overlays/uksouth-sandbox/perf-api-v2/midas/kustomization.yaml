@@ -12,7 +12,6 @@ namespace: perf-api-v2
 
 configMapGenerator:
   - name: midas
-    namespace: default
     envs:
       - env.ini
 

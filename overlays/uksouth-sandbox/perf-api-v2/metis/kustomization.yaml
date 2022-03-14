@@ -7,7 +7,6 @@ namespace: perf-api-v2
 
 configMapGenerator:
   - name: metis
-    namespace: default
     envs:
       - env.ini
 

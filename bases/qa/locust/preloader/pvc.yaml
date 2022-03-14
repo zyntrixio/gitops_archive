@@ -10,4 +10,4 @@ spec:
   resources:
     requests:
       storage: 512Gi
-  storageClassName: locust-preloader
+  storageClassName: default

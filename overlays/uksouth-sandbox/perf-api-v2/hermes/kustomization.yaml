@@ -13,7 +13,6 @@ resources:
 
 configMapGenerator:
   - name: hermes
-    namespace: default
     envs:
       - env.ini
 

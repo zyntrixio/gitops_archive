@@ -4,7 +4,6 @@ bases:
 
 resources:
   - pvc.yaml
-  - storageclass.yaml
 
 patches:
   - path: command.yaml

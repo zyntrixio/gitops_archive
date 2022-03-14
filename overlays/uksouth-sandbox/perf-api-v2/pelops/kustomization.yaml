@@ -6,7 +6,6 @@ namespace: perf-api-v2
 
 configMapGenerator:
   - name: pelops
-    namespace: default
     envs:
       - env.ini
 
