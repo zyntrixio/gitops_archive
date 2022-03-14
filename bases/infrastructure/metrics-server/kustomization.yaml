@@ -1,6 +1,6 @@
 ---
 bases:
-  - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.4.2/components.yaml
+  - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.6.1/components.yaml
 
 patches:
   - target:
