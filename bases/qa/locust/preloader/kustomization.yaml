@@ -4,6 +4,7 @@ bases:
 
 resources:
   - pvc.yaml
+  - priorityclass.yaml
 
 patches:
   - path: command.yaml
