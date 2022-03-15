@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -8,15 +7,15 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-staging/default/vela
   dependsOn:
-    - name: aad-pod-identity
+  - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/vela
-      newName: binkcore.azurecr.io/vela
-      newTag: staging-0.7.1  # {"$imagepolicy": "flux-system:uksouth-staging-vela:tag"}
+  - name: binkcore.azurecr.io/vela
+    newName: binkcore.azurecr.io/vela
+    newTag: staging-1.0.0 # {"$imagepolicy": "flux-system:uksouth-staging-vela:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
