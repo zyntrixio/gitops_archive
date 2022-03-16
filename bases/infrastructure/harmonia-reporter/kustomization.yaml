@@ -1,6 +1,3 @@
 ---
-components:
-  - ../../common/pgbouncer
-
 resources:
   - deployment.yaml
