@@ -8,7 +8,7 @@ spec:
   interval: 60m0s
   path: ./bases/registries
   prune: true
-  targetNamespace: default
+  targetNamespace: bpl
   sourceRef:
     kind: GitRepository
     name: flux-system
