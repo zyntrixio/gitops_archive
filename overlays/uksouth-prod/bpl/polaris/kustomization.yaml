@@ -1,0 +1,50 @@
+---
+bases:
+  - ../../../../bases/cosmos/polaris/core
+  - ../../../../bases/cosmos/polaris/api
+  - ../../../../bases/cosmos/polaris/migrator
+  - ../../../../bases/cosmos/polaris/task-worker
+  - ../../../../bases/cosmos/polaris/cron-scheduler
+
+namespace: bpl
+
+resources:
+  - aad.yaml
+
+configMapGenerator:
+  - name: polaris
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: polaris
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: SQLALCHEMY_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_polaris
+                  - name: REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: uri_ssl
+                        name: azure-redis-vnet
+                  - name: BLOB_STORAGE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string
+                        name: azure-storage-common
+                envFrom:
+                  - configMapRef:
+                      name: polaris
