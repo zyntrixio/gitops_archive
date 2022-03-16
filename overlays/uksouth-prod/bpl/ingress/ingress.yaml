@@ -20,7 +20,7 @@ spec:
                 name: event-horizon
                 port:
                   number: 80
-          - path: /bpl/loyalty/([a-z0-9-]{1,100})/marketing/unsubscribe\?(.*)
+          - path: /bpl/loyalty/[a-z0-9-]{1,100}/marketing/unsubscribe\?.*
             pathType: Exact
             backend:
               service:
