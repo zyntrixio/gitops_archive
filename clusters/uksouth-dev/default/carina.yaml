@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/carina
     newName: binkcore.azurecr.io/carina
-    newTag: 2022-03-16T163918Z # {"$imagepolicy": "flux-system:uksouth-dev-carina:tag"}
+    newTag: 2022-03-17T113700Z # {"$imagepolicy": "flux-system:uksouth-dev-carina:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
