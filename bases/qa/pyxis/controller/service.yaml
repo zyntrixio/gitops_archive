@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: pyxis-controller
+  name: pyxis
   namespace: default
 spec:
   ports:
