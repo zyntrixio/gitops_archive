@@ -21,6 +21,9 @@ patches:
         name: pyxis
       spec:
         template:
+          metadata:
+            labels:
+              aadpodidbinding: pyxis
           spec:
             containers:
               - name: app
