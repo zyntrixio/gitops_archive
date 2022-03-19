@@ -3,13 +3,26 @@ apiVersion: policy.linkerd.io/v1beta1
 kind: Server
 metadata:
   namespace: perf-bpl
+  name: pyxis-controller-web
+spec:
+  podSelector:
+    matchLabels:
+      app: pyxis
+      component: controller
+  port: web
+  proxyProtocol: HTTP/2
+---
+apiVersion: policy.linkerd.io/v1beta1
+kind: Server
+metadata:
+  namespace: perf-bpl
   name: pyxis-controller-primary
 spec:
   podSelector:
     matchLabels:
       app: pyxis
       component: controller
-  port: controller-primary
+  port: api-primary
   proxyProtocol: HTTP/2
 ---
 apiVersion: policy.linkerd.io/v1beta1
@@ -36,7 +49,7 @@ spec:
     matchLabels:
       app: pyxis
       component: controller
-  port: controller-secondary
+  port: api-secondary
   proxyProtocol: HTTP/2
 ---
 apiVersion: policy.linkerd.io/v1beta1
