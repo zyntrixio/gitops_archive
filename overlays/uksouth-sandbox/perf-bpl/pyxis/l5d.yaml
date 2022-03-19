@@ -23,7 +23,7 @@ spec:
       app: pyxis
       component: controller
   port: api-primary
-  proxyProtocol: unknown
+  proxyProtocol: TLS
 ---
 apiVersion: policy.linkerd.io/v1beta1
 kind: ServerAuthorization
@@ -50,7 +50,7 @@ spec:
       app: pyxis
       component: controller
   port: api-secondary
-  proxyProtocol: unknown
+  proxyProtocol: TLS
 ---
 apiVersion: policy.linkerd.io/v1beta1
 kind: ServerAuthorization
