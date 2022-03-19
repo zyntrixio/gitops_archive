@@ -27,6 +27,7 @@ patches:
                 command:
                   - locust
                   - --host=http://carina-api/
+                  - --master-port=5557
                   - --locustfile=locust_performance_testing/locustfile.py
                 ports:
                   - containerPort: 8089
