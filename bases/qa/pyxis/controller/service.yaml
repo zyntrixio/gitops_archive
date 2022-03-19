@@ -10,7 +10,6 @@ spec:
       port: 5557
     - name: controller-secondary
       port: 5558
-      targetPort: controller-secondary
     - name: web
       port: 8089
   type: ClusterIP
