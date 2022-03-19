@@ -8,11 +8,9 @@ spec:
   ports:
     - name: controller-primary
       port: 5557
-      targetPort: controller-primary
     - name: controller-secondary
       port: 5558
       targetPort: controller-secondary
     - name: web
       port: 8089
-      targetPort: web
   type: ClusterIP
