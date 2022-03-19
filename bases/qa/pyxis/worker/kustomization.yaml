@@ -1,0 +1,29 @@
+---
+bases:
+  - ../base
+
+nameSuffix: -worker
+
+commonLabels:
+  app: pyxis
+  component: worker
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: pyxis
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                command:
+                  - locust
+                  - --worker
+                  - --master-host=pyxis-controller
+                  - --master-port=5557
+                  - --locustfile=locust_performance_testing/locustfile.py

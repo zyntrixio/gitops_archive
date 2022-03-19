@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyxis
+  labels:
+    app: pyxis
+spec:
+  selector:
+    matchLabels:
+      app: pyxis
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: pyxis
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - pyxis
+                topologyKey: topology.kubernetes.io/zone
+              weight: 100
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/pyxis:latest
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
+      serviceAccountName: pyxis

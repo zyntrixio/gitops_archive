@@ -1,0 +1,8 @@
+---
+bases:
+  - ../../../../bases/qa/pyxis/core
+  - ../../../../bases/qa/pyxis/controller
+  - ../../../../bases/qa/pyxis/worker
+  - ../../../../bases/qa/pyxis/loader
+
+namespace: perf-bpl
