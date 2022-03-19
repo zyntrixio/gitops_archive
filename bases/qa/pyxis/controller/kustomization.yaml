@@ -32,6 +32,6 @@ patches:
                   - containerPort: 8089
                     name: web
                   - containerPort: 5557
-                    name: controller-primary
+                    name: api-primary
                   - containerPort: 5558
-                    name: controller-secondary
+                    name: api-secondary

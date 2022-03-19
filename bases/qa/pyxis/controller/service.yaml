@@ -6,10 +6,10 @@ metadata:
   namespace: default
 spec:
   ports:
-    - name: controller-primary
-      port: 5557
-    - name: controller-secondary
-      port: 5558
     - name: web
       port: 8089
+    - name: api-primary
+      port: 5557
+    - name: api-secondary
+      port: 5558
   type: ClusterIP
