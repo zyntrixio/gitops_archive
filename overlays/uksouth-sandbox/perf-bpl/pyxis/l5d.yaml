@@ -1,0 +1,52 @@
+---
+apiVersion: policy.linkerd.io/v1beta1
+kind: Server
+metadata:
+  namespace: perf-bpl
+  name: pyxis-controller-primary
+spec:
+  podSelector:
+    matchLabels:
+      app: pyxis
+      component: controller
+  port: controller-primary
+---
+apiVersion: policy.linkerd.io/v1beta1
+kind: ServerAuthorization
+metadata:
+  namespace: perf-bpl
+  name: pyxis-controller-primary
+spec:
+  server:
+    name: pyxis-controller-primary
+  client:
+    meshTLS:
+      serviceAccounts:
+        - name: pyxis
+          namespace: perf-bpl
+---
+apiVersion: policy.linkerd.io/v1beta1
+kind: Server
+metadata:
+  namespace: perf-bpl
+  name: pyxis-controller-secondary
+spec:
+  podSelector:
+    matchLabels:
+      app: pyxis
+      component: controller
+  port: controller-secondary
+---
+apiVersion: policy.linkerd.io/v1beta1
+kind: ServerAuthorization
+metadata:
+  namespace: perf-bpl
+  name: pyxis-controller-secondary
+spec:
+  server:
+    name: pyxis-controller-secondary
+  client:
+    meshTLS:
+      serviceAccounts:
+        - name: pyxis
+          namespace: perf-bpl

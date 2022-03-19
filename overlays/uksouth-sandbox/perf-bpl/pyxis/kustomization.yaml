@@ -5,4 +5,7 @@ bases:
   - ../../../../bases/qa/pyxis/worker
   - ../../../../bases/qa/pyxis/loader
 
+resources:
+  - l5d.yaml
+
 namespace: perf-bpl
