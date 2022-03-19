@@ -29,7 +29,7 @@ patches:
               - name: app
                 command:
                   - locust
-                  - --host=http://carina-api/
+                  - --host=http://polaris-api/
                   - --master-port=5557
                   - --locustfile=locust_performance_testing/locustfile.py
                 ports:
