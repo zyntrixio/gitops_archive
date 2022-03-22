@@ -52,4 +52,5 @@ spec:
               memory: 256Mi
       imagePullSecrets:
         - name: binkcore.azurecr.io
-      serviceAccount: vela
+      serviceAccountName: vela
+      priorityClassName: vela

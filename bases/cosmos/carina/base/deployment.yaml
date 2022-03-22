@@ -53,3 +53,4 @@ spec:
       imagePullSecrets:
         - name: binkcore.azurecr.io
       serviceAccountName: carina
+      priorityClassName: carina

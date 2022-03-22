@@ -75,3 +75,4 @@ spec:
       imagePullSecrets:
         - name: binkcore.azurecr.io
       serviceAccountName: luna
+      priorityClassName: luna
