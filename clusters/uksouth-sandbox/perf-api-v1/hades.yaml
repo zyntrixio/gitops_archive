@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-perf/perf-api-v1/hades
+  path: ./overlays/uksouth-sandbox/perf-api-v1/hades
   prune: true
   sourceRef:
     kind: GitRepository
