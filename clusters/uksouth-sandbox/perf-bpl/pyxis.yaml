@@ -13,4 +13,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/pyxis
     newName: binkcore.azurecr.io/pyxis
-    newTag: 2022-03-23T161215Z # {"$imagepolicy": "flux-system:perf-pyxis:tag"}
+    newTag: 2022-03-24T114014Z # {"$imagepolicy": "flux-system:perf-pyxis:tag"}
