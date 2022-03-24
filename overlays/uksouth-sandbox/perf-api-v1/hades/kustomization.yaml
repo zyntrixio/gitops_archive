@@ -3,9 +3,10 @@ bases:
   - ../../../../bases/olympus/hades/api
   - ../../../../bases/olympus/hades/migrator
 
+namespace: perf-api-v1
+
 configMapGenerator:
   - name: hades
-    namespace: default
     envs:
       - env.ini
 
