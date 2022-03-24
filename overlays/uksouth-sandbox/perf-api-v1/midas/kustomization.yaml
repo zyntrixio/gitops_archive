@@ -15,6 +15,10 @@ configMapGenerator:
     envs:
       - env.ini
 
+replicas:
+  - name: midas-api
+    count: 3
+
 patches:
   - target:
       kind: Deployment

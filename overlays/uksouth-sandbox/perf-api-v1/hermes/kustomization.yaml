@@ -16,6 +16,12 @@ configMapGenerator:
     envs:
       - env.ini
 
+replicas:
+  - name: hermes-api
+    count: 6
+  - name: hermes-celery
+    count: 3
+
 patches:
   - target:
       kind: Deployment

@@ -10,6 +10,10 @@ configMapGenerator:
     envs:
       - env.ini
 
+replicas:
+  - name: hades-api
+    count: 3
+
 patches:
   - target:
       kind: Deployment
