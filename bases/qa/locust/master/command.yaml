@@ -11,6 +11,6 @@ spec:
           command:
             - locust
             - --master
-            - --host=http://angelia-api
+            - --host=http://hermes-api
             - --master-port=5557
-            - --locustfile=locust_angelia/locustfile.py
+            - --locustfile=locust_ubiquity/locustfile_peak_hour.py
