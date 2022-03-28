@@ -1,9 +1,6 @@
 ---
 bases:
-  - ../../../../bases/olympus/midas/api
-  - ../../../../bases/olympus/midas/beat
-  - ../../../../bases/olympus/midas/celery
-  - ../../../../bases/olympus/midas/consumer
+  - ../../../../bases/olympus/angelia
 
 resources:
   - aad.yaml
@@ -11,13 +8,9 @@ resources:
 namespace: perf-api-v2
 
 configMapGenerator:
-  - name: midas
+  - name: angelia
     envs:
       - env.ini
-
-replicas:
-  - name: midas-api
-    count: 5
 
 patches:
   - target:
@@ -26,7 +19,7 @@ patches:
       apiVersion: apps/v1
       kind: Deployment
       metadata:
-        name: midas
+        name: angelia
       spec:
         template:
           spec:
@@ -34,4 +27,10 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                      name: midas
+                      name: angelia
+                env:
+                  - name: POSTGRES_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_perf_api_v2_hermes
