@@ -17,7 +17,7 @@ configMapGenerator:
 
 replicas:
   - name: midas-api
-    count: 3
+    count: 5
 
 patches:
   - target:

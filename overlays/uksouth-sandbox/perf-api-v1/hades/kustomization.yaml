@@ -12,7 +12,7 @@ configMapGenerator:
 
 replicas:
   - name: hades-api
-    count: 3
+    count: 5
 
 patches:
   - target:

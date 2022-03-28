@@ -20,7 +20,7 @@ replicas:
   - name: hermes-api
     count: 6
   - name: hermes-celery
-    count: 3
+    count: 4
 
 patches:
   - target:
