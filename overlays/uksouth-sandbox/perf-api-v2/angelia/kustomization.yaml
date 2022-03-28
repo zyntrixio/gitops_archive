@@ -12,6 +12,10 @@ configMapGenerator:
     envs:
       - env.ini
 
+replicas:
+  - name: angelia-api
+    count: 6
+
 patches:
   - target:
       kind: Deployment

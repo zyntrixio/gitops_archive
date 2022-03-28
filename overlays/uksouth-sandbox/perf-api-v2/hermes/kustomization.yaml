@@ -19,6 +19,8 @@ configMapGenerator:
 replicas:
   - name: hermes-celery
     count: 4
+  - name: hermes-logic
+    count: 4
 
 patches:
   - target:
