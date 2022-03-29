@@ -4,6 +4,8 @@ bases:
   - ../../../../bases/olympus/atlas/consumer
   - ../../../../bases/olympus/atlas/migrator
 
+namespace: barclays-oat
+
 patches:
   - path: env.yaml
     target:
