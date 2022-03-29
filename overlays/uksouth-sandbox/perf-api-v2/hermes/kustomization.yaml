@@ -24,6 +24,12 @@ replicas:
 
 patches:
   - target:
+      kind: ServiceProfile
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: hermes-api.perf-api-v2.svc.cluster.local
+  - target:
       kind: Deployment
     patch: |-
       apiVersion: apps/v1
