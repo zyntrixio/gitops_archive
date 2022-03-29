@@ -20,6 +20,8 @@ patches:
       metadata:
         name: pyxis
       spec:
+        strategy:
+          type: Recreate
         template:
           spec:
             containers:
