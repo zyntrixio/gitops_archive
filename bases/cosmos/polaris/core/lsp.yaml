@@ -25,6 +25,18 @@ spec:
       isRetryable: true
       timeout: 2000ms
     - condition:
+        method: POST
+        pathRegex: /bpl/loyalty/[^/]*/accounts/enrolment"
+      name: POST /bpl/loyalty/{retailer_slug}/accounts/enrolment"
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /bpl/loyalty/[^/]*/accounts/getbycredentials"
+      name: POST /bpl/loyalty/{retailer_slug}/accounts/getbycredentials"
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
         method: GET
         pathRegex: /bpl/loyalty/[^/]*/accounts/[^/]*"
       name: GET /bpl/loyalty/{retailer_slug}/accounts/{account_holder_uuid}"
