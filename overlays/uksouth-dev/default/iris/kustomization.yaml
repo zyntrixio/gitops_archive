@@ -10,7 +10,7 @@ configMapGenerator:
 
 patches:
   - target:
-      kind: deployment
+      kind: Deployment
     patch: |-
       apiVersion: apps/v1
       kind: Deployment
