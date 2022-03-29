@@ -39,17 +39,6 @@ spec:
             requests:
               cpu: 100m
               memory: 256Mi
-        - name: nginx
-          command:
-            - nginx
-          image: binkcore.azurecr.io/pyxis:latest
-          resources:
-            limits:
-              cpu: 1000m
-              memory: 128Mi
-            requests:
-              cpu: 100m
-              memory: 128Mi
       imagePullSecrets:
         - name: binkcore.azurecr.io
       serviceAccountName: pyxis
