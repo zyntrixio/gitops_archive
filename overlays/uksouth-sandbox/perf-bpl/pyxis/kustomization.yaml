@@ -7,7 +7,7 @@ bases:
 
 resources:
   - aad.yaml
-  - l5d.yaml
+  # - l5d.yaml
 
 namespace: perf-bpl
 
