@@ -41,8 +41,6 @@ patches:
             value: https://40ec46dd6a8940c4882501427e3e3a66@o503751.ingest.sentry.io/5589266
           - name: HERMES_SENTRY_ENV
             value: performance
-          - name: CELERY_BROKER_URL
-            value: amqps://perf-rabbitmq.uksouth.bink.host:5671
           - name: ATLAS_URL
             value: http://atlas-api
           - name: VAULT_URL
