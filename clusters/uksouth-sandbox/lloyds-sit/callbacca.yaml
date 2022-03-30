@@ -1,0 +1,18 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: callbacca
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./bases/oss/callbacca
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  targetNamespace: lloyds-sit
+  images:
+    - name: binkcore.azurecr.io/callbacca
+      newName: binkcore.azurecr.io/callbacca
+      newTag: 2022-02-25T172047Z  # {"$imagepolicy": "flux-system:sandbox-callbacca:tag"}
