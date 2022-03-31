@@ -11,6 +11,6 @@ spec:
         - name: app
           resources:
             limits:
-              memory: 512Mi
+              memory: 768Mi
             requests:
-              memory: 512Mi
+              memory: 768Mi
