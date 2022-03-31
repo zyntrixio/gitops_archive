@@ -16,4 +16,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/midas
       newName: binkcore.azurecr.io/midas
-      newTag: prod-3.25.3
+      newTag: prod-3.27.3
