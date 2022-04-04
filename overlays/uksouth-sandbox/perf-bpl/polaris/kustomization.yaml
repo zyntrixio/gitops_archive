@@ -49,3 +49,22 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: polaris
+  - target:
+      kind: Deployment
+      name: polaris-task-worker
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: polaris
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                resources:
+                  limits:
+                    memory: 1Gi
+                  requests:
+                    memory: 1Gi
+                    
