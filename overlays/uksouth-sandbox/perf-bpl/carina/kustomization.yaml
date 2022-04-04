@@ -49,3 +49,21 @@ patches:
                       secretKeyRef:
                         key: connection_string
                         name: azure-storage-perf-bpl
+  - target:
+      kind: Deployment
+      name: carina-task-worker
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: carina
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                resources:
+                  limits:
+                    memory: 1Gi
+                  requests:
+                    memory: 1Gi
