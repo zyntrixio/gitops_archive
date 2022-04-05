@@ -24,6 +24,11 @@ bases:
 resources:
   - aad.yaml
 
+replicas:
+  - name: harmonia
+    count: 0
+
+
 configMapGenerator:
   - name: harmonia
     namespace: default
