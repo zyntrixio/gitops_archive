@@ -19,12 +19,71 @@ bases:
   - ../../../../bases/olympus/harmonia/matching-worker
   - ../../../../bases/olympus/harmonia/matching-worker-slow
   - ../../../../bases/olympus/harmonia/streaming-worker
+  - ../../../../bases/olympus/harmonia/purgedb
   - ../../../../bases/olympus/harmonia/migrator
 
 resources:
   - aad.yaml
 
+namespace: default
+
+configMapGenerator:
+  - name: harmonia
+    envs:
+      - env.ini
+
 patches:
-  - path: env.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: harmonia
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: harmonia
+                env:
+                  - name: TXM_BLOB_STORAGE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string
+                        name: azure-storage-common
+                  - name: TXM_POSTGRES_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_harmonia
+  - target:
+      kind: CronJob
+    patch: |-
+      apiVersion: apps/v1
+      kind: CronJob
+      metadata:
+        name: harmonia
+      spec:
+        jobTemplate:
+          spec:
+            template:
+              spec:
+                containers:
+                  - name: app
+                    envFrom:
+                      - configMapRef:
+                          name: harmonia
+                    env:
+                      - name: TXM_BLOB_STORAGE_DSN
+                        valueFrom:
+                          secretKeyRef:
+                            key: connection_string
+                            name: azure-storage-common
+                      - name: TXM_POSTGRES_URI
+                        valueFrom:
+                          secretKeyRef:
+                            name: azure-pgfs
+                            key: common_harmonia
