@@ -1,0 +1,38 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: harmonia-purgedb
+  namespace: default
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  schedule: "45 2 * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            kubectl.kubernetes.io/default-container: app
+        spec:
+          containers:
+          - name: app
+            args:
+              - txcore
+              - purgedb
+              - --no-user-input
+              - --leader-election
+            image: binkcore.azurecr.io/harmonia:latest
+            securityContext:
+              runAsGroup: 65534
+              runAsUser: 65534
+            imagePullPolicy: Always
+            resources:
+              limits:
+                cpu: 1000m
+                memory: 128Mi
+              requests:
+                cpu: 100m
+                memory: 128Mi
+          restartPolicy: Never
