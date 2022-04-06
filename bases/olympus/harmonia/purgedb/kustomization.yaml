@@ -1,2 +1,6 @@
 resources:
   - cronjob.yaml
+
+commonLabels:
+  app: harmonia
+  component: purgedb
