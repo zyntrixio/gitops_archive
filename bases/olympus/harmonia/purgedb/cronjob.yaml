@@ -19,6 +19,10 @@ spec:
         spec:
           containers:
           - name: app
+            command:
+              - linkerd-await
+              - --shutdown
+              - --
             args:
               - txcore
               - purgedb
