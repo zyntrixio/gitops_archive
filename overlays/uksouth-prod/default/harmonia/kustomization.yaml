@@ -19,6 +19,7 @@ bases:
   - ../../../../bases/olympus/harmonia/matching-worker
   - ../../../../bases/olympus/harmonia/matching-worker-slow
   - ../../../../bases/olympus/harmonia/streaming-worker
+  - ../../../../bases/olympus/harmonia/purgedb
   - ../../../../bases/olympus/harmonia/migrator
 
 resources:
@@ -28,9 +29,10 @@ replicas:
   - name: harmonia
     count: 1
 
+namespace: default
+
 configMapGenerator:
   - name: harmonia
-    namespace: default
     envs:
       - env.ini
 
@@ -110,3 +112,31 @@ patches:
                     memory: 2Gi
                   requests:
                     memory: 2Gi
+  - target:
+      kind: CronJob
+    patch: |-
+      apiVersion: apps/v1
+      kind: CronJob
+      metadata:
+        name: harmonia
+      spec:
+        jobTemplate:
+          spec:
+            template:
+              spec:
+                containers:
+                  - name: app
+                    envFrom:
+                      - configMapRef:
+                          name: harmonia
+                    env:
+                      - name: TXM_BLOB_STORAGE_DSN
+                        valueFrom:
+                          secretKeyRef:
+                            key: connection_string
+                            name: azure-storage-common
+                      - name: TXM_POSTGRES_URI
+                        valueFrom:
+                          secretKeyRef:
+                            name: azure-pgfs
+                            key: common_harmonia
