@@ -5,12 +5,12 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
-    nginx.ingress.kubernetes.io/upstream-vhost: reflector.dev.gb.bink.com
-  name: reflector.${cluster_name}.${location}.bink.sh
+    nginx.ingress.kubernetes.io/upstream-vhost: barclays-sit-reflector.sandbox.gb.bink.com
+  name: barclays-sit-reflector.${cluster_name}.${location}.bink.sh
   namespace: default
 spec:
   rules:
-    - host: reflector.${cluster_name}.${location}.bink.sh
+    - host: barclays-sit-reflector.${cluster_name}.${location}.bink.sh
       http:
         paths:
           - path: /
@@ -22,5 +22,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - reflector.${cluster_name}.${location}.bink.sh
-      secretName: reflector.${cluster_name}.${location}.bink.sh
+        - barclays-sit-reflector.${cluster_name}.${location}.bink.sh
+      secretName: barclays-sit-reflector.${cluster_name}.${location}.bink.sh
