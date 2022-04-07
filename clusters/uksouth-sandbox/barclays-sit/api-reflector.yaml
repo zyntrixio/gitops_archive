@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: api-reflector
+  name: barclays-sit-api-reflector
   namespace: flux-system
 spec:
   interval: 60m0s
@@ -18,4 +18,19 @@ spec:
   images:
     - name: ghcr.io/binkhq/api-reflector
       newName: ghcr.io/binkhq/api-reflector
-      newTag: 0.5.10  # {"$imagepolicy": "flux-system:uksouth-dev-api-reflector:tag"}
+      newTag: 0.5.10  # {"$imagepolicy": "flux-system:barclays-sit-api-reflector:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: barclays-sit-api-reflector
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: api-reflector
+  filterTags:
+    pattern: (?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    semver:
+      range: '>0.1.0'
