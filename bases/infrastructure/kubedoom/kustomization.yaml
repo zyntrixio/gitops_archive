@@ -1,8 +1,0 @@
----
-bases:
-  - github.com/storax/kubedoom/manifest
-
-patches:
-  - path: env.yaml
-    target:
-      kind: Deployment
