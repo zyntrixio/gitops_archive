@@ -34,4 +34,4 @@ patches:
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
-                        key: common_api_reflector
+                        key: common_barclays_sit_api_reflector

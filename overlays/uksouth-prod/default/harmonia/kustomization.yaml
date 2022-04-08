@@ -69,24 +69,6 @@ patches:
                         name: azure-pgfs
                         key: common_harmonia
   - target:
-      kind: Deployment
-      name: harmonia-import-agent-wasabi-club
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: harmonia
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                resources:
-                  limits:
-                    memory: 4Gi
-                  requests:
-                    memory: 4Gi
-  - target:
       kind: CronJob
     patch: |-
       apiVersion: apps/v1
