@@ -13,7 +13,10 @@ inputs = ["kubernetes_logs"]
 compression = "none"
 healthcheck = true
 endpoint = "https://opensearch.uksouth.bink.host:9200"
-index = "vector-dev-%F"
+[sinks.elasticsearch.tls]
+ca_file = "/opensearch/opensearch-ca.pem"
+[sinks.elasticsearch.auth]
 user = "vector"
 password = "4iBEQ4dJ3d!d4JDXi77L!cmzwjkv2gb!"
-ca_file = "/opensearch/opensearch-ca.pem"
+[sinks.elasticsearch.bulk]
+index = "vector-dev-%F"
