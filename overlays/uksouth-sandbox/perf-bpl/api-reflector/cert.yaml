@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: perf-bpl-reflector.${cluster_name}.${location}.bink.sh
+  namespace: default
+spec:
+  dnsNames:
+    - perf-bpl-reflector.${cluster_name}.${location}.bink.sh
+  issuerRef:
+    group: cert-manager.io
+    kind: Issuer
+    name: letsencrypt
+  secretName: perf-bpl-reflector.${cluster_name}.${location}.bink.sh
