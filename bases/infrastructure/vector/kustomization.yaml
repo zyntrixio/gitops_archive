@@ -1,8 +1,13 @@
 ---
 bases:
-  - github.com/vectordotdev/vector/distribution/kubernetes/vector-agent?ref=v0.20.1
+  - github.com/vectordotdev/vector/distribution/kubernetes/vector-agent?ref=v0.19.1
 
 resources:
   - namespace.yaml
 
 namespace: vector
+
+images:
+  - name: timberio/vector
+    newName: timberio/vector
+    newTag: 0.19.1-distroless-static
