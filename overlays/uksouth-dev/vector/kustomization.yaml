@@ -8,3 +8,13 @@ configMapGenerator:
   - name: vector-agent-config
     files:
       - vector.toml
+
+secretGenerator:
+  - name: vector-opensearch
+    files:
+      - opensearch-ca.pem
+
+patches:
+  - path: volumes.yaml
+    target:
+      kind: DaemonSet

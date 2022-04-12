@@ -1,0 +1,18 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: vector-agent
+spec:
+  template:
+    spec:
+      containers:
+        - name: vector
+          volumeMounts:
+            - mountPath: /opensearch
+              name: opensearch
+              readOnly: true
+      volumes:
+        - name: opensearch
+          secret:
+            secretName: vector-opensearch

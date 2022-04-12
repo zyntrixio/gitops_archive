@@ -6,3 +6,14 @@ customer_id = "eed2b98d-3396-4972-be3e-3e744532f7cd"
 host = "ods.opinsights.azure.com"
 log_type = "kubernetes_dev"
 shared_key = "p6KTG57eZlZ9usb2A4V3/3Ey8tPJBo6WG5+HNELFgwuuEWLH7yciDyqPdbtAWJwcjF2urH1SiYwaX8zz78/Q0g=="
+
+[sinks.elasticsearch]
+type = "elasticsearch"
+inputs = ["kubernetes_logs"]
+compression = "none"
+healthcheck = true
+host = "https://opensearch.uksouth.bink.host:9200"
+index = "vector-dev-%F"
+user = "vector"
+password = "4iBEQ4dJ3d!d4JDXi77L!cmzwjkv2gb!"
+ca_file = "/opensearch/opensearch-ca.pem"
