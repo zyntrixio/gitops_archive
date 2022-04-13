@@ -15,6 +15,16 @@ configMapGenerator:
     envs:
       - env.ini
 
+replicas:
+  - name: hermes-api
+    count: 6
+  - name: hermes-celery
+    count: 3
+  - name: hermes-beat
+    count: 1
+  - name: hermes-logic
+    count: 3
+
 patches:
   - target:
       kind: Deployment
@@ -62,20 +72,6 @@ patches:
                       secretKeyRef:
                         name: azure-pgfs
                         key: common_hermes
-  - target:
-      kind: Deployment
-      name: hermes-api
-    patch: |-
-      - op: add
-        path: /spec/replicas
-        value: 3
-  - target:
-      kind: Deployment
-      name: hermes-celery
-    patch: |-
-      - op: add
-        path: /spec/replicas
-        value: 3
   - target:
       kind: Deployment
       name: hermes-beat
