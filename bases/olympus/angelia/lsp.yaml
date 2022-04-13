@@ -26,8 +26,8 @@ spec:
       timeout: 2000ms
     - condition:
         method: DELETE
-        pathRegex: /me
-      name: DELETE /me
+        pathRegex: /v2/me
+      name: DELETE /v2/me
       isRetryable: true
       timeout: 2000ms
     - condition:
