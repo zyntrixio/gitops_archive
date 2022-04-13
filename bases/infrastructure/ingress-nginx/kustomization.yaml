@@ -1,6 +1,6 @@
 ---
 bases:
-  - github.com/kubernetes/ingress-nginx/deploy/static/provider/baremetal?ref=controller-v1.1.1
+  - github.com/kubernetes/ingress-nginx/deploy/static/provider/baremetal?ref=controller-v1.1.3
 
 patches:
   - path: patch-nodeport.yaml
