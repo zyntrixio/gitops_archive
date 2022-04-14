@@ -41,7 +41,10 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/bullsquid:latest
-          args: [ "piccolo", "migrations", "forward", "all" ]
+          args:
+            - bash
+            - -c
+            - piccolo migrations forward all; echo Done; tail -f /dev/null
           imagePullPolicy: Always
       imagePullSecrets:
         - name: binkcore.azurecr.io
