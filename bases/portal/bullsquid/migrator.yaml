@@ -5,7 +5,7 @@ metadata:
   labels:
     app: bullsquid
     component: migrator
-  name: bullsquid migrator
+  name: bullsquid-migrator
   namespace: default
 spec:
   strategy:
