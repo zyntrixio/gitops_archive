@@ -4,7 +4,8 @@ kind: Deployment
 metadata:
   labels:
     app: bullsquid
-  name: bullsquid
+    component: api
+  name: bullsquid-api
   namespace: default
 spec:
   strategy:
@@ -15,10 +16,12 @@ spec:
   selector:
     matchLabels:
       app: bullsquid
+      component: api
   template:
     metadata:
       labels:
         app: bullsquid
+        component: api
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
@@ -39,5 +42,17 @@ spec:
         - name: app
           image: binkcore.azurecr.io/bullsquid:latest
           imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /livez
+              port: 9000
+              scheme: HTTP
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 9000
+              scheme: HTTP
+            periodSeconds: 30
       imagePullSecrets:
         - name: binkcore.azurecr.io
