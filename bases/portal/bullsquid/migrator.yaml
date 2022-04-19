@@ -4,8 +4,8 @@ kind: Deployment
 metadata:
   labels:
     app: bullsquid
-    component: api
-  name: bullsquid-api
+    component: migrator
+  name: bullsquid-migrator
   namespace: default
 spec:
   strategy:
@@ -16,12 +16,12 @@ spec:
   selector:
     matchLabels:
       app: bullsquid
-      component: api
+      component: migrator
   template:
     metadata:
       labels:
         app: bullsquid
-        component: api
+        component: migrator
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
@@ -41,18 +41,10 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/bullsquid:latest
+          args:
+            - bash
+            - -c
+            - piccolo migrations forward all; echo Done; tail -f /dev/null
           imagePullPolicy: Always
-          livenessProbe:
-            httpGet:
-              path: /livez
-              port: 6502
-              scheme: HTTP
-            periodSeconds: 30
-          readinessProbe:
-            httpGet:
-              path: /readyz
-              port: 6502
-              scheme: HTTP
-            periodSeconds: 30
       imagePullSecrets:
         - name: binkcore.azurecr.io
