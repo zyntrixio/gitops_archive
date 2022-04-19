@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -12,9 +11,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/monitoring-grafana
-      newName: binkcore.azurecr.io/monitoring-grafana
-      newTag: newTag    # {"$imagepolicy": "flux-system:uksouth-tools-grafana:tag"}
+  - name: binkcore.azurecr.io/monitoring-grafana
+    newName: binkcore.azurecr.io/monitoring-grafana
+    newTag: develop-2021-12-09-111656 # {"$imagepolicy": "flux-system:uksouth-tools-grafana:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
