@@ -1,5 +1,5 @@
 resources:
   - certificate.yaml
-  - inrgess.yaml
+  - ingress.yaml
 
 namespace: portal
