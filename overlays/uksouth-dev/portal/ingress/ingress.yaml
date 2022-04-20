@@ -12,6 +12,13 @@ spec:
     - host: portal.${cluster_name}.${location}.bink.sh
       http:
         paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: aperture
+                port:
+                  number: 80
           - path: /api/v1/plans
             pathType: Prefix
             backend:
