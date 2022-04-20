@@ -236,34 +236,6 @@ spec:
                 name: eos-api
                 port:
                   number: 80
-          - path: /bpl/admin
-            pathType: Prefix
-            backend:
-              service:
-                name: event-horizon
-                port:
-                  number: 80
-          - path: /bpl/loyalty
-            pathType: Prefix
-            backend:
-              service:
-                name: polaris-api
-                port:
-                  number: 80
-          - path: /bpl/retailers
-            pathType: Prefix
-            backend:
-              service:
-                name: vela-api
-                port:
-                  number: 80
-          - path: /bpl/rewards
-            pathType: Prefix
-            backend:
-              service:
-                name: carina-api
-                port:
-                  number: 80
           - path: /cardstatus
             pathType: Prefix
             backend:
