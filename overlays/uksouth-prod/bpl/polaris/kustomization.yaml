@@ -8,6 +8,12 @@ bases:
 
 namespace: bpl
 
+replicas:
+  - name: polaris-api
+    count: 3
+  - name: polaris-task-worker
+    count: 3
+
 resources:
   - aad.yaml
 

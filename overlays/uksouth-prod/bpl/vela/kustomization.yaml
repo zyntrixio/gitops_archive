@@ -10,6 +10,12 @@ namespace: bpl
 resources:
   - aad.yaml
 
+replicas:
+  - name: vela-api
+    count: 3
+  - name: vela-task-worker
+    count: 3
+
 configMapGenerator:
   - name: vela
     envs:
