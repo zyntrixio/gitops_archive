@@ -5,14 +5,13 @@ bases:
   - ../../../../bases/cosmos/vela/migrator
   - ../../../../bases/cosmos/vela/task-worker
 
-namespace: default
+namespace: bpl
 
 resources:
   - aad.yaml
 
 configMapGenerator:
   - name: vela
-    namespace: default
     envs:
       - env.ini
 

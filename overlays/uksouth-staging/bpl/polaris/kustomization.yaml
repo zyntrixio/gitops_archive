@@ -1,21 +1,20 @@
 ---
 bases:
-  - ../../../../bases/cosmos/carina/core
-  - ../../../../bases/cosmos/carina/api
-  - ../../../../bases/cosmos/carina/migrator
-  - ../../../../bases/cosmos/carina/task-worker
-  - ../../../../bases/cosmos/carina/cron-scheduler
+  - ../../../../bases/cosmos/polaris/core
+  - ../../../../bases/cosmos/polaris/api
+  - ../../../../bases/cosmos/polaris/migrator
+  - ../../../../bases/cosmos/polaris/task-worker
+  - ../../../../bases/cosmos/polaris/cron-scheduler
 
-namespace: default
-
-configMapGenerator:
-  - name: carina
-    namespace: default
-    envs:
-      - env.ini
+namespace: bpl
 
 resources:
   - aad.yaml
+
+configMapGenerator:
+  - name: polaris
+    envs:
+      - env.ini
 
 patches:
   - target:
@@ -24,23 +23,23 @@ patches:
       apiVersion: apps/v1
       kind: Deployment
       metadata:
-        name: carina
+        name: polaris
       spec:
         template:
           spec:
             containers:
               - name: app
-                envFrom:
-                  - configMapRef:
-                      name: carina
                 env:
                   - name: SQLALCHEMY_DATABASE_URI
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
-                        key: common_carina
+                        key: common_polaris
                   - name: BLOB_STORAGE_DSN
                     valueFrom:
                       secretKeyRef:
                         key: connection_string
                         name: azure-storage-common
+                envFrom:
+                  - configMapRef:
+                      name: polaris

@@ -1,29 +1,28 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: vela
+  name: bpl-luna
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-staging/default/vela
-  dependsOn:
-  - name: aad-pod-identity
+  path: ./overlays/uksouth-staging/bpl/luna
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/vela
-    newName: binkcore.azurecr.io/vela
-    newTag: staging-1.1.1 # {"$imagepolicy": "flux-system:uksouth-staging-vela:tag"}
+    - name: binkcore.azurecr.io/luna
+      newName: binkcore.azurecr.io/luna
+      newTag: staging-0.2.1  # {"$imagepolicy": "flux-system:uksouth-staging-luna:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: vela
+  name: luna
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/vela
+  image: binkcore.azurecr.io/luna
   interval: 1m0s
   secretRef:
     name: binkcore.azurecr.io
@@ -31,11 +30,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: uksouth-staging-vela
+  name: uksouth-staging-luna
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: vela
+    name: luna
   filterTags:
     pattern: staging-(?P<ts>\d+(\.\d+)*)$
     extract: $ts

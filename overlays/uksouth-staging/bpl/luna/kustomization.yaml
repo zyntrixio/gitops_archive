@@ -2,11 +2,10 @@
 bases:
   - ../../../../bases/cosmos/luna
 
-namespace: default
+namespace: bpl
 
 configMapGenerator:
   - name: luna
-    namespace: default
     envs:
       - env.ini
 
