@@ -19,7 +19,6 @@ replicas:
   - name: carina-task-worker
     count: 3
 
-
 resources:
   - aad.yaml
 
