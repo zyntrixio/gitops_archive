@@ -24,12 +24,6 @@ resources:
 
 patches:
   - target:
-      kind: ServiceProfile
-    patch: |-
-      - op: replace
-        path: /metadata/name
-        value: carina-api.bpl.svc.cluster.local
-  - target:
       kind: Deployment
     patch: |-
       apiVersion: apps/v1

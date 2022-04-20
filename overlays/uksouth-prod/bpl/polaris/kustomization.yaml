@@ -24,12 +24,6 @@ configMapGenerator:
 
 patches:
   - target:
-      kind: ServiceProfile
-    patch: |-
-      - op: replace
-        path: /metadata/name
-        value: polaris-api.bpl.svc.cluster.local
-  - target:
       kind: Deployment
     patch: |-
       apiVersion: apps/v1
