@@ -24,3 +24,5 @@ patches:
                 env:
                   - name: STORAGE_CONTAINER
                     value: polaris-assets
+                  - name: STORAGE_CONTAINER_IN_URL
+                    value: "false"
