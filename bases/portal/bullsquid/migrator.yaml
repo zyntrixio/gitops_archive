@@ -45,6 +45,13 @@ spec:
             - bash
             - -c
             - piccolo migrations forward all; echo Done; tail -f /dev/null
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 1000m
+              memory: 256Mi
           imagePullPolicy: Always
       imagePullSecrets:
         - name: binkcore.azurecr.io
