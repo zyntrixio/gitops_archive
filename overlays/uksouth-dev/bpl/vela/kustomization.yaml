@@ -4,6 +4,7 @@ bases:
   - ../../../../bases/cosmos/vela/api
   - ../../../../bases/cosmos/vela/migrator
   - ../../../../bases/cosmos/vela/task-worker
+  - ../../../../bases/cosmos/vela/cron-scheduler
 
 namespace: default
 

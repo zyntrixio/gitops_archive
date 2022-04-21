@@ -1,0 +1,29 @@
+---
+bases:
+  - ../base
+
+nameSuffix: -cron-scheduler
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: vela
+        labels:
+          component: cron-scheduler
+      spec:
+        selector:
+          matchLabels:
+            component: cron-scheduler
+        template:
+          metadata:
+            labels:
+              component: cron-scheduler
+          spec:
+            containers:
+              - name: app
+                command: ["linkerd-await", "--"]
+                args: ["python", "-m", "app.core.cli", "cron-scheduler"]
