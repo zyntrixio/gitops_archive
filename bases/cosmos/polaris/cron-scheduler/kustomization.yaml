@@ -29,6 +29,6 @@ patches:
                 args: ["python", "-m", "app.core.cli", "cron-scheduler"]
                 resources:
                   limits:
-                    memory: 512Mi
+                    memory: 1Gi
                   requests:
-                    memory: 512Mi
+                    memory: 1Gi
