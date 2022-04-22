@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./clusters/uksouth-dev
+  path: ./clusters/uksouth-mimir
   prune: true
   sourceRef:
     kind: GitRepository
