@@ -28,6 +28,9 @@ patches:
           spec:
             containers:
               - name: app
+                env:
+                  - name: PROMETHEUS_MULTIPROC_DIR
+                    value: /dev/shm
                 livenessProbe:
                   failureThreshold: 3
                   httpGet:
