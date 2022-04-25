@@ -20,6 +20,20 @@ spec:
                 name: api-reflector
                 port:
                   number: 80
+          - path: /changelog.html
+            pathType: Exact
+            backend:
+              service:
+                name: api2-redoc
+                port:
+                  number: 80
+          - path: /appendix.html
+            pathType: Exact
+            backend:
+              service:
+                name: api2-redoc
+                port:
+                  number: 80
   tls:
     - hosts:
         - reflector.${cluster_name}.${location}.bink.sh

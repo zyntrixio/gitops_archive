@@ -19,6 +19,20 @@ spec:
                 name: api2-redoc
                 port:
                   number: 80
+          - path: /changelog.html
+            pathType: Exact
+            backend:
+              service:
+                name: api2-redoc
+                port:
+                  number: 80
+          - path: /appendix.html
+            pathType: Exact
+            backend:
+              service:
+                name: api2-redoc
+                port:
+                  number: 80
           - path: /healthz
             pathType: Exact
             backend:
