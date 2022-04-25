@@ -2,6 +2,9 @@
 bases:
   - ../base
 
+components:
+  - ../../../common/pushgateway
+
 nameSuffix: -task-worker
 
 patches:
@@ -31,3 +34,6 @@ patches:
               - name: app
                 command: ["linkerd-await", "--"]
                 args: ["python", "-m", "app.core.cli", "task-worker"]
+                env:
+                  - name: PROMETHEUS_PUSH_GATEWAY_URI
+                    value: http://127.0.0.1:9100

@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: pushgateway
-          image: binkext.azurecr.io/pushgateway:v1.3.0
+          image: binkcore.azurecr.io/pushgateway:v1.4.2
           args:
             - --web.listen-address=0.0.0.0:9100
           imagePullPolicy: Always
@@ -22,4 +22,4 @@ spec:
             requests:
               memory: 128Mi
       imagePullSecrets:
-        - name: binkext.azurecr.io
+        - name: binkcore.azurecr.io
