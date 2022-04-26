@@ -2,7 +2,7 @@
 bases:
   - ../../../../bases/portal/bullsquid
 
-namespace: default
+namespace: portal
 
 configMapGenerator:
   - name: bullsquid
