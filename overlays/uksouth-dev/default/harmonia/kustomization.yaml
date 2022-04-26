@@ -86,3 +86,41 @@ patches:
                           secretKeyRef:
                             name: azure-pgfs
                             key: common_harmonia
+  - target:
+      kind: Deployment
+      name: harmonia-export-agent-iceland-bonus-card
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: harmonia
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: harmonia
+                env:
+                  - name: TXM_LOG_LEVEL
+                    value: info
+  - target:
+      kind: Deployment
+      name: harmonia-import-agent-iceland-bonus-card
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: harmonia
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: harmonia
+                env:
+                  - name: TXM_LOG_LEVEL
+                    value: info
