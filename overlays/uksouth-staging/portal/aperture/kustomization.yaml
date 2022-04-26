@@ -2,10 +2,6 @@
 bases:
   - ../../../../bases/portal/aperture/core
 
-resources:
-  - certificate.yaml
-  - ingress.yaml
-
 namespace: portal
 
 configMapGenerator:
