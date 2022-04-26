@@ -10,18 +10,18 @@ namespace: bpl
 resources:
   - aad.yaml
 
+replicas:
+  - name: vela-api
+    count: 3
+  - name: vela-task-worker
+    count: 3
+
 configMapGenerator:
   - name: vela
     envs:
       - env.ini
 
 patches:
-  - target:
-      kind: ServiceProfile
-    patch: |-
-      - op: replace
-        path: /metadata/name
-        value: vela-api.bpl.svc.cluster.local
   - target:
       kind: Deployment
     patch: |-

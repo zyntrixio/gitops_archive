@@ -27,3 +27,8 @@ patches:
               - name: app
                 command: ["linkerd-await", "--"]
                 args: ["python", "-m", "app.core.cli", "cron-scheduler"]
+                resources:
+                  limits:
+                    memory: 1Gi
+                  requests:
+                    memory: 1Gi

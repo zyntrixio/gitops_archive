@@ -54,5 +54,12 @@ spec:
               port: 6502
               scheme: HTTP
             periodSeconds: 30
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 1000m
+              memory: 256Mi
       imagePullSecrets:
         - name: binkcore.azurecr.io

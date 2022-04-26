@@ -1,0 +1,33 @@
+---
+bases:
+  - ../../../../bases/portal/bullsquid
+
+namespace: portal
+
+configMapGenerator:
+  - name: bullsquid
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: bullsquid
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: bullsquid
+                env:
+                  - name: DATABASE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_placeholder

@@ -8,6 +8,12 @@ bases:
 
 namespace: bpl
 
+replicas:
+  - name: polaris-api
+    count: 3
+  - name: polaris-task-worker
+    count: 3
+
 resources:
   - aad.yaml
 
@@ -17,12 +23,6 @@ configMapGenerator:
       - env.ini
 
 patches:
-  - target:
-      kind: ServiceProfile
-    patch: |-
-      - op: replace
-        path: /metadata/name
-        value: polaris-api.bpl.svc.cluster.local
   - target:
       kind: Deployment
     patch: |-

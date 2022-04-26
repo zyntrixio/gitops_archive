@@ -2,7 +2,7 @@
 apiVersion: linkerd.io/v1alpha2
 kind: ServiceProfile
 metadata:
-  name: vela-api.default.svc.cluster.local
+  name: vela-api.bpl.svc.cluster.local
   namespace: default
 spec:
   routes:
