@@ -1,0 +1,12 @@
+---
+bases:
+  - github.com/kubernetes/ingress-nginx/deploy/static/provider/cloud?ref=controller-v1.2.0
+
+replicas:
+  - name: ingress-nginx-controller
+    count: 3
+
+patches:
+  - path: patch-annotations.yaml
+  - path: patch-logging.yaml
+  - path: patch-antiaffinity.yaml
