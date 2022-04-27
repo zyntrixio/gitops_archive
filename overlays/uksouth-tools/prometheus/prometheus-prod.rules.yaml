@@ -134,6 +134,51 @@ groups:
           resource: '{{ $labels.instance }}'
           summary: Check prod redis - bad upstate for over 3 minutes
 
+      - alert: prod bpl - http outbound - more than five 400 codes in 1 mins
+        expr: sum(increase(bpl_outgoing_http_requests_total{kubernetes_cluster=~"prod\\d", response=~"HTTP_4\\d\\d"}[5m])) by (url, method) >= 5
+        for: 1m
+        labels:
+          severity: S2
+        annotations:
+          resource: '{{ $labels.app }} - {{$labels.response }} - {{$labels.url}} - {{$labels.exception}}'
+          summary: BPL outbound requests getting 400 response codes
+
+      # - alert: prod bpl - http outbound - more than five 500 codes in 1 mins
+      #   expr: sum(increase(bpl_outgoing_http_requests_total{kubernetes_cluster=~"prod\\d", response=~"HTTP_5\\d\\d"}[5m])) by (url, method) >= 5
+      #   for: 1m
+      #   labels:
+      #     severity: S2
+      #   annotations:
+      #     resource: '{{ $labels.app }} - {{$labels.response }} - {{$labels.url}} - {{$labels.exception}}'
+      #     summary: BPL outbound requests getting 500 response codes
+
+      - alert: prod bpl - http inbound - more than five 400 codes in 1 mins
+        expr: sum(increase(bpl_inbound_http_requests_total{kubernetes_cluster=~"prod\\d", response=~"4\\d\\d"}[5m])) by (url, method) >= 5
+        for: 1m
+        labels:
+          severity: S2
+        annotations:
+          resource: '{{ $labels.app }} - {{$labels.response }} - {{$labels.url}} - {{$labels.exception}}'
+          summary: BPL inbound requests getting 400 response codes
+
+      - alert: prod bpl - http inbound - more than five 500 codes in 1 mins
+        expr: sum(increase(bpl_inbound_http_requests_total{kubernetes_cluster=~"prod\\d", response=~"5\\d\\d"}[5m])) by (url, method) >= 5
+        for: 1m
+        labels:
+          severity: S2
+        annotations:
+          resource: '{{ $labels.app }} - {{$labels.response }} - {{$labels.url}} - {{$labels.exception}}'
+          summary: BPL inbound requests getting 500 response codes
+
+      - alert: prod bpl - http inbound request latency
+        expr: histogram_quantile(0.5, sum(rate(bpl_inbound_http_request_latency_seconds_bucket{kubernetes_cluster=~"prod\\d", endpoint!~"/livez|/healthz|/metrics|/readyz"}[5m])) by(le, endpoint)) > 1
+        for: 3m
+        labels:
+          serverity: S2
+        annotations:
+          resource: '{{ $labels.endpoint }}'
+          summary: This enpoint has been averaging greater than 1 second to respond.
+
       - alert: prod hermes - http response codes - more than five 400 codes in 2 mins
         expr: sum(rate(django_http_responses_total_by_status_view_method_total{status=~"4\\d\\d",
           kubernetes_cluster=~"prod\\d"} [2m])) > 5
