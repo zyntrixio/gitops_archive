@@ -134,14 +134,14 @@ groups:
           resource: '{{ $labels.instance }}'
           summary: Check prod redis - bad upstate for over 3 minutes
 
-      - alert: prod bpl - http outbound - more than five 400 codes in 1 mins
-        expr: sum(increase(bpl_outgoing_http_requests_total{kubernetes_cluster=~"prod\\d", response=~"HTTP_4\\d\\d"}[5m])) by (url, method) >= 5
-        for: 1m
-        labels:
-          severity: S2
-        annotations:
-          resource: '{{ $labels.app }} - {{$labels.response }} - {{$labels.url}} - {{$labels.exception}}'
-          summary: BPL outbound requests getting 400 response codes
+      # - alert: prod bpl - http outbound - more than five 400 codes in 1 mins
+      #   expr: sum(increase(bpl_outgoing_http_requests_total{kubernetes_cluster=~"prod\\d", response=~"HTTP_4\\d\\d"}[5m])) by (url, method) >= 5
+      #   for: 1m
+      #   labels:
+      #     severity: S2
+      #   annotations:
+      #     resource: '{{ $labels.app }} - {{$labels.response }} - {{$labels.url}} - {{$labels.exception}}'
+      #     summary: BPL outbound requests getting 400 response codes
 
       # - alert: prod bpl - http outbound - more than five 500 codes in 1 mins
       #   expr: sum(increase(bpl_outgoing_http_requests_total{kubernetes_cluster=~"prod\\d", response=~"HTTP_5\\d\\d"}[5m])) by (url, method) >= 5
