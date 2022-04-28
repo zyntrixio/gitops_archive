@@ -20,6 +20,22 @@ spec:
       containers:
       - name: app
         image: binkcore.azurecr.io/bpl-hypercounter:2022-04-28T135706Z
+        env:
+          - name: postgres_uri_polaris
+            valueFrom:
+              secretKeyRef:
+                name: azure-pgfs
+                key: common_polaris
+          - name: postgres_uri_vela
+            valueFrom:
+              secretKeyRef:
+                name: azure-pgfs
+                key: common_vela
+          - name: REDIS_URL
+            valueFrom:
+              secretKeyRef:
+                key: uri_ssl
+                name: azure-redis-vnet
         ports:
         - containerPort: 6502
         resources:
