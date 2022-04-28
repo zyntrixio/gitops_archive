@@ -23,7 +23,7 @@ metadata:
   name: hypercounter
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/hypercounter
+  image: binkcore.azurecr.io/bpl-hypercounter
   interval: 1m0s
   secretRef:
     name: binkcore.azurecr.io
