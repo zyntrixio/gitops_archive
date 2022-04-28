@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hypercounter-api
+  labels:
+    app: hypercounter
+    component: api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hypercounter
+      component: api
+  template:
+    metadata:
+      labels:
+        app: hypercounter
+        component: api
+    spec:
+      containers:
+      - name: app
+        image: binkcore.azurecr.io/bpl-hypercounter:2022-04-28T135706Z
+        ports:
+        - containerPort: 6502
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+      imagePullSecrets:
+        - name: binkcore.azurecr.io

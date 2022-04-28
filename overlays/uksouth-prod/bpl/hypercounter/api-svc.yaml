@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hypercounter-api
+  labels:
+    app: hypercounter
+    component: api
+spec:
+  selector:
+    app: hypercounter
+    component: api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 6502

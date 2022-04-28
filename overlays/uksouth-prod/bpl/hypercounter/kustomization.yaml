@@ -1,0 +1,5 @@
+resources:
+  - api-deploy.yaml
+  - api-svc.yaml
+
+namespace: bpl
