@@ -2,5 +2,7 @@
 resources:
   - api-deploy.yaml
   - api-svc.yaml
+  - teams-cronjob-morning.yaml
+  - teams-cronjob-afternoon.yaml
 
 namespace: bpl
