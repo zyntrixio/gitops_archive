@@ -1,3 +1,4 @@
+---
 resources:
   - api-deploy.yaml
   - api-svc.yaml
