@@ -179,6 +179,24 @@ groups:
           resource: '{{ $labels.endpoint }}'
           summary: This enpoint has been averaging greater than 1 second to respond.
 
+      - alert: prod bpl - task anomalies in progress
+        expr: (sum(bpl_task_anomalies{kubernetes_cluster=~"prod\\d" , status="IN_PROGRESS"}) by (task_name)) >= 1
+        for: 1m
+        labels:
+          serverity: S2
+        annotations:
+          resource: '{{ $labels.status }} - {{$labels.task_name}}'
+          There is an inprogress task anomaly
+
+      - alert: prod bpl - task anomalies in progress
+        expr: (sum(bpl_task_anomalies{kubernetes_cluster=~"prod\\d" , status="PENDING"}) by (task_name)) >= 1
+        for: 1m
+        labels:
+          serverity: S2
+        annotations:
+          resource: '{{ $labels.status }} - {{$labels.task_name}}'
+          There is an inprogress task anomaly
+
       - alert: prod hermes - http response codes - more than five 400 codes in 2 mins
         expr: sum(rate(django_http_responses_total_by_status_view_method_total{status=~"4\\d\\d",
           kubernetes_cluster=~"prod\\d"} [2m])) > 5
