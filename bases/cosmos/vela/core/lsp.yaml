@@ -26,19 +26,19 @@ spec:
       timeout: 2000ms
     - condition:
         method: POST
-        pathRegex: /bpl/retailers/[^/]*/campaigns/status_change
-      name: POST /bpl/retailers/{retailer_slug}/campaigns/status_change
+        pathRegex: /retailers/[^/]*/campaigns/status_change
+      name: POST /retailers/{retailer_slug}/campaigns/status_change
       isRetryable: true
       timeout: 2000ms
     - condition:
         method: GET
-        pathRegex: /bpl/retailers/[^/]*/active-campaign-slugs
-      name: GET /bpl/retailers/{retailer_slug}/active-campaign-slugs
+        pathRegex: /retailers/[^/]*/active-campaign-slugs
+      name: GET /retailers/{retailer_slug}/active-campaign-slugs
       isRetryable: true
       timeout: 2000ms
     - condition:
         method: POST
-        pathRegex: /bpl/retailers/[^/]*/transaction
-      name: POST /bpl/retailers/{retailer_slug}/transaction
+        pathRegex: /retailers/[^/]*/transaction
+      name: POST /retailers/{retailer_slug}/transaction
       isRetryable: true
       timeout: 2000ms

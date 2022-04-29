@@ -26,79 +26,79 @@ spec:
       timeout: 2000ms
     - condition:
         method: POST
-        pathRegex: /bpl/loyalty/[^/]*/accounts/enrolment
-      name: POST /bpl/loyalty/{retailer_slug}/accounts/enrolment
+        pathRegex: /loyalty/[^/]*/accounts/enrolment
+      name: POST /loyalty/{retailer_slug}/accounts/enrolment
       isRetryable: true
       timeout: 2000ms
     - condition:
         method: POST
-        pathRegex: /bpl/loyalty/[^/]*/accounts/getbycredentials
-      name: POST /bpl/loyalty/{retailer_slug}/accounts/getbycredentials
+        pathRegex: /loyalty/[^/]*/accounts/getbycredentials
+      name: POST /loyalty/{retailer_slug}/accounts/getbycredentials
       isRetryable: true
       timeout: 2000ms
     - condition:
         method: GET
-        pathRegex: /bpl/loyalty/[^/]*/accounts/[^/]*
-      name: GET /bpl/loyalty/{retailer_slug}/accounts/{account_holder_uuid}
+        pathRegex: /loyalty/[^/]*/accounts/[^/]*
+      name: GET /loyalty/{retailer_slug}/accounts/{account_holder_uuid}
       isRetryable: true
       timeout: 2000ms
     - condition:
         method: GET
-        pathRegex: /bpl/loyalty/[^/]*/accounts/[^/]*/status
-      name: GET /bpl/loyalty/{retailer_slug}/accounts/{account_holder_uuid}/status
+        pathRegex: /loyalty/[^/]*/accounts/[^/]*/status
+      name: GET /loyalty/{retailer_slug}/accounts/{account_holder_uuid}/status
       isRetryable: true
       timeout: 2000ms
     - condition:
         method: PATCH
-        pathRegex: /bpl/loyalty/[^/]*/accounts/[^/]*/status
-      name: PATCH /bpl/loyalty/{retailer_slug}/accounts/{account_holder_uuid}/status
+        pathRegex: /loyalty/[^/]*/accounts/[^/]*/status
+      name: PATCH /loyalty/{retailer_slug}/accounts/{account_holder_uuid}/status
       isRetryable: true
       timeout: 2000ms
     - condition:
         method: POST
-        pathRegex: /bpl/loyalty/[^/]*/accounts/[^/]*/rewards
-      name: POST /bpl/loyalty/{retailer_slug}/accounts/{account_holder_uuid}/rewards
+        pathRegex: /loyalty/[^/]*/accounts/[^/]*/rewards
+      name: POST /loyalty/{retailer_slug}/accounts/{account_holder_uuid}/rewards
       isRetryable: true
       timeout: 2000ms
     - condition:
         method: POST
-        pathRegex: /bpl/loyalty/[^/]*/accounts/[^/]*/adjustments
-      name: POST /bpl/loyalty/{retailer_slug}/accounts/{account_holder_uuid}/adjustments
+        pathRegex: /loyalty/[^/]*/accounts/[^/]*/adjustments
+      name: POST /loyalty/{retailer_slug}/accounts/{account_holder_uuid}/adjustments
       isRetryable: true
       timeout: 2000ms
     - condition:
         method: POST
-        pathRegex: /bpl/loyalty/[^/]*/accounts/[^/]*/balances
-      name: POST /bpl/loyalty/{retailer_slug}/accounts/{campaign_slug}/balances
+        pathRegex: /loyalty/[^/]*/accounts/[^/]*/balances
+      name: POST /loyalty/{retailer_slug}/accounts/{campaign_slug}/balances
       isRetryable: true
       timeout: 2000ms
     - condition:
         method: DELETE
-        pathRegex: /bpl/loyalty/[^/]*/accounts/[^/]*/balances
-      name: DELETE /bpl/loyalty/{retailer_slug}/accounts/{campaign_slug}/balances
+        pathRegex: /loyalty/[^/]*/accounts/[^/]*/balances
+      name: DELETE /loyalty/{retailer_slug}/accounts/{campaign_slug}/balances
       isRetryable: true
       timeout: 2000ms
     - condition:
         method: POST
-        pathRegex: /bpl/loyalty/[^/]*/accounts/[^/]*/pendingrewardallocation
-      name: POST /bpl/loyalty/{retailer_slug}/accounts/{account_holder_uuid}/pendingrewardallocation
+        pathRegex: /loyalty/[^/]*/accounts/[^/]*/pendingrewardallocation
+      name: POST /loyalty/{retailer_slug}/accounts/{account_holder_uuid}/pendingrewardallocation
       isRetryable: true
       timeout: 2000ms
     - condition:
         method: GET
-        pathRegex: /bpl/loyalty/[^/]*/marketing/unsubscribe
-      name: GET /bpl/loyalty/{retailer_slug}/marketing/unsubscribe
+        pathRegex: /loyalty/[^/]*/marketing/unsubscribe
+      name: GET /loyalty/{retailer_slug}/marketing/unsubscribe
       isRetryable: true
       timeout: 2000ms
     - condition:
         method: PATCH
-        pathRegex: /bpl/loyalty/[^/]*/rewards/[^/]*/status
-      name: PATCH /bpl/loyalty/{retailer_slug}/rewards/{reward_uuid}/status
+        pathRegex: /loyalty/[^/]*/rewards/[^/]*/status
+      name: PATCH /loyalty/{retailer_slug}/rewards/{reward_uuid}/status
       isRetryable: true
       timeout: 2000ms
     - condition:
         method: POST
-        pathRegex: /bpl/loyalty/[^/]*/rewards/[^/]*/cancel
-      name: POST /bpl/loyalty/{retailer_slug}/rewards/{reward_slug}/cancel
+        pathRegex: /loyalty/[^/]*/rewards/[^/]*/cancel
+      name: POST /loyalty/{retailer_slug}/rewards/{reward_slug}/cancel
       isRetryable: true
       timeout: 2000ms
