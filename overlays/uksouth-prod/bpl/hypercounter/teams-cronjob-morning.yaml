@@ -42,6 +42,7 @@ spec:
                   secretKeyRef:
                     key: uri_ssl
                     name: azure-redis-vnet
+            command: [ "linkerd-await", "--shutdown", "--" ]
             args: [ "python", "main.py", "--teams" ]
             resources:
               limits:
