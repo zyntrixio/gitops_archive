@@ -29,16 +29,18 @@ spec:
         - image: binkcore.azurecr.io/kube-autodiscover-api:latest
           imagePullPolicy: Always
           name: server
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
           ports:
             - containerPort: 9000
               protocol: TCP
-
+          resources:
+            limits:
+              memory: 64Mi
+              cpu: 1000m
+            requests:
+              memory: 64Mi
+              cpu: 100m
       dnsPolicy: ClusterFirst
       restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
       terminationGracePeriodSeconds: 30
       imagePullSecrets:
         - name: binkcore.azurecr.io
