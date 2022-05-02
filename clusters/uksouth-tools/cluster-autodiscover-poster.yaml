@@ -15,3 +15,33 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: cluster-vars
+  images:
+  - name: binkcore.azurecr.io/kube-autodiscover-poster
+    newName: binkcore.azurecr.io/kube-autodiscover-poster
+    newTag: latest # {"$imagepolicy": "flux-system:kube-autodiscover-poster:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: kube-autodiscover-poster
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/kube-autodiscover-poster
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: kube-autodiscover-poster
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: kube-autodiscover-poster
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc

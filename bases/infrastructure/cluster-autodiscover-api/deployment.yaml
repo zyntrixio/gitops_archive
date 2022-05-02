@@ -21,6 +21,7 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
       labels:
         app: cluster-autodiscover
         component: api
@@ -28,14 +29,14 @@ spec:
       containers:
         - image: binkcore.azurecr.io/kube-autodiscover-api:latest
           imagePullPolicy: Always
-          name: server
+          name: app
           ports:
             - containerPort: 9000
               protocol: TCP
           resources:
             limits:
               memory: 64Mi
-              cpu: 1000m
+              cpu: 250m
             requests:
               memory: 64Mi
               cpu: 100m
