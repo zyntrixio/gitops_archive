@@ -1,0 +1,14 @@
+---
+resources:
+  - namespace.yaml
+  - serviceaccount.yaml
+  - clusterrole.yaml
+  - clusterrolebinding.yaml
+  - deployment.yaml
+
+namespace: mimir-forwarder
+
+configMapGenerator:
+  - name: mimir-forwarder
+    files:
+      - config/prometheus.yaml
