@@ -118,7 +118,7 @@ spec:
         method: POST
         pathRegex: /ubiquity/membership_cards
       name: POST /ubiquity/membership_cards
-      isRetryable: true
+      isRetryable: false
       timeout: 2000ms
     - condition:
         method: POST
