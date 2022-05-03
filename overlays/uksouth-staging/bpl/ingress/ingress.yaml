@@ -13,28 +13,28 @@ spec:
     - host: bpl.${cluster_name}.${location}.bink.sh
       http:
         paths:
-          - path: /bpl/admin
+          - path: /admin
             pathType: Prefix
             backend:
               service:
                 name: event-horizon
                 port:
                   number: 80
-          - path: /bpl/loyalty
+          - path: /loyalty
             pathType: Prefix
             backend:
               service:
                 name: polaris-api
                 port:
                   number: 80
-          - path: /bpl/retailers
+          - path: /retailers
             pathType: Prefix
             backend:
               service:
                 name: vela-api
                 port:
                   number: 80
-          - path: /bpl/rewards
+          - path: /rewards
             pathType: Prefix
             backend:
               service:
