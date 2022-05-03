@@ -16,7 +16,7 @@ patches:
       apiVersion: apps/v1
       kind: Deployment
       metadata:
-        name: carina
+        name: postgres
       spec:
         template:
           spec:
@@ -25,6 +25,6 @@ patches:
                 volumeMounts:
                   - name: config
                     mountPath: /docker-entrypoint-initdb.d/
-          volumes:
-            - name: config
-              configMap: postgres
+            volumes:
+              - name: config
+                configMap: postgres
