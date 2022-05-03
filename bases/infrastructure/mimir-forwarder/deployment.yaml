@@ -21,7 +21,7 @@ spec:
           image: docker.io/prom/prometheus:v2.35.0
           args:
             - --storage.tsdb.retention.time=1h
-            - --config.file=/etc/prometheus/prometheus.yml
+            - --config.file=/etc/prometheus/prometheus.yaml
             - --storage.tsdb.path=/prometheus/
           ports:
             - containerPort: 9090
