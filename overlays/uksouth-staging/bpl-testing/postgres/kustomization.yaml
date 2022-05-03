@@ -27,4 +27,5 @@ patches:
                     mountPath: /docker-entrypoint-initdb.d/
             volumes:
               - name: config
-                configMap: postgres
+                configMap:
+                  name: postgres
