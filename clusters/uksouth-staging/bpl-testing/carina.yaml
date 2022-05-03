@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-staging/bpl/carina
+  path: ./overlays/uksouth-staging/bpl-testing/carina
   dependsOn:
   - name: aad-pod-identity
   prune: true
