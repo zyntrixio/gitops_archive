@@ -1,0 +1,5 @@
+---
+bases:
+  - ../../../../bases/infrastructure/postgres
+
+namespace: bpl-testing

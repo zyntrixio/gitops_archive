@@ -2,4 +2,4 @@
 bases:
   - ../../../../bases/infrastructure/healthz
 
-namespace: bpl
+namespace: bpl-testing

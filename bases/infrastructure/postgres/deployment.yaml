@@ -1,43 +1,38 @@
 ---
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: postgres
   namespace: default
   labels:
     app: postgres
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: postgres
-  serviceName: postgres
-  replicas: 1
+  strategy:
+    type: Recreate
   template:
     metadata:
       annotations:
         linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
       labels:
         app: postgres
     spec:
-      terminationGracePeriodSeconds: 10
       containers:
         - name: app
-          image: docker.io/postgres:13.4
+          image: docker.io/postgres:13.6
           env:
-            - name: POSTGRES_PASSWORD
-              value: TFB2248hxq
+            - name: POSTGRES_HOST_AUTH_METHOD
+              value: trust
           ports:
             - containerPort: 5432
-              name: psql
-          volumeMounts:
-            - name: data
-              mountPath: /var/lib/postgresql
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-      spec:
-        accessModes: [ReadWriteOnce]
-        storageClassName: default
-        resources:
-          requests:
-            storage: 1Ti
+          resources:
+            limits:
+              memory: 1Gi
+              cpu: 1000m
+            requests:
+              memory: 1Gi
+              cpu: 100m
