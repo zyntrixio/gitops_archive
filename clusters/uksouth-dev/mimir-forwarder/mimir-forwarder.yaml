@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./bases/infrastructure/mimir-forwader
+  path: ./bases/infrastructure/mimir-forwarder
   prune: true
   sourceRef:
     kind: GitRepository
