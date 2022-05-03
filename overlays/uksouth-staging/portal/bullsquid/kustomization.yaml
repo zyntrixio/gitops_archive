@@ -11,6 +11,12 @@ configMapGenerator:
 
 patches:
   - target:
+      kind: ServiceProfile
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: bullsquid.portal.svc.cluster.local
+  - target:
       kind: Deployment
     patch: |-
       apiVersion: apps/v1
