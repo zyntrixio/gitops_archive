@@ -4,3 +4,4 @@ resources:
   - service.yaml
   - migrator.yaml
   - deployment.yaml
+  - lsp.yaml
