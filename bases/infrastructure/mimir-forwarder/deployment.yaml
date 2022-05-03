@@ -41,7 +41,7 @@ spec:
         - name: prometheus-config-volume
           configMap:
             defaultMode: 420
-            name: prometheus-server-conf
+            name: mimir-forwarder
         - name: prometheus-storage-volume
           emptyDir: {}
       serviceAccountName: mimir-forwarder
