@@ -10,4 +10,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: mimir-forwarder
-    namespace: mimir
+    namespace: mimir-forwarder
