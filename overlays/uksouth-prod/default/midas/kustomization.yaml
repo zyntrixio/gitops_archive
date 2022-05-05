@@ -8,6 +8,10 @@ bases:
 resources:
   - aad.yaml
 
+replicas:
+  - name: midas-celery
+    count: 0
+
 patches:
   - path: env.yaml
     target:
