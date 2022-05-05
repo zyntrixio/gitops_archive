@@ -48,3 +48,5 @@ spec:
                 cpu: 100m
                 memory: 128Mi
           restartPolicy: Never
+          imagePullSecrets:
+            - name: binkcore.azurecr.io
