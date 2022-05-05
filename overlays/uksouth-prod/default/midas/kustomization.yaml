@@ -9,16 +9,10 @@ resources:
   - aad.yaml
 
 replicas:
-  - name: midas-celery
-    count: 1
+  - name: midas
+    count: 3
 
 patches:
   - path: env.yaml
     target:
       kind: Deployment
-  - target:
-      kind: Deployment
-    patch: |-
-      - op: add
-        path: /spec/replicas
-        value: 3
