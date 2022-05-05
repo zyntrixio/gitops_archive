@@ -10,7 +10,7 @@ resources:
 
 replicas:
   - name: midas-celery
-    count: 0
+    count: 1
 
 patches:
   - path: env.yaml
