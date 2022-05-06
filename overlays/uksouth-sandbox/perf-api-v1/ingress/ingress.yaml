@@ -21,12 +21,12 @@ spec:
                 port:
                   number: 80
           - path: /ubiquity/
-          pathType: Prefix
-          backend:
-            service:
-              name: hermes-api
-              port:
-                number: 80
+            pathType: Prefix
+            backend:
+              service:
+                name: hermes-api
+                port:
+                  number: 80
           - path: /static/
             pathType: Prefix
             backend:
