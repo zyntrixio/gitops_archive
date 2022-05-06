@@ -186,7 +186,7 @@ groups:
           serverity: S2
         annotations:
           resource: '{{ $labels.status }} - {{$labels.task_name}}'
-          There is an inprogress task anomaly
+          summary: There is an inprogress task anomaly
 
       - alert: prod bpl - task anomalies in progress
         expr: (sum(bpl_task_anomalies{kubernetes_cluster=~"prod\\d" , status="PENDING"}) by (task_name)) >= 1
