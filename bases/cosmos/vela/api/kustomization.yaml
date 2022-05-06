@@ -23,6 +23,10 @@ patches:
             component: api
         template:
           metadata:
+            annotations:
+              prometheus.io/port: '9100'
+              prometheus.io/scrape: 'true'
+              prometheus.io/job: vela
             labels:
               component: api
           spec:
