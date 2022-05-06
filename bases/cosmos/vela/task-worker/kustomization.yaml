@@ -20,6 +20,10 @@ patches:
             component: task-worker
         template:
           metadata:
+            annotations:
+              prometheus.io/port: '9100'
+              prometheus.io/scrape: 'true'
+              prometheus.io/job: task-worker
             labels:
               component: task-worker
           spec:
