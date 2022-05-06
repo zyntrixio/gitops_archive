@@ -226,50 +226,50 @@ scrape_configs:
         regex: ()
         replacement: staging0
 
-  - job_name: 'perf0-pods'
-    kubernetes_sd_configs:
-      - api_server: https://perf0-controller.uksouth.bink.host:6443
-        role: pod
-        bearer_token_file: /tmp/prometheus-creds/perf0/token
-        tls_config:
-          ca_file: /tmp/prometheus-creds/perf0/ca.crt
-          insecure_skip_verify: true
-    relabel_configs:
-      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
-        action: keep
-        regex: true
-      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
-        action: replace
-        target_label: __metrics_path__
-        regex: (.+)
-      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
-        action: replace
-        regex: ([^:]+)(?::\d+)?;(\d+)
-        replacement: $1:$2
-        target_label: __address__
-      - source_labels: [__meta_kubernetes_namespace]
-        action: replace
-        target_label: kubernetes_namespace
-      - source_labels: [kubernetes_namespace]
-        regex: 'flux-system'
-        action: drop
-      - source_labels: [__meta_kubernetes_pod_name]
-        action: replace
-        target_label: kubernetes_pod_name
+  # - job_name: 'perf0-pods'
+  #   kubernetes_sd_configs:
+  #     - api_server: https://perf0-controller.uksouth.bink.host:6443
+  #       role: pod
+  #       bearer_token_file: /tmp/prometheus-creds/perf0/token
+  #       tls_config:
+  #         ca_file: /tmp/prometheus-creds/perf0/ca.crt
+  #         insecure_skip_verify: true
+  #   relabel_configs:
+  #     - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+  #       action: keep
+  #       regex: true
+  #     - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+  #       action: replace
+  #       target_label: __metrics_path__
+  #       regex: (.+)
+  #     - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+  #       action: replace
+  #       regex: ([^:]+)(?::\d+)?;(\d+)
+  #       replacement: $1:$2
+  #       target_label: __address__
+  #     - source_labels: [__meta_kubernetes_namespace]
+  #       action: replace
+  #       target_label: kubernetes_namespace
+  #     - source_labels: [kubernetes_namespace]
+  #       regex: 'flux-system'
+  #       action: drop
+  #     - source_labels: [__meta_kubernetes_pod_name]
+  #       action: replace
+  #       target_label: kubernetes_pod_name
 
-      # Replace Job name based on attribute
-      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_job]
-        action: replace
-        target_label: job
-      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
-        action: replace
-        target_label: instance
+  #     # Replace Job name based on attribute
+  #     - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_job]
+  #       action: replace
+  #       target_label: job
+  #     - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
+  #       action: replace
+  #       target_label: instance
 
-      - source_labels: [kubernetes_cluster]
-        target_label: kubernetes_cluster
-        action: replace
-        regex: ()
-        replacement: perf0
+  #     - source_labels: [kubernetes_cluster]
+  #       target_label: kubernetes_cluster
+  #       action: replace
+  #       regex: ()
+  #       replacement: perf0
 
   # - job_name: 'preprod0-pods'
   #   kubernetes_sd_configs:
