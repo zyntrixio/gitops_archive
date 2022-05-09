@@ -18,7 +18,7 @@ spec:
       serviceAccountName: prometheus
       containers:
         - name: prometheus-pusher
-          image: binkcore.azurecr.io/prometheus-pusher-client:latest
+          image: binkcore.azurecr.io/prometheus-pusher-client:2022-05-06T183938Z
           imagePullPolicy: Always
           env:
             - name: PROMETHEUS_TOKEN
