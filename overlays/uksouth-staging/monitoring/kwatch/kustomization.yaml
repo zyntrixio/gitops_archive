@@ -1,6 +1,6 @@
 ---
 bases:
-  - ../../../bases/infrastructure/kwatch
+  - ../../../../bases/infrastructure/kwatch
 
 configMapGenerator:
   - name: kwatch
