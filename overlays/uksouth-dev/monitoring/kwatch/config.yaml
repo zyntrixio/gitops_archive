@@ -2,6 +2,6 @@
 maxRecentLogLines: 20
 alert:
   teams:
-    webhook: https://hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/44efc724068248faad6f3833c9cf408f/48aca6b1-4d56-4a15-bc92-8aa9d97300df
+    webhook: https://hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/928a0dc9e40e42cfa6c60873a3b87db3/e69fd5a7-8b6c-4ac5-8df0-c88c77df0a12
 namespaces:
   - default
