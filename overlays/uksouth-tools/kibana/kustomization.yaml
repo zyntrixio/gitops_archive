@@ -1,3 +1,7 @@
 ---
 bases:
   - ../../../bases/infrastructure/kibana
+
+replicas:
+  - name: kibana
+    count: 0
