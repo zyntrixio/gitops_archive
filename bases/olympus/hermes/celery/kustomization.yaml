@@ -27,7 +27,7 @@ patches:
             labels:
               component: celery
           spec:
-            args:
+            containers:
               - name: app
                 args:
                   - celery
