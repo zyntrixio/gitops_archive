@@ -2,6 +2,9 @@
 bases:
   - ../base
 
+resources:
+  - service.yaml
+
 nameSuffix: -api
 
 patches:
