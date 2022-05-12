@@ -29,7 +29,7 @@ patches:
           spec:
             args:
               - name: app
-                command:
+                args:
                   - celery
                   - -A
                   - hermes
