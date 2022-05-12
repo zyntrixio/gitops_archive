@@ -85,6 +85,18 @@ spec:
       isRetryable: true
       timeout: 2000ms
     - condition:
+        method: POST
+        pathRegex: /loyalty/[^/]*/accounts/[^/]*/pendingrewards/issue
+      name: POST /loyalty/{retailer_slug}/accounts/{campaign_slug}/pendingrewards/issue
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: DELETE
+        pathRegex: /loyalty/[^/]*/accounts/[^/]*/pendingrewards
+      name: DELETE /loyalty/{retailer_slug}/accounts/{campaign_slug}/pendingrewards
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
         method: GET
         pathRegex: /loyalty/[^/]*/marketing/unsubscribe
       name: GET /loyalty/{retailer_slug}/marketing/unsubscribe
