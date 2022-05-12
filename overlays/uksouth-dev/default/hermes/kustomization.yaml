@@ -1,5 +1,6 @@
 ---
 bases:
+  - ../../../../bases/olympus/hermes/core
   - ../../../../bases/olympus/hermes/api
   - ../../../../bases/olympus/hermes/beat
   - ../../../../bases/olympus/hermes/celery
@@ -9,9 +10,10 @@ bases:
 resources:
   - aad.yaml
 
+namespace: default
+
 configMapGenerator:
   - name: hermes
-    namespace: default
     envs:
       - env.ini
 
@@ -47,26 +49,3 @@ patches:
                       secretKeyRef:
                         key: key
                         name: sign-in-with-apple
-  - target:
-      kind: Deployment
-      name: hermes-beat
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: hermes
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                command:
-                - single-beat
-                - celery
-                - -A
-                - hermes
-                - beat
-                - --schedule
-                - /tmp/beat
-                - --pidfile
-                - /tmp/beat.pid

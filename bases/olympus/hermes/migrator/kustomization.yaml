@@ -1,14 +1,40 @@
 ---
 bases:
-  - ../core
+  - ../base
+
+nameSuffix: -migrator
+
+replicas:
+  - name: hermes-migrator
+    count: 1
 
 patches:
-  - path: patch-command.yaml
-  - path: patch-labels.yaml
-  - path: patch-limits.yaml
-  - path: patch-name.yaml
-    target:
+  - target:
       kind: Deployment
-  - path: patch-replicas.yaml
-    target:
+    patch: |-
+      apiVersion: apps/v1
       kind: Deployment
+      metadata:
+        name: hermes
+        labels:
+          component: migrator
+      spec:
+        selector:
+          matchLabels:
+            component: migrator
+        template:
+          metadata:
+            labels:
+              component: migrator
+          spec:
+            containers:
+              - name: app
+                args:
+                  - bash
+                  - -c
+                  - sleep 10; python manage.py migrate; echo Done; tail -f /dev/null
+                resources:
+                  limits:
+                    memory: 512Mi
+                  requests:
+                    memory: 512Mi

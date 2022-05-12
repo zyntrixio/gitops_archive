@@ -5,7 +5,7 @@ metadata:
   labels:
     app: hermes
     component: api
-  name: hermes-api
+  name: hermes
   namespace: default
 spec:
   ports:

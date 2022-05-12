@@ -4,14 +4,19 @@ kind: Deployment
 metadata:
   name: hermes
   namespace: default
+  labels:
+    app: hermes
 spec:
+  selector:
+    matchLabels:
+      app: hermes
   strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+    type: Recreate
   template:
     metadata:
+      labels:
+        aadpodidbinding: hermes
+        app: hermes
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
@@ -30,6 +35,7 @@ spec:
                 topologyKey: topology.kubernetes.io/zone
       containers:
         - image: binkcore.azurecr.io/hermes:latest
+          command: [linkerd-await, --]
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534
@@ -37,8 +43,12 @@ spec:
           name: app
           resources:
             limits:
+              cpu: 1000m
               memory: 384Mi
             requests:
+              cpu: 100m
               memory: 384Mi
       imagePullSecrets:
         - name: binkcore.azurecr.io
+      priorityClassName: hermes
+      serviceAccountName: hermes

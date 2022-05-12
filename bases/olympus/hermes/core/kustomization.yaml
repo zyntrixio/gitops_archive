@@ -1,15 +1,6 @@
 ---
 resources:
-  - deployment.yaml
-
-components:
-  - ../../../common/pushgateway
-
-patches:
-  - target:
-      kind: Deployment
-    patch: |-
-      - op: add
-        path: /spec/template/metadata/labels
-        value:
-          aadpodidbinding: hermes
+  - namespace.yaml
+  - serviceaccount.yaml
+  - priorityclass.yaml
+  - lsp.yaml

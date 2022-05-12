@@ -1,5 +1,6 @@
 ---
 bases:
+  - ../../../../bases/olympus/hermes/core
   - ../../../../bases/olympus/hermes/api
   - ../../../../bases/olympus/hermes/beat
   - ../../../../bases/olympus/hermes/celery
@@ -9,9 +10,10 @@ bases:
 resources:
   - aad.yaml
 
+namespace: default
+
 configMapGenerator:
   - name: hermes
-    namespace: default
     envs:
       - env.ini
 
@@ -26,6 +28,14 @@ replicas:
     count: 3
 
 patches:
+  - target:
+      kind: Deployment
+      name: hermes-api
+    patch: |-
+      - op: remove
+        path: /spec/template/spec/containers/0/livenessProbe
+      - op: remove
+        path: /spec/template/spec/containers/0/readinessProbe
   - target:
       kind: Deployment
     patch: |-

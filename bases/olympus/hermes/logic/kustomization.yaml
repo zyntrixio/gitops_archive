@@ -1,11 +1,34 @@
 ---
 bases:
-  - ../core
+  - ../base
+
+nameSuffix: -logic
 
 patches:
-  - path: patch-annotations.yaml
-  - path: patch-command.yaml
-  - path: patch-labels.yaml
-  - path: patch-name.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: hermes
+        labels:
+          component: logic
+      spec:
+        selector:
+          matchLabels:
+            component: logic
+        template:
+          metadata:
+            annotations:
+              prometheus.io/port: '9100'
+              prometheus.io/scrape: 'true'
+              prometheus.io/job: hermes
+            labels:
+              component: logic
+          spec:
+            containers:
+              - name: app
+                args:
+                  - python
+                  - api_messaging/run.py

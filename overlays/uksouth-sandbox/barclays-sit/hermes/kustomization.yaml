@@ -1,5 +1,6 @@
 ---
 bases:
+  - ../../../../bases/olympus/hermes/core
   - ../../../../bases/olympus/hermes/api
   - ../../../../bases/olympus/hermes/beat
   - ../../../../bases/olympus/hermes/celery
@@ -16,6 +17,12 @@ configMapGenerator:
       - env.ini
 
 patches:
+  - target:
+      kind: ServiceProfile
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: hermes-api.barclays-sit.svc.cluster.local
   - target:
       kind: Deployment
     patch: |-
