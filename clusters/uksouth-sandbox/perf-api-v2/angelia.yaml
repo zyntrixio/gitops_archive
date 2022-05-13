@@ -15,4 +15,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/angelia
     newName: binkcore.azurecr.io/angelia
-    newTag: perf-2022-04-13T222215Z # {"$imagepolicy": "flux-system:perf-angelia:tag"}
+    newTag: perf-2022-05-13T132311Z # {"$imagepolicy": "flux-system:perf-angelia:tag"}
