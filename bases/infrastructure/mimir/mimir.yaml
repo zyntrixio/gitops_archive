@@ -1,26 +1,24 @@
-apiVersion: flux.weave.works/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: mimir-distributed
   namespace: flux-system
 spec:
-  chart:
-    repository: https://grafana.github.io/helm-charts
-    name: mimir-distributed
+  interval: 60m
+  url: https://grafana.github.io/helm-charts
 ---
-apiVersion: flux.weave.works/v1beta2
-kind: HelmRelease
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmChart
 metadata:
   name: mimir
   namespace: mimir
 spec:
-  chart:
-    spec:
-      chart: mimir-distributed
-      sourceRef:
-        kind: HelmRepository
-        name: mimir-distributed
-        namespace: flux-system
+  interval: 60m
+  chart: mimir-distributed
+  sourceRef:
+    kind: HelmRepository
+    name: mimir-distributed
+  version: "6.29.2"
   values:
     minio: 
       enabled: false
