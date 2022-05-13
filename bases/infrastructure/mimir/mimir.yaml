@@ -24,3 +24,12 @@ spec:
   values:
     minio: 
       enabled: True
+      persistence:
+        enabled: false
+      azuregateway:
+        enabled: true
+        accessKey: binkmimir
+        secretKey: xaj29xcNVkx3Eq5dYNsevmXqNqcLre6DF8xsEQ5Pn4S5D1bqa4ito/T8Vrc8PovytwpJC3iMqvpmqNzRtEXE/A==
+      defaultBucket:
+        enabled: true
+        name: default
