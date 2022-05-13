@@ -23,13 +23,81 @@ spec:
         namespace: flux-system
   values:
     minio: 
-      enabled: True
-      persistence:
-        enabled: false
-      azuregateway:
-        enabled: true
-        accessKey: binkmimir
-        secretKey: xaj29xcNVkx3Eq5dYNsevmXqNqcLre6DF8xsEQ5Pn4S5D1bqa4ito/T8Vrc8PovytwpJC3iMqvpmqNzRtEXE/A==
-      defaultBucket:
-        enabled: true
-        name: default
+      enabled: false
+    mimir:
+      config: |
+        multitenancy_enabled: false
+
+        limits: {}
+
+        activity_tracker:
+          filepath: /data/metrics-activity.log
+
+        alertmanager:
+          data_dir: '/data'
+          enable_api: true
+          external_url: '/alertmanager'
+
+        alertmanager_storage:
+          backend: azure
+          azure:
+            account_name: binkmimir
+            account_key: xaj29xcNVkx3Eq5dYNsevmXqNqcLre6DF8xsEQ5Pn4S5D1bqa4ito/T8Vrc8PovytwpJC3iMqvpmqNzRtEXE/A==
+            container_name: alertmanager
+
+        frontend_worker:
+          frontend_address: {{ template "mimir.fullname" . }}-query-frontend-headless.{{ .Release.Namespace }}.svc:{{ include "mimir.serverGrpcListenPort" . }}
+
+        ruler:
+          enable_api: true
+          rule_path: '/data'
+          alertmanager_url: dnssrvnoa+http://_http-metrics._tcp.{{ template "mimir.fullname" . }}-alertmanager-headless.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }}/alertmanager
+
+        server:
+          grpc_server_max_recv_msg_size: 104857600
+          grpc_server_max_send_msg_size: 104857600
+          grpc_server_max_concurrent_streams: 1000
+
+        frontend:
+          log_queries_longer_than: 10s
+          align_queries_with_step: true
+
+        compactor:
+          data_dir: "/data"
+
+        ingester:
+          ring:
+            final_sleep: 0s
+            num_tokens: 512
+
+        ingester_client:
+          grpc_client_config:
+            max_recv_msg_size: 104857600
+            max_send_msg_size: 104857600
+
+        runtime_config:
+          file: /var/{{ include "mimir.name" . }}/runtime.yaml
+
+        memberlist:
+          abort_if_cluster_join_fails: false
+          compression_enabled: false
+          join_members:
+          - {{ include "mimir.fullname" . }}-gossip-ring
+
+        blocks_storage:
+          backend: azure
+          tsdb:
+            dir: /data/tsdb
+          bucket_store:
+            sync_dir: /data/tsdb-sync
+          azure:
+            account_name: binkmimir
+            account_key: xaj29xcNVkx3Eq5dYNsevmXqNqcLre6DF8xsEQ5Pn4S5D1bqa4ito/T8Vrc8PovytwpJC3iMqvpmqNzRtEXE/A==
+            container_name: blocks
+
+        ruler_storage:
+          backend: azure
+          azure:
+            account_name: binkmimir
+            account_key: xaj29xcNVkx3Eq5dYNsevmXqNqcLre6DF8xsEQ5Pn4S5D1bqa4ito/T8Vrc8PovytwpJC3iMqvpmqNzRtEXE/A==
+            container_name: admin
