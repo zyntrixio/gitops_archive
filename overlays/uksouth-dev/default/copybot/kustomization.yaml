@@ -3,6 +3,8 @@ bases:
   - ../../../../bases/infrastructure/copybot/core
   - ../../../../bases/infrastructure/copybot/hermes
 
+namespace: default
+
 configMapGenerator:
   - name: copybot
     envs:
