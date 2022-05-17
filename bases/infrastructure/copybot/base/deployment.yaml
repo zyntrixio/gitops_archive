@@ -23,8 +23,8 @@ spec:
     spec:
       containers:
         - name: app
-          image: binkcore.azurecr.io/clickhouse-copybot:latest
-          command: ["tail", "-f", "/dev/null"]
+          image: binkcore.azurecr.io/events-copybot:2022-05-17T163804Z
+          args: [tail, -f, /dev/null]
           resources:
             requests:
               cpu: 100m

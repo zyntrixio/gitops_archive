@@ -1,0 +1,28 @@
+---
+bases:
+  - ../base
+
+nameSuffix: -hermes
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: copybot
+        labels:
+          component: hermes
+      spec:
+        selector:
+          matchLabels:
+            component: hermes
+        template:
+          metadata:
+            labels:
+              component: hermes
+          spec:
+            containers:
+              - name: app
+                args: ["copybot", "consume", "--queue=clickhouse_hermes"]
