@@ -13,9 +13,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/copybot
-    newName: binkcore.azurecr.io/copybot
-    newTag: 2022-05-12T134223Z # {"$imagepolicy": "flux-system:uksouth-dev-copybot:tag"}
+  - name: binkcore.azurecr.io/events-copybot
+    newName: binkcore.azurecr.io/events-copybot
+    newTag: 2022-05-17T163804Z # {"$imagepolicy": "flux-system:uksouth-dev-copybot:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -23,7 +23,7 @@ metadata:
   name: copybot
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/copybot
+  image: binkcore.azurecr.io/events-copybot
   interval: 1m0s
   secretRef:
     name: binkcore.azurecr.io
