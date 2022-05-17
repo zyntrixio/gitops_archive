@@ -1,12 +1,18 @@
-resources:
-  - ../../../../bases/infrastructure/copybot
+---
+bases:
+  - ../../../../bases/infrastructure/copybot/core
+  - ../../../../bases/infrastructure/copybot/hermes
 
 namespace: default
 
 configMapGenerator:
-  - name: clickhouse
+  - name: copybot
     envs:
       - env.ini
+
+replicas:
+  - name: copybot-hermes
+    count: 1
 
 patches:
   - target:
@@ -15,7 +21,7 @@ patches:
       apiVersion: apps/v1
       kind: Deployment
       metadata:
-        name: clickhouse
+        name: copybot
       spec:
         template:
           spec:
@@ -23,4 +29,10 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                      name: clickhouse
+                      name: copybot
+                env:
+                  - name: POSTGRES_HOST
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_placeholder
