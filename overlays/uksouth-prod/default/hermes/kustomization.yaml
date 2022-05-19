@@ -30,14 +30,6 @@ replicas:
 patches:
   - target:
       kind: Deployment
-      name: hermes-api
-    patch: |-
-      - op: remove
-        path: /spec/template/spec/containers/0/livenessProbe
-      - op: remove
-        path: /spec/template/spec/containers/0/readinessProbe
-  - target:
-      kind: Deployment
     patch: |-
       apiVersion: apps/v1
       kind: Deployment
