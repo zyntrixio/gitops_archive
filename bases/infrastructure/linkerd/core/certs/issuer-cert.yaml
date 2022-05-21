@@ -1,0 +1,25 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: linkerd-identity-issuer
+spec:
+  isCA: true
+  commonName: identity.linkerd.cluster.local
+  secretName: linkerd-identity-issuer
+  duration: 48h
+  renewBefore: 25h
+  dnsNames:
+    - identity.linkerd.cluster.local
+  usages:
+    - server auth
+    - client auth
+    - cert sign
+    - crl sign
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  issuerRef:
+    name: certmanager-linkerd-root-issuer
+    kind: Issuer
+    group: cert-manager.io

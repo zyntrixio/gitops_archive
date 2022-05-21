@@ -1,0 +1,9 @@
+---
+resources:
+  - namespace.yaml
+  - ca-cert.yaml
+  - ca-issuer.yaml
+  - issuer-cert.yaml
+  - webhook-cert.yaml
+
+namespace: linkerd

@@ -1,0 +1,101 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: linkerd
+  namespace: flux-system
+spec:
+  interval: 10m
+  url: https://helm.linkerd.io/stable
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: linkerd
+  namespace: linkerd
+spec:
+  interval: 10m
+  install:
+    remediation:
+      retries: 300
+  chart:
+    spec:
+      chart: linkerd2
+      sourceRef:
+        kind: HelmRepository
+        name: linkerd
+        namespace: flux-system
+  values:
+    installNamespace: false
+    enableEndpointSlices: true
+    identity:
+      issuer:
+        scheme: kubernetes.io/tls
+    proxyInjector:
+      externalSecret: true
+    profileValidator:
+      externalSecret: true
+    enablePodAntiAffinity: true
+    proxy:
+      resources:
+        cpu:
+          request: 100m
+        memory:
+          limit: 250Mi
+          request: 20Mi
+    controllerReplicas: 3
+    controllerResources:
+      cpu:
+        limit: ""
+        request: 100m
+      memory:
+        limit: 250Mi
+        request: 50Mi
+    destinationResources:
+      cpu:
+        limit: ""
+        request: 100m
+      memory:
+        limit: 250Mi
+        request: 50Mi
+    identityResources:
+      cpu:
+        limit: ""
+        request: 100m
+      memory:
+        limit: 250Mi
+        request: 10Mi
+    heartbeatResources:
+      cpu:
+        limit: ""
+        request: 100m
+      memory:
+        limit: 250Mi
+        request: 50Mi
+    proxyInjectorResources:
+      cpu:
+        limit: ""
+        request: 100m
+      memory:
+        limit: 250Mi
+        request: 50Mi
+    webhookFailurePolicy: Fail
+    spValidatorResources:
+      cpu:
+        limit: ""
+        request: 100m
+      memory:
+        limit: 250Mi
+        request: 50Mi
+  valuesFrom:
+    - kind: Secret
+      name: certmanager-linkerd-root
+      valuesKey: tls.crt
+      targetPath: "identityTrustAnchorsPEM"
+    - kind: Secret
+      name: certmanager-linkerd-webhook-root
+      valuesKey: tls.crt
+      targetPath: "proxyInjector.caBundle"
+    - kind: Secret
+      name: certmanager-linkerd-webhook-root
+      valuesKey: tls.crt
+      targetPath: "profileValidator.caBundle"

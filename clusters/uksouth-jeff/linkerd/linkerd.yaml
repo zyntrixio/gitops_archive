@@ -1,0 +1,32 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: linkerd-core-certificates
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./bases/infrastructure/linkerd/core/certificates
+  prune: true
+  dependsOn:
+    - name: cert-manager
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: linkerd-core-servicemesh
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./bases/infrastructure/linkerd/core/servicemesh-nonprod
+  prune: true
+  dependsOn:
+    - name: linkerd-core-certificates
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
