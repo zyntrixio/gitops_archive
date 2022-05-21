@@ -8,6 +8,8 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-dev/cert-manager
   prune: true
+  dependsOn:
+    - name: aad-pod-identity
   sourceRef:
     kind: GitRepository
     name: flux-system
