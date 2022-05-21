@@ -25,6 +25,17 @@ spec:
         name: linkerd
         namespace: flux-system
   values:
+    controllerImage: ghcr.io/linkerd/controller
+    debugContainer:
+      image:
+        name: ghcr.io/linkerd/debug
+    proxyInit:
+      image:
+        name: ghcr.io/linkerd/proxy-init
+    policyController:
+      image:
+        name: 
+          ghcr.io/linkerd/policy-controller
     installNamespace: false
     enableEndpointSlices: true
     identity:
@@ -36,6 +47,8 @@ spec:
       externalSecret: true
     enablePodAntiAffinity: true
     proxy:
+      image:
+        name: ghcr.io/linkerd/proxy
       resources:
         cpu:
           request: 100m

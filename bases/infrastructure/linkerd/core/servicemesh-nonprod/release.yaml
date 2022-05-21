@@ -25,6 +25,20 @@ spec:
         name: linkerd
         namespace: flux-system
   values:
+    controllerImage: ghcr.io/linkerd/controller
+    debugContainer:
+      image:
+        name: ghcr.io/linkerd/debug
+    proxyInit:
+      image:
+        name: ghcr.io/linkerd/proxy-init
+    proxy:
+      image:
+        name: ghcr.io/linkerd/proxy
+    policyController:
+      image:
+        name: 
+          ghcr.io/linkerd/policy-controller
     installNamespace: false
     enableEndpointSlices: true
     identity:
@@ -36,49 +50,7 @@ spec:
       externalSecret: true
     enablePodAntiAffinity: true
     controllerReplicas: 3
-    controllerResources:
-      cpu:
-        limit: ""
-        request: 100m
-      memory:
-        limit: 250Mi
-        request: 50Mi
-    destinationResources:
-      cpu:
-        limit: ""
-        request: 100m
-      memory:
-        limit: 250Mi
-        request: 50Mi
-    identityResources:
-      cpu:
-        limit: ""
-        request: 100m
-      memory:
-        limit: 250Mi
-        request: 10Mi
-    heartbeatResources:
-      cpu:
-        limit: ""
-        request: 100m
-      memory:
-        limit: 250Mi
-        request: 50Mi
-    proxyInjectorResources:
-      cpu:
-        limit: ""
-        request: 100m
-      memory:
-        limit: 250Mi
-        request: 50Mi
     webhookFailurePolicy: Fail
-    spValidatorResources:
-      cpu:
-        limit: ""
-        request: 100m
-      memory:
-        limit: 250Mi
-        request: 50Mi
   valuesFrom:
     - kind: Secret
       name: certmanager-linkerd-root
