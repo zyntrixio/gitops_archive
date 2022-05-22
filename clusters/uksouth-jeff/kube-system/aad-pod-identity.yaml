@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./bases/infrastructure/aad-pod-identity
+  path: ./bases/infrastructure/aad-pod-identity-aks
   prune: true
   force: true
   sourceRef:

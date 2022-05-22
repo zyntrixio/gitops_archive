@@ -1,0 +1,20 @@
+---
+bases:
+  - https://raw.githubusercontent.com/Azure/aad-pod-identity/v1.8.9/deploy/infra/deployment-rbac.yaml
+  - https://raw.githubusercontent.com/Azure/aad-pod-identity/v1.8.9/deploy/infra/mic-exception.yaml
+
+namespace: kube-system
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /metadata/annotations/buoyant.cloud~1excluded
+        value: "true"
+  - target:
+      kind: DaemonSet
+    patch: |-
+      - op: add
+        path: /metadata/annotations/buoyant.cloud~1excluded
+        value: "true"
