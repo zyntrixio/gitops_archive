@@ -18,9 +18,28 @@ spec:
         namespace: flux-system
   values:
     installNamespace: false
+    defaultRegistry: ghcr.io/linkerd
+    enablePodAntiAffinity: true
     tap:
       externalSecret: true
+      replicas: 3
+      resources:
+        cpu:
+          limit: ""
+          request: 100m
+        memory:
+          limit: 250Mi
+          request: 50Mi
+    dashboard:
+      resources:
+        cpu:
+          limit: ""
+          request: 100m
+        memory:
+          limit: 250Mi
+          request: 50Mi
     tapInjector:
+      replicas: 3
       externalSecret: true
   valuesFrom:
     - kind: Secret
