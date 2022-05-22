@@ -1,3 +1,4 @@
+---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
@@ -20,7 +21,7 @@ spec:
   chart:
     spec:
       chart: linkerd2
-      version: "2.11.2"
+      version: 2.11.2
       sourceRef:
         kind: HelmRepository
         name: linkerd
@@ -35,8 +36,7 @@ spec:
         name: ghcr.io/linkerd/proxy-init
     policyController:
       image:
-        name: 
-          ghcr.io/linkerd/policy-controller
+        name: ghcr.io/linkerd/policy-controller
     installNamespace: false
     enableEndpointSlices: true
     identity:
@@ -59,35 +59,35 @@ spec:
     controllerReplicas: 3
     controllerResources:
       cpu:
-        limit: ""
+        limit: ''
         request: 100m
       memory:
         limit: 250Mi
         request: 50Mi
     destinationResources:
       cpu:
-        limit: ""
+        limit: ''
         request: 100m
       memory:
         limit: 250Mi
         request: 50Mi
     identityResources:
       cpu:
-        limit: ""
+        limit: ''
         request: 100m
       memory:
         limit: 250Mi
         request: 10Mi
     heartbeatResources:
       cpu:
-        limit: ""
+        limit: ''
         request: 100m
       memory:
         limit: 250Mi
         request: 50Mi
     proxyInjectorResources:
       cpu:
-        limit: ""
+        limit: ''
         request: 100m
       memory:
         limit: 250Mi
@@ -95,7 +95,7 @@ spec:
     webhookFailurePolicy: Fail
     spValidatorResources:
       cpu:
-        limit: ""
+        limit: ''
         request: 100m
       memory:
         limit: 250Mi
@@ -104,12 +104,12 @@ spec:
     - kind: Secret
       name: certmanager-linkerd-root
       valuesKey: tls.crt
-      targetPath: "identityTrustAnchorsPEM"
+      targetPath: identityTrustAnchorsPEM
     - kind: Secret
       name: certmanager-linkerd-webhook-root
       valuesKey: tls.crt
-      targetPath: "proxyInjector.caBundle"
+      targetPath: proxyInjector.caBundle
     - kind: Secret
       name: certmanager-linkerd-webhook-root
       valuesKey: tls.crt
-      targetPath: "profileValidator.caBundle"
+      targetPath: profileValidator.caBundle

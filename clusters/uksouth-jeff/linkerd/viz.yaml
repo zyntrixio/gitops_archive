@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: linkerd-core-certificates
+  name: linkerd-viz-certificates
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./bases/infrastructure/linkerd/core/certificates
+  path: ./bases/infrastructure/linkerd/viz/certificates
   prune: true
   dependsOn:
     - name: cert-manager
@@ -18,14 +18,15 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: linkerd-core-servicemesh
+  name: linkerd-viz-deployment
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./bases/infrastructure/linkerd/core/servicemesh-nonprod
+  path: ./bases/infrastructure/linkerd/viz/viz
   prune: true
   dependsOn:
-    - name: linkerd-core-certificates
+    - name: linkerd-core-servicemesh
+    - name: linkerd-viz-certificates
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -33,5 +34,5 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: linkerd
-      namespace: linkerd
+      name: linkerd-viz
+      namespace: linkerd-viz
