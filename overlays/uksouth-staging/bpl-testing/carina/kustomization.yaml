@@ -12,6 +12,9 @@ configMapGenerator:
   - name: carina
     envs:
       - env.ini
+  - name: carina-scripts
+    files:
+      - migrator.py
 
 resources:
   - aad.yaml
@@ -38,3 +41,10 @@ patches:
                       secretKeyRef:
                         key: connection_string
                         name: azure-storage-common
+                volumeMounts:
+                - name: carina-scripts
+                  mountPath: /scripts
+            volumes:
+              - name: carina-scripts
+                configMap:
+                  name: carina-scripts
