@@ -97,7 +97,7 @@ scrape_configs:
 
   - job_name: 'dev0-pods'
     kubernetes_sd_configs:
-      - api_server: https://dev0-controller.uksouth.bink.host:6443
+      - api_server: https://uksouth-dev0-a2cce226.hcp.uksouth.azmk8s.io:443
         role: pod
         bearer_token_file: /tmp/prometheus-creds/dev0/token
         tls_config:
@@ -435,14 +435,14 @@ scrape_configs:
     bearer_token_file: /tmp/prometheus-creds/dev0/token
 
     kubernetes_sd_configs:
-      - api_server: https://dev0-controller.uksouth.bink.host:6443
+      - api_server: https://uksouth-dev0-a2cce226.hcp.uksouth.azmk8s.io:443
         role: node
         bearer_token_file: /tmp/prometheus-creds/dev0/token
         tls_config:
           ca_file: /tmp/prometheus-creds/dev0/ca.crt
     relabel_configs:
       - target_label: __address__
-        replacement: dev0-controller.uksouth.bink.host:6443
+        replacement: uksouth-dev0-a2cce226.hcp.uksouth.azmk8s.io:443
       - source_labels: [__meta_kubernetes_node_name]
         regex: (.+)
         target_label: __metrics_path__
