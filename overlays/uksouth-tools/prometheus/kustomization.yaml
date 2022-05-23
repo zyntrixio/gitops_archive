@@ -14,9 +14,3 @@ configMapGenerator:
       - prometheus-sandbox.rules.yaml
       - prometheus-staging.rules.yaml
       - prometheus.yml
-
-generatorOptions:
-  disableNameSuffixHash: true
-
-patches:
-  - path: patch-configmap.yaml
