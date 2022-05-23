@@ -12,7 +12,37 @@ replicas:
   - name: midas
     count: 3
 
+namespace: default
+
+configMapGenerator:
+  - name: midas
+    envs:
+      - env.ini
+
 patches:
-  - path: env.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: midas
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: midas
+                env:
+                  - name: POSTGRES_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_placeholder
+                  - name: REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: uri_ssl
+                        name: azure-redis-vnet

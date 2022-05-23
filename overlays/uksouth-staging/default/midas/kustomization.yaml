@@ -8,9 +8,10 @@ bases:
 resources:
   - aad.yaml
 
+namespace: default
+
 configMapGenerator:
   - name: midas
-    namespace: default
     envs:
       - env.ini
 
