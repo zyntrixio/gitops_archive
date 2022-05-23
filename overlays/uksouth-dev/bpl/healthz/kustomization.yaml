@@ -1,3 +1,5 @@
 ---
 bases:
   - ../../../../bases/infrastructure/healthz
+
+namespace: bpl

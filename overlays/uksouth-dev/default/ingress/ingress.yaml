@@ -75,13 +75,6 @@ spec:
                 name: harmonia-api
                 port:
                   number: 80
-          - path: /dashboard
-            pathType: Prefix
-            backend:
-              service:
-                name: helios-api
-                port:
-                  number: 80
           - path: /admin
             pathType: Prefix
             backend:
@@ -215,13 +208,6 @@ spec:
                 name: midas-api
                 port:
                   number: 80
-          - path: /transaction_feed
-            pathType: Prefix
-            backend:
-              service:
-                name: rhodos
-                port:
-                  number: 80
           - path: /mids
             pathType: Prefix
             backend:
@@ -241,13 +227,6 @@ spec:
             backend:
               service:
                 name: skiron-api
-                port:
-                  number: 80
-          - path: /tlog/whsmith
-            pathType: Prefix
-            backend:
-              service:
-                name: tlog-receiver
                 port:
                   number: 80
           - path: /auth_transactions/amex
