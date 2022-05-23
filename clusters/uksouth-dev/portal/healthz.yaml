@@ -7,6 +7,8 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-dev/portal/healthz
+  dependsOn:
+    - name: linkerd-viz-deployment
   prune: true
   sourceRef:
     kind: GitRepository

@@ -7,6 +7,8 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-dev/ingress-nginx
+  dependsOn:
+    - name: linkerd-viz-deployment
   prune: true
   force: true
   sourceRef:

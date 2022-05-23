@@ -8,6 +8,7 @@ spec:
   path: ./overlays/uksouth-dev/default/angelia
   dependsOn:
   - name: aad-pod-identity
+  - name: linkerd-viz-deployment
   prune: true
   sourceRef:
     kind: GitRepository
