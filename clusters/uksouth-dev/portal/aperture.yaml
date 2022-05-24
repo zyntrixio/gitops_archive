@@ -8,14 +8,14 @@ spec:
   path: ./overlays/uksouth-dev/portal/aperture
   prune: true
   dependsOn:
-    - name: linkerd-viz-deployment
+  - name: linkerd-viz-deployment
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
   - name: binkcore.azurecr.io/aperture
     newName: binkcore.azurecr.io/aperture
-    newTag: 2022-05-20T145450Z # {"$imagepolicy": "flux-system:uksouth-dev-aperture:tag"}
+    newTag: 2022-05-24T134858Z # {"$imagepolicy": "flux-system:uksouth-dev-aperture:tag"}
   postBuild:
     substituteFrom:
     - kind: ConfigMap
