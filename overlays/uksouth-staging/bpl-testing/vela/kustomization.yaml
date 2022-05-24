@@ -15,6 +15,9 @@ configMapGenerator:
   - name: vela
     envs:
       - env.ini
+  - name: vela-scripts
+    files:
+      - migrator.py
 
 patches:
   - target:
@@ -32,3 +35,10 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: vela
+                volumeMounts:
+                - name: vela-scripts
+                  mountPath: /scripts
+            volumes:
+              - name: vela-scripts
+                configMap:
+                  name: vela-scripts

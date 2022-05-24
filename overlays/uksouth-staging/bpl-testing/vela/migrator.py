@@ -5,7 +5,7 @@ from alembic import command
 from alembic.config import Config
 
 DB_BASE = "postgresql://postgres@postgres"
-DB_NAME = "carina_template"
+DB_NAME = "vela_template"
 ALEMBIC_DIR = "/app/alembic"
 
 postgres = create_engine(f"{DB_BASE}/postgres")

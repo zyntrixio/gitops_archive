@@ -15,6 +15,9 @@ configMapGenerator:
   - name: polaris
     envs:
       - env.ini
+  - name: polaris-scripts
+    files:
+      - migrator.py
 
 patches:
   - target:
@@ -38,3 +41,10 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: polaris
+                volumeMounts:
+                - name: polaris-scripts
+                  mountPath: /scripts
+            volumes:
+              - name: polaris-scripts
+                configMap:
+                  name: polaris-scripts
