@@ -7,8 +7,8 @@ spec:
   isCA: true
   commonName: identity.linkerd.cluster.local
   secretName: linkerd-identity-issuer
-  duration: 48h
-  renewBefore: 25h
+  duration: 2161h
+  renewBefore: 721h
   dnsNames:
     - identity.linkerd.cluster.local
   usages:

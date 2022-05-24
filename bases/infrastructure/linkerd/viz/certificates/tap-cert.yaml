@@ -44,8 +44,8 @@ metadata:
   namespace: linkerd-viz
 spec:
   secretName: tap-k8s-tls
-  duration: 24h
-  renewBefore: 1h
+  duration: 2161h
+  renewBefore: 721h
   issuerRef:
     name: certmanager-linkerd-viz-webhook-issuer
     kind: Issuer
@@ -65,8 +65,8 @@ metadata:
   namespace: linkerd-viz
 spec:
   secretName: tap-injector-k8s-tls
-  duration: 24h
-  renewBefore: 1h
+  duration: 2161h
+  renewBefore: 721h
   issuerRef:
     name: certmanager-linkerd-viz-webhook-issuer
     kind: Issuer

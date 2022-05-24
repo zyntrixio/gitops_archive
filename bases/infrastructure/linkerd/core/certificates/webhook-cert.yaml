@@ -15,7 +15,7 @@ spec:
   commonName: root.webhook.linkerd.cluster.local
   secretName: certmanager-linkerd-webhook-root
   duration: 87660h
-  renewBefore: 24h
+  renewBefore: 721h
   usages:
     - server auth
     - client auth
