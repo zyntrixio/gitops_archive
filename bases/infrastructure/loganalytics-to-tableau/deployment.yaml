@@ -23,6 +23,7 @@ spec:
         kubectl.kubernetes.io/default-container: app
       labels:
         app: loganalytics-to-tableau
+        aadpodidbinding: tableau
     spec:
       containers:
         - image: binkcore.azurecr.io/loganalytics-to-tableau:latest
