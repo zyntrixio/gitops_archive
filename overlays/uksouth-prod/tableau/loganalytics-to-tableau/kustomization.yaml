@@ -1,6 +1,6 @@
 ---
 bases:
-  - ../../../../bases/infrastructure/elasticsearch-to-postgres
+  - ../../../../bases/infrastructure/loganalytics-to-tableau
 
 namespace: tableau
 
