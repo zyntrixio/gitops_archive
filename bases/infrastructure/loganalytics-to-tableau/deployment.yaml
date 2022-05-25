@@ -12,10 +12,7 @@ spec:
     matchLabels:
       app: loganalytics-to-tableau
   strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+    type: Recreate
   template:
     metadata:
       annotations:
