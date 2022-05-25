@@ -8,14 +8,14 @@ spec:
   path: ./overlays/uksouth-dev/default/api2-docs
   prune: true
   dependsOn:
-    - name: linkerd-viz-deployment
+  - name: linkerd-viz-deployment
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
   - name: binkcore.azurecr.io/api2-redoc
     newName: binkcore.azurecr.io/api2-redoc
-    newTag: 2022-05-17T121737Z # {"$imagepolicy": "flux-system:uksouth-dev-api2-docs:tag"}
+    newTag: 2022-05-25T102835Z # {"$imagepolicy": "flux-system:uksouth-dev-api2-docs:tag"}
   postBuild:
     substituteFrom:
     - kind: ConfigMap
