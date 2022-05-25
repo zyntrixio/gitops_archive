@@ -3,14 +3,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: policies
-  name: policies
+    app: help
+  name: help
   namespace: default
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: policies
+      app: help
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -22,7 +22,7 @@ spec:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
       labels:
-        app: policies
+        app: help
     spec:
       affinity:
         podAntiAffinity:
@@ -33,12 +33,12 @@ spec:
                     - key: app
                       operator: In
                       values:
-                        - policies
+                        - help
                 topologyKey: topology.kubernetes.io/zone
               weight: 100
       containers:
         - name: app
-          image: binkcore.azurecr.io/policies.gb.bink.com:latest
+          image: binkcore.azurecr.io/help.gb.bink.com:staging
           imagePullPolicy: Always
           ports:
             - containerPort: 80
