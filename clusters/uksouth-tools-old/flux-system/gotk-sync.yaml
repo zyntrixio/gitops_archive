@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./clusters/uksouth-tools
+  path: ./clusters/uksouth-tools-old
   prune: true
   sourceRef:
     kind: GitRepository
