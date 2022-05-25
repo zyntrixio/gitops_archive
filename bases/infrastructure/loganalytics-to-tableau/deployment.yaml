@@ -3,14 +3,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: elasticsearch-to-postgres
-  name: elasticsearch-to-postgres
+    app: loganalytics-to-tableau
+  name: loganalytics-to-tableau
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: elasticsearch-to-postgres
+      app: loganalytics-to-tableau
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -22,10 +22,10 @@ spec:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
       labels:
-        app: elasticsearch-to-postgres
+        app: loganalytics-to-tableau
     spec:
       containers:
-        - image: binkcore.azurecr.io/elasticsearch-to-postgres:latest
+        - image: binkcore.azurecr.io/loganalytics-to-tableau:latest
           name: app
           resources:
             limits:
