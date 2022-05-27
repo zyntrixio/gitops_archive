@@ -11,7 +11,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: mimir
-  namespace: default
+  namespace: mimir
 spec:
   chart:
     spec:
@@ -42,8 +42,8 @@ spec:
         alertmanager_storage:
           backend: azure
           azure:
-            account_name: binkmimir
-            account_key: xaj29xcNVkx3Eq5dYNsevmXqNqcLre6DF8xsEQ5Pn4S5D1bqa4ito/T8Vrc8PovytwpJC3iMqvpmqNzRtEXE/A==
+            account_name: binkuksouthtools
+            account_key: 1kyRDOG27i+tS5uRaPJuD0vkroaEQMj3NO+Ho52GnUS1XyagEqVjkXGMCqzYgg9X+b1nAPNBwupU5oLvuZTMxw==
             container_name: alertmanager
 
         frontend_worker:
@@ -92,13 +92,13 @@ spec:
           bucket_store:
             sync_dir: /data/tsdb-sync
           azure:
-            account_name: binkmimir
-            account_key: xaj29xcNVkx3Eq5dYNsevmXqNqcLre6DF8xsEQ5Pn4S5D1bqa4ito/T8Vrc8PovytwpJC3iMqvpmqNzRtEXE/A==
+            account_name: binkuksouthtools
+            account_key: 1kyRDOG27i+tS5uRaPJuD0vkroaEQMj3NO+Ho52GnUS1XyagEqVjkXGMCqzYgg9X+b1nAPNBwupU5oLvuZTMxw==
             container_name: blocks
 
         ruler_storage:
           backend: azure
           azure:
-            account_name: binkmimir
-            account_key: xaj29xcNVkx3Eq5dYNsevmXqNqcLre6DF8xsEQ5Pn4S5D1bqa4ito/T8Vrc8PovytwpJC3iMqvpmqNzRtEXE/A==
+            account_name: binkuksouthtools
+            account_key: 1kyRDOG27i+tS5uRaPJuD0vkroaEQMj3NO+Ho52GnUS1XyagEqVjkXGMCqzYgg9X+b1nAPNBwupU5oLvuZTMxw==
             container_name: admin
