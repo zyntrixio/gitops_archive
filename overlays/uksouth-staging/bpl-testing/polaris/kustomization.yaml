@@ -33,7 +33,7 @@ patches:
           spec:
             containers:
               - name: app
-                args: ["python", "/scripts/migrator.sh"]
+                args: ["python", "/scripts/migrator.py"]
   - target:
       kind: Deployment
     patch: |-
