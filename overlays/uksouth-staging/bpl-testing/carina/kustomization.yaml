@@ -33,7 +33,7 @@ patches:
           spec:
             containers:
               - name: app
-                args: ["python", "/scripts/migrator.py"]
+                args: ["python", "/app/migrator.py"]
   - target:
       kind: Deployment
     patch: |-
@@ -57,8 +57,12 @@ patches:
                         name: azure-storage-common
                 volumeMounts:
                 - name: carina-scripts
-                  mountPath: /scripts
+                  mountPath: /app/migrator.py
+                  subPath: migrator.py
             volumes:
               - name: carina-scripts
                 configMap:
                   name: carina-scripts
+                  items:
+                    - key: migrator.py
+                      path: migrator.py

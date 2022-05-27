@@ -33,7 +33,7 @@ patches:
           spec:
             containers:
               - name: app
-                args: ["python", "/scripts/migrator.py"]
+                args: ["python", "/app/migrator.py"]
   - target:
       kind: Deployment
     patch: |-
@@ -51,8 +51,12 @@ patches:
                       name: vela
                 volumeMounts:
                 - name: vela-scripts
-                  mountPath: /scripts
+                  mountPath: /app/migrator.py
+                  subPath: migrator.py
             volumes:
               - name: vela-scripts
                 configMap:
                   name: vela-scripts
+                  items:
+                    - key: migrator.py
+                      path: migrator.py

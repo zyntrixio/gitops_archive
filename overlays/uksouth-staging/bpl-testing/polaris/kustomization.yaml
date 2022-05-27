@@ -33,7 +33,7 @@ patches:
           spec:
             containers:
               - name: app
-                args: ["python", "/scripts/migrator.py"]
+                args: ["python", "/app/migrator.py"]
   - target:
       kind: Deployment
     patch: |-
@@ -57,8 +57,12 @@ patches:
                       name: polaris
                 volumeMounts:
                 - name: polaris-scripts
-                  mountPath: /scripts
+                  mountPath: /app/migrator.py
+                  subPath: migrator.py
             volumes:
               - name: polaris-scripts
                 configMap:
                   name: polaris-scripts
+                  items:
+                    - key: migrator.py
+                      path: migrator.py
