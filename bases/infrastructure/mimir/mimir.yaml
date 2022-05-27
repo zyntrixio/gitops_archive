@@ -25,6 +25,20 @@ spec:
   values:
     minio: 
       enabled: false
+    nginx:
+      ingress:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          nginx.ingress.kubernetes.io/service-upstream: 'true'
+        hosts:
+          - host: mimir.${cluster_name}.${location}.bink.sh
+            paths:
+              - path: /
+        tls:
+          - secretName: mimir.${cluster_name}.${location}.bink.sh
+            hosts:
+              - mimir.${cluster_name}.${location}.bink.sh
     mimir:
       config: |
         multitenancy_enabled: false
@@ -102,18 +116,3 @@ spec:
             account_name: binkuksouthtools
             account_key: 1kyRDOG27i+tS5uRaPJuD0vkroaEQMj3NO+Ho52GnUS1XyagEqVjkXGMCqzYgg9X+b1nAPNBwupU5oLvuZTMxw==
             container_name: admin
-
-        nginx:
-          ingress:
-            enabled: true
-            annotations:
-              kubernetes.io/ingress.class: nginx
-              nginx.ingress.kubernetes.io/service-upstream: 'true'
-            hosts:
-              - host: mimir.${cluster_name}.${location}.bink.sh
-                paths:
-                  - path: /
-            tls:
-              - secretName: mimir.${cluster_name}.${location}.bink.sh
-                hosts:
-                  - mimir.${cluster_name}.${location}.bink.sh
