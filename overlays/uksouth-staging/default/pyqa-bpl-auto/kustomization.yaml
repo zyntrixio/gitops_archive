@@ -1,0 +1,11 @@
+---
+bases:
+  - ../../../../bases/qa/pyqa-bpl-auto
+
+resources:
+  - azureidentity.yaml
+
+patches:
+  - path: env.yaml
+    target:
+      kind: Deployment

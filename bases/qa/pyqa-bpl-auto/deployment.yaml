@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pyqa-bpl-auto
+    aadpodidbinding: pyqa-bpl
+  name: pyqa-bpl-auto
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: pyqa-bpl-auto
+      aadpodidbinding: pyqa-bpl-auto
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: pyqa-bpl-auto
+        aadpodidbinding: pyqa-bpl-auto
+    spec:
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/pyqa-bpl-auto:latest
+          resources:
+            limits:
+              memory: 256Mi
+            requests:
+              memory: 256Mi
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
