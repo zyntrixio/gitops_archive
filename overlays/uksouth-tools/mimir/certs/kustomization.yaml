@@ -1,0 +1,6 @@
+bases:
+  - ../../common/issuer
+
+resources:
+  - namespace.yaml
+  - certificates.yaml

@@ -5,10 +5,10 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./bases/infrastructure/mimir
+  path: ./overlays/uksouth-tools/mimir/certs
   prune: true
   dependsOn:
-    - mimir-certs
+    - cert-manager
   sourceRef:
     kind: GitRepository
     name: flux-system
