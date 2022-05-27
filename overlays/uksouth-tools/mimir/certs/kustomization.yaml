@@ -4,3 +4,5 @@ bases:
 resources:
   - namespace.yaml
   - certificates.yaml
+
+namespace: mimir
