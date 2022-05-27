@@ -8,7 +8,7 @@ spec:
   path: ./bases/infrastructure/mimir
   prune: true
   dependsOn:
-    - mimir-certs
+    - name: mimir-certs
   sourceRef:
     kind: GitRepository
     name: flux-system

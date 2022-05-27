@@ -8,7 +8,7 @@ spec:
   path: ./overlays/uksouth-tools/mimir/certs
   prune: true
   dependsOn:
-    - cert-manager
+    - name: cert-manager
   sourceRef:
     kind: GitRepository
     name: flux-system
