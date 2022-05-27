@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-tools/kwatch
+  path: ./overlays/uksouth-tools-old/kwatch
   prune: true
   sourceRef:
     kind: GitRepository

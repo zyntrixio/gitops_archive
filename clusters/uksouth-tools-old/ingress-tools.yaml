@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-tools/ingress-tools
+  path: ./overlays/uksouth-tools-old/ingress-tools
   prune: true
   dependsOn:
     - name: cert-manager

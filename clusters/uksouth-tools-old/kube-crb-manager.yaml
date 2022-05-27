@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-tools/kube-system/kube-crb-manager
+  path: ./overlays/uksouth-tools-old/kube-system/kube-crb-manager
   prune: true
   sourceRef:
     kind: GitRepository

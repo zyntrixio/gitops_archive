@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-tools/mobsf
+  path: ./overlays/uksouth-tools-old/mobsf
   prune: true
   sourceRef:
     kind: GitRepository

@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-tools/cluster-autodiscover-api
+  path: ./overlays/uksouth-tools-old/cluster-autodiscover-api
   prune: true
   sourceRef:
     kind: GitRepository

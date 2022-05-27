@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-tools/ingress-nginx
+  path: ./overlays/uksouth-tools-old/ingress-nginx
   prune: true
   force: true
   sourceRef:

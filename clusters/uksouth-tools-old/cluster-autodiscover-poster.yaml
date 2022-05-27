@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-tools/kube-system/cluster-autodiscover-poster
+  path: ./overlays/uksouth-tools-old/kube-system/cluster-autodiscover-poster
   prune: true
   sourceRef:
     kind: GitRepository

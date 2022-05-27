@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-tools/asset-register
+  path: ./overlays/uksouth-tools-old/asset-register
   prune: true
   sourceRef:
     kind: GitRepository

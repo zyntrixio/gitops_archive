@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-tools/exporters
+  path: ./overlays/uksouth-tools-old/exporters
   prune: true
   sourceRef:
     kind: GitRepository
