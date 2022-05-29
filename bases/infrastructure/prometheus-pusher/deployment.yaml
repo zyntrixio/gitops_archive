@@ -5,17 +5,17 @@ metadata:
   name: prometheus-pusher
   namespace: monitoring
   labels:
-    app: prometheus
+    app: prometheus-pusher
 spec:
   selector:
     matchLabels:
-      app: prometheus
+      app: prometheus-pusher
   template:
     metadata:
       labels:
-        app: prometheus
+        app: prometheus-pusher
     spec:
-      serviceAccountName: prometheus
+      serviceAccountName: prometheus-pusher
       containers:
         - name: prometheus-pusher
           image: binkcore.azurecr.io/prometheus-pusher-client:2022-05-06T183938Z
