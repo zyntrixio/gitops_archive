@@ -36,10 +36,17 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+          - host: mimir.${cluster_name}.${location}.bink.host
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
           - secretName: mimir.${cluster_name}.${location}.bink.sh
             hosts:
               - mimir.${cluster_name}.${location}.bink.sh
+          - secretName: mimir.${cluster_name}.${location}.bink.host
+            hosts:
+              - mimir.${cluster_name}.${location}.bink.host
     mimir:
       config: |
         multitenancy_enabled: false
