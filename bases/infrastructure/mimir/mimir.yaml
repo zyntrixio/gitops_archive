@@ -68,7 +68,7 @@ spec:
           azure:
             account_name: binkuksouthtools
             account_key: 1kyRDOG27i+tS5uRaPJuD0vkroaEQMj3NO+Ho52GnUS1XyagEqVjkXGMCqzYgg9X+b1nAPNBwupU5oLvuZTMxw==
-            container_name: alertmanager
+            container_name: mimir-alertmanager
 
         frontend_worker:
           frontend_address: {{ template "mimir.fullname" . }}-query-frontend-headless.{{ .Release.Namespace }}.svc:{{ include "mimir.serverGrpcListenPort" . }}
@@ -118,11 +118,11 @@ spec:
           azure:
             account_name: binkuksouthtools
             account_key: 1kyRDOG27i+tS5uRaPJuD0vkroaEQMj3NO+Ho52GnUS1XyagEqVjkXGMCqzYgg9X+b1nAPNBwupU5oLvuZTMxw==
-            container_name: blocks
+            container_name: mimir-blocks
 
         ruler_storage:
           backend: azure
           azure:
             account_name: binkuksouthtools
             account_key: 1kyRDOG27i+tS5uRaPJuD0vkroaEQMj3NO+Ho52GnUS1XyagEqVjkXGMCqzYgg9X+b1nAPNBwupU5oLvuZTMxw==
-            container_name: admin
+            container_name: mimir-admin
