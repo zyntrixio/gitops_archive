@@ -1,8 +1,6 @@
-bases:
-  - ../../../../bases/common/issuer
-
 resources:
   - namespace.yaml
-  - certificates.yaml
+  - bink_host.yaml
+  - bink_sh.yaml
 
 namespace: mimir
