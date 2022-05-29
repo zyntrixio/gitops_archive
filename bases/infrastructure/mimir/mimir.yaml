@@ -25,6 +25,8 @@ spec:
   values:
     minio: 
       enabled: false
+    distributor:
+      replicas: 3
     nginx:
       ingress:
         enabled: true
