@@ -12,7 +12,7 @@ configMapGenerator:
 
 replicas:
   - name: copybot-hermes
-    count: 0
+    count: 1
 
 patches:
   - target:
