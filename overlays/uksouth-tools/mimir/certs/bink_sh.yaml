@@ -2,13 +2,13 @@
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: bink_sh
+  name: bink.sh
   namespace: default
 spec:
   acme:
     email: onlineservices@bink.com
     privateKeySecretRef:
-      name: bink_sh_letsencrypt
+      name: bink.sh-letsencrypt
     server: https://acme-v02.api.letsencrypt.org/directory
     solvers:
       - dns01:
@@ -29,5 +29,5 @@ spec:
   issuerRef:
     group: cert-manager.io
     kind: Issuer
-    name: bink_sh
+    name: bink.sh
   secretName: mimir.${cluster_name}.${location}.bink.sh
