@@ -9,6 +9,8 @@ spec:
   path: ./overlays/uksouth-sandbox/ingress-nginx
   prune: true
   force: true
+  dependsOn:
+    - name: linkerd-viz-deployment
   sourceRef:
     kind: GitRepository
     name: flux-system
