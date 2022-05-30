@@ -1,0 +1,13 @@
+---
+bases:
+  - ../../../../bases/infrastructure/healthz
+
+namespace: data-testing
+
+patches:
+  - target:
+      kind: ServiceProfile
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: healthz.data-testing.svc.cluster.local
