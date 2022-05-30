@@ -2,9 +2,6 @@
 bases:
   - ../base
 
-resources:
-  - pvc.yaml
-
 nameSuffix: -loader
 
 commonLabels:
