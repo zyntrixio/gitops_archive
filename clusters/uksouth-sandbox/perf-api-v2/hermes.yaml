@@ -7,7 +7,8 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-sandbox/perf-api-v2/hermes
   dependsOn:
-  - name: aad-pod-identity
+    - name: linkerd-viz-deployment
+    - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository

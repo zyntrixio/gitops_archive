@@ -138,13 +138,13 @@ scrape_configs:
         regex: ()
         replacement: dev0
 
-  - job_name: 'sandbox0-pods'
+  - job_name: 'sandbox-pods'
     kubernetes_sd_configs:
-      - api_server: https://sandbox0-controller.uksouth.bink.host:6443
+      - api_server: https://uksouth-sandbox-097dab48.hcp.uksouth.azmk8s.io:443
         role: pod
-        bearer_token_file: /tmp/prometheus-creds/sandbox0/token
+        bearer_token_file: /tmp/prometheus-creds/sandbox/token
         tls_config:
-          ca_file: /tmp/prometheus-creds/sandbox0/ca.crt
+          ca_file: /tmp/prometheus-creds/sandbox/ca.crt
     relabel_configs:
       - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
         action: keep
@@ -180,7 +180,7 @@ scrape_configs:
         target_label: kubernetes_cluster
         action: replace
         regex: ()
-        replacement: sandbox0
+        replacement: sandbox
 
   - job_name: 'staging0-pods'
     kubernetes_sd_configs:
@@ -453,21 +453,21 @@ scrape_configs:
         regex: ()
         replacement: dev0
 
-  - job_name: 'sandbox0-nodes'
+  - job_name: 'sandbox-nodes'
     scheme: https
     tls_config:
-      ca_file: /tmp/prometheus-creds/sandbox0/ca.crt
-    bearer_token_file: /tmp/prometheus-creds/sandbox0/token
+      ca_file: /tmp/prometheus-creds/sandbox/ca.crt
+    bearer_token_file: /tmp/prometheus-creds/sandbox/token
 
     kubernetes_sd_configs:
-      - api_server: https://sandbox0-controller.uksouth.bink.host:6443
+      - api_server: https://uksouth-sandbox-097dab48.hcp.uksouth.azmk8s.io:443
         role: node
-        bearer_token_file: /tmp/prometheus-creds/sandbox0/token
+        bearer_token_file: /tmp/prometheus-creds/sandbox/token
         tls_config:
-          ca_file: /tmp/prometheus-creds/sandbox0/ca.crt
+          ca_file: /tmp/prometheus-creds/sandbox/ca.crt
     relabel_configs:
       - target_label: __address__
-        replacement: sandbox0-controller.uksouth.bink.host:6443
+        replacement: uksouth-sandbox-097dab48.hcp.uksouth.azmk8s.io
       - source_labels: [__meta_kubernetes_node_name]
         regex: (.+)
         target_label: __metrics_path__
@@ -476,7 +476,7 @@ scrape_configs:
         target_label: kubernetes_cluster
         action: replace
         regex: ()
-        replacement: sandbox0
+        replacement: sandbox
 
   - job_name: 'staging0-nodes'
     scheme: https

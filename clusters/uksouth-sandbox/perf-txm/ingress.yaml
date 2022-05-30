@@ -8,6 +8,9 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-sandbox/perf-txm/ingress
   prune: true
+  dependsOn:
+    - name: cert-manager
+    - name: ingress-nginx
   sourceRef:
     kind: GitRepository
     name: flux-system

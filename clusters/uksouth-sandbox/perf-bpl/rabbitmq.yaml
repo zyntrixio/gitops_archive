@@ -8,6 +8,8 @@ spec:
   interval: 60m0s
   path: ./bases/infrastructure/rabbitmq
   prune: true
+  dependsOn:
+    - name: linkerd-viz-deployment
   targetNamespace: perf-bpl
   sourceRef:
     kind: GitRepository
