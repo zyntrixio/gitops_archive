@@ -7,8 +7,8 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-sandbox/perf-bpl/event-horizon
   dependsOn:
-    - name: linkerd-viz-deployment
-    - name: aad-pod-identity
+  - name: linkerd-viz-deployment
+  - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository
@@ -16,4 +16,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/event-horizon
     newName: binkcore.azurecr.io/event-horizon
-    newTag: 2022-04-21T165625Z # {"$imagepolicy": "flux-system:perf-event-horizon:tag"}
+    newTag: 2022-05-30T095752Z # {"$imagepolicy": "flux-system:perf-event-horizon:tag"}

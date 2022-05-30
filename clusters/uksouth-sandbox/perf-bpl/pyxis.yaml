@@ -8,11 +8,11 @@ spec:
   path: ./overlays/uksouth-sandbox/perf-bpl/pyxis
   prune: true
   dependsOn:
-    - name: linkerd-viz-deployment
+  - name: linkerd-viz-deployment
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
   - name: binkcore.azurecr.io/pyxis
     newName: binkcore.azurecr.io/pyxis
-    newTag: 2022-04-25T173154Z # {"$imagepolicy": "flux-system:perf-pyxis:tag"}
+    newTag: 2022-04-29T154754Z # {"$imagepolicy": "flux-system:perf-pyxis:tag"}

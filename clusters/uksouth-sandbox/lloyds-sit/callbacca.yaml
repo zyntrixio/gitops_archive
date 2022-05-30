@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -9,12 +8,12 @@ spec:
   path: ./bases/oss/callbacca
   prune: true
   dependsOn:
-    - name: linkerd-viz-deployment
+  - name: linkerd-viz-deployment
   sourceRef:
     kind: GitRepository
     name: flux-system
   targetNamespace: lloyds-sit
   images:
-    - name: binkcore.azurecr.io/callbacca
-      newName: binkcore.azurecr.io/callbacca
-      newTag: 2022-02-25T172047Z  # {"$imagepolicy": "flux-system:sandbox-callbacca:tag"}
+  - name: binkcore.azurecr.io/callbacca
+    newName: binkcore.azurecr.io/callbacca
+    newTag: 2022-05-27T110845Z # {"$imagepolicy": "flux-system:sandbox-callbacca:tag"}
