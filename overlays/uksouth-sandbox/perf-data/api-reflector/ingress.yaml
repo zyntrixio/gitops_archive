@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/service-upstream: 'true'
     nginx.ingress.kubernetes.io/upstream-vhost: perf-data-reflector.sandbox.gb.bink.com
   name: perf-data-reflector.${cluster_name}.${location}.bink.sh
-  namespace: default
+  namespace: perf-data
 spec:
   rules:
     - host: perf-data-reflector.${cluster_name}.${location}.bink.sh
