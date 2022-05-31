@@ -2,19 +2,18 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: perf-data-angelia
+  name: perf-data-iris
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-sandbox/perf-data/angelia
+  path: ./overlays/uksouth-sandbox/perf-data/iris
+  prune: true
   dependsOn:
     - name: linkerd-viz-deployment
-    - name: aad-pod-identity
-  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/angelia
-      newName: binkcore.azurecr.io/angelia
-      newTag: staging-0.36.1
+    - name: binkcore.azurecr.io/iris
+      newName: binkcore.azurecr.io/iris
+      newTag: prod-1.2.1

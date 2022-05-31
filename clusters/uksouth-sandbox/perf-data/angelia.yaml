@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: perf-data-angelia
+  name: lloyds-sit-angelia
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-sandbox/perf-data/angelia
+  path: ./overlays/uksouth-sandbox/lloyds-sit/angelia
   dependsOn:
     - name: linkerd-viz-deployment
     - name: aad-pod-identity
