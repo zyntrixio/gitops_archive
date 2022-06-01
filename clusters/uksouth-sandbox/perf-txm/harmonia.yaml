@@ -7,8 +7,8 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-sandbox/perf-txm/harmonia
   dependsOn:
-    - name: linkerd-viz-deployment
-    - name: aad-pod-identity
+  - name: linkerd-viz-deployment
+  - name: aad-pod-identity
   prune: true
   sourceRef:
     kind: GitRepository
@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/harmonia
     newName: binkcore.azurecr.io/harmonia
-    newTag: 2022-05-24T104204Z # {"$imagepolicy": "flux-system:perf-harmonia:tag"}
+    newTag: 2022-06-01T110203Z # {"$imagepolicy": "flux-system:perf-harmonia:tag"}
   - name: binkcore.azurecr.io/harmonia_bulkload
     newName: binkcore.azurecr.io/harmonia
     newTag: harness-2022-05-24T104204Z # {"$imagepolicy": "flux-system:perf-harmonia-harness:tag"}
