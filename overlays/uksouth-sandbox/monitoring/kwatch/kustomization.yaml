@@ -1,9 +1,0 @@
----
-bases:
-  - ../../../../bases/infrastructure/kwatch
-
-configMapGenerator:
-  - name: kwatch
-    namespace: kwatch
-    files:
-      - config.yaml
