@@ -1,19 +1,5 @@
 ---
 bases:
-  - github.com/binkhq/distroless-redis/deploy
-
-patches:
-  - target:
-      kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: redis
-      spec:
-        template:
-          metadata:
-            annotations:
-              linkerd.io/inject: enabled
+  - ../../../../bases/infrastructure/redis
 
 namespace: perf-data
