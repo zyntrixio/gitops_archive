@@ -18,3 +18,17 @@ patches:
       - op: add
         path: /metadata/annotations/buoyant.cloud~1excluded
         value: "true"
+  - target:
+      kind: DaemonSet
+      name: nmi
+    patch: |-
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: system-cluster-critical
+  - target:
+      kind: Deployment
+      name: mic
+    patch: |-
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: system-cluster-critical
