@@ -10,7 +10,8 @@ spec:
   prune: true
   force: true
   dependsOn:
-    - name: linkerd-viz-deployment
+    - name: linkerd-servicemesh
+    - name: linkerd-viz
   sourceRef:
     kind: GitRepository
     name: flux-system

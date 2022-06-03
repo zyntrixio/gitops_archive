@@ -25,7 +25,7 @@ spec:
       replicas: 3
       resources:
         cpu:
-          limit: ""
+          limit: ''
           request: 100m
         memory:
           limit: 250Mi
@@ -33,7 +33,7 @@ spec:
     dashboard:
       resources:
         cpu:
-          limit: ""
+          limit: ''
           request: 100m
         memory:
           limit: 250Mi
@@ -43,10 +43,10 @@ spec:
       externalSecret: true
   valuesFrom:
     - kind: Secret
-      name: certmanager-linkerd-viz-webhook-root
+      name: linkerd-viz-webhook-root
       valuesKey: tls.crt
       targetPath: tap.caBundle
     - kind: Secret
-      name: certmanager-linkerd-viz-webhook-root
+      name: linkerd-viz-webhook-root
       valuesKey: tls.crt
       targetPath: tapInjector.caBundle

@@ -9,7 +9,8 @@ spec:
   path: ./overlays/uksouth-staging/default/styx-tgx4
   dependsOn:
     - name: aad-pod-identity
-    - name: styx
+    - name: linkerd-servicemesh
+    - name: linkerd-viz
   prune: true
   sourceRef:
     kind: GitRepository

@@ -9,6 +9,8 @@ spec:
   path: ./overlays/uksouth-staging/default/metis
   dependsOn:
     - name: aad-pod-identity
+    - name: linkerd-servicemesh
+    - name: linkerd-viz
   prune: true
   sourceRef:
     kind: GitRepository

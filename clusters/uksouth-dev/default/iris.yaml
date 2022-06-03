@@ -8,7 +8,8 @@ spec:
   path: ./overlays/uksouth-dev/default/iris
   prune: true
   dependsOn:
-    - name: linkerd-viz-deployment
+    - name: linkerd-servicemesh
+    - name: linkerd-viz
   sourceRef:
     kind: GitRepository
     name: flux-system

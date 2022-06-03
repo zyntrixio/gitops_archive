@@ -2,18 +2,20 @@
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: certmanager-linkerd-viz-webhook-ss-issuer
+  name: linkerd-viz-webhook-ss-issuer
+  namespace: linkerd-viz
 spec:
   selfSigned: {}
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: certmanager-linkerd-viz-webhook-root
+  name: linkerd-viz-webhook-root
+  namespace: linkerd-viz
 spec:
   isCA: true
   commonName: root.webhook.viz.linkerd.cluster.local
-  secretName: certmanager-linkerd-viz-webhook-root
+  secretName: linkerd-viz-webhook-root
   duration: 87660h
   renewBefore: 24h
   usages:
@@ -25,17 +27,18 @@ spec:
     algorithm: ECDSA
     size: 256
   issuerRef:
-    name: certmanager-linkerd-viz-webhook-ss-issuer
+    name: linkerd-viz-webhook-ss-issuer
     kind: Issuer
     group: cert-manager.io
 ---
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: certmanager-linkerd-viz-webhook-issuer
+  name: linkerd-viz-webhook-issuer
+  namespace: linkerd-viz
 spec:
   ca:
-    secretName: certmanager-linkerd-viz-webhook-root
+    secretName: linkerd-viz-webhook-root
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -47,7 +50,7 @@ spec:
   duration: 2161h
   renewBefore: 721h
   issuerRef:
-    name: certmanager-linkerd-viz-webhook-issuer
+    name: linkerd-viz-webhook-issuer
     kind: Issuer
   commonName: tap.linkerd-viz.svc
   dnsNames:
@@ -68,7 +71,7 @@ spec:
   duration: 2161h
   renewBefore: 721h
   issuerRef:
-    name: certmanager-linkerd-viz-webhook-issuer
+    name: linkerd-viz-webhook-issuer
     kind: Issuer
   commonName: tap-injector.linkerd-viz.svc
   dnsNames:

@@ -8,6 +8,9 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-staging/default/api-reflector
   prune: true
+  dependsOn:
+  - name: linkerd-servicemesh
+  - name: linkerd-viz
   sourceRef:
     kind: GitRepository
     name: flux-system

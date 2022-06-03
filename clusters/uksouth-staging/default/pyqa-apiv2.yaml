@@ -8,6 +8,8 @@ spec:
   path: ./overlays/uksouth-staging/default/pyqa-apiv2
   dependsOn:
   - name: aad-pod-identity
+  - name: linkerd-servicemesh
+  - name: linkerd-viz
   prune: true
   sourceRef:
     kind: GitRepository

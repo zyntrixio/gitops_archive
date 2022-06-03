@@ -1,0 +1,5 @@
+---
+resources:
+  - namespace.yaml
+  - certs.yaml
+  - helm.yaml

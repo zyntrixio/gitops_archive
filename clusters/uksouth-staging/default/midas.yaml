@@ -8,6 +8,8 @@ spec:
   path: ./overlays/uksouth-staging/default/midas
   dependsOn:
   - name: aad-pod-identity
+  - name: linkerd-servicemesh
+  - name: linkerd-viz
   prune: true
   sourceRef:
     kind: GitRepository

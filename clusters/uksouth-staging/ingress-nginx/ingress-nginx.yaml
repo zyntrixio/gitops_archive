@@ -9,6 +9,13 @@ spec:
   path: ./overlays/uksouth-staging/ingress-nginx
   prune: true
   force: true
+  dependsOn:
+    - name: linkerd-servicemesh
+    - name: linkerd-viz
   sourceRef:
     kind: GitRepository
     name: flux-system
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: cluster-vars

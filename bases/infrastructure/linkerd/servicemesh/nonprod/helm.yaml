@@ -54,14 +54,14 @@ spec:
     webhookFailurePolicy: Fail
   valuesFrom:
     - kind: Secret
-      name: certmanager-linkerd-root
+      name: linkerd-root
       valuesKey: tls.crt
       targetPath: identityTrustAnchorsPEM
     - kind: Secret
-      name: certmanager-linkerd-webhook-root
+      name: linkerd-webhook-root
       valuesKey: tls.crt
       targetPath: proxyInjector.caBundle
     - kind: Secret
-      name: certmanager-linkerd-webhook-root
+      name: linkerd-webhook-root
       valuesKey: tls.crt
       targetPath: profileValidator.caBundle

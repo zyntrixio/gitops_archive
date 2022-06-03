@@ -1,6 +1,0 @@
----
-resources:
-  - tap-cert.yaml
-  - namespace.yaml
-
-namespace: linkerd-viz

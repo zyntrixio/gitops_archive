@@ -8,6 +8,8 @@ spec:
   path: ./overlays/uksouth-staging/bpl-testing/polaris
   dependsOn:
   - name: aad-pod-identity
+  - name: linkerd-servicemesh
+  - name: linkerd-viz
   prune: true
   sourceRef:
     kind: GitRepository
