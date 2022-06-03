@@ -52,6 +52,7 @@ spec:
     enablePodAntiAffinity: true
     controllerReplicas: 3
     webhookFailurePolicy: Fail
+    priorityClassName: linkerd
   valuesFrom:
     - kind: Secret
       name: linkerd-root
