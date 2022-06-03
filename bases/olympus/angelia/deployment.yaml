@@ -40,7 +40,7 @@ spec:
                     - key: app
                       operator: In
                       values:
-                        - hermes
+                        - angelia
                 topologyKey: topology.kubernetes.io/zone
       containers:
         - image: binkcore.azurecr.io/angelia:latest
@@ -80,5 +80,7 @@ spec:
             runAsUser: 65534
           imagePullPolicy: Always
           name: app
+      priorityClassName: angelia
+      serviceAccountName: angelia
       imagePullSecrets:
         - name: binkcore.azurecr.io

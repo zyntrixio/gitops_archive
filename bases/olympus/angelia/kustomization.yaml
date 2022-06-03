@@ -1,5 +1,8 @@
 ---
 resources:
-  - deployment.yaml
+  - namespace.yaml
+  - serviceaccount.yaml
+  - priorityclass.yaml
   - service.yaml
+  - deployment.yaml
   - lsp.yaml
