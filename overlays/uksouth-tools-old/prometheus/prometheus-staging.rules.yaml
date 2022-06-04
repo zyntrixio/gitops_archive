@@ -3,7 +3,7 @@ groups:
   - name: staging
     rules:
       - alert: staging kube controller up state
-        expr: (up{job="azure_node",name="staging0-controller"} OR on() vector(0))
+        expr: (up{job="azure_node",name="staging-controller"} OR on() vector(0))
           < 1
         for: 5m
         labels:
@@ -13,16 +13,16 @@ groups:
           summary: Check virtual machine controller - bad up state for over 5 minutes
 
       - alert: staging kube worker pool depleted
-        expr: (sum(up{job="azure_node",name=~"staging0-vmss_.+"}) OR on() vector(0))
+        expr: (sum(up{job="azure_node",name=~"staging-vmss_.+"}) OR on() vector(0))
           < 2
         for: 3m
         labels:
           severity: S2
         annotations:
-          summary: Check staging0 cluster - worker count less than 2
+          summary: Check staging cluster - worker count less than 2
 
       - alert: staging kube worker up state
-        expr: (up{job="azure_node",name=~"staging0-vmss_.+"} OR on() vector(0)) <
+        expr: (up{job="azure_node",name=~"staging-vmss_.+"} OR on() vector(0)) <
           1
         for: 5m
         labels:
@@ -32,7 +32,7 @@ groups:
           summary: Check virtual machine worker - bad up state for over 5 minutes
 
       - alert: staging nginx ingress up state
-        expr: (sum(up{kubernetes_cluster="staging0",kubernetes_pod_name=~"ingress-nginx-controller.+"})
+        expr: (sum(up{kubernetes_cluster="staging",kubernetes_pod_name=~"ingress-nginx-controller.+"})
           OR on() vector(0)) < 2
         for: 3m
         labels:
@@ -103,7 +103,7 @@ groups:
 #       summary: Check staging postgres - bad upstate for over 3 minutes
 
       - alert: staging redis up state
-        expr: (redis_up{instance="bink-uksouth-staging0"} OR on() vector(0)) < 1
+        expr: (redis_up{instance="bink-uksouth-staging"} OR on() vector(0)) < 1
         for: 3m
         labels:
           severity: S3
@@ -112,7 +112,7 @@ groups:
           summary: Check staging redis - bad upstate for over 3 minutes
 
   # - alert: staging rabbitmq up state
-  #   expr: (sum(up{kubernetes_cluster="staging0",kubernetes_pod_name=~"rabbitmq-\\d"}) OR on() vector(0)) < 1
+  #   expr: (sum(up{kubernetes_cluster="staging",kubernetes_pod_name=~"rabbitmq-\\d"}) OR on() vector(0)) < 1
   #   for: 3m
   #   labels:
   #     severity: S2
@@ -121,7 +121,7 @@ groups:
   #     summary: Check staging rabbitmq - bad upstate for over 3 minutes
 
       - alert: staging virtual machines cpu
-        expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"staging0-.+",mode="idle"}[5m]))
+        expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"staging-.+",mode="idle"}[5m]))
           * 100) > 90
         for: 5m
         labels:
@@ -131,7 +131,7 @@ groups:
           summary: Check virtual machine - CPU over 90% for over 5 minutes
 
       - alert: staging virtual machines memory
-        expr: node_memory_MemAvailable_bytes{job="azure_node",name=~"staging0-.+"}
+        expr: node_memory_MemAvailable_bytes{job="azure_node",name=~"staging-.+"}
           < 100000000
         for: 5m
         labels:
@@ -141,8 +141,8 @@ groups:
           summary: Check virtual machine - Available memory < 100MB for over 5 minutes
 
       - alert: staging virtual machines root filesystem
-        expr: 100 - ((node_filesystem_avail_bytes{job="azure_node",name=~"staging0-.+",mountpoint="/"}
-          * 100) / node_filesystem_size_bytes{job="azure_node",name=~"staging0-.+",mountpoint="/"})
+        expr: 100 - ((node_filesystem_avail_bytes{job="azure_node",name=~"staging-.+",mountpoint="/"}
+          * 100) / node_filesystem_size_bytes{job="azure_node",name=~"staging-.+",mountpoint="/"})
           > 90
         for: 5m
         labels:

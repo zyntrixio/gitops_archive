@@ -3,7 +3,7 @@ groups:
   - name: sandbox
     rules:
       - alert: sandbox kube controller up state
-        expr: (up{job="azure_node",name="sandbox0-controller"} OR on() vector(0))
+        expr: (up{job="azure_node",name="sandbox-controller"} OR on() vector(0))
           < 1
         for: 5m
         labels:
@@ -13,16 +13,16 @@ groups:
           summary: Check virtual machine controller - bad up state for over 5 minutes
 
       - alert: sandbox kube worker pool depleted
-        expr: (sum(up{job="azure_node",name=~"sandbox0-vmss_.+"}) OR on() vector(0))
+        expr: (sum(up{job="azure_node",name=~"sandbox-vmss_.+"}) OR on() vector(0))
           < 2
         for: 3m
         labels:
           severity: S2
         annotations:
-          summary: Check sandbox0 cluster - worker count less than 2
+          summary: Check sandbox cluster - worker count less than 2
 
       - alert: sandbox kube worker up state
-        expr: (up{job="azure_node",name=~"sandbox0-vmss_.+"} OR on() vector(0)) <
+        expr: (up{job="azure_node",name=~"sandbox-vmss_.+"} OR on() vector(0)) <
           1
         for: 5m
         labels:
@@ -32,7 +32,7 @@ groups:
           summary: Check virtual machine worker - bad up state for over 5 minutes
 
       - alert: sandbox nginx ingress up state
-        expr: (sum(up{kubernetes_cluster="sandbox0",kubernetes_pod_name=~"ingress-nginx-controller.+"})
+        expr: (sum(up{kubernetes_cluster="sandbox",kubernetes_pod_name=~"ingress-nginx-controller.+"})
           OR on() vector(0)) < 2
         for: 3m
         labels:
@@ -101,7 +101,7 @@ groups:
   #     summary: Check sit rabbitmq - bad upstate for over 3 minutes
 
       - alert: sandbox virtual machines cpu
-        expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"sandbox0-.+",mode="idle"}[5m]))
+        expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"sandbox-.+",mode="idle"}[5m]))
           * 100) > 90
         for: 5m
         labels:
@@ -111,7 +111,7 @@ groups:
           summary: Check virtual machine - CPU over 90% for over 5 minutes
 
       - alert: sandbox virtual machines memory
-        expr: node_memory_MemAvailable_bytes{job="azure_node",name=~"sandbox0-.+"}
+        expr: node_memory_MemAvailable_bytes{job="azure_node",name=~"sandbox-.+"}
           < 100000000
         for: 5m
         labels:
@@ -121,8 +121,8 @@ groups:
           summary: Check virtual machine - Available memory < 100MB for over 5 minutes
 
       - alert: sandbox virtual machines root filesystem
-        expr: 100 - ((node_filesystem_avail_bytes{job="azure_node",name=~"sandbox0-.+",mountpoint="/"}
-          * 100) / node_filesystem_size_bytes{job="azure_node",name=~"sandbox0-.+",mountpoint="/"})
+        expr: 100 - ((node_filesystem_avail_bytes{job="azure_node",name=~"sandbox-.+",mountpoint="/"}
+          * 100) / node_filesystem_size_bytes{job="azure_node",name=~"sandbox-.+",mountpoint="/"})
           > 90
         for: 5m
         labels:
