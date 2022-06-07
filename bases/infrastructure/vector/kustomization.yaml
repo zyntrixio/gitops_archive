@@ -11,3 +11,11 @@ images:
   - name: timberio/vector
     newName: timberio/vector
     newTag: 0.19.1-distroless-static
+
+patches:
+  - target:
+      kind: DaemonSet
+    patch: |-
+      - op: add
+        path: /metadata/annotations/buoyant.cloud~1excluded
+        value: "true"
