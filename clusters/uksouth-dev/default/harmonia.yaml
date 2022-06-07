@@ -17,7 +17,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/harmonia
     newName: binkcore.azurecr.io/harmonia
-    newTag: 2022-06-01T141042Z # {"$imagepolicy": "flux-system:uksouth-dev-harmonia:tag"}
+    newTag: 2022-06-07T135345Z # {"$imagepolicy": "flux-system:uksouth-dev-harmonia:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
