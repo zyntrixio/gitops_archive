@@ -1,0 +1,74 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: web
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-dev/web
+  prune: true
+  dependsOn:
+  - name: linkerd-servicemesh
+  - name: linkerd-viz
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/web-bink
+    newName: binkcore.azurecr.io/web-bink
+    newTag: latest # {"$imagepolicy": "flux-system:uksouth-dev-web-bink:tag"}
+  - name: binkcore.azurecr.io/web-wasabi
+    newName: binkcore.azurecr.io/web-wasabi
+    newTag: latest # {"$imagepolicy": "flux-system:uksouth-dev-web-wasabi:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: web-bink
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/web-bink
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: web-wasabi
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/web-wasabi
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-dev-web-bink
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: web-bink
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-dev-web-wasabi
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: web-wasabi
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc

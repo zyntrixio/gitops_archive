@@ -3,8 +3,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: web-wasabi
-  name: web-wasabi
+    app: web
+  name: web
   namespace: default
 spec:
   strategy:
@@ -14,11 +14,11 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: web-wasabi
+      app: web
   template:
     metadata:
       labels:
-        app: web-wasabi
+        app: web
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
@@ -32,12 +32,21 @@ spec:
                     - key: app
                       operator: In
                       values:
-                        - web-wasabi
+                        - web
                 topologyKey: topology.kubernetes.io/zone
               weight: 100
       containers:
         - name: app
-          image: binkcore.azurecr.io/web-wasabi:latest
+          image: binkcore.azurecr.io/web:latest
           imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
       imagePullSecrets:
         - name: binkcore.azurecr.io
