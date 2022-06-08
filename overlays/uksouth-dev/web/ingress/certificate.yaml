@@ -1,0 +1,15 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: web.${cluster_name}.${location}.bink.sh
+  namespace: default
+spec:
+  dnsNames:
+    - web-bink.${cluster_name}.${location}.bink.sh
+    - web-wasabi.${cluster_name}.${location}.bink.sh
+  issuerRef:
+    group: cert-manager.io
+    kind: Issuer
+    name: letsencrypt
+  secretName: web.${cluster_name}.${location}.bink.sh
