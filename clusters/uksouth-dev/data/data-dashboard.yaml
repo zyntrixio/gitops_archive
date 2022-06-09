@@ -17,9 +17,6 @@ spec:
   - name: binkcore.azurecr.io/data-dashboard
     newName: binkcore.azurecr.io/data-dashboard
     newTag: 2022-06-08T153937Z # {"$imagepolicy": "flux-system:uksouth-dev-data-dashboard:tag"}
-  - name: binkcore.azurecr.io/data-dashboard
-    newName: binkcore.azurecr.io/data-dashboard
-    newTag: 2022-06-08T153938Z # {"$imagepolicy": "flux-system:uksouth-dev-data-dashboard:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
