@@ -2,8 +2,12 @@
 bases:
   - ../../../../bases/qa/pyqa-bpl
 
-resources:
-  - aad.yaml
+nameSuffix: -auto
+namespace: bpl-testing
+
+images:
+  - name: binkcore.azurecr.io/pyqa-bpl
+    newName: binkcore.azurecr.io/pyqa-bpl-auto
 
 configMapGenerator:
   - name: pyqa-bpl
@@ -29,21 +33,6 @@ patches:
                       secretKeyRef:
                         key: connection_string
                         name: azure-storage-common
-                  - name: POLARIS_DATABASE_URI
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-pgfs
-                        key: common_polaris
-                  - name: VELA_DATABASE_URI
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-pgfs
-                        key: common_vela
-                  - name: CARINA_DATABASE_URI
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-pgfs
-                        key: common_carina
                 envFrom:
                   - configMapRef:
                       name: pyqa-bpl
