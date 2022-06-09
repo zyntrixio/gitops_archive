@@ -5,6 +5,8 @@ bases:
 resources:
   - aad.yaml
 
+namespace: default
+
 configMapGenerator:
   - name: pyqa-bpl
     envs:
