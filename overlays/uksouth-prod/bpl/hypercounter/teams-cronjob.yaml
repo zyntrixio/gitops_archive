@@ -1,11 +1,10 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: hypercounter-teams-morning
+  name: hypercounter-teams
   labels:
     app: hypercounter
     component: teams
-    time: morning
 spec:
   concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 1
@@ -18,7 +17,6 @@ spec:
           labels:
             app: hypercounter
             component: teams
-            time: morning
           annotations:
             linkerd.io/inject: enabled
             kubectl.kubernetes.io/default-container: app
