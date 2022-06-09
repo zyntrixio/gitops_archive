@@ -1,0 +1,9 @@
+---
+bases:
+  - ../../../../../bases/common/issuer
+
+resources:
+  - certificate.yaml
+  - ingress.yaml
+
+namespace: data
