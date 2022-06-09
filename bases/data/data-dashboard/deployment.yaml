@@ -37,7 +37,7 @@ spec:
               weight: 100
       containers:
         - name: app
-          image: binkcore.azurecr.io/aperture:latest
+          image: binkcore.azurecr.io/data-dashboard:latest
           imagePullPolicy: Always
       imagePullSecrets:
         - name: binkcore.azurecr.io
