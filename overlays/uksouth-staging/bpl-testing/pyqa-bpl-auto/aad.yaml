@@ -17,5 +17,5 @@ metadata:
   name: pyqa-bpl
   namespace: default
 spec:
-  azureIdentity: pyqa-bpl
+  azureIdentity: pyqa-bpl-auto
   selector: pyqa-bpl
