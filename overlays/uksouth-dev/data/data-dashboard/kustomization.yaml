@@ -26,3 +26,9 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: data-dashboard
+                env:
+                  - name: POSTGRES_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_placeholder

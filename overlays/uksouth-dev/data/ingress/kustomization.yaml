@@ -1,6 +1,6 @@
 ---
 bases:
-  - ../../../../../bases/common/issuer
+  - ../../../../bases/common/issuer
 
 resources:
   - certificate.yaml
