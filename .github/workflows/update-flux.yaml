@@ -21,8 +21,6 @@ jobs:
           flux install \
             --components-extra=image-reflector-controller,image-automation-controller --export | tee \
               ./clusters/uksouth-dev/flux-system/gotk-components.yaml \
-              ./clusters/uksouth-mimir/flux-system/gotk-components.yaml \
-              ./clusters/uksouth-perf/flux-system/gotk-components.yaml \
               ./clusters/uksouth-prod/flux-system/gotk-components.yaml \
               ./clusters/uksouth-sandbox/flux-system/gotk-components.yaml \
               ./clusters/uksouth-staging/flux-system/gotk-components.yaml \
