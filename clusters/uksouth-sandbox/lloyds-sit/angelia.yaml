@@ -18,4 +18,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/angelia
       newName: binkcore.azurecr.io/angelia
-      newTag: staging-0.36.1
+      newTag: staging-0.38.0
