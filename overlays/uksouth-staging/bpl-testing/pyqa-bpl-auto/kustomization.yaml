@@ -1,0 +1,41 @@
+---
+bases:
+  - ../../../../bases/qa/pyqa-bpl
+
+resources:
+  - aad.yaml
+
+nameSuffix: -auto
+namespace: bpl-testing
+
+images:
+  - name: binkcore.azurecr.io/pyqa-bpl
+    newName: binkcore.azurecr.io/pyqa-bpl-auto
+
+configMapGenerator:
+  - name: pyqa-bpl
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: pyqa-bpl
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: BLOB_STORAGE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string
+                        name: azure-storage-common
+                envFrom:
+                  - configMapRef:
+                      name: pyqa-bpl

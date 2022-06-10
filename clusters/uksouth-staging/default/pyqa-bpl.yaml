@@ -1,0 +1,46 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: pyqa-bpl
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-staging/default/pyqa-bpl
+  dependsOn:
+  - name: aad-pod-identity
+  - name: linkerd-servicemesh
+  - name: linkerd-viz
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/pyqa-bpl
+    newName: binkcore.azurecr.io/pyqa-bpl
+    newTag: 2022-05-12T160849Z # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-bpl:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: pyqa-bpl
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/pyqa-bpl
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-staging-pyqa-bpl
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: pyqa-bpl
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc

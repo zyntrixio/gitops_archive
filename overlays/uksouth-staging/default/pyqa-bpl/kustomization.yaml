@@ -3,9 +3,49 @@ bases:
   - ../../../../bases/qa/pyqa-bpl
 
 resources:
-  - azureidentity.yaml
+  - aad.yaml
+
+namespace: default
+
+configMapGenerator:
+  - name: pyqa-bpl
+    envs:
+      - env.ini
 
 patches:
-  - path: env.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: pyqa-bpl
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: BLOB_STORAGE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string
+                        name: azure-storage-common
+                  - name: POLARIS_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_polaris
+                  - name: VELA_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_vela
+                  - name: CARINA_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_carina
+                envFrom:
+                  - configMapRef:
+                      name: pyqa-bpl

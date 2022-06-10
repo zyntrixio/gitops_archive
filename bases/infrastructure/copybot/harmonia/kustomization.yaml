@@ -1,0 +1,28 @@
+---
+bases:
+  - ../base
+
+nameSuffix: -harmonia
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: copybot
+        labels:
+          component: harmonia
+      spec:
+        selector:
+          matchLabels:
+            component: harmonia
+        template:
+          metadata:
+            labels:
+              component: harmonia
+          spec:
+            containers:
+              - name: app
+                args: ["copybot", "consume", "--queue=tx_export_dw"]

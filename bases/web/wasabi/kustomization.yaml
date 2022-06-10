@@ -1,0 +1,12 @@
+---
+bases:
+  - ../base
+
+nameSuffix: -wasabi
+
+commonLabels:
+  component: wasabi
+
+images:
+  - name: binkcore.azurecr.io/web
+    newName: binkcore.azurecr.io/web-wasabi
