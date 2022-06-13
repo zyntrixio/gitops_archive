@@ -5,7 +5,8 @@ bases:
 namespace: vector
 
 configMapGenerator:
-  - name: vector-agent-config
+  - name: vector
+    behavior: merge
     files:
       - vector.toml
 
@@ -21,7 +22,7 @@ patches:
       apiVersion: apps/v1
       kind: DaemonSet
       metadata:
-        name: vector-agent
+        name: vector
       spec:
         template:
           spec:
