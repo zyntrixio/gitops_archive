@@ -31,4 +31,4 @@ patches:
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
-                        key: common_perf_data_api_pontus
+                        key: common_perf_data_pontus
