@@ -1,2 +1,8 @@
 bases:
   - ../../../bases/infrastructure/prometheus-aks
+
+configMapGenerator:
+  - name: prometheus
+    behavior: replace
+    files:
+      - config/prometheus.yaml
