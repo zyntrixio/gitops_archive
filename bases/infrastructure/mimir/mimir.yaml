@@ -27,6 +27,9 @@ spec:
       enabled: false
     distributor:
       replicas: 3
+    ingester:
+      persistentVolume:
+        size: 100Gi
     nginx:
       ingress:
         enabled: true
@@ -97,8 +100,6 @@ spec:
           ring:
             final_sleep: 0s
             num_tokens: 512
-          persistentVolume:
-            size: 100Gi
 
         ingester_client:
           grpc_client_config:
