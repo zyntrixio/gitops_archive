@@ -16,7 +16,7 @@ spec:
             pathType: Exact
             backend:
               service:
-                name: api2-redoc
+                name: healthz
                 port:
                   number: 80
   tls:
