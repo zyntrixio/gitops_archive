@@ -36,3 +36,62 @@ spec:
       name: PUT /api/v1/plans/{plan_ref} (Update Plan)
       isRetryable: true
       timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/v1/plans/[^/]*/merchants
+      name: GET /api/v1/plans/{plan_ref}/merchants (List Merchants)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/v1/plans/[^/]*/merchants
+      name: POST /api/v1/plans/{plan_ref}/merchants (Create Merchant)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/mids
+      name: GET /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/mids (List Primary
+        Mids)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/mids
+      name: POST /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/mids (Create Primary
+        Mid)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/mids/deletion
+      name: POST /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/mids/deletion (Delete
+        Primary Mids)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/secondary_mids/deletion
+      name: POST /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/secondary_mids/deletion
+        (Delete Secondary Mids)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/identifiers/deletion
+      name: POST /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/identifiers/deletion
+        (Delete Identifiers)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/v1/customer_wallet/user_lookups
+      name: GET /api/v1/customer_wallet/user_lookups (List User Lookups)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: PUT
+        pathRegex: /api/v1/customer_wallet/user_lookups
+      name: PUT /api/v1/customer_wallet/user_lookups (Upsert User Lookup)
+      isRetryable: true
+      timeout: 2000ms
