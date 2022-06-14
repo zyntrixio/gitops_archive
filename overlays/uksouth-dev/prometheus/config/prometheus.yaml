@@ -54,4 +54,4 @@ scrape_configs:
       - action: labelmap
         regex: __tmp_pod_label_(.+)
       - action: labeldrop
-        regex: "^(pod|instance|aadpodidbinding|client_id|control_plane_ns|job|pod_template_hash|saz_name|srv_name|target_|source_|dest_)$"
+        regex: (pod)
