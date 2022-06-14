@@ -19,9 +19,3 @@ user = "vector"
 password = "4iBEQ4dJ3d!d4JDXi77L!cmzwjkv2gb!"
 [sinks.elasticsearch.bulk]
 index = "vector-dev-%F"
-
-[sinks.console]
-type = "console"
-inputs = ["elasticsearch_sucks"]
-[sinks.console.encoding]
-codec = "json"
