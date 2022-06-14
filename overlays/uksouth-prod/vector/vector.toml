@@ -1,3 +1,10 @@
+[transforms.elasticsearch_sucks]
+type = "remap"
+inputs = ["kubernetes_logs"]
+source = """
+. = map_keys(., recursive: true) -> |key| { replace(key, ".", "_") }
+"""
+
 [sinks.loganalytics]
 type = "azure_monitor_logs"
 inputs = ["kubernetes_logs"]
@@ -9,7 +16,7 @@ shared_key = "p6KTG57eZlZ9usb2A4V3/3Ey8tPJBo6WG5+HNELFgwuuEWLH7yciDyqPdbtAWJwcjF
 
 [sinks.elasticsearch]
 type = "elasticsearch"
-inputs = ["kubernetes_logs"]
+inputs = ["elasticsearch_sucks"]
 compression = "none"
 healthcheck = true
 endpoint = "https://opensearch.uksouth.bink.host:9200"
