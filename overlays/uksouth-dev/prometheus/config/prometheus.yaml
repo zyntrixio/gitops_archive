@@ -53,10 +53,10 @@ scrape_configs:
         regex: __tmp_pod_label_linkerd_io_(.+)
       - action: labelmap
         regex: __tmp_pod_label_(.+)
-      - source_labels:
-          - pod
-          - instance
-        action: drop
+      # - source_labels:
+      #     - pod
+      #     - instance
+      #   action: drop
 
 
       # - action: labeldrop
