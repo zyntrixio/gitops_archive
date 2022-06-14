@@ -97,7 +97,8 @@ spec:
           ring:
             final_sleep: 0s
             num_tokens: 512
-          size: 100Gi
+          persistentVolume
+            size: 100Gi
 
         ingester_client:
           grpc_client_config:
