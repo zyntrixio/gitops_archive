@@ -97,7 +97,7 @@ spec:
           ring:
             final_sleep: 0s
             num_tokens: 512
-          persistentVolume
+          persistentVolume:
             size: 100Gi
 
         ingester_client:
