@@ -53,8 +53,9 @@ scrape_configs:
         regex: __tmp_pod_label_linkerd_io_(.+)
       - action: labelmap
         regex: __tmp_pod_label_(.+)
-      # - action: labeldrop
-      #   regex: ^pod;instance;target_addr;target_ip;target_port$
+      - action: labeldrop
+        regex: (pod.*)|instance|(target_.*)
+
       # - source_labels:
       #     - pod
       #     - instance
