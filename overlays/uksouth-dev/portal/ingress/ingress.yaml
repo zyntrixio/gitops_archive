@@ -26,6 +26,13 @@ spec:
                 name: bullsquid-api
                 port:
                   number: 80
+          - path: /api/v1/customer_wallet
+            pathType: Prefix
+            backend:
+              service:
+                name: bullsquid-api
+                port:
+                  number: 80
           - path: /healthz
             pathType: Prefix
             backend:
