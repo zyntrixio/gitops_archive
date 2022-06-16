@@ -1,0 +1,29 @@
+---
+bases:
+  - ../base
+
+nameSuffix: -consumer
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: hubble
+        labels:
+          component: consumer
+      spec:
+        selector:
+          matchLabels:
+            component: consumer
+        template:
+          metadata:
+            labels:
+              component: consumer
+          spec:
+            containers:
+              - name: app
+                command: ["linkerd-await", "--"]
+                args: ["python", "-m", "app.cli", "activity-consumer"]
