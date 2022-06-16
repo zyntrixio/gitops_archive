@@ -56,27 +56,3 @@ scrape_configs:
         regex: __tmp_pod_label_linkerd_io_(.+)
       - action: labelmap
         regex: __tmp_pod_label_(.+)
-      # - action: labeldrop
-      #   regex: target_addr
-
-      # - source_labels:
-      #     - pod
-      #     - instance
-      #   action: drop
-
-
-      # - action: labeldrop
-      #   regex: (pod)
-        
-      #   (instance)
-      #   (aadpodidbinding)
-      #   (client_id)
-      #   (control_plane_ns)
-      #   (job)
-      #   (pod_template_hash)
-      #   (saz_name)
-      #   (srv_name)
-      #   (target_port)
-      #   (target_addr)
-      #   (target_ip)
-      #   (dest_ip)
