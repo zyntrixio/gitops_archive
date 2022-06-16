@@ -19,6 +19,9 @@ scrape_configs:
   - job_name: linkerd-proxy
     kubernetes_sd_configs:
       - role: pod
+    metric_relabel_configs:
+      - action: labeldrop
+        regex: target_addr
     relabel_configs:
       - source_labels:
           - __meta_kubernetes_pod_container_name
@@ -53,8 +56,8 @@ scrape_configs:
         regex: __tmp_pod_label_linkerd_io_(.+)
       - action: labelmap
         regex: __tmp_pod_label_(.+)
-      - action: labeldrop
-        regex: target_addr
+      # - action: labeldrop
+      #   regex: target_addr
 
       # - source_labels:
       #     - pod
