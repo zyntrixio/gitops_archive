@@ -54,7 +54,7 @@ scrape_configs:
       - action: labelmap
         regex: __tmp_pod_label_(.+)
       - action: labeldrop
-        regex: (pod.*)|instance|(target_.*)
+        regex: target_addr
 
       # - source_labels:
       #     - pod
