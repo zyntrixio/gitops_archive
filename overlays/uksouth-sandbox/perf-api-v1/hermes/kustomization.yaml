@@ -49,6 +49,7 @@ patches:
           spec:
             containers:
               - name: app
+                args: ["gunicorn", "--workers=2", "--threads=2", "--error-logfile=-", "--access-logfile=-", "--bind=0.0.0.0:9000", "hermes.wsgi"]
                 envFrom:
                   - configMapRef:
                       name: hermes
