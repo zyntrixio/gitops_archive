@@ -1,0 +1,24 @@
+---
+bases:
+  - ../base
+
+nameSuffix: -migrator
+
+commonLabels:
+  component: migrator
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: hubble
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                command: ["linkerd-await", "--"]
+                args: ["alembic", "upgrade", "head"]
