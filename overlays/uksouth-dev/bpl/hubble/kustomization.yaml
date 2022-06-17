@@ -31,4 +31,4 @@ patches:
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
-                        key: common_hubble
+                        key: common_placeholder
