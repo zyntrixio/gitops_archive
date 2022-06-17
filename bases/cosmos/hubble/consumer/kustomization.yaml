@@ -4,6 +4,9 @@ bases:
 
 nameSuffix: -consumer
 
+commonLabels:
+  component: consumer
+
 patches:
   - target:
       kind: Deployment
@@ -12,16 +15,8 @@ patches:
       kind: Deployment
       metadata:
         name: hubble
-        labels:
-          component: consumer
       spec:
-        selector:
-          matchLabels:
-            component: consumer
         template:
-          metadata:
-            labels:
-              component: consumer
           spec:
             containers:
               - name: app
