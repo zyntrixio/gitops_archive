@@ -6,10 +6,10 @@ global:
 
 remote_write:
   - url: https://mimir.tools.uksouth.bink.host/api/v1/push
-  - url: https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push
-    basic_auth:
-      username: "466060"
-      password: eyJrIjoiODFiYWZjMjQ5ZTBmYjc5OGZjOWQyMmRlMWY2ZjlhZGQwMzIxOWZkNyIsIm4iOiJUZXN0IEtleSIsImlkIjoxNzkxODB9
+  # - url: https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push
+  #   basic_auth:
+  #     username: "466060"
+  #     password: eyJrIjoiODFiYWZjMjQ5ZTBmYjc5OGZjOWQyMmRlMWY2ZjlhZGQwMzIxOWZkNyIsIm4iOiJUZXN0IEtleSIsImlkIjoxNzkxODB9
 
 scrape_configs:
   - job_name: 'kube-state-metrics'
