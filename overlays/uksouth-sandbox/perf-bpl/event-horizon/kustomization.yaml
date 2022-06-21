@@ -49,3 +49,11 @@ patches:
                       secretKeyRef:
                         name: azure-pgfs
                         key: common_placeholder
+                  - name: POLARIS_DATABASE_NAME
+                    value: perf_bpl_polaris
+                  - name: VELA_DATABASE_NAME
+                    value: perf_bpl_vela
+                  - name: CARINA_DATABASE_NAME
+                    value: perf_bpl_carina
+                  - name: HUBBLE_DATABASE_NAME
+                    value: perf_bpl_hubble
