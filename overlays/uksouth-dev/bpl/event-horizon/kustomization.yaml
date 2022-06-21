@@ -44,7 +44,7 @@ patches:
                       secretKeyRef:
                         name: azure-pgfs
                         key: common_carina
-                  - name: HUBBLE_DATABASE_URI
+                  - name: DATABASE_URI
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
