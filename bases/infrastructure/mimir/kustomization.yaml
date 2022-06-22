@@ -1,3 +1,4 @@
 ---
 resources:
   - mimir.yaml
+  - grafana.yaml
