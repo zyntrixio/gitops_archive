@@ -9,6 +9,7 @@ spec:
   prune: true
   dependsOn:
     - name: mimir-certs
+    - name: grafana-repo
   sourceRef:
     kind: GitRepository
     name: flux-system
