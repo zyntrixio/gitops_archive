@@ -1,4 +1,5 @@
 ---
 resources:
-  - mimir.yaml
   - grafana.yaml
+
+namespace: flux-system
