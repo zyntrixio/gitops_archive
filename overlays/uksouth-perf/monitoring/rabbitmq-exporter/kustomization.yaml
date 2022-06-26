@@ -1,8 +1,0 @@
----
-bases:
-  - ../../../../bases/infrastructure/rabbitmq-exporter
-
-patches:
-  - path: env.yaml
-    target:
-      kind: Deployment

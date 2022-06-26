@@ -1,3 +1,0 @@
----
-bases:
-  - ../../../../bases/infrastructure/prometheus-pusher
