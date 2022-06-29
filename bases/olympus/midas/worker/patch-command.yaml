@@ -1,0 +1,14 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: midas
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          args:
+            - python
+            - /app/retry_worker.py
