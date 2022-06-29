@@ -11,4 +11,4 @@ spec:
         - name: app
           args:
             - python
-            - /app/retry_worker.py
+            - app/retry_worker.py
