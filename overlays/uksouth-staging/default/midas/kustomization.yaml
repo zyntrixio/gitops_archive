@@ -4,6 +4,7 @@ bases:
   - ../../../../bases/olympus/midas/beat
   - ../../../../bases/olympus/midas/celery
   - ../../../../bases/olympus/midas/consumer
+  - ../../../../bases/olympus/midas/migrator
 
 resources:
   - aad.yaml
