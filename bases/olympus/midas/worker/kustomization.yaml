@@ -26,7 +26,7 @@ patches:
             containers:
               - name: app
                 command: ["linkerd-await", "--"]
-                args: ["python", "-m", "app.retry_worker"]
+                args: ["python", "retry_worker"]
                 resources:
                   limits:
                     memory: 500Mi
