@@ -8,6 +8,7 @@ bases:
   - ../../../../bases/olympus/midas/celery
   - ../../../../bases/olympus/midas/consumer
   - ../../../../bases/olympus/midas/migrator
+  - ../../../../bases/olympus/midas/worker
 
 configMapGenerator:
   - name: midas
