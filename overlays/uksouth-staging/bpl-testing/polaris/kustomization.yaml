@@ -5,6 +5,7 @@ bases:
   - ../../../../bases/cosmos/polaris/migrator
   - ../../../../bases/cosmos/polaris/task-worker
   - ../../../../bases/cosmos/polaris/cron-scheduler
+  - ../../../../bases/cosmos/polaris/tx-history-consumer
 
 namespace: bpl-testing
 
