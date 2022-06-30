@@ -22,6 +22,10 @@ patches:
           metadata:
             labels:
               component: cron-scheduler
+            annotations:
+              prometheus.io/port: '9100'
+              prometheus.io/scrape: 'true'
+              prometheus.io/job: vela
           spec:
             containers:
               - name: app
