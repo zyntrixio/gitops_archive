@@ -10,8 +10,25 @@ configMapGenerator:
   - name: hubble
     envs:
       - env.ini
+  - name: hubble-scripts
+    files:
+      - migrator.py
 
 patches:
+  - target:
+      kind: Deployment
+      name: hubble-migrator
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: hubble
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                args: ["python", "/app/migrator.py"]
   - target:
       kind: Deployment
     patch: |-
@@ -33,3 +50,14 @@ patches:
                       secretKeyRef:
                         name: azure-pgfs
                         key: common_placeholder
+                volumeMounts:
+                - name: hubble-scripts
+                  mountPath: /app/migrator.py
+                  subPath: migrator.py
+            volumes:
+              - name: hubble-scripts
+                configMap:
+                  name: hubble-scripts
+                  items:
+                    - key: migrator.py
+                      path: migrator.py
