@@ -4,6 +4,7 @@ bases:
 
 resources:
   - service.yaml
+  - lsp.yaml
 
 patches:
   - path: patch-annotations.yaml
