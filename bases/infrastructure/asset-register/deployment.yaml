@@ -70,5 +70,3 @@ spec:
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
-      imagePullSecrets:
-        - name: binkcore.azurecr.io
