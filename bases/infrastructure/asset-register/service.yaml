@@ -4,7 +4,6 @@ kind: Service
 metadata:
   labels:
     app: asset-register
-    component: api
   name: asset-register
   namespace: default
 spec:
@@ -15,6 +14,5 @@ spec:
       targetPort: 9000
   selector:
     app: asset-register
-    component: api
   sessionAffinity: None
   type: ClusterIP

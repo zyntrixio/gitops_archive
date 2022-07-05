@@ -1,7 +1,7 @@
 ---
 resources:
-  - deployment.yaml
+  - namespace.yaml
   - service.yaml
-  - migrator.yaml
+  - deployment.yaml
   - ingress.yaml
   - ingress-certificate.yaml

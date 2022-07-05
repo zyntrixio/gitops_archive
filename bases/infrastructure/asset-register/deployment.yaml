@@ -4,7 +4,6 @@ kind: Deployment
 metadata:
   labels:
     app: asset-register
-    component: api
   name: asset-register
   namespace: default
 spec:
@@ -14,7 +13,6 @@ spec:
   selector:
     matchLabels:
       app: asset-register
-      component: api
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -27,11 +25,10 @@ spec:
         linkerd.io/inject: enabled
       labels:
         app: asset-register
-        component: api
     spec:
       containers:
-        - image: binkcore.azurecr.io/asset-register:2021-12-10T095611Z
-          name: app
+        - name: app
+          image: binkcore.azurecr.io/asset-register:latest
           ports:
             - containerPort: 9000
           env:
@@ -41,11 +38,35 @@ spec:
                   name: azure-pgfs
                   key: common_asset_register
           imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
               drop:
                 - all
+        - name: migrator
+          image: binkcore.azurecr.io/asset-register:latest
+          command:
+            - bash
+            - -c
+            - linkerd-await; python manage.py migrate; echo Done; tail -f /dev/null
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: azure-pgfs
+                  key: common_asset_register
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 512Mi
+          imagePullPolicy: Always
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 30

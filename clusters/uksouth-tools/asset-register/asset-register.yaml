@@ -6,7 +6,9 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-tools-old/asset-register
+  path: ./overlays/uksouth-tools/asset-register
+  dependsOn:
+    - name: cert-manager
   prune: true
   sourceRef:
     kind: GitRepository
