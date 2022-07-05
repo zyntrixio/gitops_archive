@@ -1,19 +1,18 @@
 ---
 bases:
-  - ../../../../bases/qa/pyqa-bpl
+  - ../../../../bases/qa/pyqa-bpl-auto
 
 resources:
   - aad.yaml
 
-nameSuffix: -auto
 namespace: bpl-testing
 
 images:
-  - name: binkcore.azurecr.io/pyqa-bpl
+  - name: binkcore.azurecr.io/pyqa-bpl-auto
     newName: binkcore.azurecr.io/pyqa-bpl-auto
 
 configMapGenerator:
-  - name: pyqa-bpl
+  - name: pyqa-bpl-auto
     envs:
       - env.ini
 
@@ -24,7 +23,7 @@ patches:
       apiVersion: apps/v1
       kind: Deployment
       metadata:
-        name: pyqa-bpl
+        name: pyqa-bpl-auto
       spec:
         template:
           spec:
@@ -38,4 +37,4 @@ patches:
                         name: azure-storage-common
                 envFrom:
                   - configMapRef:
-                      name: pyqa-bpl
+                      name: pyqa-bpl-auto

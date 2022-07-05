@@ -2,7 +2,7 @@
 apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentity
 metadata:
-  name: pyqa-bpl
+  name: pyqa-bpl-auto
   namespace: default
   annotations:
     aadpodidentity.k8s.io/Behavior: namespaced
@@ -14,8 +14,8 @@ spec:
 apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentityBinding
 metadata:
-  name: pyqa-bpl
+  name: pyqa-bpl-auto
   namespace: default
 spec:
   azureIdentity: pyqa-bpl-auto
-  selector: pyqa-bpl
+  selector: pyqa-bpl-auto
