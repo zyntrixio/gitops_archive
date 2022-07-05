@@ -1,6 +1,5 @@
 resources:
   - namespace.yaml
   - bink_host.yaml
-  - bink_sh.yaml
 
 namespace: mimir
