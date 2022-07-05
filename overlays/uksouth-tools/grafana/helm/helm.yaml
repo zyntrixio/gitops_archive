@@ -22,10 +22,10 @@ spec:
         nginx.ingress.kubernetes.io/service-upstream: 'true'
       hosts:
         - grafana.${cluster_name}.${location}.bink.sh
-      # tls:
-      #   - secretName: grafana.${cluster_name}.${location}.bink.sh
-      #     hosts:
-      #       - grafana.${cluster_name}.${location}.bink.sh
+      tls:
+        - secretName: grafana.${cluster_name}.${location}.bink.sh
+          hosts:
+            - grafana.${cluster_name}.${location}.bink.sh
     datasources:
       datasources.yaml:
         apiVersion: 1
