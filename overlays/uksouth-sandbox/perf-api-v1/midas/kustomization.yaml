@@ -21,6 +21,12 @@ replicas:
 
 patches:
   - target:
+      kind: ServiceProfile
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: midas-api.perf-api-v1.svc.cluster.local
+  - target:
       kind: Deployment
     patch: |-
       apiVersion: apps/v1

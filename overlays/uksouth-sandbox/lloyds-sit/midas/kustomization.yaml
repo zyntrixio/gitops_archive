@@ -17,6 +17,12 @@ configMapGenerator:
 
 patches:
   - target:
+      kind: ServiceProfile
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: midas-api.lloyds-sit.svc.cluster.local
+  - target:
       kind: Deployment
     patch: |-
       apiVersion: apps/v1
