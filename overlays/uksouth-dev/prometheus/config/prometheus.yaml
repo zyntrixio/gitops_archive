@@ -6,11 +6,7 @@ global:
 
 remote_write:
   - url: https://mimir.tools.uksouth.bink.host/api/v1/push
-  # - url: https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push
-  #   basic_auth:
-  #     username: "466060"
-  #     password: eyJrIjoiODFiYWZjMjQ5ZTBmYjc5OGZjOWQyMmRlMWY2ZjlhZGQwMzIxOWZkNyIsIm4iOiJUZXN0IEtleSIsImlkIjoxNzkxODB9
-
+  
 scrape_configs:
   - job_name: 'kube-state-metrics'
     static_configs:
@@ -56,3 +52,11 @@ scrape_configs:
         regex: __tmp_pod_label_linkerd_io_(.+)
       - action: labelmap
         regex: __tmp_pod_label_(.+)
+
+  - job_name: dev-pods
+    kubernetes_sd_configs:
+      - role: pod
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
