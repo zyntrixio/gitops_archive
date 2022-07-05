@@ -4,7 +4,7 @@ bases:
   - ../../../../bases/cosmos/hubble/consumer
   - ../../../../bases/cosmos/hubble/migrator
 
-namespace: bpl
+namespace: bpl-testing
 
 configMapGenerator:
   - name: hubble
