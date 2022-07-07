@@ -18,6 +18,13 @@ spec:
       labels:
         app: prometheus
     spec:
+      initContainers:
+        - name: chown
+          command: [chown, -R, 65534:65534, /prometheus]
+          image: docker.io/alpine:3
+          volumeMounts:
+            - name: prometheus-storage-volume
+              mountPath: /prometheus/
       containers:
         - name: app
           image: docker.io/prom/prometheus:v2.36.2
