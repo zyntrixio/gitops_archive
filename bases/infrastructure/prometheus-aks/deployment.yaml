@@ -7,6 +7,8 @@ metadata:
   labels:
     app: prometheus
 spec:
+  strategy:
+    type: Recreate
   replicas: 1
   selector:
     matchLabels:
@@ -18,7 +20,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: docker.io/prom/prometheus:v2.35.0
+          image: docker.io/prom/prometheus:v2.36.2
           args:
             - --storage.tsdb.retention.time=1h
             - --config.file=/etc/prometheus/prometheus.yaml
@@ -43,5 +45,6 @@ spec:
             defaultMode: 420
             name: prometheus
         - name: prometheus-storage-volume
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: prometheus
       serviceAccountName: prometheus
