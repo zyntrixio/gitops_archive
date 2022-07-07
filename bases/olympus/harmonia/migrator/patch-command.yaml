@@ -13,3 +13,10 @@ spec:
             - bash
             - -c
             - alembic upgrade head; echo Done; tail -f /dev/null
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: 1000m
+            requests:
+              memory: 512Mi
+              cpu: 100m
