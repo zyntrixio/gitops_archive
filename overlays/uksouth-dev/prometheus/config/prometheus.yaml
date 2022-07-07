@@ -79,4 +79,4 @@ scrape_configs:
         target_label: kubernetes_cluster
         action: replace
         regex: ()
-        replacement: {cluster_name}
+        replacement: ${cluster_name}
