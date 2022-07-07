@@ -57,7 +57,7 @@ scrape_configs:
         regex: __tmp_pod_label_(.+)
 
 # Set Prometheus to scrape all Pods in Cluster
-  - job_name: dev-pods
+  - job_name: ${cluster_name}-pods
     kubernetes_sd_configs:
       - role: pod
     relabel_configs:
