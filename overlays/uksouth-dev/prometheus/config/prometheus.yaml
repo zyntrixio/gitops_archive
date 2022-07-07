@@ -56,15 +56,15 @@ scrape_configs:
       - action: labelmap
         regex: __tmp_pod_label_(.+)
 
-  - job_name: dev-pods
-    kubernetes_sd_configs:
-      - role: pod
-    relabel_configs:
-      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
-        action: keep
-        regex: true
-      - source_labels: [kubernetes_cluster]
-        target_label: kubernetes_cluster
-        action: replace
-        regex: ()
-        replacement: dev
+  # - job_name: dev-pods
+  #   kubernetes_sd_configs:
+  #     - role: pod
+  #   relabel_configs:
+  #     - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+  #       action: keep
+  #       regex: true
+  #     - source_labels: [kubernetes_cluster]
+  #       target_label: kubernetes_cluster
+  #       action: replace
+  #       regex: ()
+  #       replacement: dev
