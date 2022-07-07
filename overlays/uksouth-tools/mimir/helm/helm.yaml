@@ -39,11 +39,9 @@ spec:
             hosts:
               - mimir.${cluster_name}.${location}.bink.host
       basicAuth:
-        enabled: true
+        enabled: false
         # username: 27b30688-89e6-4ee6-93d9-de889399db57
         # password: 547c5d39-f771-4a87-8ec6-afe4953ff541
-        htpasswd: >-
-          27b30688-89e6-4ee6-93d9-de889399db57:$apr1$yQYAJG8l$pCcD1MqYuCzs0QxVxLKAu0
     mimir:
       config: |-
         multitenancy_enabled: false
