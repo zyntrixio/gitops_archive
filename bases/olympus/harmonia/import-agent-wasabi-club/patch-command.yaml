@@ -15,3 +15,10 @@ spec:
             - wasabi-club
             - --no-user-input
             - --quiet
+          resources:
+            limits:
+              memory: 384Mi
+              cpu: 1000m
+            requests:
+              memory: 384Mi
+              cpu: 100m

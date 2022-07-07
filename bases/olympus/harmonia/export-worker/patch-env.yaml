@@ -12,3 +12,10 @@ spec:
           env:
             - name: TXM_RQ_QUEUES
               value: export
+          resources:
+            limits:
+              memory: 192Mi
+              cpu: 1000m
+            requests:
+              memory: 192Mi
+              cpu: 100m
