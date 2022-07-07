@@ -53,6 +53,7 @@ scrape_configs:
       - action: labelmap
         regex: __tmp_pod_label_(.+)
 
+# Set Prometheus to scrape all Pods in Cluster
   - job_name: dev-pods
     kubernetes_sd_configs:
       - role: pod
@@ -60,8 +61,19 @@ scrape_configs:
       - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
         action: keep
         regex: true
+
+# Replace Labels based on environment information
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_job]
+        action: replace
+        target_label: job
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
+        action: replace
+        target_label: instance
+      - source_labels: [kubernetes_namespace]
+        regex: 'flux-system'
+        action: drop
       - source_labels: [kubernetes_cluster]
         target_label: kubernetes_cluster
         action: replace
         regex: ()
-        replacement: dev
+        replacement: ${cluster_name}
