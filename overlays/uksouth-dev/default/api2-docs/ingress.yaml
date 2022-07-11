@@ -33,13 +33,6 @@ spec:
                 name: api2-redoc
                 port:
                   number: 80
-          - path: /healthz
-            pathType: Exact
-            backend:
-              service:
-                name: api2-redoc
-                port:
-                  number: 80
   tls:
     - hosts:
         - api2-docs.${cluster_name}.${location}.bink.sh
