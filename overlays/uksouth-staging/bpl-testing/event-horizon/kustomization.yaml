@@ -28,3 +28,9 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: event-horizon
+                env:
+                  - name: DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_placeholder
