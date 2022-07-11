@@ -67,6 +67,8 @@ patches:
                       secretKeyRef:
                         name: azure-pgfs
                         key: common_harmonia
+                  - name: TXM_LOG_LEVEL
+                    value: info
   - target:
       kind: CronJob
     patch: |-
