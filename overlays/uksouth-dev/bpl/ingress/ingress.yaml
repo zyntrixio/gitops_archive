@@ -48,13 +48,6 @@ spec:
                 name: iris-api
                 port:
                   number: 80
-          - path: /healthz
-            pathType: Exact
-            backend:
-              service:
-                name: healthz
-                port:
-                  number: 80
   tls:
     - hosts:
         - bpl.${cluster_name}.${location}.bink.sh

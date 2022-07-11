@@ -33,13 +33,6 @@ spec:
                 name: bullsquid-api
                 port:
                   number: 80
-          - path: /healthz
-            pathType: Prefix
-            backend:
-              service:
-                name: healthz
-                port:
-                  number: 80
   tls:
     - hosts:
         - portal.${cluster_name}.${location}.bink.sh
