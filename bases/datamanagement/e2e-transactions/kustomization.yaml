@@ -8,4 +8,4 @@ resources:
   - service.yaml
   - cert.yaml
   - ingress.yaml
-  - ingress-nginx.yaml
+  - ingress-healthz.yaml
