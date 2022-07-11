@@ -3,8 +3,9 @@ bases:
   - ../../../../bases/infrastructure/binklink
 
 resources:
-  - ingress.yaml
   - cert.yaml
+  - ingress.yaml
+  - ingress-healthz.yaml
 
 patches:
   - target:
