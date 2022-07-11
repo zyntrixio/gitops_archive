@@ -20,13 +20,6 @@ spec:
                 name: data-dashboard
                 port:
                   number: 80
-          - path: /healthz
-            pathType: Exact
-            backend:
-              service:
-                name: healthz
-                port:
-                  number: 80
   tls:
     - hosts:
         - data-dashboard.${cluster_name}.${location}.bink.sh

@@ -13,13 +13,6 @@ spec:
     - host: perf-bpl.${cluster_name}.${location}.bink.sh
       http:
         paths:
-          - path: /healthz
-            pathType: Exact
-            backend:
-              service:
-                name: healthz
-                port:
-                  number: 80
           - path: /admin
             pathType: Prefix
             backend:

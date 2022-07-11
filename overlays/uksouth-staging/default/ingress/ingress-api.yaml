@@ -110,13 +110,6 @@ spec:
                 name: skiron-api
                 port:
                   number: 80
-          - path: /healthz
-            pathType: Exact
-            backend:
-              service:
-                name: healthz
-                port:
-                  number: 80
           - path: /content
             pathType: Prefix
             backend:
