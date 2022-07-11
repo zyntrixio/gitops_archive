@@ -5,6 +5,7 @@ bases:
 resources:
   - cert.yaml
   - ingress.yaml
+  - ingress-healthz.yaml
 
 namespace: perf-data
 
