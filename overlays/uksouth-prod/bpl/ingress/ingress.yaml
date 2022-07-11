@@ -5,7 +5,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
-    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/use-regex: 'true'
   name: bpl.${cluster_name}.${location}.bink.sh
   namespace: default
 spec:
@@ -39,13 +39,6 @@ spec:
             backend:
               service:
                 name: hypercounter-api
-                port:
-                  number: 80
-          - path: /healthz
-            pathType: Exact
-            backend:
-              service:
-                name: healthz
                 port:
                   number: 80
   tls:

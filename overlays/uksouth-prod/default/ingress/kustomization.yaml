@@ -7,5 +7,8 @@ resources:
   - certificate-policies.yaml
   - certificate-help.yaml
   - ingress-api.yaml
+  - ingress-api-healthz.yaml
   - ingress-policies.yaml
+  - ingress-policies-healthz.yaml
   - ingress-help.yaml
+  - ingress-help-healthz.yaml
