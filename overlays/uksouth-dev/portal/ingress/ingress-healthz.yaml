@@ -10,7 +10,7 @@ metadata:
   namespace: default
 spec:
   rules:
-    - host: api.${cluster_name}.${location}.bink.sh
+    - host: portal.${cluster_name}.${location}.bink.sh
       http:
         paths:
           - path: /healthz
