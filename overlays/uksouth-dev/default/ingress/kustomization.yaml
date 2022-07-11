@@ -5,3 +5,4 @@ bases:
 resources:
   - certificate.yaml
   - ingress.yaml
+  - ingress-healthz.yaml
