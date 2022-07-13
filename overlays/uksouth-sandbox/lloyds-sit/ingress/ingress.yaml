@@ -205,6 +205,13 @@ spec:
                 name: angelia-api
                 port:
                   number: 80
+          - path: /v2/me
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
           - path: /v2/payment_accounts
             pathType: Exact
             backend:
