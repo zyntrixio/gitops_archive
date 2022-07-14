@@ -8,8 +8,6 @@ spec:
   path: ./overlays/uksouth-prod/bpl/hubble
   dependsOn:
   - name: aad-pod-identity
-  - name: linkerd-servicemesh
-  - name: linkerd-viz
   prune: true
   sourceRef:
     kind: GitRepository
