@@ -23,9 +23,9 @@ spec:
           containers:
           - name: script
             command:
-              - /bin/bash
-            args:
-              - render-report.sh
+              - bash
+              - -c
+              - ./report-render.sh
             image: binkcore.azurecr.io/pyqa:latest
             securityContext:
               runAsGroup: 65534
