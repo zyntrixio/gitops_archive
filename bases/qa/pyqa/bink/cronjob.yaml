@@ -2,13 +2,13 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: banking-api-v2.0
+  name: bink-pyqa
   namespace: default
 spec:
   concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1
-  schedule: "30 22 * * *"
+  schedule: "50 07 * * *"
   jobTemplate:
     spec:
       template:
@@ -17,27 +17,32 @@ spec:
             linkerd.io/inject: enabled
             kubectl.kubernetes.io/default-container: app
         spec:
+          volumes:
+            - name: data
+              emptyDir: {}
           containers:
-          # - name: test
-          #   command:
-          #     - /bin/bash
-          #   args:
-          #     - render-report.sh
+          - name: script
+            command:
+              - /bin/bash
+            args:
+              - render-report.sh
+            image: binkcore.azurecr.io/pyqa:latest
+            securityContext:
+              runAsGroup: 65534
+              runAsUser: 65534
+            imagePullPolicy: Always
+            volumeMounts:
+              - mountPath: /tmp
+                name: data
           - name: app
             command:
-              - pytest
-            args:
-              - --html
-              - report.html
-              - --self-contained-html
-              - -s
-              - -m
-              - sanity
-              - --channel
-              - bink
-              - --env
-              - staging 2>error.txt
+              - bash
+              - -c
+              - pytest --html /tmp/report.html --self-contained-html -s -m sanity --channel bink --env staging 2>/tmp/error.txt
             image: binkcore.azurecr.io/pyqa:latest
+            volumeMounts:
+              - mountPath: /tmp
+                name: data
             securityContext:
               runAsGroup: 65534
               runAsUser: 65534
