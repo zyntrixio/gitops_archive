@@ -8,7 +8,7 @@ spec:
   concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1
-  schedule: "50 07 * * *"
+  schedule: "30 22 * * *"
   jobTemplate:
     spec:
       template:
