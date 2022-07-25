@@ -6,6 +6,6 @@ metadata:
   namespace: flux-system
 spec:
   image: binkcore.azurecr.io/callbacca
-  interval: 1m0s
+  interval: 20m0s
   secretRef:
     name: binkcore.azurecr.io
