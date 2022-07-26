@@ -44,6 +44,11 @@ spec:
                 topologyKey: topology.kubernetes.io/zone
       containers:
         - image: binkcore.azurecr.io/angelia:latest
+          ports:
+            - containerPort: 9000
+              name: api
+            - containerPort: 9100
+              name: prometheus
           livenessProbe:
             failureThreshold: 3
             httpGet:
