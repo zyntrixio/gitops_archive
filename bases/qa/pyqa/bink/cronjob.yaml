@@ -22,7 +22,8 @@ spec:
               emptyDir: {}
           containers:
           - name: script
-            command:
+            command: [ "linkerd-await", "--shutdown", "--"]
+            args:
               - bash
               - -c
               - ./report-render.sh
@@ -35,7 +36,8 @@ spec:
               - mountPath: /tmp
                 name: data
           - name: app
-            command:
+            command: [ "linkerd-await", "--" ]
+            args:
               - bash
               - -c
               - pytest --html /tmp/report.html --self-contained-html -s -m sanity --channel bink --env staging 2>/tmp/error.txt
