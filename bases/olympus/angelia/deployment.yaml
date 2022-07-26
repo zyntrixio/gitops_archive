@@ -62,7 +62,7 @@ spec:
             failureThreshold: 3
             httpGet:
               path: /readyz
-              port: 9000
+              port: api
               scheme: HTTP
             periodSeconds: 60
             successThreshold: 1
@@ -70,7 +70,7 @@ spec:
           startupProbe:
             httpGet:
               path: /livez
-              port: 9000
+              port: api
             failureThreshold: 30
             periodSeconds: 10
           resources:
