@@ -87,5 +87,6 @@ spec:
           name: app
       priorityClassName: angelia
       serviceAccountName: angelia
+      automountServiceAccountToken: false
       imagePullSecrets:
         - name: binkcore.azurecr.io
