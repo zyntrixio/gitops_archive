@@ -114,3 +114,9 @@ spec:
       name: POST /loyalty/{retailer_slug}/rewards/{reward_slug}/cancel
       isRetryable: true
       timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /loyalty/[^/]*/reward/[^/]*
+      name: GET /loyalty/{retailer_slug}/reward/{reward_uuid}
+      isRetryable: true
+      timeout: 500ms
