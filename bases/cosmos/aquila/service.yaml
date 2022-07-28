@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: aquila
+    component: api
+  name: aquila
+  namespace: default
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: api
+  selector:
+    app: aquila
+    component: api
+  sessionAffinity: None
+  type: ClusterIP

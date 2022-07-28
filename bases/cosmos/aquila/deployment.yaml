@@ -1,0 +1,87 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aquila
+  namespace: default
+  labels:
+    app: aquila
+spec:
+  selector:
+    matchLabels:
+      app: aquila
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: aquila
+        aadpodidbinding: aquila
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+        prometheus.io/port: '9100'
+        prometheus.io/scrape: 'true'
+        prometheus.io/job: aquila
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - aquila
+                topologyKey: topology.kubernetes.io/zone
+      containers:
+        - image: binkcore.azurecr.io/aquila:latest
+          ports:
+            - containerPort: 9000
+              name: api
+            - containerPort: 9100
+              name: prometheus
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /livez
+              port: api
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /readyz
+              port: api
+              scheme: HTTP
+            periodSeconds: 60
+            successThreshold: 1
+            timeoutSeconds: 2
+          startupProbe:
+            httpGet:
+              path: /livez
+              port: api
+            failureThreshold: 30
+            periodSeconds: 10
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+          imagePullPolicy: Always
+          name: app
+      serviceAccountName: aquila
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
