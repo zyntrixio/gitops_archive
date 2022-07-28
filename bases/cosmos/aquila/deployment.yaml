@@ -6,12 +6,10 @@ metadata:
   namespace: default
   labels:
     app: aquila
-    component: api
 spec:
   selector:
     matchLabels:
       app: aquila
-      component: api
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -21,7 +19,6 @@ spec:
     metadata:
       labels:
         app: aquila
-        component: api
         aadpodidbinding: aquila
       annotations:
         linkerd.io/inject: enabled
@@ -85,7 +82,6 @@ spec:
             runAsUser: 65534
           imagePullPolicy: Always
           name: app
-      priorityClassName: aquila
       serviceAccountName: aquila
       imagePullSecrets:
         - name: binkcore.azurecr.io

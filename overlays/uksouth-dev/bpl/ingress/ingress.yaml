@@ -48,7 +48,7 @@ spec:
                 name: iris-api
                 port:
                   number: 80
-          - path: /aquila
+          - path: /reward
             pathType: Prefix
             backend:
               service:
