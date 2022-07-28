@@ -42,9 +42,6 @@ spec:
                 value: 30 22 * * *
               - name: COMMAND
                 value: pytest --html report.html --self-contained-html -s -m sanity --channel bink --env staging
-            securityContext:
-              runAsGroup: 65534
-              runAsUser: 65534
             imagePullPolicy: Always
             volumeMounts:
               - mountPath: /tmp
@@ -59,9 +56,6 @@ spec:
             volumeMounts:
               - mountPath: /tmp
                 name: data
-            securityContext:
-              runAsGroup: 65534
-              runAsUser: 65534
             imagePullPolicy: Always
             resources:
               limits:
