@@ -13,6 +13,8 @@ resources:
 replicas:
   - name: midas
     count: 3
+  - name: midas-migrator
+    count: 1
 
 namespace: default
 
