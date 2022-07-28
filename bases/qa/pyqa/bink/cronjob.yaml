@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: bink-pyqa
+  name: pyqa-bink
   namespace: default
 spec:
   concurrencyPolicy: Forbid
