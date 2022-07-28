@@ -2,32 +2,32 @@
 groups:
   - name: dev
     rules:
-      - alert: dev kube controller up state
-        expr: (up{job="azure_node",name="dev-controller"} OR on() vector(0)) < 1
-        for: 5m
-        labels:
-          severity: S3
-        annotations:
-          resource: '{{ $labels.name }}'
-          summary: Check virtual machine controller - bad up state for over 5 minutes
+      # - alert: dev kube controller up state
+      #   expr: (up{job="azure_node",name="dev-controller"} OR on() vector(0)) < 1
+      #   for: 5m
+      #   labels:
+      #     severity: S3
+      #   annotations:
+      #     resource: '{{ $labels.name }}'
+      #     summary: Check virtual machine controller - bad up state for over 5 minutes
 
-      - alert: dev kube worker pool depleted
-        expr: (sum(up{job="azure_node",name=~"dev-vmss_.+"}) OR on() vector(0)) <
-          2
-        for: 3m
-        labels:
-          severity: S3
-        annotations:
-          summary: Check dev cluster - worker count less than 2
+      # - alert: dev kube worker pool depleted
+      #   expr: (sum(up{job="azure_node",name=~"dev-vmss_.+"}) OR on() vector(0)) <
+      #     2
+      #   for: 3m
+      #   labels:
+      #     severity: S3
+      #   annotations:
+      #     summary: Check dev cluster - worker count less than 2
 
-      - alert: dev kube worker up state
-        expr: (up{job="azure_node",name=~"dev-vmss_.+"} OR on() vector(0)) < 1
-        for: 5m
-        labels:
-          severity: S3
-        annotations:
-          resource: '{{ $labels.name }}'
-          summary: Check virtual machine worker - bad up state for over 5 minutes
+      # - alert: dev kube worker up state
+      #   expr: (up{job="azure_node",name=~"dev-vmss_.+"} OR on() vector(0)) < 1
+      #   for: 5m
+      #   labels:
+      #     severity: S3
+      #   annotations:
+      #     resource: '{{ $labels.name }}'
+      #     summary: Check virtual machine worker - bad up state for over 5 minutes
 
       - alert: dev nginx ingress up state
         expr: (sum(up{kubernetes_cluster="dev",kubernetes_pod_name=~"ingress-nginx-controller.+"})
@@ -117,33 +117,33 @@ groups:
   #     resource: "{{ $labels.instance }}"
   #     summary: Check dev rabbitmq - bad upstate for over 3 minutes
 
-      - alert: dev virtual machines cpu
-        expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"dev-.+",mode="idle"}[5m]))
-          * 100) > 90
-        for: 5m
-        labels:
-          severity: S3
-        annotations:
-          resource: '{{ $labels.name }}'
-          summary: Check virtual machine - CPU over 90% for over 5 minutes
+      # - alert: dev virtual machines cpu
+      #   expr: 100 - (avg by (name) (irate(node_cpu_seconds_total{job="azure_node",name=~"dev-.+",mode="idle"}[5m]))
+      #     * 100) > 90
+      #   for: 5m
+      #   labels:
+      #     severity: S3
+      #   annotations:
+      #     resource: '{{ $labels.name }}'
+      #     summary: Check virtual machine - CPU over 90% for over 5 minutes
 
-      - alert: dev virtual machines memory
-        expr: node_memory_MemAvailable_bytes{job="azure_node",name=~"dev-.+"} < 100000000
-        for: 5m
-        labels:
-          severity: S3
-        annotations:
-          resource: '{{ $labels.name }}'
-          summary: Check virtual machine - Available memory < 100MB for over 5 minutes
+      # - alert: dev virtual machines memory
+      #   expr: node_memory_MemAvailable_bytes{job="azure_node",name=~"dev-.+"} < 100000000
+      #   for: 5m
+      #   labels:
+      #     severity: S3
+      #   annotations:
+      #     resource: '{{ $labels.name }}'
+      #     summary: Check virtual machine - Available memory < 100MB for over 5 minutes
 
-      - alert: dev virtual machines root filesystem
-        expr: 100 - ((node_filesystem_avail_bytes{job="azure_node",name=~"dev-.+",mountpoint="/"}
-          * 100) / node_filesystem_size_bytes{job="azure_node",name=~"dev-.+",mountpoint="/"})
-          > 90
-        for: 5m
-        labels:
-          severity: S3
-        annotations:
-          resource: '{{ $labels.name }}'
-          summary: Check virtual machines - Root filesystem over 90% used for over
-            5 minutes
+      # - alert: dev virtual machines root filesystem
+      #   expr: 100 - ((node_filesystem_avail_bytes{job="azure_node",name=~"dev-.+",mountpoint="/"}
+      #     * 100) / node_filesystem_size_bytes{job="azure_node",name=~"dev-.+",mountpoint="/"})
+      #     > 90
+      #   for: 5m
+      #   labels:
+      #     severity: S3
+      #   annotations:
+      #     resource: '{{ $labels.name }}'
+      #     summary: Check virtual machines - Root filesystem over 90% used for over
+      #       5 minutes
