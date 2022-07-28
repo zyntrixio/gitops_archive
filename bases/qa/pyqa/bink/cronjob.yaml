@@ -22,7 +22,7 @@ spec:
               emptyDir: {}
           containers:
           - name: script
-            command: [ "linkerd-await", "--shutdown", "--"]
+            command: [ "linkerd-await", "--"]
             args:
               - bash
               - -c
