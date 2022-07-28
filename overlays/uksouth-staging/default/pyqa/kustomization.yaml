@@ -15,29 +15,3 @@ patches:
     target:
       name: pyqa-bink
       kind: Deployment
-  - target:
-      kind: CronJob
-    patch: |-
-      apiVersion: apps/v1
-      kind: CronJob
-      metadata:
-        name: pyqa-bink
-      spec:
-        template:
-          spec:
-            containers:
-              - name: script
-                env:
-                  - name: BLOB_STORAGE_DSN
-                    valueFrom:
-                      secretKeyRef:
-                        key: connection_string
-                        name: azure-storage-common
-                  - name: FRIENDLY_NAME
-                    value: Staging - Merchant API V1.2
-                  - name: TEAMS_WEBHOOK
-                    value: https://hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/0856493823a1484b9adfa37c942d2da4/48aca6b1-4d56-4a15-bc92-8aa9d97300df
-                  - name: SCHEDULE
-                    value: 30 22 * * *
-                  - name: COMMAND
-                    value: pytest --html report.html --self-contained-html -s -m sanity --channel bink --env staging
