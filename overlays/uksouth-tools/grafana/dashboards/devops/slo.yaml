@@ -6,7 +6,7 @@ metadata:
   name: slo-dashboard
   namespace: grafana # Change if using a non-default namespace
 data:
-  slo-dashboard.json: |-
+  slo-dashboard.json: |
     {
       "annotations": {
         "list": [
