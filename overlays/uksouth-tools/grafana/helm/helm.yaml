@@ -39,3 +39,20 @@ spec:
             basicAuth: true
             basicAuthUser: 27b30688-89e6-4ee6-93d9-de889399db57
             basicAuthPassword: 547c5d39-f771-4a87-8ec6-afe4953ff541
+        sidecar:
+          dashboards:
+            enabled: true
+            label: devops
+            # Folder where the configMaps are mounted in Grafana container
+            folder: /tmp/dashboards/devops
+            searchNamespace: grafana
+            watchMethod: WATCH
+            provider:
+              - name: devops
+                orgid: 1
+                folder: 'DevOps'
+                type: file
+                disableDelete: true
+                allowUiUpdates: false
+                foldersFromFilesStructure: false
+
