@@ -39,7 +39,7 @@ spec:
               cpu: 250m
             requests:
               memory: 64Mi
-              cpu: 100m
+              cpu: 50m
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 30

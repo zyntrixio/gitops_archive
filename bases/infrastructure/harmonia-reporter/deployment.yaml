@@ -23,10 +23,10 @@ spec:
           image: binkcore.azurecr.io/harmonia_archive_reporter:prod-2021-08-27T132214Z
           resources:
             limits:
-              cpu: 100m
+              cpu: 1000m
               memory: 128Mi
             requests:
-              cpu: 100m
+              cpu: 50m
               memory: 128Mi
           ports:
             - containerPort: 9000
@@ -34,10 +34,10 @@ spec:
           image: binkcore.azurecr.io/harmonia_archive_reporter:prod-2021-08-27T132214Z
           resources:
             limits:
-              cpu: 100m
+              cpu: 1000m
               memory: 128Mi
             requests:
-              cpu: 100m
+              cpu: 50m
               memory: 128Mi
           args:
             - python3

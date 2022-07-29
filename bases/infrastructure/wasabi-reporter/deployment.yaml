@@ -32,9 +32,10 @@ spec:
           name: app
           resources:
             limits:
+              cpu: 1000m
               memory: 128Mi
             requests:
-              cpu: 100m
+              cpu: 50m
               memory: 128Mi
           securityContext:
             runAsGroup: 65534
