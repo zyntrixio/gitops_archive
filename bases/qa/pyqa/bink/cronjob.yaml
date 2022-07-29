@@ -116,10 +116,10 @@ spec:
             resources:
               limits:
                 cpu: 1000m
-                memory: 1.5Gi
+                memory: 500Mi
               requests:
                 cpu: 100m
-                memory: 1.5Gi
+                memory: 500Mi
           restartPolicy: Never
           imagePullSecrets:
             - name: binkcore.azurecr.io
