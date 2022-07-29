@@ -67,3 +67,11 @@ scrape_configs:
       # Copy tmp labels into real labels
       - action: labelmap
         regex: __tmp_pod_label_(.+)
+
+  - job_name: 'dev_pods'
+    relabel_configs: 
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: dev
