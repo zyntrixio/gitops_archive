@@ -6,6 +6,10 @@ bases:
 resources:
   - aad.yaml
 
+replicas:
+  - name: metis-celery
+    count: 0
+
 patches:
   - path: env.yaml
     target:
