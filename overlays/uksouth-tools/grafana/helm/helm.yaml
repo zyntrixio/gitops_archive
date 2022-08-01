@@ -26,6 +26,26 @@ spec:
         - secretName: grafana.${cluster_name}.${location}.bink.sh
           hosts:
             - grafana.${cluster_name}.${location}.bink.sh
+    dashboardProviders:
+      dashboardproviders.yaml:
+        apiVersion: 1
+        providers:
+          - name: infra
+            orgId: 1
+            folder: Infrastructure
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /tmp/dashboards/infra
+          - name: app
+            orgId: 1
+            folder: Application
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /tmp/dashboards/app
     datasources:
       datasources.yaml:
         apiVersion: 1
@@ -44,6 +64,5 @@ spec:
         enabled: true
         label: grafana_dashboard
         searchNamespace: grafana
-        # Folder where the configMaps are mounted in Grafana container
-        folder: /tmp/dashboards/devops
+        folder: /tmp/dashboards
         watchMethod: WATCH
