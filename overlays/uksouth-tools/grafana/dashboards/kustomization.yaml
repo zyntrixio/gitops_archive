@@ -4,10 +4,10 @@ namespace: grafana
 configMapGenerator:
   - name: infra-dashboards
     files:
-      - infra/slo.json
+      - infra/new-dash.json
   - name: app-dashboards
     files:
-      - app/slo.json
+      - app/slodash.json
 
 commonLabels:
   grafana_dashboard: '1'
