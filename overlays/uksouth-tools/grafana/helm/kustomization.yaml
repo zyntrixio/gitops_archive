@@ -2,8 +2,3 @@
 resources:
   - namespace.yaml
   - helm.yaml
-  - ../dashboards/devops
-
-configMapGenerator:
-  - name: grafana
-    namespace: grafana
