@@ -26,6 +26,16 @@ spec:
         - secretName: grafana.${cluster_name}.${location}.bink.sh
           hosts:
             - grafana.${cluster_name}.${location}.bink.sh
+    grafana.ini:
+      azuread:
+        name: Azure AD
+        enabled: true
+        # allow_sign_up = true
+        client_id: 18bb5d3a-33c3-414f-94ea-802ed38727cb
+        client_secret: 0G_zrR9.Kg4EjjCe2oKCmuMg.Ay8VmJc~G
+        scopes: openid email profile
+        auth_url: https://login.microsoftonline.com/a6e2367a-92ea-4e5a-b565-723830bcc095/oauth2/v2.0/authorize
+        token_url: https://login.microsoftonline.com/a6e2367a-92ea-4e5a-b565-723830bcc095/oauth2/v2.0/token
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
