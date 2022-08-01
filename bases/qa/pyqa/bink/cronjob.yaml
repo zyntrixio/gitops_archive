@@ -11,6 +11,7 @@ spec:
   schedule: "0 5 * * *"
   jobTemplate:
     spec:
+      backoffLimit: 0
       template:
         metadata:
           annotations:
@@ -21,6 +22,9 @@ spec:
             org: bink
             aadpodidbinding: pyqa
         spec:
+          restartPolicy: Never
+          imagePullSecrets:
+            - name: binkcore.azurecr.io
           volumes:
             - name: data
               emptyDir: {}
@@ -120,6 +124,3 @@ spec:
               requests:
                 cpu: 50m
                 memory: 500Mi
-          restartPolicy: Never
-          imagePullSecrets:
-            - name: binkcore.azurecr.io
