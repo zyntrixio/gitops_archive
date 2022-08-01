@@ -1,0 +1,10 @@
+---
+namespace: grafana
+
+configMapGenerator:
+  - name: dashboards
+    files:
+      - files/slo.json
+
+commonLabels:
+  grafana_dashboard: devops

@@ -42,17 +42,8 @@ spec:
     sidecar:
       dashboards:
         enabled: true
-        label: devops
+        label: grafana_dashboard
+        searchNamespace: grafana
         # Folder where the configMaps are mounted in Grafana container
         folder: /tmp/dashboards/devops
-        searchNamespace: grafana
         watchMethod: WATCH
-        provider:
-          - name: devops
-            orgid: 1
-            folder: 'DevOps'
-            type: file
-            disableDelete: true
-            allowUiUpdates: false
-            foldersFromFilesStructure: false
-
