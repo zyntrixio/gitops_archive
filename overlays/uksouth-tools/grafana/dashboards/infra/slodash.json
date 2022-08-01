@@ -24,10 +24,9 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 1,
-    "id": 2,
-    "iteration": 1659109746039,
+    "iteration": 1659385314895,
     "links": [],
-    "liveNow": false,
+    "liveNow": true,
     "panels": [
       {
         "datasource": {
@@ -1245,9 +1244,7 @@
     "refresh": "1m",
     "schemaVersion": 36,
     "style": "dark",
-    "tags": [
-      "linkerd"
-    ],
+    "tags": [],
     "templating": {
       "list": [
         {
@@ -1370,7 +1367,7 @@
         },
         {
           "current": {
-            "selected": true,
+            "selected": false,
             "text": "dev",
             "value": "dev"
           },
@@ -1429,6 +1426,6 @@
     "timezone": "",
     "title": "SLO Dashboard",
     "uid": "VWl4l0R4k",
-    "version": 15,
+    "version": 2,
     "weekStart": ""
   }
