@@ -49,7 +49,7 @@ spec:
         limits:
           max_global_series_per_user: 1000000
           max_global_series_per_metric: 1000000
-          
+          max_ingestion_rate: 20000
 
         activity_tracker:
           filepath: /data/metrics-activity.log
