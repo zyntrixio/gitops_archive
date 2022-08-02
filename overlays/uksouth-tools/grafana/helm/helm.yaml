@@ -49,6 +49,7 @@ spec:
           - name: infra
             orgId: 1
             folder: Infrastructure
+            folderUid: 'infra'
             type: file
             disableDeletion: false
             editable: true
@@ -57,6 +58,7 @@ spec:
           - name: app
             orgId: 1
             folder: Application
+            folderUid: 'app'
             type: file
             disableDeletion: false
             editable: true
