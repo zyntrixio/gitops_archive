@@ -9,7 +9,7 @@ spec:
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1
   schedule: "0 5 * * *"
-  suspend: true
+  # suspend: true
   jobTemplate:
     spec:
       backoffLimit: 0
