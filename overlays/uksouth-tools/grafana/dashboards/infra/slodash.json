@@ -24,7 +24,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 1,
-    "iteration": 1659385314895,
+    "iteration": 1659432806979,
     "links": [],
     "liveNow": true,
     "panels": [
@@ -1248,16 +1248,43 @@
     "templating": {
       "list": [
         {
+          "current": {
+            "selected": true,
+            "text": "sandbox",
+            "value": "sandbox"
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P46B05499459EE360"
+          },
+          "definition": "label_values(request_total, kubernetes_cluster)",
+          "hide": 0,
+          "includeAll": false,
+          "label": "Cluster",
+          "multi": false,
+          "name": "cluster",
+          "options": [],
+          "query": {
+            "query": "label_values(request_total, kubernetes_cluster)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        },
+        {
           "allValue": ".*",
           "current": {
-            "selected": false,
-            "text": "default",
-            "value": "default"
+            "selected": true,
+            "text": "perf-api-v1",
+            "value": "perf-api-v1"
           },
           "datasource": {
             "uid": "mimir"
           },
-          "definition": "label_values(request_total, namespace)",
+          "definition": "label_values(request_total{kubernetes_cluster=\"$cluster\"}, namespace)",
           "hide": 0,
           "includeAll": false,
           "label": "Namespace",
@@ -1265,7 +1292,7 @@
           "name": "namespace",
           "options": [],
           "query": {
-            "query": "label_values(request_total, namespace)",
+            "query": "label_values(request_total{kubernetes_cluster=\"$cluster\"}, namespace)",
             "refId": "StandardVariableQuery"
           },
           "refresh": 2,
@@ -1364,38 +1391,11 @@
           "tagsQuery": "",
           "type": "query",
           "useTags": false
-        },
-        {
-          "current": {
-            "selected": false,
-            "text": "dev",
-            "value": "dev"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P46B05499459EE360"
-          },
-          "definition": "label_values(request_total, kubernetes_cluster)",
-          "hide": 0,
-          "includeAll": false,
-          "label": "Cluster",
-          "multi": false,
-          "name": "cluster",
-          "options": [],
-          "query": {
-            "query": "label_values(request_total, kubernetes_cluster)",
-            "refId": "StandardVariableQuery"
-          },
-          "refresh": 1,
-          "regex": "",
-          "skipUrlSync": false,
-          "sort": 0,
-          "type": "query"
         }
       ]
     },
     "time": {
-      "from": "now-15m",
+      "from": "now-24h",
       "to": "now"
     },
     "timepicker": {
