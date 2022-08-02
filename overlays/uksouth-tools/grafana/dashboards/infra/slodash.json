@@ -24,7 +24,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 1,
-    "iteration": 1659432806979,
+    "iteration": 1659437094790,
     "links": [],
     "liveNow": true,
     "panels": [
@@ -1250,8 +1250,8 @@
         {
           "current": {
             "selected": true,
-            "text": "sandbox",
-            "value": "sandbox"
+            "text": "dev",
+            "value": "dev"
           },
           "datasource": {
             "type": "prometheus",
@@ -1278,13 +1278,13 @@
           "allValue": ".*",
           "current": {
             "selected": true,
-            "text": "perf-api-v1",
-            "value": "perf-api-v1"
+            "text": "default",
+            "value": "default"
           },
           "datasource": {
             "uid": "mimir"
           },
-          "definition": "label_values(request_total{kubernetes_cluster=\"$cluster\"}, namespace)",
+          "definition": "label_values(request_total{kubernetes_cluster=\"$cluster\", namespace!~\"ingress-nginx|linkerd|linkerd-viz|kube-system\"}, namespace)",
           "hide": 0,
           "includeAll": false,
           "label": "Namespace",
@@ -1292,7 +1292,7 @@
           "name": "namespace",
           "options": [],
           "query": {
-            "query": "label_values(request_total{kubernetes_cluster=\"$cluster\"}, namespace)",
+            "query": "label_values(request_total{kubernetes_cluster=\"$cluster\", namespace!~\"ingress-nginx|linkerd|linkerd-viz|kube-system\"}, namespace)",
             "refId": "StandardVariableQuery"
           },
           "refresh": 2,
@@ -1308,8 +1308,8 @@
           "allValue": ".*",
           "current": {
             "selected": false,
-            "text": "hermes-api",
-            "value": "hermes-api"
+            "text": "api-reflector",
+            "value": "api-reflector"
           },
           "datasource": {
             "uid": "mimir"
