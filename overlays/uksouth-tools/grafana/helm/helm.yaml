@@ -28,8 +28,8 @@ spec:
             - grafana.${cluster_name}.${location}.bink.sh
     grafana.ini:
       server:
-        domain: grafana.uksouth.bink.sh
-        root_url: https://grafana.uksouth.bink.sh/
+        domain: grafana.tools.uksouth.bink.sh
+        root_url: https://grafana.tools.uksouth.bink.sh/
       auth:
         disable_login_form: false
         oauth_auto_login: true
