@@ -80,5 +80,5 @@ spec:
         enabled: true
         label: grafana_dashboard
         searchNamespace: grafana
-        folder: /tmp/dashboards
-        watchMethod: WATCH
+        # folder: /tmp/dashboards
+        # watchMethod: WATCH
