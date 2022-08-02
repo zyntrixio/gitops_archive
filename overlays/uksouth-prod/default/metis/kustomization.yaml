@@ -7,16 +7,12 @@ resources:
   - aad.yaml
 
 replicas:
+  - name: metis-api
+    count: 3
   - name: metis-celery
-    count: 0
+    count: 3
 
 patches:
   - path: env.yaml
     target:
       kind: Deployment
-  - target:
-      kind: Deployment
-    patch: |-
-      - op: add
-        path: /spec/replicas
-        value: 3
