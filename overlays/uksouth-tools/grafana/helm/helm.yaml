@@ -32,7 +32,7 @@ spec:
         root_url: https://grafana.tools.uksouth.bink.sh/
       auth:
         disable_login_form: false
-        oauth_auto_login: true
+        oauth_auto_login: false
       auth.azuread:
         name: Azure AD
         enabled: true
