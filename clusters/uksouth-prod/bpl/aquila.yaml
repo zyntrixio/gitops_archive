@@ -6,11 +6,6 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/bpl/aquila
-  dependsOn:
-  - name: aad-pod-identity
-  - name: linkerd-servicemesh
-  - name: linkerd-viz
-  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
