@@ -97,7 +97,7 @@ scrape_configs:
 
   - job_name: 'dev-pods'
     kubernetes_sd_configs:
-      - api_server: https://uksouth-dev-1e3754b4.hcp.uksouth.azmk8s.io:443
+      - api_server: https://uksouth-dev-bd6634db.hcp.uksouth.azmk8s.io:443
         role: pod
         bearer_token_file: /tmp/prometheus-creds/dev/token
         tls_config:
@@ -140,7 +140,7 @@ scrape_configs:
 
   - job_name: 'sandbox-pods'
     kubernetes_sd_configs:
-      - api_server: https://uksouth-sandbox-a6016c72.hcp.uksouth.azmk8s.io:443
+      - api_server: https://uksouth-sandbox-9b3fa3c5.hcp.uksouth.azmk8s.io:443
         role: pod
         bearer_token_file: /tmp/prometheus-creds/sandbox/token
         tls_config:
@@ -184,7 +184,7 @@ scrape_configs:
 
   - job_name: 'staging-pods'
     kubernetes_sd_configs:
-      - api_server: https://uksouth-staging-3f2e62bc.hcp.uksouth.azmk8s.io:443
+      - api_server: https://uksouth-staging-9906b3bf.hcp.uksouth.azmk8s.io:443
         role: pod
         bearer_token_file: /tmp/prometheus-creds/staging/token
         tls_config:
@@ -348,14 +348,14 @@ scrape_configs:
     bearer_token_file: /tmp/prometheus-creds/dev/token
 
     kubernetes_sd_configs:
-      - api_server: https://uksouth-dev-1e3754b4.hcp.uksouth.azmk8s.io:443
+      - api_server: https://uksouth-dev-bd6634db.hcp.uksouth.azmk8s.io:443
         role: node
         bearer_token_file: /tmp/prometheus-creds/dev/token
         tls_config:
           ca_file: /tmp/prometheus-creds/dev/ca.crt
     relabel_configs:
       - target_label: __address__
-        replacement: uksouth-dev-1e3754b4.hcp.uksouth.azmk8s.io:443
+        replacement: uksouth-dev-bd6634db.hcp.uksouth.azmk8s.io:443
       - source_labels: [__meta_kubernetes_node_name]
         regex: (.+)
         target_label: __metrics_path__
@@ -373,14 +373,14 @@ scrape_configs:
     bearer_token_file: /tmp/prometheus-creds/sandbox/token
 
     kubernetes_sd_configs:
-      - api_server: https://uksouth-sandbox-a6016c72.hcp.uksouth.azmk8s.io:443
+      - api_server: https://uksouth-sandbox-9b3fa3c5.hcp.uksouth.azmk8s.io:443
         role: node
         bearer_token_file: /tmp/prometheus-creds/sandbox/token
         tls_config:
           ca_file: /tmp/prometheus-creds/sandbox/ca.crt
     relabel_configs:
       - target_label: __address__
-        replacement: uksouth-sandbox-a6016c72.hcp.uksouth.azmk8s.io
+        replacement: uksouth-sandbox-9b3fa3c5.hcp.uksouth.azmk8s.io
       - source_labels: [__meta_kubernetes_node_name]
         regex: (.+)
         target_label: __metrics_path__
@@ -398,14 +398,14 @@ scrape_configs:
     bearer_token_file: /tmp/prometheus-creds/staging/token
 
     kubernetes_sd_configs:
-      - api_server: https://uksouth-staging-3f2e62bc.hcp.uksouth.azmk8s.io:443
+      - api_server: https://uksouth-staging-9906b3bf.hcp.uksouth.azmk8s.io:443
         role: node
         bearer_token_file: /tmp/prometheus-creds/staging/token
         tls_config:
           ca_file: /tmp/prometheus-creds/staging/ca.crt
     relabel_configs:
       - target_label: __address__
-        replacement: uksouth-staging-3f2e62bc.hcp.uksouth.azmk8s.io:443
+        replacement: uksouth-staging-9906b3bf.hcp.uksouth.azmk8s.io:443
       - source_labels: [__meta_kubernetes_node_name]
         regex: (.+)
         target_label: __metrics_path__
