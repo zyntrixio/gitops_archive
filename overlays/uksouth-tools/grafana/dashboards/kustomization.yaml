@@ -7,7 +7,6 @@ configMapGenerator:
       - infra/slodash.json
   - name: app-dashboards
     files:
-      - app/new-dash.json
 
 commonLabels:
   grafana_dashboard: '1'
