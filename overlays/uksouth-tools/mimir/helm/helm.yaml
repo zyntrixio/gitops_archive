@@ -92,6 +92,10 @@ spec:
           instance_limits:
             max_ingestion_rate: 20000
 
+        distributor:
+          instance_limits:
+            max_ingestion_rate: 20000
+
         ingester_client:
           grpc_client_config:
             max_recv_msg_size: 104857600
