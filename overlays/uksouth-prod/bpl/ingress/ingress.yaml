@@ -41,6 +41,13 @@ spec:
                 name: hypercounter-api
                 port:
                   number: 80
+          - path: /reward
+            pathType: Exact
+            backend:
+              service:
+                name: aquila
+                port:
+                  number: 80
   tls:
     - hosts:
         - bpl.${cluster_name}.${location}.bink.sh
