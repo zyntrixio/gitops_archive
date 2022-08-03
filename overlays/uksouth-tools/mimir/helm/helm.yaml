@@ -67,10 +67,6 @@ spec:
             account_name: binkuksouthtools
             account_key: 1kyRDOG27i+tS5uRaPJuD0vkroaEQMj3NO+Ho52GnUS1XyagEqVjkXGMCqzYgg9X+b1nAPNBwupU5oLvuZTMxw==
             container_name: mimir-alertmanager
-          tsdb:
-            dir: /data/tsdb
-          bucket_store:
-            sync_dir: /data/tsdb-sync
 
         frontend_worker:
           frontend_address: {{ template "mimir.fullname" . }}-query-frontend-headless.{{ .Release.Namespace }}.svc:{{ include "mimir.serverGrpcListenPort" . }}
