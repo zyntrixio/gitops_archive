@@ -68,7 +68,7 @@ spec:
       datasources.yaml:
         apiVersion: 1
         datasources:
-          - name: mimir-data
+          - name: mimir
             type: prometheus
             url: http://mimir-query-frontend.mimir.svc:8080/
             access: proxy
@@ -77,9 +77,6 @@ spec:
             basicAuth: true
             basicAuthUser: 27b30688-89e6-4ee6-93d9-de889399db57
             basicAuthPassword: 547c5d39-f771-4a87-8ec6-afe4953ff541
-          - name: mimir-alertmanager
-            type: prometheus
-            url: http://mimir-query-frontend.mimir.svc:8080/alertmanager
     sidecar:
       dashboards:
         enabled: true
