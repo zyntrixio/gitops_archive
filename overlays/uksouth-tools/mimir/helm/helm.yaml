@@ -59,9 +59,6 @@ spec:
           data_dir: '/data'
           enable_api: true
           external_url: '/alertmanager'
-          config: -|
-            receivers:
-            - name: "default"
 
         alertmanager_storage:
           backend: azure
