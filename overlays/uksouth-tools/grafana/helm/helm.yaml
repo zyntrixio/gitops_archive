@@ -70,7 +70,7 @@ spec:
         datasources:
           - name: mimir
             type: prometheus
-            url: http://mimir-query-frontend.mimir.svc:8080/
+            url: http://mimir-query-frontend.mimir.svc:8080/prometheus
             access: proxy
             isDefault: true
             editable: true
