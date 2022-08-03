@@ -71,7 +71,7 @@ spec:
           - name: mimir
             type: prometheus
             # url: http://mimir-query-frontend.mimir.svc:8080/prometheus
-            url: http://mimir-nginx.mimir:8080
+            url: http://mimir-nginx.mimir:80
             access: proxy
             isDefault: true
             editable: true
