@@ -36,7 +36,7 @@ spec:
               - bash
               - -c
               - ./report-render.sh
-            image: binkcore.azurecr.io/pyqa:latest
+            image: binkcore.azurecr.io/pyqa:2022-08-01T180541Z
             env:
               - name: FRIENDLY_NAME
                 value: Staging - Merchant API V1.2
@@ -80,7 +80,7 @@ spec:
               - bash
               - -c
               - pytest --html /tmp/report.html --self-contained-html -s -m sanity --channel bink --env staging 2>/tmp/error.txt
-            image: binkcore.azurecr.io/pyqa:latest
+            image: binkcore.azurecr.io/pyqa:2022-08-01T180541Z
             env:
               - name: FRIENDLY_NAME
                 value: Staging - Merchant API V1.2
