@@ -59,6 +59,7 @@ spec:
           data_dir: '/data'
           enable_api: true
           external_url: '/alertmanager'
+          receiver: 'test-receiver'
 
         alertmanager_storage:
           backend: azure
