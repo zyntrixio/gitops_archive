@@ -20,7 +20,7 @@ patches:
       kind: ConfigMap
       metadata:
         annotations:
-          k8s-sidecar-target-directory: /tmp/dashboards/infra
+          k8s-sidecar-target-directory: /var/lib/grafana/dashboards/infra
         name: infra-dashboards
   - target:
       kind: ConfigMap
@@ -30,5 +30,5 @@ patches:
       kind: ConfigMap
       metadata:
         annotations:
-          k8s-sidecar-target-directory: /tmp/dashboards/app
+          k8s-sidecar-target-directory: /var/lib/grafana/dashboards/app
         name: app-dashboards
