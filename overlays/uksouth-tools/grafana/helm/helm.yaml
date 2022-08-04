@@ -78,7 +78,7 @@ spec:
             basicAuthUser: 27b30688-89e6-4ee6-93d9-de889399db57
             secureJsonData:
               basicAuthPassword: 547c5d39-f771-4a87-8ec6-afe4953ff541
-          - name: mimir
+          - name: alertmanager
             type: alertmanager
             url: http://mimir-nginx.mimir:80/alertmanager
             access: proxy
