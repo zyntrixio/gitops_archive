@@ -109,6 +109,12 @@ spec:
       isRetryable: true
       timeout: 2000ms
     - condition:
+        method: PUT
+        pathRegex: /v2/loyalty_cards/[^/]*/join
+      name: PUT /v2/loyalty_cards/{loyalty_card_id}/join
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
         method: DELETE
         pathRegex: /v2/loyalty_cards/[^/]*/join
       name: DELETE /v2/loyalty_cards/{loyalty_card_id}/join
