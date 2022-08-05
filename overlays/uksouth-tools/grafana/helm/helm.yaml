@@ -65,7 +65,7 @@ spec:
         notifiers:
         - name: Teams - Default
           type: teams
-          uid: teams1
+          uid: "teams1"
           org_id: 1
           disable_resolve_message: false
           settings:
