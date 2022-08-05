@@ -57,19 +57,19 @@ spec:
         activity_tracker:
           filepath: /data/metrics-activity.log
 
-        alertmanager:
-          enabled: false
-          data_dir: '/data'
-          enable_api: true
-          external_url: '/alertmanager'
+        # alertmanager:
+        #   enabled: false
+        #   data_dir: '/data'
+        #   enable_api: true
+        #   external_url: '/alertmanager'
 
 
-        alertmanager_storage:
-          backend: azure
-          azure:
-            account_name: binkuksouthtools
-            account_key: 1kyRDOG27i+tS5uRaPJuD0vkroaEQMj3NO+Ho52GnUS1XyagEqVjkXGMCqzYgg9X+b1nAPNBwupU5oLvuZTMxw==
-            container_name: mimir-alertmanager
+        # alertmanager_storage:
+        #   backend: azure
+        #   azure:
+        #     account_name: binkuksouthtools
+        #     account_key: 1kyRDOG27i+tS5uRaPJuD0vkroaEQMj3NO+Ho52GnUS1XyagEqVjkXGMCqzYgg9X+b1nAPNBwupU5oLvuZTMxw==
+        #     container_name: mimir-alertmanager
 
         frontend_worker:
           frontend_address: {{ template "mimir.fullname" . }}-query-frontend-headless.{{ .Release.Namespace }}.svc:{{ include "mimir.serverGrpcListenPort" . }}
