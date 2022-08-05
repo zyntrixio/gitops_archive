@@ -78,7 +78,7 @@ spec:
             orgId: 1
             type: file
             options:
-              path: /var/lib/grafana/dashboards
+              path: /tmp/dashboards/
               foldersFromFileStructure: true
 
     sidecar:
