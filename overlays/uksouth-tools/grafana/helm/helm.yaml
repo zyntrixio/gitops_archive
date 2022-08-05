@@ -66,7 +66,6 @@ spec:
         - name: Teams - Default
           type: teams
           org_id: 1
-          uid: "teams1"
           disable_resolve_message: false
           settings:
             url: https://hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/02d90eca65584c50ad988122ed58d4f1/bba71e03-172e-4d07-8ee4-aad029d9031d
@@ -75,17 +74,32 @@ spec:
       dashboardproviders.yaml:
         apiVersion: 1
         providers:
-          - name: dashboards
+          - name: infra
             orgId: 1
+            folder: Infrastructure
+            folderUid: 'infra'
             type: file
+            disableDeletion: false
+            editable: true
             options:
-              path: /tmp/dashboards/
-              foldersFromFileStructure: true
-
-    sidecar:
-      dashboards:
-        enabled: true
-        label: grafana_dashboard
-        searchNamespace: grafana
-        # folder: /tmp/dashboards
-        # watchMethod: WATCH
+              path: /var/lib/grafana/dashboards/infra
+          - name: app
+            orgId: 1
+            folder: Application
+            folderUid: 'app'
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/app
+    
+    dashboardConfigMaps:
+      infra: infra-dashboards
+    
+    # sidecar:
+    #   dashboards:
+    #     enabled: true
+    #     label: grafana_dashboard
+    #     searchNamespace: grafana
+    #     # folder: /tmp/dashboards
+    #     # watchMethod: WATCH
