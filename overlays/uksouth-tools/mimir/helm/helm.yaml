@@ -43,6 +43,8 @@ spec:
         enabled: true
         username: 27b30688-89e6-4ee6-93d9-de889399db57
         password: 547c5d39-f771-4a87-8ec6-afe4953ff541
+    alertmanager:
+      enabled: false
     mimir:
       config: |-
         multitenancy_enabled: false
@@ -55,18 +57,19 @@ spec:
         activity_tracker:
           filepath: /data/metrics-activity.log
 
-        alertmanager:
-          data_dir: '/data'
-          enable_api: true
-          external_url: '/alertmanager'
+        # alertmanager:
+        #   enabled: false
+          # data_dir: '/data'
+          # enable_api: true
+          # external_url: '/alertmanager'
 
 
-        alertmanager_storage:
-          backend: azure
-          azure:
-            account_name: binkuksouthtools
-            account_key: 1kyRDOG27i+tS5uRaPJuD0vkroaEQMj3NO+Ho52GnUS1XyagEqVjkXGMCqzYgg9X+b1nAPNBwupU5oLvuZTMxw==
-            container_name: mimir-alertmanager
+        # alertmanager_storage:
+        #   backend: azure
+        #   azure:
+        #     account_name: binkuksouthtools
+        #     account_key: 1kyRDOG27i+tS5uRaPJuD0vkroaEQMj3NO+Ho52GnUS1XyagEqVjkXGMCqzYgg9X+b1nAPNBwupU5oLvuZTMxw==
+        #     container_name: mimir-alertmanager
 
         frontend_worker:
           frontend_address: {{ template "mimir.fullname" . }}-query-frontend-headless.{{ .Release.Namespace }}.svc:{{ include "mimir.serverGrpcListenPort" . }}
