@@ -60,15 +60,16 @@ spec:
             basicAuthUser: 27b30688-89e6-4ee6-93d9-de889399db57
             secureJsonData:
               basicAuthPassword: 547c5d39-f771-4a87-8ec6-afe4953ff541
+
     notifiers: 
       notifiers.yaml:
         notifiers:
-        - name: Teams - Default
-          type: teams
-          uid: "teams1"
+        - name: 'teams'
+          type: 'teams'
+          uid: 'teams1'
           org_id: 1
           disable_resolve_message: false
-          settings:
+          secure_settings:
             url: https://hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/02d90eca65584c50ad988122ed58d4f1/bba71e03-172e-4d07-8ee4-aad029d9031d
     
     dashboardProviders:
@@ -83,7 +84,7 @@ spec:
             disableDeletion: false
             editable: true
             options:
-              path: /var/lib/grafana/dashboards/infra
+              path: /tmp/dashboards/infra
           - name: app
             orgId: 1
             folder: Application
@@ -92,15 +93,15 @@ spec:
             disableDeletion: false
             editable: true
             options:
-              path: /var/lib/grafana/dashboards/app
+              path: /tmp/dashboards/app
     
     dashboardConfigMaps:
       infra: infra-dashboards
     
-    # sidecar:
-    #   dashboards:
-    #     enabled: true
-    #     label: grafana_dashboard
-    #     searchNamespace: grafana
-    #     # folder: /tmp/dashboards
-    #     # watchMethod: WATCH
+    sidecar:
+      dashboards:
+        enabled: true
+        label: grafana_dashboard
+        searchNamespace: grafana
+        # folder: /tmp/dashboards
+        # watchMethod: WATCH
