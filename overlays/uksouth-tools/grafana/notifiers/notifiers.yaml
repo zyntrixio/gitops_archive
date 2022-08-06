@@ -1,10 +1,9 @@
 apiVersion: 1
 
 notifiers:
-  notifiers.yaml:
-    notifiers:
-    - name: teams
-      type: teams
-      uid: notifier-1
-      settings:
-        url: https://hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/02d90eca65584c50ad988122ed58d4f1/bba71e03-172e-4d07-8ee4-aad029d9031d
+  - name: teams
+    type: teams
+    uid: notifier-1
+    settings:
+      url: https://hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/02d90eca65584c50ad988122ed58d4f1/bba71e03-172e-4d07-8ee4-aad029d9031d
+      
