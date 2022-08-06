@@ -1,0 +1,15 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: grafana-notifiers
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-tools/grafana/notifiers
+  prune: true
+  dependsOn:
+    - name: grafana-certs
+    - name: grafana-repo
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
