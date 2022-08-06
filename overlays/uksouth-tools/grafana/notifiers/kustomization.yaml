@@ -2,7 +2,7 @@
 namespace: grafana
 
 configMapGenerator:
-  - name: notifiers
+  - name: grafana-notifiers
     files:
       - notifiers.yaml
 

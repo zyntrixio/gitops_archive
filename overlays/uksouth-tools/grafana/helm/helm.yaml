@@ -30,6 +30,20 @@ spec:
       server:
         domain: grafana.tools.uksouth.bink.sh
         root_url: https://grafana.tools.uksouth.bink.sh/
+
+      readinessProbe:
+        httpGet:
+          path: /api/health
+          port: 3000
+
+      livenessProbe:
+        httpGet:
+          path: /api/health
+          port: 3000
+        initialDelaySeconds: 60
+        timeoutSeconds: 30
+        failureThreshold: 10
+
       auth:
         disable_login_form: false
         oauth_auto_login: false
