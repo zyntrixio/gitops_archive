@@ -1,0 +1,11 @@
+---
+namespace: grafana
+
+configMapGenerator:
+  - name: notifiers
+    files:
+      - notifiers.yaml
+
+commonLabels:
+  grafana_notifier: '1'
+
