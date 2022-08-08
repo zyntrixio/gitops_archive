@@ -45,3 +45,13 @@ patches:
                       secretKeyRef:
                         name: azure-pgfs
                         key: common_placeholder
+                  - name: POSTGRES_USER
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_username
+                  - name: POSTGRES_PASSWORD
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_password
