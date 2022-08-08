@@ -39,3 +39,9 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: midas
+                env:
+                  - name: POSTGRES_HOST
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_placeholder
