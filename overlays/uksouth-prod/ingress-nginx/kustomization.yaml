@@ -1,6 +1,6 @@
 ---
 bases:
-  - ../../../bases/infrastructure/ingress-nginx
+  - ../../../bases/infrastructure/ingress-nginx-aks
 
 replicas:
   - name: ingress-nginx-controller
