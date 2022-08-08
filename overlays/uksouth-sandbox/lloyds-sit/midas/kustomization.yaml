@@ -40,18 +40,8 @@ patches:
                   - configMapRef:
                       name: midas
                 env:
-                  - name: POSTGRES_HOST
+                  - name: POSTGRES_DSN
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
-                        key: common_placeholder
-                  - name: POSTGRES_USER
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-pgfs
-                        key: common_username
-                  - name: POSTGRES_PASSWORD
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-pgfs
-                        key: common_password
+                        key: common_lloyds_sit_midas
