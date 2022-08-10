@@ -1,0 +1,26 @@
+---
+bases:
+  - ../../../../bases/olympus/pelops
+
+configMapGenerator:
+  - name: pelops
+    namespace: trusted-channels
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: pelops
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: pelops
