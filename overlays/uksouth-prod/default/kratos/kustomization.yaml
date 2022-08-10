@@ -7,3 +7,4 @@ resources:
   - certificate.yaml
   - ingress.yaml
   - ingress-healthz.yaml
+  - aad.yaml

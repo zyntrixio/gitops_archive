@@ -23,6 +23,7 @@ spec:
         linkerd.io/inject: enabled
       labels:
         app: kratos
+        aadpodidbinding: kratos
     spec:
       affinity:
         podAntiAffinity:
@@ -38,6 +39,9 @@ spec:
               weight: 100
       containers:
         - image: binkcore.azurecr.io/kratos:latest
+          env:
+            - name: KEYVAULT_URL
+              value: https://bink-uksouth-prod-com.vault.azure.net/
           livenessProbe:
             httpGet:
               path: /healthz
