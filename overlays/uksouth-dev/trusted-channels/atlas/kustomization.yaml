@@ -10,26 +10,8 @@ configMapGenerator:
   - name: atlas
     envs:
       - env.ini
-  - name: atlas-scripts
-    files:
-      - migrator.py
-
 
 patches:
-  - target:
-      kind: Deployment
-      name: atlas-migrator
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: atlas
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                args: ["python", "/app/migrator.py"]
   - target:
       kind: Deployment
     patch: |-
@@ -45,14 +27,3 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: atlas
-                volumeMounts:
-                - name: atlas-scripts
-                  mountPath: /app/migrator.py
-                  subPath: migrator.py
-            volumes:
-              - name: atlas-scripts
-                configMap:
-                  name: atlas-scripts
-                  items:
-                    - key: migrator.py
-                      path: migrator.py

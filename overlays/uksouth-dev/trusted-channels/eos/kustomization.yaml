@@ -13,26 +13,8 @@ configMapGenerator:
   - name: eos
     envs:
       - env.ini
-  - name: eos-scripts
-    files:
-      - migrator.py
-
 
 patches:
-  - target:
-      kind: Deployment
-      name: eos-migrator
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: eos
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                args: ["python", "/app/migrator.py"]
   - target:
       kind: Deployment
     patch: |-
@@ -48,14 +30,3 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: eos
-                volumeMounts:
-                - name: eos-scripts
-                  mountPath: /app/migrator.py
-                  subPath: migrator.py
-            volumes:
-              - name: eos-scripts
-                configMap:
-                  name: eos-scripts
-                  items:
-                    - key: migrator.py
-                      path: migrator.py

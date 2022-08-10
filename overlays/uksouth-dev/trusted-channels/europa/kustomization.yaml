@@ -12,26 +12,8 @@ configMapGenerator:
   - name: europa
     envs:
       - env.ini
-  - name: europa-scripts
-    files:
-      - migrator.py
-
 
 patches:
-  - target:
-      kind: Deployment
-      name: europa-migrator
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: europa
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                args: ["python", "/app/migrator.py"]
   - target:
       kind: Deployment
     patch: |-
@@ -47,14 +29,3 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: europa
-                volumeMounts:
-                - name: europa-scripts
-                  mountPath: /app/migrator.py
-                  subPath: migrator.py
-            volumes:
-              - name: europa-scripts
-                configMap:
-                  name: europa-scripts
-                  items:
-                    - key: migrator.py
-                      path: migrator.py

@@ -10,26 +10,8 @@ configMapGenerator:
   - name: hades
     envs:
       - env.ini
-  - name: hades-scripts
-    files:
-      - migrator.py
-
 
 patches:
-  - target:
-      kind: Deployment
-      name: hades-migrator
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: hades
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                args: ["python", "/app/migrator.py"]
   - target:
       kind: Deployment
     patch: |-
@@ -45,14 +27,3 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: hades
-                volumeMounts:
-                - name: hades-scripts
-                  mountPath: /app/migrator.py
-                  subPath: migrator.py
-            volumes:
-              - name: hades-scripts
-                configMap:
-                  name: hades-scripts
-                  items:
-                    - key: migrator.py
-                      path: migrator.py
