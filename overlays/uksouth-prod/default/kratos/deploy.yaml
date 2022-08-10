@@ -37,7 +37,7 @@ spec:
                 topologyKey: topology.kubernetes.io/zone
               weight: 100
       containers:
-        - image: ghcr.io/binkhq/kratos:latest
+        - image: binkcore.azurecr.io/kratos:latest
           livenessProbe:
             httpGet:
               path: /healthz
