@@ -16,8 +16,25 @@ configMapGenerator:
   - name: hermes
     envs:
       - env.ini
+  - name: hermes-scripts
+    files:
+      - migrator.py
 
 patches:
+  - target:
+      kind: Deployment
+      name: hermes-migrator
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: hermes
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                args: ["python", "/app/migrator.py"]
   - target:
       kind: Deployment
     patch: |-
@@ -33,19 +50,14 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: hermes
-                env:
-                  - name: HERMES_BLOB_STORAGE_DSN
-                    valueFrom:
-                      secretKeyRef:
-                        key: connection_string
-                        name: azure-storage-common
-                  - name: HERMES_DATABASE_URL
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-pgfs
-                        key: common_hermes
-                  - name: APPLE_CLIENT_SECRET
-                    valueFrom:
-                      secretKeyRef:
-                        key: key
-                        name: sign-in-with-apple
+                volumeMounts:
+                - name: hermes-scripts
+                  mountPath: /app/migrator.py
+                  subPath: migrator.py
+            volumes:
+              - name: hermes-scripts
+                configMap:
+                  name: hermes-scripts
+                  items:
+                    - key: migrator.py
+                      path: migrator.py

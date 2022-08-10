@@ -13,8 +13,26 @@ configMapGenerator:
   - name: eos
     envs:
       - env.ini
+  - name: eos-scripts
+    files:
+      - migrator.py
+
 
 patches:
+  - target:
+      kind: Deployment
+      name: eos-migrator
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: eos
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                args: ["python", "/app/migrator.py"]
   - target:
       kind: Deployment
     patch: |-
@@ -30,14 +48,14 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: eos
-                env:
-                  - name: EOS_DATABASE_URI
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-pgfs
-                        key: common_eos
-                  - name: OAUTH_CLIENT_SECRET
-                    valueFrom:
-                      secretKeyRef:
-                        key: secret
-                        name: eos-sso-client-secret
+                volumeMounts:
+                - name: eos-scripts
+                  mountPath: /app/migrator.py
+                  subPath: migrator.py
+            volumes:
+              - name: eos-scripts
+                configMap:
+                  name: eos-scripts
+                  items:
+                    - key: migrator.py
+                      path: migrator.py
