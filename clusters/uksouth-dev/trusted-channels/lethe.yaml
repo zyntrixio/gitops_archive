@@ -33,7 +33,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: uksouth-dev-lethe
+  name: uksouth-dev-trusted-channels-lethe
   namespace: flux-system
 spec:
   imageRepositoryRef:

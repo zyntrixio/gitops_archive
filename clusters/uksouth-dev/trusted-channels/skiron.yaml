@@ -32,7 +32,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: uksouth-dev-skiron
+  name: uksouth-dev-trusted-channels-skiron
   namespace: flux-system
 spec:
   imageRepositoryRef:

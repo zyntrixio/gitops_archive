@@ -36,7 +36,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: uksouth-dev-api2-docs
+  name: uksouth-dev-trusted-channels-api2-docs
   namespace: flux-system
 spec:
   imageRepositoryRef:
