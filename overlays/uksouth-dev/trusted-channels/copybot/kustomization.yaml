@@ -9,29 +9,12 @@ configMapGenerator:
   - name: copybot
     envs:
       - env.ini
-  - name: copybot-scripts
-    files:
-      - migrator.py
 
 replicas:
   - name: copybot-hermes
     count: 1
 
 patches:
-  - target:
-      kind: Deployment
-      name: copybot-migrator
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: copybot
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                args: ["python", "/app/migrator.py"]
   - target:
       kind: Deployment
     patch: |-
@@ -47,14 +30,3 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: copybot
-                volumeMounts:
-                - name: copybot-scripts
-                  mountPath: /app/migrator.py
-                  subPath: migrator.py
-            volumes:
-              - name: copybot-scripts
-                configMap:
-                  name: copybot-scripts
-                  items:
-                    - key: migrator.py
-                      path: migrator.py
