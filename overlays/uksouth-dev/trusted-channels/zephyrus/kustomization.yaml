@@ -11,8 +11,26 @@ configMapGenerator:
   - name: zephyrus
     envs:
       - env.ini
+  - name: zephyrus-scripts
+    files:
+      - migrator.py
+
 
 patches:
+  - target:
+      kind: Deployment
+      name: zephyrus-migrator
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: zephyrus
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                args: ["python", "/app/migrator.py"]
   - target:
       kind: Deployment
     patch: |-
@@ -28,3 +46,14 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: zephyrus
+                volumeMounts:
+                - name: zephyrus-scripts
+                  mountPath: /app/migrator.py
+                  subPath: migrator.py
+            volumes:
+              - name: zephyrus-scripts
+                configMap:
+                  name: zephyrus-scripts
+                  items:
+                    - key: migrator.py
+                      path: migrator.py
