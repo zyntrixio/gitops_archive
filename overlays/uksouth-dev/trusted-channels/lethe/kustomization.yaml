@@ -2,9 +2,10 @@
 bases:
   - ../../../../bases/olympus/lethe
 
+namespace: trusted-channels
+
 configMapGenerator:
   - name: lethe
-    namespace: trusted-channels
     envs:
       - env.ini
 

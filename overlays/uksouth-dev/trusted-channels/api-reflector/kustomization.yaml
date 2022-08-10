@@ -7,9 +7,10 @@ resources:
   - ingress.yaml
   - ingress-healthz.yaml
 
+namespace: trusted-channels
+
 configMapGenerator:
   - name: api-reflector
-    namespace: trusted-channels
     envs:
       - env.ini
 

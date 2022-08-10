@@ -5,9 +5,10 @@ bases:
 resources:
   - aad.yaml
 
+namespace: trusted-channels
+
 configMapGenerator:
   - name: zephyrus
-    namespace: trusted-channels
     envs:
       - env.ini
 

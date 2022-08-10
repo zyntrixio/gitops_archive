@@ -2,9 +2,10 @@
 bases:
   - ../../../../bases/olympus/pelops
 
+namespace: trusted-channels
+
 configMapGenerator:
   - name: pelops
-    namespace: trusted-channels
     envs:
       - env.ini
 

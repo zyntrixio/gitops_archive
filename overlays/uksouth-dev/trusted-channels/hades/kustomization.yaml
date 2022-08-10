@@ -3,9 +3,11 @@ bases:
   - ../../../../bases/olympus/hades/api
   - ../../../../bases/olympus/hades/migrator
 
+namespace: trusted-channels
+
+
 configMapGenerator:
   - name: hades
-    namespace: trusted-channels
     envs:
       - env.ini
 

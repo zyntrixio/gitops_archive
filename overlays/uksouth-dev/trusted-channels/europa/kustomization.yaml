@@ -6,9 +6,10 @@ bases:
 resources:
   - aad.yaml
 
+namespace: trusted-channels
+
 configMapGenerator:
   - name: europa
-    namespace: trusted-channels
     envs:
       - env.ini
 

@@ -4,9 +4,10 @@ bases:
   - ../../../../bases/olympus/atlas/consumer
   - ../../../../bases/olympus/atlas/migrator
 
+namespace: trusted-channels
+
 configMapGenerator:
   - name: atlas
-    namespace: trusted-channels
     envs:
       - env.ini
 

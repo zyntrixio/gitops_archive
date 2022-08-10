@@ -5,9 +5,10 @@ bases:
 resources:
   - aad.yaml
 
+namespace: trusted-channels
+
 configMapGenerator:
   - name: angelia
-    namespace: trusted-channels
     envs:
       - env.ini
 

@@ -2,9 +2,10 @@
 bases:
   - ../../../../bases/olympus/asteria
 
+namespace: trusted-channels
+
 configMapGenerator:
   - name: asteria
-    namespace: trusted-channels
     envs:
       - env.ini
 

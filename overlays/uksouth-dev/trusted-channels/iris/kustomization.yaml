@@ -2,9 +2,10 @@
 bases:
   - ../../../../bases/olympus/iris
 
+namespace: trusted-channels
+
 configMapGenerator:
   - name: iris
-    namespace: trusted-channels
     envs:
       - env.ini
 

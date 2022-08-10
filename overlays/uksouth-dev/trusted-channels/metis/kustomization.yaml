@@ -3,12 +3,13 @@ bases:
   - ../../../../bases/olympus/metis/api
   - ../../../../bases/olympus/metis/celery
 
+namespace: trusted-channels
+
 resources:
   - aad.yaml
 
 configMapGenerator:
   - name: metis
-    namespace: trusted-channels
     envs:
       - env.ini
 

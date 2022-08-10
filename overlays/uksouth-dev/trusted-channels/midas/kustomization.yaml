@@ -10,9 +10,10 @@ bases:
   - ../../../../bases/olympus/midas/migrator
   - ../../../../bases/olympus/midas/worker
 
+namespace: trusted-channels
+
 configMapGenerator:
   - name: midas
-    namespace: trusted-channels
     envs:
       - env.ini
 
