@@ -21,7 +21,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: callbacca
+  name: trusted-channels-callbacca
   namespace: flux-system
 spec:
   image: binkcore.azurecr.io/callbacca

@@ -22,7 +22,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: metis
+  name: trusted-channels-metis
   namespace: flux-system
 spec:
   image: binkcore.azurecr.io/metis

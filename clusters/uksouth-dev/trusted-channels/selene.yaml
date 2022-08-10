@@ -21,7 +21,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: selene
+  name: trusted-channels-selene
   namespace: flux-system
 spec:
   image: binkcore.azurecr.io/selene

@@ -25,7 +25,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: api2-docs
+  name: trusted-channels-api2-docs
   namespace: flux-system
 spec:
   image: binkcore.azurecr.io/api2-redoc

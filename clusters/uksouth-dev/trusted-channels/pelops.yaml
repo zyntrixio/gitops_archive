@@ -21,7 +21,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: pelops
+  name: trusted-channels-pelops
   namespace: flux-system
 spec:
   image: binkcore.azurecr.io/pelops

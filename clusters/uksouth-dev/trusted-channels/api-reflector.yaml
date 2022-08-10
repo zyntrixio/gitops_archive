@@ -26,7 +26,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: api-reflector
+  name: trusted-channels-api-reflector
   namespace: flux-system
 spec:
   image: ghcr.io/binkhq/api-reflector

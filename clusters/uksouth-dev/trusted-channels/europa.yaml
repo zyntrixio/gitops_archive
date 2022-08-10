@@ -23,7 +23,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: europa
+  name: trusted-channels-europa
   namespace: flux-system
 spec:
   image: binkcore.azurecr.io/europa
