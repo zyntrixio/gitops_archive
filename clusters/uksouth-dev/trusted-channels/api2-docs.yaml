@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: api2-docs
+  name: trusted-channels-api2-docs
   namespace: flux-system
 spec:
   interval: 60m0s
