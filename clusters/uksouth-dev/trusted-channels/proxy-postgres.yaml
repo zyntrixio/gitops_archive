@@ -21,7 +21,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: simpleproxy
+  name: trusted-channels-simpleproxy
   namespace: flux-system
 spec:
   image: ghcr.io/binkhq/simpleproxy
@@ -34,7 +34,7 @@ metadata:
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: simpleproxy
+    name: trusted-channels-simpleproxy
   filterTags:
     pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
     extract: $ts
