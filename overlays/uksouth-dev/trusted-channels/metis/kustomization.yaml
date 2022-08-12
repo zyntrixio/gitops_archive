@@ -1,19 +1,15 @@
 ---
 bases:
-  - ../../../../bases/olympus/metis/api
-  - ../../../../bases/olympus/metis/celery
+  - ../../default/metis
 
 namespace: trusted-channels
 
-resources:
-  - aad.yaml
-
-configMapGenerator:
-  - name: metis
-    envs:
-      - env.ini
-
 patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: remove
+        path: /spec/template/spec/containers/0/env
   - target:
       kind: Deployment
     patch: |-
@@ -26,12 +22,6 @@ patches:
           spec:
             containers:
               - name: app
-                envFrom:
-                  - configMapRef:
-                      name: metis
                 env:
                   - name: PONTUS_DATABASE_URI
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-pgfs
-                        key: common_pontus
+                    value: postgresql://postgres:5432/pontus

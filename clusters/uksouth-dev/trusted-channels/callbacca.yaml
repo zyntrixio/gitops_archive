@@ -6,6 +6,7 @@ metadata:
 spec:
   interval: 60m0s
   path: ./bases/oss/callbacca
+  targetNamespace: trusted-channels
   prune: true
   dependsOn:
   - name: linkerd-servicemesh
@@ -17,29 +18,3 @@ spec:
   - name: binkcore.azurecr.io/callbacca
     newName: binkcore.azurecr.io/callbacca
     newTag: 2022-07-25T132211Z # {"$imagepolicy": "flux-system:uksouth-dev-callbacca:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
-kind: ImageRepository
-metadata:
-  name: trusted-channels-callbacca
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/callbacca
-  interval: 20m0s
-  secretRef:
-    name: binkcore.azurecr.io
----
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
-kind: ImagePolicy
-metadata:
-  name: uksouth-dev-trusted-channels-callbacca
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: callbacca
-  filterTags:
-    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
-    extract: $ts
-  policy:
-    alphabetical:
-      order: asc

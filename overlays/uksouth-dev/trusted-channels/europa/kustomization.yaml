@@ -1,19 +1,15 @@
 ---
 bases:
-  - ../../../../bases/olympus/europa/api
-  - ../../../../bases/olympus/europa/migrator
-
-resources:
-  - aad.yaml
+  - ../../default/europa
 
 namespace: trusted-channels
 
-configMapGenerator:
-  - name: europa
-    envs:
-      - env.ini
-
 patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: remove
+        path: /spec/template/spec/containers/0/env
   - target:
       kind: Deployment
     patch: |-
@@ -26,6 +22,6 @@ patches:
           spec:
             containers:
               - name: app
-                envFrom:
-                  - configMapRef:
-                      name: europa
+                env:
+                  - name: EUROPA_DATABASE_URI
+                    value: postgresql://postgres:5432/europa

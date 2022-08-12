@@ -2,12 +2,10 @@
 bases:
   - ../../../../bases/infrastructure/postgres
 
-namespace: trusted-channels
+resources:
+  - pvc.yaml
 
-configMapGenerator:
-  - name: postgres
-    files:
-      - dbs.sql
+namespace: trusted-channels
 
 patches:
   - target:
@@ -23,9 +21,9 @@ patches:
             containers:
               - name: app
                 volumeMounts:
-                  - name: config
-                    mountPath: /docker-entrypoint-initdb.d/
+                  - mountPath: /var/lib/postgresql/data
+                    name: postgres
             volumes:
-              - name: config
-                configMap:
-                  name: postgres
+              - name: postgres
+                persistentVolumeClaim:
+                  claimName: postgres

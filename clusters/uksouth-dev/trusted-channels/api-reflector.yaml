@@ -1,0 +1,24 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: trusted-channels-api-reflector
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-dev/trusted-channels/api-reflector
+  prune: true
+  dependsOn:
+    - name: linkerd-servicemesh
+    - name: linkerd-viz
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
+  images:
+    - name: ghcr.io/binkhq/api-reflector
+      newName: ghcr.io/binkhq/api-reflector
+      newTag: 0.5.10  # {"$imagepolicy": "flux-system:uksouth-dev-api-reflector:tag"}

@@ -1,18 +1,15 @@
 ---
 bases:
-  - ../../../../bases/olympus/angelia
-
-resources:
-  - aad.yaml
+  - ../../default/angelia
 
 namespace: trusted-channels
 
-configMapGenerator:
-  - name: angelia
-    envs:
-      - env.ini
-
 patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: remove
+        path: /spec/template/spec/containers/0/env
   - target:
       kind: Deployment
     patch: |-
@@ -25,12 +22,6 @@ patches:
           spec:
             containers:
               - name: app
-                envFrom:
-                  - configMapRef:
-                      name: angelia
                 env:
                   - name: POSTGRES_DSN
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-pgfs
-                        key: common_hermes
+                    value: postgresql://postgres:5432/hermes
