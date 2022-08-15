@@ -18,29 +18,3 @@ spec:
     - name: binkcore.azurecr.io/hades
       newName: binkcore.azurecr.io/hades
       newTag: 2022-01-19T162610Z    # {"$imagepolicy": "flux-system:uksouth-dev-hades:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
-kind: ImageRepository
-metadata:
-  name: trusted-channels-hades
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/hades
-  interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io
----
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
-kind: ImagePolicy
-metadata:
-  name: uksouth-dev-trusted-channels-hades
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: hades
-  filterTags:
-    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
-    extract: $ts
-  policy:
-    alphabetical:
-      order: asc

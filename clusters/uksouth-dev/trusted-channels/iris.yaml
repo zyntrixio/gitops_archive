@@ -17,29 +17,3 @@ spec:
   - name: binkcore.azurecr.io/iris
     newName: binkcore.azurecr.io/iris
     newTag: 2022-04-20-173941 # {"$imagepolicy": "flux-system:uksouth-dev-iris:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
-kind: ImageRepository
-metadata:
-  name: trusted-channels-iris
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/iris
-  interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io
----
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
-kind: ImagePolicy
-metadata:
-  name: uksouth-dev-trusted-channels-iris
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: iris
-  filterTags:
-    pattern: (?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$
-    extract: $ts
-  policy:
-    alphabetical:
-      order: asc
