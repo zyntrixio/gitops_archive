@@ -57,11 +57,11 @@ spec:
         activity_tracker:
           filepath: /data/metrics-activity.log
 
-        alertmanager:
-          enabled: true
-          data_dir: '/data'
-          enable_api: true
-          external_url: '/alertmanager'
+        # alertmanager:
+        #   enabled: true
+        #   data_dir: '/data'
+        #   enable_api: true
+        #   external_url: '/alertmanager'
 
 
         alertmanager_storage:
