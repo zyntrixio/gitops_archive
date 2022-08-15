@@ -44,7 +44,7 @@ spec:
         username: 27b30688-89e6-4ee6-93d9-de889399db57
         password: 547c5d39-f771-4a87-8ec6-afe4953ff541
     alertmanager:
-      enabled: false
+      enabled: true
     mimir:
       config: |-
         multitenancy_enabled: false
