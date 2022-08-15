@@ -7,6 +7,7 @@ metadata:
 spec:
   interval: 60m0s
   path: ./bases/infrastructure/rabbitmq
+  targetNamespace: trusted-channels
   prune: true
   dependsOn:
     - name: linkerd-viz
