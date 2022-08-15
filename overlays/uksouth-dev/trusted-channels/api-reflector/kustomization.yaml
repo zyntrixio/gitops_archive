@@ -27,7 +27,7 @@ patches:
                       name: api-reflector
                 env:
                   - name: postgres_dsn
-                    value: postgresql://postgres:5432/api-reflector
+                    value: postgresql://postgres@postgres:5432/api-reflector
 
 patchesStrategicMerge:
   - |-
