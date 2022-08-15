@@ -29,4 +29,4 @@ patches:
                         key: connection_string
                         name: azure-storage-common
                   - name: HERMES_DATABASE_URL
-                    value: postgresql://postgres:5432/hermes
+                    value: postgresql://postgres@postgres:5432/hermes

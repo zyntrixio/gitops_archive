@@ -24,4 +24,4 @@ patches:
               - name: app
                 env:
                   - name: EUROPA_DATABASE_URI
-                    value: postgresql://postgres:5432/europa
+                    value: postgresql://postgres@postgres:5432/europa

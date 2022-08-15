@@ -24,4 +24,4 @@ patches:
               - name: app
                 env:
                   - name: PONTUS_DATABASE_URI
-                    value: postgresql://postgres:5432/pontus
+                    value: postgresql://postgres@postgres:5432/pontus
