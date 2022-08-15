@@ -17,7 +17,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/events-copybot
     newName: binkcore.azurecr.io/events-copybot
-    newTag: 2022-08-15T153928Z # {"$imagepolicy": "flux-system:uksouth-staging-copybot:tag"}
+    newTag: 2022-08-15T155025Z # {"$imagepolicy": "flux-system:uksouth-staging-copybot:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
