@@ -60,6 +60,7 @@ spec:
           data_dir: '/data'
           enable_api: true
           external_url: '/alertmanager'
+          fallback_config_file: /etc/alertmanager-config.yaml
 
 
         alertmanager_storage:
