@@ -46,15 +46,14 @@ spec:
 
     alertmanager:
       enabled: true
-      extraVolumes: [
+      extraVolumes: 
         - name: fallback-config
           configMap:
             name: mimir-alertmanager
-      ]
-      extraVolumeMounts: [
+      extraVolumeMounts: 
         - name: fallback-config
           mountPath: /fallback
-      ]
+      
 
     mimir:
       config: |-
