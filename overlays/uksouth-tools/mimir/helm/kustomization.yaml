@@ -1,6 +1,10 @@
 resources:
   - namespace.yaml
   - helm.yaml
-  - alertmanager-config.yaml
 
 namespace: mimir
+
+configmapconfigMapGenerator:
+  - name: mimir-alertmanager.yaml
+    files:
+      - alertmanager.yaml

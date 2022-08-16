@@ -44,6 +44,18 @@ spec:
         username: 27b30688-89e6-4ee6-93d9-de889399db57
         password: 547c5d39-f771-4a87-8ec6-afe4953ff541
 
+    alertmanager:
+      enabled: true
+      extraVolumes: [
+        - name: fallback-config
+          configMap:
+            name: mimir-alertmanager
+      ]
+      extraVolumeMounts: [
+        - name: fallback-config
+          mountPath: /fallback
+      ]
+
     mimir:
       config: |-
         multitenancy_enabled: false
@@ -60,7 +72,7 @@ spec:
           data_dir: '/data'
           enable_api: true
           external_url: '/alertmanager'
-          fallback_config_file: /etc/alertmanager-config.yaml
+          fallback_config_file: /etc/alertmanager.yaml
 
 
         alertmanager_storage:
