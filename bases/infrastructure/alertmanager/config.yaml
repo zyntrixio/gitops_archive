@@ -55,6 +55,9 @@ data:
       repeat_interval: 24h
       receiver: 'default'
       routes:
+      - receiver: 'devops-test'
+        matchers:
+        - severity="testing"
       - receiver: 'alerts-devops'
         matchers:
         - alertname!~"^dev.*|staging.*|perf.*|monitoring.*|prod.*$"
@@ -167,6 +170,10 @@ data:
     - name: 'default'
       webhook_configs:
       - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/aaeddfcd407742d398a9e8211e18ad36/de80162c-8e52-466b-affd-f3ccc0a66d5d'
+
+    - name: 'devops-test'
+      webhook_configs:
+      - url: 'http://localhost:2000/_dynamicwebhook/hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/02d90eca65584c50ad988122ed58d4f1/bba71e03-172e-4d07-8ee4-aad029d9031d'
 
     - name: 'alerts-devops'
       webhook_configs:
