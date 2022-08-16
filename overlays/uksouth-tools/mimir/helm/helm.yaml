@@ -52,7 +52,12 @@ spec:
             name: mimir-alertmanager
       extraVolumeMounts: 
         - name: fallback-config
-          mountPath: /fallback
+          mountPath: /fallback  
+      readinessProbe:
+        httpGet:
+          path: /ready
+          port: http-metrics
+        initialDelaySeconds: 45
       
 
     mimir:
