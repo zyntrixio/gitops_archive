@@ -1,13 +1,6 @@
 resources:
   - namespace.yaml
   - helm.yaml
-
-configMapGenerator:
-  - files:
-      - config/mimir.yaml
-      - config/alertmanager.yaml
-    name: mimir-external-config
-    options:
-      disableNameSuffixHash: true
+  - alertmanager-config.yaml
 
 namespace: mimir
