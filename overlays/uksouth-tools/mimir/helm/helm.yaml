@@ -76,7 +76,6 @@ spec:
           data_dir: '/data'
           enable_api: true
           external_url: '/alertmanager'
-          fallback_config_file: /fallback/alertmanager.yaml
 
 
         alertmanager_storage:

@@ -4,9 +4,9 @@ resources:
 
 namespace: mimir
 
-configMapGenerator:
-  - name: mimir-alertmanager
-    files:
-      - alertmanager.yaml
-    options:
-      disableNameSuffixHash: true
+# configMapGenerator:
+#   - name: mimir-alertmanager
+#     files:
+#       - alertmanager.yaml
+#     options:
+#       disableNameSuffixHash: true
