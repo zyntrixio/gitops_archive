@@ -23,7 +23,7 @@ spec:
       persistentVolume:
         size: 100Gi
     nginx:
-      replicas: 3
+      replicas: 5
       resources:
         limits:
           memory: 128Mi
