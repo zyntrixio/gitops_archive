@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: prometheus
+  namespace: prometheus
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+  labels:
+    app: prometheus
+spec:
+  loadBalancerIP: ${prometheus_ip}
+  type: LoadBalancer
+  selector:
+    app: prometheus
+  ports:
+  - appProtocol: http
+    name: http
+    port: 9090
+    protocol: TCP
+    targetPort: http
