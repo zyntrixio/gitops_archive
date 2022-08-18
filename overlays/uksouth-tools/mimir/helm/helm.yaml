@@ -24,6 +24,12 @@ spec:
         size: 100Gi
     nginx:
       replicas: 3
+      resources:
+        limits:
+          memory: 128Mi
+        requests:
+          memory: 128Mi
+          cpu: 3000m
       ingress:
         enabled: true
         annotations:
