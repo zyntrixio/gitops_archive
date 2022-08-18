@@ -8,6 +8,8 @@ metadata:
     app: prometheus
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: prometheus
@@ -25,7 +27,7 @@ spec:
               mountPath: /prometheus/
       containers:
         - name: app
-          image: docker.io/prom/prometheus:v2.36.2
+          image: docker.io/prom/prometheus:v2.38.0
           args:
             - --storage.tsdb.retention.time=1h
             - --config.file=/etc/prometheus/prometheus.yaml
@@ -37,7 +39,7 @@ spec:
               cpu: 500m
               memory: 3Gi
             limits:
-              cpu: 1000m
+              cpu: 2000m
               memory: 3Gi
           volumeMounts:
             - name: prometheus-config-volume
@@ -50,5 +52,6 @@ spec:
             defaultMode: 420
             name: prometheus
         - name: prometheus-storage-volume
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: prometheus
       serviceAccountName: prometheus
