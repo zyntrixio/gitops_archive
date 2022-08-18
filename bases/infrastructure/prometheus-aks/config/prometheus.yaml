@@ -3,13 +3,17 @@ global:
   evaluation_interval: 10s
   scrape_interval: 10s
   scrape_timeout: 10s
-  external_labels:
-    kubernetes_cluster: ${cluster_name}
 
 scrape_configs:
   - job_name: kube-state-metrics
     static_configs:
       - targets: [kube-state-metrics.kube-system.svc.cluster.local:9100]
+    relabel_configs:
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: ${cluster_name}
 
   - job_name: 'linkerd-proxy'
     kubernetes_sd_configs:
@@ -62,6 +66,11 @@ scrape_configs:
       # Copy tmp labels into real labels
       - action: labelmap
         regex: __tmp_pod_label_(.+)
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: ${cluster_name}
 
 
   - job_name: 'pods'
@@ -92,3 +101,8 @@ scrape_configs:
       - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
         action: replace
         target_label: instance
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: ${cluster_name}
