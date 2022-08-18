@@ -71,9 +71,9 @@ spec:
         multitenancy_enabled: false
 
         limits:
-          max_global_series_per_user: 1000000
-          max_global_series_per_metric: 1000000
-          ingestion_rate: 100000
+          max_global_series_per_user: 2000000
+          max_global_series_per_metric: 2000000
+          ingestion_rate: 200000
 
         activity_tracker:
           filepath: /data/metrics-activity.log
