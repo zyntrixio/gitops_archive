@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-tools/prometheus
+  path: ./overlays/uksouth-prod/prometheus
   prune: true
   sourceRef:
     kind: GitRepository
