@@ -61,6 +61,34 @@ spec:
             basicAuthUser: 27b30688-89e6-4ee6-93d9-de889399db57
             secureJsonData:
               basicAuthPassword: 547c5d39-f771-4a87-8ec6-afe4953ff541
+          - name: prod0
+            type: prometheus
+            url: http://10.10.255.253:9090
+            editable: true
+            access: proxy
+          - name: prod1
+            type: prometheus
+            url: http://10.11.255.253:9090
+            editable: true
+            access: proxy
+          - name: sandbox
+            type: prometheus
+            url: http://10.20.255.253:9090
+            editable: true
+            access: proxy
+          - name: staging
+            type: prometheus
+            url: http://10.30.255.253:9090
+            editable: true
+            access: proxy
+          - name: dev
+            type: prometheus
+            url: http://10.40.255.253:9090
+            editable: true
+            access: proxy
+
+
+
 
     # notifiers: 
     #   notifiers.yaml:
