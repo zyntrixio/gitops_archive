@@ -6,7 +6,7 @@ metadata:
   labels:
     app: grafana
   name: grafana
-  namespace: default
+  namespace: grafana
 spec:
   selector:
     matchLabels:
@@ -26,7 +26,7 @@ spec:
       initContainers:
         - name: chown
           image: docker.io/alpine:latest
-          command: [chown -R 472:0 /pvc]
+          command: [chown, -R, 472:0, /pvc]
           volumeMounts:
             - name: grafana
               mountPath: /pvc
@@ -64,8 +64,11 @@ spec:
               cpu: 2000m
               memory: 750Mi
           volumeMounts:
-            - mountPath: /var/lib/grafana
-              name: grafana
+            - name: data
+              mountPath: /var/lib/grafana
+            - name: config
+              mountPath: /etc/grafana/grafana.ini
+              subPath: grafana.ini
         # TODO: DEVOPS-1815 (https://hellobink.atlassian.net/browse/DEVOPS-1815)
         - name: blob-copy
           image: docker.io/alpine:latest
@@ -82,9 +85,12 @@ spec:
               memory: 256Mi
           volumeMounts:
             - mountPath: /var/lib/grafana
-              name: grafana
+              name: data
       restartPolicy: Always
       volumes:
-        - name: grafana
+        - name: data
           persistentVolumeClaim:
             claimName: grafana
+        - name: config
+          configMap:
+            name: grafana

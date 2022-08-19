@@ -7,3 +7,8 @@ resources:
   - service.yaml
 
 namespace: grafana
+
+configMapGenerator:
+  - name: grafana
+    files:
+      - config/grafana.ini
