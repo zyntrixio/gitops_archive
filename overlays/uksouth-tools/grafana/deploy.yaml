@@ -1,0 +1,83 @@
+# docker pull grafana/grafana:9.1.0
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: grafana
+  name: grafana
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: grafana
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels:
+        app: grafana
+    spec:
+      containers:
+        - name: grafana
+          image: docker.io/grafana/grafana-oss:9.1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /robots.txt
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 2
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 3000
+            timeoutSeconds: 1
+          resources:
+            requests:
+              cpu: 250m
+              memory: 750Mi
+            limits:
+              cpu: 2000m
+              memory: 750Mi
+          volumeMounts:
+            - mountPath: /var/lib/grafana
+              name: grafana
+        # TODO: DEVOPS-1815 (https://hellobink.atlassian.net/browse/DEVOPS-1815)
+        - name: blob_copy
+          image: docker.io/alpine:latest
+          command:
+            - tail
+            - -f
+            - /dev/null
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+          volumeMounts:
+            - mountPath: /var/lib/grafana
+              name: grafana
+      restartPolicy: Always
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: grafana

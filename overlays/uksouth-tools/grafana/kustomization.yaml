@@ -1,0 +1,9 @@
+resources:
+  - certs.yaml
+  - deploy.yaml
+  - ingress.yaml
+  - namespace.yaml
+  - pvc.yaml
+  - service.yaml
+
+namespace: grafana

@@ -1,5 +1,0 @@
-resources:
-  - namespace.yaml
-  - bink_sh.yaml
-
-namespace: grafana
