@@ -60,7 +60,7 @@ spec:
             - mountPath: /var/lib/grafana
               name: grafana
         # TODO: DEVOPS-1815 (https://hellobink.atlassian.net/browse/DEVOPS-1815)
-        - name: blob_copy
+        - name: blob-copy
           image: docker.io/alpine:latest
           command:
             - tail
@@ -78,6 +78,6 @@ spec:
               name: grafana
       restartPolicy: Always
       volumes:
-        - name: config
+        - name: grafana
           persistentVolumeClaim:
             claimName: grafana
