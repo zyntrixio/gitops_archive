@@ -1,3 +1,4 @@
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -9,17 +10,17 @@ metadata:
   namespace: grafana
 spec:
   rules:
-  - host: grafana.tools.uksouth.bink.sh
-    http:
-      paths:
-      - backend:
-          service:
-            name: grafana
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
+    - host: grafana.tools.uksouth.bink.sh
+      http:
+        paths:
+          - backend:
+              service:
+                name: grafana
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
   tls:
-  - hosts:
-    - grafana.tools.uksouth.bink.sh
-    secretName: grafana.tools.uksouth.bink.sh
+    - hosts:
+        - grafana.tools.uksouth.bink.sh
+      secretName: grafana.tools.uksouth.bink.sh

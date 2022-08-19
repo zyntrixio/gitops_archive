@@ -1,4 +1,3 @@
-# docker pull grafana/grafana:9.1.0
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -28,7 +27,7 @@ spec:
           image: docker.io/alpine:latest
           command: [chown, -R, 472:0, /pvc]
           volumeMounts:
-            - name: grafana
+            - name: data
               mountPath: /pvc
       containers:
         - name: grafana
