@@ -23,6 +23,13 @@ spec:
       labels:
         app: grafana
     spec:
+      initContainers:
+        - name: chown
+          image: docker.io/alpine:latest
+          command: [chown -R 472:0 /pvc]
+          volumeMounts:
+            - name: grafana
+              mountPath: /pvc
       containers:
         - name: grafana
           image: docker.io/grafana/grafana-oss:9.1.0
