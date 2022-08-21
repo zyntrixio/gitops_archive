@@ -53,7 +53,7 @@ spec:
           image: docker.io/prom/alertmanager:v0.24.0
           imagePullPolicy: Always
           args:
-            - --config.file=/etc/alertmanager/alertmanager.yml
+            - --config.file=/etc/alertmanager/alertmanager.yaml
             - --storage.path=/alertmanager
           ports:
             - containerPort: 9093
