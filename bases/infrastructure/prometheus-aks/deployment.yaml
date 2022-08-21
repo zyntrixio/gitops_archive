@@ -26,7 +26,7 @@ spec:
             - name: prometheus-storage-volume
               mountPath: /prometheus/
       containers:
-        - name: app
+        - name: prometheus
           image: docker.io/prom/prometheus:v2.38.0
           args:
             - --storage.tsdb.retention.time=1h
@@ -43,16 +43,33 @@ spec:
               cpu: 2000m
               memory: 3Gi
           volumeMounts:
-            - name: prometheus-config-volume
+            - name: prometheus-config
               mountPath: /etc/prometheus/
-            - name: prometheus-storage-volume
+            - name: prometheus-storage
               mountPath: /prometheus/
+        - name: prometheus-msteams
+          image: quay.io/prometheusmsteams/prometheus-msteams:1.5.1
+          imagePullPolicy: Always
+          args: [-config-file=/etc/prometheus-msteams/prometheus-msteams.yaml]
+          ports:
+            - containerPort: 2000
+              protocol: TCP
+          volumeMounts:
+            - name: prometheus-config
+              mountPath: /etc/prometheus-msteams/
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 128Mi
       volumes:
-        - name: prometheus-config-volume
+        - name: prometheus-config
           configMap:
             defaultMode: 420
             name: prometheus
-        - name: prometheus-storage-volume
+        - name: prometheus-storage
           persistentVolumeClaim:
             claimName: prometheus
       serviceAccountName: prometheus
