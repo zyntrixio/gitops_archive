@@ -15,7 +15,7 @@ scrape_configs:
         regex: ()
         replacement: ${cluster_name}
 
-  - job_name: 'linkerd-proxy'
+  - job_name: linkerd-proxy
     kubernetes_sd_configs:
       - role: pod
     relabel_configs:
@@ -73,7 +73,7 @@ scrape_configs:
         replacement: ${cluster_name}
 
 
-  - job_name: 'pods'
+  - job_name: pods
     kubernetes_sd_configs:
       - role: pod
     relabel_configs:

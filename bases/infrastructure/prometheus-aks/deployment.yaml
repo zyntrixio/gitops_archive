@@ -20,11 +20,13 @@ spec:
     spec:
       initContainers:
         - name: chown
-          command: [chown, -R, 65534:65534, /prometheus]
+          command: [chown, -R, 65534:65534, /prometheus, /alertmanager]
           image: docker.io/alpine:3
           volumeMounts:
             - name: prometheus-storage
               mountPath: /prometheus/
+            - name: alertmanager-storage
+              mountPath: /alertmanager/
       containers:
         - name: prometheus
           image: docker.io/prom/prometheus:v2.38.0
@@ -47,6 +49,36 @@ spec:
               mountPath: /etc/prometheus/
             - name: prometheus-storage
               mountPath: /prometheus/
+        - name: alertmanager
+          image: docker.io/prom/alertmanager:v0.24.0
+          imagePullPolicy: Always
+          args:
+            - --config.file=/etc/alertmanager/alertmanager.yml
+            - --storage.path=/alertmanager
+          ports:
+            - containerPort: 9093
+          volumeMounts:
+            - name: prometheus-config
+              mountPath: /etc/alertmanager/
+            - name: alertmanager-storage
+              mountPath: /alertmanager/
+          livenessProbe:
+            httpGet:
+              path: /-/healthy
+              port: 9093
+            periodSeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /-/ready
+              port: 9093
+            periodSeconds: 60
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
         - name: prometheus-msteams
           image: quay.io/prometheusmsteams/prometheus-msteams:v1.5.1
           imagePullPolicy: Always
@@ -72,4 +104,7 @@ spec:
         - name: prometheus-storage
           persistentVolumeClaim:
             claimName: prometheus
+        - name: alertmanager-storage
+          persistentVolumeClaim:
+            claimName: alertmanager
       serviceAccountName: prometheus
