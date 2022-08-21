@@ -1,0 +1,11 @@
+---
+groups:
+  - name: Replicas
+    rules:
+      - alert: Angelia Down
+        expr: kube_deployment_spec_replicas{deployment="angelia-api", namespace="default"}
+          == 0
+        for: 1m
+        annotations:
+          title: Angelia is Down!
+          description: Angelia has been scaled down, this is CP testing stuff

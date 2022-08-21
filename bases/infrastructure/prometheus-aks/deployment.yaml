@@ -31,7 +31,7 @@ spec:
         - name: prometheus
           image: docker.io/prom/prometheus:v2.38.0
           args:
-            - --storage.tsdb.retention.time=1h
+            - --storage.tsdb.retention.time=30d
             - --config.file=/etc/prometheus/prometheus.yaml
             - --storage.tsdb.path=/prometheus/
           ports:
@@ -46,7 +46,8 @@ spec:
               memory: 3Gi
           volumeMounts:
             - name: prometheus-config
-              mountPath: /etc/prometheus/
+              mountPath: /etc/prometheus/prometheus.yaml
+              subPath: prometheus.yaml
             - name: prometheus-storage
               mountPath: /prometheus/
         - name: alertmanager
@@ -59,7 +60,8 @@ spec:
             - containerPort: 9093
           volumeMounts:
             - name: prometheus-config
-              mountPath: /etc/alertmanager/
+              mountPath: /etc/alertmanager/alertmanager.yaml
+              subPath: alertmanager.yaml
             - name: alertmanager-storage
               mountPath: /alertmanager/
           livenessProbe:
@@ -88,7 +90,8 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: prometheus-config
-              mountPath: /etc/prometheus-msteams/
+              mountPath: /etc/prometheus-msteams/prometheus-msteams.yaml
+              subPath: prometheus-msteams.yaml
           resources:
             limits:
               cpu: 100m
