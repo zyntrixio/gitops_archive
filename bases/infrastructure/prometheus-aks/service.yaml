@@ -3,13 +3,10 @@ kind: Service
 metadata:
   name: prometheus
   namespace: prometheus
-  annotations:
-    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
   labels:
     app: prometheus
 spec:
-  loadBalancerIP: ${prometheus_ip}
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: prometheus
   ports:
