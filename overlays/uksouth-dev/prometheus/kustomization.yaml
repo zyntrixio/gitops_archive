@@ -4,7 +4,7 @@ bases:
 namespace: prometheus
 
 configMapGenerator:
-  - name: alertmanager_rules
+  - name: alertmanager-rules
     files:
       - config/rules.yaml
 
@@ -22,11 +22,11 @@ patches:
             containers:
               - name: prometheus
                 volumeMounts:
-                  - name: alertmanager_rules
+                  - name: alertmanager-rules
                     mountPath: /etc/prometheus/rules.yaml
                     subPath: rules.yaml
             volumes:
               - configMap:
                   defaultMode: 420
-                  name: alertmanager_rules
-                name: alertmanager_rules
+                  name: alertmanager-rules
+                name: alertmanager-rules
