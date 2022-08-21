@@ -48,7 +48,7 @@ spec:
             - name: prometheus-storage
               mountPath: /prometheus/
         - name: prometheus-msteams
-          image: quay.io/prometheusmsteams/prometheus-msteams:1.5.1
+          image: quay.io/prometheusmsteams/prometheus-msteams:v1.5.1
           imagePullPolicy: Always
           args: [-config-file=/etc/prometheus-msteams/prometheus-msteams.yaml]
           ports:
