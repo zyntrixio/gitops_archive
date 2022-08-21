@@ -23,7 +23,7 @@ spec:
           command: [chown, -R, 65534:65534, /prometheus]
           image: docker.io/alpine:3
           volumeMounts:
-            - name: prometheus-storage-volume
+            - name: prometheus-storage
               mountPath: /prometheus/
       containers:
         - name: prometheus
