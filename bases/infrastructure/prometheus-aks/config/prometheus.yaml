@@ -5,7 +5,7 @@ global:
   scrape_timeout: 10s
 
 rule_files:
-  - rules.yml
+  - rules.yaml
 
 alerting:
   alertmanagers:
