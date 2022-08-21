@@ -6,7 +6,7 @@ resources:
   - clusterrolebinding.yaml
   - deployment.yaml
   - pvc.yaml
-  - service.yaml
+  # - service.yaml
   - service-lb.yaml
 
 namespace: prometheus
