@@ -7,7 +7,7 @@ groups:
           == 0
         for: 1m
         annotations:
-          title: '{{ $labels.deployment}} in {{$labels.namespace is Down}}'
+          title: '{{ $labels.deployment}}' 'in' '{{$labels.namespace is Down}}'
           description: '{{ $labels.deployment}} has been scaled down.'
 
 
@@ -17,5 +17,5 @@ groups:
         expr: sum(rate(kube_pod_container_status_restarts_total[1m]) * 60) by (container, namespace) > 0
         for: 1s
         annotations:
-          title: '{{$labels.container}} in {{$labels.namespace}}'
+          title: '{{$labels.container}}' in '{{$labels.namespace}}'
           description: 
