@@ -2,10 +2,20 @@
 groups:
   - name: Replicas
     rules:
-      - alert: Angelia Down
-        expr: kube_deployment_spec_replicas{deployment="angelia-api", namespace="default"}
+      - alert: Deployment Down
+        expr: sum by(deployment, namespace) (kube_deployment_spec_replicas) == 0
           == 0
         for: 1m
         annotations:
-          title: Angelia is Down!
-          description: Angelia has been scaled down, this is CP testing stuff
+          title: '{{ $labels.deployment, in $labels.namespace is Down}}'
+          description: '{{ $labels.deployment has been scaled down.}}' 
+
+
+  - name: Restars
+    rules:
+      - alert: Container Restarts
+        expr: sum(rate(kube_pod_container_status_restarts_total[1m]) * 60) by (container, namespace) > 0
+        for: 1s
+        annotations:
+          title: '{{$labels.container, in $labels.namespace}}'
+          description: 
