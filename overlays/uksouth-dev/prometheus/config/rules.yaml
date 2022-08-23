@@ -8,7 +8,7 @@ groups:
         for: 1m
         annotations:
           title: '{{ $labels.deployment}}'
-          description: '{{ $labels.deployment}} in {{$labels.namespace}}has been scaled down.'
+          description: '{{ $labels.deployment}} in the {{$labels.namespace}} namespace has been scaled down.'
 
 
   - name: Restarts
@@ -18,4 +18,4 @@ groups:
         for: 1s
         annotations:
           title: '{{$labels.container}}'
-          description: '{{$labels.container}} in {{$labels.namespace}} has been restarting alot.'
+          description: '{{$labels.container}} in the {{$labels.namespace}} namespace has been restarting alot.'
