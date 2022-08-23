@@ -8,14 +8,14 @@ groups:
         for: 1m
         annotations:
           title: '{{ $labels.deployment}}'
-          description: '{{ $labels.deployment}} has been scaled down.'
+          description: '{{ $labels.deployment}} in {{$labels.namespace}}has been scaled down.'
 
 
-  - name: Restars
+  - name: Restarts
     rules:
       - alert: Container Restarts
         expr: sum(rate(kube_pod_container_status_restarts_total[1m]) * 60) by (container, namespace) > 0
         for: 1s
         annotations:
-          title: '{{$labels.container, $labels.namespace}}'
-          description: 
+          title: '{{$labels.container}}'
+          description: '{{$labels.container}} in {{$labels.namespace}} has been restarting alot.'
