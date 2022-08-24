@@ -12,7 +12,6 @@ metadata:
 spec:
   loadBalancerIP: ${loadbalancer_ip}
   type: LoadBalancer
-  externalTrafficPolicy: Local
   selector:
     app: prometheus
   ports:
