@@ -6,7 +6,7 @@ metadata:
   namespace: prometheus
   annotations:
     service.beta.kubernetes.io/azure-load-balancer-internal: 'true'
-    service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: "/-/ready"
+    service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: "/-/ready" # https://github.com/Azure/AKS/issues/2903
   labels:
     app: prometheus
 spec:
