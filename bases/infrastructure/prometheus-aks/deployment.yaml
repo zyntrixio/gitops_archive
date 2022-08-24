@@ -81,6 +81,19 @@ spec:
             requests:
               cpu: 100m
               memory: 128Mi
+        - name: ssl-exporter
+          image: docker.io/ribbybibby/ssl-exporter:2.4.2
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 9219
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 128Mi
         - name: prometheus-msteams
           image: quay.io/prometheusmsteams/prometheus-msteams:v1.5.1
           imagePullPolicy: Always
