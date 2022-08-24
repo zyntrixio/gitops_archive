@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -18,4 +17,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/europa
       newName: binkcore.azurecr.io/europa
-      newTag: staging-1.5.0  # {"$imagepolicy": "flux-system:perf-europa:tag"}
+      newTag: staging-1.5.1 # {"$imagepolicy": "flux-system:perf-europa:tag"}
