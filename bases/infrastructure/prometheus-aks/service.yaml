@@ -12,7 +12,7 @@ spec:
     app: prometheus
   ports:
     - appProtocol: http
-      name: http
+      name: prometheus
       port: 9090
       protocol: TCP
-      targetPort: http
+      targetPort: prometheus
