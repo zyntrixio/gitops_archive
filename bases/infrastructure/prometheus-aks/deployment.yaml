@@ -36,7 +36,7 @@ spec:
             - --storage.tsdb.path=/prometheus/
           ports:
             - containerPort: 9090
-              name: http
+              name: prometheus
           resources:
             requests:
               cpu: 500m
@@ -58,7 +58,7 @@ spec:
             - --storage.path=/alertmanager
           ports:
             - containerPort: 9093
-              name: alertmanager-http
+              name: alertmanager
           volumeMounts:
             - name: prometheus-config
               mountPath: /etc/alertmanager/alertmanager.yaml
@@ -68,12 +68,12 @@ spec:
           livenessProbe:
             httpGet:
               path: /-/healthy
-              port: alertmanager-http
+              port: alertmanager
             periodSeconds: 60
           readinessProbe:
             httpGet:
               path: /-/ready
-              port: alertmanager-http
+              port: alertmanager
             periodSeconds: 60
           resources:
             limits:
