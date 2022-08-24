@@ -44,6 +44,16 @@ spec:
             limits:
               cpu: 2000m
               memory: 3Gi
+          livenessProbe:
+            httpGet:
+              path: /-/healthy
+              port: prometheus
+            periodSeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /-/ready
+              port: prometheus
+            periodSeconds: 60
           volumeMounts:
             - name: prometheus-config
               mountPath: /etc/prometheus/prometheus.yaml
