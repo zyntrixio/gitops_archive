@@ -2,7 +2,7 @@
 bases:
   - ../../../../bases/cosmos/aquila
 
-namespace: bpl
+namespace: bpl-testing
 
 configMapGenerator:
   - name: aquila
