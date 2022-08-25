@@ -9,9 +9,6 @@ configMapGenerator:
     envs:
       - env.ini
 
-resources:
-  - aad.yaml
-
 patches:
   - target:
       kind: Deployment
