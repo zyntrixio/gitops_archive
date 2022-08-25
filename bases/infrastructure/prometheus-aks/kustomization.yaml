@@ -17,3 +17,4 @@ configMapGenerator:
       - config/alertmanager.yaml
       - config/prometheus.yaml
       - config/prometheus-msteams.yaml
+      - config/ssl-exporter.yaml
