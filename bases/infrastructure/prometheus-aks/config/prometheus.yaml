@@ -13,7 +13,9 @@ alerting:
       - targets:
         - 127.0.0.1:9093
 
+
 scrape_configs:
+#Allows the monitoring of kubernetes state information
   - job_name: kube-state-metrics
     static_configs:
       - targets: [kube-state-metrics.kube-system.svc.cluster.local:9100]
@@ -24,6 +26,7 @@ scrape_configs:
         regex: ()
         replacement: ${cluster_name}
 
+# Exposes the Metrics from the Linkerd-Viz containers
   - job_name: linkerd-proxy
     kubernetes_sd_configs:
       - role: pod
@@ -81,7 +84,7 @@ scrape_configs:
         regex: ()
         replacement: ${cluster_name}
 
-
+#Collects the metrics from the cluster applications
   - job_name: pods
     kubernetes_sd_configs:
       - role: pod
@@ -115,3 +118,28 @@ scrape_configs:
         action: replace
         regex: ()
         replacement: ${cluster_name}
+
+
+#Allows the collection of SSL certificate information from teh SSL exporter
+  - job_name: ssl
+    metrics_path: /probe
+    params:
+      module: ["https_noverify"]
+    static_configs:
+      - targets:
+        - api.gb.bink.com:443
+        - bink.com:443
+        - git.bink.com:443
+        - core.spreedly.com:443
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: ssl-exporter
+      - source_labels: [cert_use]
+        target_label: cert_use
+        action: replace
+        regex: ()
+        replacement: server
