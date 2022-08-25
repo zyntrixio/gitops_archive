@@ -22,6 +22,15 @@ groups:
         annotations:
           title: 'Dev - Container restarts'
           description: 'Container: {{$labels.container}} in Deploy: {{$labels.pod}} in Namespace: {{$labels.namespace}} is restarting alot'
+      
+      - alert: core sftp up state
+        expr: up{job="azure_node",name=~"sftp\\d"} < 1
+        for: 3m
+        labels:
+          severity: S1
+        annotations:
+          resource: '{{ $labels.name }}'
+          summary: Check sftp virtual machines - bad up state for over 3 minutes
 
 
   - name: Service Team
