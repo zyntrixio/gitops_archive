@@ -137,3 +137,8 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: 127.0.0.1:9219
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: ${cluster_name}

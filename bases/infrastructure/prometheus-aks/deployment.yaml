@@ -94,6 +94,7 @@ spec:
               memory: 128Mi
         - name: ssl-exporter
           image: docker.io/ribbybibby/ssl-exporter:2.4.2
+          args: ["--config.file=/etc/ssl-exporter/config.yaml"]
           imagePullPolicy: Always
           ports:
             - containerPort: 9219
