@@ -19,7 +19,7 @@ spec:
               service:
                 name: bridge
                 port:
-                  number: 9000
+                  number: 80
   tls:
     - hosts:
         - bridge.${cluster_name}.${location}.bink.sh

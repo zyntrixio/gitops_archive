@@ -23,6 +23,7 @@ spec:
               value: DefaultEndpointsProtocol=https;AccountName=binkuksouthprod;AccountKey=91n6awMXsn2TwMFuk18HZJFAbWalexuZR9CVwPO4xMPu0fBcnIkx4ejIUsiLF+8A/Y/Q3Km3ML+uJAsZlSU7Jw==;EndpointSuffix=core.windows.net
           ports:
             - containerPort: 6502
+              name: http
           resources:
             limits:
               cpu: 1000m

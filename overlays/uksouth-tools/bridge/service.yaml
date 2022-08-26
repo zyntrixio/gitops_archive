@@ -9,7 +9,8 @@ metadata:
 spec:
   ports:
     - name: tcp
-      port: 6502
+      port: 80
+      targetPort: http
       protocol: TCP
   selector:
     app: bridge
