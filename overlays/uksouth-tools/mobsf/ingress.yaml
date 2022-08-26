@@ -12,11 +12,11 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-connect-timeout: '90'
     nginx.ingress.kubernetes.io/proxy-send-timeout: '90'
     nginx.ingress.kubernetes.io/proxy-read-timeout: '90'
-  name: mobsf.uksouth.bink.sh
+  name: mobsf.${cluster_name}.${location}.bink.sh
   namespace: default
 spec:
   rules:
-    - host: mobsf.uksouth.bink.sh
+    - host: mobsf.${cluster_name}.${location}.bink.sh
       http:
         paths:
           - path: /
@@ -28,5 +28,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - mobsf.uksouth.bink.sh
-      secretName: mobsf.uksouth.bink.sh
+        - mobsf.${cluster_name}.${location}.bink.sh
