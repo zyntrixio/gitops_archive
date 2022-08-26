@@ -7,7 +7,6 @@ metadata:
 spec:
   dnsNames:
     - '*.${cluster_name}.${location}.bink.sh'
-    - ${cluster_name}.${location}.bink.sh
   issuerRef:
     group: cert-manager.io
     kind: Issuer
