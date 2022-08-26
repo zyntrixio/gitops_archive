@@ -1,5 +1,5 @@
 ---
-bases:
-  - ../../../bases/infrastructure/asset-register
-
-namespace: asset-register
+resources:
+  - service.yaml
+  - deployment.yaml
+  - ingress.yaml

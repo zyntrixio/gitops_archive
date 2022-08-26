@@ -1,7 +1,0 @@
----
-resources:
-  - namespace.yaml
-  - service.yaml
-  - deployment.yaml
-  - ingress.yaml
-  - ingress-certificate.yaml
