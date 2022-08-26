@@ -2,6 +2,10 @@
 bases:
   - ../../../bases/infrastructure/ingress-nginx-aks
 
+resources:
+  - certificate.yaml
+  - issuer.yaml
+
 namespace: ingress-nginx
 
 replicas:
