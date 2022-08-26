@@ -14,10 +14,7 @@ spec:
     matchLabels:
       app: ip-range-checker
   strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+    type: Recreate
   template:
     metadata:
       labels:
