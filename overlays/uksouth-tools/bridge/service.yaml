@@ -9,7 +9,7 @@ metadata:
 spec:
   ports:
     - name: tcp
-      port: 9000
+      port: 6502
       protocol: TCP
   selector:
     app: bridge

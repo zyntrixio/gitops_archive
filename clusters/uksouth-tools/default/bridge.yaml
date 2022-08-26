@@ -1,32 +1,26 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: asset-register
+  name: bridge
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-tools/asset-register
+  path: ./overlays/uksouth-tools/bridge
   dependsOn:
     - name: linkerd-viz
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  images:
-    - name: binkcore.azurecr.io/asset-register
-      newTag: 2022-07-05T183100Z # {"$imagepolicy": "flux-system:asset-register:tag"}
-  postBuild:
-    substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
-  name: asset-register
+  name: bridge
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/asset-register
+  image: binkcore.azurecr.io/bridge
   interval: 10m0s
   secretRef:
     name: binkcore.azurecr.io
@@ -34,11 +28,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: asset-register
+  name: bridge
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: asset-register
+    name: bridge
   filterTags:
     pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
     extract: $ts
