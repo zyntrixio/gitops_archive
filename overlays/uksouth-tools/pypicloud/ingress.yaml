@@ -6,11 +6,11 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
     nginx.ingress.kubernetes.io/proxy-body-size: 200m
-  name: pypi.uksouth.bink.sh
+  name: pypi.${cluster_name}.${location}.bink.sh
   namespace: default
 spec:
   rules:
-    - host: pypi.uksouth.bink.sh
+    - host: pypi.${cluster_name}.${location}.bink.sh
       http:
         paths:
           - path: /
@@ -22,5 +22,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - pypi.uksouth.bink.sh
-      secretName: pypi.uksouth.bink.sh
+        - pypi.${cluster_name}.${location}.bink.sh

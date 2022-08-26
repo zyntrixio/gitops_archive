@@ -1,17 +1,13 @@
 ---
-bases:
-  - ../../common/issuer
-
 resources:
   - namespace.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
-  - certificate.yaml
 
 namespace: default
 
 secretGenerator:
   - name: pypi-config
     files:
-      - config.ini
+      - config/config.ini
