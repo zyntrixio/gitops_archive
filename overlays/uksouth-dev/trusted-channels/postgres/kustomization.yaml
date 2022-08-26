@@ -23,6 +23,9 @@ patches:
                 volumeMounts:
                   - mountPath: /var/lib/postgresql/data
                     name: postgres
+                env:
+                  - name: PGDATA
+                    value: /var/lib/postgresql/data/base
             volumes:
               - name: postgres
                 persistentVolumeClaim:
