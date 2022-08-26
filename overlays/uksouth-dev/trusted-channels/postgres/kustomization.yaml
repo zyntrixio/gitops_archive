@@ -21,7 +21,7 @@ patches:
             containers:
               - name: app
                 volumeMounts:
-                  - mountPath: /var/lib/postgresql/data
+                  - mountPath: /var/lib/postgresql
                     name: postgres
             volumes:
               - name: postgres
