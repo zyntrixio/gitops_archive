@@ -13,6 +13,9 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+  images:
+    - name: binkcore.azurecr.io/bridge
+      newTag: latest # {"$imagepolicy": "flux-system:bridge:tag"}
   postBuild:
     substituteFrom:
       - kind: ConfigMap
