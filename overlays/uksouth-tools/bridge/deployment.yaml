@@ -12,11 +12,14 @@ spec:
       app: bridge
   template:
     metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
       labels:
         app: bridge
     spec:
       containers:
-        - name: bridge
+        - name: app
           image: binkcore.azurecr.io/bridge:latest
           env:
             - name: CONNECTION_STRING

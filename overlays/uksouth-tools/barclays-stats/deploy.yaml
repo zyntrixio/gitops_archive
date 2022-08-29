@@ -12,11 +12,14 @@ spec:
       app: barclays-stats
   template:
     metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
       labels:
         app: barclays-stats
     spec:
       containers:
-        - name: barclays-stats
+        - name: app
           image: binkcore.azurecr.io/barclays-teams-stats:master-84479727
           env:
             - name: BARC_PERC

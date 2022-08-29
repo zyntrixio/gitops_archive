@@ -15,6 +15,9 @@ spec:
       app: mobsf
   template:
     metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
       labels:
         app: mobsf
     spec:
@@ -26,7 +29,7 @@ spec:
             - name: mobsf
               mountPath: /mobsf/
       containers:
-        - name: mobsf
+        - name: app
           image: docker.io/opensecurity/mobile-security-framework-mobsf:v3.5.0
           env:
             - name: POSTGRES_USER
