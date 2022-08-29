@@ -7,12 +7,12 @@ metadata:
   labels:
     app: metrics-statuspage
   annotations:
-    buoyant.cloud/excluded: true
+    buoyant.cloud/excluded: 'true'
 spec:
   concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1
-  schedule: 0 * * * *
+  schedule: '*/15 * * * *'
   jobTemplate:
     metadata:
       labels:

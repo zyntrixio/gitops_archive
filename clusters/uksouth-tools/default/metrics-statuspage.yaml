@@ -1,4 +1,21 @@
 ---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: metrics-statuspage
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-tools/metrics-statuspage
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/metrics-statuspage
+      newName: binkcore.azurecr.io/metrics-statuspage
+      newTag: 2022-03-01T135846Z # {"$imagepolicy": "flux-system:metrics-statuspage:tag"}
+---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
@@ -13,7 +30,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: uksouth-tools-metrics-statuspage
+  name: metrics-statuspage
   namespace: flux-system
 spec:
   imageRepositoryRef:

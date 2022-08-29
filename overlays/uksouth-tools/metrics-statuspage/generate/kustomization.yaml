@@ -1,8 +1,7 @@
 ---
 bases:
-  - ../../../bases/infrastructure/metrics-statuspage
+  - ../base
 
-namespace: statuspage
 nameSuffix: -generate
 commonLabels:
   component: generate
@@ -16,7 +15,6 @@ patches:
       metadata:
         name: metrics-statuspage
       spec:
-        schedule: "*/15 * * * *"
         jobTemplate:
           spec:
             template:

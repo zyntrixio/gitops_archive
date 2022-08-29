@@ -1,8 +1,7 @@
 ---
 bases:
-  - ../../../bases/infrastructure/metrics-statuspage
+  - ../base
 
-namespace: statuspage
 nameSuffix: -rabbit
 commonLabels:
   component: rabbit
@@ -16,7 +15,6 @@ patches:
       metadata:
         name: metrics-statuspage
       spec:
-        schedule: "*/15 * * * *"
         jobTemplate:
           spec:
             template:
@@ -24,6 +22,3 @@ patches:
                 containers:
                   - name: app
                     args: ["python3", "main.py", "--rabbit"]
-                    env:
-                      - name: PROMETHEUS_URL
-                        value: http://prometheus.default:9090/api/v1/query
