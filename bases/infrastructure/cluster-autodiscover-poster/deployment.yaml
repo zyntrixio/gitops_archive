@@ -34,7 +34,7 @@ spec:
             - name: CLUSTER_NAME
               value: ${location}-${cluster_name}
             - name: EXTERNAL_URL
-              value: https://${cluster_name}.${location}.bink.sh:${port}
+              value: ${kube_api_host}
           resources:
             requests:
               memory: 32Mi
