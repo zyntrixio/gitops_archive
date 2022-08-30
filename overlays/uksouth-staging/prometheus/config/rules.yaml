@@ -1,0 +1,83 @@
+---
+groups:
+  - name: Service Team
+      rules:
+        - alert: Exported transactions
+          expr: sum(increase(transactions_total{slug!="iceland-bonus-card"}[2h])) by (slug) < 1
+          for: 1m
+          labels:
+            severity: S2
+            component: harmonia
+          annotations:
+            resource: '{{ $labels.slug }}'
+            sumamry: 'There have been no exports between 12:00 and 23:00'
+        
+        - alert: Payment cards processing slowly
+          expr: (sum(payment_card_processing_seconds_histogram_sum{}) by (provider) / sum(payment_card_processing_seconds_histogram_count{}) by (provider)) > 5
+          for: 5m
+          labels:
+            severity: S2
+            component: hermes
+          annotations:
+            summany: 'Payment cards for {{ $labels.provider }} are taking longer than
+              four seconds to process.'
+        
+        - alert: Payment cards stuck increase
+          expr: sum by (provider) (hermes_current_payment_card_pending_overdue_total{}) > sum by (provider) (hermes_current_payment_card_pending_overdue_total{} offset 24h +15)
+          for: 5m
+          labels:
+            severity: S2
+            component: asteria
+          annotations:
+            resource: '{{$labels.provider}}'
+            summary: Payment cards have been stuck in a pending state for more than 24 hours
+
+        - alert: Vop status stuck in transitory state
+          expr: sum by (status)(hermes_current_vop_activation_status_total{status=~"Deactivating|Activating"}) > sum by (status)(hermes_current_vop_activation_status_total{status=~"Deactivating|Activating"} offset 15m)
+          for: 15m
+          labels:
+            severity: S3
+            component: asteria
+          annotations:
+            resource: '{{$labels.status}}'
+            summary: VOP account status in {{$labels.status}} state for over 15 minutes - check
+
+        - alert: Failed exports - receipt number not found
+          expr: sum(failed_requests_total{response_result="receipt no not found"}) > 500
+          for: 1m
+          labels:
+            severity: S2
+            component: harmonia
+          annotations:
+            resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }} - {{ $labels.response_result }}'
+            summary: There have been failed exports from harmonia returning receipt not found.
+
+        - alert: Failed exports excluding receipt not found
+          expr: sum(failed_requests_total{response_result!="receipt
+            no not found"}) > 100
+          for: 1m
+          labels:
+            severity: S2
+            component: harmonia
+          annotations:
+            resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }} - {{ $labels.response_result }}'
+            summary: There have been failed exports from harmonia.
+
+        - alert: Failed exports - "an error has occured"
+          expr: sum(increase(failed_requests_total{response_result="an error has occurred."} [10m])) > 0
+          for: 1m
+          labels:
+            severity: S2
+            component: harmonia
+          annotations:
+            resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }} - {{ $labels.response_result }}'
+            summary: There have been failed exports for wasabi.
+
+        # - alert: Files not received - wasabi
+        #   expr: (increase(blobstorage_files_total{name="wasabihack"}[46m]) or on() vector(0)) < 1
+        #   for: 3m
+        #   labels:
+        #     severity: S2
+        #   annotations:
+        #     resource: '{{ $labels.name }}'
+        #     summary: Three missing files over 45 minute period - check latest Wasabi import (Transaction log lands every 15 minutes between the hours of 12pm and 8pm)
