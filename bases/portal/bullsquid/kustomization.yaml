@@ -5,3 +5,4 @@ resources:
   - migrator.yaml
   - deployment.yaml
   - lsp.yaml
+  - worker.yaml
