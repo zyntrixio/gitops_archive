@@ -4,8 +4,8 @@ kind: Deployment
 metadata:
   labels:
     app: bullsquid
-    component: migrator
-  name: bullsquid-migrator
+    component: worker
+  name: bullsquid-worker
   namespace: default
 spec:
   strategy:
@@ -16,12 +16,12 @@ spec:
   selector:
     matchLabels:
       app: bullsquid
-      component: migrator
+      component: worker
   template:
     metadata:
       labels:
         app: bullsquid
-        component: migrator
+        component: worker
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
