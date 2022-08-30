@@ -27,6 +27,13 @@ spec:
               mountPath: /prometheus/
             - name: alertmanager-storage
               mountPath: /alertmanager/
+        - name: prometheus-configurator
+          image: ghcr.io/binkhq/prometheus-configurator:latest
+          volumeMounts:
+            - mountPath: /etc/prometheus/
+              name: prometheus-config
+            - mountPath: /etc/prometheus/conf.d/
+              name: prometheus-configurator-config
       containers:
         - name: prometheus
           image: docker.io/prom/prometheus:v2.38.0
@@ -56,8 +63,7 @@ spec:
             periodSeconds: 60
           volumeMounts:
             - name: prometheus-config
-              mountPath: /etc/prometheus/prometheus.yaml
-              subPath: prometheus.yaml
+              mountPath: /etc/prometheus/
             - name: prometheus-storage
               mountPath: /prometheus/
         - name: alertmanager
@@ -69,12 +75,6 @@ spec:
           ports:
             - containerPort: 9093
               name: alertmanager
-          volumeMounts:
-            - name: prometheus-config
-              mountPath: /etc/alertmanager/alertmanager.yaml
-              subPath: alertmanager.yaml
-            - name: alertmanager-storage
-              mountPath: /alertmanager/
           livenessProbe:
             httpGet:
               path: /-/healthy
@@ -92,6 +92,12 @@ spec:
             requests:
               cpu: 100m
               memory: 128Mi
+          volumeMounts:
+            - name: prometheus-common-config
+              mountPath: /etc/alertmanager/alertmanager.yaml
+              subPath: alertmanager.yaml
+            - name: alertmanager-storage
+              mountPath: /alertmanager/
         - name: ssl-exporter
           image: docker.io/ribbybibby/ssl-exporter:2.4.2
           args: ["--config.file=/etc/ssl-exporter/config.yaml"]
@@ -107,7 +113,7 @@ spec:
               cpu: 50m
               memory: 128Mi
           volumeMounts:
-            - name: prometheus-config
+            - name: prometheus-common-config
               mountPath: /etc/ssl-exporter/config.yaml
               subPath: ssl-exporter.yaml
         - name: prometheus-msteams
@@ -118,7 +124,7 @@ spec:
             - containerPort: 2000
               protocol: TCP
           volumeMounts:
-            - name: prometheus-config
+            - name: prometheus-common-config
               mountPath: /etc/prometheus-msteams/prometheus-msteams.yaml
               subPath: prometheus-msteams.yaml
           resources:
@@ -129,10 +135,16 @@ spec:
               cpu: 50m
               memory: 128Mi
       volumes:
-        - name: prometheus-config
+        - name: prometheus-common-config
           configMap:
             defaultMode: 420
-            name: prometheus
+            name: prometheus-common
+        - name: prometheus-configurator-config
+          configMap:
+            defaultMode: 420
+            name: prometheus-configurator
+        - name: prometheus-config
+          emptyDir: {}
         - name: prometheus-storage
           persistentVolumeClaim:
             claimName: prometheus
