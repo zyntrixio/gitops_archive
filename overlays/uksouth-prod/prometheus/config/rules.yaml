@@ -143,3 +143,4 @@ groups:
         annotations:
           resource: '{{ $labels.name }}'
           summary: Let's Encrypt Kubernetes cert less than 10 days from expiring
+          
