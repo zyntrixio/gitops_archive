@@ -8,8 +8,9 @@ groups:
         for: 1m
         labels:
           severity: p2
-          cluster: prod
+          cluster: devops
           component: Kubernetes
+          resolve: true
         annotations:
           title: 'Prod - {{ $labels.deployment}}'
           description: 'Deployment: {{ $labels.deployment}} in Namespace: {{$labels.namespace}} has been scaled down.'
@@ -19,7 +20,8 @@ groups:
         for: 1s
         labels:
           severity: p2
-          cluster: prod
+          cluster: devops
+          resolve: true
           component: Kubernetes
         annotations:
           title: 'Prod - Container restarts'
@@ -43,6 +45,7 @@ groups:
           severity: p2
           cluster: prod
           component: harmonia
+          resolve: false
         annotations:
           resource: '{{ $labels.slug }}'
           sumamry: 'There have been no exports between 12:00 and 23:00'
@@ -54,6 +57,7 @@ groups:
           severity: p2
           cluster: prod
           component: hermes
+          resolve: false
         annotations:
           summany: 'Payment cards for {{ $labels.provider }} are taking longer than
             four seconds to process.'
@@ -65,6 +69,7 @@ groups:
           severity: p2
           cluster: prod
           component: asteria
+          resolve: false
         annotations:
           resource: '{{$labels.provider}}'
           summary: Payment cards have been stuck in a pending state for more than 24 hours
@@ -76,6 +81,7 @@ groups:
           severity: p2
           cluster: prod
           component: asteria
+          resolve: false
         annotations:
           resource: '{{$labels.status}}'
           summary: VOP account status in {{$labels.status}} state for over 15 minutes - check
@@ -87,6 +93,7 @@ groups:
           severity: p2
           cluster: prod
           component: harmonia
+          resolve: false
         annotations:
           resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }} - {{ $labels.response_result }}'
           summary: There have been failed exports from harmonia returning receipt not found.
@@ -99,6 +106,7 @@ groups:
           severity: p2
           cluster: prod
           component: harmonia
+          resolve: false
         annotations:
           resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }} - {{ $labels.response_result }}'
           summary: There have been failed exports from harmonia.
@@ -110,6 +118,7 @@ groups:
           severity: p2
           cluster: prod
           component: harmonia
+          resolve: false
         annotations:
           resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }} - {{ $labels.response_result }}'
           summary: There have been failed exports for wasabi.
@@ -132,7 +141,9 @@ groups:
           Encrypt|COMODO RSA Domain Validation|R3).*"} - time()) / 24 / 60 / 60) <
           10
         labels:
-          severity: P1
+          severity: p1
+          cluster: devops
+          resolve: false
         annotations:
           resource: '{{ $labels.instance }}'
           summary: Cert less than 10 days from expiring
@@ -143,7 +154,9 @@ groups:
           Encrypt|COMODO RSA Domain Validation|R3).*"} - time()) / 24 / 60 / 60) <
           30
         labels:
-          severity: P2
+          severity: p2
+          cluster: devops
+          resolve: false
         annotations:
           resource: '{{ $labels.instance }}'
           summary: Cert less than 30 days from expiring
@@ -153,7 +166,9 @@ groups:
           Domain Validation|RSA Certification Authority|Let's Encrypt Authority X3).*",issuer_cn=~".*(Let's
           Encrypt|R3).*"} - time())/24/60/60) < 5
         labels:
-          severity: P1
+          severity: p1
+          cluster: devops
+          resolve: false
         annotations:
           resource: '{{ $labels.instance }}'
           summary: Let's Encrypt cert less than 05 days from expiring
@@ -163,7 +178,9 @@ groups:
           Domain Validation|RSA Certification Authority|Let's Encrypt Authority X3).*",issuer_cn=~".*(Let's
           Encrypt|R3).*"} - time())/24/60/60) < 10
         labels:
-          severity: P2
+          severity: p2
+          cluster: devops
+          resolve: false
         annotations:
           summary: Let's Encrypt cert less than 10 days from expiring
 
@@ -171,7 +188,9 @@ groups:
         expr: (certmanager_certificate_expiration_timestamp_seconds - time())/24/60/60
           < 5
         labels:
-          severity: P1
+          severity: p1
+          cluster: devops
+          resolve: false
         annotations:
           resource: '{{ $labels.name }}'
           summary: Let's Encrypt Kubernetes cert less than 05 days from expiring
@@ -180,7 +199,9 @@ groups:
         expr: (certmanager_certificate_expiration_timestamp_seconds - time())/24/60/60
           < 10
         labels:
-          severity: P2
+          severity: p2
+          cluster: devops
+          resolve: false
         annotations:
           resource: '{{ $labels.name }}'
           summary: Let's Encrypt Kubernetes cert less than 10 days from expiring
