@@ -185,15 +185,15 @@ groups:
           resource: '{{ $labels.name }}'
           summary: Let's Encrypt Kubernetes cert less than 10 days from expiring
           
-  - name: Testing
-    rules:
-      - alert: core test alerting and callout chain (should be red)
-        expr: ({job="always_alert"} OR on() vector(0)) == 0
-        for: 1m
-        labels:
-          severity: p1
-          cluster: prod
-          testing: true
-          callout: true
-        annotations: 
-          summary: This alert will test the Prometheus --> Alertmanager connectivity
+  # - name: Testing
+  #   rules:
+  #     - alert: core test alerting and callout chain (should be red)
+  #       expr: ({job="always_alert"} OR on() vector(0)) == 0
+  #       for: 1m
+  #       labels:
+  #         severity: p1
+  #         cluster: prod
+  #         testing: true
+  #         callout: true
+  #       annotations: 
+  #         summary: This alert will test the Prometheus --> Alertmanager connectivity
