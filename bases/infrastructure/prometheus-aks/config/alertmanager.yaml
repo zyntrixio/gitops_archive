@@ -15,7 +15,7 @@ route:
     - match: 
         severity: p1
         cluster: prod
-        resolve: false
+        resolve: ^(true|false)$
       continue: true
       receiver: opsgenie
     - match:
