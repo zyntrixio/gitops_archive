@@ -1,12 +1,47 @@
 ---
 groups:
+  - name: Infrastructure
+    rules:
+      - alert: Replicas Scaled Down
+        expr: sum by(deployment, namespace) (kube_deployment_spec_replicas) == 0
+          == 0
+        for: 1m
+        labels:
+          severity: p2
+          cluster: prod
+          component: Kubernetes
+        annotations:
+          title: 'Prod - {{ $labels.deployment}}'
+          description: 'Deployment: {{ $labels.deployment}} in Namespace: {{$labels.namespace}} has been scaled down.'
+
+      - alert: Container Restarts
+        expr: sum(rate(kube_pod_container_status_restarts_total[1m]) * 60) by (container, pod, namespace) > 0
+        for: 1s
+        labels:
+          severity: p2
+          cluster: prod
+          component: Kubernetes
+        annotations:
+          title: 'Prod - Container restarts'
+          description: 'Container: {{$labels.container}} in Deploy: {{$labels.pod}} in Namespace: {{$labels.namespace}} is restarting alot'
+      
+      # - alert: core sftp up state
+      #   expr: up{job="azure_node",name=~"sftp\\d"} < 1
+      #   for: 3m
+      #   labels:
+      #     severity: S1
+      #   annotations:
+      #     resource: '{{ $labels.name }}'
+      #     summary: Check sftp virtual machines - bad up state for over 3 minutes
+
   - name: Service Team
     rules:
       - alert: Exported transactions
         expr: sum(increase(transactions_total{slug!="iceland-bonus-card"}[2h])) by (slug) < 1
         for: 1m
         labels:
-          severity: S2
+          severity: p2
+          cluster: prod
           component: harmonia
         annotations:
           resource: '{{ $labels.slug }}'
@@ -16,7 +51,8 @@ groups:
         expr: (sum(payment_card_processing_seconds_histogram_sum{}) by (provider) / sum(payment_card_processing_seconds_histogram_count{}) by (provider)) > 5
         for: 5m
         labels:
-          severity: S2
+          severity: p2
+          cluster: prod
           component: hermes
         annotations:
           summany: 'Payment cards for {{ $labels.provider }} are taking longer than
@@ -26,7 +62,8 @@ groups:
         expr: sum by (provider) (hermes_current_payment_card_pending_overdue_total{}) > sum by (provider) (hermes_current_payment_card_pending_overdue_total{} offset 24h +15)
         for: 5m
         labels:
-          severity: S2
+          severity: p2
+          cluster: prod
           component: asteria
         annotations:
           resource: '{{$labels.provider}}'
@@ -36,7 +73,8 @@ groups:
         expr: sum by (status)(hermes_current_vop_activation_status_total{status=~"Deactivating|Activating"}) > sum by (status)(hermes_current_vop_activation_status_total{status=~"Deactivating|Activating"} offset 15m)
         for: 15m
         labels:
-          severity: S3
+          severity: p2
+          cluster: prod
           component: asteria
         annotations:
           resource: '{{$labels.status}}'
@@ -46,7 +84,8 @@ groups:
         expr: sum(failed_requests_total{response_result="receipt no not found"}) > 500
         for: 1m
         labels:
-          severity: S2
+          severity: p2
+          cluster: prod
           component: harmonia
         annotations:
           resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }} - {{ $labels.response_result }}'
@@ -57,7 +96,8 @@ groups:
           no not found"}) > 100
         for: 1m
         labels:
-          severity: S2
+          severity: p2
+          cluster: prod
           component: harmonia
         annotations:
           resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }} - {{ $labels.response_result }}'
@@ -67,7 +107,8 @@ groups:
         expr: sum(increase(failed_requests_total{response_result="an error has occurred."} [10m])) > 0
         for: 1m
         labels:
-          severity: S2
+          severity: p2
+          cluster: prod
           component: harmonia
         annotations:
           resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }} - {{ $labels.response_result }}'
@@ -144,3 +185,14 @@ groups:
           resource: '{{ $labels.name }}'
           summary: Let's Encrypt Kubernetes cert less than 10 days from expiring
           
+  - name: Testing
+    rules:
+      - alert: core test alerting and callout chain (should be red)
+        expr: ({job="always_alert"} OR on() vector(0)) == 0
+        for: 1m
+        labels:
+          severity: p1
+          cluster: prod
+          testing: true
+        annotations: 
+          summary: This alert will test the Prometheus --> Alertmanager connectivity

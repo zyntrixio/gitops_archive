@@ -9,13 +9,94 @@ route:
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 1h
-  receiver: teams_devops_test
+  receiver: teams_alerts_devops_no_resolve
+  routes:
+    #Production
+    - match: 
+        severity: p1
+        cluster: prod
+        resolve: false
+      continue: true
+      receiver: opsgenie
+    - match:
+        severity: p1
+        cluster: prod
+        resolve: true
+      continue: true
+      receiver: teams_alerts_production
+    - match:
+        severity: p1
+        cluster: prod
+        resolve: false
+      continue: true
+      receiver: teams_alerts_production_no_resolve
+    - match_re:
+        severity: ^(p2|p3|p4)$
+        cluster: prod
+        resolve: true
+      continue: true
+      receiver: teams_alerts_production
+    - match_re:
+        severity: ^(p2|p3|p4)$
+        cluster: prod
+        resolve: false
+      continue: true
+      receiver: teams_alerts_production_no_resolve
+
+    #Staging
+    - match_re:
+        severity: ^(p2|p3|p4)$
+        cluster: staging
+        resolve: true
+      continue: true
+      receiver: teams_alerts_staging
+
+    #Dev
+    - match_re:
+        severity: ^(p2|p3|p4)$
+        cluster: dev
+        resolve: true
+      continue: true
+      receiver: teams_alerts_development
+
+    #DevOps
+    - match_re:
+        severity: ^(p2|p3|p4)$
+        cluster: devops
+        resolve: true
+      continue: true
+      receiver: teams_alerts_devops
+    - match_re:
+        severity: ^(p2|p3|p4)$
+        cluster: devops
+        resolve: false
+      continue: true
+      receiver: teams_alerts_devops_no_resolve
+
+    #Testing
+    - match_re:
+        severity: ^(p1|p2|p3|p4)$
+        testing: true
+      continue: true
+      receiver: teams_devops_test
+    - match_re:
+        severity: ^(p1|p2|p3|p4)$
+        testing: true
+        callout: true
+      continue: true
+      receiver: opsgenie
+
 
 receivers:
   - name: teams_alerts_production
     webhook_configs:
       - url: http://localhost:2000/alerts_production
         send_resolved: true
+
+  - name: teams_alerts_production_no_resolve
+    webhook_configs:
+      - url: http://localhost:2000/alerts_production
+        send_resolved: false
 
   - name: teams_alerts_staging
     webhook_configs:
@@ -32,14 +113,19 @@ receivers:
       - url: http://localhost:2000/alerts_devops
         send_resolved: true
 
+  - name: teams_alerts_devops_no_resolve
+    webhook_configs:
+      - url: http://localhost:2000/alerts_devops
+        send_resolved: false
+
   - name: teams_devops_test
     webhook_configs:
       - url: http://localhost:2000/devops_test
         send_resolved: true
 
-  # - name: opsgenie
-  #   opsgenie_configs:
-  #     - send_resolved: false
-  #       responders:
-  #         - name: DevOps
-  #           type: team
+  - name: opsgenie
+    opsgenie_configs:
+      - send_resolved: false
+        responders:
+          - name: DevOps
+            type: team
