@@ -26,6 +26,18 @@ groups:
         annotations:
           title: 'Prod - Container restarts'
           description: 'Container: {{$labels.container}} in Deploy: {{$labels.pod}} in Namespace: {{$labels.namespace}} is restarting alot'
+
+      - alert: Kube pod waiting status
+        expr: sum by (reason, pod)(kube_pod_container_status_waiting_reason) > 0
+        for: 1m
+        labels: 
+          severity: p2
+          cluster: devops
+          resolve: true
+          component: Kubernetes
+        annotations:  
+          title: 'Prod - Pod waiting status'
+          description: 'Pod: {{$labels.pod}} is in this State: {{$labels.reason}} in this Namespace: {{$labels.namespace}}'
       
       # - alert: core sftp up state
       #   expr: up{job="azure_node",name=~"sftp\\d"} < 1
