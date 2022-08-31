@@ -47,7 +47,7 @@ route:
     - match_re:
         severity: ^(p2|p3|p4)$
         cluster: staging
-        resolve: true
+        resolve: ^(true|false)$
       continue: true
       receiver: teams_alerts_staging
 
@@ -55,7 +55,7 @@ route:
     - match_re:
         severity: ^(p2|p3|p4)$
         cluster: dev
-        resolve: true
+        resolve: ^(true|false)$
       continue: true
       receiver: teams_alerts_development
 
