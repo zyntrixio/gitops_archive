@@ -1,0 +1,38 @@
+---
+groups:
+  - name: Infrastructure
+    rules:
+      - alert: Replicas Scaled Down
+        expr: sum by(deployment, namespace) (kube_deployment_spec_replicas) == 0
+          == 0
+        for: 1m
+        labels:
+          severity: p2
+          cluster: staging
+          component: Kubernetes
+        annotations:
+          title: 'Staging - {{ $labels.deployment}}'
+          description: 'Deployment: {{ $labels.deployment}} in Namespace: {{$labels.namespace}} has been scaled down.'
+
+      - alert: Container Restarts
+        expr: sum(rate(kube_pod_container_status_restarts_total[1m]) * 60) by (container, pod, namespace) > 0
+        for: 1s
+        labels:
+          severity: p2
+          cluster: staging
+          component: Kubernetes
+        annotations:
+          title: 'Staging - Container restarts'
+          description: 'Container: {{$labels.container}} in Deploy: {{$labels.pod}} in Namespace: {{$labels.namespace}} is restarting alot'
+      
+      # - alert: core sftp up state
+      #   expr: up{job="azure_node",name=~"sftp\\d"} < 1
+      #   for: 3m
+      #   labels:
+      #     severity: S1
+      #   annotations:
+      #     resource: '{{ $labels.name }}'
+      #     summary: Check sftp virtual machines - bad up state for over 3 minutes
+
+
+  

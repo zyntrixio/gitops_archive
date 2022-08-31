@@ -1,0 +1,12 @@
+---
+# Allows the monitoring of kubernetes state information
+scrape_configs:
+  - job_name: kube-state-metrics
+    static_configs:
+      - targets: [kube-state-metrics.kube-system.svc.cluster.local:9100]
+    relabel_configs:
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: ${cluster_name}

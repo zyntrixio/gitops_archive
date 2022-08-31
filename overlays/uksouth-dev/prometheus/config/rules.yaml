@@ -7,7 +7,8 @@ groups:
           == 0
         for: 1m
         labels:
-          severity: S2
+          severity: p2
+          cluster: dev
           component: Kubernetes
         annotations:
           title: 'Dev - {{ $labels.deployment}}'
@@ -17,7 +18,8 @@ groups:
         expr: sum(rate(kube_pod_container_status_restarts_total[1m]) * 60) by (container, pod, namespace) > 0
         for: 1s
         labels:
-          severity: S2
+          severity: p2
+          cluster: dev
           component: Kubernetes
         annotations:
           title: 'Dev - Container restarts'

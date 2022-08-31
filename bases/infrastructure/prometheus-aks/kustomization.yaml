@@ -12,9 +12,14 @@ resources:
 namespace: prometheus
 
 configMapGenerator:
-  - name: prometheus
+  - name: prometheus-common
     files:
       - config/alertmanager.yaml
-      - config/prometheus.yaml
       - config/prometheus-msteams.yaml
       - config/ssl-exporter.yaml
+  - name: prometheus-configurator
+    files:
+      - config/prometheus-configurator/base.yaml
+      - config/prometheus-configurator/kube-state-metrics.yaml
+      - config/prometheus-configurator/linkerd-proxy.yaml
+      - config/prometheus-configurator/pods.yaml
