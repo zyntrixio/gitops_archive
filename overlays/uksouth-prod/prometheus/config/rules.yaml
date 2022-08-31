@@ -194,5 +194,6 @@ groups:
           severity: p1
           cluster: prod
           testing: true
+          callout: true
         annotations: 
           summary: This alert will test the Prometheus --> Alertmanager connectivity
