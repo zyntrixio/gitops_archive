@@ -33,6 +33,3 @@ groups:
       #   annotations:
       #     resource: '{{ $labels.name }}'
       #     summary: Check sftp virtual machines - bad up state for over 3 minutes
-
-
-  
