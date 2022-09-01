@@ -19,6 +19,13 @@ spec:
                 name: kratos
                 port:
                   number: 80
+          - path: /amex
+            pathType: Prefix
+            backend:
+              service:
+                name: kratos
+                port:
+                  number: 80
   tls:
     - hosts:
         - kratos.${cluster_name}.${location}.bink.sh
