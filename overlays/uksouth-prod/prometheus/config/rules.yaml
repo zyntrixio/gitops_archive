@@ -57,6 +57,18 @@ groups:
           title: 'Prod - Pod waiting status'
           description: 'Pod: {{$labels.pod}} is in this State: {{$labels.reason}} in this Namespace: {{$labels.namespace}}'
       
+      - alert: Rabbitmq Queue Length
+        expr: sum by(queue)(rabbitmq_queue_messages_ready) > 100
+        for: 5m
+        labels:
+          severity: p2
+          cluster: prod
+          resolve: false
+          component: Rabbitmq
+        annotations: 
+          title: 'Rabbitmq queue length over 100 ready tasks'
+          description: '{{$queue}} queue has been at over 100 tasks for 5 mins' 
+
       # - alert: core sftp up state
       #   expr: up{job="azure_node",name=~"sftp\\d"} < 1
       #   for: 3m
