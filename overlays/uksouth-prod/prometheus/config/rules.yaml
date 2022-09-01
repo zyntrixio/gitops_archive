@@ -1,5 +1,23 @@
 ---
 groups:
+
+# Set London time
+  - name: daylight_saving
+    rules:
+      - record: is_european_summer_time
+        expr: |
+          (vector(1) and (month() > 3 and month() < 10))
+          or
+          (vector(1) and (month() == 3 and (day_of_month() - day_of_week()) >= 25) and absent((day_of_month() >= 25) and (day_of_week() == 0)))
+          or
+          (vector(1) and (month() == 10 and (day_of_month() - day_of_week()) < 25) and absent((day_of_month() >= 25) and (day_of_week() == 0)))
+          or
+          (vector(1) and ((month() == 10 and hour() < 1) or (month() == 3 and hour() > 0)) and ((day_of_month() >= 25) and (day_of_week() == 0)))
+          or
+          vector(0)
+      - record: europe_london_hour
+        expr: hour() + is_european_summer_time
+
   - name: Infrastructure
     rules:
       - alert: Replicas Scaled Down
@@ -51,7 +69,7 @@ groups:
   - name: Service Team
     rules:
       - alert: Exported transactions
-        expr: sum(increase(transactions_total{slug!="iceland-bonus-card"}[2h])) by (slug) < 1
+        expr: sum(increase(transactions_total{slug!="iceland-bonus-card"}[2h])) by (slug) < 1 and europe_london_hour != 12 < 23
         for: 1m
         labels:
           severity: p2
@@ -111,8 +129,7 @@ groups:
           summary: There have been failed exports from harmonia returning receipt not found.
 
       - alert: Failed exports excluding receipt not found
-        expr: sum(failed_requests_total{response_result!="receipt
-          no not found"}) > 100
+        expr: sum(failed_requests_total{response_result!="receipt no not found"}) > 100
         for: 1m
         labels:
           severity: p2
