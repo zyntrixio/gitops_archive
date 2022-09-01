@@ -7,7 +7,7 @@ configMapGenerator:
   - name: alertmanager-rules
     files:
       - config/rules.yaml
-  - name: prometheus-configurator
+  - name: prometheus
     behavior: merge
     files:
       - config/prometheus/ssl.yaml

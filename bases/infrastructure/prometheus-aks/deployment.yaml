@@ -23,17 +23,58 @@ spec:
           command: [chown, -R, 65534:65534, /prometheus, /alertmanager]
           image: docker.io/alpine:3
           volumeMounts:
-            - name: prometheus-storage
+            - name: pvc-prometheus
               mountPath: /prometheus/
-            - name: alertmanager-storage
+            - name: pvc-alertmanager
               mountPath: /alertmanager/
-        - name: prometheus-configurator
-          image: ghcr.io/binkhq/prometheus-configurator:latest
+        - name: yamlmerge-alertmanager
+          image: ghcr.io/binkhq/yamlmerge:latest
+          env:
+            - name: source_directory
+              value: /configmap
+            - name: destination_file
+              value: /output/alertmanager.yaml
           volumeMounts:
-            - mountPath: /etc/prometheus/
-              name: prometheus-config
-            - mountPath: /etc/prometheus/conf.d/
-              name: prometheus-configurator-config
+            - name: emptydir-alertmanager
+              mountPath: /output
+            - name: configmap-alertmanager
+              mountPath: /configmap
+        - name: yamlmerge-prometheus
+          image: ghcr.io/binkhq/yamlmerge:latest
+          env:
+            - name: source_directory
+              value: /configmap
+            - name: destination_file
+              value: /output/prometheus.yaml
+          volumeMounts:
+            - name: emptydir-prometheus
+              mountPath: /output
+            - name: configmap-prometheus
+              mountPath: /configmap
+        - name: yamlmerge-prometheus-msteams
+          image: ghcr.io/binkhq/yamlmerge:latest
+          env:
+            - name: source_directory
+              value: /configmap
+            - name: destination_file
+              value: /output/prometheus-msteams.yaml
+          volumeMounts:
+            - name: emptydir-prometheus-msteams
+              mountPath: /output
+            - name: configmap-prometheus-msteams
+              mountPath: /configmap
+        - name: yamlmerge-ssl-exporter
+          image: ghcr.io/binkhq/yamlmerge:latest
+          env:
+            - name: source_directory
+              value: /configmap
+            - name: destination_file
+              value: /output/config.yaml
+          volumeMounts:
+            - name: emptydir-ssl-exporter
+              mountPath: /output
+            - name: configmap-ssl-exporter
+              mountPath: /configmap
       containers:
         - name: prometheus
           image: docker.io/prom/prometheus:v2.38.0
@@ -62,9 +103,9 @@ spec:
               port: prometheus
             periodSeconds: 60
           volumeMounts:
-            - name: prometheus-config
+            - name: emptydir-prometheus
               mountPath: /etc/prometheus/
-            - name: prometheus-storage
+            - name: pvc-prometheus
               mountPath: /prometheus/
         - name: alertmanager
           image: docker.io/prom/alertmanager:v0.24.0
@@ -93,10 +134,9 @@ spec:
               cpu: 100m
               memory: 128Mi
           volumeMounts:
-            - name: prometheus-common-config
-              mountPath: /etc/alertmanager/alertmanager.yaml
-              subPath: alertmanager.yaml
-            - name: alertmanager-storage
+            - name: emptydir-alertmanager
+              mountPath: /etc/alertmanager/
+            - name: pvc-alertmanager
               mountPath: /alertmanager/
         - name: ssl-exporter
           image: docker.io/ribbybibby/ssl-exporter:2.4.2
@@ -113,9 +153,8 @@ spec:
               cpu: 50m
               memory: 128Mi
           volumeMounts:
-            - name: prometheus-common-config
-              mountPath: /etc/ssl-exporter/config.yaml
-              subPath: ssl-exporter.yaml
+            - name: emptydir-ssl-exporter
+              mountPath: /etc/ssl-exporter/
         - name: prometheus-msteams
           image: quay.io/prometheusmsteams/prometheus-msteams:v1.5.1
           imagePullPolicy: Always
@@ -124,9 +163,8 @@ spec:
             - containerPort: 2000
               protocol: TCP
           volumeMounts:
-            - name: prometheus-common-config
-              mountPath: /etc/prometheus-msteams/prometheus-msteams.yaml
-              subPath: prometheus-msteams.yaml
+            - name: emptydir-prometheus-msteams
+              mountPath: /etc/prometheus-msteams/
           resources:
             limits:
               cpu: 100m
@@ -134,21 +172,31 @@ spec:
             requests:
               cpu: 50m
               memory: 128Mi
+      serviceAccountName: prometheus
       volumes:
-        - name: prometheus-common-config
+        - name: configmap-alertmanager
           configMap:
-            defaultMode: 420
-            name: prometheus-common
-        - name: prometheus-configurator-config
+            name: alertmanager
+        - name: configmap-prometheus
           configMap:
-            defaultMode: 420
-            name: prometheus-configurator
-        - name: prometheus-config
+            name: prometheus
+        - name: configmap-prometheus-msteams
+          configMap:
+            name: prometheus-msteams
+        - name: configmap-ssl-exporter
+          configMap:
+            name: ssl-exporter
+        - name: emptydir-alertmanager
           emptyDir: {}
-        - name: prometheus-storage
+        - name: emptydir-prometheus
+          emptyDir: {}
+        - name: emptydir-prometheus-msteams
+          emptyDir: {}
+        - name: emptydir-ssl-exporter
+          emptyDir: {}
+        - name: pvc-prometheus
           persistentVolumeClaim:
             claimName: prometheus
-        - name: alertmanager-storage
+        - name: pvc-alertmanager
           persistentVolumeClaim:
             claimName: alertmanager
-      serviceAccountName: prometheus
