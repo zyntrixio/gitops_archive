@@ -42,7 +42,6 @@ spec:
         - name: app
           image: binkcore.azurecr.io/bullsquid:latest
           args:
-            - python
             - bullsquid-worker
           resources:
             requests:
