@@ -1,12 +1,12 @@
 ---
-bases:
-  - ../core
+# bases:
+#   - ../core
 
-patches:
-  - path: labels.yaml
-  - path: name.yaml
-    target:
-      kind: Deployment
+# patches:
+#   - path: labels.yaml
+#   - path: name.yaml
+#     target:
+#       kind: Deployment
 
 resources:
   - cronjob.yaml
