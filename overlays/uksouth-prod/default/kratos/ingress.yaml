@@ -29,4 +29,3 @@ spec:
   tls:
     - hosts:
         - kratos.${cluster_name}.${location}.bink.sh
-      secretName: kratos.${cluster_name}.${location}.bink.sh

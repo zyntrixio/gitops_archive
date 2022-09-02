@@ -23,4 +23,3 @@ spec:
   tls:
     - hosts:
         - policies.${cluster_name}.${location}.bink.sh
-      secretName: policies.${cluster_name}.${location}.bink.sh

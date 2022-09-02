@@ -4,7 +4,6 @@ resources:
   - serviceaccount.yaml
   - service.yaml
   - deploy.yaml
-  - certificate.yaml
   - ingress.yaml
   - ingress-healthz.yaml
   - aad.yaml

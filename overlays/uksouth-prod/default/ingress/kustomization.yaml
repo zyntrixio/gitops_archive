@@ -1,7 +1,4 @@
 ---
-bases:
-  - ../../../../bases/common/issuer
-
 resources:
   - certificate-api.yaml
   - certificate-policies.yaml
