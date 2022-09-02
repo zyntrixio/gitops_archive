@@ -25,8 +25,7 @@ jobs:
               ./clusters/uksouth-sandbox/flux-system/gotk-components.yaml \
               ./clusters/uksouth-staging/flux-system/gotk-components.yaml \
               ./clusters/uksouth-tools/flux-system/gotk-components.yaml \
-              ./clusters/uksouth-tools-old/flux-system/gotk-components.yaml \
-              ./clusters/vagrant/flux-system/gotk-components.yaml
+              ./clusters/uksouth-tools-old/flux-system/gotk-components.yaml
 
           VERSION="$(flux -v | cut -d " " -f 3)"
           echo "::set-output name=flux_version::$VERSION"
