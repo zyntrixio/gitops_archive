@@ -67,7 +67,7 @@ groups:
           component: Rabbitmq
         annotations: 
           title: 'Rabbitmq queue length over 100 ready tasks'
-          description: '{{$queue}} queue has been at over 100 tasks for 5 mins' 
+          description: '{{$labels.queue}} queue has been at over 100 tasks for 5 mins' 
 
       # - alert: core sftp up state
       #   expr: up{job="azure_node",name=~"sftp\\d"} < 1
