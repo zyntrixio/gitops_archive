@@ -1,7 +1,0 @@
----
-bases:
-  - ../../../bases/infrastructure/ingress-nginx-canary
-
-replicas:
-  - name: ingress-nginx-controller
-    count: 3

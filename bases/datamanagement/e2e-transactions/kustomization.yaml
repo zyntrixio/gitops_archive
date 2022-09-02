@@ -1,7 +1,4 @@
 ---
-bases:
-  - ../../common/issuer
-
 resources:
   - namespace.yaml
   - deploy.yaml

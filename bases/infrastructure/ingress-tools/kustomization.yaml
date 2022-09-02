@@ -1,7 +1,0 @@
----
-bases:
-  - ../../common/issuer
-
-resources:
-  - ingress.yaml
-  - ingress-certificate.yaml
