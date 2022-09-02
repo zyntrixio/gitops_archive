@@ -23,4 +23,3 @@ spec:
   tls:
     - hosts:
         - data-dashboard.${cluster_name}.${location}.bink.sh
-      secretName: data.${cluster_name}.${location}.bink.sh

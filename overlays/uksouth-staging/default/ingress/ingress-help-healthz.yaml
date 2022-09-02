@@ -23,4 +23,3 @@ spec:
   tls:
     - hosts:
         - help.${cluster_name}.${location}.bink.sh
-      secretName: help.${cluster_name}.${location}.bink.sh

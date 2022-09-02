@@ -4,7 +4,6 @@ bases:
 
 resources:
   - ingress.yaml
-  - cert.yaml
   - ingress-healthz.yaml
 
 patches:

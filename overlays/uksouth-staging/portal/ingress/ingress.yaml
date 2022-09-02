@@ -43,4 +43,3 @@ spec:
   tls:
     - hosts:
         - portal.${cluster_name}.${location}.bink.sh
-      secretName: portal.${cluster_name}.${location}.bink.sh
