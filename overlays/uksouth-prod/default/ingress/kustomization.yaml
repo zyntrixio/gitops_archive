@@ -1,8 +1,5 @@
 ---
 resources:
-  - certificate-api.yaml
-  - certificate-policies.yaml
-  - certificate-help.yaml
   - ingress-api.yaml
   - ingress-api-healthz.yaml
   - ingress-policies.yaml
