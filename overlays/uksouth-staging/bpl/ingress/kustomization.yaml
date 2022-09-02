@@ -1,7 +1,4 @@
 ---
-bases:
-  - ../../../../bases/common/issuer
-
 resources:
   - ingress.yaml
   - ingress-healthz.yaml

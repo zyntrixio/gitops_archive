@@ -1,7 +1,6 @@
 ---
 bases:
   - ../../../../bases/olympus/api2-docs
-  - ../../../../bases/common/issuer
 
 resources:
   - ingress.yaml
