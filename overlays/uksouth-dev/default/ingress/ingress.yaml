@@ -260,4 +260,3 @@ spec:
   tls:
     - hosts:
         - api.${cluster_name}.${location}.bink.sh
-      secretName: api.${cluster_name}.${location}.bink.sh

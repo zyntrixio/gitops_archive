@@ -36,4 +36,3 @@ spec:
   tls:
     - hosts:
         - api2-docs.${cluster_name}.${location}.bink.sh
-      secretName: api2-docs.${cluster_name}.${location}.bink.sh

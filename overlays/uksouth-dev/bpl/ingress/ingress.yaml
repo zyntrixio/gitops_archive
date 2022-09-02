@@ -58,4 +58,3 @@ spec:
   tls:
     - hosts:
         - bpl.${cluster_name}.${location}.bink.sh
-      secretName: bpl.${cluster_name}.${location}.bink.sh

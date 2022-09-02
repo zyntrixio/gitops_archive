@@ -34,4 +34,3 @@ spec:
     - hosts:
         - web-bink.${cluster_name}.${location}.bink.sh
         - web-wasabi.${cluster_name}.${location}.bink.sh
-      secretName: web.${cluster_name}.${location}.bink.sh

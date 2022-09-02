@@ -31,12 +31,6 @@ patches:
 
 patchesStrategicMerge:
   - |-
-    apiVersion: cert-manager.io/v1
-    kind: Certificate
-    metadata:
-      name: reflector.${cluster_name}.${location}.bink.sh
-    $patch: delete
-  - |-
     apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
