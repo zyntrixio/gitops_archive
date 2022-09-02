@@ -3,7 +3,6 @@ bases:
   - ../../../../bases/oss/api-reflector
 
 resources:
-  - cert.yaml
   - ingress.yaml
   - ingress-healthz.yaml
 

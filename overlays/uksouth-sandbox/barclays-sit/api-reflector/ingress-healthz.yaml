@@ -23,4 +23,3 @@ spec:
   tls:
     - hosts:
         - barclays-sit-reflector.${cluster_name}.${location}.bink.sh
-      secretName: barclays-sit-reflector.${cluster_name}.${location}.bink.sh

@@ -23,4 +23,3 @@ spec:
   tls:
     - hosts:
         - grafana.tools.uksouth.bink.sh
-      secretName: grafana.tools.uksouth.bink.sh

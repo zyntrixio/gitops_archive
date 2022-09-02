@@ -23,4 +23,3 @@ spec:
   tls:
     - hosts:
         - barclays-oat.${cluster_name}.${location}.bink.sh
-      secretName: barclays-oat.${cluster_name}.${location}.bink.sh

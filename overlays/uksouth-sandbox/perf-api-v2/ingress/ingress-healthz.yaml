@@ -23,4 +23,3 @@ spec:
   tls:
     - hosts:
         - perf-api-v2.${cluster_name}.${location}.bink.sh
-      secretName: perf-api-v2.${cluster_name}.${location}.bink.sh

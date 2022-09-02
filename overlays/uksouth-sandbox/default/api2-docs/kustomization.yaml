@@ -1,10 +1,8 @@
 ---
 bases:
   - ../../../../bases/olympus/api2-docs
-  - ../../../../bases/common/issuer
 
 resources:
-  - certificate.yaml
   - ingress.yaml
   - ingress-healthz.yaml
 

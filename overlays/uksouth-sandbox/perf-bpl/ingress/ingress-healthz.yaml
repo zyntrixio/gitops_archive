@@ -23,4 +23,3 @@ spec:
   tls:
     - hosts:
         - perf-bpl.${cluster_name}.${location}.bink.sh
-      secretName: perf-bpl.${cluster_name}.${location}.bink.sh

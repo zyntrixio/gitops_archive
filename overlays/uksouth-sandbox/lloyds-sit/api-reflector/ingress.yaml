@@ -23,4 +23,3 @@ spec:
   tls:
     - hosts:
         - lloyds-sit-reflector.${cluster_name}.${location}.bink.sh
-      secretName: lloyds-sit-reflector.${cluster_name}.${location}.bink.sh

@@ -230,4 +230,3 @@ spec:
   tls:
     - hosts:
         - perf-data.${cluster_name}.${location}.bink.sh
-      secretName: perf-data.${cluster_name}.${location}.bink.sh

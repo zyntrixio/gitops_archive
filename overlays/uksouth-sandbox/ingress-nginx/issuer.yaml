@@ -2,13 +2,13 @@
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: bink.sh
-  namespace: default
+  name: acme-azuredns-bink-sh
+  namespace: ingress-nginx
 spec:
   acme:
     email: onlineservices@bink.com
     privateKeySecretRef:
-      name: bink.sh-letsencrypt
+      name: acme-azuredns-bink-sh
     server: https://acme-v02.api.letsencrypt.org/directory
     solvers:
       - dns01:
@@ -17,17 +17,3 @@ spec:
             resourceGroupName: uksouth-dns
             hostedZoneName: bink.sh
             environment: AzurePublicCloud
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: grafana.${cluster_name}.${location}.bink.sh
-  namespace: default
-spec:
-  dnsNames:
-    - grafana.${cluster_name}.${location}.bink.sh
-  issuerRef:
-    group: cert-manager.io
-    kind: Issuer
-    name: bink.sh
-  secretName: grafana.${cluster_name}.${location}.bink.sh

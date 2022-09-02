@@ -237,4 +237,3 @@ spec:
   tls:
     - hosts:
         - lloyds-sit.${cluster_name}.${location}.bink.sh
-      secretName: lloyds-sit.${cluster_name}.${location}.bink.sh

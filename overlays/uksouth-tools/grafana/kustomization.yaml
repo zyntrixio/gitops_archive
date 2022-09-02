@@ -1,6 +1,5 @@
 ---
 resources:
-  - certs.yaml
   - deploy.yaml
   - ingress.yaml
   - namespace.yaml

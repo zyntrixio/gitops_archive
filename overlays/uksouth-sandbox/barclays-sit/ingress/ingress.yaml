@@ -120,4 +120,3 @@ spec:
   tls:
     - hosts:
         - barclays-sit.${cluster_name}.${location}.bink.sh
-      secretName: barclays-sit.${cluster_name}.${location}.bink.sh
