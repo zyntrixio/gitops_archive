@@ -6,6 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
+  timeout: 5m
   path: ./bases/infrastructure/linkerd/viz
   prune: true
   dependsOn:
