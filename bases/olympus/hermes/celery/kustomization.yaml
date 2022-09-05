@@ -37,6 +37,7 @@ patches:
                   - --without-gossip
                   - --without-mingle
                   - --loglevel=info
-                  - --pool=solo
+                  - --pool=prefork
+                  - --concurrency=2
                   - --queues=ubiquity-async-midas,record-history
                   - --events
