@@ -44,7 +44,7 @@ patches:
                     mountPath: /app/example.toml
                     subPath: example.toml
             volumes:
-              - name: bullsquid
+              - name: config
                 configMap:
                   defaultMode: 400
                   name: bullsquid
