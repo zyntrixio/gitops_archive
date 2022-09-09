@@ -8,6 +8,8 @@ configMapGenerator:
   - name: bullsquid
     envs:
       - env.ini
+    files:
+      - config/example.toml
 
 patches:
   - target:
@@ -37,3 +39,12 @@ patches:
                       secretKeyRef:
                         name: azure-pgfs
                         key: common_placeholder
+                volumeMounts:
+                  - name: config
+                    mountPath: /app/example.toml
+                    subPath: example.toml
+            volumes:
+              - name: bullsquid
+                configMap:
+                  defaultMode: 400
+                  name: bullsquid
