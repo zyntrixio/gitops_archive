@@ -177,8 +177,7 @@ groups:
           summary: There has been an increase in failed HTTP requests from Midas to {{$labels.slug}}
 
       - alert: midas - failed login is increasing
-        expr: sum(increase(log_in_fail_total{}[10m]))
-          by (slug) > 5
+        expr: sum(increase(log_in_fail_total{}[10m])) by (slug) > 5
         for: 15m
         labels:
           severity: p2
