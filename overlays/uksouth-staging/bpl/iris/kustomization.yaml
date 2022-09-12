@@ -19,6 +19,6 @@ patches:
               - name: app
                 env:
                   - name: STORAGE_CONTAINER
-                    value: polaris-assets
+                    value: bpl-media
                   - name: STORAGE_CONTAINER_IN_URL
                     value: "false"
