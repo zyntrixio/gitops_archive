@@ -15,12 +15,12 @@ spec:
     name: flux-system
   postBuild:
     substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
+    - kind: ConfigMap
+      name: cluster-vars
   images:
   - name: binkcore.azurecr.io/bullsquid
     newName: binkcore.azurecr.io/bullsquid
-    newTag: 2022-09-05T170728Z # {"$imagepolicy": "flux-system:uksouth-dev-bullsquid:tag"}
+    newTag: 2022-09-12T163231Z # {"$imagepolicy": "flux-system:uksouth-dev-bullsquid:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
