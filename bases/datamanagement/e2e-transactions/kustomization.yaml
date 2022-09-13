@@ -3,6 +3,5 @@ resources:
   - namespace.yaml
   - deploy.yaml
   - service.yaml
-  - cert.yaml
   - ingress.yaml
   - ingress-healthz.yaml
