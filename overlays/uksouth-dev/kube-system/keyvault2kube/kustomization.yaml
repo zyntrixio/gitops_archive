@@ -1,6 +1,6 @@
 ---
 bases:
-  - github.com/terrycain/keyvault2kube/deploy?ref=2.2.0
+  - github.com/terrycain/keyvault2kube/deploy?ref=2.2.1
 
 patches:
   - target:
