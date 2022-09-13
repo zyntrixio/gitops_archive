@@ -29,18 +29,20 @@ patches:
       - op: replace
         path: /spec/jobTemplate/spec/template/spec/containers/0/env
         value:
-          - name: source_psql_connection_string
+          - name: source_database_dsn
             valueFrom:
               secretKeyRef:
-                key: common_hermes
+                key: common_placeholder
                 name: azure-pgfs
-          - name: destination_psql_connection_string
+          - name: source_database_name
+            value: hermes
+          - name: destination_database_dsn
             valueFrom:
               secretKeyRef:
-                key: tableau_postgres
+                key: tableau_placeholder
                 name: azure-pgfs
-          - name: destination_is_single_server
-            value: 'false'
+          - name: destination_database_name
+            value: hermes
           - name: redis_url
             valueFrom:
               secretKeyRef:
