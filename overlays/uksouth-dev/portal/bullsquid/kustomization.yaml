@@ -8,11 +8,8 @@ configMapGenerator:
   - name: bullsquid
     envs:
       - env.ini
-
-secretGenerator:
-  - name: bullsquid
     files:
-      - config/config.toml
+      - config/example.toml
 
 patches:
   - target:
@@ -44,9 +41,10 @@ patches:
                         key: common_placeholder
                 volumeMounts:
                   - name: config
-                    mountPath: /app/config.toml
-                    subPath: config.toml
+                    mountPath: /app/example.toml
+                    subPath: example.toml
             volumes:
               - name: config
-                secret:
-                  secretName: bullsquid
+                configMap:
+                  defaultMode: 400
+                  name: bullsquid
