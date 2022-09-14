@@ -9,7 +9,7 @@ configMapGenerator:
     envs:
       - env.ini
     files:
-      - config/example.toml
+      - config/config.toml
 
 patches:
   - target:
@@ -41,8 +41,8 @@ patches:
                         key: common_placeholder
                 volumeMounts:
                   - name: config
-                    mountPath: /app/example.toml
-                    subPath: example.toml
+                    mountPath: /app/config.toml
+                    subPath: config.toml
             volumes:
               - name: config
                 configMap:
