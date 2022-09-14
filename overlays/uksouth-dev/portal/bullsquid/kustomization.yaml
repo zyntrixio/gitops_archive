@@ -43,8 +43,17 @@ patches:
                   - name: config
                     mountPath: /app/config.toml
                     subPath: config.toml
+                  - name: database-dsn
+                    mountPath: /var/run/secrets/bullsquid
+                    readOnly: true
             volumes:
               - name: config
                 configMap:
                   defaultMode: 400
                   name: bullsquid
+              - name: database-dsn
+                secret:
+                  secretName: azure-pgfs
+                  items:
+                    - key: common_placeholder
+                      path: database_dsn

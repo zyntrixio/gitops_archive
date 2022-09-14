@@ -13,10 +13,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  postBuild:
-    substituteFrom:
-    - kind: Secret
-      name: azure-pgfs
   images:
   - name: binkcore.azurecr.io/bullsquid
     newName: binkcore.azurecr.io/bullsquid
