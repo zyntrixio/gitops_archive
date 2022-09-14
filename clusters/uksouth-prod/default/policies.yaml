@@ -13,7 +13,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/policies.gb.bink.com
     newName: binkcore.azurecr.io/policies.gb.bink.com
-    newTag: prod-2022-09-14T161945Z # {"$imagepolicy": "flux-system:uksouth-prod-policies:tag"}
+    newTag: prod-2022-09-06T113522Z # {"$imagepolicy": "flux-system:uksouth-prod-policies:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
