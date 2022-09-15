@@ -1,0 +1,49 @@
+---
+bases:
+  - ../../../bases/web/core
+  - ../../../bases/web/bink
+  - ../../../bases/web/wasabi
+
+namespace: web
+
+configMapGenerator:
+  - name: web-bink
+    envs:
+      - config/bink.ini
+  - name: web-wasabi
+    envs:
+      - config/wasabi.ini
+
+patches:
+  - target:
+      kind: Deployment
+      name: web-bink
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: web-wasabi
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: web-bink
+  - target:
+      kind: Deployment
+      name: web-wasabi
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: web-wasabi
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: web-wasabi

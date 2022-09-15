@@ -1,0 +1,36 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/service-upstream: 'true'
+    nginx.ingress.kubernetes.io/use-regex: "true"
+  name: web.${cluster_name}.${location}.bink.sh
+  namespace: default
+spec:
+  rules:
+    - host: web-bink.${cluster_name}.${location}.bink.sh
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-bink
+                port:
+                  number: 80
+    - host: web-wasabi.${cluster_name}.${location}.bink.sh
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-wasabi
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - web-bink.${cluster_name}.${location}.bink.sh
+        - web-wasabi.${cluster_name}.${location}.bink.sh
