@@ -17,7 +17,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/europa
       newName: binkcore.azurecr.io/europa
-      newTag: 2022-09-15T114306Z # {"$imagepolicy": "flux-system:uksouth-dev-europa:tag"}
+      newTag: 2022-09-16T083538Z # {"$imagepolicy": "flux-system:uksouth-dev-europa:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
