@@ -16,4 +16,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/europa
       newName: binkcore.azurecr.io/europa
-      newTag: staging-1.5.2 # {"$imagepolicy": "flux-system:perf-europa:tag"}
+      newTag: staging-1.6.0 # {"$imagepolicy": "flux-system:perf-europa:tag"}
