@@ -1,0 +1,12 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: metrics-statuspage
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-tools/frontdoor-ipgroup-updater
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system

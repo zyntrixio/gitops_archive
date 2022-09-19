@@ -1,0 +1,50 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: frontdoor-ipgroup-updater
+  namespace: default
+  labels:
+    app: frontdoor-ipgroup-updater
+  annotations:
+    buoyant.cloud/excluded: 'true'
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  schedule: 0 12 * * *
+  jobTemplate:
+    metadata:
+      labels:
+        app: frontdoor-ipgroup-updater
+    spec:
+      template:
+        metadata:
+          labels:
+            app: frontdoor-ipgroup-updater
+          annotations:
+            kubectl.kubernetes.io/default-container: app
+        spec:
+          containers:
+            - name: app
+              image: ghcr.io/cpressland/frontdoor-ipgroup-updater:latest
+              imagePullPolicy: Always
+              volumeMounts:
+                - name: config
+                  mountPath: /app/config.toml
+                  subPath: config.toml
+                - name: secret
+                  mountPath: /var/run/secrets/frontdoor-ipgroup-updater
+                  readOnly: true
+          restartPolicy: Never
+          volumes:
+            - name: config
+              configMap:
+                defaultMode: 400
+                name: frontdoor-ipgroup-updater
+            - name: secret
+              secret:
+                secretName: frontdoor-ipgroup-updater
+                items:
+                  - key: application_secret
+                    path: application_secret
