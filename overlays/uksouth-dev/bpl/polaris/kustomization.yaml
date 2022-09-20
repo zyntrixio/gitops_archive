@@ -20,6 +20,13 @@ configMapGenerator:
 patches:
   - target:
       kind: Deployment
+      name: polaris-cron-scheduler
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "-m", "polaris.core.cli", "cron-scheduler"]
+  - target:
+      kind: Deployment
     patch: |-
       apiVersion: apps/v1
       kind: Deployment
