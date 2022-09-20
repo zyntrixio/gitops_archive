@@ -6,8 +6,6 @@ namespace: portal
 
 configMapGenerator:
   - name: bullsquid
-    envs:
-      - env.ini
     files:
       - config/config.toml
 
