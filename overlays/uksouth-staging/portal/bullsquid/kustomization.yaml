@@ -6,8 +6,8 @@ namespace: portal
 
 configMapGenerator:
   - name: bullsquid
-    envs:
-      - env.ini
+    files:
+      - config/config.toml
 
 patches:
   - target:
@@ -37,3 +37,21 @@ patches:
                       secretKeyRef:
                         name: azure-pgfs
                         key: common_placeholder
+                volumeMounts:
+                  - name: config
+                    mountPath: /app/config.toml
+                    subPath: config.toml
+                  - name: database-dsn
+                    mountPath: /var/run/secrets/bullsquid
+                    readOnly: true
+            volumes:
+              - name: config
+                configMap:
+                  defaultMode: 400
+                  name: bullsquid
+              - name: database-dsn
+                secret:
+                  secretName: azure-pgfs
+                  items:
+                    - key: common_placeholder
+                      path: database_dsn

@@ -1,0 +1,13 @@
+[database]
+dbname = "bullsquid"
+
+[oauth]
+domain = "https://bink.eu.auth0.com/"
+
+[txm]
+base_url = "http://api-reflector.default/mock/"
+api_key = "fake-api-key"
+
+[sentry]
+dsn = "https://43a7f303ba504429b75d68f42338b2d1@o503751.ingest.sentry.io/6533846"
+env = "staging"
