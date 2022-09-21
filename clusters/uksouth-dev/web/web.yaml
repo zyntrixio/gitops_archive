@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/web-bink
     newName: binkcore.azurecr.io/web-bink
-    newTag: 2022-09-15T132451Z # {"$imagepolicy": "flux-system:uksouth-dev-web-bink:tag"}
+    newTag: 2022-09-21T143433Z # {"$imagepolicy": "flux-system:uksouth-dev-web-bink:tag"}
   - name: binkcore.azurecr.io/web-wasabi
     newName: binkcore.azurecr.io/web-wasabi
     newTag: 2022-09-21T143427Z # {"$imagepolicy": "flux-system:uksouth-dev-web-wasabi:tag"}
