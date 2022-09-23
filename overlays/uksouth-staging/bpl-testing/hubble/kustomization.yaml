@@ -31,6 +31,13 @@ patches:
                 args: ["python", "/app/migrator.py"]
   - target:
       kind: Deployment
+      name: hubble-consumer
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "-m", "hubble.cli", "activity-consumer"]
+  - target:
+      kind: Deployment
     patch: |-
       apiVersion: apps/v1
       kind: Deployment
