@@ -21,4 +21,4 @@ patches:
             containers:
               - name: app
                 command: ["linkerd-await", "--"]
-                args: ["python", "-m", "app.cli", "activity-consumer"]
+                args: ["python", "-m", "hubble.cli", "activity-consumer"]
