@@ -17,4 +17,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/polaris
     newName: binkcore.azurecr.io/polaris
-    newTag: 2022-09-21T190145Z # {"$imagepolicy": "flux-system:perf-polaris:tag"}
+    newTag: 2022-09-23T135005Z # {"$imagepolicy": "flux-system:perf-polaris:tag"}
