@@ -17,4 +17,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/vela
     newName: binkcore.azurecr.io/vela
-    newTag: staging-2.1.0 # {"$imagepolicy": "flux-system:uksouth-staging-vela:tag"}
+    newTag: staging-2.1.1 # {"$imagepolicy": "flux-system:uksouth-staging-vela:tag"}
