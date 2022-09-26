@@ -17,4 +17,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/carina
     newName: binkcore.azurecr.io/carina
-    newTag: 2022-09-23T162005Z # {"$imagepolicy": "flux-system:perf-carina:tag"}
+    newTag: 2022-09-26T123103Z # {"$imagepolicy": "flux-system:perf-carina:tag"}
