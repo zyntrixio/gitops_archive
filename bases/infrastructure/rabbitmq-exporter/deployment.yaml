@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: rabbitmq-exporter
-          image: ghcr.io/kbudde/rabbitmq_exporter:1.0.0-RC13
+          image: ghcr.io/kbudde/rabbitmq_exporter:1.0.0-RC19
           ports:
             - containerPort: 9100
           env:
