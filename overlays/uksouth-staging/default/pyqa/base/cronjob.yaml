@@ -1,0 +1,62 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pyqa
+  namespace: default
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  schedule: 5 22 * * *
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      template:
+        metadata:
+          annotations:
+            linkerd.io/inject: enabled
+            kubectl.kubernetes.io/default-container: app
+          labels:
+            app: pyqa
+            org: barclays
+            aadpodidbinding: pyqa
+        spec:
+          restartPolicy: Never
+          imagePullSecrets:
+            - name: binkcore.azurecr.io
+          volumes:
+            - name: data
+              emptyDir: {}
+          containers:
+            - name: script
+              command: [linkerd-await, --]
+              args:
+                - bash
+                - -c
+                - ./report-render.sh
+              image: binkcore.azurecr.io/pyqa:latest
+              securityContext:
+                runAsGroup: 0
+                runAsUser: 0
+              imagePullPolicy: Always
+              volumeMounts:
+                - mountPath: /tmp
+                  name: data
+            - name: app
+              command: [linkerd-await, --]
+              image: binkcore.azurecr.io/pyqa:latest
+              volumeMounts:
+                - mountPath: /tmp
+                  name: data
+              securityContext:
+                runAsGroup: 0
+                runAsUser: 0
+              imagePullPolicy: Always
+              resources:
+                limits:
+                  cpu: 1000m
+                  memory: 500Mi
+                requests:
+                  cpu: 50m
+                  memory: 500Mi

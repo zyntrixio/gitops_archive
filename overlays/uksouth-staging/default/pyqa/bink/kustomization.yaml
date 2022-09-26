@@ -1,0 +1,13 @@
+---
+bases:
+  - ../base
+
+nameSuffix: -bink
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/1/args
+        value: [ "bash", "-c", "pytest --html /tmp/report.html --self-contained-html -s -m sanity --channel bink --env staging && echo $? > /tmp/status.txt" ]

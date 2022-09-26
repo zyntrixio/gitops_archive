@@ -1,17 +1,66 @@
 ---
 bases:
-  - ../../../../bases/qa/pyqa/bink
-  - ../../../../bases/qa/pyqa/barclays
+  - barclays
+  - bink
 
 resources:
   - azureidentity.yaml
 
+configMapGenerator:
+  - name: pyqa-bink
+    envs:
+      - config/bink.ini
+  - name: pyqa-barclays
+    envs:
+      - config/barclays.ini
+
 patches:
-  - path: env-barclays.yaml
-    target:
-      name: pyqa-barclays
-      kind: Deployment
-  - path: env-bink.yaml
-    target:
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/1/env
+        value:
+          - name: BLOB_STORAGE_DSN
+            valueFrom:
+              secretKeyRef:
+                key: connection_string
+                name: azure-storage-common
+          - name: HERMES_DATABASE_URI
+            valueFrom:
+              secretKeyRef:
+                name: azure-pgfs
+                key: common_hermes
+          - name: HARMONIA_DATABASE_URI
+            valueFrom:
+              secretKeyRef:
+                name: azure-pgfs
+                key: common_harmonia
+  - target:
+      kind: CronJob
       name: pyqa-bink
-      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: pyqa-bink
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/1/envFrom
+        value:
+          - configMapRef:
+              name: pyqa-bink
+  - target:
+      kind: CronJob
+      name: pyqa-barclays
+    patch: |-
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: pyqa-barclays
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/1/envFrom
+        value:
+          - configMapRef:
+              name: pyqa-barclays
