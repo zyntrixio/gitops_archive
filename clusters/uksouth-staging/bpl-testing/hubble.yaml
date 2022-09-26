@@ -16,4 +16,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/hubble
     newName: binkcore.azurecr.io/hubble
-    newTag: staging-1.1.2 # {"$imagepolicy": "flux-system:uksouth-staging-hubble:tag"}
+    newTag: staging-1.1.3 # {"$imagepolicy": "flux-system:uksouth-staging-hubble:tag"}
