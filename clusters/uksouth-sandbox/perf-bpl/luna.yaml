@@ -16,4 +16,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/luna
       newName: binkcore.azurecr.io/luna
-      newTag: 2022-07-04T124608Z # {"$imagepolicy": "flux-system:perf-luna:tag"}
+      newTag: 2022-09-27T144600Z # {"$imagepolicy": "flux-system:perf-luna:tag"}
