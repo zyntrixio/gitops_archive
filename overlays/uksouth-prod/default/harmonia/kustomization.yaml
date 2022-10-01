@@ -27,6 +27,8 @@ resources:
 replicas:
   - name: harmonia
     count: 1
+  - name: harmonia-import-agent-visa-auth
+    count: 0
 
 namespace: default
 
