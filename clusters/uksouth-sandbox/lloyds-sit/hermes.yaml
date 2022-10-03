@@ -18,4 +18,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/hermes
       newName: binkcore.azurecr.io/hermes
-      newTag: staging-2.88.0
+      newTag: staging-2.89.1
