@@ -1,16 +1,55 @@
 ---
 bases:
-  - github.com/kubernetes/ingress-nginx/deploy/static/provider/baremetal?ref=controller-v1.1.3
+  - github.com/kubernetes/ingress-nginx/deploy/static/provider/cloud?ref=controller-v1.3.0
+
+replicas:
+  - name: ingress-nginx-controller
+    count: 3
 
 patches:
-  - path: patch-nodeport.yaml
-  - path: patch-annotations.yaml
   - path: patch-logging.yaml
-  - path: patch-metrics.yaml
-  - path: patch-antiaffinity.yaml
   - target:
       kind: Deployment
+      name: ingress-nginx-controller
     patch: |-
-      - op: add
-        path: /spec/replicas
-        value: 2
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: ingress-nginx-controller
+        namespace: ingress-nginx
+      spec:
+        template:
+          metadata:
+            annotations:
+              linkerd.io/inject: enabled
+              config.linkerd.io/skip-inbound-ports: 80,443
+              kubectl.kubernetes.io/default-container: controller
+          spec:
+            affinity:
+              podAntiAffinity:
+                preferredDuringSchedulingIgnoredDuringExecution:
+                  - weight: 100
+                    podAffinityTerm:
+                      labelSelector:
+                        matchExpressions:
+                          - key: app.kubernetes.io/name
+                            operator: In
+                            values:
+                              - ingress-nginx
+                          - key: app.kubernetes.io/component
+                            operator: In
+                            values:
+                              - controller
+                      topologyKey: topology.kubernetes.io/zone
+  - target:
+      kind: Service
+      name: ingress-nginx-controller
+    patch: |-
+      apiVersion: apps/v1
+      kind: Service
+      metadata:
+        name: ingress-nginx-controller
+        annotations:
+          service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+      spec:
+        loadBalancerIP: ${loadbalancer_ip}

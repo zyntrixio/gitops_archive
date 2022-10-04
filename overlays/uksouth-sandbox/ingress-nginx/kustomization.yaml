@@ -1,6 +1,6 @@
 ---
 bases:
-  - ../../../bases/infrastructure/ingress-nginx-aks
+  - ../../../bases/infrastructure/ingress-nginx
 
 resources:
   - certificate.yaml
