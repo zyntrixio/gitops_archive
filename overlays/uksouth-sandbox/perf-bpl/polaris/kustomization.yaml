@@ -26,6 +26,27 @@ patches:
         value: polaris-api.perf-bpl.svc.cluster.local
   - target:
       kind: Deployment
+      name: polaris-task-worker
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "-m", "polaris.core.cli", "task-worker"]
+  - target:
+      kind: Deployment
+      name: polaris-cron-scheduler
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "-m", "polaris.core.cli", "cron-scheduler"]
+  - target:
+      kind: Deployment
+      name: polaris-tx-history-consumer
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "-m", "polaris.core.cli", "tx-history-consumer"]
+  - target:
+      kind: Deployment
     patch: |-
       apiVersion: apps/v1
       kind: Deployment
