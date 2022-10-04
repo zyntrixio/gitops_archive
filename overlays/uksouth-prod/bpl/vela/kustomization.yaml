@@ -25,20 +25,6 @@ configMapGenerator:
 patches:
   - target:
       kind: Deployment
-      name: vela-task-worker
-    patch: |-
-      - op: replace
-        path: /spec/template/spec/containers/0/args
-        value: ["python", "-m", "vela.core.cli", "task-worker"]
-  - target:
-      kind: Deployment
-      name: vela-cron-scheduler
-    patch: |-
-      - op: replace
-        path: /spec/template/spec/containers/0/args
-        value: ["python", "-m", "vela.core.cli", "cron-scheduler"]
-  - target:
-      kind: Deployment
     patch: |-
       apiVersion: apps/v1
       kind: Deployment

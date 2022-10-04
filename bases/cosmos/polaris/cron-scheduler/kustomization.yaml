@@ -30,7 +30,7 @@ patches:
             containers:
               - name: app
                 command: ["linkerd-await", "--"]
-                args: ["python", "-m", "app.core.cli", "cron-scheduler"]
+                args: ["python", "-m", "polaris.core.cli", "cron-scheduler"]
                 resources:
                   limits:
                     memory: 1Gi
