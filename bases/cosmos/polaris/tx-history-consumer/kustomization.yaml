@@ -26,4 +26,4 @@ patches:
             containers:
               - name: app
                 command: ["linkerd-await", "--"]
-                args: ["python", "-m", "app.core.cli", "tx-history-consumer"]
+                args: ["python", "-m", "polaris.core.cli", "tx-history-consumer"]

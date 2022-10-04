@@ -26,4 +26,4 @@ patches:
             containers:
               - name: app
                 command: ["linkerd-await", "--"]
-                args: ["python", "-m", "app.core.cli", "task-worker"]
+                args: ["python", "-m", "carina.core.cli", "task-worker"]
