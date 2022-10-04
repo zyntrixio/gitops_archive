@@ -1,6 +1,6 @@
 ---
 bases:
-  - ../../../bases/infrastructure/ingress-nginx
+  - ../../../bases/infrastructure/ingress-nginx-canary
 
 resources:
   - certificate.yaml
