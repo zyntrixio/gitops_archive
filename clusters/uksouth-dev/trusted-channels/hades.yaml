@@ -16,4 +16,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/hades
       newName: binkcore.azurecr.io/hades
-      newTag: 2022-10-05T205504Z # {"$imagepolicy": "flux-system:uksouth-dev-hades:tag"}
+      newTag: 2022-10-05T211837Z # {"$imagepolicy": "flux-system:uksouth-dev-hades:tag"}
