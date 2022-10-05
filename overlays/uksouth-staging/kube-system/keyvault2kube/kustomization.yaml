@@ -1,6 +1,6 @@
 ---
 bases:
-  - github.com/terrycain/keyvault2kube/deploy?ref=2.2.1
+  - github.com/terrycain/keyvault2kube/deploy?ref=2.3.1
 
 configMapGenerator:
   - name: keyvault2kube
