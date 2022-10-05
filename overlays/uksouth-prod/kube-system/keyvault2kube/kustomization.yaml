@@ -22,21 +22,21 @@ patches:
   - target:
       kind: Deployment
     patch: |-
-      - op: replace
-        path: /spec/template/spec/containers/0/volumeMounts
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts/-
         value:
-          - mountPath: /app/templates
-            name: template-config
+          mountPath: /app/templates
+          name: template-config
   - target:
       kind: Deployment
     patch: |-
-      - op: replace
-        path: /spec/template/spec/volumes
+      - op: add
+        path: /spec/template/spec/volumes/-
         value:
-          - name: template-config
-            configMap:
-              defaultMode: 420
-              name: keyvault2kube
+          name: template-config
+          configMap:
+            defaultMode: 420
+            name: keyvault2kube
   - target:
       kind: AzureIdentity
     patch: |-
