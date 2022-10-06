@@ -17,4 +17,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/hades
       newName: binkcore.azurecr.io/hades
-      newTag: prod-2.6.0
+      newTag: prod-2.6.0 # {"$imagepolicy": "flux-system:perf-hades:tag"}
