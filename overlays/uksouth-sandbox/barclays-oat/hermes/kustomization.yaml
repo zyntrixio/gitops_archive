@@ -44,8 +44,10 @@ patches:
                       secretKeyRef:
                         key: connection_string
                         name: azure-storage-barclays-oat
-                  - name: HERMES_DATABASE_URL
+                  - name: HERMES_DATABASE_URL_BARE
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
                         key: common_barclays_oat_hermes
+                  - name: HERMES_DATABASE_URL
+                    value: $(HERMES_DATABASE_URL_BARE)&application_name=hermes

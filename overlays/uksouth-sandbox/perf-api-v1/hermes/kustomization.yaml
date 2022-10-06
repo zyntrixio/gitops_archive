@@ -72,11 +72,14 @@ patches:
                       secretKeyRef:
                         name: azure-storage-perf-api-v1
                         key: connection_string
-                  - name: HERMES_DATABASE_URL
+                  - name: HERMES_DATABASE_URL_BARE
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
                         key: common_perf_api_v1_hermes
+                  - name: HERMES_DATABASE_URL
+                    value: $(HERMES_DATABASE_URL_BARE)&application_name=hermes
+
   - target:
       kind: Deployment
       name: hermes-api
