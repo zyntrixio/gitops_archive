@@ -50,7 +50,7 @@ spec:
               - name: SCHEDULE
                 value: 0 5 * * *
               - name: COMMAND
-                value: pytest --html report.html --self-contained-html -s -m sanity --channel bink --env staging | true
+                value: pytest --html report.html --self-contained-html -s -m sanity --channel bink --env staging
               - name: ALERT_ON_SUCCESS
                 value: 'True'
               - name: ALERT_ON_FAILURE
@@ -79,7 +79,7 @@ spec:
             args:
               - bash
               - -c
-              - pytest --html /tmp/report.html --self-contained-html -s -m sanity --channel bink --env staging && echo $? > /tmp/status.txt
+              - pytest --html /tmp/report.html --self-contained-html -s -m sanity --channel bink --env staging && echo $? > /tmp/status.txt | true
             image: binkcore.azurecr.io/pyqa:latest
             env:
               - name: FRIENDLY_NAME
