@@ -15,8 +15,8 @@ spec:
     name: flux-system
   postBuild:
     substituteFrom:
-      - kind: Secret
-        name: flux-cluster-vars
+      - kind: ConfigMap
+        name: cluster-vars
   images:
     - name: binkcore.azurecr.io/binklink
       newName: binkcore.azurecr.io/binklink

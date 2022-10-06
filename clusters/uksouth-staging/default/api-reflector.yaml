@@ -17,8 +17,8 @@ spec:
     name: flux-system
   postBuild:
     substituteFrom:
-      - kind: Secret
-        name: flux-cluster-vars
+      - kind: ConfigMap
+        name: cluster-vars
   images:
     - name: ghcr.io/binkhq/api-reflector
       newName: ghcr.io/binkhq/api-reflector

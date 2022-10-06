@@ -18,5 +18,5 @@ spec:
     name: flux-system
   postBuild:
     substituteFrom:
-      - kind: Secret
-        name: flux-cluster-vars
+      - kind: ConfigMap
+        name: cluster-vars

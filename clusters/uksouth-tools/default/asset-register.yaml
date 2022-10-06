@@ -18,8 +18,8 @@ spec:
       newTag: 2022-07-05T183100Z # {"$imagepolicy": "flux-system:asset-register:tag"}
   postBuild:
     substituteFrom:
-      - kind: Secret
-        name: flux-cluster-vars
+      - kind: ConfigMap
+        name: cluster-vars
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
