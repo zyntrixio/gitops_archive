@@ -9,6 +9,7 @@ spec:
   path: ./overlays/uksouth-dev/ingress-nginx
   dependsOn:
     - name: linkerd-viz
+    - name: keyvault2kube
   prune: true
   force: true
   sourceRef:
@@ -16,5 +17,5 @@ spec:
     name: flux-system
   postBuild:
     substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
+      - kind: Secret
+        name: flux-cluster-vars

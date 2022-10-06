@@ -10,10 +10,12 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+  dependsOn:
+    - name: keyvault2kube
   postBuild:
     substituteFrom:
-    - kind: ConfigMap
-      name: cluster-vars
+      - kind: Secret
+        name: flux-cluster-vars
   images:
   - name: binkcore.azurecr.io/kube-autodiscover-poster
     newName: binkcore.azurecr.io/kube-autodiscover-poster

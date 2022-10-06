@@ -9,6 +9,10 @@ spec:
   path: ./overlays/uksouth-dev/kube-system/keyvault2kube
   dependsOn:
     - name: aad-pod-identity
+  healthChecks:
+    - kind: Deployment
+      name: keyvault2kube
+      namespace: kube-system
   prune: true
   force: true
   sourceRef:
