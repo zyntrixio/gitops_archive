@@ -17,8 +17,6 @@ patches:
         value:
           - name: KEY_VAULT_URLS
             value: https://bink-uksouth-staging-inf.vault.azure.net/
-          - name: ALL_NAMESPACES
-            value: "True"
   - target:
       kind: Deployment
     patch: |-

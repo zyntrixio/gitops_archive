@@ -7,7 +7,14 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/kube-system/keyvault2kube
+  dependsOn:
+    - name: aad-pod-identity
+  healthChecks:
+    - kind: Deployment
+      name: keyvault2kube
+      namespace: kube-system
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system

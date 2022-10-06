@@ -7,11 +7,13 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-staging/prometheus
+  dependsOn:
+    - name: keyvault2kube
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   postBuild:
     substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
+      - kind: Secret
+        name: flux-cluster-vars

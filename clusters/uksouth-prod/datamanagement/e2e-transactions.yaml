@@ -7,6 +7,8 @@ metadata:
 spec:
   interval: 60m0s
   path: ./bases/datamanagement/e2e-transactions
+  dependsOn:
+    - name: keyvault2kube
   prune: true
   targetNamespace: datamanagement
   sourceRef:
@@ -14,8 +16,8 @@ spec:
     name: flux-system
   postBuild:
     substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
+      - kind: Secret
+        name: flux-cluster-vars
   images:
     - name: binkcore.azurecr.io/e2e-transactions
       newName: binkcore.azurecr.io/e2e-transactions

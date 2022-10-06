@@ -11,17 +11,18 @@ spec:
   dependsOn:
   - name: linkerd-servicemesh
   - name: linkerd-viz
+  - name: keyvault2kube
   sourceRef:
     kind: GitRepository
     name: flux-system
   postBuild:
     substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
+      - kind: Secret
+        name: flux-cluster-vars
   images:
     - name: binkcore.azurecr.io/binklink
       newName: binkcore.azurecr.io/binklink
-      newTag: staging-2022-02-02T075532Z    # {"$imagepolicy": "flux-system:uksouth-staging-binklink:tag"}
+      newTag: staging-2022-02-02T075532Z  # {"$imagepolicy": "flux-system:uksouth-staging-binklink:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository

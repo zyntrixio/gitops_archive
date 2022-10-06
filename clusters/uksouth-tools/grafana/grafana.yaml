@@ -10,10 +10,11 @@ spec:
   dependsOn:
     - name: linkerd-servicemesh
     - name: linkerd-viz
+    - name: keyvault2kube
   sourceRef:
     kind: GitRepository
     name: flux-system
   postBuild:
     substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
+      - kind: Secret
+        name: flux-cluster-vars

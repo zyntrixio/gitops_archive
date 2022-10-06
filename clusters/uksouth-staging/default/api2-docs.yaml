@@ -10,6 +10,7 @@ spec:
   dependsOn:
   - name: linkerd-servicemesh
   - name: linkerd-viz
+  - name: keyvault2kube
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -19,8 +20,8 @@ spec:
     newTag: 2022-07-08T150635Z # {"$imagepolicy": "flux-system:uksouth-staging-api2-docs:tag"}
   postBuild:
     substituteFrom:
-    - kind: ConfigMap
-      name: cluster-vars
+      - kind: Secret
+        name: flux-cluster-vars
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository

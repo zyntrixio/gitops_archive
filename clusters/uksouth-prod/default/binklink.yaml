@@ -7,14 +7,16 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/default/binklink
+  dependsOn:
+    - name: keyvault2kube
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   postBuild:
     substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
+      - kind: Secret
+        name: flux-cluster-vars
   images:
     - name: binkcore.azurecr.io/binklink
       newName: binkcore.azurecr.io/binklink
