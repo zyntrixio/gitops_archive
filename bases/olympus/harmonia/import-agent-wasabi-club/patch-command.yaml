@@ -17,8 +17,8 @@ spec:
             - --quiet
           resources:
             limits:
-              memory: 768Mi
+              memory: 384Mi
               cpu: 1000m
             requests:
-              memory: 768Mi
+              memory: 384Mi
               cpu: 50m
