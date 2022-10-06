@@ -78,7 +78,7 @@ spec:
             args:
               - bash
               - -c
-              - pytest --html /tmp/report.html --self-contained-html -s -m sanity_bmb --channel barclays --env staging && echo $? > /tmp/status.txt | true
+              - pytest --html /tmp/report.html --self-contained-html -s -m sanity_bmb --channel barclays --env staging && echo $? > /tmp/status.txt || true
             image: binkcore.azurecr.io/pyqa:latest
             env:
               - name: FRIENDLY_NAME
