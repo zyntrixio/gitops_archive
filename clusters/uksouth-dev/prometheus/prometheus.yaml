@@ -7,8 +7,7 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-dev/prometheus
-  dependsOn:
-    - name: keyvault2kube
+  dependsOn: []
   prune: true
   sourceRef:
     kind: GitRepository

@@ -9,7 +9,6 @@ spec:
   path: ./overlays/uksouth-dev/ingress-nginx
   dependsOn:
     - name: linkerd-viz
-    - name: keyvault2kube
   prune: true
   force: true
   sourceRef:

@@ -10,7 +10,6 @@ spec:
   prune: true
   dependsOn:
     - name: cert-manager
-    - name: keyvault2kube
   sourceRef:
     kind: GitRepository
     name: flux-system

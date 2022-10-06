@@ -6,8 +6,7 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-tools/kube-system/cluster-autodiscover-poster
-  dependsOn:
-    - name: keyvault2kube
+  dependsOn: []
   prune: true
   sourceRef:
     kind: GitRepository

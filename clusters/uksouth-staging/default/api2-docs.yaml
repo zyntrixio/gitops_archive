@@ -10,7 +10,6 @@ spec:
   dependsOn:
   - name: linkerd-servicemesh
   - name: linkerd-viz
-  - name: keyvault2kube
   sourceRef:
     kind: GitRepository
     name: flux-system

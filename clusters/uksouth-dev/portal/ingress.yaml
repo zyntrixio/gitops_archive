@@ -9,7 +9,6 @@ spec:
   path: ./overlays/uksouth-dev/portal/ingress
   dependsOn:
     - name: cert-manager
-    - name: keyvault2kube
   prune: true
   sourceRef:
     kind: GitRepository
