@@ -44,6 +44,8 @@ patches:
                       secretKeyRef:
                         name: azure-pgfs
                         key: common_hermes
+                  - name: HERMES_DATABASE_URL_JEFF
+                    value: $(HERMES_DATABASE_URL)?application_name=hermes
                   - name: APPLE_CLIENT_SECRET
                     valueFrom:
                       secretKeyRef:
