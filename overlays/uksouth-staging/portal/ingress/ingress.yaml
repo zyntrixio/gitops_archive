@@ -33,6 +33,13 @@ spec:
                 name: bullsquid-api
                 port:
                   number: 80
+          - path: /api/v1/directory_comments
+            pathType: Prefix
+            backend:
+              service:
+                name: bullsquid-api
+                port:
+                  number: 80
           - path: /fe2
             pathType: Prefix
             backend:
