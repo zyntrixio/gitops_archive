@@ -19,6 +19,18 @@ spec:
       isRetryable: true
       timeout: 2000ms
     - condition:
+        method: POST
+        pathRegex: /api/v1/directory_comments
+      name: POST /api/v1/directory_comments (Create Comment)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/v1/directory_comments/[^/]*
+      name: POST /api/v1/directory_comments/{comment_ref} (Create Comment Reply)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
         method: GET
         pathRegex: /api/v1/plans
       name: GET /api/v1/plans (List Plans)
@@ -31,9 +43,21 @@ spec:
       isRetryable: true
       timeout: 2000ms
     - condition:
+        method: GET
+        pathRegex: /api/v1/plans/[^/]*
+      name: GET /api/v1/plans/{plan_ref} (Get Plan Details)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
         method: PUT
         pathRegex: /api/v1/plans/[^/]*
       name: PUT /api/v1/plans/{plan_ref} (Update Plan)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: DELETE
+        pathRegex: /api/v1/plans/[^/]*
+      name: DELETE /api/v1/plans/{plan_ref} (Delete Plan)
       isRetryable: true
       timeout: 2000ms
     - condition:
@@ -46,6 +70,24 @@ spec:
         method: POST
         pathRegex: /api/v1/plans/[^/]*/merchants
       name: POST /api/v1/plans/{plan_ref}/merchants (Create Merchant)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*
+      name: GET /api/v1/plans/{plan_ref}/merchants/{merchant_ref} (Get Merchant)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: PUT
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*
+      name: PUT /api/v1/plans/{plan_ref}/merchants/{merchant_ref} (Update Merchant)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: DELETE
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*
+      name: DELETE /api/v1/plans/{plan_ref}/merchants/{merchant_ref} (Delete Merchant)
       isRetryable: true
       timeout: 2000ms
     - condition:
@@ -63,10 +105,52 @@ spec:
       isRetryable: true
       timeout: 2000ms
     - condition:
+        method: PATCH
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/mids/[^/]*
+      name: PATCH /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/mids/{mid_ref}
+        (Update Primary Mid)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
         method: POST
         pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/mids/deletion
       name: POST /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/mids/deletion (Delete
         Primary Mids)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: PUT
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/mids/[^/]*/location_link
+      name: PUT /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/mids/{mid_ref}/location_link
+        (Link Primary Mid To Location)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: DELETE
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/mids/[^/]*/location_link
+      name: DELETE /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/mids/{mid_ref}/location_link
+        (Delete Primary Mid Location Link)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/secondary_mids
+      name: GET /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/secondary_mids (List
+        Secondary Mids)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/secondary_mids
+      name: POST /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/secondary_mids
+        (Create Secondary Mid)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/secondary_mids/[^/]*
+      name: GET /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/secondary_mids/{secondary_mid_ref}
+        (Get Secondary Mid Details)
       isRetryable: true
       timeout: 2000ms
     - condition:
@@ -77,10 +161,115 @@ spec:
       isRetryable: true
       timeout: 2000ms
     - condition:
+        method: GET
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/secondary_mids/[^/]*/secondary_mid_location_links
+      name: GET /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/secondary_mids/{secondary_mid_ref}/secondary_mid_location_links
+        (List Location Secondary Mids)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/secondary_mids/[^/]*/secondary_mid_location_links
+      name: POST /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/secondary_mids/{secondary_mid_ref}/secondary_mid_location_links
+        (Link Secondary Mid To Location)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/identifiers
+      name: GET /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/identifiers (List
+        Identifiers)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/identifiers
+      name: POST /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/identifiers (Create
+        Identifier)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/identifiers/[^/]*
+      name: GET /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/identifiers/{identifier_ref}
+        (Get Identifier Details)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
         method: POST
         pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/identifiers/deletion
       name: POST /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/identifiers/deletion
         (Delete Identifiers)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/locations
+      name: GET /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/locations (List
+        Locations)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/locations
+      name: POST /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/locations (Create
+        Location)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/locations/[^/]*
+      name: GET /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/locations/{location_ref}
+        (Get Location)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/locations/deletion
+      name: POST /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/locations/deletion
+        (Delete Locations)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/locations/[^/]*/mids
+      name: GET /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/locations/{location_ref}/mids
+        (List Location Primary Mids)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/locations/[^/]*/mids
+      name: POST /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/locations/{location_ref}/mids
+        (Link Location To Primary Mid)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/locations/[^/]*/secondary_mid_location_links
+      name: GET /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/locations/{location_ref}/secondary_mid_location_links
+        (List Secondary Mid Location Links)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/locations/[^/]*/secondary_mid_location_links
+      name: POST /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/locations/{location_ref}/secondary_mid_location_links
+        (Link Location To Secondary Mid)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/locations/[^/]*/available_mids
+      name: GET /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/locations/{location_ref}/available_mids
+        (List Available Mids)
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: DELETE
+        pathRegex: /api/v1/plans/[^/]*/merchants/[^/]*/secondary_mid_location_links/[^/]*
+      name: DELETE /api/v1/plans/{plan_ref}/merchants/{merchant_ref}/secondary_mid_location_links/{link_ref}
+        (Delete Secondary Mid Location Link)
       isRetryable: true
       timeout: 2000ms
     - condition:
@@ -95,3 +284,4 @@ spec:
       name: PUT /api/v1/customer_wallet/user_lookups (Upsert User Lookup)
       isRetryable: true
       timeout: 2000ms
+
