@@ -50,7 +50,7 @@ spec:
               - name: SCHEDULE
                 value: 0 5 * * *
               - name: COMMAND
-                value: pytest --html report.html --self-contained-html -s -m sanity --channel bink --env staging
+                value: pytest --html report.html --self-contained-html -s -m sanity --channel bink --env staging | true
               - name: ALERT_ON_SUCCESS
                 value: 'True'
               - name: ALERT_ON_FAILURE

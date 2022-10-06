@@ -49,7 +49,7 @@ spec:
               - name: SCHEDULE
                 value: 5 22 * * *
               - name: COMMAND
-                value: pytest --html report.html --self-contained-html -s -m sanity_bmb --channel barclays --env staging
+                value: pytest --html report.html --self-contained-html -s -m sanity_bmb --channel barclays --env staging | true
               - name: ALERT_ON_SUCCESS
                 value: 'True'
               - name: ALERT_ON_FAILURE
