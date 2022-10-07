@@ -52,7 +52,7 @@ spec:
   imageRepositoryRef:
     name: web-bink
   filterTags:
-    pattern: staging-v(?P<ts>\d+(\.\d+)*)$
+    pattern: staging-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:
@@ -67,7 +67,7 @@ spec:
   imageRepositoryRef:
     name: web-wasabi
   filterTags:
-    pattern: staging-v(?P<ts>\d+(\.\d+)*)$
+    pattern: staging-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:
