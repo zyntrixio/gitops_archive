@@ -22,7 +22,6 @@ spec:
     defaultRegistry: ghcr.io/linkerd
     enablePodAntiAffinity: true
     tap:
-      externalSecret: true
       replicas: 3
       resources:
         cpu:
