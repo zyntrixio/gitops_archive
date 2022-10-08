@@ -1,0 +1,8 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: linkerd-root
+  namespace: linkerd
+spec:
+  selfSigned: {}

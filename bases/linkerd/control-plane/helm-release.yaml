@@ -1,0 +1,91 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: linkerd-control-plane
+  namespace: linkerd
+spec:
+  interval: 120m
+  install:
+    remediation:
+      retries: 10
+  chart:
+    spec:
+      chart: linkerd-control-plane
+      version: 1.9.0
+      sourceRef:
+        kind: HelmRepository
+        name: linkerd
+        namespace: flux-system
+  values:
+    controllerImage: ghcr.io/linkerd/controller
+    debugContainer:
+      image:
+        name: ghcr.io/linkerd/debug
+    proxyInit:
+      image:
+        name: ghcr.io/linkerd/proxy-init
+    proxy:
+      image:
+        name: ghcr.io/linkerd/proxy
+      resources:
+        memory:
+          limit: 250Mi
+          request: 20Mi
+    policyController:
+      image:
+        name: ghcr.io/linkerd/policy-controller
+    clusterNetworks: 10.0.0.0/8,172.16.0.0/12
+    enablePodAntiAffinity: true
+    identity:
+      issuer:
+        scheme: kubernetes.io/tls
+    webhookFailurePolicy: Fail
+    controllerReplicas: 3
+    controllerResources:
+      cpu:
+        limit: ''
+        request: 100m
+      memory:
+        limit: 250Mi
+        request: 50Mi
+    destinationResources:
+      cpu:
+        limit: ''
+        request: 100m
+      memory:
+        limit: 250Mi
+        request: 50Mi
+    identityResources:
+      cpu:
+        limit: ''
+        request: 100m
+      memory:
+        limit: 250Mi
+        request: 10Mi
+    heartbeatResources:
+      cpu:
+        limit: ''
+        request: 100m
+      memory:
+        limit: 250Mi
+        request: 50Mi
+    proxyInjectorResources:
+      cpu:
+        limit: ''
+        request: 100m
+      memory:
+        limit: 250Mi
+        request: 50Mi
+    spValidatorResources:
+      cpu:
+        limit: ''
+        request: 100m
+      memory:
+        limit: 250Mi
+        request: 50Mi
+  valuesFrom:
+    - kind: Secret
+      name: linkerd-root
+      valuesKey: tls.crt
+      targetPath: identityTrustAnchorsPEM
