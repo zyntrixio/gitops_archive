@@ -13,7 +13,7 @@ spec:
     name: flux-system
   validation: client
   dependsOn:
-    - name: linkerd-viz
+    - name: linkerd-control-plane
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
