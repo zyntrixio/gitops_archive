@@ -19,3 +19,4 @@ spec:
       kind: HelmRelease
       name: linkerd-viz
       namespace: linkerd-viz
+  timeout: 5m

@@ -19,3 +19,4 @@ spec:
       kind: HelmRelease
       name: linkerd-crds
       namespace: linkerd
+  timeout: 5m

@@ -19,3 +19,4 @@ spec:
       kind: HelmRelease
       name: linkerd-control-plane
       namespace: linkerd
+  timeout: 5m
