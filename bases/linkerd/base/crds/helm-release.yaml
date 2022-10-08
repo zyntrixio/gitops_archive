@@ -5,7 +5,7 @@ metadata:
   name: linkerd-crds
   namespace: linkerd
 spec:
-  interval: 10m
+  interval: 120m
   install:
     remediation:
       retries: 10
@@ -13,7 +13,6 @@ spec:
     spec:
       chart: linkerd-crds
       version: 1.4.0
-      interval: 120m
       sourceRef:
         kind: HelmRepository
         name: linkerd
