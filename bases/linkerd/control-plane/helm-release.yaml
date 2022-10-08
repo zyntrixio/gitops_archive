@@ -5,7 +5,7 @@ metadata:
   name: linkerd-control-plane
   namespace: linkerd
 spec:
-  interval: 120m
+  interval: 10m
   install:
     remediation:
       retries: 10
@@ -13,6 +13,7 @@ spec:
     spec:
       chart: linkerd-control-plane
       version: 1.9.0
+      interval: 120m
       sourceRef:
         kind: HelmRepository
         name: linkerd
