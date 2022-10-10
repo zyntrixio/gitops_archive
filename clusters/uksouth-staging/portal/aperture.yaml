@@ -16,11 +16,11 @@ spec:
   images:
   - name: binkcore.azurecr.io/aperture
     newName: binkcore.azurecr.io/aperture
-    newTag: staging-1.13.4 # {"$imagepolicy": "flux-system:uksouth-staging-aperture:tag"}
+    newTag: staging-1.14.1 # {"$imagepolicy": "flux-system:uksouth-staging-aperture:tag"}
   postBuild:
     substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
+    - kind: ConfigMap
+      name: cluster-vars
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
