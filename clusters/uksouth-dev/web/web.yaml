@@ -16,10 +16,10 @@ spec:
   images:
   - name: binkcore.azurecr.io/web-bink
     newName: binkcore.azurecr.io/web-bink
-    newTag: 2022-10-06T140715Z # {"$imagepolicy": "flux-system:uksouth-dev-web-bink:tag"}
+    newTag: 2022-10-10T091003Z # {"$imagepolicy": "flux-system:uksouth-dev-web-bink:tag"}
   - name: binkcore.azurecr.io/web-wasabi
     newName: binkcore.azurecr.io/web-wasabi
-    newTag: 2022-10-06T140712Z # {"$imagepolicy": "flux-system:uksouth-dev-web-wasabi:tag"}
+    newTag: 2022-10-10T091003Z # {"$imagepolicy": "flux-system:uksouth-dev-web-wasabi:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
