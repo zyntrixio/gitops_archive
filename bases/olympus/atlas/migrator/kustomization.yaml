@@ -1,10 +1,28 @@
----
 bases:
   - ../core
 
+nameSuffix: -migrator
+
+commonLabels:
+  app: atlas
+  component: migrator
+
 patches:
-  - path: patch-labels.yaml
-  - path: patch-command.yaml
-  - path: patch-name.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: atlas
+        namespace: default
+      spec:
+        template:
+          spec:
+            priorityClassName: bink-high-tasks
+            containers:
+              - name: app
+                command:
+                  - bash
+                  - -c
+                  - sleep 10; python manage.py migrate; echo Done; tail -f /dev/null

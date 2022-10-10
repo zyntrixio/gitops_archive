@@ -2,10 +2,33 @@
 bases:
   - ../core
 
+nameSuffix: -consumer
+
+commonAnnotations:
+  prometheus.io/port: '9100'
+  prometheus.io/scrape: 'true'
+  prometheus.io/job: atlas
+
+commonLabels:
+  app: atlas
+  component: consumer
+
 patches:
-  - path: patch-command.yaml
-  - path: patch-labels.yaml
-  - path: patch-annotations.yaml
-  - path: patch-name.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: atlas
+        namespace: default
+      spec:
+        template:
+          spec:
+            priorityClassName: bink-medium-tasks
+            containers:
+              - name: app
+                command:
+                  - python
+                  - manage.py
+                  - consume

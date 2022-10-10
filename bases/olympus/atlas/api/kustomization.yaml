@@ -5,10 +5,39 @@ bases:
 resources:
   - service.yaml
 
+nameSuffix: -api
+
+commonAnnotations:
+  prometheus.io/port: '9100'
+  prometheus.io/scrape: 'true'
+  prometheus.io/job: atlas
+
+commonLabels:
+  app: atlas
+  component: api
+
 patches:
-  - path: patch-annotations.yaml
-  - path: patch-labels.yaml
-  - path: patch-probes.yaml
-  - path: patch-name.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: atlas
+        namespace: default
+      spec:
+        template:
+          spec:
+            priorityClassName: bink-medium-api
+            containers:
+              - name: app
+                livenessProbe:
+                  failureThreshold: 3
+                  httpGet:
+                    path: /healthz
+                    port: 9000
+                    scheme: HTTP
+                  initialDelaySeconds: 15
+                  periodSeconds: 60
+                  successThreshold: 1
+                  timeoutSeconds: 10
