@@ -18,6 +18,7 @@ spec:
       labels:
         app: api2-redoc
     spec:
+      priorityClassName: bink-low-api
       containers:
         - name: app
           image: binkcore.azurecr.io/api2-redoc:latest
