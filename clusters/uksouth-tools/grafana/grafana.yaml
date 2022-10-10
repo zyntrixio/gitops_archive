@@ -8,7 +8,6 @@ spec:
   path: ./overlays/uksouth-tools/grafana
   prune: true
   dependsOn:
-    - name: linkerd-servicemesh
     - name: linkerd-control-plane
   sourceRef:
     kind: GitRepository
