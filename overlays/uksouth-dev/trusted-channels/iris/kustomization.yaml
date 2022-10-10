@@ -3,7 +3,7 @@ bases:
   - ../../default/iris
 
 replicas:
-  - name: iris
+  - name: iris-api
     count: 0
 
 namespace: trusted-channels
