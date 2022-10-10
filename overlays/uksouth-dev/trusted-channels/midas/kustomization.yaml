@@ -4,6 +4,10 @@ bases:
 
 namespace: trusted-channels
 
+replicas:
+  - name: midas
+    count: 0
+
 patches:
   - target:
       kind: Deployment

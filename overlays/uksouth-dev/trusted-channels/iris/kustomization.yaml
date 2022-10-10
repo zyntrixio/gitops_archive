@@ -2,4 +2,8 @@
 bases:
   - ../../default/iris
 
+replicas:
+  - name: iris
+    count: 0
+
 namespace: trusted-channels

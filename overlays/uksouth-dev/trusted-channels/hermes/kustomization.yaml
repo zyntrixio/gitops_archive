@@ -4,6 +4,10 @@ bases:
 
 namespace: trusted-channels
 
+replicas:
+  - name: hermes
+    count: 0
+
 patches:
   - target:
       kind: Deployment

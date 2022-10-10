@@ -2,4 +2,8 @@
 bases:
   - ../../default/pelops
 
+replicas:
+  - name: pelops
+    count: 0
+
 namespace: trusted-channels
