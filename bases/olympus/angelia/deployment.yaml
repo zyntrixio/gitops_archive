@@ -85,7 +85,7 @@ spec:
             runAsUser: 65534
           imagePullPolicy: Always
           name: app
-      priorityClassName: angelia
+      priorityClassName: bink-high-api
       serviceAccountName: angelia
       imagePullSecrets:
         - name: binkcore.azurecr.io
