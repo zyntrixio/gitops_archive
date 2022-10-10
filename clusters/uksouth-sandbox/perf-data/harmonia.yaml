@@ -7,7 +7,6 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-sandbox/perf-data/harmonia
   dependsOn:
-  - name: linkerd-viz
   - name: aad-pod-identity
   prune: true
   sourceRef:

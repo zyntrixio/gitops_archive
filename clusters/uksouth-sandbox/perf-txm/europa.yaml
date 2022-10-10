@@ -7,7 +7,7 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-sandbox/perf-txm/europa
   dependsOn:
-    - name: linkerd-viz
+    - name: linkerd-control-plane
     - name: aad-pod-identity
   prune: true
   sourceRef:

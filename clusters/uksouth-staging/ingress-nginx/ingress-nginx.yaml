@@ -10,8 +10,7 @@ spec:
   prune: true
   force: true
   dependsOn:
-    - name: linkerd-servicemesh
-    - name: linkerd-viz
+    - name: linkerd-control-plane
   sourceRef:
     kind: GitRepository
     name: flux-system

@@ -9,8 +9,8 @@ spec:
   path: ./overlays/uksouth-sandbox/lloyds-sit/pelops
   prune: true
   dependsOn:
-    - name: linkerd-viz
-    - name: linkerd-servicemesh
+    - name: linkerd-control-plane
+    - name: linkerd-control-plane
   sourceRef:
     kind: GitRepository
     name: flux-system

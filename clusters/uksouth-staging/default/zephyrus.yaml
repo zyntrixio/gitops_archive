@@ -9,8 +9,7 @@ spec:
   path: ./overlays/uksouth-staging/default/zephyrus
   dependsOn:
     - name: aad-pod-identity
-    - name: linkerd-servicemesh
-    - name: linkerd-viz
+    - name: linkerd-control-plane
   prune: true
   sourceRef:
     kind: GitRepository

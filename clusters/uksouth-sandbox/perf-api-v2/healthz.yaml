@@ -9,8 +9,7 @@ spec:
   path: ./overlays/uksouth-sandbox/perf-api-v2/healthz
   prune: true
   dependsOn:
-    - name: linkerd-servicemesh
-    - name: linkerd-viz
+    - name: linkerd-control-plane
   sourceRef:
     kind: GitRepository
     name: flux-system

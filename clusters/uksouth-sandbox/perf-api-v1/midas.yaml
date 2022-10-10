@@ -8,8 +8,7 @@ spec:
   path: ./overlays/uksouth-sandbox/perf-api-v1/midas
   dependsOn:
     - name: aad-pod-identity
-    - name: linkerd-servicemesh
-    - name: linkerd-viz
+    - name: linkerd-control-plane
   prune: true
   sourceRef:
     kind: GitRepository

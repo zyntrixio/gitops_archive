@@ -9,8 +9,7 @@ spec:
   path: ./bases/infrastructure/rabbitmq
   prune: true
   dependsOn:
-    - name: linkerd-servicemesh
-    - name: linkerd-viz
+    - name: linkerd-control-plane
   targetNamespace: barclays-oat
   sourceRef:
     kind: GitRepository

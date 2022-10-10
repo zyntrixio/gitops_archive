@@ -8,8 +8,7 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-sandbox/perf-data/angelia
   dependsOn:
-    - name: linkerd-servicemesh
-    - name: linkerd-viz
+    - name: linkerd-control-plane
     - name: aad-pod-identity
   prune: true
   sourceRef:
