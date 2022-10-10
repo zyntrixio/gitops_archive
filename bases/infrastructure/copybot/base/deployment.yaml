@@ -21,6 +21,7 @@ spec:
       labels:
         app: copybot
     spec:
+      priorityClassName: bink-high-tasks
       containers:
         - name: app
           image: binkcore.azurecr.io/events-copybot:2022-05-17T163804Z
