@@ -1,0 +1,8 @@
+---
+apiVersion: scheduling.k8s.io/v1
+description: Bink Medium Priority Components, such as Copybot
+kind: PriorityClass
+metadata:
+  name: bink-medium-component
+preemptionPolicy: PreemptLowerPriority
+value: 760000000

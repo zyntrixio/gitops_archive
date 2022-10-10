@@ -1,0 +1,8 @@
+---
+apiVersion: scheduling.k8s.io/v1
+description: Bink Low Priority Components, such as Postgres, Redis, RabbitMQ Proxies
+kind: PriorityClass
+metadata:
+  name: bink-low-component
+preemptionPolicy: PreemptLowerPriority
+value: 730000000

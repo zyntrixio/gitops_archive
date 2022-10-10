@@ -1,0 +1,8 @@
+---
+apiVersion: scheduling.k8s.io/v1
+description: Bink Low Priority Tasks, such as Harmonia
+kind: PriorityClass
+metadata:
+  name: bink-low-tasks
+preemptionPolicy: PreemptLowerPriority
+value: 710000000

@@ -1,0 +1,8 @@
+---
+apiVersion: scheduling.k8s.io/v1
+description: Bink Low Priority APIs, such as Harmonia, Lethe, Iris
+kind: PriorityClass
+metadata:
+  name: bink-low-api
+preemptionPolicy: PreemptLowerPriority
+value: 720000000

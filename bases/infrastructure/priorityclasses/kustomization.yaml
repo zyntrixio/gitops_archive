@@ -1,0 +1,12 @@
+---
+resources:
+  - bink-critical.yaml
+  - bink-high-component.yaml
+  - bink-high-api.yaml
+  - bink-high-tasks.yaml
+  - bink-medium-component.yaml
+  - bink-medium-api.yaml
+  - bink-medium-tasks.yaml
+  - bink-low-component.yaml
+  - bink-low-api.yaml
+  - bink-low-tasks.yaml

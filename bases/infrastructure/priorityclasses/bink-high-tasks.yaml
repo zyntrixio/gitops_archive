@@ -1,0 +1,8 @@
+---
+apiVersion: scheduling.k8s.io/v1
+description: Bink High Priority Tasks, such as Migrators, hermes-logic
+kind: PriorityClass
+metadata:
+  name: bink-high-tasks
+preemptionPolicy: PreemptLowerPriority
+value: 770000000

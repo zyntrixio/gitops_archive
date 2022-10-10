@@ -1,0 +1,8 @@
+---
+apiVersion: scheduling.k8s.io/v1
+description: Bink Medium Priority APIs, such as Midas, Metis
+kind: PriorityClass
+metadata:
+  name: bink-medium-api
+preemptionPolicy: PreemptLowerPriority
+value: 750000000

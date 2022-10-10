@@ -1,0 +1,8 @@
+---
+apiVersion: scheduling.k8s.io/v1
+description: Bink Medium Priority Tasks, such as Midas, Metis, Hermes
+kind: PriorityClass
+metadata:
+  name: bink-medium-tasks
+preemptionPolicy: PreemptLowerPriority
+value: 740000000
