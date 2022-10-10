@@ -24,6 +24,7 @@ patches:
         template:
           spec:
             containers:
+              priorityClassName: bink-medium-api
               - name: app
                 envFrom:
                   - configMapRef:

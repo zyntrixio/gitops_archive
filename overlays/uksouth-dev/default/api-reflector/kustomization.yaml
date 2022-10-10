@@ -23,6 +23,7 @@ patches:
       spec:
         template:
           spec:
+            priorityClassName: bink-medium-api
             containers:
               - name: app
                 envFrom:
