@@ -9,8 +9,7 @@ spec:
   targetNamespace: trusted-channels
   prune: true
   dependsOn:
-  - name: linkerd-servicemesh
-  - name: linkerd-viz
+  - name: linkerd-control-plane
   sourceRef:
     kind: GitRepository
     name: flux-system

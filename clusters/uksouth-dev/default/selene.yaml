@@ -9,7 +9,7 @@ spec:
   path: ./overlays/uksouth-dev/default/selene
   prune: true
   dependsOn:
-    - name: linkerd-viz
+    - name: linkerd-control-plane
   sourceRef:
     kind: GitRepository
     name: flux-system

@@ -9,8 +9,7 @@ spec:
   path: ./overlays/uksouth-dev/trusted-channels/postgres
   prune: true
   dependsOn:
-    - name: linkerd-servicemesh
-    - name: linkerd-viz
+    - name: linkerd-control-plane
   sourceRef:
     kind: GitRepository
     name: flux-system
