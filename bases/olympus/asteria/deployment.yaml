@@ -23,6 +23,7 @@ spec:
       labels:
         app: asteria
     spec:
+      priorityClassName: bink-low-component
       containers:
         - image: binkcore.azurecr.io/asteria:latest
           imagePullPolicy: Always
