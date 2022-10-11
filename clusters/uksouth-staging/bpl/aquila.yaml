@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/aquila
     newName: binkcore.azurecr.io/aquila
-    newTag: staging-1.0.0 # {"$imagepolicy": "flux-system:uksouth-staging-aquila:tag"}
+    newTag: staging-1.0.1 # {"$imagepolicy": "flux-system:uksouth-staging-aquila:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
