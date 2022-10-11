@@ -2,17 +2,17 @@
 groups:
   - name: Infrastructure
     rules:
-      - alert: Replicas Scaled Down
-        expr: sum by(deployment, namespace) (kube_deployment_spec_replicas) == 0
-          == 0
+      - alert: Unavailable Replicas
+        expr: sum by(deployment, namespace) (kube_deployment_status_replicas_unavailable) > 0
         for: 1m
         labels:
           severity: p2
           cluster: dev
           component: Kubernetes
+          resolve: true
         annotations:
           title: 'Dev - {{ $labels.deployment}}'
-          description: 'Deployment: {{ $labels.deployment}} in Namespace: {{$labels.namespace}} has been scaled down.'
+          description: 'Deployment: {{ $labels.deployment}} in Namespace: {{$labels.namespace}} has unavailable replicas.'
 
       - alert: Container Restarts
         expr: sum(rate(kube_pod_container_status_restarts_total[1m]) * 60) by (container, pod, namespace) > 0

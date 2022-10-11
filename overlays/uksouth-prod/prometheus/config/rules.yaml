@@ -20,25 +20,24 @@ groups:
 
   - name: Infrastructure
     rules:
-      - alert: Replicas Scaled Down
-        expr: sum by(deployment, namespace) (kube_deployment_spec_replicas) == 0
-          == 0
+      - alert: Unavailable Replicas
+        expr: sum by(deployment, namespace) (kube_deployment_status_replicas_unavailable) > 0
         for: 1m
         labels:
           severity: p2
-          cluster: devops
+          cluster: prod
           component: Kubernetes
           resolve: true
         annotations:
           title: 'Prod - {{ $labels.deployment}}'
-          description: 'Deployment: {{ $labels.deployment}} in Namespace: {{$labels.namespace}} has been scaled down.'
+          description: 'Deployment: {{ $labels.deployment}} in Namespace: {{$labels.namespace}} has unavailable replicas.'
 
       - alert: Container Restarts
         expr: sum(rate(kube_pod_container_status_restarts_total[1m]) * 60) by (container, pod, namespace) > 0
         for: 1s
         labels:
           severity: p2
-          cluster: devops
+          cluster: prod
           resolve: true
           component: Kubernetes
         annotations:
@@ -50,7 +49,7 @@ groups:
         for: 1m
         labels: 
           severity: p2
-          cluster: devops
+          cluster: prod
           resolve: true
           component: Kubernetes
         annotations:  
@@ -206,7 +205,7 @@ groups:
           10
         labels:
           severity: p1
-          cluster: devops
+          cluster: prod
           resolve: false
         annotations:
           resource: '{{ $labels.instance }}'
@@ -219,7 +218,7 @@ groups:
           30
         labels:
           severity: p2
-          cluster: devops
+          cluster: prod
           resolve: false
         annotations:
           resource: '{{ $labels.instance }}'
@@ -231,7 +230,7 @@ groups:
           Encrypt|R3).*"} - time())/24/60/60) < 5
         labels:
           severity: p1
-          cluster: devops
+          cluster: prod
           resolve: false
         annotations:
           resource: '{{ $labels.instance }}'
@@ -243,7 +242,7 @@ groups:
           Encrypt|R3).*"} - time())/24/60/60) < 10
         labels:
           severity: p2
-          cluster: devops
+          cluster: prod
           resolve: false
         annotations:
           summary: Let's Encrypt cert less than 10 days from expiring
@@ -253,7 +252,7 @@ groups:
           < 5
         labels:
           severity: p1
-          cluster: devops
+          cluster: prod
           resolve: false
         annotations:
           resource: '{{ $labels.name }}'
@@ -264,7 +263,7 @@ groups:
           < 10
         labels:
           severity: p2
-          cluster: devops
+          cluster: prod
           resolve: false
         annotations:
           resource: '{{ $labels.name }}'
