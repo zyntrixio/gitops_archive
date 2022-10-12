@@ -30,7 +30,7 @@ spec:
               emptyDir: {}
           containers:
           - name: script
-            command: [ "linkerd-await", "--"]
+            command: [ "linkerd-await", "--shutdown", "--" ]
             args:
               - bash
               - -c
@@ -74,7 +74,7 @@ spec:
               - mountPath: /tmp
                 name: data
           - name: app
-            command: [ "linkerd-await", "--" ]
+            command: [ "linkerd-await", "--shutdown", "--" ]
             args:
               - bash
               - -c
