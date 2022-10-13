@@ -75,7 +75,7 @@ spec:
               - mountPath: /tmp
                 name: data
           - name: app
-            command: [ "linkerd-await", "--shutdown", "--" ]
+            command: [ "linkerd-await", "--" ]
             args:
               - bash
               - -c
