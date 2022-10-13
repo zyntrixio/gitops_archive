@@ -16,4 +16,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/vela
     newName: binkcore.azurecr.io/vela
-    newTag: 2022-10-11T103737Z # {"$imagepolicy": "flux-system:perf-vela:tag"}
+    newTag: 2022-10-13T133242Z # {"$imagepolicy": "flux-system:perf-vela:tag"}
