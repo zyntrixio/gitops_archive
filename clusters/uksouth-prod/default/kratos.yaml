@@ -16,11 +16,11 @@ spec:
   images:
   - name: binkcore.azurecr.io/kratos
     newName: binkcore.azurecr.io/kratos
-    newTag: 2022-09-01T134806Z # {"$imagepolicy": "flux-system:uksouth-prod-kratos:tag"}
+    newTag: 2022-10-14T083946Z # {"$imagepolicy": "flux-system:uksouth-prod-kratos:tag"}
   postBuild:
     substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
+    - kind: ConfigMap
+      name: cluster-vars
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
