@@ -33,7 +33,7 @@ groups:
           description: 'Deployment: {{ $labels.deployment}} in Namespace: {{$labels.namespace}} has unavailable replicas.'
 
       - alert: Container Restarts
-        expr: sum(rate(kube_pod_container_status_restarts_total[1m]) * 60) by (container, pod, namespace) > 0
+        expr: increase(kube_pod_container_status_restarts_total[5m]) > 0
         for: 1s
         labels:
           severity: p2
