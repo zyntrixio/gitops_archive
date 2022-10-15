@@ -19,7 +19,7 @@ type = "elasticsearch"
 inputs = ["elasticsearch_sucks"]
 compression = "none"
 healthcheck = true
-endpoint = "https://opensearch.core.uksouth.bink.host:9200"
+endpoint = "https://opensearch.uksouth.bink.host:9200"
 [sinks.elasticsearch.tls]
 ca_file = "/opensearch/opensearch-ca.pem"
 [sinks.elasticsearch.auth]
