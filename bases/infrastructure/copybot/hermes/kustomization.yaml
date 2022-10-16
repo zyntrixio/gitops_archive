@@ -20,6 +20,8 @@ patches:
             component: hermes
         template:
           metadata:
+            annotations:
+              prometheus.io/job: copybot-hermes
             labels:
               component: hermes
           spec:

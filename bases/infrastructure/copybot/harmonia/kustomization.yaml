@@ -20,6 +20,8 @@ patches:
             component: harmonia
         template:
           metadata:
+            annotations:
+              prometheus.io/job: copybot-harmonia
             labels:
               component: harmonia
           spec:

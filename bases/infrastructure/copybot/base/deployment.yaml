@@ -18,6 +18,9 @@ spec:
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
+        prometheus.io/port: '9091'
+        prometheus.io/scrape: 'true'
+        prometheus.io/job: copybot
       labels:
         app: copybot
     spec:
@@ -26,6 +29,9 @@ spec:
         - name: app
           image: binkcore.azurecr.io/copybot:latest
           args: [tail, -f, /dev/null]
+          ports:
+            - containerPort: 9091
+              name: prometheus
           resources:
             requests:
               cpu: 50m
