@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/copybot
     newName: binkcore.azurecr.io/copybot
-    newTag: latest # {"$imagepolicy": "flux-system:copybot:tag"}
+    newTag: v1.0.0 # {"$imagepolicy": "flux-system:copybot:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
