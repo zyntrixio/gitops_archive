@@ -21,7 +21,8 @@ groups:
   - name: Infrastructure
     rules:
       - alert: Unavailable Replicas
-        expr: sum by(deployment, namespace) (kube_deployment_status_replicas_unavailable) > 0
+        expr: sum by(deployment, namespace) (kube_deployment_status_replicas_unavailable)
+          > 0
         for: 1m
         labels:
           severity: p2
@@ -29,8 +30,9 @@ groups:
           component: Kubernetes
           resolve: true
         annotations:
-          title: 'Prod - {{ $labels.deployment}}'
-          description: 'Deployment: {{ $labels.deployment}} in Namespace: {{$labels.namespace}} has unavailable replicas.'
+          title: Prod - {{ $labels.deployment}}
+          description: 'Deployment: {{ $labels.deployment}} in Namespace: {{$labels.namespace}}
+            has unavailable replicas.'
 
       - alert: Container Restarts
         expr: increase(kube_pod_container_status_restarts_total[5m]) > 0
@@ -41,21 +43,22 @@ groups:
           resolve: true
           component: Kubernetes
         annotations:
-          title: 'Prod - Container restarts'
-          description: 'Container: {{$labels.container}} in Deploy: {{$labels.pod}} in Namespace: {{$labels.namespace}} is restarting alot'
+          title: Prod - Container restarts
+          description: 'Container: {{$labels.container}} in Deploy: {{$labels.pod}}
+            in Namespace: {{$labels.namespace}} is restarting alot'
 
       - alert: Kube pod waiting status
         expr: sum by (reason, pod)(kube_pod_container_status_waiting_reason) > 0
         for: 1m
-        labels: 
+        labels:
           severity: p2
           cluster: prod
           resolve: true
           component: Kubernetes
-        annotations:  
-          title: 'Prod - Pod waiting status'
-          description: 'Pod: {{$labels.pod}} is in this State: {{$labels.reason}} in this Namespace: {{$labels.namespace}}'
-      
+        annotations:
+          title: Prod - Pod waiting status
+          description: 'Pod: {{$labels.pod}} is in this State: {{$labels.reason}}
+            in this Namespace: {{$labels.namespace}}'
       - alert: Rabbitmq Queue Length
         expr: sum by(queue)(rabbitmq_queue_messages_ready) > 100
         for: 5m
@@ -64,9 +67,33 @@ groups:
           cluster: prod
           resolve: false
           component: Rabbitmq
-        annotations: 
-          title: 'Rabbitmq queue length over 100 ready tasks'
-          description: '{{$labels.queue}} queue has been at over 100 tasks for 5 mins' 
+        annotations:
+          title: Rabbitmq queue length over 100 ready tasks
+          description: '{{$labels.queue}} queue has been at over 100 tasks for 5 mins'
+
+      - alert: Copybot Hermes - No Jobs Processed
+        expr: increase(events_processed_total{job="copybot-hermes"}[10m]) < 1
+        for: 1s
+        labels:
+          severity: p2
+          cluster: prod
+          resolve: false
+          component: Copybot Hermes
+        annotations:
+          title: Copybot Hermes hasn't processed any tasks for 10 minutes
+          description: Copybot Hermes hasn't processed any tasks for 10 minutes
+
+      - alert: Copybot Harmonia - No Jobs Processed
+        expr: increase(events_processed_total{job="copybot-Harmonia"}[10m]) < 1
+        for: 1s
+        labels:
+          severity: p2
+          cluster: prod
+          resolve: false
+          component: Copybot Harmonia
+        annotations:
+          title: Copybot Harmonia hasn't processed any tasks for 10 minutes
+          description: Copybot Harmonia hasn't processed any tasks for 10 minutes
 
       # - alert: core sftp up state
       #   expr: up{job="azure_node",name=~"sftp\\d"} < 1
@@ -80,7 +107,8 @@ groups:
   - name: Service Team
     rules:
       - alert: Exported transactions
-        expr: sum(increase(transactions_total{slug!="iceland-bonus-card"}[2h])) by (slug) < 1 and europe_london_hour != 12 < 23
+        expr: sum(increase(transactions_total{slug!="iceland-bonus-card"}[2h])) by
+          (slug) < 1 and europe_london_hour != 12 < 23
         for: 1m
         labels:
           severity: p2
@@ -89,10 +117,11 @@ groups:
           resolve: false
         annotations:
           resource: '{{ $labels.slug }}'
-          sumamry: 'There have been no exports between 12:00 and 23:00'
-      
+          sumamry: There have been no exports between 12:00 and 23:00
       - alert: Payment cards processing slowly
-        expr: (sum(payment_card_processing_seconds_histogram_sum{}) by (provider) / sum(payment_card_processing_seconds_histogram_count{}) by (provider)) > 5
+        expr: (sum(payment_card_processing_seconds_histogram_sum{}) by (provider)
+          / sum(payment_card_processing_seconds_histogram_count{}) by (provider))
+          > 5
         for: 5m
         labels:
           severity: p2
@@ -100,11 +129,12 @@ groups:
           component: hermes
           resolve: false
         annotations:
-          summany: 'Payment cards for {{ $labels.provider }} are taking longer than
-            four seconds to process.'
-      
+          summany: Payment cards for {{ $labels.provider }} are taking longer than
+            four seconds to process.
       - alert: Payment cards stuck increase
-        expr: sum by (provider) (hermes_current_payment_card_pending_overdue_total{}) > sum by (provider) (hermes_current_payment_card_pending_overdue_total{} offset 24h +15)
+        expr: sum by (provider) (hermes_current_payment_card_pending_overdue_total{})
+          > sum by (provider) (hermes_current_payment_card_pending_overdue_total{}
+          offset 24h +15)
         for: 5m
         labels:
           severity: p2
@@ -113,10 +143,13 @@ groups:
           resolve: false
         annotations:
           resource: '{{$labels.provider}}'
-          summary: Payment cards have been stuck in a pending state for more than 24 hours
+          summary: Payment cards have been stuck in a pending state for more than
+            24 hours
 
       - alert: Vop status stuck in transitory state
-        expr: sum by (status)(hermes_current_vop_activation_status_total{status=~"Deactivating|Activating"}) > sum by (status)(hermes_current_vop_activation_status_total{status=~"Deactivating|Activating"} offset 15m)
+        expr: sum by (status)(hermes_current_vop_activation_status_total{status=~"Deactivating|Activating"})
+          > sum by (status)(hermes_current_vop_activation_status_total{status=~"Deactivating|Activating"}
+          offset 15m)
         for: 15m
         labels:
           severity: p2
@@ -125,10 +158,12 @@ groups:
           resolve: false
         annotations:
           resource: '{{$labels.status}}'
-          summary: VOP account status in {{$labels.status}} state for over 15 minutes - check
+          summary: VOP account status in {{$labels.status}} state for over 15 minutes
+            - check
 
       - alert: Failed exports - receipt number not found
-        expr: sum(failed_requests_total{response_result="receipt no not found"}) > 500
+        expr: sum(failed_requests_total{response_result="receipt no not found"}) >
+          500
         for: 1m
         labels:
           severity: p2
@@ -136,11 +171,14 @@ groups:
           component: harmonia
           resolve: false
         annotations:
-          resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }} - {{ $labels.response_result }}'
-          summary: There have been failed exports from harmonia returning receipt not found.
+          resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }}
+            - {{ $labels.response_result }}'
+          summary: There have been failed exports from harmonia returning receipt
+            not found.
 
       - alert: Failed exports excluding receipt not found
-        expr: sum(failed_requests_total{response_result!="receipt no not found"}) > 100
+        expr: sum(failed_requests_total{response_result!="receipt no not found"})
+          > 100
         for: 1m
         labels:
           severity: p2
@@ -148,11 +186,13 @@ groups:
           component: harmonia
           resolve: false
         annotations:
-          resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }} - {{ $labels.response_result }}'
+          resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }}
+            - {{ $labels.response_result }}'
           summary: There have been failed exports from harmonia.
 
       - alert: Failed exports - "an error has occured"
-        expr: sum(increase(failed_requests_total{response_result="an error has occurred."} [10m])) > 0
+        expr: sum(increase(failed_requests_total{response_result="an error has occurred."}
+          [10m])) > 0
         for: 1m
         labels:
           severity: p2
@@ -160,12 +200,12 @@ groups:
           component: harmonia
           resolve: false
         annotations:
-          resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }} - {{ $labels.response_result }}'
+          resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }}
+            - {{ $labels.response_result }}'
           summary: There have been failed exports for wasabi.
 
       - alert: midas - failed http requests to merchants
-        expr: sum(increase(request_fail_total{}[1h]))
-          by (error, slug) > 6
+        expr: sum(increase(request_fail_total{}[1h])) by (error, slug) > 6
         for: 90m
         labels:
           severity: p2
@@ -173,7 +213,8 @@ groups:
           resolve: false
         annotations:
           resource: '{{ $labels.slug }} - {{ $labels.error }}'
-          summary: There has been an increase in failed HTTP requests from Midas to {{$labels.slug}}
+          summary: There has been an increase in failed HTTP requests from Midas to
+            {{$labels.slug}}
 
       - alert: midas - failed login is increasing
         expr: sum(increase(log_in_fail_total{}[10m])) by (slug) > 5
@@ -268,19 +309,3 @@ groups:
         annotations:
           resource: '{{ $labels.name }}'
           summary: Let's Encrypt Kubernetes cert less than 10 days from expiring
-
-
-
-          
-  # - name: Testing
-  #   rules:
-  #     - alert: core test alerting and callout chain (should be red)
-  #       expr: ({job="always_alert"} OR on() vector(0)) == 0
-  #       for: 1m
-  #       labels:
-  #         severity: p1
-  #         cluster: prod
-  #         testing: true
-  #         callout: true
-  #       annotations: 
-  #         summary: This alert will test the Prometheus --> Alertmanager connectivity
