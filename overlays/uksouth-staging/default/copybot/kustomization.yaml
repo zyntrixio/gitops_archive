@@ -2,6 +2,7 @@
 bases:
   - ../../../../bases/infrastructure/copybot/core
   - ../../../../bases/infrastructure/copybot/hermes
+  - ../../../../bases/infrastructure/copybot/harmonia
 
 namespace: default
 
@@ -12,6 +13,8 @@ configMapGenerator:
 
 replicas:
   - name: copybot-hermes
+    count: 1
+  - name: copybot-harmonia
     count: 1
 
 patches:

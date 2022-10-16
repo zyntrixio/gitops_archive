@@ -13,9 +13,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/events-copybot
-    newName: binkcore.azurecr.io/events-copybot
-    newTag: 2022-08-15T155025Z # {"$imagepolicy": "flux-system:uksouth-prod-copybot:tag"}
+  - name: binkcore.azurecr.io/copybot
+    newName: binkcore.azurecr.io/copybot
+    newTag: latest # {"$imagepolicy": "flux-system:copybot:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -23,7 +23,7 @@ metadata:
   name: copybot
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/events-copybot
+  image: binkcore.azurecr.io/copybot
   interval: 1m0s
   secretRef:
     name: binkcore.azurecr.io
@@ -31,14 +31,14 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: uksouth-prod-copybot
+  name: copybot
   namespace: flux-system
 spec:
   imageRepositoryRef:
     name: copybot
   filterTags:
-    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    pattern: v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: '>0.0.1'

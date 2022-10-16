@@ -24,7 +24,7 @@ spec:
       priorityClassName: bink-high-tasks
       containers:
         - name: app
-          image: binkcore.azurecr.io/events-copybot:2022-05-17T163804Z
+          image: binkcore.azurecr.io/copybot:latest
           args: [tail, -f, /dev/null]
           resources:
             requests:

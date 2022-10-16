@@ -14,6 +14,8 @@ configMapGenerator:
 replicas:
   - name: copybot-hermes
     count: 1
+  - name: copybot-harmonia
+    count: 1
 
 patches:
   - target:
