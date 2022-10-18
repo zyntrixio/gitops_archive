@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -11,9 +12,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/loganalytics-to-tableau
-    newName: binkcore.azurecr.io/loganalytics-to-tableau
-    newTag: 2022-05-25T165541Z # {"$imagepolicy": "flux-system:uksouth-prod-loganalytics-to-tableau:tag"}
+    - name: binkcore.azurecr.io/loganalytics-to-tableau
+      newName: binkcore.azurecr.io/loganalytics-to-tableau
+      newTag: 2022-05-25T165541Z # {"$imagepolicy": "flux-system:uksouth-prod-loganalytics-to-tableau:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository

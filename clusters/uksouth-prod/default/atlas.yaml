@@ -8,13 +8,15 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/default/atlas
   prune: true
+  dependsOn:
+    - name: linkerd-control-plane
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
     - name: binkcore.azurecr.io/atlas
       newName: binkcore.azurecr.io/atlas
-      newTag: prod-2.4.0    # {"$imagepolicy": "flux-system:uksouth-prod-atlas:tag"}
+      newTag: prod-2.4.0 # {"$imagepolicy": "flux-system:uksouth-prod-atlas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository

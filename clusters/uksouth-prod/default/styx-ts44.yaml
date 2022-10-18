@@ -9,6 +9,7 @@ spec:
   path: ./overlays/uksouth-prod/default/styx-ts44
   dependsOn:
     - name: aad-pod-identity
+    - name: linkerd-control-plane
     - name: styx
   prune: true
   sourceRef:
@@ -17,4 +18,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/styx
       newName: binkcore.azurecr.io/styx
-      newTag: 1.1.1    # {"$imagepolicy": "flux-system:uksouth-prod-styx:tag"}
+      newTag: 1.1.1 # {"$imagepolicy": "flux-system:uksouth-prod-styx:tag"}

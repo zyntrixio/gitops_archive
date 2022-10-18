@@ -9,6 +9,7 @@ spec:
   path: ./overlays/uksouth-prod/default/eos
   dependsOn:
     - name: aad-pod-identity
+    - name: linkerd-control-plane
   prune: true
   sourceRef:
     kind: GitRepository
@@ -16,7 +17,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/eos
       newName: binkcore.azurecr.io/eos
-      newTag: prod-1.0.1    # {"$imagepolicy": "flux-system:uksouth-prod-eos:tag"}
+      newTag: prod-1.0.1 # {"$imagepolicy": "flux-system:uksouth-prod-eos:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository

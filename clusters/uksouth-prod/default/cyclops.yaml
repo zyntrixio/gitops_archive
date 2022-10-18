@@ -7,6 +7,8 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/default/cyclops
+  dependsOn:
+    - name: linkerd-control-plane
   prune: true
   sourceRef:
     kind: GitRepository
@@ -14,7 +16,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/cyclops
       newName: binkcore.azurecr.io/cyclops
-      newTag: 2021-10-20T212833Z    # {"$imagepolicy": "flux-system:uksouth-prod-cyclops:tag"}
+      newTag: 2021-10-20T212833Z # {"$imagepolicy": "flux-system:uksouth-prod-cyclops:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository

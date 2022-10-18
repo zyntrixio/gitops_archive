@@ -7,7 +7,8 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/default/binklink
-  dependsOn: []
+  dependsOn:
+    - name: linkerd-control-plane
   prune: true
   sourceRef:
     kind: GitRepository
@@ -19,7 +20,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/binklink
       newName: binkcore.azurecr.io/binklink
-      newTag: prod-2022-02-02T080129Z    # {"$imagepolicy": "flux-system:uksouth-prod-binklink:tag"}
+      newTag: prod-2022-02-02T080129Z # {"$imagepolicy": "flux-system:uksouth-prod-binklink:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository

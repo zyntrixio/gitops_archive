@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -7,15 +8,16 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/default/midas
   dependsOn:
-  - name: aad-pod-identity
+    - name: aad-pod-identity
+    - name: linkerd-control-plane
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/midas
-    newName: binkcore.azurecr.io/midas
-    newTag: prod-3.36.0 # {"$imagepolicy": "flux-system:uksouth-prod-midas:tag"}
+    - name: binkcore.azurecr.io/midas
+      newName: binkcore.azurecr.io/midas
+      newTag: prod-3.36.0 # {"$imagepolicy": "flux-system:uksouth-prod-midas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository

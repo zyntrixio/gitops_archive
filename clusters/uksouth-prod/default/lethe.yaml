@@ -7,6 +7,8 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/default/lethe
+  dependsOn:
+    - name: linkerd-control-plane
   prune: true
   sourceRef:
     kind: GitRepository
@@ -14,7 +16,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/lethe
       newName: binkcore.azurecr.io/lethe
-      newTag: prod-1.3.1    # {"$imagepolicy": "flux-system:uksouth-prod-lethe:tag"}
+      newTag: prod-1.3.1 # {"$imagepolicy": "flux-system:uksouth-prod-lethe:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
