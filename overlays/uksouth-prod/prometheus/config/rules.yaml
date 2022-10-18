@@ -35,7 +35,7 @@ groups:
             has unavailable replicas.'
 
       - alert: Container Restarts
-        expr: increase(kube_pod_container_status_restarts_total[5m]) > 0
+        expr: increase(kube_pod_container_status_restarts_total[5m]) > 3
         for: 1s
         labels:
           severity: p2
