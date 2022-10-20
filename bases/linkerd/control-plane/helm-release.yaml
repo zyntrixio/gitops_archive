@@ -18,6 +18,7 @@ spec:
         name: linkerd
         namespace: flux-system
   values:
+    priorityClassName: bink-critical
     controllerImage: ghcr.io/linkerd/controller
     debugContainer:
       image:
