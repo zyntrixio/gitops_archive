@@ -1,0 +1,13 @@
+---
+bases:
+  - ../base
+
+nameSuffix: -barclays
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/1/args
+        value: [ "bash", "-c", "pytest --html /tmp/report.html --self-contained-html -s -m sanity_bmb --channel barclays --env staging && echo $? > /tmp/status.txt" ]
