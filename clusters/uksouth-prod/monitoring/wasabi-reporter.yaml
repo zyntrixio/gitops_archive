@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -14,7 +13,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/wasabi-reporter
       newName: binkcore.azurecr.io/wasabi-reporter
-      newTag: 2022-04-07T133000Z # {"$imagepolicy": "flux-system:uksouth-prod-wasabi-reporter:tag"}
+      newTag: 2022-10-24T131602Z # {"$imagepolicy": "flux-system:uksouth-prod-wasabi-reporter:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
