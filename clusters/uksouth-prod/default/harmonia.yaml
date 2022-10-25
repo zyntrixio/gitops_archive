@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -17,7 +16,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/harmonia
       newName: binkcore.azurecr.io/harmonia
-      newTag: prod-2.18.0 # {"$imagepolicy": "flux-system:uksouth-prod-harmonia:tag"}
+      newTag: prod-2.19.3 # {"$imagepolicy": "flux-system:uksouth-prod-harmonia:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
