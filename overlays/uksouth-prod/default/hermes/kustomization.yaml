@@ -19,7 +19,7 @@ configMapGenerator:
 
 replicas:
   - name: hermes-api
-    count: 6
+    count: 12
   - name: hermes-celery
     count: 3
   - name: hermes-beat
