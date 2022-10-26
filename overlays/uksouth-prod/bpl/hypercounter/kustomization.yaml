@@ -1,7 +1,0 @@
----
-resources:
-  - api-deploy.yaml
-  - api-svc.yaml
-  - teams-cronjob.yaml
-
-namespace: bpl
