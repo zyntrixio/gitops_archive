@@ -6,6 +6,8 @@ bases:
 resources:
   - azureidentity.yaml
 
+namespace: default
+
 configMapGenerator:
   - name: pyqa-bink
     envs:
