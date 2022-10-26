@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/vela
     newName: binkcore.azurecr.io/vela
-    newTag: 2022-10-21T100126Z # {"$imagepolicy": "flux-system:uksouth-dev-vela:tag"}
+    newTag: 2022-10-26T103923Z # {"$imagepolicy": "flux-system:uksouth-dev-vela:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
