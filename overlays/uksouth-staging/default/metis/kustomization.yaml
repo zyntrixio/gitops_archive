@@ -6,6 +6,10 @@ bases:
 resources:
   - aad.yaml
 
+replicas:
+  - name: metis-api
+    count: 12
+
 patches:
   - path: env.yaml
     target:

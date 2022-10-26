@@ -12,6 +12,10 @@ resources:
 
 namespace: default
 
+replicas:
+  - name: hermes-celery
+    count: 12
+
 configMapGenerator:
   - name: hermes
     envs:

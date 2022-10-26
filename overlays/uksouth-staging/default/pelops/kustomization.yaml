@@ -2,6 +2,10 @@
 bases:
   - ../../../../bases/olympus/pelops
 
+replicas:
+  - name: pelops
+    count: 12
+
 patches:
   - path: env.yaml
     target:
