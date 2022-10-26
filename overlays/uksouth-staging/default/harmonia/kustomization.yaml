@@ -33,7 +33,7 @@ configMapGenerator:
 
 replicas:
   - name: harmonia
-    count: 0
+    count: 1
 
 patches:
   - target:

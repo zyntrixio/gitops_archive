@@ -4,7 +4,7 @@ bases:
 
 replicas:
   - name: pelops
-    count: 9
+    count: 1
 
 patches:
   - path: env.yaml
