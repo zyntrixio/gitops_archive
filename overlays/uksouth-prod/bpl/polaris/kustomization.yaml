@@ -11,7 +11,7 @@ namespace: bpl
 
 replicas:
   - name: polaris-api
-    count: 3
+    count: 12
   - name: polaris-task-worker
     count: 3
 
