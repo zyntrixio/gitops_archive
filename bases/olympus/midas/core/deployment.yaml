@@ -37,8 +37,10 @@ spec:
           name: app
           resources:
             limits:
-              memory: 384Mi
+              memory: 512Mi
+              cpu: 1000m
             requests:
-              memory: 384Mi
+              memory: 512Mi
+              cpu: 100m
       imagePullSecrets:
         - name: binkcore.azurecr.io
