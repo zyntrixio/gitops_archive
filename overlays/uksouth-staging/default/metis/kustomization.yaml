@@ -8,7 +8,7 @@ resources:
 
 replicas:
   - name: metis-api
-    count: 12
+    count: 9
 
 patches:
   - path: env.yaml

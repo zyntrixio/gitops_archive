@@ -14,7 +14,7 @@ namespace: default
 
 replicas:
   - name: hermes-celery
-    count: 12
+    count: 9
 
 configMapGenerator:
   - name: hermes
