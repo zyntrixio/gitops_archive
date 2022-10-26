@@ -12,7 +12,7 @@ resources:
 
 replicas:
   - name: midas
-    count: 3
+    count: 6
   - name: midas-migrator
     count: 1
 
