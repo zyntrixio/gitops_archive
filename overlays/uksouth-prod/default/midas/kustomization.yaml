@@ -12,6 +12,8 @@ resources:
 
 replicas:
   - name: midas
+    count: 3
+  - name: midas-api
     count: 32
   - name: midas-migrator
     count: 1
