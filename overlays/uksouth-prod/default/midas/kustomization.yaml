@@ -14,7 +14,7 @@ replicas:
   - name: midas
     count: 3
   - name: midas-api
-    count: 32
+    count: 12
   - name: midas-beat
     count: 1
   - name: midas-migrator

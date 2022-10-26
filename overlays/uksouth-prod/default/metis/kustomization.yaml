@@ -8,7 +8,7 @@ resources:
 
 replicas:
   - name: metis-api
-    count: 3
+    count: 12
   - name: metis-celery
     count: 3
 
