@@ -59,8 +59,9 @@ groups:
           title: Prod - Pod waiting status
           description: 'Pod: {{$labels.pod}} is in this State: {{$labels.reason}}
             in this Namespace: {{$labels.namespace}}'
-      - alert: Rabbitmq Queue Length
-        expr: sum by(queue)(rabbitmq_queue_messages_ready) > 100
+
+      - alert: Rabbitmq Queue Length Olympus
+        expr: sum by(queue)(rabbitmq_queue_messages_ready{queue!~"hubble-activities|polaris-transaction-history|hubble-activites-dlx-queue"}) > 100
         for: 5m
         labels:
           severity: p2
@@ -68,8 +69,32 @@ groups:
           resolve: false
           component: Rabbitmq
         annotations:
-          title: Rabbitmq queue length over 100 ready tasks
-          description: '{{$labels.queue}} queue has been at over 100 tasks for 5 mins'
+          title: Olympus Rabbitmq queue length over 100 ready tasks
+          description: 'Olympus - {{$labels.queue}} queue has been at over 100 tasks for 5 mins'
+
+      - alert: Rabbitmq Queue Length BPL
+        expr: sum by(queue)(rabbitmq_queue_messages_ready{queue=~"hubble-activities|polaris-transaction-history"}) > 5
+        for: 5m
+        labels:
+          severity: p2
+          cluster: prod
+          resolve: false
+          component: Rabbitmq
+        annotations:
+          title: BPL Rabbitmq queue length over 100 ready tasks
+          description: 'BPL - {{$labels.queue}} queue has been at over 5 tasks for 5 mins'
+
+      - alert: Rabbitmq Queue Length Deadletter
+        expr: sum by(queue)(rabbitmq_queue_messages_ready{queue=~"hubble-activites-dlx-queue"}) > 0
+        for: 1s
+        labels:
+          severity: p2
+          cluster: prod
+          resolve: false
+          component: Rabbitmq
+        annotations:
+          title: Deadletter Rabbitmq queue length over 0 tasks
+          description: 'Deadletter {{$labels.queue}} queue is over 0 tasks'
 
       - alert: Copybot Hermes - No Jobs Processed
         expr: increase(events_processed_total{job="copybot-hermes"}[10m]) < 1
