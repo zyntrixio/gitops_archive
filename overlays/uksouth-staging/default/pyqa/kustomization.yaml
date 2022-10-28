@@ -21,6 +21,17 @@ patches:
       kind: CronJob
     patch: |-
       - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env
+        value:
+          - name: BLOB_STORAGE_DSN
+            valueFrom:
+              secretKeyRef:
+                key: connection_string
+                name: azure-storage-common
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: replace
         path: /spec/jobTemplate/spec/template/spec/containers/1/env
         value:
           - name: BLOB_STORAGE_DSN
