@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -14,9 +13,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/atlas
-      newName: binkcore.azurecr.io/atlas
-      newTag: staging-2.4.0    # {"$imagepolicy": "flux-system:uksouth-staging-atlas:tag"}
+  - name: binkcore.azurecr.io/atlas
+    newName: binkcore.azurecr.io/atlas
+    newTag: staging-2.4.1 # {"$imagepolicy": "flux-system:uksouth-staging-atlas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
