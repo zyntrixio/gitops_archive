@@ -88,10 +88,10 @@ spec:
           resources:
             requests:
               cpu: 500m
-              memory: 6Gi
+              memory: 8Gi
             limits:
               cpu: 2000m
-              memory: 6Gi
+              memory: 8Gi
           livenessProbe:
             httpGet:
               path: /-/healthy
