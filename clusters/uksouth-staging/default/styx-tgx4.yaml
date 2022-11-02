@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -17,4 +16,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/styx
       newName: binkcore.azurecr.io/styx
-      newTag: 1.1.1    # {"$imagepolicy": "flux-system:uksouth-staging-styx:tag"}
+      newTag: 1.1.2 # {"$imagepolicy": "flux-system:uksouth-staging-styx:tag"}
