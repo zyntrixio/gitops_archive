@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -16,7 +15,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/atlas
       newName: binkcore.azurecr.io/atlas
-      newTag: 2021-11-30T114913Z    # {"$imagepolicy": "flux-system:uksouth-dev-atlas:tag"}
+      newTag: 2022-11-02T180204Z # {"$imagepolicy": "flux-system:uksouth-dev-atlas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
