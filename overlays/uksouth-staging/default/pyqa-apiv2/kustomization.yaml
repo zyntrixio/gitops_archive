@@ -3,6 +3,8 @@ resources:
   - aad.yaml
   - cronjob.yaml
 
+namespace: default
+
 configMapGenerator:
   - name: pyqa-apiv2
     envs:
