@@ -4,6 +4,10 @@ bases:
 
 nameSuffix: -apiv2
 
+images:
+  - name: binkcore.azurecr.io/pyqa
+    newName: binkcore.azurecr.io/bink-api-v2-automation-suite:latest
+
 patches:
   - target:
       kind: CronJob
