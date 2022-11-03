@@ -2,9 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pelops
+  name: pelops-api
   namespace: default
+  labels:
+    app: pelops
+    component: api
 spec:
+  selector:
+    matchLabels:
+      app: pelops
+      component: api
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -12,6 +19,9 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      labels:
+        app: pelops
+        component: api
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
