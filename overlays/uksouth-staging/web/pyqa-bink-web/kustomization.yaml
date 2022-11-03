@@ -3,6 +3,8 @@ resources:
   - aad.yaml
   - cronjob.yaml
 
+namespace: web
+
 configMapGenerator:
   - name: pyqa-bink-web
     envs:
