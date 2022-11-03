@@ -44,7 +44,7 @@ spec:
                   name: data
             - name: app
               command: [linkerd-await, --]
-              args: ["bash", "-c", "pytest -m bpl && echo $? > /tmp/status.txt || true"]
+              args: ["bash", "-c", "pytest --html /tmp/report.html --self-contained-html -m bpl && echo $? > /tmp/status.txt || true"]
               image: binkcore.azurecr.io/pyqa-bpl:latest
               volumeMounts:
                 - mountPath: /tmp

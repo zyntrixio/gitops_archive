@@ -45,7 +45,7 @@ spec:
                   name: data
             - name: app
               command: [linkerd-await, --]
-              args: [ "bash", "-c", "pytest --html report.html --self-contained-html -m bink_regression_api2 --channel bink --env staging && echo $? > /tmp/status.txt || true" ]
+              args: [ "bash", "-c", "pytest --html /tmp/report.html --self-contained-html -m bink_regression_api2 --channel bink --env staging && echo $? > /tmp/status.txt || true" ]
               image: binkcore.azurecr.io/bink-api-v2-automation-suite:latest
               volumeMounts:
                 - mountPath: /tmp
