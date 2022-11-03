@@ -2,8 +2,8 @@
 apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentity
 metadata:
-  name: pyqa-apiv2-identity
-  namespace: default
+  name: pyqa-bink-web
+  namespace: web
   annotations:
     aadpodidentity.k8s.io/Behavior: namespaced
 spec:
@@ -14,8 +14,8 @@ spec:
 apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentityBinding
 metadata:
-  name: pyqa-apiv2-identity-binding
-  namespace: default
+  name: pyqa-bink-web
+  namespace: web
 spec:
-  azureIdentity: pyqa-apiv2-identity
-  selector: pyqa-apiv2
+  azureIdentity: pyqa-bink-web
+  selector: pyqa-bink-web

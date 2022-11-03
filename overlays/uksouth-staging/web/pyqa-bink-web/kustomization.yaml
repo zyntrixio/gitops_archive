@@ -3,15 +3,8 @@ resources:
   - aad.yaml
   - cronjob.yaml
 
-nameSuffix: -auto
-namespace: bpl-testing
-
-images:
-  - name: binkcore.azurecr.io/pyqa-bpl
-    newName: binkcore.azurecr.io/pyqa-bpl-auto
-
 configMapGenerator:
-  - name: pyqa-bpl
+  - name: pyqa-bink-web
     envs:
       - env.ini
 
@@ -31,17 +24,9 @@ patches:
         path: /spec/jobTemplate/spec/template/spec/containers/0/envFrom
         value:
           - configMapRef:
-              name: pyqa-bpl
-      - op: replace
-        path: /spec/jobTemplate/spec/template/spec/containers/1/env
-        value:
-          - name: BLOB_STORAGE_DSN
-            valueFrom:
-              secretKeyRef:
-                key: connection_string
-                name: azure-storage-common
+              name: pyqa-bink-web
       - op: add
         path: /spec/jobTemplate/spec/template/spec/containers/1/envFrom
         value:
           - configMapRef:
-              name: pyqa-bpl
+              name: pyqa-bink-web

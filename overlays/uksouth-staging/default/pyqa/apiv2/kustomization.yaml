@@ -1,0 +1,25 @@
+---
+bases:
+  - ../base
+
+nameSuffix: -apiv2
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/1/args
+        value: [ "bash", "-c", "pytest --html report.html --self-contained-html -m bink_regression_api2 --channel bink --env staging && echo $? > /tmp/status.txt || true" ]
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: replace
+        path: /spec/jobTemplate/spec/template/metadata/labels/org
+        value: apiv2
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: replace
+        path: /spec/schedule
+        value: 0 0 * * *
