@@ -1,0 +1,40 @@
+---
+resources:
+  - aad.yaml
+  - cronjob.yaml
+
+configMapGenerator:
+  - name: pyqa-apiv2
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env
+        value:
+          - name: BLOB_STORAGE_DSN
+            valueFrom:
+              secretKeyRef:
+                key: connection_string
+                name: azure-storage-common
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: pyqa-apiv2
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/1/env
+        value:
+          - name: BLOB_STORAGE_DSN
+            valueFrom:
+              secretKeyRef:
+                key: connection_string
+                name: azure-storage-common
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/1/envFrom
+        value:
+          - configMapRef:
+              name: pyqa-apiv2

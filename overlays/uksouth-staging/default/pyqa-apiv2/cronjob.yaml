@@ -1,0 +1,63 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pyqa-apiv2
+  namespace: default
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  schedule: 0 0 * * *
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      template:
+        metadata:
+          annotations:
+            linkerd.io/inject: enabled
+            kubectl.kubernetes.io/default-container: app
+          labels:
+            app: pyqa-apiv2
+            org: apiv2
+            aadpodidbinding: pyqa-apiv2
+        spec:
+          restartPolicy: Never
+          imagePullSecrets:
+            - name: binkcore.azurecr.io
+          volumes:
+            - name: data
+              emptyDir: {}
+          containers:
+            - name: script
+              command: [linkerd-await, --shutdown, --]
+              args:
+                - bash
+                - -c
+                - ./report-render.sh
+              image: binkcore.azurecr.io/bink-api-v2-automation-suite:latest
+              securityContext:
+                runAsGroup: 0
+                runAsUser: 0
+              imagePullPolicy: Always
+              volumeMounts:
+                - mountPath: /tmp
+                  name: data
+            - name: app
+              command: [linkerd-await, --]
+              args: [ "bash", "-c", "pytest --html report.html --self-contained-html -m bink_regression_api2 --channel bink --env staging && echo $? > /tmp/status.txt || true" ]
+              image: binkcore.azurecr.io/bink-api-v2-automation-suite:latest
+              volumeMounts:
+                - mountPath: /tmp
+                  name: data
+              securityContext:
+                runAsGroup: 0
+                runAsUser: 0
+              imagePullPolicy: Always
+              resources:
+                limits:
+                  cpu: 1000m
+                  memory: 500Mi
+                requests:
+                  cpu: 50m
+                  memory: 500Mi

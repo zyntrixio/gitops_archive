@@ -2,7 +2,6 @@
 bases:
   - barclays
   - bink
-  - apiv2
 
 resources:
   - azureidentity.yaml
@@ -16,9 +15,6 @@ configMapGenerator:
   - name: pyqa-barclays
     envs:
       - config/barclays.ini
-  - name: pyqa-apiv2
-    envs:
-      - config/apiv2.ini
 
 patches:
   - target:
@@ -78,17 +74,3 @@ patches:
         value:
           - configMapRef:
               name: pyqa-barclays
-  - target:
-      kind: CronJob
-      name: pyqa-apiv2
-    patch: |-
-      - op: add
-        path: /spec/jobTemplate/spec/template/spec/containers/0/envFrom
-        value:
-          - configMapRef:
-              name: pyqa-apiv2
-      - op: add
-        path: /spec/jobTemplate/spec/template/spec/containers/1/envFrom
-        value:
-          - configMapRef:
-              name: pyqa-apiv2
