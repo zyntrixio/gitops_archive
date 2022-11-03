@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -14,9 +13,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/pelops
-      newName: binkcore.azurecr.io/pelops
-      newTag: staging-2021-05-24-104424  # {"$imagepolicy": "flux-system:uksouth-staging-pelops:tag"}
+  - name: binkcore.azurecr.io/pelops
+    newName: binkcore.azurecr.io/pelops
+    newTag: 2022-11-03T174003Z # {"$imagepolicy": "flux-system:uksouth-staging-pelops:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
