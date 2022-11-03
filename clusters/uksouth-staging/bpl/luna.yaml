@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/luna
     newName: binkcore.azurecr.io/luna
-    newTag: staging-0.2.2 # {"$imagepolicy": "flux-system:uksouth-staging-luna:tag"}
+    newTag: staging-0.2.3 # {"$imagepolicy": "flux-system:uksouth-staging-luna:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
