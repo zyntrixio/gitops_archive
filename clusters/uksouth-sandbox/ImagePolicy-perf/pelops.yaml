@@ -8,8 +8,8 @@ spec:
   imageRepositoryRef:
     name: pelops
   filterTags:
-    pattern: staging-(?P<ts>\d+(\.\d+)*)$
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
     extract: $ts
   policy:
-    semver:
-      range: '>0.0.1'
+    alphabetical:
+      order: asc

@@ -38,7 +38,7 @@ spec:
   imageRepositoryRef:
     name: pelops
   filterTags:
-    pattern: staging-(?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
     extract: $ts
   policy:
     alphabetical:
