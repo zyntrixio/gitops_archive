@@ -1,0 +1,45 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: pyqa-bink-web
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-staging/web/pyqa-bink-web
+  dependsOn:
+  - name: aad-pod-identity
+  - name: linkerd-control-plane
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/pyqa-bink-web
+    newName: binkcore.azurecr.io/pyqa-bink-web
+    newTag: 2022-11-03T162515Z # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-bink-web:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: pyqa-bink-web
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/pyqa-bink-web
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: uksouth-staging-pyqa-bink-web
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: pyqa-bink-web
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc
