@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -17,7 +16,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/angelia
       newName: binkcore.azurecr.io/angelia
-      newTag: prod-0.52.0 # {"$imagepolicy": "flux-system:uksouth-prod-angelia:tag"}
+      newTag: prod-0.53.4 # {"$imagepolicy": "flux-system:uksouth-prod-angelia:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
