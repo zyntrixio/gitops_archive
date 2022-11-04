@@ -35,6 +35,11 @@ patches:
               secretKeyRef:
                 key: connection_string
                 name: azure-storage-common
+          - name: HERMES_DATABASE_URI
+            valueFrom:
+              secretKeyRef:
+                key: common_hermes
+                name: azure-pgfs
       - op: add
         path: /spec/jobTemplate/spec/template/spec/containers/1/envFrom
         value:
