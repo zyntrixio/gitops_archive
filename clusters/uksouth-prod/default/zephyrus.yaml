@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -17,7 +16,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/zephyrus
       newName: binkcore.azurecr.io/zephyrus
-      newTag: prod-1.10.0 # {"$imagepolicy": "flux-system:uksouth-prod-zephyrus:tag"}
+      newTag: prod-1.10.1 # {"$imagepolicy": "flux-system:uksouth-prod-zephyrus:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
