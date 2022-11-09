@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/trusted-channels/pelops
+  path: ./overlays/uksouth-staging/trusted-channels/pelops
   prune: true
   dependsOn:
     - name: linkerd-control-plane

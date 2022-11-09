@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/trusted-channels/hermes
+  path: ./overlays/uksouth-staging/trusted-channels/hermes
   dependsOn:
   - name: aad-pod-identity
   - name: linkerd-control-plane
