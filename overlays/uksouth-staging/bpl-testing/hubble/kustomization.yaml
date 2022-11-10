@@ -44,12 +44,6 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: hubble
-                env:
-                  - name: DATABASE_URI
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-pgfs
-                        key: common_placeholder
                 volumeMounts:
                 - name: hubble-scripts
                   mountPath: /app/migrator.py
