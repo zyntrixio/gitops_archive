@@ -8,10 +8,6 @@ metadata:
     app: harmonia
     component: purgedb
 spec:
-  metadata:
-    labels:
-      app: harmonia
-      component: purgedb
   concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1

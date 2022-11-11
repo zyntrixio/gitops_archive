@@ -8,10 +8,6 @@ metadata:
     app: copybot
     component: cleanup
 spec:
-  metadata:
-    labels:
-      app: copybot
-      component: cleanup
   concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1
