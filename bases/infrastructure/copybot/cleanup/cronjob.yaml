@@ -1,0 +1,48 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: copybot-cleanup
+  namespace: default
+  labels:
+    app: copybot
+    component: cleanup
+spec:
+  metadata:
+    labels:
+      app: copybot
+      component: cleanup
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  schedule: 22 3 * * *
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: copybot
+            component: cleanup
+          annotations:
+            linkerd.io/inject: enabled
+            kubectl.kubernetes.io/default-container: app
+        spec:
+          containers:
+            - name: app
+              command: [linkerd-await, --shutdown, --]
+              args: [copybot, cleanup, --days=60, --splay=120]
+              image: binkcore.azurecr.io/copybot:latest
+              securityContext:
+                runAsGroup: 65534
+                runAsUser: 65534
+              imagePullPolicy: Always
+              resources:
+                requests:
+                  cpu: 200m
+                  memory: 128Mi
+                limits:
+                  cpu: 200m
+                  memory: 128Mi
+          restartPolicy: Never
+          imagePullSecrets:
+            - name: binkcore.azurecr.io

@@ -35,10 +35,13 @@ spec:
           resources:
             requests:
               cpu: 50m
-              memory: 512Mi
+              memory: 128Mi
             limits:
               cpu: 1000m
-              memory: 512Mi
+              memory: 128Mi
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
       terminationGracePeriodSeconds: 30
       serviceAccountName: copybot
       imagePullSecrets:

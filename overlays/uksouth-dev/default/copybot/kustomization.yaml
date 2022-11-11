@@ -3,6 +3,7 @@ bases:
   - ../../../../bases/infrastructure/copybot/core
   - ../../../../bases/infrastructure/copybot/hermes
   - ../../../../bases/infrastructure/copybot/harmonia
+  - ../../../../bases/infrastructure/copybot/cleanup
 
 namespace: default
 
