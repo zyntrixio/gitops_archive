@@ -4,7 +4,14 @@ kind: CronJob
 metadata:
   name: harmonia-purgedb
   namespace: default
+  labels:
+    app: harmonia
+    component: purgedb
 spec:
+  metadata:
+    labels:
+      app: harmonia
+      component: purgedb
   concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1
@@ -13,6 +20,9 @@ spec:
     spec:
       template:
         metadata:
+          labels:
+            app: harmonia
+            component: purgedb
           annotations:
             linkerd.io/inject: enabled
             kubectl.kubernetes.io/default-container: app
