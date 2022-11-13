@@ -18,6 +18,7 @@ spec:
       labels:
         app: metrics-statuspage
     spec:
+      activeDeadlineSeconds: 60
       template:
         metadata:
           labels:
