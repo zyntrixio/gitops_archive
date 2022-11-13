@@ -3,6 +3,29 @@ bases:
   - github.com/binkhq/api-reflector/deploy/kube
 
 patches:
-  - path: annotations.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: api-reflector
+      spec:
+        template:
+          metadata:
+            annotations:
+              linkerd.io/inject: enabled
+          spec:
+            containers:
+              - name: app
+                livenessProbe:
+                  failureThreshold: 3
+                  httpGet:
+                    path: /livez
+                    port: 6502
+                    scheme: HTTP
+                  initialDelaySeconds: 15
+                  periodSeconds: 60
+                  successThreshold: 1
+                  timeoutSeconds: 10
+            priorityClassName: bink-low-api

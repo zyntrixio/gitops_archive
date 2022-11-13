@@ -2,8 +2,3 @@
 resources:
   - deployment.yaml
   - service.yaml
-
-patches:
-  - path: annotations.yaml
-    target:
-      kind: Deployment

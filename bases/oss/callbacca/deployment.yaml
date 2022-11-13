@@ -19,6 +19,7 @@ spec:
     metadata:
       annotations:
         kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
       labels:
         app: callbacca
     spec:
@@ -33,5 +34,6 @@ spec:
               memory: 256M
             requests:
               memory: 256M
+      priorityClassName: bink-low-tasks
       imagePullSecrets:
         - name: binkcore.azurecr.io
