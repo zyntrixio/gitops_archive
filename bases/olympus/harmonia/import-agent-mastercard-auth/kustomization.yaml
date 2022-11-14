@@ -2,10 +2,29 @@
 bases:
   - ../core
 
+commonLabels:
+  component: import-agent-mastercard-auth
+
+nameSuffix: -import-agent-mastercard-auth
+
 patches:
-  - path: patch-labels.yaml
-  - path: patch-command.yaml
-  - path: patch-annotations.yaml
-  - path: patch-name.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: harmonia
+        namespace: default
+      spec:
+        template:
+          metadata:
+            annotations:
+              prometheus.io/port: '9100'
+              prometheus.io/scrape: 'true'
+              prometheus.io/job: harmonia-import-agent-mastercard-auth
+          spec:
+            containers:
+              - name: app
+                args: ["tximport", "--agent", "mastercard-auth", "--no-user-input", "--quiet"]
+            priorityClassName: bink-low-tasks

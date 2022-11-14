@@ -2,10 +2,29 @@
 bases:
   - ../core
 
+commonLabels:
+  component: export-agent-whsmith-rewards
+
+nameSuffix: -export-agent-whsmith-rewards
+
 patches:
-  - path: patch-labels.yaml
-  - path: patch-command.yaml
-  - path: patch-annotations.yaml
-  - path: patch-name.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: harmonia
+        namespace: default
+      spec:
+        template:
+          metadata:
+            annotations:
+              prometheus.io/port: '9100'
+              prometheus.io/scrape: 'true'
+              prometheus.io/job: harmonia-export-agent-whsmith-rewards
+          spec:
+            containers:
+              - name: app
+                args: ["txexport", "--agent", "whsmith-rewards", "--no-user-input", "--quiet"]
+            priorityClassName: bink-low-tasks

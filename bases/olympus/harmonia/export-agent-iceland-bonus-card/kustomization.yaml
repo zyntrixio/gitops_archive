@@ -2,10 +2,29 @@
 bases:
   - ../core
 
+commonLabels:
+  component: export-agent-iceland-bonus-card
+
+nameSuffix: -export-agent-iceland-bonus-card
+
 patches:
-  - path: patch-labels.yaml
-  - path: patch-command.yaml
-  - path: patch-annotations.yaml
-  - path: patch-name.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: harmonia
+        namespace: default
+      spec:
+        template:
+          metadata:
+            annotations:
+              prometheus.io/port: '9100'
+              prometheus.io/scrape: 'true'
+              prometheus.io/job: harmonia-export-agent-iceland-bonus-card
+          spec:
+            containers:
+              - name: app
+                args: ["txexport", "--agent", "iceland-bonus-card", "--no-user-input", "--quiet"]
+            priorityClassName: bink-low-tasks

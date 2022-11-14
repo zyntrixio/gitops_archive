@@ -2,11 +2,32 @@
 bases:
   - ../core
 
+commonLabels:
+  component: import-worker
+
+nameSuffix: -import-worker
+
 patches:
-  - path: patch-labels.yaml
-  - path: patch-command.yaml
-  - path: patch-env.yaml
-  - path: patch-annotations.yaml
-  - path: patch-name.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: harmonia
+        namespace: default
+      spec:
+        template:
+          metadata:
+            annotations:
+              prometheus.io/port: '9100'
+              prometheus.io/scrape: 'true'
+              prometheus.io/job: harmonia-import-worker
+          spec:
+            containers:
+              - name: app
+                args: ["txcore", "worker"]
+                env:
+                  - name: TXM_RQ_QUEUES
+                    value: import
+            priorityClassName: bink-low-tasks

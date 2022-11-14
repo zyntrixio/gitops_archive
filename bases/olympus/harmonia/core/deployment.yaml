@@ -4,7 +4,12 @@ kind: Deployment
 metadata:
   name: harmonia
   namespace: default
+  labels:
+    app: harmonia
 spec:
+  selector:
+    matchLabels:
+      app: harmonia
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -13,6 +18,7 @@ spec:
   template:
     metadata:
       labels:
+        app: harmonia
         aadpodidbinding: harmonia
       annotations:
         linkerd.io/inject: enabled
@@ -39,10 +45,10 @@ spec:
           name: app
           resources:
             limits:
-              memory: 384Mi
+              memory: 128Mi
               cpu: 1000m
             requests:
-              memory: 384Mi
+              memory: 128Mi
               cpu: 10m
       imagePullSecrets:
         - name: binkcore.azurecr.io

@@ -2,11 +2,32 @@
 bases:
   - ../core
 
+commonLabels:
+  component: throughput-test
+
+nameSuffix: -throughput-test
+
 patches:
-  - path: patch-labels.yaml
-  - path: patch-env.yaml
-  - path: patch-image.yaml
-  - path: patch-memory.yaml
-  - path: patch-name.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: harmonia
+        namespace: default
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                image: binkcore.azurecr.io/harmonia_bulkload:latest
+                env:
+                  - name: TXM_RQ_QUEUES
+                    value: import
+                resources:
+                  limits:
+                    memory: 4Gi
+                  requests:
+                    memory: 4Gi
+            priorityClassName: bink-high-tasks

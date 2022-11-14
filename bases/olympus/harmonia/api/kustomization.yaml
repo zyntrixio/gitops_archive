@@ -5,10 +5,29 @@ bases:
 resources:
   - service.yaml
 
+commonLabels:
+  component: api
+
+nameSuffix: -api
+
 patches:
-  - path: patch-labels.yaml
-  - path: patch-command.yaml
-  - path: patch-annotations.yaml
-  - path: patch-name.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: harmonia
+        namespace: default
+      spec:
+        template:
+          metadata:
+            annotations:
+              prometheus.io/port: '9100'
+              prometheus.io/scrape: 'true'
+              prometheus.io/job: harmonia-api
+          spec:
+            containers:
+              - name: app
+                args: ["gunicorn", "-b", "0.0.0.0:9000", "--access-logfile", "-", "--error-logfile", "-", "app.api.app:app"]
+            priorityClassName: bink-low-api
