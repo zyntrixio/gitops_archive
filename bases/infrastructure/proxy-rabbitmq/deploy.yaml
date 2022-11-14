@@ -2,33 +2,41 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rabbitmq-proxy
+  name: proxy-rabbitmq
   namespace: default
   labels:
-    app: rabbitmq-proxy
+    app: proxy-rabbitmq
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rabbitmq-proxy
+      app: proxy-rabbitmq
   template:
     metadata:
       labels:
-        app: rabbitmq-proxy
+        app: proxy-rabbitmq
     spec:
+      priorityClassName: bink-low-component
       containers:
         - name: app
-          image: nginx:alpine
+          image: docker.io/nginx:alpine
           ports:
             - containerPort: 80
           volumeMounts:
             - name: config
               mountPath: /etc/nginx/conf.d
               readOnly: true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 32Mi
       volumes:
         - name: config
           configMap:
-            name: rabbitmq-proxy
+            name: proxy-rabbitmq
             items:
               - key: default.conf
                 path: default.conf
