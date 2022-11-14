@@ -2,9 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: skiron
+  name: skiron-api
   namespace: default
+  labels:
+    app: skiron
+    component: api
 spec:
+  selector:
+    matchLabels:
+      app: skiron
+      component: api
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -12,6 +19,9 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      labels:
+        app: skiron
+        component: api
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
@@ -32,8 +42,16 @@ spec:
         - name: app
           image: binkcore.azurecr.io/skiron:latest
           imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 10m
+              memory: 128Mi
+            limits:
+              cpu: 1000m
+              memory: 120Mi
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534
+      priorityClassName: bink-high-api
       imagePullSecrets:
         - name: binkcore.azurecr.io

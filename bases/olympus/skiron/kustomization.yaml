@@ -1,10 +1,5 @@
 ---
 resources:
-  - deployment.yaml
+  - namespace.yaml
   - service.yaml
-
-patches:
-  - path: patch-labels.yaml
-  - path: patch-name.yaml
-    target:
-      kind: Deployment
+  - deployment.yaml
