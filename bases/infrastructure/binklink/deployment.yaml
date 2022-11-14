@@ -43,5 +43,6 @@ spec:
               cpu: 25m
           ports:
             - containerPort: 80
+      priorityClassName: bink-medium-api
       imagePullSecrets:
         - name: binkcore.azurecr.io

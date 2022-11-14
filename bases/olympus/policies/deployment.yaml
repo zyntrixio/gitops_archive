@@ -45,10 +45,11 @@ spec:
               protocol: TCP
           resources:
             limits:
-              memory: 150Mi
+              memory: 64Mi
               cpu: 1000m
             requests:
-              cpu: 50m
-              memory: 150Mi
+              memory: 64Mi
+              cpu: 25m
+      priorityClassName: bink-medium-api
       imagePullSecrets:
         - name: binkcore.azurecr.io
