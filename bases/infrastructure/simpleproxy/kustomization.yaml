@@ -1,3 +1,18 @@
 ---
 bases:
   - github.com/binkhq/simpleproxy/deploy
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: simpleproxy
+      spec:
+        template:
+          spec:
+            priorityClassName: bink-low-component
+            containers:
+            - name: app
