@@ -15,4 +15,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/lethe
       newName: binkcore.azurecr.io/lethe
-      newTag: 2022-11-04T105328Z # {"$imagepolicy": "flux-system:lethe:tag"}
+      newTag: 2022-11-15T114555Z # {"$imagepolicy": "flux-system:lethe:tag"}
