@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -17,7 +16,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/carina
       newName: binkcore.azurecr.io/carina
-      newTag: prod-2.0.0 # {"$imagepolicy": "flux-system:uksouth-prod-carina:tag"}
+      newTag: prod-3.0.5 # {"$imagepolicy": "flux-system:uksouth-prod-carina:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
