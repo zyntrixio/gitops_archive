@@ -15,7 +15,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/lethe
       newName: binkcore.azurecr.io/lethe
-      newTag: 2022-11-15T114555Z # {"$imagepolicy": "flux-system:uksouth-dev-lethe:tag"}
+      newTag: 2022-11-15T114555Z # {"$imagepolicy": "flux-system:lethe:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -31,7 +31,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
-  name: uksouth-dev-lethe
+  name: lethe
   namespace: flux-system
 spec:
   imageRepositoryRef:
