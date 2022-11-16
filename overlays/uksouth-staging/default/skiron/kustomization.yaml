@@ -2,7 +2,26 @@
 bases:
   - ../../../../bases/olympus/skiron
 
+namespace: default
+
+configMapGenerator:
+  - name: skiron
+    envs:
+      - env.ini
+
 patches:
-  - path: env.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: skiron
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: skiron
