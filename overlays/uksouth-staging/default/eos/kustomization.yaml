@@ -7,7 +7,37 @@ bases:
 resources:
   - aad.yaml
 
+namespace: default
+
+configMapGenerator:
+  - name: eos
+    envs:
+      - env.ini
+
 patches:
-  - path: env.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: eos
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: eos
+                env:
+                  - name: OAUTH_CLIENT_SECRET
+                    valueFrom:
+                      secretKeyRef:
+                        key: secret
+                        name: eos-sso-client-secret
+                  - name: EOS_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_eos
