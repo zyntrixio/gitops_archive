@@ -4,6 +4,6 @@ bases:
 
 replicas:
   - name: pelops
-    count: 0
+    count: 1
 
 namespace: trusted-channels
