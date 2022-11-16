@@ -6,7 +6,7 @@ namespace: trusted-channels
 
 replicas:
   - name: hermes
-    count: 0
+    count: 1
 
 patches:
   - target:
