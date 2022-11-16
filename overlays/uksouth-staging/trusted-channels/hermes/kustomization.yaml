@@ -27,6 +27,8 @@ patches:
             containers:
               - name: app
                 env:
+                  - name: HERMES_CUSTOM_DOMAIN
+                    value: https://tc.staging.gb.bink.com
                   - name: HERMES_BLOB_STORAGE_DSN
                     valueFrom:
                       secretKeyRef:
