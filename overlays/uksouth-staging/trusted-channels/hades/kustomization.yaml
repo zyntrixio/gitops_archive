@@ -1,19 +1,16 @@
 ---
 bases:
-  - ../../default/hades
+  - ../../../../bases/olympus/hades/api
+  - ../../../../bases/olympus/hades/migrator
 
 namespace: trusted-channels
 
-replicas:
+configMapGenerator:
   - name: hades
-    count: 1
+    envs:
+      - env.ini
 
 patches:
-  - target:
-      kind: Deployment
-    patch: |-
-      - op: remove
-        path: /spec/template/spec/containers/0/env
   - target:
       kind: Deployment
     patch: |-
@@ -26,6 +23,6 @@ patches:
           spec:
             containers:
               - name: app
-                env:
-                  - name: HADES_DATABASE_URL
-                    value: postgresql://postgres@postgres:5432/hades
+                envFrom:
+                  - configMapRef:
+                      name: hades

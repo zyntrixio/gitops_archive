@@ -1,19 +1,15 @@
 ---
 bases:
-  - ../../default/api-reflector
+  - ../../../../bases/oss/api-reflector
 
 namespace: trusted-channels
 
-replicas:
+configMapGenerator:
   - name: api-reflector
-    count: 1
+    envs:
+      - env.ini
 
 patches:
-  - target:
-      kind: Deployment
-    patch: |-
-      - op: remove
-        path: /spec/template/spec/containers/0/env
   - target:
       kind: Deployment
     patch: |-
@@ -24,25 +20,9 @@ patches:
       spec:
         template:
           spec:
+            priorityClassName: bink-medium-api
             containers:
               - name: app
                 envFrom:
                   - configMapRef:
                       name: api-reflector
-                env:
-                  - name: postgres_dsn
-                    value: postgresql://postgres@postgres:5432/api_reflector
-
-patchesStrategicMerge:
-  - |-
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: reflector.${cluster_name}.${location}.bink.sh
-    $patch: delete
-  - |-
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: reflector.${cluster_name}.${location}.bink.sh-healthz
-    $patch: delete

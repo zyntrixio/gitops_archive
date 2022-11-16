@@ -1,19 +1,16 @@
 ---
 bases:
-  - ../../default/europa
+  - ../../../../bases/olympus/europa/api
+  - ../../../../bases/olympus/europa/migrator
 
 namespace: trusted-channels
 
-replicas:
+configMapGenerator:
   - name: europa
-    count: 1
+    envs:
+      - env.ini
 
 patches:
-  - target:
-      kind: Deployment
-    patch: |-
-      - op: remove
-        path: /spec/template/spec/containers/0/env
   - target:
       kind: Deployment
     patch: |-
@@ -26,6 +23,6 @@ patches:
           spec:
             containers:
               - name: app
-                env:
-                  - name: EUROPA_DATABASE_URI
-                    value: postgresql://postgres@postgres:5432/europa
+                envFrom:
+                  - configMapRef:
+                      name: europa

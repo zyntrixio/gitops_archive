@@ -1,19 +1,15 @@
 ---
 bases:
-  - ../../default/angelia
+  - ../../../../bases/olympus/angelia
 
 namespace: trusted-channels
 
-replicas:
-  - name: angelia-api
-    count: 1
+configMapGenerator:
+  - name: angelia
+    envs:
+      - env.ini
 
 patches:
-  - target:
-      kind: Deployment
-    patch: |-
-      - op: remove
-        path: /spec/template/spec/containers/0/env
   - target:
       kind: Deployment
     patch: |-
@@ -26,6 +22,6 @@ patches:
           spec:
             containers:
               - name: app
-                env:
-                  - name: POSTGRES_DSN
-                    value: postgresql://postgres@postgres:5432/hermes
+                envFrom:
+                  - configMapRef:
+                      name: angelia

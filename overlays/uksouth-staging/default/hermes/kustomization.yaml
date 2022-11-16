@@ -38,8 +38,6 @@ patches:
                   - configMapRef:
                       name: hermes
                 env:
-                  - name: HERMES_CUSTOM_DOMAIN
-                    value: https://api.staging.gb.bink.com
                   - name: HERMES_BLOB_STORAGE_DSN
                     valueFrom:
                       secretKeyRef:

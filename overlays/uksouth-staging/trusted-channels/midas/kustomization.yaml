@@ -1,19 +1,20 @@
 ---
 bases:
-  - ../../default/midas
+  - ../../../../bases/olympus/midas/api
+  - ../../../../bases/olympus/midas/beat
+  - ../../../../bases/olympus/midas/celery
+  - ../../../../bases/olympus/midas/consumer
+  - ../../../../bases/olympus/midas/migrator
+  - ../../../../bases/olympus/midas/worker
 
 namespace: trusted-channels
 
-replicas:
+configMapGenerator:
   - name: midas
-    count: 1
+    envs:
+      - env.ini
 
 patches:
-  - target:
-      kind: Deployment
-    patch: |-
-      - op: remove
-        path: /spec/template/spec/containers/0/env
   - target:
       kind: Deployment
     patch: |-
@@ -26,6 +27,6 @@ patches:
           spec:
             containers:
               - name: app
-                env:
-                  - name: POSTGRES_DSN
-                    value: postgresql://postgres@postgres:5432/midas
+                envFrom:
+                  - configMapRef:
+                      name: midas

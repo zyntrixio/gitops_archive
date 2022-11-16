@@ -1,17 +1,19 @@
 ---
 bases:
-  - ../../default/metis
+  - ../../../../bases/olympus/metis/api
+  - ../../../../bases/olympus/metis/celery
 
 namespace: trusted-channels
 
-replicas:
+configMapGenerator:
   - name: metis
-    count: 1
+    envs:
+      - env.ini
 
 patches:
   - target:
       kind: Deployment
-    patch: |
+    patch: |-
       apiVersion: apps/v1
       kind: Deployment
       metadata:
@@ -21,6 +23,6 @@ patches:
           spec:
             containers:
               - name: app
-                env:
-                  - name: PONTUS_DATABASE_URI
-                    value: postgresql://postgres@postgres:5432/pontus
+                envFrom:
+                  - configMapRef:
+                      name: metis

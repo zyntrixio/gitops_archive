@@ -1,9 +1,0 @@
----
-bases:
-  - ../../default/lethe
-
-replicas:
-  - name: lethe
-    count: 0
-
-namespace: trusted-channels

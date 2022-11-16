@@ -1,9 +1,27 @@
 ---
 bases:
-  - ../../default/pelops
-
-replicas:
-  - name: pelops-api
-    count: 1
+  - ../../../../bases/olympus/pelops
 
 namespace: trusted-channels
+
+configMapGenerator:
+  - name: pelops
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: pelops
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: pelops

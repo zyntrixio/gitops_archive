@@ -1,19 +1,20 @@
 ---
 bases:
-  - ../../default/hermes
+  - ../../../../bases/olympus/hermes/core
+  - ../../../../bases/olympus/hermes/api
+  - ../../../../bases/olympus/hermes/beat
+  - ../../../../bases/olympus/hermes/celery
+  - ../../../../bases/olympus/hermes/migrator
+  - ../../../../bases/olympus/hermes/logic
 
 namespace: trusted-channels
 
-replicas:
+configMapGenerator:
   - name: hermes
-    count: 1
+    envs:
+      - env.ini
 
 patches:
-  - target:
-      kind: Deployment
-    patch: |-
-      - op: remove
-        path: /spec/template/spec/containers/0/env
   - target:
       kind: Deployment
     patch: |-
@@ -26,13 +27,24 @@ patches:
           spec:
             containers:
               - name: app
+                envFrom:
+                  - configMapRef:
+                      name: hermes
                 env:
-                  - name: HERMES_CUSTOM_DOMAIN
-                    value: https://tc.staging.gb.bink.com
                   - name: HERMES_BLOB_STORAGE_DSN
                     valueFrom:
                       secretKeyRef:
                         key: connection_string
                         name: azure-storage-common
+                  - name: APPLE_CLIENT_SECRET
+                    valueFrom:
+                      secretKeyRef:
+                        key: key
+                        name: sign-in-with-apple
+                  - name: HERMES_DATABASE_URL_BARE
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_hermes
                   - name: HERMES_DATABASE_URL
-                    value: postgresql://postgres@postgres:5432/hermes
+                    value: $(HERMES_DATABASE_URL_BARE)&application_name=hermes

@@ -1,19 +1,17 @@
 ---
 bases:
-  - ../../default/atlas
+  - ../../../../bases/olympus/atlas/api
+  - ../../../../bases/olympus/atlas/consumer
+  - ../../../../bases/olympus/atlas/migrator
 
 namespace: trusted-channels
 
-replicas:
+configMapGenerator:
   - name: atlas
-    count: 1
+    envs:
+      - env.ini
 
 patches:
-  - target:
-      kind: Deployment
-    patch: |-
-      - op: remove
-        path: /spec/template/spec/containers/0/env
   - target:
       kind: Deployment
     patch: |-
@@ -26,6 +24,6 @@ patches:
           spec:
             containers:
               - name: app
-                env:
-                  - name: ATLAS_DATABASE_URI
-                    value: postgresql://postgres@postgres:5432/atlas
+                envFrom:
+                  - configMapRef:
+                      name: atlas

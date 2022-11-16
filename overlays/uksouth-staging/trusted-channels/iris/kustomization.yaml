@@ -1,9 +1,5 @@
 ---
 bases:
-  - ../../default/iris
-
-replicas:
-  - name: iris-api
-    count: 0
+  - ../../../../bases/olympus/iris
 
 namespace: trusted-channels
