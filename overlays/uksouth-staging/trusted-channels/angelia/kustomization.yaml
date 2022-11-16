@@ -2,6 +2,9 @@
 bases:
   - ../../../../bases/olympus/angelia
 
+resources:
+  - aad.yaml
+
 namespace: trusted-channels
 
 configMapGenerator:

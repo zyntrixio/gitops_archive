@@ -7,6 +7,9 @@ bases:
   - ../../../../bases/olympus/hermes/migrator
   - ../../../../bases/olympus/hermes/logic
 
+resources:
+  - aad.yaml
+
 namespace: trusted-channels
 
 configMapGenerator:

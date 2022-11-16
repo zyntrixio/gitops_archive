@@ -3,6 +3,9 @@ bases:
   - ../../../../bases/olympus/europa/api
   - ../../../../bases/olympus/europa/migrator
 
+resources:
+  - aad.yaml
+
 namespace: trusted-channels
 
 configMapGenerator:
