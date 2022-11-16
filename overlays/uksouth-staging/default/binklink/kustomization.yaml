@@ -6,10 +6,6 @@ resources:
   - ingress.yaml
   - ingress-healthz.yaml
 
-patches:
-  - target:
-      kind: Deployment
-    patch: |-
-      - op: add
-        path: /spec/replicas
-        value: 3
+replicas:
+  - name: binklink
+    count: 3
