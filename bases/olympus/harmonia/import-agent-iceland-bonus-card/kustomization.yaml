@@ -27,4 +27,9 @@ patches:
             containers:
               - name: app
                 args: ["tximport", "--agent", "iceland-bonus-card", "--no-user-input", "--quiet"]
+                resources:
+                  limits:
+                    memory: 256Mi
+                  requests:
+                    memory: 256Mi
             priorityClassName: bink-low-tasks
