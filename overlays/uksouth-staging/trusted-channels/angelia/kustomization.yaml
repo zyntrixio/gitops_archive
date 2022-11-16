@@ -6,7 +6,7 @@ namespace: trusted-channels
 
 replicas:
   - name: angelia-api
-    count: 0
+    count: 1
 
 patches:
   - target:
