@@ -5,9 +5,10 @@ bases:
 resources:
   - aad.yaml
 
+namespace: default
+
 configMapGenerator:
   - name: angelia
-    namespace: default
     envs:
       - env.ini
 
