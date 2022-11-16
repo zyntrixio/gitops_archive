@@ -11,12 +11,7 @@ replicas:
 patches:
   - target:
       kind: Deployment
-    patch: |-
-      - op: remove
-        path: /spec/template/spec/containers/0/env
-  - target:
-      kind: Deployment
-    patch: |-
+    patch: |
       apiVersion: apps/v1
       kind: Deployment
       metadata:
