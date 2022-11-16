@@ -3,9 +3,34 @@ bases:
   - ../../../../bases/olympus/zephyrus
 
 resources:
-  - azureidentity.yaml
+  - aad.yaml
+
+namespace: default
+
+configMapGenerator:
+  - name: zephyrus
+    envs:
+      - env.ini
 
 patches:
-  - path: env.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: zephyrus
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: zephyrus
+                env:
+                  - name: AZURE_ACCOUNT_KEY
+                    valueFrom:
+                      secretKeyRef:
+                        key: AZ_KEY
+                        name: bink-static-auth
