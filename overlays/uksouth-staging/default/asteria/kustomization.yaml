@@ -3,6 +3,21 @@ bases:
   - ../../../../bases/olympus/asteria
 
 patches:
-  - path: env.yaml
-    target:
+  - target:
       kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: envs
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: POSTGRES_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_hermes
