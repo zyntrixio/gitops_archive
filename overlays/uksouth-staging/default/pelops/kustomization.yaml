@@ -3,7 +3,7 @@ bases:
   - ../../../../bases/olympus/pelops
 
 replicas:
-  - name: pelops
+  - name: pelops-api
     count: 1
 
 patches:
