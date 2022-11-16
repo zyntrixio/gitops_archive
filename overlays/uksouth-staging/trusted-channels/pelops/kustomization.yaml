@@ -3,7 +3,7 @@ bases:
   - ../../default/pelops
 
 replicas:
-  - name: pelops
+  - name: pelops-api
     count: 1
 
 namespace: trusted-channels
