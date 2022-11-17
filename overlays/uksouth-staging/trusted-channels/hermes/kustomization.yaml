@@ -44,10 +44,3 @@ patches:
                       secretKeyRef:
                         key: key
                         name: sign-in-with-apple
-                  - name: HERMES_DATABASE_URL_BARE
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-pgfs
-                        key: common_hermes
-                  - name: HERMES_DATABASE_URL
-                    value: $(HERMES_DATABASE_URL_BARE)&application_name=hermes
