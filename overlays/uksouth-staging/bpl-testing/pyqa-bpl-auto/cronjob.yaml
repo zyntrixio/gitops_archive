@@ -16,6 +16,7 @@ spec:
         metadata:
           annotations:
             linkerd.io/inject: enabled
+            config.linkerd.io/shutdown-grace-period: "30s"
             kubectl.kubernetes.io/default-container: app
           labels:
             app: pyqa-bpl
