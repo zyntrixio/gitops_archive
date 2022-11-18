@@ -1,5 +1,5 @@
 ---
-maxRecentLogLines: 50
+maxRecentLogLines: 20
 alert:
   teams:
     wenhook: https://hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/027d780b7f564c5f8acfe6674bf62a1e/e69fd5a7-8b6c-4ac5-8df0-c88c77df0a12
