@@ -1,6 +1,6 @@
 ---
 bases:
-  - https://raw.githubusercontent.com/abahmed/kwatch/v0.4.0/deploy/deploy.yaml
+  - https://raw.githubusercontent.com/abahmed/kwatch/v0.6.1/deploy/deploy.yaml
 
 namespace: bpl-testing
 
