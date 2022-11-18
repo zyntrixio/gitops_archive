@@ -1,0 +1,11 @@
+---
+bases:
+  - https://raw.githubusercontent.com/abahmed/kwatch/v0.4.0/deploy/deploy.yaml
+
+namespace: bpl-testing
+
+configMapGenerator:
+  - name: kwatch
+    namespace: bpl-testing
+    files:
+      - config.yaml
