@@ -18,7 +18,7 @@ spec:
       newName: binkcore.azurecr.io/hades
       newTag: prod-2.7.1 # {"$imagepolicy": "flux-system:uksouth-prod-hades:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: hades
@@ -29,7 +29,7 @@ spec:
   secretRef:
     name: binkcore.azurecr.io
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: uksouth-prod-hades

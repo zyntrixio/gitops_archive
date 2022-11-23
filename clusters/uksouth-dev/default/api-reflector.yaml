@@ -21,7 +21,7 @@ spec:
       newName: ghcr.io/binkhq/api-reflector
       newTag: 0.6.2 # {"$imagepolicy": "flux-system:uksouth-dev-api-reflector:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: api-reflector
@@ -30,7 +30,7 @@ spec:
   image: ghcr.io/binkhq/api-reflector
   interval: 10m0s
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: uksouth-dev-api-reflector

@@ -18,7 +18,7 @@ spec:
     newName: binkcore.azurecr.io/hermes
     newTag: 2022-10-31T141352Z # {"$imagepolicy": "flux-system:uksouth-dev-hermes:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: hermes
@@ -29,7 +29,7 @@ spec:
   secretRef:
     name: binkcore.azurecr.io
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: uksouth-dev-hermes

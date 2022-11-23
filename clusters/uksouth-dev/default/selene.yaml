@@ -18,7 +18,7 @@ spec:
       newName: binkcore.azurecr.io/selene
       newTag: develop-2021-07-21-131336    # {"$imagepolicy": "flux-system:uksouth-dev-selene:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: selene
@@ -29,7 +29,7 @@ spec:
   secretRef:
     name: binkcore.azurecr.io
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: uksouth-dev-selene

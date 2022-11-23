@@ -21,7 +21,7 @@ spec:
       newName: binkcore.azurecr.io/kube-autodiscover-poster
       newTag: 2022-08-29T115033Z # {"$imagepolicy": "flux-system:kube-autodiscover-poster:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: kube-autodiscover-poster
@@ -32,7 +32,7 @@ spec:
   secretRef:
     name: binkcore.azurecr.io
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: kube-autodiscover-poster

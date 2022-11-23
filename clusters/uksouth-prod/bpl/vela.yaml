@@ -18,7 +18,7 @@ spec:
       newName: binkcore.azurecr.io/vela
       newTag: prod-2.4.0 # {"$imagepolicy": "flux-system:uksouth-prod-vela:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: vela
@@ -29,7 +29,7 @@ spec:
   secretRef:
     name: binkcore.azurecr.io
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: uksouth-prod-vela

@@ -16,9 +16,9 @@ spec:
   images:
   - name: binkcore.azurecr.io/angelia
     newName: binkcore.azurecr.io/angelia
-    newTag: staging-0.54.0 # {"$imagepolicy": "flux-system:uksouth-staging-angelia:tag"}
+    newTag: staging-0.53.4 # {"$imagepolicy": "flux-system:uksouth-staging-angelia:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: angelia
@@ -29,7 +29,7 @@ spec:
   secretRef:
     name: binkcore.azurecr.io
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: uksouth-staging-angelia

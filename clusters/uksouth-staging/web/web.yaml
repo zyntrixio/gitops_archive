@@ -20,7 +20,7 @@ spec:
     newName: binkcore.azurecr.io/web-wasabi
     newTag: staging-1.12.2 # {"$imagepolicy": "flux-system:uksouth-staging-web-wasabi:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: web-bink
@@ -31,7 +31,7 @@ spec:
   secretRef:
     name: binkcore.azurecr.io
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: web-wasabi
@@ -42,7 +42,7 @@ spec:
   secretRef:
     name: binkcore.azurecr.io
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: uksouth-staging-web-bink
@@ -57,7 +57,7 @@ spec:
     semver:
       range: '>0.0.1'
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: uksouth-staging-web-wasabi

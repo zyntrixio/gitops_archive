@@ -22,7 +22,7 @@ spec:
       newName: binkcore.azurecr.io/binklink
       newTag: staging-2022-02-02T075532Z  # {"$imagepolicy": "flux-system:uksouth-staging-binklink:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: binklink
@@ -33,7 +33,7 @@ spec:
   secretRef:
     name: binkcore.azurecr.io
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: uksouth-staging-binklink

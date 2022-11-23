@@ -18,7 +18,7 @@ spec:
     newName: binkcore.azurecr.io/polaris
     newTag: 2022-11-16T125844Z # {"$imagepolicy": "flux-system:uksouth-dev-polaris:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: polaris
@@ -29,7 +29,7 @@ spec:
   secretRef:
     name: binkcore.azurecr.io
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: uksouth-dev-polaris

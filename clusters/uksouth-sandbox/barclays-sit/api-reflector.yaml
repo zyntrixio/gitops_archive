@@ -21,7 +21,7 @@ spec:
       newName: ghcr.io/binkhq/api-reflector
       newTag: 0.6.2 # {"$imagepolicy": "flux-system:barclays-sit-api-reflector:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: barclays-sit-api-reflector

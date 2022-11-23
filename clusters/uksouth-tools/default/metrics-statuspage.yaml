@@ -15,7 +15,7 @@ spec:
       newName: binkcore.azurecr.io/metrics-statuspage
       newTag: 2022-08-29T184714Z # {"$imagepolicy": "flux-system:metrics-statuspage:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: metrics-statuspage
@@ -26,7 +26,7 @@ spec:
   secretRef:
     name: binkcore.azurecr.io
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: metrics-statuspage

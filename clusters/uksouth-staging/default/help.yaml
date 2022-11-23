@@ -17,7 +17,7 @@ spec:
     newName: binkcore.azurecr.io/help.gb.bink.com
     newTag: staging-2022-11-01T112101Z # {"$imagepolicy": "flux-system:uksouth-staging-help:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: help
@@ -28,7 +28,7 @@ spec:
   secretRef:
     name: binkcore.azurecr.io
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: uksouth-staging-help

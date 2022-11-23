@@ -18,7 +18,7 @@ spec:
     newName: binkcore.azurecr.io/angelia
     newTag: tc-2022-11-19T191720Z # {"$imagepolicy": "flux-system:tc-angelia:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: tc-angelia

@@ -18,7 +18,7 @@ spec:
     newName: binkcore.azurecr.io/hermes
     newTag: tc-2022-11-22T112712Z # {"$imagepolicy": "flux-system:tc-hermes:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: tc-hermes

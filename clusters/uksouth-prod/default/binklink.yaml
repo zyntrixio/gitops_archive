@@ -22,7 +22,7 @@ spec:
       newName: binkcore.azurecr.io/binklink
       newTag: prod-2022-02-02T080129Z # {"$imagepolicy": "flux-system:uksouth-prod-binklink:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: binklink
@@ -33,7 +33,7 @@ spec:
   secretRef:
     name: binkcore.azurecr.io
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: uksouth-prod-binklink
