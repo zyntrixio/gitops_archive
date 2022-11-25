@@ -27,6 +27,11 @@ patches:
             containers:
               - name: app
                 args: ["txcore", "worker"]
+                resources:
+                  limits:
+                    memory: 384Mi
+                  requests:
+                    memory: 384Mi
                 env:
                   - name: TXM_RQ_QUEUES
                     value: matching
