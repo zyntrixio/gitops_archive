@@ -3,6 +3,7 @@ bases:
   - ../../../../bases/infrastructure/copybot/core
   - ../../../../bases/infrastructure/copybot/hermes
   - ../../../../bases/infrastructure/copybot/harmonia
+  - ../../../../bases/infrastructure/copybot/cleanup
 
 namespace: default
 
@@ -39,3 +40,26 @@ patches:
                       secretKeyRef:
                         name: azure-pgfs
                         key: common_placeholder
+  - target:
+      kind: CronJob
+    patch: |-
+      apiVersion: batch/v1
+      kind: CronJob
+      metadata:
+        name: copybot-cleanup
+      spec:
+        jobTemplate:
+          spec:
+            template:
+              spec:
+                containers:
+                  - name: app
+                    envFrom:
+                      - configMapRef:
+                          name: copybot
+                    env:
+                      - name: POSTGRES_HOST
+                        valueFrom:
+                          secretKeyRef:
+                            name: azure-pgfs
+                            key: common_placeholder
