@@ -17,4 +17,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/metis
       newName: binkcore.azurecr.io/metis
-      newTag: prod-1.25.0
+      newTag: prod-1.25.0 # {"$imagepolicy": "flux-system:sandbox-metis:tag"}

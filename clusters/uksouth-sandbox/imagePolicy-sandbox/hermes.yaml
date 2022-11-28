@@ -1,0 +1,15 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: sandbox-hermes
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: hermes
+  filterTags:
+    pattern: sandbox-(?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    semver:
+      range: '>0.0.1'
