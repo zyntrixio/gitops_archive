@@ -16,4 +16,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/metis
       newName: binkcore.azurecr.io/metis
-      newTag: staging-1.26.2 # {"$imagepolicy": "flux-system:perf-metis:tag"}
+      newTag: staging-1.27.0 # {"$imagepolicy": "flux-system:perf-metis:tag"}
