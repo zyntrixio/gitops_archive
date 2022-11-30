@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/web-bink
     newName: binkcore.azurecr.io/web-bink
-    newTag: staging-1.12.2 # {"$imagepolicy": "flux-system:uksouth-staging-web-bink:tag"}
+    newTag: staging-1.13.0 # {"$imagepolicy": "flux-system:uksouth-staging-web-bink:tag"}
   - name: binkcore.azurecr.io/web-wasabi
     newName: binkcore.azurecr.io/web-wasabi
     newTag: staging-1.13.0 # {"$imagepolicy": "flux-system:uksouth-staging-web-wasabi:tag"}
