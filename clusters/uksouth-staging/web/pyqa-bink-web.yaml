@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/pyqa-bink-web
     newName: binkcore.azurecr.io/pyqa-bink-web
-    newTag: 2022-11-08T180602Z # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-bink-web:tag"}
+    newTag: 2022-11-30T111954Z # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-bink-web:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
