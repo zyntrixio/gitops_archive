@@ -7,8 +7,8 @@ from sqlalchemy.engine import create_engine
 
 DB_BASE = "postgresql://postgres@postgres"
 PROJECT_NAME = "hubble"
-TEMPLATE_DB = "f{PROJECT_NAME}_template"
-TEST_DB = "f{PROJECT_NAME}_auto"
+TEMPLATE_DB = f"{PROJECT_NAME}_template"
+TEST_DB = f"{PROJECT_NAME}_auto"
 ALEMBIC_DIR = "/app/alembic"
 
 postgres = create_engine(f"{DB_BASE}/postgres")
