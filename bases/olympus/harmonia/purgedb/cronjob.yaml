@@ -44,7 +44,7 @@ spec:
                 cpu: 1000m
                 memory: 128Mi
               requests:
-                cpu: 50m
+                cpu: 10m
                 memory: 128Mi
           restartPolicy: Never
           priorityClassName: bink-high-tasks

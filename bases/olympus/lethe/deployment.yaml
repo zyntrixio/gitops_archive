@@ -69,6 +69,6 @@ spec:
               memory: 384Mi
             requests:
               memory: 384Mi
-              cpu: 50m
+              cpu: 10m
       imagePullSecrets:
         - name: binkcore.azurecr.io

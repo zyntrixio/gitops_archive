@@ -40,7 +40,7 @@ spec:
               cpu: 1000m
             requests:
               memory: 64Mi
-              cpu: 25m
+              cpu: 10m
           ports:
             - containerPort: 80
       priorityClassName: bink-medium-api

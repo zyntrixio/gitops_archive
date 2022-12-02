@@ -35,4 +35,4 @@ spec:
               cpu: 1000m
             requests:
               memory: 1Gi
-              cpu: 50m
+              cpu: 10m
