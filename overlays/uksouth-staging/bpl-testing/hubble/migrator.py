@@ -21,9 +21,13 @@ with postgres.connect() as connection:
     )
     connection.execution_options(isolation_level="AUTOCOMMIT").execute(text(f"CREATE DATABASE {TEMPLATE_DB}"))
 
-alembic_cfg = Config()
-alembic_cfg.set_main_option("script_location", ALEMBIC_DIR)
-alembic_cfg.set_main_option("sqlalchemy.url", f"{DB_BASE}/{TEMPLATE_DB}")
-command.upgrade(alembic_cfg, "head")
+    alembic_cfg = Config()
+    alembic_cfg.set_main_option("script_location", ALEMBIC_DIR)
+    alembic_cfg.set_main_option("sqlalchemy.url", f"{DB_BASE}/{TEMPLATE_DB}")
+    command.upgrade(alembic_cfg, "head")
+
+    connection.execution_options(isolation_level="AUTOCOMMIT").execute(
+        text(f"CREATE DATABASE {TEST_DB} TEMPLATE {TEMPLATE_DB}")
+    )
 while True:
     sleep(60)
