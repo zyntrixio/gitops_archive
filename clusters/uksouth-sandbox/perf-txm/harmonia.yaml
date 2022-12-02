@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/harmonia
     newName: binkcore.azurecr.io/harmonia
-    newTag: 2022-11-21T104917Z # {"$imagepolicy": "flux-system:perf-harmonia:tag"}
+    newTag: 2022-12-02T130312Z # {"$imagepolicy": "flux-system:perf-harmonia:tag"}
   - name: binkcore.azurecr.io/harmonia_bulkload
     newName: binkcore.azurecr.io/harmonia
     newTag: harness-2022-11-21T104917Z # {"$imagepolicy": "flux-system:perf-harmonia-harness:tag"}
