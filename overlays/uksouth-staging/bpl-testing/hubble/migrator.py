@@ -6,9 +6,8 @@ from sqlalchemy import text
 from sqlalchemy.engine import create_engine
 
 DB_BASE = "postgresql://postgres@postgres"
-PROJECT_NAME = "hubble"
-TEMPLATE_DB = f"{PROJECT_NAME}_template"
-TEST_DB = f"{PROJECT_NAME}_auto"
+DB_NAME = "hubble"
+TEMPLATE_DB = f"{DB_NAME}_template"
 ALEMBIC_DIR = "/app/alembic"
 
 postgres = create_engine(f"{DB_BASE}/postgres")
@@ -17,7 +16,7 @@ with postgres.connect() as connection:
         text(f"DROP DATABASE IF EXISTS {TEMPLATE_DB} WITH (FORCE)")
     )
     connection.execution_options(isolation_level="AUTOCOMMIT").execute(
-        text(f"DROP DATABASE IF EXISTS {TEST_DB}_auto WITH (FORCE)")
+        text(f"DROP DATABASE IF EXISTS {DB_NAME}_auto WITH (FORCE)")
     )
     connection.execution_options(isolation_level="AUTOCOMMIT").execute(text(f"CREATE DATABASE {TEMPLATE_DB}"))
 
@@ -27,7 +26,7 @@ with postgres.connect() as connection:
     command.upgrade(alembic_cfg, "head")
 
     connection.execution_options(isolation_level="AUTOCOMMIT").execute(
-        text(f"CREATE DATABASE {TEST_DB} TEMPLATE {TEMPLATE_DB}")
+        text(f"CREATE DATABASE {DB_NAME} TEMPLATE {TEMPLATE_DB}")
     )
 while True:
     sleep(60)
