@@ -1,6 +1,0 @@
----
-resources:
-  - ingress-tc.yaml
-  - ingress-tc-healthz.yaml
-
-namespace: trusted-channels

@@ -1,5 +1,0 @@
----
-bases:
-  - ../../../../bases/olympus/iris
-
-namespace: trusted-channels

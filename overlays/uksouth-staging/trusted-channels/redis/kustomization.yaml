@@ -1,5 +1,0 @@
----
-bases:
-  - ../../../../bases/infrastructure/redis
-
-namespace: trusted-channels
