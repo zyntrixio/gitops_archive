@@ -1,3 +1,7 @@
 ---
 bases:
   - ../../../../bases/olympus/policies
+
+replicas:
+  - name: policies
+    count: 1
