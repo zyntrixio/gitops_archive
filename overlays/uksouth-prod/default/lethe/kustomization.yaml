@@ -1,8 +1,0 @@
----
-bases:
-  - ../../../../bases/olympus/lethe
-
-patches:
-  - path: env.yaml
-    target:
-      kind: Deployment

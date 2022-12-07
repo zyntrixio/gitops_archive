@@ -117,13 +117,6 @@ spec:
                 name: hermes-api
                 port:
                   number: 80
-          - path: /password
-            pathType: Prefix
-            backend:
-              service:
-                name: lethe
-                port:
-                  number: 80
           - path: /ubiquity
             pathType: Prefix
             backend:
@@ -192,6 +185,14 @@ spec:
             backend:
               service:
                 name: eos-api
+                port:
+                  number: 80
+         # Disable Forgot Password Requests
+          - path: /users/forgotten_password/
+            pathType: Exact
+            backend:
+              service:
+                name: healthz
                 port:
                   number: 80
   tls:

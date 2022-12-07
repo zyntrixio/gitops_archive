@@ -229,6 +229,14 @@ spec:
                 name: pelops-api
                 port:
                   number: 80
+         # Disable Forgot Password Requests
+          - path: /users/forgotten_password/
+            pathType: Exact
+            backend:
+              service:
+                name: healthz
+                port:
+                  number: 80
   tls:
     - hosts:
         - api.${cluster_name}.${location}.bink.sh
