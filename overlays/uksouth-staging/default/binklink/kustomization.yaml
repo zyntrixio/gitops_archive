@@ -8,4 +8,4 @@ resources:
 
 replicas:
   - name: binklink
-    count: 3
+    count: 1
