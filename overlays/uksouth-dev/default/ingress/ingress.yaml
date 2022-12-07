@@ -187,13 +187,6 @@ spec:
                 name: iris-api
                 port:
                   number: 80
-          - path: /password
-            pathType: Prefix
-            backend:
-              service:
-                name: lethe
-                port:
-                  number: 80
           - path: /payment_service
             pathType: Prefix
             backend:
