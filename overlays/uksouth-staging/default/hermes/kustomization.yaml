@@ -12,6 +12,10 @@ resources:
 
 namespace: default
 
+replicas:
+  - name: hermes-api
+    count: 1
+
 configMapGenerator:
   - name: hermes
     envs:
