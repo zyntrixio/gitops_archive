@@ -187,9 +187,9 @@ spec:
                 name: eos-api
                 port:
                   number: 80
-         # Disable Forgot Password Requests
-          - path: /users/forgotten_password/
-            pathType: Exact
+          # Disable Forgot Password Requests
+          - path: /users/forgotten_password
+            pathType: Prefix
             backend:
               service:
                 name: healthz
