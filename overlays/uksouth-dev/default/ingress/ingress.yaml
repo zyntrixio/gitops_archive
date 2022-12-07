@@ -208,13 +208,6 @@ spec:
                 name: midas-api
                 port:
                   number: 80
-          - path: /mids
-            pathType: Prefix
-            backend:
-              service:
-                name: selene
-                port:
-                  number: 80
           - path: /auth_transactions_mock/mastercard
             pathType: Exact
             backend:
