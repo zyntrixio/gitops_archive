@@ -16,7 +16,7 @@ with postgres.connect() as connection:
         text(f"DROP DATABASE IF EXISTS {TEMPLATE_DB} WITH (FORCE)")
     )
     connection.execution_options(isolation_level="AUTOCOMMIT").execute(
-        text(f"DROP DATABASE IF EXISTS {DB_NAME}_auto WITH (FORCE)")
+        text(f"DROP DATABASE IF EXISTS {DB_NAME} WITH (FORCE)")
     )
     connection.execution_options(isolation_level="AUTOCOMMIT").execute(text(f"CREATE DATABASE {TEMPLATE_DB}"))
 
