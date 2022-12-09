@@ -18,7 +18,7 @@ spec:
     newTag: staging-1.13.1 # {"$imagepolicy": "flux-system:uksouth-staging-web-bink:tag"}
   - name: binkcore.azurecr.io/web-wasabi
     newName: binkcore.azurecr.io/web-wasabi
-    newTag: staging-1.13.0 # {"$imagepolicy": "flux-system:uksouth-staging-web-wasabi:tag"}
+    newTag: staging-1.13.1 # {"$imagepolicy": "flux-system:uksouth-staging-web-wasabi:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
