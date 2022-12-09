@@ -18,7 +18,7 @@ spec:
     newTag: 2022-12-09T123341Z # {"$imagepolicy": "flux-system:uksouth-dev-web-bink:tag"}
   - name: binkcore.azurecr.io/web-wasabi
     newName: binkcore.azurecr.io/web-wasabi
-    newTag: 2022-12-01T153613Z # {"$imagepolicy": "flux-system:uksouth-dev-web-wasabi:tag"}
+    newTag: 2022-12-09T123342Z # {"$imagepolicy": "flux-system:uksouth-dev-web-wasabi:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
