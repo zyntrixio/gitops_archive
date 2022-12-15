@@ -16,4 +16,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/pelops
       newName: binkcore.azurecr.io/pelops
-      newTag: 2022-11-03T174003Z # {"$imagepolicy": "flux-system:perf-pelops:tag"}
+      newTag: 2022-12-15T171524Z # {"$imagepolicy": "flux-system:perf-pelops:tag"}
