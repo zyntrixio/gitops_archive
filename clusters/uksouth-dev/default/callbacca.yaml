@@ -8,6 +8,7 @@ spec:
   path: ./overlays/uksouth-dev/default/callbacca
   prune: true
   dependsOn:
+  - name: aad-pod-identity
   - name: linkerd-control-plane
   sourceRef:
     kind: GitRepository

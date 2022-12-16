@@ -1,0 +1,21 @@
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: callbacca
+  namespace: default
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+spec:
+  type: 0
+  resourceID: /subscriptions/794aa787-ec6a-40dd-ba82-0ad64ed51639/resourceGroups/uksouth-dev/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-dev-midas
+  clientID: 1bc2a2ce-da31-4f17-aee9-225952a062ab
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: callbacca
+  namespace: default
+spec:
+  azureIdentity: callbacca
+  selector: callbacca

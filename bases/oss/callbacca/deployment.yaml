@@ -22,6 +22,7 @@ spec:
         linkerd.io/inject: enabled
       labels:
         app: callbacca
+        aadpodidbinding: callbacca
     spec:
       containers:
         - image: binkcore.azurecr.io/callbacca:latest

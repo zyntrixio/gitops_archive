@@ -1,7 +1,9 @@
 ---
+resources:
+  - aad.yaml
+
 bases:
   - ../../../../bases/oss/callbacca
-
 
 configMapGenerator:
   - name: callbacca
