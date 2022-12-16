@@ -5,6 +5,8 @@ resources:
 bases:
   - ../../../../bases/oss/callbacca
 
+namespace: default
+
 configMapGenerator:
   - name: callbacca
     namespace: default
