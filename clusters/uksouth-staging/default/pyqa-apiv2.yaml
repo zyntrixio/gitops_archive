@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/bink-api-v2-automation-suite
     newName: binkcore.azurecr.io/bink-api-v2-automation-suite
-    newTag: 2022-12-16T165024Z # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-apiv2:tag"}
+    newTag: 2022-12-19T175702Z # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-apiv2:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
