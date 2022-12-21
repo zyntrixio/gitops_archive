@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/polaris
     newName: binkcore.azurecr.io/polaris
-    newTag: staging-3.3.0 # {"$imagepolicy": "flux-system:uksouth-staging-polaris:tag"}
+    newTag: staging-3.3.1 # {"$imagepolicy": "flux-system:uksouth-staging-polaris:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
