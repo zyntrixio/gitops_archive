@@ -17,6 +17,7 @@ patches:
       metadata:
         name: asteria
       spec:
+        replicas: 0
         template:
           spec:
             containers:
