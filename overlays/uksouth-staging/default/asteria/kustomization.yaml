@@ -11,6 +11,7 @@ patches:
       metadata:
         name: envs
       spec:
+        replicas: 0
         template:
           spec:
             containers:
