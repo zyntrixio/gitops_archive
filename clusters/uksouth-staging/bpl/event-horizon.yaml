@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/event-horizon
     newName: binkcore.azurecr.io/event-horizon
-    newTag: staging-1.7.0 # {"$imagepolicy": "flux-system:uksouth-staging-event-horizon:tag"}
+    newTag: staging-1.7.1 # {"$imagepolicy": "flux-system:uksouth-staging-event-horizon:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
