@@ -20,3 +20,19 @@ patches:
       - op: add
         path: /spec/template/spec/containers/0/args/-
         value: "--default-ssl-certificate=$(POD_NAMESPACE)/${cluster_name}.${location}.bink.sh"
+  - target:
+      kind: Service
+      name: ingress-nginx-controller
+    patch: |-
+      apiVersion: apps/v1
+      kind: Service
+      metadata:
+        name: ingress-nginx-controller
+        annotations:
+          service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+          service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /healthz
+          service.beta.kubernetes.io/azure-pls-create: "true"
+          service.beta.kubernetes.io/azure-pls-name: ${location}-${cluster_name}
+          service.beta.kubernetes.io/azure-pls-ip-configuration-ip-address: ${privatelink_ip}
+          service.beta.kubernetes.io/azure-pls-visibility: ${privatelink_visibility_ids}
+          service.beta.kubernetes.io/azure-pls-auto-approval: ${privatelink_autoapprove_ids}
