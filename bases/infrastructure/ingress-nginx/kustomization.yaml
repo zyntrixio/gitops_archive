@@ -52,5 +52,10 @@ patches:
         annotations:
           service.beta.kubernetes.io/azure-load-balancer-internal: "true"
           service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /healthz
+          service.beta.kubernetes.io/azure-pls-create: "true"
+          service.beta.kubernetes.io/azure-pls-name: ${location}-${cluster_name}
+          service.beta.kubernetes.io/azure-pls-ip-configuration-ip-address: ${privatelink_ip}
+          service.beta.kubernetes.io/azure-pls-visibility: "*"
+          service.beta.kubernetes.io/azure-pls-auto-approval: c1bc5dd7-ea97-469c-89fa-8f26624902fd
       spec:
         loadBalancerIP: ${loadbalancer_ip}
