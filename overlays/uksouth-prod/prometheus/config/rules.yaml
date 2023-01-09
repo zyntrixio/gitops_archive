@@ -143,19 +143,19 @@ groups:
         annotations:
           resource: '{{ $labels.slug }}'
           sumamry: There have been no exports between 12:00 and 23:00
-      - alert: Payment cards processing slowly
-        expr: (sum(payment_card_processing_seconds_histogram_sum{}) by (provider)
-          / sum(payment_card_processing_seconds_histogram_count{}) by (provider))
-          > 5
-        for: 5m
-        labels:
-          severity: p2
-          cluster: prod
-          component: hermes
-          resolve: false
-        annotations:
-          summany: Payment cards for {{ $labels.provider }} are taking longer than
-            four seconds to process.
+      # - alert: Payment cards processing slowly
+      #   expr: (sum(payment_card_processing_seconds_histogram_sum{}) by (provider)
+      #     / sum(payment_card_processing_seconds_histogram_count{}) by (provider))
+      #     > 5
+      #   for: 5m
+      #   labels:
+      #     severity: p2
+      #     cluster: prod
+      #     component: hermes
+      #     resolve: false
+      #   annotations:
+      #     summany: Payment cards for {{ $labels.provider }} are taking longer than
+      #       four seconds to process.
       - alert: Payment cards stuck increase
         expr: sum by (provider) (hermes_current_payment_card_pending_overdue_total{})
           > sum by (provider) (hermes_current_payment_card_pending_overdue_total{}
