@@ -6,14 +6,13 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./bases/oss/callbacca
+  path: ./overlays/uksouth-sandbox/barclays-sit/callbacca
   prune: true
   dependsOn:
     - name: linkerd-control-plane
   sourceRef:
     kind: GitRepository
     name: flux-system
-  targetNamespace: barclays-sit
   images:
     - name: binkcore.azurecr.io/callbacca
       newName: binkcore.azurecr.io/callbacca

@@ -1,0 +1,239 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/service-upstream: 'true'
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+  name: retail.${cluster_name}.${location}.bink.sh
+  namespace: default
+spec:
+  rules:
+    - host: retail.${cluster_name}.${location}.bink.sh
+      http:
+        paths:
+          - path: /admin
+            pathType: Prefix
+            backend:
+              service:
+                name: hermes-api
+                port:
+                  number: 80
+          - path: /static/
+            pathType: Prefix
+            backend:
+              service:
+                name: hermes-api
+                port:
+                  number: 80
+          - path: /ubiquity/membership_card
+            pathType: Prefix
+            backend:
+              service:
+                name: hermes-api
+                port:
+                  number: 80
+          - path: /ubiquity/membership_cards
+            pathType: Prefix
+            backend:
+              service:
+                name: hermes-api
+                port:
+                  number: 80
+          - path: /ubiquity/membership_plan
+            pathType: Prefix
+            backend:
+              service:
+                name: hermes-api
+                port:
+                  number: 80
+          - path: /ubiquity/membership_plans
+            pathType: Prefix
+            backend:
+              service:
+                name: hermes-api
+                port:
+                  number: 80
+          - path: /ubiquity/membership_transaction
+            pathType: Prefix
+            backend:
+              service:
+                name: hermes-api
+                port:
+                  number: 80
+          - path: /ubiquity/membership_transactions
+            pathType: Prefix
+            backend:
+              service:
+                name: hermes-api
+                port:
+                  number: 80
+          - path: /ubiquity/payment_card
+            pathType: Prefix
+            backend:
+              service:
+                name: hermes-api
+                port:
+                  number: 80
+          - path: /ubiquity/payment_cards
+            pathType: Prefix
+            backend:
+              service:
+                name: hermes-api
+                port:
+                  number: 80
+          - path: /ubiquity/service
+            pathType: Prefix
+            backend:
+              service:
+                name: hermes-api
+                port:
+                  number: 80
+          - path: /users
+            pathType: Prefix
+            backend:
+              service:
+                name: hermes-api
+                port:
+                  number: 80
+          - path: /content
+            pathType: Prefix
+            backend:
+              service:
+                name: iris-api
+                port:
+                  number: 80
+          - path: /payment_service
+            pathType: Prefix
+            backend:
+              service:
+                name: metis-api
+                port:
+                  number: 80
+          - path: /cardstatus
+            pathType: Prefix
+            backend:
+              service:
+                name: pelops
+                port:
+                  number: 80
+
+# v2 Stuff
+
+          - path: /v2/wallet
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/add
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/add_and_authorise
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/[0-9]+/authorise
+            pathType: Prefix
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/add_and_register
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/[0-9]+/register
+            pathType: Prefix
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/join
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/[0-9]+/join
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/[0-9]+
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_plans
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_plans/[0-9]+
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_plans/[0-9]+/journey_fields
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/me
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/payment_accounts
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/payment_accounts/[0-9]+
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/token
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+
+  tls:
+    - hosts:
+        - retail.${cluster_name}.${location}.bink.sh

@@ -1,0 +1,40 @@
+---
+bases:
+  - ../../../../bases/olympus/metis/api
+  - ../../../../bases/olympus/metis/celery
+
+namespace: retail
+
+configMapGenerator:
+  - name: metis
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: ServiceProfile
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: metis-api.retail.svc.cluster.local
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: metis
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: metis
+                env:
+                  - name: PONTUS_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-pgfs
+                        key: common_retail_pontus

@@ -1,0 +1,19 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: retail-angelia
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-sandbox/retail/angelia
+  dependsOn:
+    - name: aad-pod-identity
+    - name: linkerd-control-plane
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/angelia
+      newName: binkcore.azurecr.io/angelia
+      newTag: sandbox-0.54.2 # {"$imagepolicy": "flux-system:sandbox-angelia:tag"}

@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: retail-rabbitmq
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./bases/infrastructure/rabbitmq
+  prune: true
+  dependsOn:
+    - name: linkerd-control-plane
+  targetNamespace: retail
+  sourceRef:
+    kind: GitRepository
+    name: flux-system

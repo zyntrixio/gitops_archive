@@ -5,7 +5,7 @@ resources:
 bases:
   - ../../../../bases/oss/callbacca
 
-namespace: lloyds-sit
+namespace: barclays-sit
 
 configMapGenerator:
   - name: callbacca
