@@ -1,14 +1,11 @@
 ---
-resources:
-  - aad.yaml
-
 bases:
-  - ../../../../bases/oss/callbacca
+  - ../../../../bases/olympus/pelops
 
-namespace: lloyds-sit
+namespace: retail
 
 configMapGenerator:
-  - name: callbacca
+  - name: pelops
     envs:
       - env.ini
 
@@ -19,7 +16,7 @@ patches:
       apiVersion: apps/v1
       kind: Deployment
       metadata:
-        name: callbacca
+        name: pelops
       spec:
         template:
           spec:
@@ -27,4 +24,4 @@ patches:
               - name: app
                 envFrom:
                   - configMapRef:
-                      name: callbacca
+                      name: pelops
