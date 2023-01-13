@@ -1,0 +1,37 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: retail-api-reflector
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-sandbox/retail/api-reflector
+  prune: true
+  dependsOn:
+    - name: linkerd-control-plane
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
+  images:
+    - name: ghcr.io/binkhq/api-reflector
+      newName: ghcr.io/binkhq/api-reflector
+      newTag: 0.7.0 # {"$imagepolicy": "flux-system:barclays-sit-api-reflector:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: retail-api-reflector
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: api-reflector
+  filterTags:
+    pattern: (?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    semver:
+      range: '>0.1.0'
