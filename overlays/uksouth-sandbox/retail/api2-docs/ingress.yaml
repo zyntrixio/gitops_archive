@@ -1,0 +1,41 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/service-upstream: 'true'
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-realm: Authentication Required
+    nginx.ingress.kubernetes.io/auth-secret: retail-docs-basicauth
+  name: retail-docs.${cluster_name}.${location}.bink.sh
+  namespace: default
+spec:
+  rules:
+    - host: retail-docs.${cluster_name}.${location}.bink.sh
+      http:
+        paths:
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name: api2-redoc
+                port:
+                  number: 80
+          - path: /changelog.html
+            pathType: Exact
+            backend:
+              service:
+                name: api2-redoc
+                port:
+                  number: 80
+          - path: /appendix.html
+            pathType: Exact
+            backend:
+              service:
+                name: api2-redoc
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - retail-docs.${cluster_name}.${location}.bink.sh

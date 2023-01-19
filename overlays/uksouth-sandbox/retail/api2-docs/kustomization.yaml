@@ -6,7 +6,7 @@ resources:
   - ingress.yaml
   - ingress-healthz.yaml
 
-namespace: default
+namespace: retail
 
 patches:
   - target:
@@ -16,11 +16,10 @@ patches:
         path: /spec/template/spec/containers/0/env
         value:
           - name: DEPLOYED_ENV
-            value: sandbox-banking
+            value: sandbox-retail
 
-
-# huge-guilt-meshwork-pizza
+# cherry-drama-tank-denial
 secretGenerator:
-  - name: api2-docs-basicauth
+  - name: retail-docs-basicauth
     files:
       - auth
