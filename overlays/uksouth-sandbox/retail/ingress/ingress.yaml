@@ -233,6 +233,13 @@ spec:
                 name: angelia-api
                 port:
                   number: 80
+          - path: /v2/email_update
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
 
   tls:
     - hosts:
