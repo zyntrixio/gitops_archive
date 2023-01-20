@@ -16,4 +16,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/angelia
       newName: binkcore.azurecr.io/angelia
-      newTag: retail-0.58.2 # {"$imagepolicy": "flux-system:retail-angelia:tag"}
+      newTag: retail-0.58.4 # {"$imagepolicy": "flux-system:retail-angelia:tag"}
