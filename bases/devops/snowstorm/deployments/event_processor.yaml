@@ -27,7 +27,7 @@ spec:
       priorityClassName: bink-high-tasks
       containers:
         - name: app
-          image: binkcore.azurecr.io/copybot:latest
+          image: binkcore.azurecr.io/snowstorm:latest
           args: ["stormctl", "deploy", "events", "--queues=tx_export_dw,clickhouse_hermes"]
           resources:
             requests:
