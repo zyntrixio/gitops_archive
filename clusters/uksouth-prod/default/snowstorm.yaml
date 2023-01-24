@@ -18,26 +18,26 @@ spec:
   - name: binkcore.azurecr.io/snowstorm
     newName: binkcore.azurecr.io/snowstorm
     newTag: prod-v1.0.5 # {"$imagepolicy": "flux-system:snowstorm:tag"}
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: snowstorm-deployments
-#   namespace: flux-system
-# spec:
-#   interval: 60m0s
-#   path: ./overlays/uksouth-prod/default/snowstorm/deployments
-#   dependsOn:
-#   - name: snowstorm-essentials
-#   prune: true
-#   force: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: flux-system
-#   images:
-#   - name: binkcore.azurecr.io/snowstorm
-#     newName: binkcore.azurecr.io/snowstorm
-#     newTag: 2023-01-24T155603Z # {"$imagepolicy": "flux-system:snowstorm:tag"}
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: snowstorm-deployments
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod/default/snowstorm/deployments
+  dependsOn:
+  - name: snowstorm-essentials
+  prune: true
+  force: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/snowstorm
+    newName: binkcore.azurecr.io/snowstorm
+    newTag: prod-v1.0.5 # {"$imagepolicy": "flux-system:snowstorm:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
