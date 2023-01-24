@@ -37,7 +37,7 @@ patches:
             template:
               spec:
                 containers:
-                  - name: jeff
+                  - name: app
                     env:
                       - name: database_dsn
                         valueFrom:
