@@ -28,7 +28,7 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/copybot:latest
-          args: ["stormctl", "deploy", "events", "--queues=tx_export_dw,clickhouse_hermes"]
+          args: ["/usr/local/bin/stormctl", "deploy", "events", "--queues=tx_export_dw,clickhouse_hermes"]
           resources:
             requests:
               cpu: 10m

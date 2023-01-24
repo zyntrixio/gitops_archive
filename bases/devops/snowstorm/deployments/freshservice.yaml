@@ -23,7 +23,7 @@ spec:
             - name: app
               image: binkcore.azurecr.io/snowstorm:latest
               command: ["linkerd-await", "--shutdown", "--"]
-              args: ["stormctl", "job", "freshservice", "--days=1"]
+              args: ["/usr/local/bin/stormctl", "job", "freshservice", "--days=1"]
               resources:
                 requests:
                   cpu: 100m
