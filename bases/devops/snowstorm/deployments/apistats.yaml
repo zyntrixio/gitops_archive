@@ -26,11 +26,11 @@ spec:
               args: ["stormctl", "job", "apistats", "--days=1", "--domain=api.dev.gb.bink.com"]
               resources:
                 requests:
-                  cpu: 1000m
-                  memory: 2Gi
+                  cpu: 100m
+                  memory: 512Mi
                 limits:
                   cpu: 1000m
-                  memory: 2Gi
+                  memory: 512Mi
               securityContext:
                 runAsGroup: 65534
                 runAsUser: 65534
