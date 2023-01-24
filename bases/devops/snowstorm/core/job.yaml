@@ -12,11 +12,10 @@ spec:
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
+      labels:
+        app: snowstorm
+        component: migrator
     spec:
-      metadata:
-        labels:
-          app: snowstorm
-          component: migrator
       containers:
       - name: app
         image: binkcore.azurecr.io/snowstorm:latest
