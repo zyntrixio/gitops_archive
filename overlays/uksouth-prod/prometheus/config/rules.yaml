@@ -96,29 +96,29 @@ groups:
           title: Deadletter Rabbitmq queue length over 0 tasks
           description: 'Deadletter {{$labels.queue}} queue is over 0 tasks'
 
-      - alert: Copybot Hermes - No Jobs Processed
-        expr: increase(events_processed_total{job="copybot-hermes"}[10m]) < 1
-        for: 1s
-        labels:
-          severity: p2
-          cluster: prod
-          resolve: false
-          component: Copybot Hermes
-        annotations:
-          title: Copybot Hermes hasn't processed any tasks for 10 minutes
-          description: Copybot Hermes hasn't processed any tasks for 10 minutes
+      # - alert: Copybot Hermes - No Jobs Processed
+      #   expr: increase(events_processed_total{job="copybot-hermes"}[10m]) < 1
+      #   for: 1s
+      #   labels:
+      #     severity: p2
+      #     cluster: prod
+      #     resolve: false
+      #     component: Copybot Hermes
+      #   annotations:
+      #     title: Copybot Hermes hasn't processed any tasks for 10 minutes
+      #     description: Copybot Hermes hasn't processed any tasks for 10 minutes
 
-      - alert: Copybot Harmonia - No Jobs Processed
-        expr: increase(events_processed_total{job="copybot-Harmonia"}[10m]) < 1
-        for: 1s
-        labels:
-          severity: p2
-          cluster: prod
-          resolve: false
-          component: Copybot Harmonia
-        annotations:
-          title: Copybot Harmonia hasn't processed any tasks for 10 minutes
-          description: Copybot Harmonia hasn't processed any tasks for 10 minutes
+      # - alert: Copybot Harmonia - No Jobs Processed
+      #   expr: increase(events_processed_total{job="copybot-Harmonia"}[10m]) < 1
+      #   for: 1s
+      #   labels:
+      #     severity: p2
+      #     cluster: prod
+      #     resolve: false
+      #     component: Copybot Harmonia
+      #   annotations:
+      #     title: Copybot Harmonia hasn't processed any tasks for 10 minutes
+      #     description: Copybot Harmonia hasn't processed any tasks for 10 minutes
 
       # - alert: core sftp up state
       #   expr: up{job="azure_node",name=~"sftp\\d"} < 1

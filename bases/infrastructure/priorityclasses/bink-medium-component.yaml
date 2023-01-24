@@ -1,6 +1,6 @@
 ---
 apiVersion: scheduling.k8s.io/v1
-description: Bink Medium Priority Components, such as Copybot
+description: Bink Medium Priority Components, such as Snowstorm
 kind: PriorityClass
 metadata:
   name: bink-medium-component
