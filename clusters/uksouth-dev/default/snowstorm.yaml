@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: copybot
+  name: snowstorm
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/default/copybot
+  path: ./overlays/uksouth-dev/default/snowstorm
   dependsOn:
   - name: aad-pod-identity
   - name: linkerd-control-plane
@@ -14,17 +14,17 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/copybot
-    newName: binkcore.azurecr.io/copybot
-    newTag: v1.2.3 # {"$imagepolicy": "flux-system:copybot:tag"}
+  - name: binkcore.azurecr.io/snowstorm
+    newName: binkcore.azurecr.io/snowstorm
+    newTag: latest # {"$imagepolicy": "flux-system:snowstorm:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
-  name: copybot
+  name: snowstorm
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/copybot
+  image: binkcore.azurecr.io/snowstorm
   interval: 1m0s
   secretRef:
     name: binkcore.azurecr.io
@@ -32,14 +32,14 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
-  name: copybot
+  name: snowstorm
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: copybot
+    name: snowstorm
   filterTags:
-    pattern: v(?P<ts>\d+(\.\d+)*)$
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
     extract: $ts
   policy:
-    semver:
-      range: '>0.0.1'
+    alphabetical:
+      order: asc
