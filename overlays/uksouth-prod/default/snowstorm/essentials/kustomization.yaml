@@ -1,0 +1,23 @@
+bases:
+  - ../../../../../bases/devops/snowstorm/essentials
+
+patches:
+  - target:
+      kind: Job
+      name: snowstorm-migrator
+    patch: |
+      apiVersion: batch/v1
+      kind: Job
+      metadata:
+        name: snowstorm-migrator
+      spec:
+        template:
+          spec:
+            containers:
+            - name: app
+              env:
+                - name: database_dsn
+                  valueFrom:
+                    secretKeyRef:
+                      key: common_snowstorm
+                      name: azure-pgfs

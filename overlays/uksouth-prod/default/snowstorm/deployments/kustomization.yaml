@@ -1,0 +1,56 @@
+bases:
+  - ../../../../../bases/devops/snowstorm/deployments
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: snowstorm
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: database_dsn
+                    valueFrom:
+                      secretKeyRef:
+                        key: common_snowstorm
+                        name: azure-pgfs
+                  - name: rabbitmq_dsn
+                    value: amqps://amqp.prod.uksouth.bink.host:5671
+                  - name: redis_dsn
+                    valueFrom:
+                      secretKeyRef:
+                        key: uri_ssl
+                        name: azure-redis-vnet
+  - target:
+      kind: CronJob
+    patch: |
+      apiVersion: batch/v1
+      kind: CronJob
+      metadata:
+        name: snowstorm
+      spec:
+        jobTemplate:
+          spec:
+            template:
+              spec:
+                containers:
+                  - name: app
+                    env:
+                      - name: database_dsn
+                        valueFrom:
+                          secretKeyRef:
+                            key: common_snowstorm
+                            name: azure-pgfs
+                      - name: rabbitmq_dsn
+                        value: amqps://amqp.prod.uksouth.bink.host:5671
+                      - name: redis_dsn
+                        valueFrom:
+                          secretKeyRef:
+                            key: uri_ssl
+                            name: azure-redis-vnet
