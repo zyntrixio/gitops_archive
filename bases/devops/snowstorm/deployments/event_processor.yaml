@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: snowstorm
+    component: event-processor
+  name: snowstorm-event-processor
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snowstorm
+      component: event-processor
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: snowstorm
+        component: event-processor
+    spec:
+      priorityClassName: bink-high-tasks
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/copybot:latest
+          args: ["stormctl", "deploy", "events", "--queues=tx_export_dw,clickhouse_hermes"]
+          resources:
+            requests:
+              cpu: 10m
+              memory: 128Mi
+            limits:
+              cpu: 1000m
+              memory: 128Mi
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+      terminationGracePeriodSeconds: 30
+      serviceAccountName: snowstorm
+      imagePullSecrets:
+        - name: binkcore.azurecr.io

@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: snowstorm-migrator
+  namespace: default
+  labels:
+    app: snowstorm
+    component: migrator
+spec:
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: snowstorm
+        component: migrator
+    spec:
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/snowstorm:latest
+          command: ["linkerd-await", "--shutdown", "--"]
+          args: ["alembic", "upgrade", "head"]
+          resources:
+            requests:
+              cpu: 1000m
+              memory: 2Gi
+            limits:
+              cpu: 1000m
+              memory: 2Gi
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+      restartPolicy: Never
+      serviceAccountName: snowstorm
+  backoffLimit: 3
+  imagePullSecrets:
+    - name: binkcore.azurecr.io

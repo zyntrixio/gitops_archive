@@ -1,13 +1,34 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: snowstorm
+  name: snowstorm-essentials
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/default/snowstorm
+  path: ./overlays/uksouth-dev/default/snowstorm/essentials
   dependsOn:
   - name: linkerd-control-plane
+  prune: true
+  force: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/snowstorm
+    newName: binkcore.azurecr.io/snowstorm
+    newTag: 2023-01-24T142607Z # {"$imagepolicy": "flux-system:snowstorm:tag"}
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: snowstorm-deployments
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-dev/default/snowstorm/deployments
+  dependsOn:
+  - name: snowstorm-essentials
   prune: true
   force: true
   sourceRef:

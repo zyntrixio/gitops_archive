@@ -1,0 +1,50 @@
+bases:
+  - ../../../../../bases/devops/snowstorm/deployments
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: snowstorm
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: database_dsn
+                    valueFrom:
+                      secretKeyRef:
+                        key: common_snowstorm
+                        name: azure-pgfs
+                  - name: rabbitmq_dsn
+                    value: amqp://guest:guest@rabbitmq:5672/
+                  - name: redis_dsn
+                    value: redis://redis:6379/0
+  - target:
+      kind: CronJob
+    patch: |
+      apiVersion: batch/v1
+      kind: CronJob
+      metadata:
+        name: snowstorm
+      spec:
+        jobTemplate:
+          spec:
+            template:
+              spec:
+                containers:
+                  - name: jeff
+                    env:
+                      - name: database_dsn
+                        valueFrom:
+                          secretKeyRef:
+                            key: common_snowstorm
+                            name: azure-pgfs
+                      - name: rabbitmq_dsn
+                        value: amqp://guest:guest@rabbitmq:5672/
+                      - name: redis_dsn
+                        value: redis://redis:6379/0

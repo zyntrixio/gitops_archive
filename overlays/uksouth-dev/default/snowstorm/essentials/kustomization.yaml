@@ -1,5 +1,5 @@
 bases:
-  - ../../../../bases/devops/snowstorm/core
+  - ../../../../../bases/devops/snowstorm/essentials
 
 patches:
   - target:

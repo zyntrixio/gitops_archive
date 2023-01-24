@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: snowstorm-apistats
+  namespace: default
+  labels:
+    app: snowstorm
+    component: apistats
+spec:
+  schedule: "0 23 * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            linkerd.io/inject: enabled
+            kubectl.kubernetes.io/default-container: app
+          labels:
+            app: snowstorm
+            component: apistats
+        spec:
+          containers:
+            - name: app
+              image: binkcore.azurecr.io/snowstorm:latest
+              command: ["linkerd-await", "--shutdown", "--"]
+              args: ["stormctl", "job", "apistats", "--days=1", "--domain=api.dev.gb.bink.com"]
+              resources:
+                requests:
+                  cpu: 1000m
+                  memory: 2Gi
+                limits:
+                  cpu: 1000m
+                  memory: 2Gi
+              securityContext:
+                runAsGroup: 65534
+                runAsUser: 65534
+          restartPolicy: Never
+          serviceAccountName: snowstorm
+          imagePullSecrets:
+            - name: binkcore.azurecr.io
+      backoffLimit: 3
