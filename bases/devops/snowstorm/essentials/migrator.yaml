@@ -33,6 +33,6 @@ spec:
             runAsUser: 65534
       restartPolicy: Never
       serviceAccountName: snowstorm
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
   backoffLimit: 3
-  imagePullSecrets:
-    - name: binkcore.azurecr.io
