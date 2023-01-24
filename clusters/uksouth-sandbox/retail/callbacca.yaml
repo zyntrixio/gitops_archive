@@ -15,4 +15,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/callbacca
     newName: binkcore.azurecr.io/callbacca
-    newTag: 2023-01-04T114828Z # {"$imagepolicy": "flux-system:sandbox-callbacca:tag"}
+    newTag: 2023-01-24T115854Z # {"$imagepolicy": "flux-system:sandbox-callbacca:tag"}
