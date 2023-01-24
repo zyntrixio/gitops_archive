@@ -1,4 +1,0 @@
-resources:
-  - event_processor.yaml
-  - apistats.yaml
-  - freshservice.yaml

@@ -1,0 +1,2 @@
+resources:
+  - event_processor.yaml

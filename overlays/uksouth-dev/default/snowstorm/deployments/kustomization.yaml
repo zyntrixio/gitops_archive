@@ -1,5 +1,6 @@
 bases:
-  - ../../../../../bases/devops/snowstorm/deployments
+  - ../../../../../bases/devops/snowstorm/apistats
+  - ../../../../../bases/devops/snowstorm/event_processor
 
 patches:
   - target:
@@ -48,3 +49,10 @@ patches:
                         value: amqp://guest:guest@rabbitmq:5672/
                       - name: redis_dsn
                         value: redis://redis:6379/0
+  - target:
+      kind: CronJob
+      name: snowstorm-apistats
+    patch: |-
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/args
+        value: ["stormctl", "job", "apistats", "--days=1", "--domain=api.dev.gb.bink.com"]
