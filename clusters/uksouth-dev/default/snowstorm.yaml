@@ -7,7 +7,6 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-dev/default/snowstorm
   dependsOn:
-  - name: aad-pod-identity
   - name: linkerd-control-plane
   prune: true
   force: true
