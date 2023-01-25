@@ -1,0 +1,80 @@
+---
+apiVersion: linkerd.io/v1alpha2
+kind: ServiceProfile
+metadata:
+  name: cosmos-api.bpl.svc.cluster.local
+  namespace: default
+spec:
+  routes:
+    - condition:
+        method: GET
+        pathRegex: /livez
+      name: GET /livez
+      isRetryable: true
+      timeout: 100ms
+    - condition:
+        method: GET
+        pathRegex: /readyz
+      name: GET /readyz
+      isRetryable: true
+      timeout: 100ms
+    - condition:
+        method: GET
+        pathRegex: /metrics
+      name: GET /metrics
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/campaigns/[^/]*/status-change
+      name: POST /api/campaigns/{retailer_slug}/status-change
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/campaigns/[^/]*/migration
+      name: POST /api/campaigns/{retailer_slug}/migration
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/transactions/[^/]*
+      name: POST /api/transactions/{retailer_slug}
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/loyalty/[^/]*/accounts/enrolment
+      name: POST /api/loyalty/{retailer_slug}/accounts/enrolment
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /api/loyalty/[^/]*/accounts/getbycredentials
+      name: POST /api/loyalty/{retailer_slug}/accounts/getbycredentials
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/loyalty/[^/]*/accounts/[^/]*
+      name: GET /api/loyalty/{retailer_slug}/accounts/{account_holder_uuid}
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: PATCH
+        pathRegex: /api/loyalty/[^/]*/accounts/[^/]*/status
+      name: PATCH /api/loyalty/{retailer_slug}/accounts/{account_holder_uuid}/status
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/public/[^/]*/marketing/unsubscribe
+      name: GET /api/loyalty/{retailer_slug}/marketing/unsubscribe
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /api/public/[^/]*/reward/[^/]*
+      name: GET /api/public/{retailer_slug}/reward/{reward_id}
+      isRetryable: true
+      timeout: 2000ms

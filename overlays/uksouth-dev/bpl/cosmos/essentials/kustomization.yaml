@@ -1,0 +1,26 @@
+---
+bases:
+  - ../../../../../bases/cosmos/cosmos/essentials
+
+namespace: bpl
+
+resources:
+  - aad.yaml
+
+patches:
+  - target:
+      kind: Job
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env
+        value:
+          - name: BLOB_STORAGE_DSN
+            valueFrom:
+              secretKeyRef:
+                key: connection_string
+                name: azure-storage-common
+          - name: SQLALCHEMY_DATABASE_URI
+            valueFrom:
+              secretKeyRef:
+                key: common_cosmos
+                name: azure-pgfs
