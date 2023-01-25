@@ -1,0 +1,66 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: bpl-cosmos-essentials
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-dev/bpl/cosmos/essentials
+  prune: true
+  force: true
+  wait: true
+  dependsOn:
+  - name: linkerd-control-plane
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/cosmos
+    newName: binkcore.azurecr.io/cosmos
+    newTag: 2023-01-05T153624Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos:tag"}
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: bpl-cosmos-deployments
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-dev/bpl/cosmos/deployments
+  prune: true
+  force: true
+  dependsOn:
+  - name: bpl-cosmos-essentials
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/cosmos
+    newName: binkcore.azurecr.io/cosmos
+    newTag: 2023-01-05T153624Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: cosmos
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/cosmos
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: uksouth-dev-cosmos
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: cosmos
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc

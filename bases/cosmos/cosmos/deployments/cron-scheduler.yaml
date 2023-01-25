@@ -1,0 +1,63 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cosmos-cron-scheduler
+  namespace: default
+  labels:
+    app: cosmos
+    component: cron-scheduler
+spec:
+  selector:
+    matchLabels:
+      app: cosmos
+      component: cron-scheduler
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+        prometheus.io/port: '9100'
+        prometheus.io/scrape: 'true'
+        prometheus.io/job: cosmos
+      labels:
+        app: cosmos
+        aadpodidbinding: cosmos
+        component: cron-scheduler
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - cosmos
+                topologyKey: topology.kubernetes.io/zone
+              weight: 100
+      containers:
+        - name: app
+          command: ["linkerd-await", "--"]
+          args: ["python", "-m", "cosmos", "cron-scheduler"]
+          image: binkcore.azurecr.io/cosmos:latest
+          imagePullPolicy: Always
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              cpu: 10m
+              memory: 256Mi
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
+      serviceAccountName: cosmos

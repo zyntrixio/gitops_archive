@@ -1,0 +1,7 @@
+resources:
+  - accounts-api.yaml
+  - campaigns-api.yaml
+  - public-api.yaml
+  - transactions-api.yaml
+  - task-worker.yaml
+  - cron-scheduler.yaml
