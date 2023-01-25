@@ -18,6 +18,7 @@ spec:
           labels:
             app: snowstorm
             component: apistats
+            aadpodidbinding: snowstorm
         spec:
           containers:
             - name: app

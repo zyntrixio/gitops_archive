@@ -1,6 +1,9 @@
 bases:
   - ../../../../../bases/devops/snowstorm/essentials
 
+resources:
+  - aad.yaml
+
 patches:
   - target:
       kind: Job

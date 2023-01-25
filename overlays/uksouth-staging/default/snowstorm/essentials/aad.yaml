@@ -1,0 +1,21 @@
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: snowstorm
+  namespace: default
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+spec:
+  type: 0
+  resourceID: /subscriptions/457b0db5-6680-480f-9e77-2dafb06bd9dc/resourcegroups/uksouth-staging/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-staging-snowstorm
+  clientID: ed4b5fa2-5619-49ad-aa05-e22f414ab3c1
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: snowstorm
+  namespace: default
+spec:
+  azureIdentity: snowstorm
+  selector: snowstorm
