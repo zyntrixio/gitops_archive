@@ -16,4 +16,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/event-horizon
     newName: binkcore.azurecr.io/event-horizon
-    newTag: 2023-01-17T105301Z # {"$imagepolicy": "flux-system:perf-event-horizon:tag"}
+    newTag: 2023-01-26T162522Z # {"$imagepolicy": "flux-system:perf-event-horizon:tag"}
