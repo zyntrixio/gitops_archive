@@ -1,0 +1,48 @@
+---
+bases:
+  - ../../../../bases/olympus/hermes/migrator_test
+
+namespace: default
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: hermes
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: hermes
+                env:
+                  - name: HERMES_BLOB_STORAGE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string
+                        name: azure-storage-common
+                  - name: REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: uri_ssl
+                        name: azure-redis-vnet
+                  - name: SINGLE_BEAT_REDIS_SERVER
+                    valueFrom:
+                      secretKeyRef:
+                        key: uri_ssl
+                        name: azure-redis-vnet
+                  - name: APPLE_CLIENT_SECRET
+                    valueFrom:
+                      secretKeyRef:
+                        key: key
+                        name: sign-in-with-apple
+                  - name: OIDC_CLIENT_SECRET
+                    valueFrom:
+                      secretKeyRef:
+                        key: secret
+                        name: hermes-aad-client-secret
