@@ -20,6 +20,9 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: hermes
+                envFrom:
+                  - configMapRef:
+                      name: hermes-9429bd25bk
                 env:
                   - name: HERMES_BLOB_STORAGE_DSN
                     valueFrom:
