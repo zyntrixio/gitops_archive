@@ -45,7 +45,7 @@ spec:
       containers:
         - name: app
           command: ["linkerd-await", "--"]
-          args: ["python", "-m", "cosmos", "cron-scheduler"]
+          args: ["cosmos", "cron-scheduler"]
           image: binkcore.azurecr.io/cosmos:latest
           imagePullPolicy: Always
           securityContext:

@@ -45,27 +45,7 @@ spec:
       containers:
         - name: app
           command: ["linkerd-await", "--"]
-          args: ["python", "-m", "cosmos", "api", "--port", "9000", "public_api"]
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /livez
-              port: 9000
-              scheme: HTTP
-            initialDelaySeconds: 15
-            periodSeconds: 60
-            successThreshold: 1
-            timeoutSeconds: 10
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /readyz
-              port: 9000
-              scheme: HTTP
-            initialDelaySeconds: 15
-            periodSeconds: 60
-            successThreshold: 1
-            timeoutSeconds: 10
+          args: ["cosmos", "api", "--port", "9000", "public_api"]
           image: binkcore.azurecr.io/cosmos:latest
           imagePullPolicy: Always
           securityContext:
