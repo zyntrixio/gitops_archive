@@ -82,9 +82,3 @@ spec:
     component: public-api
   sessionAffinity: None
   type: ClusterIP
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: cosmos-public-api
-  namespace: default
