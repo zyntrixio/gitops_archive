@@ -5,3 +5,4 @@ resources:
   - transactions-api.yaml
   - task-worker.yaml
   - cron-scheduler.yaml
+  - admin.yaml
