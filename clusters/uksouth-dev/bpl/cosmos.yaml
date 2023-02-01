@@ -17,11 +17,11 @@ spec:
   images:
   - name: binkcore.azurecr.io/cosmos
     newName: binkcore.azurecr.io/cosmos
-    newTag: 2023-01-31T095439Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos:tag"}
+    newTag: 2023-02-01T105556Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos:tag"}
   postBuild:
     substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
+    - kind: ConfigMap
+      name: cluster-vars
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -41,7 +41,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/cosmos
     newName: binkcore.azurecr.io/cosmos
-    newTag: 2023-01-31T095439Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos:tag"}
+    newTag: 2023-02-01T105556Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos:tag"}
   - name: binkcore.azurecr.io/cosmos-admin
     newName: binkcore.azurecr.io/cosmos-admin
     newTag: 2023-01-31T095439Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos-admin:tag"}
