@@ -6,6 +6,8 @@ namespace: bpl
 
 resources:
   - aad.yaml
+  - ingress.yaml
+  - ingress-healthz.yaml
 
 configMapGenerator:
   - name: cosmos
