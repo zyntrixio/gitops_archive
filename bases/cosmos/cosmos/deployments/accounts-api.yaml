@@ -57,6 +57,26 @@ spec:
               "--bind=0.0.0.0:9100",
               "cosmos.accounts.api.app:app",
             ]
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /livez
+              port: 9000
+              scheme: HTTP
+            initialDelaySeconds: 15
+            periodSeconds: 60
+            successThreshold: 1
+            timeoutSeconds: 10
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /readyz
+              port: 9000
+              scheme: HTTP
+            initialDelaySeconds: 15
+            periodSeconds: 60
+            successThreshold: 1
+            timeoutSeconds: 10
           image: binkcore.azurecr.io/cosmos:latest
           imagePullPolicy: Always
           securityContext:

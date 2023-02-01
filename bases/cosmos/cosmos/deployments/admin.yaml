@@ -22,8 +22,8 @@ spec:
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
-        prometheus.io/port: '9100'
-        prometheus.io/scrape: 'true'
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
         prometheus.io/job: cosmos
       labels:
         app: cosmos
@@ -45,7 +45,36 @@ spec:
       containers:
         - name: app
           command: ["linkerd-await", "--"]
-          args: ["gunicorn", "--workers=2", "--threads=2", "--error-logfile=-", "--access-logfile=-", "--bind=0.0.0.0:9000", "wsgi:app"]
+          args:
+            [
+              "gunicorn",
+              "--workers=2",
+              "--threads=2",
+              "--error-logfile=-",
+              "--access-logfile=-",
+              "--bind=0.0.0.0:9000",
+              "wsgi:app",
+            ]
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /livez
+              port: 9000
+              scheme: HTTP
+            initialDelaySeconds: 15
+            periodSeconds: 60
+            successThreshold: 1
+            timeoutSeconds: 10
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /readyz
+              port: 9000
+              scheme: HTTP
+            initialDelaySeconds: 15
+            periodSeconds: 60
+            successThreshold: 1
+            timeoutSeconds: 10
           image: binkcore.azurecr.io/cosmos-admin:latest
           imagePullPolicy: Always
           securityContext:
