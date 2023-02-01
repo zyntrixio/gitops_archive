@@ -1,0 +1,52 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/service-upstream: 'true'
+  name: cosmos.${cluster_name}.${location}.bink.sh
+  namespace: default
+spec:
+  rules:
+    - host: cosmos.${cluster_name}.${location}.bink.sh
+      http:
+        paths:
+          - path: /admin
+            pathType: Prefix
+            backend:
+              service:
+                name: cosmos-admin
+                port:
+                  number: 80
+          - path: /api/loyalty
+            pathType: Prefix
+            backend:
+              service:
+                name: cosmos-accounts-api
+                port:
+                  number: 80
+          - path: /api/campaigns
+            pathType: Prefix
+            backend:
+              service:
+                name: cosmos-campaigns-api
+                port:
+                  number: 80
+          - path: /api/transactions/
+            pathType: Prefix
+            backend:
+              service:
+                name: cosmos-transactions-api
+                port:
+                  number: 80
+          - path: /api/public
+            pathType: Prefix
+            backend:
+              service:
+                name: cosmos-public-api
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - cosmos.${cluster_name}.${location}.bink.sh
