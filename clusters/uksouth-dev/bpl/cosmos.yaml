@@ -58,6 +58,17 @@ spec:
     name: binkcore.azurecr.io
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: cosmos-admin
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/cosmos-admin
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: uksouth-dev-cosmos
@@ -65,6 +76,21 @@ metadata:
 spec:
   imageRepositoryRef:
     name: cosmos
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: uksouth-dev-cosmos-admin
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: cosmos-admin
   filterTags:
     pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
     extract: $ts
