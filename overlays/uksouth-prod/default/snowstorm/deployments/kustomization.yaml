@@ -2,6 +2,7 @@ bases:
   - ../../../../../bases/devops/snowstorm/apistats
   - ../../../../../bases/devops/snowstorm/freshservice
   - ../../../../../bases/devops/snowstorm/event_processor
+  - ../../../../../bases/devops/snowstorm/webserver
 
 patches:
   - target:

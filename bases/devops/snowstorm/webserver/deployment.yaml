@@ -1,0 +1,56 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: snowstorm
+    component: webserver
+  name: snowstorm-webserver
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snowstorm
+      component: webserver
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: snowstorm
+        component: webserver
+    spec:
+      priorityClassName: bink-low-api
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/snowstorm:latest
+          args: ["stormctl", "mi", "webserver"]
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+          livenessProbe:
+            httpGet:
+              path: /livez
+              port: http
+          ports:
+            - containerPort: 6502
+              name: http
+          resources:
+            requests:
+              cpu: 10m
+              memory: 128Mi
+            limits:
+              cpu: 1000m
+              memory: 128Mi
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+      terminationGracePeriodSeconds: 30
+      serviceAccountName: snowstorm
+      imagePullSecrets:
+        - name: binkcore.azurecr.io

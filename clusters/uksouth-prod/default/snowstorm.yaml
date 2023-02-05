@@ -38,6 +38,10 @@ spec:
   - name: binkcore.azurecr.io/snowstorm
     newName: binkcore.azurecr.io/snowstorm
     newTag: prod-v1.3.0 # {"$imagepolicy": "flux-system:snowstorm:tag"}
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
