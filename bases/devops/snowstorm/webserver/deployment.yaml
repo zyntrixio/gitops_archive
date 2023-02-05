@@ -23,6 +23,7 @@ spec:
       labels:
         app: snowstorm
         component: webserver
+        aadpodidbinding: snowstorm
     spec:
       priorityClassName: bink-low-api
       containers:
