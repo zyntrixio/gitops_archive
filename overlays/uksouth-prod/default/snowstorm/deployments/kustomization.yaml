@@ -3,6 +3,7 @@ bases:
   - ../../../../../bases/devops/snowstorm/freshservice
   - ../../../../../bases/devops/snowstorm/event_processor
   - ../../../../../bases/devops/snowstorm/webserver
+  - ../../../../../bases/devops/snowstorm/notifications
 
 patches:
   - target:
