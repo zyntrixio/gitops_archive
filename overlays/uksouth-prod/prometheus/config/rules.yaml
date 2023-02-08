@@ -253,7 +253,7 @@ groups:
           summary: There has been an increase of 5 in failed logins in 10 mins
 
       - alert: Files not received - wasabi
-        expr: (increase(blobstorage_files_total{name="wasabihack"}[46m]) or on() vector(0)) < 1
+        expr: (increase(blobstorage_files_total{name="wasabihack"}[46m]) or on() vector(0)) < 1 and ON() hour() > 13 < 23
         for: 3m
         labels:
           severity: S2
