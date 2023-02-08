@@ -102,3 +102,30 @@ patches:
                           secretKeyRef:
                             name: azure-pgfs
                             key: common_harmonia
+
+  - target:
+      kind: Deployment
+      name: harmonia-import-agent-wasabi-club
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: harmonia-import-agent-wasabi-club
+        namespace: default
+      spec:
+        template:
+          metadata:
+            annotations:
+              prometheus.io/port: '9100'
+              prometheus.io/scrape: 'true'
+              prometheus.io/job: harmonia-import-agent-wasabi-club
+          spec:
+            containers:
+              - name: app
+                args: ["tximport", "--agent", "wasabi-club", "--no-user-input", "--quiet"]
+                resources:
+                  limits:
+                    memory: 1Gi
+                  requests:
+                    memory: 1Gi
+            priorityClassName: bink-low-tasks
