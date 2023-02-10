@@ -1,6 +1,6 @@
 ---
 bases:
-  - github.com/vectordotdev/vector/distribution/kubernetes/vector-agent?ref=v0.23.0
+  - github.com/vectordotdev/vector/distribution/kubernetes/vector-agent?ref=v0.24.0
 
 resources:
   - namespace.yaml
