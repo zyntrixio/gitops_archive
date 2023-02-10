@@ -15,4 +15,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/ubiquity-performance
     newName: binkcore.azurecr.io/ubiquity-performance
-    newTag: 2023-02-10-150237 # {"$imagepolicy": "flux-system:perf-ubiquity-performance:tag"}
+    newTag: 2023-02-10-164043 # {"$imagepolicy": "flux-system:perf-ubiquity-performance:tag"}
