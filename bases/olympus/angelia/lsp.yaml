@@ -180,3 +180,21 @@ spec:
       name: POST /v2/email_update
       isRetryable: true
       timeout: 2000ms
+    - condition:
+        method: POST
+        pathRegex: /v2/loyalty_cards/trusted_add
+      name: POST /v2/loyalty_cards/trusted_add
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: PUT
+        pathRegex: /v2/loyalty_cards/[^/]*/trusted_add
+      name: PUT /v2/loyalty_cards/{loyalty_card_id}/trusted_add
+      isRetryable: true
+      timeout: 2000ms
+    - condition:
+        method: GET
+        pathRegex: /v2/wallet/payment_account_channel_links
+      name: GET /v2/wallet/payment_account_channel_links
+      isRetryable: true
+      timeout: 2000ms
