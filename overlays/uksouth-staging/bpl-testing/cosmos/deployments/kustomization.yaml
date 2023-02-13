@@ -1,0 +1,28 @@
+---
+bases:
+  - ../../../../../bases/cosmos/cosmos/deployments
+
+namespace: bpl-testing
+
+configMapGenerator:
+  - name: cosmos
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env
+        value:
+          - name: BLOB_STORAGE_DSN
+            valueFrom:
+              secretKeyRef:
+                key: connection_string
+                name: azure-storage-common
+      - op: add
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: cosmos
