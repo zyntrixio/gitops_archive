@@ -1,0 +1,7 @@
+scrape_configs:
+  - job_name: checkly
+    metrics_path: 'accounts/da41e9cc-d34a-4cab-b7d6-44740d1c7d2b/prometheus/metrics'
+    bearer_token: 'pUZDW0IXdDBWoDCxAgJ3eRsZ'
+    scheme: https
+    static_configs:
+    - targets: ['api.checklyhq.com']

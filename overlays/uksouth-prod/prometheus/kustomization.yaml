@@ -7,8 +7,33 @@ configMapGenerator:
   - name: alertmanager-rules
     files:
       - config/rules.yaml
+  - name: prometheus-checkly
+    files:
+      - config/checkly.yaml
+
 
 patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: prometheus
+      spec:
+        template:
+          spec:
+            initContainers:
+              - name: yamlmerge-prometheus
+                volumeMounts:
+                  - name: prometheus-checkly
+                    mountPath: /etc/prometheus/checkly.yaml
+                    subPath: checkly.yaml
+            volumes:
+              - configMap:
+                  defaultMode: 420
+                  name: prometheus-checkly
+                name: prometheus-checkly
   - target:
       kind: Deployment
     patch: |-
