@@ -15,7 +15,10 @@ spec:
   images:
     - name: binkcore.azurecr.io/asteria
       newName: binkcore.azurecr.io/asteria
-      newTag: 2023-02-14T130105Z # {"$imagepolicy": "flux-system:uksouth-prod-asteria:tag"}
+      newTag: 2021-11-05T124427Z
+#####################################################
+# REVERT THIS COMMIT AFTER TRUSTED CHANNELS LAUNCH! #
+#####################################################
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
