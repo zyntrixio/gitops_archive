@@ -1,0 +1,20 @@
+---
+resources:
+  - ../base
+
+nameSuffix: -task-worker
+
+commonLabels:
+  component: task-worker
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["cosmos", "task-worker"]
+      - op: remove
+        path: /spec/template/spec/containers/0/readinessProbe
+      - op: remove
+        path: /spec/template/spec/containers/0/livenessProbe

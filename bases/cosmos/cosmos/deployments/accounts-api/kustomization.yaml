@@ -1,0 +1,30 @@
+---
+resources:
+  - ../base
+  - ../service
+
+nameSuffix: -accounts-api
+
+commonLabels:
+  component: accounts-api
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-medium-api
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: [ 
+          "gunicorn", 
+          "--workers=2", 
+          "--threads=2", 
+          "--error-logfile=-", 
+          "--access-logfile=-", 
+          "--worker-class=uvicorn.workers.UvicornWorker", 
+          "--bind=0.0.0.0:9000", 
+          "--bind=0.0.0.0:9100", 
+          "cosmos.accounts.api.app:app"
+        ]

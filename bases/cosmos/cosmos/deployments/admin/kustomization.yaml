@@ -1,0 +1,28 @@
+---
+resources:
+  - ../base
+  - ../service
+
+nameSuffix: -admin
+
+commonLabels:
+  component: admin
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: [ 
+          "gunicorn",
+          "--workers=2",
+          "--threads=2",
+          "--error-logfile=-",
+          "--access-logfile=-",
+          "--bind=0.0.0.0:9000",
+          "wsgi:app",
+        ]
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: binkcore.azurecr.io/cosmos-admin:latest
