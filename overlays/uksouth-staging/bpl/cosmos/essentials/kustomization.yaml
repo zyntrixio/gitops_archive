@@ -9,11 +9,6 @@ resources:
   - ingress.yaml
   - ingress-healthz.yaml
 
-configMapGenerator:
-  - name: cosmos
-    envs:
-      - env.ini
-
 patches:
   - target:
       kind: Job
@@ -21,18 +16,12 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/env
         value:
-          - name: BLOB_STORAGE_DSN
-            valueFrom:
-              secretKeyRef:
-                key: connection_string
-                name: azure-storage-common
+          - name: PUBLIC_URL
+            value: http://fake-cosmos-public-url
+          - name: REDIS_URL
+            value: redis://redis:6379/0
           - name: SQLALCHEMY_DATABASE_URI
             valueFrom:
               secretKeyRef:
                 key: common_cosmos
                 name: azure-pgfs
-      - op: add
-        path: /spec/template/spec/containers/0/envFrom
-        value:
-          - configMapRef:
-              name: cosmos

@@ -19,13 +19,9 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/env
         value:
-          - name: BLOB_STORAGE_DSN
-            valueFrom:
-              secretKeyRef:
-                key: connection_string
-                name: azure-storage-common
-      - op: add
-        path: /spec/template/spec/containers/0/envFrom
-        value:
-          - configMapRef:
-              name: cosmos
+          - name: PUBLIC_URL
+            value: http://fake-cosmos-public-url
+          - name: REDIS_URL
+            value: redis://redis:6379/0
+          - name: SQLALCHEMY_DATABASE_URI
+            value: postgresql://postgres@postgres:5432/cosmos
