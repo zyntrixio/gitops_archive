@@ -1,0 +1,20 @@
+---
+resources:
+  - ../base
+
+nameSuffix: -cron-scheduler
+
+commonLabels:
+  component: cron-scheduler
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["cosmos", "cron-scheduler"]
+      - op: remove
+        path: /spec/template/spec/containers/0/readinessProbe
+      - op: remove
+        path: /spec/template/spec/containers/0/livenessProbe

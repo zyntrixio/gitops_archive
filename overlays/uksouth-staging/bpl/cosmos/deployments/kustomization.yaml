@@ -1,6 +1,12 @@
 ---
-bases:
-  - ../../../../../bases/cosmos/cosmos/deployments
+resources:
+  - ../../../../../bases/cosmos/cosmos/deployments/admin
+  - ../../../../../bases/cosmos/cosmos/deployments/accounts-api
+  - ../../../../../bases/cosmos/cosmos/deployments/campaigns-api
+  - ../../../../../bases/cosmos/cosmos/deployments/public-api
+  - ../../../../../bases/cosmos/cosmos/deployments/transactions-api
+  - ../../../../../bases/cosmos/cosmos/deployments/cron-scheduler
+  - ../../../../../bases/cosmos/cosmos/deployments/task-worker
 
 namespace: bpl
 
