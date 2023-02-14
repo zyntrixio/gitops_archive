@@ -8,6 +8,10 @@ configMapGenerator:
     envs:
       - env.ini
 
+replicas:
+  - name: asteria
+    count: 1
+
 patches:
   - target:
       kind: Deployment
@@ -17,7 +21,6 @@ patches:
       metadata:
         name: asteria
       spec:
-        replicas: 0
         template:
           spec:
             containers:
