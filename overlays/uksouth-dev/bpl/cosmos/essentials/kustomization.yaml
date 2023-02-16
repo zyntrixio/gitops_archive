@@ -16,6 +16,10 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/env
         value:
+          - name: PUBLIC_URL
+            value: http://fake-cosmos-public-url
+          - name: REDIS_URL
+            value: redis://redis:6379/0
           - name: SQLALCHEMY_DATABASE_URI
             valueFrom:
               secretKeyRef:
