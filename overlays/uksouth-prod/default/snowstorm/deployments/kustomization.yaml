@@ -1,9 +1,13 @@
-bases:
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
   - ../../../../../bases/devops/snowstorm/apistats
   - ../../../../../bases/devops/snowstorm/freshservice
   - ../../../../../bases/devops/snowstorm/event_processor
   - ../../../../../bases/devops/snowstorm/webserver
   - ../../../../../bases/devops/snowstorm/notifications
+  - ../../../../../bases/devops/snowstorm/viator
 
 patches:
   - target:
