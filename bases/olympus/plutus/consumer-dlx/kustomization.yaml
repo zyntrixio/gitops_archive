@@ -26,4 +26,4 @@ patches:
           spec:
             containers:
               - name: app
-                args: ["python", "dead_letter_consumer.py"]
+                args: ["python", "/app/app/dead_letter_consumer.py"]

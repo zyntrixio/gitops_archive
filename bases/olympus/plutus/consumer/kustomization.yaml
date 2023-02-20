@@ -26,4 +26,4 @@ patches:
           spec:
             containers:
               - name: app
-                args: ["python", "message_consumer.py"]
+                args: ["python", "/app/app/message_consumer.py"]
