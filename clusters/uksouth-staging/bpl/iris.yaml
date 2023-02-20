@@ -15,4 +15,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/iris
     newName: binkcore.azurecr.io/iris
-    newTag: staging-1.4.0 # {"$imagepolicy": "flux-system:uksouth-staging-iris:tag"}
+    newTag: staging-1.4.1 # {"$imagepolicy": "flux-system:uksouth-staging-iris:tag"}
