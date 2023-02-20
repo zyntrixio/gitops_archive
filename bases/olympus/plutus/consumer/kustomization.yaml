@@ -1,0 +1,29 @@
+---
+resources:
+  - ../core
+
+commonLabels:
+  component: consumer
+
+nameSuffix: -consumer
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: plutus-consumer
+        namespace: default
+      spec:
+        template:
+          metadata:
+            annotations:
+              prometheus.io/port: '9100'
+              prometheus.io/scrape: 'true'
+              prometheus.io/job: plutus-consumer
+          spec:
+            containers:
+              - name: app
+                args: ["python", "message_consumer.py"]
