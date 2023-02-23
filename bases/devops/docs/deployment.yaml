@@ -33,9 +33,8 @@ spec:
               cpu: 1000m
               memory: 128Mi
           volumeMounts:
-            - mountPath: /app
+            - mountPath: /app/config.toml
               name: config
-              subPath: config.toml
       serviceAccountName: docs
       imagePullSecrets:
         - name: binkcore.azurecr.io
