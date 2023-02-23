@@ -34,6 +34,7 @@ spec:
               memory: 128Mi
           volumeMounts:
             - mountPath: /app/config.toml
+              subPath: config.toml
               name: config
       serviceAccountName: docs
       imagePullSecrets:
