@@ -1,0 +1,45 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: plutus
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-staging/default/plutus
+  dependsOn:
+  - name: aad-pod-identity
+  - name: linkerd-control-plane
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/plutus
+    newName: binkcore.azurecr.io/plutus
+    newTag: 2023-02-20T144840Z # {"$imagepolicy": "flux-system:uksouth-staging-plutus:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: plutus
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/plutus
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: uksouth-staging-plutus
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: plutus
+  filterTags:
+    pattern: staging-(?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc
