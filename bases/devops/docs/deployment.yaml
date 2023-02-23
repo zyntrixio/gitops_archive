@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docs
+  namespace: default
+  labels:
+    app: docs
+spec:
+  selector:
+    matchLabels:
+      app: docs
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: docs
+    spec:
+      priorityClassName: bink-low-api
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/docs:latest
+          ports:
+            - containerPort: 6502
+              name: http
+          resources:
+            requests:
+              cpu: 10m
+              memory: 128Mi
+            limits:
+              cpu: 1000m
+              memory: 128Mi
+          volumeMounts:
+            - mountPath: /app
+              name: config
+              subPath: config.toml
+      serviceAccountName: docs
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
+      volumes:
+        - name: config
+          configMap:
+            name: docs-config

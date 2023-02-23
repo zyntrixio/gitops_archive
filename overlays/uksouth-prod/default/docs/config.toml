@@ -1,0 +1,7 @@
+[general]
+"root_redirect_path" = "/v2"
+
+[routes]
+"v2" = "apiv2/staging.html"
+"v2/appendix" = "apiv2/appendix.html"
+"v2/changelog" = "apiv2/changelog.html"

@@ -1,0 +1,20 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../bases/devops/docs
+  - ingress/root.yaml
+  - ingress/healthz.yaml
+  - ingress/banking.yaml
+  - ingress/retail.yaml
+configMapGenerator:
+  - name: docs-config
+    files:
+      - config.toml
+secretGenerator:
+  - name: docs-auth-banking
+    literals:
+      - auth=docs:$apr1$3QupKMKT$7ENOqM5/R04IhDc48d6CE0 # docs : huge-guilt-meshwork-pizza
+  - name: docs-auth-retail
+    literals:
+      - auth=docs:$apr1$3fxDOGiP$yT.UHALIW5MkxSPSAqwJZ/ # docs : cherry-drama-tank-denial

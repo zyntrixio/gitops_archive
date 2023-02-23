@@ -1,0 +1,26 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/service-upstream: 'true'
+    nginx.ingress.kubernetes.io/auth-realm: Authentication Required
+    nginx.ingress.kubernetes.io/auth-secret: docs-auth-retail
+  name: docs.${cluster_name}.${location}.bink.sh-retail
+  namespace: default
+spec:
+  rules:
+    - host: docs.${cluster_name}.${location}.bink.sh
+      http:
+        paths:
+          - path: /retail
+            pathType: Prefix
+            backend:
+              service:
+                name: docs
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - docs.${cluster_name}.${location}.bink.sh
