@@ -23,6 +23,8 @@ patches:
             value: redis://redis:6379/0
           - name: SQLALCHEMY_DATABASE_URI
             value: postgresql://postgres@postgres:5432/cosmos
+          - name: KEY_VAULT_URI
+            value: https://bink-uksouth-staging-com.vault.azure.net/
       - op: replace
         path: /spec/template/spec/containers/0/args
         value: ["python", "/app/migrator.py"]
