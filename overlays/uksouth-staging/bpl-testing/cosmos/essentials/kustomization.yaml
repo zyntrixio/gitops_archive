@@ -1,11 +1,14 @@
 ---
-bases:
+resources:
   - ../../../../../bases/cosmos/cosmos/essentials
+  - aad.yaml
 
 namespace: bpl-testing
 
-resources:
-  - aad.yaml
+configMapGenerator:
+  - name: cosmos-scripts
+    files:
+      - migrator.py
 
 patches:
   - target:
@@ -20,3 +23,21 @@ patches:
             value: redis://redis:6379/0
           - name: SQLALCHEMY_DATABASE_URI
             value: postgresql://postgres@postgres:5432/cosmos
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "/app/migrator.py"]
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts
+        value:
+          - name: cosmos-scripts
+            mountPath: /app/migrator.py
+            subPath: migrator.py
+      - op: add
+        path: /spec/template/spec/volumes
+        value:
+          - name: cosmos-scripts
+            configMap:
+              name: cosmos-scripts
+              items:
+                - key: migrator.py
+                  path: migrator.py
