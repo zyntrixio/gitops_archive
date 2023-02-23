@@ -16,4 +16,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/angelia
       newName: binkcore.azurecr.io/angelia
-      newTag: banking-0.54.5 # {"$imagepolicy": "flux-system:banking-angelia:tag"}
+      newTag: banking-0.63.5 # {"$imagepolicy": "flux-system:banking-angelia:tag"}
