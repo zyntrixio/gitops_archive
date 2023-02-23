@@ -156,20 +156,20 @@ groups:
       #   annotations:
       #     summany: Payment cards for {{ $labels.provider }} are taking longer than
       #       four seconds to process.
-      - alert: Payment cards stuck increase
-        expr: sum by (provider) (hermes_current_payment_card_pending_overdue_total{})
-          > sum by (provider) (hermes_current_payment_card_pending_overdue_total{}
-          offset 24h +15)
-        for: 5m
-        labels:
-          severity: p2
-          cluster: prod
-          component: asteria
-          resolve: false
-        annotations:
-          resource: '{{$labels.provider}}'
-          summary: Payment cards have been stuck in a pending state for more than
-            24 hours
+      # - alert: Payment cards stuck increase
+      #   expr: sum by (provider) (hermes_current_payment_card_pending_overdue_total{})
+      #     > sum by (provider) (hermes_current_payment_card_pending_overdue_total{}
+      #     offset 24h +15)
+      #   for: 5m
+      #   labels:
+      #     severity: p2
+      #     cluster: prod
+      #     component: asteria
+      #     resolve: false
+      #   annotations:
+      #     resource: '{{$labels.provider}}'
+      #     summary: Payment cards have been stuck in a pending state for more than
+      #       24 hours
 
       - alert: Vop status stuck in transitory state
         expr: sum by (status)(hermes_current_vop_activation_status_total{status=~"Deactivating|Activating"})
