@@ -16,4 +16,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/atlas
       newName: binkcore.azurecr.io/atlas
-      newTag: prod-2.4.0
+      newTag: prod-2.5.2

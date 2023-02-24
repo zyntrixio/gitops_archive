@@ -17,4 +17,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/europa
       newName: binkcore.azurecr.io/europa
-      newTag: prod-1.5.0
+      newTag: prod-1.6.2
