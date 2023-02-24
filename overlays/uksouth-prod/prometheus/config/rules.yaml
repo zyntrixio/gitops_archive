@@ -261,7 +261,7 @@ groups:
           resolve: false
         annotations:
           resource: '{{ $labels.name }}'
-          summary: Three missing files over 45 minute period - check latest Wasabi import (Transaction log lands every 15 minutes between the hours of 12pm and 8pm)
+          summary: Three missing files over 45 minute period - check latest Wasabi import (Transaction log lands every 15 minutes between the hours of 1pm and 11pm)
 
 # Alerts for the state of our certificates
   - name: Certificates
