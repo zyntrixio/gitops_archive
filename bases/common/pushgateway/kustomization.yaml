@@ -16,7 +16,7 @@ patches:
           spec:
             containers:
               - name: pushgateway
-                image: binkcore.azurecr.io/pushgateway:v1.4.2
+                image: binkcore.azurecr.io/pushgateway:v1.5.1
                 args:
                   - --web.listen-address=0.0.0.0:9100
                 imagePullPolicy: Always
