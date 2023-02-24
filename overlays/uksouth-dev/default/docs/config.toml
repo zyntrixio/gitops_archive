@@ -5,7 +5,8 @@
 "v1.2" = "apiv1/1.2.html"
 "v1.3" = "apiv1/1.3.html"
 "v2" = "apiv2/dev.html"
-"v2/appendix" = "apiv2/appendix.html"
-"v2/changelog" = "apiv2/changelog.html"
 "bpl" = "bpl/index.html"
 "portal" = "portal/index.html"
+
+"extras/appendix" = "extras/appendix.html"
+"extras/changelog" = "extras/changelog.html"

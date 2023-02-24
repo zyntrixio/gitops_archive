@@ -3,8 +3,7 @@
 
 [routes]
 "banking" = "apiv2/sandbox-banking.html"
-"banking/appendix" = "apiv2/appendix.html"
-"banking/changelog" = "apiv2/changelog.html"
 "retail" = "apiv2/sandbox-retail.html"
-"retail/appendix" = "apiv2/appendix.html"
-"retail/changelog" = "apiv2/changelog.html"
+
+"extras/appendix" = "extras/appendix.html"
+"extras/changelog" = "extras/changelog.html"
