@@ -1,0 +1,50 @@
+---
+groups:
+  - name: Infrastructure
+    rules:
+      - alert: Unavailable Replicas
+        expr: sum by(deployment, namespace) (kube_deployment_status_replicas_unavailable) > 0
+        for: 5m
+        labels:
+          severity: p2
+          cluster: dev
+          component: Kubernetes
+          resolve: true
+        annotations:
+          title: 'Dev - {{ $labels.deployment}}'
+          description: 'Deployment: {{ $labels.deployment}} in Namespace: {{$labels.namespace}} has unavailable replicas.'
+
+      - alert: Container Restarts
+        expr: increase(kube_pod_container_status_restarts_total{namespace!="kube-system"}[1h]) > 1.01
+        for: 1s
+        labels:
+          severity: p2
+          cluster: dev
+          component: Kubernetes
+        annotations:
+          title: 'Dev - Container restarts'
+          description: 'Container: {{$labels.container}} in Deploy: {{$labels.pod}} in Namespace: {{$labels.namespace}} is restarting alot'
+      
+      - alert: Kube pod waiting status
+        expr: sum by (reason, pod)(kube_pod_container_status_waiting_reason) > 0
+        for: 1m
+        labels: 
+          severity: p2
+          cluster: dev
+          component: Kubernetes
+          resolve: true
+        annotations:  
+          title: 'Dev - Pod waiting status'
+          description: 'Pod: {{$labels.pod}} is in this State: {{$labels.reason}} in this Namespace: {{$labels.namespace}}'
+
+      # - alert: core sftp up state
+      #   expr: up{job="azure_node",name=~"sftp\\d"} < 1
+      #   for: 3m
+      #   labels:
+      #     severity: S1
+      #   annotations:
+      #     resource: '{{ $labels.name }}'
+      #     summary: Check sftp virtual machines - bad up state for over 3 minutes
+
+
+  

@@ -23,7 +23,7 @@ groups:
       - alert: Unavailable Replicas
         expr: sum by(deployment, namespace) (kube_deployment_status_replicas_unavailable)
           > 0
-        for: 1m
+        for: 5m
         labels:
           severity: p2
           cluster: prod
