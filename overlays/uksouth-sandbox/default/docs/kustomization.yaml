@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: default
 resources:
   - ../../../../bases/devops/docs
-  # - ingress/root.yaml
+  - ingress/root.yaml
   - ingress/healthz.yaml
   - ingress/banking.yaml
   - ingress/retail.yaml
@@ -14,8 +14,8 @@ configMapGenerator:
       - config.toml
 secretGenerator:
   - name: docs-auth-banking
-    literals:
-      - auth=docs:$apr1$3QupKMKT$7ENOqM5/R04IhDc48d6CE0 # docs : huge-guilt-meshwork-pizza
+    files:
+      - ingress/auth/banking/auth # docs : huge-guilt-meshwork-pizza
   - name: docs-auth-retail
-    literals:
-      - auth=docs:$apr1$3fxDOGiP$yT.UHALIW5MkxSPSAqwJZ/ # docs : cherry-drama-tank-denial
+    files:
+      - ingress/auth/retail/auth # docs : cherry-drama-tank-denial
