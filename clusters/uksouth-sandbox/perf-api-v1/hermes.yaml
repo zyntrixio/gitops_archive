@@ -16,4 +16,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/hermes
     newName: binkcore.azurecr.io/hermes
-    newTag: perf-2023-02-06T104433Z
+    newTag: perf-2023-02-27T150819Z # {"$imagepolicy": "flux-system:perf-hermes:tag"}
