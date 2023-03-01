@@ -37,20 +37,13 @@ patches:
       - op: replace
         path: /metadata/name
         value: hermes-api.perf-api-v1.svc.cluster.local
-  # - target:
-  #     kind: Deployment
-  #     name: hermes-api
-  #   patch: |-
-  #     apiVersion: apps/v1
-  #     kind: Deployment
-  #     metadata:
-  #       name: hermes
-  #     spec:
-  #       template:
-  #         spec:
-  #           containers:
-  #             - name: app
-  #               args: ["gunicorn", "--workers=2", "--threads=2", "--error-logfile=-", "--access-logfile=-", "--bind=0.0.0.0:9000", "hermes.wsgi"]
+  - target:
+      kind: Deployment
+      name: hermes-api
+    patch: |-
+      - op: remove
+        path: /spec/template/spec/containers/0/securityContext
+        value: hermes-api.perf-api-v1.svc.cluster.local
   - target:
       kind: Deployment
     patch: |-
