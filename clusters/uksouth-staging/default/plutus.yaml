@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/plutus
     newName: binkcore.azurecr.io/plutus
-    newTag: 2023-02-20T144840Z # {"$imagepolicy": "flux-system:uksouth-staging-plutus:tag"}
+    newTag: staging-0.0.1 # {"$imagepolicy": "flux-system:uksouth-staging-plutus:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
