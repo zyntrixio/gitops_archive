@@ -49,7 +49,7 @@ patches:
     patch: |-
       - op: add
         path: /spec/template/spec/containers/0/resources/limits/cpu
-        value: 2000m
+        value: 1250m
   - target:
       kind: Deployment
     patch: |-
