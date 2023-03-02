@@ -51,7 +51,6 @@ spec:
             - wsgi:app
           resources:
             limits:
-              cpu: 1000m
               memory: 1664Mi
             requests:
               cpu: 10m

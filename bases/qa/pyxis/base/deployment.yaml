@@ -35,7 +35,6 @@ spec:
           image: binkcore.azurecr.io/pyxis:latest
           resources:
             limits:
-              cpu: 1000m
               memory: 256Mi
             requests:
               cpu: 10m

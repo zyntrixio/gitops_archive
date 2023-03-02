@@ -25,7 +25,6 @@ patches:
                     protocol: TCP
                 resources:
                   limits:
-                    cpu: 1000m
                     memory: 64Mi
                   requests:
                     cpu: 10m

@@ -33,7 +33,6 @@ patches:
                 image: binkcore.azurecr.io/pyxis:latest
                 resources:
                   limits:
-                    cpu: 1000m
                     memory: 128Mi
                   requests:
                     cpu: 10m

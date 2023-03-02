@@ -30,7 +30,6 @@ spec:
                   cpu: 100m
                   memory: 512Mi
                 limits:
-                  cpu: 1000m
                   memory: 512Mi
               securityContext:
                 runAsGroup: 65534

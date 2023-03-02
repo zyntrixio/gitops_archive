@@ -57,7 +57,6 @@ spec:
               cpu: 250m
               memory: 750Mi
             limits:
-              cpu: 2000m
               memory: 750Mi
           volumeMounts:
             - name: data
@@ -77,7 +76,6 @@ spec:
               cpu: 100m
               memory: 256Mi
             limits:
-              cpu: 1000m
               memory: 256Mi
           volumeMounts:
             - mountPath: /var/lib/grafana

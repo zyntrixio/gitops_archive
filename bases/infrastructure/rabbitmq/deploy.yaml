@@ -28,7 +28,6 @@ spec:
           image: docker.io/rabbitmq:3.9
           resources:
             limits:
-              cpu: 3500m
               memory: 4Gi
             requests:
               cpu: 10m

@@ -28,7 +28,6 @@ spec:
               value: http://10.10.255.254:9090
           resources:
             limits:
-              cpu: 100m
               memory: 128Mi
             requests:
               cpu: 100m

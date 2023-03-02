@@ -24,7 +24,6 @@ spec:
           args: ["alembic", "upgrade", "head"]
           resources:
             requests:
-              cpu: 1000m
               memory: 2Gi
             limits:
               cpu: 1000m

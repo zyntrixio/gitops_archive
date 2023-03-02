@@ -26,7 +26,6 @@ spec:
               cpu: 1000m
               memory: 2Gi
             limits:
-              cpu: 1000m
               memory: 2Gi
           securityContext:
             runAsGroup: 65534

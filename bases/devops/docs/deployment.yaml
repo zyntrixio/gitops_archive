@@ -30,7 +30,6 @@ spec:
               cpu: 10m
               memory: 128Mi
             limits:
-              cpu: 1000m
               memory: 128Mi
           volumeMounts:
             - mountPath: /app/config.toml

@@ -40,7 +40,6 @@ spec:
           imagePullPolicy: Always
           resources:
             limits:
-              cpu: 1000m
               memory: 256Mi
             requests:
               cpu: 10m
@@ -64,7 +63,6 @@ spec:
                   key: common_asset_register
           resources:
             limits:
-              cpu: 1000m
               memory: 512Mi
           imagePullPolicy: Always
       dnsPolicy: ClusterFirst

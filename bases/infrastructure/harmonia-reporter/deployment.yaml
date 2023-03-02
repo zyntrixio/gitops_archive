@@ -23,7 +23,6 @@ spec:
           image: binkcore.azurecr.io/harmonia_archive_reporter:prod-2021-08-27T132214Z
           resources:
             limits:
-              cpu: 1000m
               memory: 128Mi
             requests:
               cpu: 10m
@@ -34,7 +33,6 @@ spec:
           image: binkcore.azurecr.io/harmonia_archive_reporter:prod-2021-08-27T132214Z
           resources:
             limits:
-              cpu: 1000m
               memory: 128Mi
             requests:
               cpu: 10m

@@ -33,7 +33,6 @@ spec:
           imagePullPolicy: Always
           resources:
             limits:
-              cpu: 100m
               memory: 128Mi
             requests:
               cpu: 100m
@@ -51,7 +50,6 @@ spec:
               cpu: 1000m
               memory: 1024Mi
             limits:
-              cpu: 2000m
               memory: 1024Mi
           volumeMounts:
             - name: elasticsearch
