@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/aperture
     newName: binkcore.azurecr.io/aperture
-    newTag: 2023-02-27T133323Z # {"$imagepolicy": "flux-system:uksouth-dev-aperture:tag"}
+    newTag: 2023-03-02T090720Z # {"$imagepolicy": "flux-system:uksouth-dev-aperture:tag"}
   postBuild:
     substituteFrom:
     - kind: ConfigMap
