@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/bullsquid
     newName: binkcore.azurecr.io/bullsquid
-    newTag: 2023-03-01T175322Z # {"$imagepolicy": "flux-system:uksouth-dev-bullsquid:tag"}
+    newTag: 2023-03-02T153136Z # {"$imagepolicy": "flux-system:uksouth-dev-bullsquid:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
