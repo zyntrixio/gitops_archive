@@ -99,4 +99,4 @@ patches:
         path: /spec/template/spec/containers/0/env/-
         value:
           name: SENTRY_SAMPLE_RATE
-          value: "0.01"
+          value: "0.00"
