@@ -45,13 +45,6 @@ patches:
         path: /spec/template/spec/containers/0/securityContext
   - target:
       kind: Deployment
-      name: hermes-api
-    patch: |-
-      - op: add
-        path: /spec/template/spec/containers/0/resources/limits/cpu
-        value: 1250m
-  - target:
-      kind: Deployment
     patch: |-
       apiVersion: apps/v1
       kind: Deployment
