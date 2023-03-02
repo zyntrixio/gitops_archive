@@ -186,20 +186,20 @@ groups:
           summary: VOP account status in {{$labels.status}} state for over 15 minutes
             - check
 
-      - alert: Failed exports - receipt number not found
-        expr: sum(failed_requests_total{response_result="receipt no not found"}) >
-          500
-        for: 1m
-        labels:
-          severity: p2
-          cluster: prod
-          component: harmonia
-          resolve: false
-        annotations:
-          resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }}
-            - {{ $labels.response_result }}'
-          summary: There have been failed exports from harmonia returning receipt
-            not found.
+      # - alert: Failed exports - receipt number not found
+      #   expr: sum(failed_requests_total{response_result="receipt no not found"}) >
+      #     500
+      #   for: 1m
+      #   labels:
+      #     severity: p2
+      #     cluster: prod
+      #     component: harmonia
+      #     resolve: false
+      #   annotations:
+      #     resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }}
+      #       - {{ $labels.response_result }}'
+      #     summary: There have been failed exports from harmonia returning receipt
+      #       not found.
 
       - alert: Failed exports excluding receipt not found
         expr: sum(failed_requests_total{response_result!="receipt no not found"})
