@@ -40,6 +40,11 @@ patches:
               secretKeyRef:
                 key: common_hermes
                 name: azure-pgfs
+          - name: HARMONIA_DATABASE_URI
+            valueFrom:
+              secretKeyRef:
+                name: azure-pgfs
+                key: common_harmonia
       - op: add
         path: /spec/jobTemplate/spec/template/spec/containers/1/envFrom
         value:
