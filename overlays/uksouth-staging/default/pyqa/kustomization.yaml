@@ -46,6 +46,11 @@ patches:
               secretKeyRef:
                 name: azure-pgfs
                 key: common_harmonia
+          - name: SNOWSTORM_DATABASE_URI
+            valueFrom:
+              secretKeyRef:
+                name: azure-pgfs
+                key: common_snowstorm
   - target:
       kind: CronJob
       name: pyqa-bink

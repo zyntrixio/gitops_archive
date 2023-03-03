@@ -45,6 +45,11 @@ patches:
               secretKeyRef:
                 name: azure-pgfs
                 key: common_harmonia
+          - name: SNOWSTORM_DATABASE_URI
+            valueFrom:
+              secretKeyRef:
+                name: azure-pgfs
+                key: common_snowstorm
       - op: add
         path: /spec/jobTemplate/spec/template/spec/containers/1/envFrom
         value:
