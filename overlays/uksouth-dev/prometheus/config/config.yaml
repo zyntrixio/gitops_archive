@@ -1,0 +1,107 @@
+---
+# Basic Config
+global:
+  evaluation_interval: 10s
+  scrape_interval: 10s
+  scrape_timeout: 10s
+
+rule_files:
+  - rules.yaml
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - 127.0.0.1:9093
+
+scrape_configs:
+  - job_name: kube-state-metrics
+    static_configs:
+      - targets: [kube-state-metrics.kube-system.svc.cluster.local:9100]
+    relabel_configs:
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: ${cluster_name}
+
+  - job_name: linkerd-proxy
+    kubernetes_sd_configs:
+      - role: pod
+    relabel_configs:
+      - source_labels:
+          - __meta_kubernetes_pod_container_name
+          - __meta_kubernetes_pod_container_port_name
+          - __meta_kubernetes_pod_label_linkerd_io_control_plane_ns
+        action: keep
+        regex: ^linkerd-proxy;linkerd-admin;linkerd$
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: pod
+      - source_labels: [__meta_kubernetes_pod_label_linkerd_io_proxy_job]
+        action: replace
+        target_label: k8s_job
+      - action: labeldrop
+        regex: __meta_kubernetes_pod_label_linkerd_io_proxy_job
+      - action: labelmap
+        regex: __meta_kubernetes_pod_label_linkerd_io_proxy_(.+)
+      - action: labeldrop
+        regex: __meta_kubernetes_pod_label_linkerd_io_proxy_(.+)
+      - action: labelmap
+        regex: __meta_kubernetes_pod_label_linkerd_io_(.+)
+      - action: labelmap
+        regex: __meta_kubernetes_pod_label_(.+)
+        replacement: __tmp_pod_label_$1
+      - action: labelmap
+        regex: __tmp_pod_label_linkerd_io_(.+)
+        replacement: __tmp_pod_label_$1
+      - action: labeldrop
+        regex: __tmp_pod_label_linkerd_io_(.+)
+      - action: labelmap
+        regex: __tmp_pod_label_(.+)
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: ${cluster_name}
+
+  - job_name: pods
+    kubernetes_sd_configs:
+      - role: pod
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: kubernetes_pod_name
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_job]
+        action: replace
+        target_label: job
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_instance]
+        action: replace
+        target_label: instance
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: ${cluster_name}
+  
+  - job-name: node
+    static_configs:
+    - targets: ['localhost:9100']
