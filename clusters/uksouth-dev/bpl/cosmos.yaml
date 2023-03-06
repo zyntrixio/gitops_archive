@@ -44,7 +44,7 @@ spec:
     newTag: 2023-03-06T112351Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos:tag"}
   - name: binkcore.azurecr.io/cosmos-admin
     newName: binkcore.azurecr.io/cosmos-admin
-    newTag: 2023-03-06T104737Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos-admin:tag"}
+    newTag: 2023-03-06T112351Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos-admin:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
