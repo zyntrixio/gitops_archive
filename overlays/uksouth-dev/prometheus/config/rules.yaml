@@ -27,7 +27,7 @@ groups:
       
       - alert: Kube pod waiting status
         expr: sum by (reason, pod)(kube_pod_container_status_waiting_reason) > 0
-        for: 1m
+        for: 5m
         labels: 
           severity: p2
           cluster: dev
