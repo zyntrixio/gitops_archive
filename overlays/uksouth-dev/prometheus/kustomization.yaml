@@ -7,10 +7,10 @@ configMapGenerator:
   - name: alertmanager-rules
     files:
       - config/rules.yaml
-  - name: prometheus
-    behavior: merge
-    files:
-      - config/config.yaml
+  # - name: prometheus
+  #   behavior: merge
+  #   files:
+  #     - config/config.yaml
 
 patches:
   - target:
