@@ -7,8 +7,7 @@ metadata:
     app: cosmos
     component: migrator
 spec:
-  failedJobsHistoryLimit: 1
-  successfulJobsHistoryLimit: 0
+  ttlSecondsAfterFinished: 300
   template:
     metadata:
       annotations:
