@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: kiroshi-traffic
-  namespace: kiroshi
+  namespace: default
   labels:
     app: kiroshi
     component: traffic
