@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/policies.gb.bink.com
     newName: binkcore.azurecr.io/policies.gb.bink.com
-    newTag: staging-2023-03-08T153858Z # {"$imagepolicy": "flux-system:uksouth-staging-policies:tag"}
+    newTag: staging-2023-03-08T180420Z # {"$imagepolicy": "flux-system:uksouth-staging-policies:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
