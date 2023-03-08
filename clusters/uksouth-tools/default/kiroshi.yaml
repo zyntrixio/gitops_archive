@@ -1,0 +1,47 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: kiroshi
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-tools/kiroshi
+  dependsOn:
+    - name: linkerd-control-plane
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/kiroshi
+      newTag: 2022-07-05T183100Z # {"$imagepolicy": "flux-system:kiroshi:tag"}
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: kiroshi
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/kiroshi
+  interval: 10m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: kiroshi
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: kiroshi
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc
