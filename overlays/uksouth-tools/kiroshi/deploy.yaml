@@ -12,9 +12,6 @@ spec:
     spec:
       template:
         metadata:
-          annotations:
-            linkerd.io/inject: enabled
-            kubectl.kubernetes.io/default-container: app
           labels:
             app: kiroshi
             component: traffic
