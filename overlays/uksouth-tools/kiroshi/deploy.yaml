@@ -35,7 +35,6 @@ spec:
                 runAsGroup: 65534
                 runAsUser: 65534
           restartPolicy: Never
-          serviceAccountName: kiroshi
           imagePullSecrets:
             - name: binkcore.azurecr.io
       backoffLimit: 3
