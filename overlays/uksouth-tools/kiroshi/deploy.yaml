@@ -12,6 +12,9 @@ spec:
     spec:
       template:
         metadata:
+          annotations:
+            linkerd.io/inject: enabled
+            kubectl.kubernetes.io/default-container: app
           labels:
             app: kiroshi
             component: traffic
@@ -32,6 +35,7 @@ spec:
                 runAsGroup: 65534
                 runAsUser: 65534
           restartPolicy: Never
+          serviceAccountName: kiroshi
           imagePullSecrets:
             - name: binkcore.azurecr.io
       backoffLimit: 3
