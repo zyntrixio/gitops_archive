@@ -16,4 +16,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/hubble
     newName: binkcore.azurecr.io/hubble
-    newTag: 2022-11-14T133204Z # {"$imagepolicy": "flux-system:perf-hubble:tag"}
+    newTag: 2023-03-09T122240Z # {"$imagepolicy": "flux-system:perf-hubble:tag"}
