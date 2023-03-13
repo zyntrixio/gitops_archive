@@ -8,6 +8,7 @@
 "bpl" = "bpl/index.html"
 "portal" = "portal/index.html"
 "transaction" = "merchant/retail_transaction_api.html"
+"midas_messaging" = "merchant/async/index.html"
 
 "extras/appendix" = "extras/appendix.html"
 "extras/changelog" = "extras/changelog.html"
