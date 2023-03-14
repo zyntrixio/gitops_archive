@@ -19,13 +19,15 @@ configMapGenerator:
 
 replicas:
   - name: hermes-api
-    count: 3
+    count: 0
   - name: hermes-celery
-    count: 3
+    count: 0
   - name: hermes-beat
-    count: 1
+    count: 0
   - name: hermes-logic
-    count: 3
+    count: 0
+  - name: hermes-migrator
+    count: 0
 
 patches:
   - target:

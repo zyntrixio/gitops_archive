@@ -9,6 +9,20 @@ resources:
   - ../../../../../bases/devops/snowstorm/notifications
   - ../../../../../bases/devops/snowstorm/viator
 
+replicas:
+  - name: snowstorm-apistats
+    count: 0
+  - name: snowstorm-freshservice
+    count: 0
+  - name: snowstorm-event-processor
+    count: 0
+  - name: snowstorm-webserver
+    count: 0
+  - name: snowstorm-teams-notification-lloyds
+    count: 0
+  - name: snowstorm-viator
+    count: 0
+
 patches:
   - target:
       kind: Deployment
