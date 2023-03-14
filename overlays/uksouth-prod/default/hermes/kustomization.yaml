@@ -21,7 +21,7 @@ replicas:
   - name: hermes-api
     count: 3
   - name: hermes-celery
-    count: 18
+    count: 3
   - name: hermes-beat
     count: 1
   - name: hermes-logic
