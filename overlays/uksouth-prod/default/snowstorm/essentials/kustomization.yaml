@@ -5,6 +5,10 @@ resources:
   - aad.yaml
   - ../../../../../bases/devops/snowstorm/essentials
 
+replicas:
+  - name: snowstorm-migrator
+    count: 0
+
 patches:
   - target:
       kind: Job

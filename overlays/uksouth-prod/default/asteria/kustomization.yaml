@@ -2,6 +2,10 @@
 bases:
   - ../../../../bases/olympus/asteria
 
+replicas:
+  - name: asteria
+    count: 0
+
 patches:
   - target:
       kind: Deployment
