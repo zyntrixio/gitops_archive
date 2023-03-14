@@ -14,7 +14,7 @@ configMapGenerator:
 
 replicas:
   - name: angelia-api
-    count: 0
+    count: 6
 
 patches:
   - target:
