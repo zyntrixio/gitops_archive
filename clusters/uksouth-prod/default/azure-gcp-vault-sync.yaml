@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -17,7 +16,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/azure-gcp-vault-sync
       newName: binkcore.azurecr.io/azure-gcp-vault-sync
-      newTag: develop-2021-04-30-132251 # {"$imagepolicy": "flux-system:uksouth-prod-azure-gcp-vault-sync:tag"}
+      newTag: develop-2022-11-07T125317Z # {"$imagepolicy": "flux-system:uksouth-prod-azure-gcp-vault-sync:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
