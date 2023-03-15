@@ -17,7 +17,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/snowstorm
     newName: binkcore.azurecr.io/snowstorm
-    newTag: 2023-02-19T204715Z # {"$imagepolicy": "flux-system:snowstorm:tag"}
+    newTag: 2023-03-15T020037Z # {"$imagepolicy": "flux-system:snowstorm:tag"}
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -37,7 +37,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/snowstorm
     newName: binkcore.azurecr.io/snowstorm
-    newTag: 2023-02-19T204715Z # {"$imagepolicy": "flux-system:snowstorm:tag"}
+    newTag: 2023-03-15T020037Z # {"$imagepolicy": "flux-system:snowstorm:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
