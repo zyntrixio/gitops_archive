@@ -58,7 +58,7 @@ groups:
         annotations:
           title: Prod - Pod waiting status
           description: 'Pod: {{$labels.pod}} is in this State: {{$labels.reason}}
-            in this Namespace: {{$labels.namespace}}'
+            in this Namespace: {{$labels.namespace}}, in this cluster: {{$labels.kubernetes_cluster}}'
 
       - alert: Rabbitmq Queue Length Olympus
         expr: sum by(queue)(rabbitmq_queue_messages_ready{queue!~"hubble-activities|polaris-transaction-history|hubble-activites-dlx-queue"}) > 100
