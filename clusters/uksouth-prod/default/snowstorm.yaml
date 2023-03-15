@@ -6,8 +6,6 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/default/snowstorm/essentials
-  dependsOn:
-  # - name: linkerd-control-plane
   prune: true
   force: true
   wait: true
