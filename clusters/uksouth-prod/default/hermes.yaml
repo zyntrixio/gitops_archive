@@ -8,7 +8,7 @@ spec:
   path: ./overlays/uksouth-prod/default/hermes
   dependsOn:
     - name: aad-pod-identity
-      # - name: linkerd-control-plane
+    - name: linkerd-control-plane
   prune: true
   sourceRef:
     kind: GitRepository
