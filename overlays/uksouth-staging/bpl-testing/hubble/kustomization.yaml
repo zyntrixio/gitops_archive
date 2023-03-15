@@ -3,6 +3,7 @@ bases:
   - ../../../../bases/cosmos/hubble/core
   - ../../../../bases/cosmos/hubble/consumer
   - ../../../../bases/cosmos/hubble/migrator
+  - ../../../../bases/cosmos/hubble/task-worker
 
 namespace: bpl-testing
 
