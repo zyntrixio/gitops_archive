@@ -6,9 +6,6 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/default/hermes
-  dependsOn:
-    - name: aad-pod-identity
-      # - name: linkerd-control-plane
   prune: true
   sourceRef:
     kind: GitRepository
