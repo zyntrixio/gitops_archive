@@ -2,10 +2,9 @@ from time import sleep
 
 from alembic import command
 from alembic.config import Config
-from sqlalchemy import text
-from sqlalchemy.engine import create_engine
+from sqlalchemy import text, create_engine
 
-DB_BASE = "postgresql://postgres@postgres"
+DB_BASE = "postgresql+psycopg://postgres@postgres"
 DB_NAME = "hubble"
 TEMPLATE_DB = f"{DB_NAME}_template"
 ALEMBIC_DIR = "/app/alembic"
