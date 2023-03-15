@@ -20,5 +20,3 @@ alembic_cfg = Config()
 alembic_cfg.set_main_option("script_location", ALEMBIC_DIR)
 alembic_cfg.set_main_option("sqlalchemy.url", f"{DB_BASE}/{DB_NAME}")
 command.upgrade(alembic_cfg, "head")
-while True:
-    sleep(60)
