@@ -7,7 +7,7 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/default/asteria
   dependsOn:
-    # - name: linkerd-control-plane
+    - name: linkerd-control-plane
   prune: true
   sourceRef:
     kind: GitRepository
