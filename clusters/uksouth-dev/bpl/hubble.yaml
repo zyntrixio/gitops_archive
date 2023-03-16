@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/hubble
     newName: binkcore.azurecr.io/hubble
-    newTag: 2023-03-15T104542Z # {"$imagepolicy": "flux-system:uksouth-dev-hubble:tag"}
+    newTag: 2023-03-16T142113Z # {"$imagepolicy": "flux-system:uksouth-dev-hubble:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
