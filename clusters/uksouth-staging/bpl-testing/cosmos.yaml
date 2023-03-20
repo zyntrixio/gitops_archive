@@ -44,4 +44,4 @@ spec:
     newTag: 2023-03-20T123338Z # {"$imagepolicy": "flux-system:uksouth-staging-cosmos:tag"}
   - name: binkcore.azurecr.io/cosmos-admin
     newName: binkcore.azurecr.io/cosmos-admin
-    newTag: 2023-03-20T102038Z # {"$imagepolicy": "flux-system:uksouth-staging-cosmos-admin:tag"}
+    newTag: 2023-03-20T123338Z # {"$imagepolicy": "flux-system:uksouth-staging-cosmos-admin:tag"}
