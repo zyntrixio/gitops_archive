@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/carina
     newName: binkcore.azurecr.io/carina
-    newTag: staging-3.0.13 # {"$imagepolicy": "flux-system:uksouth-staging-carina:tag"}
+    newTag: staging-3.0.14 # {"$imagepolicy": "flux-system:uksouth-staging-carina:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
