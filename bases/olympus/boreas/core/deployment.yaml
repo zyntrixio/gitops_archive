@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boreas
+  namespace: default
+  labels:
+    app: boreas
+spec:
+  selector:
+    matchLabels:
+      app: boreas
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: boreas
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - boreas
+                topologyKey: topology.kubernetes.io/zone
+      containers:
+        - image: binkcore.azurecr.io/boreas:latest
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+          imagePullPolicy: Always
+          name: app
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              memory: 128Mi
+              cpu: 10m
+      imagePullSecrets:
+        - name: binkcore.azurecr.io

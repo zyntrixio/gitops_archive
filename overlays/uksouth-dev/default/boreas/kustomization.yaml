@@ -1,0 +1,20 @@
+---
+resources:
+  - ../../../../bases/olympus/boreas/api
+  - ../../../../bases/olympus/boreas/consumer
+
+configMapGenerator:
+  - name: boreas
+    namespace: default
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: boreas
