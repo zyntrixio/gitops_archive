@@ -1,7 +1,7 @@
 ---
 resources:
   - ../../../../bases/olympus/boreas/api
-  - ../../../../bases/olympus/boreas/consumer
+  - ../../../../bases/olympus/boreas/consumer-dlx
 
 configMapGenerator:
   - name: boreas
