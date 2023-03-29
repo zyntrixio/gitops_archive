@@ -11,7 +11,7 @@ spec:
   schedule: 5 22 * * *
   jobTemplate:
     spec:
-      backoffLimit: 0
+      backoffLimit: 3
       template:
         metadata:
           annotations:
