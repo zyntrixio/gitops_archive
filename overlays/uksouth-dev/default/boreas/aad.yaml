@@ -1,0 +1,21 @@
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: boreas
+  namespace: default
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+spec:
+  type: 0
+  resourceID: /subscriptions/794aa787-ec6a-40dd-ba82-0ad64ed51639/resourcegroups/uksouth-dev/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-dev-boreas
+  clientID: 6835f855-a734-459b-94ac-f38229cdc836
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: boreas
+  namespace: default
+spec:
+  azureIdentity: boreas
+  selector: boreas
