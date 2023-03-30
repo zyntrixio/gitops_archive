@@ -1,6 +1,7 @@
 ---
 resources:
   - ../core
+  - service.yaml
 
 commonLabels:
   component: consumer
