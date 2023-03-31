@@ -30,7 +30,7 @@ spec:
               mountPath: /mobsf/
       containers:
         - name: app
-          image: docker.io/opensecurity/mobile-security-framework-mobsf:v3.5.0
+          image: docker.io/opensecurity/mobile-security-framework-mobsf:v3.6.0
           env:
             - name: POSTGRES_USER
               valueFrom:
