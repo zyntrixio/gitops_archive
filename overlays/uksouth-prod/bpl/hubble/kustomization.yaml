@@ -33,3 +33,8 @@ patches:
                       secretKeyRef:
                         name: azure-pgfs
                         key: common_placeholder
+                  - name: REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: uri_ssl
+                        name: azure-redis-vnet
