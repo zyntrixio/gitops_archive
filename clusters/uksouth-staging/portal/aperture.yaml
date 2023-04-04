@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/aperture
     newName: binkcore.azurecr.io/aperture
-    newTag: staging-1.25.9 # {"$imagepolicy": "flux-system:uksouth-staging-aperture:tag"}
+    newTag: staging-1.25.10 # {"$imagepolicy": "flux-system:uksouth-staging-aperture:tag"}
   postBuild:
     substituteFrom:
     - kind: ConfigMap
