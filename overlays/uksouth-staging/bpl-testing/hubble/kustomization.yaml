@@ -4,6 +4,7 @@ bases:
   - ../../../../bases/cosmos/hubble/consumer
   - ../../../../bases/cosmos/hubble/migrator
   - ../../../../bases/cosmos/hubble/task-worker
+  - ../../../../bases/cosmos/hubble/cron-scheduler
 
 namespace: bpl-testing
 
