@@ -14,7 +14,3 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/args
         value: ["hubble", "cron-scheduler"]
-      - op: remove
-        path: /spec/template/spec/containers/0/readinessProbe
-      - op: remove
-        path: /spec/template/spec/containers/0/livenessProbe
