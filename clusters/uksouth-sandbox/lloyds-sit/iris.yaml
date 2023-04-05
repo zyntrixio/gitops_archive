@@ -16,4 +16,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/iris
       newName: binkcore.azurecr.io/iris
-      newTag: prod-1.2.1
+      newTag: prod-1.4.2
