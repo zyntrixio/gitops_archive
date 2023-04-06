@@ -9,12 +9,10 @@ DB_BASE = "postgresql://postgres@postgres"
 DB_NAME = "vela_template"
 ALEMBIC_DIR = "/app/alembic"
 
-postgres = create_engine(f"{DB_BASE}/postgres")
+postgres = create_engine(f"{DB_BASE}/postgres", isolation_level="AUTOCOMMIT")
 with postgres.connect() as connection:
-    connection.execution_options(isolation_level="AUTOCOMMIT").execute(
-        text(f"DROP DATABASE IF EXISTS {DB_NAME} WITH (FORCE)")
-    )
-    connection.execution_options(isolation_level="AUTOCOMMIT").execute(text(f"CREATE DATABASE {DB_NAME}"))
+    connection.execute(text(f"DROP DATABASE IF EXISTS {DB_NAME} WITH (FORCE)"))
+    connection.execute(text(f"CREATE DATABASE {DB_NAME}"))
 
 alembic_cfg = Config()
 alembic_cfg.set_main_option("script_location", ALEMBIC_DIR)
