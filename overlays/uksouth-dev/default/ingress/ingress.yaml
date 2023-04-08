@@ -5,11 +5,11 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
-  name: api.${cluster_name}.${location}.bink.sh
+  name: api.${cluster_name}.${cluster_location}.bink.sh
   namespace: default
 spec:
   rules:
-    - host: api.${cluster_name}.${location}.bink.sh
+    - host: api.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /v2
@@ -253,4 +253,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - api.${cluster_name}.${location}.bink.sh
+        - api.${cluster_name}.${cluster_location}.bink.sh

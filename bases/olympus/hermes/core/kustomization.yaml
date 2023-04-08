@@ -4,3 +4,8 @@ resources:
   - serviceaccount.yaml
   - priorityclass.yaml
   - lsp.yaml
+
+secretGenerator:
+  - name: sign-in-with-apple
+    literals:
+      - key=LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JR1RBZ0VBTUJNR0J5cUdTTTQ5QWdFR0NDcUdTTTQ5QXdFSEJIa3dkd0lCQVFRZ2pVNnV4VFJqYVM0RlRWemkKWGdPRndETk5KbTlOMEs0a09RenRTNkJUeWRPZ0NnWUlLb1pJemowREFRZWhSQU5DQUFST3VWQ3EvclNudWFoUAo2RXllK3d5Q1hlN09EWkcwOTJqUjFqWXk1MlBWUjhFYTFCYVpnTTRsN3F0UmhtZ004K0dkdTNDNklWSk0xNk1SClVsSWd6SUxaCi0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0=

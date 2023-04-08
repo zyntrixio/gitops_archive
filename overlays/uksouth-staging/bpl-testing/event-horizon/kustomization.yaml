@@ -25,6 +25,12 @@ patches:
           spec:
             containers:
               - name: app
+                env:
+                  - name: KEY_VAULT_URI
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault
                 envFrom:
                   - configMapRef:
                       name: event-horizon

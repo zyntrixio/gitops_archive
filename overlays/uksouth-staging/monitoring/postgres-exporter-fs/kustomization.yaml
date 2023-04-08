@@ -1,8 +1,0 @@
----
-bases:
-  - ../../../../bases/infrastructure/postgres-exporter-fs
-
-patches:
-  - path: env.yaml
-    target:
-      kind: Deployment

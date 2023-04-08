@@ -36,5 +36,10 @@ patches:
                   - name: POSTGRES_DSN
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_placeholder
+                        name: azure-postgres
+                        key: url_placeholder
+                  - name: VAULT_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault

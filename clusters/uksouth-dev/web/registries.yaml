@@ -1,14 +1,14 @@
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: postgres-exporter-fs
+  name: web-registries
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-prod/monitoring/postgres-exporter-fs
+  path: ./bases/registries
   prune: true
-  force: true
+  targetNamespace: web
   sourceRef:
     kind: GitRepository
     name: flux-system

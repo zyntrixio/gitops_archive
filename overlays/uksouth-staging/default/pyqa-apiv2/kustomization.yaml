@@ -20,8 +20,13 @@ patches:
           - name: BLOB_STORAGE_DSN
             valueFrom:
               secretKeyRef:
-                key: connection_string
-                name: azure-storage-common
+                key: connection_string_primary
+                name: azure-storage
+          - name: VAULT_URL
+            valueFrom:
+              secretKeyRef:
+                key: url
+                name: azure-keyvault
       - op: add
         path: /spec/jobTemplate/spec/template/spec/containers/0/envFrom
         value:
@@ -33,23 +38,28 @@ patches:
           - name: BLOB_STORAGE_DSN
             valueFrom:
               secretKeyRef:
-                key: connection_string
-                name: azure-storage-common
+                key: connection_string_primary
+                name: azure-storage
           - name: HERMES_DATABASE_URI
             valueFrom:
               secretKeyRef:
-                key: common_hermes
-                name: azure-pgfs
+                key: url_hermes
+                name: azure-postgres
           - name: HARMONIA_DATABASE_URI
             valueFrom:
               secretKeyRef:
-                name: azure-pgfs
-                key: common_harmonia
+                name: azure-postgres
+                key: url_harmonia
           - name: SNOWSTORM_DATABASE_URI
             valueFrom:
               secretKeyRef:
-                name: azure-pgfs
-                key: common_snowstorm
+                name: azure-postgres
+                key: url_snowstorm
+          - name: VAULT_URL
+            valueFrom:
+              secretKeyRef:
+                key: url
+                name: azure-keyvault
       - op: add
         path: /spec/jobTemplate/spec/template/spec/containers/1/envFrom
         value:

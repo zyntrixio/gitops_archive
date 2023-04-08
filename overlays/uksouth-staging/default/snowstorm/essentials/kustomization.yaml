@@ -22,5 +22,5 @@ patches:
                 - name: database_dsn
                   valueFrom:
                     secretKeyRef:
-                      key: common_snowstorm
-                      name: azure-pgfs
+                      key: url_snowstorm
+                      name: azure-postgres

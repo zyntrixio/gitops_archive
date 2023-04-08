@@ -33,5 +33,10 @@ patches:
                   - name: EUROPA_DATABASE_URI
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_europa
+                        name: azure-postgres
+                        key: url_europa
+                  - name: KEYVAULT_URI
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault

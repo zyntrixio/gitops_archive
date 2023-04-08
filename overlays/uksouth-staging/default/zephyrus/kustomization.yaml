@@ -29,8 +29,8 @@ patches:
                   - configMapRef:
                       name: zephyrus
                 env:
-                  - name: AZURE_ACCOUNT_KEY
+                  - name: KEYVAULT_URI
                     valueFrom:
                       secretKeyRef:
-                        key: AZ_KEY
-                        name: bink-static-auth
+                        key: url
+                        name: azure-keyvault

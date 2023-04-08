@@ -1,4 +1,4 @@
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: snowstorm-essentials
@@ -19,7 +19,7 @@ spec:
     newName: binkcore.azurecr.io/snowstorm
     newTag: prod-v1.8.1 # {"$imagepolicy": "flux-system:snowstorm:tag"}
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: snowstorm-deployments

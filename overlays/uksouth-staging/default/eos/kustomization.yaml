@@ -32,12 +32,14 @@ patches:
                       name: eos
                 env:
                   - name: OAUTH_CLIENT_SECRET
-                    valueFrom:
-                      secretKeyRef:
-                        key: secret
-                        name: eos-sso-client-secret
+                    value: 7~PF_wKl33M6Ed9w1.kW-stIzgbt~yP_It
                   - name: EOS_DATABASE_URI
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_eos
+                        name: azure-postgres
+                        key: url_eos
+                  - name: KEY_VAULT
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault

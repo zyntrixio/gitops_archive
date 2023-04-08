@@ -34,8 +34,13 @@ patches:
                   - name: SQLALCHEMY_DATABASE_URI
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_vela
+                        name: azure-postgres
+                        key: url_vela
+                  - name: KEY_VAULT_URI
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault
                 envFrom:
                   - configMapRef:
                       name: vela

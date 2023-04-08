@@ -22,3 +22,8 @@ patches:
                     value: bpl-media
                   - name: STORAGE_CONTAINER_IN_URL
                     value: "false"
+                  - name: STORAGE_ACCOUNT_CONNECTION_STRING
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string_primary
+                        name: azure-storage

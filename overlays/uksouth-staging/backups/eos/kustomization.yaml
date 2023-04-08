@@ -32,8 +32,8 @@ patches:
           - name: blob_storage_connection_string
             valueFrom:
               secretKeyRef:
-                key: connection_string
-                name: azure-storage-common
+                key: connection_string_primary
+                name: azure-storage
           - name: blob_storage_container
             value: backups
           - name: blob_storage_path_prefix
@@ -41,5 +41,5 @@ patches:
           - name: psql_connection_string
             valueFrom:
               secretKeyRef:
-                key: common_eos
-                name: azure-pgfs
+                key: url_eos
+                name: azure-postgres

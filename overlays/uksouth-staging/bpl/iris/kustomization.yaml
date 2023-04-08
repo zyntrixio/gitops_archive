@@ -18,6 +18,11 @@ patches:
             containers:
               - name: app
                 env:
+                  - name: STORAGE_ACCOUNT_CONNECTION_STRING
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string_primary
+                        name: azure-storage
                   - name: STORAGE_CONTAINER
                     value: bpl-media
                   - name: STORAGE_CONTAINER_IN_URL
