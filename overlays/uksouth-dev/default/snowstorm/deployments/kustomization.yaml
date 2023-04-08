@@ -19,8 +19,8 @@ patches:
                   - name: database_dsn
                     valueFrom:
                       secretKeyRef:
-                        key: common_snowstorm
-                        name: azure-pgfs
+                        key: url_snowstorm
+                        name: azure-postgres
                   - name: rabbitmq_dsn
                     value: amqp://guest:guest@rabbitmq:5672/
                   - name: redis_dsn
@@ -43,8 +43,8 @@ patches:
                       - name: database_dsn
                         valueFrom:
                           secretKeyRef:
-                            key: common_snowstorm
-                            name: azure-pgfs
+                            key: url_snowstorm
+                            name: azure-postgres
                       - name: rabbitmq_dsn
                         value: amqp://guest:guest@rabbitmq:5672/
                       - name: redis_dsn

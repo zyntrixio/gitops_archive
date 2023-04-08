@@ -33,5 +33,5 @@ patches:
                   - name: postgres_dsn
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_api_reflector
+                        name: azure-postgres
+                        key: url_api_reflector

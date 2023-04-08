@@ -6,11 +6,11 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
     nginx.ingress.kubernetes.io/use-regex: "true"
-  name: bpl.${cluster_name}.${location}.bink.sh
+  name: bpl.${cluster_name}.${cluster_location}.bink.sh
   namespace: default
 spec:
   rules:
-    - host: bpl.${cluster_name}.${location}.bink.sh
+    - host: bpl.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /admin
@@ -57,4 +57,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - bpl.${cluster_name}.${location}.bink.sh
+        - bpl.${cluster_name}.${cluster_location}.bink.sh

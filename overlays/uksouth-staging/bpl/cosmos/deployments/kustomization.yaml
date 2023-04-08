@@ -25,13 +25,18 @@ patches:
           - name: BLOB_STORAGE_DSN
             valueFrom:
               secretKeyRef:
-                key: connection_string
-                name: azure-storage-common
+                key: connection_string_primary
+                name: azure-storage
           - name: SQLALCHEMY_DATABASE_URI
             valueFrom:
               secretKeyRef:
-                key: common_cosmos
-                name: azure-pgfs
+                key: url_cosmos
+                name: azure-postgres
+          - name: KEY_VAULT_URI
+            valueFrom:
+              secretKeyRef:
+                key: url
+                name: azure-keyvault
       - op: add
         path: /spec/template/spec/containers/0/envFrom
         value:

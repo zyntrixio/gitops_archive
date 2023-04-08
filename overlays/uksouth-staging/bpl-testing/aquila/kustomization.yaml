@@ -29,5 +29,5 @@ patches:
                   - name: BLOB_STORAGE_DSN
                     valueFrom:
                       secretKeyRef:
-                        key: connection_string
-                        name: azure-storage-common
+                        key: connection_string_primary
+                        name: azure-storage

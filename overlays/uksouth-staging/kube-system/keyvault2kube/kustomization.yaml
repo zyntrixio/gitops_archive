@@ -16,7 +16,7 @@ patches:
         path: /spec/template/spec/containers/0/env
         value:
           - name: KEY_VAULT_URLS
-            value: https://bink-uksouth-staging-inf.vault.azure.net/
+            value: ${environment_keyvault}
           - name: ALL_NAMESPACES
             value: "True"
   - target:
@@ -42,10 +42,10 @@ patches:
     patch: |-
       - op: replace
         path: /spec/resourceID
-        value: /subscriptions/457b0db5-6680-480f-9e77-2dafb06bd9dc/resourceGroups/uksouth-staging/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-staging-infra-sync
+        value: /subscriptions/e28b2912-1f6d-4ac7-9cd7-443d73876e10/resourcegroups/uksouth-staging/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-staging-keyvault2kube
   - target:
       kind: AzureIdentity
     patch: |-
       - op: replace
         path: /spec/clientID
-        value: 74deb664-19b4-49e8-ab42-6cdf4727cb30
+        value: 8176fd79-1d20-4923-aa23-1088e07ffde3

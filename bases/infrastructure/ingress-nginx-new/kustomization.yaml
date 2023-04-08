@@ -1,0 +1,61 @@
+---
+bases:
+  - github.com/kubernetes/ingress-nginx/deploy/static/provider/cloud?ref=controller-v1.7.0
+
+replicas:
+  - name: ingress-nginx-controller
+    count: 3
+
+patches:
+  - path: patch-logging.yaml
+  - target:
+      kind: Deployment
+      name: ingress-nginx-controller
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: ingress-nginx-controller
+        namespace: ingress-nginx
+      spec:
+        template:
+          metadata:
+            annotations:
+              linkerd.io/inject: enabled
+              config.linkerd.io/skip-inbound-ports: 80,443
+              kubectl.kubernetes.io/default-container: controller
+          spec:
+            affinity:
+              podAntiAffinity:
+                preferredDuringSchedulingIgnoredDuringExecution:
+                  - weight: 100
+                    podAffinityTerm:
+                      labelSelector:
+                        matchExpressions:
+                          - key: app.kubernetes.io/name
+                            operator: In
+                            values:
+                              - ingress-nginx
+                          - key: app.kubernetes.io/component
+                            operator: In
+                            values:
+                              - controller
+                      topologyKey: topology.kubernetes.io/zone
+  - target:
+      kind: Service
+      name: ingress-nginx-controller
+    patch: |-
+      apiVersion: apps/v1
+      kind: Service
+      metadata:
+        name: ingress-nginx-controller
+        annotations:
+          service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+          service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /healthz
+          service.beta.kubernetes.io/azure-pls-create: "true"
+          service.beta.kubernetes.io/azure-pls-name: ${cluster_location}-${cluster_name}
+          service.beta.kubernetes.io/azure-pls-ip-configuration-ip-address: ${cluster_pls_ip}
+          service.beta.kubernetes.io/azure-pls-visibility: "*"
+          service.beta.kubernetes.io/azure-pls-auto-approval: c1bc5dd7-ea97-469c-89fa-8f26624902fd
+      spec:
+        loadBalancerIP: ${cluster_lb_ip}

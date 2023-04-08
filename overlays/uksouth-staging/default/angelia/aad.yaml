@@ -8,8 +8,8 @@ metadata:
     aadpodidentity.k8s.io/Behavior: namespaced
 spec:
   type: 0
-  resourceID: /subscriptions/457b0db5-6680-480f-9e77-2dafb06bd9dc/resourceGroups/uksouth-staging/providers/Microsoft.ManagedIdentity/userAssignedIdentities/bink-uksouth-staging-angelia
-  clientID: 8191fbe1-28d8-43b9-a266-d01c0fdbe943
+  resourceID: /subscriptions/e28b2912-1f6d-4ac7-9cd7-443d73876e10/resourcegroups/uksouth-staging/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-staging-angelia
+  clientID: 2e24f8cb-d4fb-4d6f-be97-61cb805d5642
 ---
 apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentityBinding

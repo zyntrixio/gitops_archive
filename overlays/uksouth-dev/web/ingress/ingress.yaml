@@ -6,11 +6,11 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
     nginx.ingress.kubernetes.io/use-regex: "true"
-  name: web.${cluster_name}.${location}.bink.sh
+  name: web.${cluster_name}.${cluster_location}.bink.sh
   namespace: default
 spec:
   rules:
-    - host: web-bink.${cluster_name}.${location}.bink.sh
+    - host: web-bink.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /
@@ -20,7 +20,7 @@ spec:
                 name: web-bink
                 port:
                   number: 80
-    - host: web-wasabi.${cluster_name}.${location}.bink.sh
+    - host: web-wasabi.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /
@@ -32,5 +32,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - web-bink.${cluster_name}.${location}.bink.sh
-        - web-wasabi.${cluster_name}.${location}.bink.sh
+        - web-bink.${cluster_name}.${cluster_location}.bink.sh
+        - web-wasabi.${cluster_name}.${cluster_location}.bink.sh
