@@ -1,6 +1,6 @@
 ---
 bases:
-  - ../../../bases/infrastructure/ingress-nginx
+  - ../../../bases/infrastructure/ingress-nginx-new
 
 resources:
   - certificate.yaml
@@ -19,4 +19,4 @@ patches:
     patch: |-
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: "--default-ssl-certificate=$(POD_NAMESPACE)/${cluster_name}.${location}.bink.sh"
+        value: "--default-ssl-certificate=$(POD_NAMESPACE)/${cluster_name}.${cluster_location}.bink.sh"

@@ -50,13 +50,19 @@ patches:
                   - name: TXM_BLOB_STORAGE_DSN
                     valueFrom:
                       secretKeyRef:
-                        key: connection_string
-                        name: azure-storage-common
+                        key: connection_string_primary
+                        name: azure-storage
                   - name: TXM_POSTGRES_URI
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_harmonia
+                        name: azure-postgres
+                        key: url_harmonia
+                  - name: TXM_VAULT_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault
+
   - target:
       kind: CronJob
     patch: |-
@@ -79,12 +85,17 @@ patches:
                         valueFrom:
                           secretKeyRef:
                             key: connection_string
-                            name: azure-storage-common
+                            name: azure-storage
                       - name: TXM_POSTGRES_URI
                         valueFrom:
                           secretKeyRef:
-                            name: azure-pgfs
-                            key: common_harmonia
+                            name: azure-postgres
+                            key: url_harmonia
+                      - name: TXM_VAULT_URL
+                        valueFrom:
+                          secretKeyRef:
+                            key: url
+                            name: azure-keyvault
   - target:
       kind: Deployment
       name: harmonia-export-agent-iceland-bonus-card

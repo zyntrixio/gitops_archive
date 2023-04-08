@@ -27,3 +27,9 @@ patches:
                 envFrom:
                   - configMapRef:
                       name: zephyrus
+                env:
+                  - name: KEYVAULT_URI
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault

@@ -35,8 +35,8 @@ patches:
                   - name: DATABASE_DSN
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_placeholder
+                        name: azure-postgres
+                        key: url_placeholder
                 volumeMounts:
                   - name: config
                     mountPath: /app/config.toml
@@ -51,7 +51,7 @@ patches:
                   name: bullsquid
               - name: database-dsn
                 secret:
-                  secretName: azure-pgfs
+                  secretname: azure-postgres
                   items:
-                    - key: common_placeholder
+                    - key: url_placeholder
                       path: database_dsn

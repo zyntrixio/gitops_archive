@@ -21,7 +21,7 @@ patches:
           - -L
           - 0.0.0.0:5432
           - -R
-          - bink-uksouth-dev.postgres.database.azure.com:5432
+          - uksouth-dev-n71o.postgres.database.azure.com:5432
           - -v
   - target:
       kind: Deployment

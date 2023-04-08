@@ -29,5 +29,5 @@ patches:
                 - name: HADES_DATABASE_URL
                   valueFrom:
                     secretKeyRef:
-                      name: azure-pgfs
-                      key: common_hades
+                      name: azure-postgres
+                      key: url_hades

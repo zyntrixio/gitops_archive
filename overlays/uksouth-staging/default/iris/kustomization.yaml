@@ -1,3 +1,23 @@
 ---
 bases:
   - ../../../../bases/olympus/iris
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: iris
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: STORAGE_ACCOUNT_CONNECTION_STRING
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string_primary
+                        name: azure-storage

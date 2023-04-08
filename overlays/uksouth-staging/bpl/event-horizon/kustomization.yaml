@@ -32,20 +32,25 @@ patches:
                   - name: POLARIS_DATABASE_URI
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_polaris
+                        name: azure-postgres
+                        key: url_polaris
                   - name: VELA_DATABASE_URI
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_vela
+                        name: azure-postgres
+                        key: url_vela
                   - name: CARINA_DATABASE_URI
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_carina
+                        name: azure-postgres
+                        key: url_carina
                   - name: DATABASE_URI
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_placeholder
+                        name: azure-postgres
+                        key: url_placeholder
+                  - name: KEY_VAULT_URI
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault

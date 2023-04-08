@@ -20,7 +20,7 @@ spec:
             kubectl.kubernetes.io/default-container: app
           labels:
             app: pyqa-bplv2
-            aadpodidbinding: pyqa-bplv2
+            aadpodidbinding: pyqa-bpl
         spec:
           restartPolicy: Never
           imagePullSecrets:

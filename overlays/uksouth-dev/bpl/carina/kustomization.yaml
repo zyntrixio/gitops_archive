@@ -36,10 +36,15 @@ patches:
                   - name: SQLALCHEMY_DATABASE_URI
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_carina
+                        name: azure-postgres
+                        key: url_carina
                   - name: BLOB_STORAGE_DSN
                     valueFrom:
                       secretKeyRef:
-                        key: connection_string
-                        name: azure-storage-common
+                        key: connection_string_primary
+                        name: azure-storage
+                  - name: KEY_VAULT_URI
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault

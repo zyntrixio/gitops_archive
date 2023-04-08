@@ -37,13 +37,13 @@ patches:
                   - name: HERMES_BLOB_STORAGE_DSN
                     valueFrom:
                       secretKeyRef:
-                        key: connection_string
-                        name: azure-storage-common
+                        key: connection_string_primary
+                        name: azure-storage
                   - name: HERMES_DATABASE_URL_BARE
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_hermes
+                        name: azure-postgres
+                        key: url_hermes
                   - name: HERMES_DATABASE_URL
                     value: $(HERMES_DATABASE_URL_BARE)&application_name=hermes
                   - name: APPLE_CLIENT_SECRET
@@ -51,3 +51,8 @@ patches:
                       secretKeyRef:
                         key: key
                         name: sign-in-with-apple
+                  - name: VAULT_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault

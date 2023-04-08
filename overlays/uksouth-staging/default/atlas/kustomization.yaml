@@ -31,5 +31,5 @@ patches:
                   - name: ATLAS_DATABASE_URI
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_atlas
+                        name: azure-postgres
+                        key: url_atlas

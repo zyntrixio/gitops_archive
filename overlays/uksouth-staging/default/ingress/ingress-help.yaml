@@ -2,14 +2,14 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: help.${cluster_name}.${location}.bink.sh
+  name: help.${cluster_name}.${cluster_location}.bink.sh
   namespace: default
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
 spec:
   rules:
-    - host: help.${cluster_name}.${location}.bink.sh
+    - host: help.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /
@@ -21,4 +21,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - help.${cluster_name}.${location}.bink.sh
+        - help.${cluster_name}.${cluster_location}.bink.sh

@@ -23,5 +23,5 @@ patches:
           - name: SQLALCHEMY_DATABASE_URI
             valueFrom:
               secretKeyRef:
-                key: common_cosmos
-                name: azure-pgfs
+                key: url_cosmos
+                name: azure-postgres

@@ -6,11 +6,11 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
     nginx.ingress.kubernetes.io/enable-access-log: 'false'
-  name: portal.${cluster_name}.${location}.bink.sh-healthz
+  name: portal.${cluster_name}.${cluster_location}.bink.sh-healthz
   namespace: default
 spec:
   rules:
-    - host: portal.${cluster_name}.${location}.bink.sh
+    - host: portal.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /healthz
@@ -22,4 +22,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - portal.${cluster_name}.${location}.bink.sh
+        - portal.${cluster_name}.${cluster_location}.bink.sh

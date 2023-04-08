@@ -33,5 +33,5 @@ patches:
                   - name: DATABASE_URI
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_placeholder
+                        name: azure-postgres
+                        key: url_placeholder

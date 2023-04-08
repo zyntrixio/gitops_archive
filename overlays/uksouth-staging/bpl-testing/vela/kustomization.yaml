@@ -46,13 +46,19 @@ patches:
           spec:
             containers:
               - name: app
+                env:
+                  - name: KEY_VAULT_URI
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault
                 envFrom:
                   - configMapRef:
                       name: vela
                 volumeMounts:
-                - name: vela-scripts
-                  mountPath: /app/migrator.py
-                  subPath: migrator.py
+                  - name: vela-scripts
+                    mountPath: /app/migrator.py
+                    subPath: migrator.py
             volumes:
               - name: vela-scripts
                 configMap:

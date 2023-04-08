@@ -5,11 +5,11 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
-  name: cosmos.${cluster_name}.${location}.bink.sh
+  name: cosmos.${cluster_name}.${cluster_location}.bink.sh
   namespace: default
 spec:
   rules:
-    - host: cosmos.${cluster_name}.${location}.bink.sh
+    - host: cosmos.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /admin
@@ -49,4 +49,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - cosmos.${cluster_name}.${location}.bink.sh
+        - cosmos.${cluster_name}.${cluster_location}.bink.sh

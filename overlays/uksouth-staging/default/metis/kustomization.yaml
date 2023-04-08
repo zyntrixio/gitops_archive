@@ -33,5 +33,10 @@ patches:
                   - name: PONTUS_DATABASE_URI
                     valueFrom:
                       secretKeyRef:
-                        name: azure-pgfs
-                        key: common_pontus
+                        name: azure-postgres
+                        key: url_pontus
+                  - name: AZURE_VAULT_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault

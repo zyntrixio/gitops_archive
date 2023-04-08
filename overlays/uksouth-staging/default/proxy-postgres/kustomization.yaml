@@ -21,7 +21,7 @@ patches:
           - -L
           - 0.0.0.0:5432
           - -R
-          - bink-uksouth-staging.postgres.database.azure.com:5432
+          - uksouth-staging-2o6h.postgres.database.azure.com:5432
           - -v
   - target:
       kind: Deployment
