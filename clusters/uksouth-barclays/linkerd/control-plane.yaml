@@ -1,0 +1,23 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: linkerd-control-plane
+  namespace: flux-system
+spec:
+  interval: 120m
+  path: ./bases/linkerd/control-plane
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+  dependsOn:
+    - name: linkerd-base
+    - name: kube-system-priorityclasses
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: linkerd-control-plane
+      namespace: linkerd
+  timeout: 5m

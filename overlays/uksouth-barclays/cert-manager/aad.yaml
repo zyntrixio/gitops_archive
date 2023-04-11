@@ -1,0 +1,21 @@
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+spec:
+  type: 0
+  resourceID: /subscriptions/64678f82-1a1b-4096-b7e9-41b1bdcdc024/resourcegroups/uksouth-barclays/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-barclays-cert-manager
+  clientID: f50d6631-1b0d-49ce-86b7-6ece2ac21f0b
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+spec:
+  azureIdentity: cert-manager
+  selector: cert-manager

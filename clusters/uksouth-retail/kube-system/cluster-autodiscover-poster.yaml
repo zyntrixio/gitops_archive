@@ -1,0 +1,47 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-autodiscover-poster
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-retail/kube-system/cluster-autodiscover-poster
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  dependsOn: []
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
+  images:
+  - name: binkcore.azurecr.io/kube-autodiscover-poster
+    newName: binkcore.azurecr.io/kube-autodiscover-poster
+    newTag: 2022-08-29T115033Z # {"$imagepolicy": "flux-system:kube-autodiscover-poster:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: kube-autodiscover-poster
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/kube-autodiscover-poster
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: kube-autodiscover-poster
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: kube-autodiscover-poster
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc
