@@ -1,0 +1,22 @@
+---
+bases:
+  - ../../../bases/infrastructure/ingress-nginx-new
+
+resources:
+  - certificate.yaml
+  - issuer.yaml
+
+namespace: ingress-nginx
+
+replicas:
+  - name: ingress-nginx-controller
+    count: 1
+
+patches:
+  - target:
+      kind: Deployment
+      name: ingress-nginx-controller
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: "--default-ssl-certificate=$(POD_NAMESPACE)/${cluster_name}.${cluster_location}.bink.sh"
