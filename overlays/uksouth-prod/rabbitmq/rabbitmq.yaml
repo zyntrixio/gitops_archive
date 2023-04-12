@@ -9,10 +9,10 @@ spec:
   resources:
     requests:
       cpu: 1000m
-      memory: 16Gi
+      memory: 26G
     limits:
       cpu: 4000m
-      memory: 28Gi
+      memory: 26G
   tolerations:
     - key: app
       operator: Equal
