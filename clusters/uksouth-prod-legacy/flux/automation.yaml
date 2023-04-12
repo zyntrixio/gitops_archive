@@ -20,4 +20,4 @@ spec:
   interval: 1m0s
   update:
     strategy: Setters
-    path: ./clusters/uksouth-prod
+    path: ./clusters/uksouth-prod-legacy
