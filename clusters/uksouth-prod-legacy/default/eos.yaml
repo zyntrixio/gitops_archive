@@ -1,0 +1,45 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: eos
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod-legacy/default/eos
+  dependsOn:
+    - name: aad-pod-identity
+    - name: linkerd-control-plane
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/eos
+      newName: binkcore.azurecr.io/eos
+      newTag: prod-1.0.6 # {"$imagepolicy": "flux-system:uksouth-prod-eos:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: eos
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/eos
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: uksouth-prod-eos
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: eos
+  filterTags:
+    pattern: prod-(?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    semver:
+      range: '>=1.0.0'

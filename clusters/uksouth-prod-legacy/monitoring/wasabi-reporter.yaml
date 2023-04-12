@@ -1,0 +1,42 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: wasabi-reporter
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod-legacy/monitoring/wasabi-reporter
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/wasabi-reporter
+      newName: binkcore.azurecr.io/wasabi-reporter
+      newTag: 2022-10-24T131602Z # {"$imagepolicy": "flux-system:uksouth-prod-wasabi-reporter:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: wasabi-reporter
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/wasabi-reporter
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: uksouth-prod-wasabi-reporter
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: wasabi-reporter
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc

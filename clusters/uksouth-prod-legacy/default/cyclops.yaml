@@ -1,0 +1,43 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cyclops
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod-legacy/default/cyclops
+  dependsOn:
+    - name: linkerd-control-plane
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/cyclops
+      newName: binkcore.azurecr.io/cyclops
+      newTag: 2023-01-01T234028Z # {"$imagepolicy": "flux-system:uksouth-prod-cyclops:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: cyclops
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/cyclops
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: uksouth-prod-cyclops
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: cyclops
+  filterTags:
+    pattern: \d{4}-\d{2}-\d{2}T\d{6}Z$
+  policy:
+    alphabetical:
+      order: asc
