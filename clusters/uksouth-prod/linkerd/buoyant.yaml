@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 120m
-  path: ./overlays/uksouth-prod/buoyant
+  path: ./overlays/uksouth-prod/linkerd/buoyant
   prune: true
   sourceRef:
     kind: GitRepository
