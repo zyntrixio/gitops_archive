@@ -7,7 +7,6 @@ metadata:
     app: cosmos
     component: migrator
 spec:
-  ttlSecondsAfterFinished: 300
   template:
     metadata:
       annotations:
