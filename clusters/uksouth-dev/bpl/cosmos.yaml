@@ -17,7 +17,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/cosmos
     newName: binkcore.azurecr.io/cosmos
-    newTag: 2023-04-13T081740Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos:tag"}
+    newTag: 2023-04-13T090506Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos:tag"}
   postBuild:
     substituteFrom:
     - kind: ConfigMap
@@ -41,7 +41,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/cosmos
     newName: binkcore.azurecr.io/cosmos
-    newTag: 2023-04-13T081740Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos:tag"}
+    newTag: 2023-04-13T090506Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos:tag"}
   - name: binkcore.azurecr.io/cosmos-admin
     newName: binkcore.azurecr.io/cosmos-admin
     newTag: 2023-04-13T081740Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos-admin:tag"}
