@@ -38,7 +38,7 @@ spec:
   imageRepositoryRef:
     name: boreas
   filterTags:
-    pattern: staging-(?P<ts>\d+(\.\d+)*)$
+    pattern: staging-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     alphabetical:
