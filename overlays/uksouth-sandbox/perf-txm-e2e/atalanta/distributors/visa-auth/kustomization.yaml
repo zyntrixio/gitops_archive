@@ -1,0 +1,28 @@
+bases:
+  - "../../../../../bases/olympus/atalanta/transactors/visa-auth"
+  - "../../../../../bases/olympus/atalanta/distributors/visa-auth"
+
+namespace: perf-txm-e2e
+
+configMapGenerator:
+  - name: atalanta-visa-auth
+    files:
+      - ../configs/visa-auth.toml
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: atalanta-visa-auth
+      spec:
+        template:
+          spec:
+            volumes:
+              - name: config
+                configMap:
+                  defaultMode: 400
+                  name: atalanta-visa-auth
+                  

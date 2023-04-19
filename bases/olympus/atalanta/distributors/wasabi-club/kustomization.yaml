@@ -1,0 +1,15 @@
+bases:
+  - "../../core/job"
+
+commonLabels:
+  component: distributor-wasabi-club
+
+nameSuffix: -distributor-wasabi-club
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/args
+        value: [ cargo, run, --bin, distributor ]

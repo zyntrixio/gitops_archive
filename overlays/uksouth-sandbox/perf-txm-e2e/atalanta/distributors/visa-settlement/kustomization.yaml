@@ -1,0 +1,28 @@
+bases:
+  - "../../../../../bases/olympus/atalanta/transactors/visa-settlement"
+  - "../../../../../bases/olympus/atalanta/distributors/visa-settlement"
+
+namespace: perf-txm-e2e
+
+configMapGenerator:
+  - name: atalanta-visa-settlement
+    files:
+      - ../configs/visa-settlement.toml
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: atalanta-visa-settlement
+      spec:
+        template:
+          spec:
+            volumes:
+              - name: config
+                configMap:
+                  defaultMode: 400
+                  name: atalanta-visa-settlement
+                  

@@ -1,0 +1,55 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: atalanta
+  namespace: default
+  labels:
+    app: atalanta
+spec:
+  selector:
+    matchLabels:
+      app: atalanta
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: atalanta
+        aadpodidbinding: atalanta
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - atalanta
+                topologyKey: topology.kubernetes.io/zone
+      containers:
+        - image: binkcore.azurecr.io/atalanta:latest
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+          imagePullPolicy: Always
+          name: app
+          command: [linkerd-await, --]
+          args: []
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              cpu: 10m
+              memory: 128Mi
+      imagePullSecrets:
+        - name: binkcore.azurecr.io

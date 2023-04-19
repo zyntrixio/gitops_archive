@@ -1,0 +1,15 @@
+bases:
+  - "../../core/deployment"
+
+commonLabels:
+  component: distributor-visa-auth
+
+nameSuffix: -distributor-visa-auth
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/args
+        value: [ cargo, run, --bin, distributor ]

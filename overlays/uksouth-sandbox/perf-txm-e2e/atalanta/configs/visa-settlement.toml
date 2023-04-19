@@ -1,0 +1,6 @@
+provider_slug = "visa-settlement"
+routing_key = "transactions.visa.*"
+batch_size = 1
+
+[sender.API]
+url = "http://localhost:6502/mock/auth_transactions/visa"

@@ -1,0 +1,28 @@
+bases:
+  - "../../../../../bases/olympus/atalanta/transactors/wasabi-club"
+  - "../../../../../bases/olympus/atalanta/distributors/wasabi-club"
+
+namespace: perf-txm-e2e
+
+configMapGenerator:
+  - name: atalanta-wasabi-club
+    files:
+      - ../configs/wasabi-club.toml
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: atalanta-wasabi-club
+      spec:
+        template:
+          spec:
+            volumes:
+              - name: config
+                configMap:
+                  defaultMode: 400
+                  name: atalanta-wasabi-club
+                  

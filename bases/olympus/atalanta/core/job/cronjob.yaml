@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: atalanta
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  schedule: "0/15 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            kubectl.kubernetes.io/default-container: app
+        spec:
+          containers:
+          - name: app
+            command: [linkerd-await, --]
+            args: []
+            image: binkcore.azurecr.io/atalanta:latest
+            volumeMounts:
+              - mountPath: /tmp
+                name: data
+            imagePullPolicy: Always
+            resources:
+              limits:
+                memory: 128Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+          restartPolicy: Never

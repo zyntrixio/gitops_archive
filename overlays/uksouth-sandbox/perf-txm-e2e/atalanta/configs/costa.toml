@@ -1,0 +1,10 @@
+transactions_per_second = 28
+provider_slug = "costa"
+routing_key = "transactions.*.costa"
+amount_min = 300
+amount_max = 1000
+percentage = [['visa', 100], ['mastercard', 0], ['amex', 0]]
+batch_size = 1
+
+[sender.API]
+url = "http://0.0.0.0:8001/costa/transactions"

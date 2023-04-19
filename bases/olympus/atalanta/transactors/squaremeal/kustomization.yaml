@@ -1,0 +1,15 @@
+bases:
+  - "../../core/deployment"
+
+commonLabels:
+  component: transactor-squaremeal
+
+nameSuffix: -transactor-squaremeal
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/args
+        value: [ cargo, run, --bin, transactor ]

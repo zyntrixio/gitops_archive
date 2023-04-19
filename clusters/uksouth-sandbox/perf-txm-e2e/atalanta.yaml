@@ -1,0 +1,65 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: perf-txm-e2e-atalanta
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-sandbox/perf-txm-e2e/atalanta/distibutors
+  dependsOn:
+    - name: linkerd-control-plane
+    - name: aad-pod-identity
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/atalanta
+      newName: binkcore.azurecr.io/atalanta
+      newTag: dummytag # {"$imagepolicy": "flux-system:atalanta:tag"}
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: perf-txm-e2e-atalanta
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-sandbox/perf-txm-e2e/atalanta/transactors
+  dependsOn:
+    - name: linkerd-control-plane
+    - name: aad-pod-identity
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/atalanta
+      newName: binkcore.azurecr.io/atalanta
+      newTag: dummytag # {"$imagepolicy": "flux-system:atalanta:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: atalanta
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/atalanta
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: uksouth-perf-e2e-atalanta
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: atalanta
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc
