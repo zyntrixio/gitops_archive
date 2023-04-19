@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-sandbox/perf-txm-e2e/atalanta/distibutors
+  path: ./overlays/uksouth-sandbox/perf-txm-e2e/atalanta/costa
   dependsOn:
     - name: linkerd-control-plane
     - name: aad-pod-identity
@@ -25,7 +25,69 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-sandbox/perf-txm-e2e/atalanta/transactors
+  path: ./overlays/uksouth-sandbox/perf-txm-e2e/atalanta/iceland-bonus-card
+  dependsOn:
+    - name: linkerd-control-plane
+    - name: aad-pod-identity
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/atalanta
+      newName: binkcore.azurecr.io/atalanta
+      newTag: dummytag # {"$imagepolicy": "flux-system:atalanta:tag"}
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: perf-txm-e2e-atalanta
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-sandbox/perf-txm-e2e/atalanta/visa-auth
+  dependsOn:
+    - name: linkerd-control-plane
+    - name: aad-pod-identity
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/atalanta
+      newName: binkcore.azurecr.io/atalanta
+      newTag: dummytag # {"$imagepolicy": "flux-system:atalanta:tag"}
+---
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: perf-txm-e2e-atalanta
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-sandbox/perf-txm-e2e/atalanta/visa-settlement
+  dependsOn:
+    - name: linkerd-control-plane
+    - name: aad-pod-identity
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/atalanta
+      newName: binkcore.azurecr.io/atalanta
+      newTag: dummytag # {"$imagepolicy": "flux-system:atalanta:tag"}
+---
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: perf-txm-e2e-atalanta
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-sandbox/perf-txm-e2e/atalanta/wasabi-club
   dependsOn:
     - name: linkerd-control-plane
     - name: aad-pod-identity
