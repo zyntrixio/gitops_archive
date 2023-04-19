@@ -1,5 +1,5 @@
 bases:
-  - "../../core/deployment"
+  - "../../core/job"
 
 commonLabels:
   component: distributor-costa
@@ -9,7 +9,7 @@ nameSuffix: -distributor-costa
 
 patches:
   - target:
-      kind: Deployment
+      kind: CronJob
     patch: |-
       - op: replace
         path: /spec/jobTemplate/spec/template/spec/containers/0/args

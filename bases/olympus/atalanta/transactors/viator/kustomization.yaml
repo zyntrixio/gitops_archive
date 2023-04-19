@@ -11,5 +11,5 @@ patches:
       kind: Deployment
     patch: |-
       - op: replace
-        path: /spec/jobTemplate/spec/template/spec/containers/0/args
+        path: //spec/template/spec/containers/0/args
         value: [ cargo, run, --bin, transactor ]

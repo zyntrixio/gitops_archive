@@ -7,7 +7,7 @@ namespace: perf-txm-e2e
 configMapGenerator:
   - name: atalanta-visa-auth
     files:
-      - ../configs/visa-auth.toml
+      - config.toml
 
 patches:
   - target:

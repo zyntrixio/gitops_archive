@@ -7,7 +7,7 @@ namespace: perf-txm-e2e
 configMapGenerator:
   - name: atalanta-wasabi-club
     files:
-      - ../configs/wasabi-club.toml
+      - config.toml
 
 patches:
   - target:

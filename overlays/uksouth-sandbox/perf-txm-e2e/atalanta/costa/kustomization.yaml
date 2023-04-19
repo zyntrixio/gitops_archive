@@ -1,6 +1,6 @@
 bases:
   - "../../../../../bases/olympus/atalanta/transactors/costa/"
-  # - "../../../../../bases/olympus/atalanta/distributors/costa/"
+  - "../../../../../bases/olympus/atalanta/distributors/costa/"
 
 namespace: perf-txm-e2e
 

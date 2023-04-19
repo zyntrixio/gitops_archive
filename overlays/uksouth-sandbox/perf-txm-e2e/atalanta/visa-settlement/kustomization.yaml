@@ -1,13 +1,13 @@
 bases:
-  - "../../../../../bases/olympus/atalanta/transactors/iceland-bonus-card"
-  - "../../../../../bases/olympus/atalanta/distributors/iceland-bonus-card"
+  - "../../../../../bases/olympus/atalanta/transactors/visa-settlement"
+  - "../../../../../bases/olympus/atalanta/distributors/visa-settlement"
 
 namespace: perf-txm-e2e
 
 configMapGenerator:
-  - name: atalanta-iceland-bonus-card
+  - name: atalanta-visa-settlement
     files:
-      - ../configs/iceland-bonus-card.toml
+      - config.toml
 
 patches:
   - target:
@@ -16,7 +16,7 @@ patches:
       apiVersion: apps/v1
       kind: Deployment
       metadata:
-        name: atalanta-iceland-bonus-card
+        name: atalanta-visa-settlement
       spec:
         template:
           spec:
@@ -24,5 +24,5 @@ patches:
               - name: config
                 configMap:
                   defaultMode: 400
-                  name: atalanta-iceland-bonus-card
+                  name: atalanta-visa-settlement
                   
