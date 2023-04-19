@@ -1,0 +1,23 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: falco
+  namespace: falco
+spec:
+  interval: 120m
+  install:
+    remediation:
+      retries: 10
+  chart:
+    spec:
+      chart: falco
+      version: 3.1.3
+      sourceRef:
+        kind: HelmRepository
+        name: falcosecurity
+        namespace: flux-system
+  values:
+    driver:
+      enabled: true
+      kind: modern-bpf
