@@ -21,3 +21,4 @@ spec:
     driver:
       enabled: true
       kind: modern-bpf
+    tty: true
