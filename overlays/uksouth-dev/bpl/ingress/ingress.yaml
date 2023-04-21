@@ -34,7 +34,7 @@ spec:
                 name: vela-api
                 port:
                   number: 80
-          - path: /rewards
+          - path: /rewards/
             pathType: Prefix
             backend:
               service:
@@ -50,6 +50,13 @@ spec:
                   number: 80
           - path: /reward
             pathType: Exact
+            backend:
+              service:
+                name: aquila
+                port:
+                  number: 80
+          - path: /rewards
+            pathType: Prefix
             backend:
               service:
                 name: aquila
