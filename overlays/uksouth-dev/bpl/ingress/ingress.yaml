@@ -55,6 +55,13 @@ spec:
                 name: aquila
                 port:
                   number: 80
+          - path: /rewards
+            pathType: Prefix
+            backend:
+              service:
+                name: aquila
+                port:
+                  number: 80
   tls:
     - hosts:
         - bpl.${cluster_name}.${cluster_location}.bink.sh
