@@ -49,7 +49,7 @@ spec:
                 port:
                   number: 80
           - path: /reward
-            pathType: Prefix
+            pathType: Exact
             backend:
               service:
                 name: aquila
