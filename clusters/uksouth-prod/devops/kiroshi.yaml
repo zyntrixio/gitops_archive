@@ -9,6 +9,7 @@ spec:
   dependsOn:
     - name: linkerd-control-plane
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
