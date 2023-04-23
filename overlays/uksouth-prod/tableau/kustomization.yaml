@@ -1,7 +1,14 @@
 resources:
-  - namespace.yaml
+  - ../../../bases/infrastructure/healthz # provides namespace
   - service.yaml
   - ingress-admin.yaml
-  - ../../../../bases/infrastructure/healthz
 
 namespace: tableau
+
+patches:
+  - target:
+      kind: ServiceProfile
+    patch: |
+      - op: replace
+        path: /metadata/name
+        value: healthz.tableau.svc.cluster.local

@@ -1,8 +1,6 @@
 ---
-bases:
-  - github.com/binkhq/healthz/deploy
-
 resources:
+  - github.com/binkhq/healthz/deploy
   - lsp.yaml
 
 namespace: default
