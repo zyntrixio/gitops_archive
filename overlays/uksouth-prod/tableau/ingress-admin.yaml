@@ -5,11 +5,11 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
-  name: tableau-admin.${cluster_name}.${location}.bink.sh
+  name: tableau-admin.${cluster_name}.${cluster_location}.bink.sh
   namespace: tableau
 spec:
   rules:
-    - host: tableau-admin.${cluster_name}.${location}.bink.sh
+    - host: tableau-admin.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /
@@ -28,4 +28,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - tableau-admin.${cluster_name}.${location}.bink.sh
+        - tableau-admin.${cluster_name}.${cluster_location}.bink.sh
