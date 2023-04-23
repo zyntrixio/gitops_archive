@@ -1,3 +1,7 @@
 resources:
   - namespace.yaml
   - service.yaml
+  - ingress-admin.yaml
+  - ../../../../bases/infrastructure/healthz
+
+namespace: tableau
