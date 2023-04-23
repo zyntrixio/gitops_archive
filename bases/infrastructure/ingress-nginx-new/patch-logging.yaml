@@ -16,3 +16,4 @@ data:
     $upstream_response_length, "proxy_upstream_name": "$proxy_upstream_name", "x-azure-ref":
     "$http_x_azure_ref"}'
   server-tokens: 'false'
+  enable-underscores-in-headers: 'true'
