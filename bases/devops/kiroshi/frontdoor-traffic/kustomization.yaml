@@ -1,0 +1,21 @@
+resources:
+  - ../bases/cronjobs
+
+commonLabels:
+  component: traffic
+
+nameSuffix: -traffic
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |
+      - op: replace
+        path: /spec/schedule
+        value: "*/30 * * * *"
+  - target:
+      kind: CronJob
+    patch: |
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/args
+        value: ["kiroshi", "checks", "frontdoor", "traffic"]

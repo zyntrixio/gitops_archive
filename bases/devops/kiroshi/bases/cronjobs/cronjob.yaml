@@ -1,36 +1,37 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: kiroshi-traffic
+  name: kiroshi
   namespace: default
   labels:
     app: kiroshi
-    component: traffic
 spec:
-  schedule: "*/30 * * * *"
+  schedule: "* * * * *"
   jobTemplate:
+    metadata:
+      labels:
+        app: kiroshi
     spec:
       template:
         metadata:
           annotations:
-            linkerd.io/inject: enabled
             kubectl.kubernetes.io/default-container: app
+            linkerd.io/inject: enabled
           labels:
             app: kiroshi
-            component: traffic
-            aadpodidbinding: kiroshi
+            azure.workload.identity/use: "true"
         spec:
           containers:
             - name: app
               image: binkcore.azurecr.io/kiroshi:latest
               command: ["linkerd-await", "--shutdown", "--"]
-              args: ["kiroshi", "checks", "frontdoor", "traffic"]
+              args: ["sleep", "60"]
               resources:
                 requests:
-                  cpu: 100m
-                  memory: 512Mi
+                  cpu: 10m
+                  memory: 128Mi
                 limits:
-                  memory: 512Mi
+                  memory: 128Mi
               securityContext:
                 runAsGroup: 65534
                 runAsUser: 65534

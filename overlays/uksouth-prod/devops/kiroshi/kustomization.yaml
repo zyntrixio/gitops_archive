@@ -1,0 +1,43 @@
+resources:
+  - ../../../../bases/devops/kiroshi/common
+  - ../../../../bases/devops/kiroshi/frontdoor-ips
+  - ../../../../bases/devops/kiroshi/frontdoor-ranges
+  - ../../../../bases/devops/kiroshi/frontdoor-traffic
+
+namespace: devops
+
+patches:
+  - target:
+      kind: ServiceAccount
+    patch: |
+      - op: add
+        path: /metadata/annotations
+        value:
+          azure.workload.identity/client-id: c0c883a1-19f1-48ba-ade2-889a109278d2
+  - target:
+      kind: CronJob
+    patch: |
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env
+        value:
+          - name: database_dsn
+            valueFrom:
+              secretKeyRef:
+                key: url_kiroshi
+                name: azure-postgres
+          - name: redis_dsn
+            valueFrom:
+              secretKeyRef:
+                key: url_primary
+                name: azure-redis
+  - target:
+      kind: Job
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/env
+        value:
+          - name: database_dsn
+            valueFrom:
+              secretKeyRef:
+                key: url_kiroshi
+                name: azure-postgres

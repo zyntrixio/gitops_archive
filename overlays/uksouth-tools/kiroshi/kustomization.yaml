@@ -1,4 +1,0 @@
-resources:
-  - deploy.yaml
-  - serviceaccount.yaml
-  - aad.yaml

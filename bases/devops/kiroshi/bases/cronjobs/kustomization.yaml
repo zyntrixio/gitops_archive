@@ -1,0 +1,4 @@
+resources:
+  - cronjob.yaml
+
+namespace: devops

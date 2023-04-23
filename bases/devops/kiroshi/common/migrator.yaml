@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kiroshi-migrator
+  namespace: devops
+  labels:
+    app: kiroshi
+    component: migrator
+spec:
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: kiroshi
+        component: migrator
+        azure.workload.identity/use: "true"
+    spec:
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/kiroshi:latest
+          command: ["linkerd-await", "--shutdown", "--"]
+          args: ["alembic", "upgrade", "head"]
+          resources:
+            requests:
+              memory: 128Mi
+            limits:
+              cpu: 1000m
+              memory: 128Mi
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+      restartPolicy: Never
+      serviceAccountName: kiroshi
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
+  backoffLimit: 3
