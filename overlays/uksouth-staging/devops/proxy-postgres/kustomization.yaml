@@ -2,6 +2,8 @@
 bases:
   - ../../../../bases/infrastructure/simpleproxy
 
+namespace: devops
+
 commonLabels:
   app: proxy-postgres
 
@@ -21,11 +23,5 @@ patches:
           - -L
           - 0.0.0.0:5432
           - -R
-          - bink-uksouth-prod.postgres.database.azure.com:5432
+          - uksouth-staging-2o6h.postgres.database.azure.com:5432
           - -v
-  - target:
-      kind: Deployment
-    patch: |-
-      - op: add
-        path: /spec/template/metadata/annotations/linkerd.io~1inject
-        value: enabled

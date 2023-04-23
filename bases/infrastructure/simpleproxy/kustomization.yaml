@@ -1,5 +1,6 @@
 ---
-bases:
+resources:
+  - namespace.yaml
   - github.com/binkhq/simpleproxy/deploy
 
 patches:

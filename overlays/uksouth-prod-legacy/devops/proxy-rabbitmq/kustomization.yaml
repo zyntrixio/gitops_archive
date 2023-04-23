@@ -2,8 +2,9 @@
 bases:
   - ../../../../bases/infrastructure/proxy-rabbitmq
 
+namespace: devops
+
 configMapGenerator:
   - name: proxy-rabbitmq
-    namespace: default
     files:
       - default.conf
