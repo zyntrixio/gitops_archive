@@ -3,7 +3,7 @@ resources:
   - ../../../../bases/olympus/iris
 
 replicas:
-  - name: iris
+  - name: iris-api
     count: 0
 
 patches:

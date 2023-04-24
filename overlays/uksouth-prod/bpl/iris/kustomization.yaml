@@ -5,7 +5,7 @@ resources:
 namespace: bpl
 
 replicas:
-  - name: iris
+  - name: iris-api
     count: 0
 
 patches:
