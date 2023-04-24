@@ -1,0 +1,33 @@
+---
+resources:
+  - ../../../../bases/olympus/iris
+
+namespace: bpl
+
+replicas:
+  - name: iris
+    count: 0
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: iris-api
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: STORAGE_ACCOUNT_CONNECTION_STRING
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string_primary
+                        name: azure-storage
+                  - name: STORAGE_CONTAINER
+                    value: bpl-media
+                  - name: STORAGE_CONTAINER_IN_URL
+                    value: "false"

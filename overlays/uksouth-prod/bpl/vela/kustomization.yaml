@@ -1,0 +1,51 @@
+---
+resources:
+  - ../../../../bases/cosmos/vela/core
+  - ../../../../bases/cosmos/vela/api
+  - ../../../../bases/cosmos/vela/migrator
+  - ../../../../bases/cosmos/vela/task-worker
+  - ../../../../bases/cosmos/vela/cron-scheduler
+  - aad.yaml
+
+namespace: bpl
+
+replicas:
+  - name: vela-api
+    count: 3 
+  - name: vela-task-worker
+    count: 3
+  - name: vela
+    count: 0
+
+configMapGenerator:
+  - name: vela
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: vela
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: vela
+                env:
+                  - name: SQLALCHEMY_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-postgres
+                        key: url_vela
+                  - name: REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url_primary
+                        name: azure-redis

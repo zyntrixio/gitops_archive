@@ -1,0 +1,57 @@
+---
+resources:
+  - ../../../../bases/cosmos/polaris/core
+  - ../../../../bases/cosmos/polaris/api
+  - ../../../../bases/cosmos/polaris/migrator
+  - ../../../../bases/cosmos/polaris/task-worker
+  - ../../../../bases/cosmos/polaris/cron-scheduler
+  - ../../../../bases/cosmos/polaris/tx-history-consumer
+  - aad.yaml
+
+namespace: bpl
+
+replicas:
+  - name: polaris-api
+    count: 3
+  - name: polaris-task-worker
+    count: 3
+  - name: polaris
+    count: 0
+
+configMapGenerator:
+  - name: polaris
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: polaris
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: SQLALCHEMY_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-postgres
+                        key: url_polaris
+                  - name: REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url_primary
+                        name: azure-redis
+                  - name: BLOB_STORAGE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: primary_connection_string
+                        name: azure-storage
+                envFrom:
+                  - configMapRef:
+                      name: polaris

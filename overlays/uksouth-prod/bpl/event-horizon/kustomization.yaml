@@ -1,0 +1,58 @@
+---
+resources:
+  - ../../../../bases/cosmos/event-horizon
+  - aad.yaml
+
+namespace: bpl
+
+replicas:
+  - name: event-horizon
+    count: 0
+
+configMapGenerator:
+  - name: event-horizon
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: event-horizon
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: event-horizon
+                env:
+                  - name: POLARIS_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-postgres
+                        key: url_polaris
+                  - name: VELA_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-postgres
+                        key: url_vela
+                  - name: CARINA_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-postgres
+                        key: url_carina
+                  - name: DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-postgres
+                        key: url_placeholder
+                  - name: REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url_primary
+                        name: azure-redis

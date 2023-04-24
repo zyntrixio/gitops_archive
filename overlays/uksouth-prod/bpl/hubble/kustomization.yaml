@@ -1,0 +1,45 @@
+---
+resources:
+  - ../../../../bases/cosmos/hubble/core
+  - ../../../../bases/cosmos/hubble/consumer
+  - ../../../../bases/cosmos/hubble/migrator
+  - ../../../../bases/cosmos/hubble/task-worker
+
+namespace: bpl
+
+replicas:
+  - name: hubble
+    count: 0
+
+configMapGenerator:
+  - name: hubble
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: hubble
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: hubble
+                env:
+                  - name: DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-postgres
+                        key: url_placeholder
+                  - name: REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url_primary
+                        name: azure-redis
