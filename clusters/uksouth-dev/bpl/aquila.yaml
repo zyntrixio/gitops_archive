@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/aquila
     newName: binkcore.azurecr.io/aquila
-    newTag: 2023-04-21T104613Z # {"$imagepolicy": "flux-system:uksouth-dev-aquila:tag"}
+    newTag: 2023-04-24T144350Z # {"$imagepolicy": "flux-system:uksouth-dev-aquila:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
