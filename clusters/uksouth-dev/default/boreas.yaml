@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/boreas
     newName: binkcore.azurecr.io/boreas
-    newTag: 2023-04-17T125051Z # {"$imagepolicy": "flux-system:uksouth-dev-boreas:tag"}
+    newTag: 2023-04-24T112105Z # {"$imagepolicy": "flux-system:uksouth-dev-boreas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
