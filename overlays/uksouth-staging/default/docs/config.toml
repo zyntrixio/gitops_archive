@@ -9,5 +9,5 @@
 "portal" = "portal/index.html"
 "transaction" = "merchant/retail_transaction_api.html"
 
-"extras/appendix" = "extras/appendix.html"
-"extras/changelog" = "extras/changelog.html"
+"appendix" = "extras/appendix.html"
+"changelog" = "extras/changelog.html"
