@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/docs
     newName: binkcore.azurecr.io/docs
-    newTag: 2023-04-25T112353Z # {"$imagepolicy": "flux-system:docs:tag"}
+    newTag: 2023-04-25T135156Z # {"$imagepolicy": "flux-system:docs:tag"}
   postBuild:
     substituteFrom:
     - kind: ConfigMap
