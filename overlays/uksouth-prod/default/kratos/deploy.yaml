@@ -65,3 +65,5 @@ spec:
               cpu: 10m
               memory: 256Mi
       serviceAccountName: kratos
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
