@@ -3,13 +3,15 @@ resources:
   - ../../../../bases/olympus/zephyrus
   - azureidentity.yaml
 
+namespace: default
+
 configMapGenerator:
   - name: midas
     envs:
       - env.ini
 
 replicas:
-  - name: zephyrus
+  - name: zephyrus-api
     count: 3
 
 patches:

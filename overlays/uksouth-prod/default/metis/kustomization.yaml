@@ -4,6 +4,8 @@ resources:
   - ../../../../bases/olympus/metis/api
   - ../../../../bases/olympus/metis/celery
 
+namespace: default
+
 replicas:
   - name: metis
     count: 0
