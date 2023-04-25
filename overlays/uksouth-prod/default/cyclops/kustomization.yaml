@@ -3,6 +3,8 @@ resources:
   - ../../../../bases/olympus/cyclops
   - aad.yaml
 
+namespace: default
+
 configMapGenerator:
   - name: cyclops
     envs:

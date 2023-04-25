@@ -3,6 +3,8 @@ bases:
   - ../../../../bases/olympus/hades/api
   - ../../../../bases/olympus/hades/migrator
 
+namespace: default
+
 replicas:
   - name: hades
     count: 0

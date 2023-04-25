@@ -5,6 +5,8 @@ resources:
   - ../../../../bases/olympus/eos/migrator
   - aad.yaml
 
+namespace: default
+
 configMapGenerator:
   - name: eos
     envs:
