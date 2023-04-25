@@ -4,6 +4,8 @@ resources:
   - ../../../../bases/olympus/atlas/consumer
   - ../../../../bases/olympus/atlas/migrator
 
+namespace: default
+
 replicas:
   - name: atlas-api
     count: 0

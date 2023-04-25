@@ -1,5 +1,5 @@
 ---
-bases:
+resources:
   - ../../../../bases/olympus/harmonia/api
   - ../../../../bases/olympus/harmonia/export-agent-iceland-bonus-card
   - ../../../../bases/olympus/harmonia/export-retry-worker
@@ -20,8 +20,6 @@ bases:
   - ../../../../bases/olympus/harmonia/streaming-worker
   - ../../../../bases/olympus/harmonia/purgedb
   - ../../../../bases/olympus/harmonia/migrator
-
-resources:
   - aad.yaml
 
 replicas:
