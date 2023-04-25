@@ -1,0 +1,31 @@
+---
+resources:
+  - ../../../../bases/infrastructure/wasabi-reporter
+  - aad.yaml
+
+namespace: devops
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: wasabi-reporter
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: BLOB_CONNECTION_STRING
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string_primary
+                        name: azure-storage
+                  - name: REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url_primary
+                        name: azure-redis
