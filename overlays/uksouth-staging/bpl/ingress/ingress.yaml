@@ -58,3 +58,35 @@ spec:
   tls:
     - hosts:
         - bpl.${cluster_name}.${cluster_location}.bink.sh
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/service-upstream: 'true'
+    nginx.ingress.kubernetes.io/use-regex: "true"
+  name: rewards.${cluster_name}.${cluster_location}.bink.sh
+  namespace: default
+spec:
+  rules:
+    - host: rewards.${cluster_name}.${cluster_location}.bink.sh
+      http:
+        paths:
+          - path: /reward
+            pathType: Prefix
+            backend:
+              service:
+                name: aquila
+                port:
+                  number: 80
+          - path: /r
+            pathType: Prefix
+            backend:
+              service:
+                name: aquila
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - rewards.${cluster_name}.${cluster_location}.bink.sh
