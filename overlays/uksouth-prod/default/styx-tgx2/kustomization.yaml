@@ -1,0 +1,22 @@
+---
+bases:
+  - ../../../../bases/olympus/styx
+
+nameSuffix: -tgx2
+commonLabels:
+  component: tgx2
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env
+        value:
+          - name: mode
+            value: TGX2
+          - name: redis_url
+            valueFrom:
+              secretKeyRef:
+                name: azure-redis
+                key: url_primary

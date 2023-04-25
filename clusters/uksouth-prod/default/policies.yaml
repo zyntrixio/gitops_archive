@@ -1,0 +1,44 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: policies
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod/default/policies
+  dependsOn:
+    - name: linkerd-control-plane
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/policies.gb.bink.com
+      newName: binkcore.azurecr.io/policies.gb.bink.com
+      newTag: prod-2023-04-12T221247Z # {"$imagepolicy": "flux-system:uksouth-prod-policies:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: policies
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/policies.gb.bink.com
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: uksouth-prod-policies
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: policies
+  filterTags:
+    pattern: prod-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc

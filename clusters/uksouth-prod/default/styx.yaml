@@ -1,0 +1,39 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: styx
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod/default/styx
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: styx
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/styx
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: uksouth-prod-styx
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: styx
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc

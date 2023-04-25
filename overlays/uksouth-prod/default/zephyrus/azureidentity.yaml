@@ -1,0 +1,21 @@
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: zephyrus-identity
+  namespace: default
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+spec:
+  type: 0
+  resourceID: /subscriptions/42706d13-8023-4b0c-b98a-1a562cb9ac40/resourcegroups/uksouth-prod/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-prod-zephyrus
+  clientID: d0a43d0e-f5c6-4462-a2ca-f346d4a821ba
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: zephyrus-identity-binding
+  namespace: default
+spec:
+  azureIdentity: zephyrus-identity
+  selector: zephyrus

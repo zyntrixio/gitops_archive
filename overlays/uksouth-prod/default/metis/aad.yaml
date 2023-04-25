@@ -1,0 +1,21 @@
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: metis
+  namespace: default
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+spec:
+  type: 0
+  resourceID: /subscriptions/42706d13-8023-4b0c-b98a-1a562cb9ac40/resourcegroups/uksouth-prod/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-prod-metis
+  clientID: fc8f7022-8616-4d88-bd81-1b86faefc6e1
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: metis
+  namespace: default
+spec:
+  azureIdentity: metis
+  selector: metis

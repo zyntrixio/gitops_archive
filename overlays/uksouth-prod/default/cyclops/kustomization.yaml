@@ -1,0 +1,26 @@
+---
+resources:
+  - ../../../../bases/olympus/cyclops
+  - aad.yaml
+
+configMapGenerator:
+  - name: cyclops
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: cyclops
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: cyclops

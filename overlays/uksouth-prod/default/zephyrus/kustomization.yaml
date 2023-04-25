@@ -1,0 +1,30 @@
+---
+resources:
+  - ../../../../bases/olympus/zephyrus
+  - azureidentity.yaml
+
+configMapGenerator:
+  - name: midas
+    envs:
+      - env.ini
+
+replicas:
+  - name: zephyrus
+    count: 3
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: zephyrus
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: zephyrus

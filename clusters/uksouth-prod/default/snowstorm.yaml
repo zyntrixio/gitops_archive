@@ -1,0 +1,70 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: snowstorm-essentials
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod/default/snowstorm/essentials
+  dependsOn:
+  - name: linkerd-control-plane
+  prune: true
+  force: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/snowstorm
+    newName: binkcore.azurecr.io/snowstorm
+    newTag: prod-v1.8.1 # {"$imagepolicy": "flux-system:snowstorm:tag"}
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: snowstorm-deployments
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod/default/snowstorm/deployments
+  dependsOn:
+  - name: snowstorm-essentials
+  prune: true
+  force: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/snowstorm
+    newName: binkcore.azurecr.io/snowstorm
+    newTag: prod-v1.8.1 # {"$imagepolicy": "flux-system:snowstorm:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: cluster-vars
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: snowstorm
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/snowstorm
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: snowstorm
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: snowstorm
+  filterTags:
+    pattern: prod-v(?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    semver:
+      range: '>0.0.1'

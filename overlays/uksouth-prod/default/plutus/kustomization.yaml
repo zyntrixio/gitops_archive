@@ -1,0 +1,24 @@
+---
+resources:
+  - ../../../../bases/olympus/plutus/consumer
+  - ../../../../bases/olympus/plutus/consumer-dlx
+
+replicas:
+  - name: plutus
+    count: 0
+
+configMapGenerator:
+  - name: plutus
+    namespace: default
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: plutus

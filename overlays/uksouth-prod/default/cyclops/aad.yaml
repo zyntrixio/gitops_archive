@@ -1,0 +1,21 @@
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: cyclops-identity
+  namespace: default
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+spec:
+  type: 0
+  resourceID: /subscriptions/42706d13-8023-4b0c-b98a-1a562cb9ac40/resourcegroups/uksouth-prod/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-prod-cyclops
+  clientID: a95502c8-014b-4d39-a0a0-95e10e58d4d2
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: cyclops-identity-binding
+  namespace: default
+spec:
+  azureIdentity: cyclops-identity
+  selector: cyclops

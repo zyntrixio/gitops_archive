@@ -1,0 +1,44 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: asteria
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod/default/asteria
+  dependsOn:
+    - name: linkerd-control-plane
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/asteria
+      newName: binkcore.azurecr.io/asteria
+      newTag: 2023-02-16T163107Z # {"$imagepolicy": "flux-system:uksouth-prod-asteria:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: asteria
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/asteria
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: uksouth-prod-asteria
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: asteria
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc

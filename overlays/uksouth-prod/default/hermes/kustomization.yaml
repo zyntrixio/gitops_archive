@@ -1,0 +1,61 @@
+---
+bases:
+  - ../../../../bases/olympus/hermes/core
+  - ../../../../bases/olympus/hermes/api
+  - ../../../../bases/olympus/hermes/beat
+  - ../../../../bases/olympus/hermes/celery
+  - ../../../../bases/olympus/hermes/migrator
+  - ../../../../bases/olympus/hermes/logic
+
+resources:
+  - aad.yaml
+
+namespace: default
+
+configMapGenerator:
+  - name: hermes
+    envs:
+      - env.ini
+
+replicas:
+  - name: hermes-api
+    count: 0
+  - name: hermes-celery
+    count: 0
+  - name: hermes-beat
+    count: 0
+  - name: hermes-logic
+    count: 0
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: hermes
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: hermes
+                env:
+                  - name: HERMES_BLOB_STORAGE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string_primary
+                        name: azure-storage
+                  - name: REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url_primary
+                        name: azure-redis
+                  - name: HERMES_DATABASE_URL
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-postgres
+                        key: url_hermes

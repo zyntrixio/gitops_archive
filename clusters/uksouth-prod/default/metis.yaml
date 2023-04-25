@@ -1,0 +1,45 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: metis
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod/default/metis
+  dependsOn:
+    - name: aad-pod-identity
+    - name: linkerd-control-plane
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/metis
+      newName: binkcore.azurecr.io/metis
+      newTag: prod-1.26.2 # {"$imagepolicy": "flux-system:uksouth-prod-metis:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: metis
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/metis
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: uksouth-prod-metis
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: metis
+  filterTags:
+    pattern: prod-(?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    semver:
+      range: '>0.0.1'

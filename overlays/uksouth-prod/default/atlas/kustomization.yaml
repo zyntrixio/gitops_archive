@@ -1,0 +1,42 @@
+---
+resources:
+  - ../../../../bases/olympus/atlas/api
+  - ../../../../bases/olympus/atlas/consumer
+  - ../../../../bases/olympus/atlas/migrator
+
+replicas:
+  - name: atlas-api
+    count: 0
+
+configMapGenerator:
+  - name: atlas
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: atlas
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: ATLAS_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-postgres
+                        key: url_atlas
+                  - name: BLOB_STORAGE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string_primary
+                        name: azure-storage
+                envFrom:
+                  - configMapRef:
+                      name: atlas

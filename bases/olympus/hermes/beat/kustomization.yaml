@@ -30,7 +30,6 @@ patches:
             containers:
               - name: app
                 args:
-                  - single-beat
                   - celery
                   - -A
                   - hermes

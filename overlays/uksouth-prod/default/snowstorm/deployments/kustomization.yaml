@@ -1,0 +1,64 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../../../../bases/devops/snowstorm/apistats
+  - ../../../../../bases/devops/snowstorm/freshservice
+  - ../../../../../bases/devops/snowstorm/event_processor
+  - ../../../../../bases/devops/snowstorm/webserver
+  - ../../../../../bases/devops/snowstorm/notifications
+  - ../../../../../bases/devops/snowstorm/viator
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: snowstorm
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: database_dsn
+                    valueFrom:
+                      secretKeyRef:
+                        key: url_snowstorm
+                        name: azure-postgres
+                  - name: rabbitmq_dsn
+                    value: amqp://guest:guest@rabbitmq.rabbitmq:5672
+                  - name: redis_dsn
+                    valueFrom:
+                      secretKeyRef:
+                        key: url_primary
+                        name: azure-redis
+  - target:
+      kind: CronJob
+    patch: |
+      apiVersion: batch/v1
+      kind: CronJob
+      metadata:
+        name: snowstorm
+      spec:
+        jobTemplate:
+          spec:
+            template:
+              spec:
+                containers:
+                  - name: app
+                    env:
+                      - name: database_dsn
+                        valueFrom:
+                          secretKeyRef:
+                            key: url_snowstorm
+                            name: azure-postgres
+                      - name: rabbitmq_dsn
+                        value: amqp://guest:guest@rabbitmq.rabbitmq:5672
+                      - name: redis_dsn
+                        valueFrom:
+                          secretKeyRef:
+                            key: url_primary
+                            name: azure-redis

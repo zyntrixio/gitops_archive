@@ -1,0 +1,12 @@
+---
+resources:
+  - ../../../../bases/devops/docs
+  - ingress/root.yaml
+  - ingress/healthz.yaml
+
+namespace: default
+
+configMapGenerator:
+  - name: docs-config
+    files:
+      - config.toml

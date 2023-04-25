@@ -1,0 +1,39 @@
+---
+resources:
+  - ../../../../bases/olympus/eos/api
+  - ../../../../bases/olympus/eos/worker
+  - ../../../../bases/olympus/eos/migrator
+  - aad.yaml
+
+configMapGenerator:
+  - name: eos
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: eos
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url_primary
+                        name: azure-redis
+                  - name: EOS_DATABASE_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-postgres
+                        key: url_eos
+                envFrom:
+                  - configMapRef:
+                      name: eos

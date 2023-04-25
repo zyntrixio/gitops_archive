@@ -1,0 +1,23 @@
+---
+resources:
+  - ../../../../bases/olympus/asteria
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: asteria
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: POSTGRES_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: url_hermes
+                        name: azure-postgres

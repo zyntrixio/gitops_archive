@@ -1,0 +1,9 @@
+---
+resources:
+  - namespace.yaml
+  - serviceaccount.yaml
+  - service.yaml
+  - deploy.yaml
+  - ingress.yaml
+  - ingress-healthz.yaml
+  - aad.yaml
