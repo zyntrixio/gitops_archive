@@ -1,0 +1,16 @@
+resources:
+  - ../../bases/deployments
+
+commonLabels:
+  type: transactor
+  entity: viator
+
+nameSuffix: -transactor-viator
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: [ cargo, run, --bin, transactor ]

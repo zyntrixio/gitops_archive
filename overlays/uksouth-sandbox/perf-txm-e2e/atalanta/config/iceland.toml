@@ -1,0 +1,12 @@
+transactions_per_second = 1
+provider_slug = "iceland-bonus-card"
+routing_key = "transactions.*.iceland-bonus-card"
+amount_min = 100
+amount_max = 20000
+percentage = [['visa', 100], ['mastercard', 0], ['amex', 0]]
+batch_size = 10000
+
+[sender.Blob]
+account = "binkuksouthdev"
+access_key = "L/xU6NZswZAJbFhKjIGr0feakhY8QsCw4oUuj6bXNfxhWQv2caNkDo8czIu05DBcaZbSL7vfpYGP7OZsbpXuhw=="
+container = "harmonia-imports-test/iceland"

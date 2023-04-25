@@ -1,0 +1,53 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: atalanta
+  namespace: default
+  labels:
+    app: atalanta
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  schedule: "* * * * *"
+  jobTemplate:
+    metadata:
+      labels:
+        app: atalanta
+    spec:
+      template:
+        metadata:
+          labels:
+            app: atalanta
+          annotations:
+            linkerd.io/inject: enabled
+            kubectl.kubernetes.io/default-container: app
+        spec:
+          affinity:
+            podAntiAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  podAffinityTerm:
+                    labelSelector:
+                      matchExpressions:
+                        - key: app
+                          operator: In
+                          values:
+                            - atalanta
+                    topologyKey: topology.kubernetes.io/zone
+          volumes: []
+          containers:
+          - name: app
+            command: [linkerd-await, --shutdown, --]
+            args: []
+            image: binkcore.azurecr.io/atalanta:latest
+            volumeMounts: []
+            imagePullPolicy: Always
+            resources:
+              limits:
+                memory: 128Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+          serviceAccountName: atalanta
+          restartPolicy: Never

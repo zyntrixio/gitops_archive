@@ -1,0 +1,19 @@
+resources:
+  - ../../bases/jobs
+
+commonLabels:
+  type: distributor
+  entity: wasabi
+
+nameSuffix: -distributor-wasabi
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/args
+        value: [ cargo, run, --bin, distributor ]
+      - op: replace
+        path: /spec/schedule
+        value: "*/15 * * * *"

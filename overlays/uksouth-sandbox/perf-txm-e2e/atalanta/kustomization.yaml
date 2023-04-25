@@ -1,0 +1,128 @@
+resources:
+  - ../../../../bases/retailer/atalanta/common
+  - ../../../../bases/retailer/atalanta/distributors/costa
+  - ../../../../bases/retailer/atalanta/distributors/iceland
+  - ../../../../bases/retailer/atalanta/distributors/visa-auth
+  - ../../../../bases/retailer/atalanta/distributors/visa-settlement
+  - ../../../../bases/retailer/atalanta/distributors/wasabi
+  - ../../../../bases/retailer/atalanta/transactors/costa
+  - ../../../../bases/retailer/atalanta/transactors/iceland
+  - ../../../../bases/retailer/atalanta/transactors/squaremeal
+  - ../../../../bases/retailer/atalanta/transactors/viator
+  - ../../../../bases/retailer/atalanta/transactors/wasabi
+
+namespace: perf-txm-e2e
+
+configMapGenerator:
+  - name: atalanta
+    files:
+      - config/costa.toml
+      - config/iceland.toml
+      - config/visa-auth.toml
+      - config/visa-settlement.toml
+      - config/wasabi.toml
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/volumes/-
+        value:
+          name: config
+          configMap:
+            name: atalanta
+  - target:
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/volumes/-
+        value:
+          name: config
+          configMap:
+            name: atalanta
+  - target:
+      labelSelector: entity=costa
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts/-
+        value:
+          mountPath: /app/config.toml
+          subPath: costa.toml
+          name: config
+  - target:
+      labelSelector: entity=iceland
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts/-
+        value:
+          mountPath: /app/config.toml
+          subPath: iceland.toml
+          name: config
+  - target:
+      labelSelector: entity=iceland
+      kind: CronJob
+    patch: |
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/volumeMounts/-
+        value:
+          mountPath: /app/config.toml
+          subPath: iceland.toml
+          name: config
+  - target:
+      labelSelector: entity=wasabi
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts/-
+        value:
+          mountPath: /app/config.toml
+          subPath: wasabi.toml
+          name: config
+  - target:
+      labelSelector: entity=wasabi
+      kind: CronJob
+    patch: |
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/volumeMounts/-
+        value:
+          mountPath: /app/config.toml
+          subPath: wasabi.toml
+          name: config
+  - target:
+      labelSelector: entity=viator
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts/-
+        value:
+          mountPath: /app/config.toml
+          subPath: viator.toml
+          name: config
+  - target:
+      labelSelector: entity=squaremeal
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts/-
+        value:
+          mountPath: /app/config.toml
+          subPath: squaremeal.toml
+          name: config
+  - target:
+      labelSelector: entity=visa-auth
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts/-
+        value:
+          mountPath: /app/config.toml
+          subPath: visa-auth.toml
+          name: config
+  - target:
+      labelSelector: entity=visa-settlement
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts/-
+        value:
+          mountPath: /app/config.toml
+          subPath: visa-settlement.toml
+          name: config
