@@ -6,7 +6,7 @@ resources:
 namespace: default
 
 configMapGenerator:
-  - name: midas
+  - name: zephyrus
     envs:
       - env.ini
 
