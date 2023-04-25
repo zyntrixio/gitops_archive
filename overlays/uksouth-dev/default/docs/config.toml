@@ -11,5 +11,5 @@
 "midas_messaging" = "merchant/async/index.html"
 "works" = "extras/givex.html"
 
-"extras/appendix" = "extras/appendix.html"
-"extras/changelog" = "extras/changelog.html"
+"appendix" = "extras/appendix.html"
+"changelog" = "extras/changelog.html"
