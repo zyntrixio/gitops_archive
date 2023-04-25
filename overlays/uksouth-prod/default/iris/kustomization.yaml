@@ -19,9 +19,6 @@ patches:
           spec:
             containers:
               - name: app
-                envFrom:
-                  - configMapRef:
-                      name: iris
                 env:
                   - name: STORAGE_ACCOUNT_CONNECTION_STRING
                     valueFrom:
