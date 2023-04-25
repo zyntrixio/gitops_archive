@@ -5,19 +5,19 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
-    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-  name: tableau.${cluster_name}.${cluster_location}.bink.sh
+    nginx.ingress.kubernetes.io/enable-access-log: 'false'
+  name: tableau.${cluster_name}.${cluster_location}.bink.sh-healthz
   namespace: tableau
 spec:
   rules:
     - host: tableau.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /healthz
+            pathType: Exact
             backend:
               service:
-                name: tableau
+                name: healthz
                 port:
                   number: 80
   tls:
