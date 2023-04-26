@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/service-upstream: 'true'
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
   name: tableau-admin.${cluster_name}.${cluster_location}.bink.sh
-  namespace: tableau
+  namespace: datawarehouse
 spec:
   rules:
     - host: tableau-admin.${cluster_name}.${cluster_location}.bink.sh

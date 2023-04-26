@@ -6,11 +6,11 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
     nginx.ingress.kubernetes.io/enable-access-log: 'false'
-  name: tableau-admin.${cluster_name}.${cluster_location}.bink.sh-healthz
-  namespace: tableau
+  name: airbyte.${cluster_name}.${cluster_location}.bink.sh-healthz
+  namespace: datawarehouse
 spec:
   rules:
-    - host: tableau-admin.${cluster_name}.${cluster_location}.bink.sh
+    - host: airbyte.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /healthz
@@ -22,4 +22,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - tableau-admin.${cluster_name}.${cluster_location}.bink.sh
+        - airbyte.${cluster_name}.${cluster_location}.bink.sh
