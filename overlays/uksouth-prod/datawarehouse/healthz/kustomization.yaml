@@ -1,5 +1,5 @@
 resources:
-  - ../../../bases/infrastructure/healthz
+  - ../../../../bases/infrastructure/healthz
 
 namespace: datawarehouse
 
