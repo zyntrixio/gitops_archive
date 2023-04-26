@@ -6,7 +6,7 @@ namespace: default
 
 replicas:
   - name: asteria
-    count: 0
+    count: 1
 
 patches:
   - target:

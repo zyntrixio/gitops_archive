@@ -10,11 +10,11 @@ resources:
 
 replicas:
   - name: midas
-    count: 0
+    count: 3
   - name: midas-beat
-    count: 0
+    count: 3
   - name: midas-migrator
-    count: 0
+    count: 3
 
 namespace: default
 

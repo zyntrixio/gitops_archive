@@ -6,7 +6,7 @@ namespace: bpl
 
 replicas:
   - name: iris-api
-    count: 0
+    count: 3
 
 patches:
   - target:

@@ -8,7 +8,7 @@ namespace: default
 
 replicas:
   - name: atlas-api
-    count: 0
+    count: 3
 
 configMapGenerator:
   - name: atlas

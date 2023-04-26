@@ -5,7 +5,7 @@ resources:
 
 replicas:
   - name: plutus
-    count: 0
+    count: 1
 
 configMapGenerator:
   - name: plutus

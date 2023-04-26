@@ -24,7 +24,7 @@ resources:
 
 replicas:
   - name: harmonia
-    count: 0
+    count: 1
 
 namespace: default
 

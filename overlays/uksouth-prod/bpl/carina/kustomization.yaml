@@ -19,8 +19,6 @@ replicas:
     count: 3
   - name: carina-task-worker
     count: 3
-  - name: carina
-    count: 0
 
 patches:
   - target:

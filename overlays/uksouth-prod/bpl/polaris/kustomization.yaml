@@ -15,8 +15,6 @@ replicas:
     count: 3
   - name: polaris-task-worker
     count: 3
-  - name: polaris
-    count: 0
 
 configMapGenerator:
   - name: polaris

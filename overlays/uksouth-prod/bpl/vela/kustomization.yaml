@@ -14,8 +14,6 @@ replicas:
     count: 3 
   - name: vela-task-worker
     count: 3
-  - name: vela
-    count: 0
 
 configMapGenerator:
   - name: vela

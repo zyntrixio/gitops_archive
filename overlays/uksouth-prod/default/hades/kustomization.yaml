@@ -7,7 +7,7 @@ namespace: default
 
 replicas:
   - name: hades
-    count: 0
+    count: 3
 
 configMapGenerator:
   - name: hades

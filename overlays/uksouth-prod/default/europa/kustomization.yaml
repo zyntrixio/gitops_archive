@@ -12,7 +12,7 @@ configMapGenerator:
 
 replicas:
   - name: europa
-    count: 0
+    count: 3
 
 patches:
   - target:
