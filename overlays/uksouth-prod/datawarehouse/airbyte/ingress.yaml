@@ -18,7 +18,7 @@ spec:
               service:
                 name: airbyte
                 port:
-                  number: 80
+                  number: 8000
   tls:
     - hosts:
         - airbyte.${cluster_name}.${cluster_location}.bink.sh
