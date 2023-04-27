@@ -25,3 +25,13 @@ patches:
                     secretKeyRef:
                       key: url_snowstorm
                       name: azure-postgres
+                - name: storage_account_name
+                  valueFrom:
+                    secretKeyRef:
+                      key: account_name
+                      name: azure-storage
+                - name: storage_account_auth
+                  valueFrom:
+                    secretKeyRef:
+                      key: key_primary
+                      name: azure-storage

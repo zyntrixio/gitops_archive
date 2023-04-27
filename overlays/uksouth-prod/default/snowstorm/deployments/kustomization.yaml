@@ -35,6 +35,16 @@ patches:
                       secretKeyRef:
                         key: url_primary
                         name: azure-redis
+                  - name: storage_account_name
+                    valueFrom:
+                      secretKeyRef:
+                        key: account_name
+                        name: azure-storage
+                  - name: storage_account_auth
+                    valueFrom:
+                      secretKeyRef:
+                        key: key_primary
+                        name: azure-storage
   - target:
       kind: CronJob
     patch: |
@@ -62,3 +72,13 @@ patches:
                           secretKeyRef:
                             key: url_primary
                             name: azure-redis
+                      - name: storage_account_name
+                        valueFrom:
+                          secretKeyRef:
+                            key: account_name
+                            name: azure-storage
+                      - name: storage_account_auth
+                        valueFrom:
+                          secretKeyRef:
+                            key: key_primary
+                            name: azure-storage
