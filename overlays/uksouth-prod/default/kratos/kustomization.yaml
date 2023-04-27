@@ -5,5 +5,4 @@ resources:
   - service.yaml
   - deploy.yaml
   - ingress.yaml
-  - ingress-healthz.yaml
   - aad.yaml

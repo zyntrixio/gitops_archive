@@ -1,6 +1,0 @@
----
-resources:
-  - ingress.yaml
-  - ingress-healthz.yaml
-
-namespace: bpl

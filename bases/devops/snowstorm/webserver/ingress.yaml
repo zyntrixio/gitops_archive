@@ -19,13 +19,6 @@ spec:
                 name: snowstorm-webserver
                 port:
                   number: 80
-          - path: /healthz
-            pathType: Exact
-            backend:
-              service:
-                name: healthz
-                port:
-                  number: 80
   tls:
     - hosts:
         - stats.${cluster_name}.${cluster_location}.bink.sh

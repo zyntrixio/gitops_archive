@@ -1,6 +1,5 @@
 ---
 resources:
   - ingress.yaml
-  - ingress-healthz.yaml
 
 namespace: barclays-oat

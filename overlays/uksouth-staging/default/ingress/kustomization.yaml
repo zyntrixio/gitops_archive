@@ -3,6 +3,3 @@ resources:
   - ingress-api.yaml
   - ingress-policies.yaml
   - ingress-help.yaml
-  - ingress-api-healthz.yaml
-  - ingress-policies-healthz.yaml
-  - ingress-help-healthz.yaml

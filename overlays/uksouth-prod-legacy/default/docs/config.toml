@@ -1,8 +1,0 @@
-[general]
-"root_redirect_path" = "/v2"
-
-[routes]
-"v2" = "apiv2/staging.html"
-
-"appendix" = "extras/appendix.html"
-"changelog" = "extras/changelog.html"

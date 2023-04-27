@@ -1,8 +1,6 @@
 resources:
   - service.yaml
   - ingress-admin.yaml
-  - ingress-admin-healthz.yaml
   - ingress.yaml
-  - ingress-healthz.yaml
 
 namespace: datawarehouse

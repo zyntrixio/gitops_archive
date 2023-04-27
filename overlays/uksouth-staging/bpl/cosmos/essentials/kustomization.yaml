@@ -7,7 +7,6 @@ namespace: bpl
 resources:
   - aad.yaml
   - ingress.yaml
-  - ingress-healthz.yaml
 
 patches:
   - target:

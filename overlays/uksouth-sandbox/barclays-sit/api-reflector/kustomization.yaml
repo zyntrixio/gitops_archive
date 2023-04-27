@@ -4,7 +4,6 @@ bases:
 
 resources:
   - ingress.yaml
-  - ingress-healthz.yaml
 
 namespace: barclays-sit
 

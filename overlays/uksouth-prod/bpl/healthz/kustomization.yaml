@@ -1,9 +1,0 @@
----
-resources:
-  - ../../../../bases/infrastructure/healthz
-
-namespace: bpl
-
-replicas:
-  - name: healthz
-    count: 3
