@@ -5,6 +5,11 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "Host              $http_host";
+      more_set_headers "X-Real-IP         $remote_addr";
+      more_set_headers "X-Forwarded-Proto $scheme";
+      more_set_headers "X-Forwarded-For   $proxy_add_x_forwarded_for";
   name: asset-register.${cluster_name}.${cluster_location}.bink.sh
   namespace: default
 spec:
