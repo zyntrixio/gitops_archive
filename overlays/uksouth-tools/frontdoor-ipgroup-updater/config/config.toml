@@ -1,5 +1,0 @@
-application_id = "b26a9d99-0fcb-471e-aaab-9d266776b1e7"
-tenant_id = "a6e2367a-92ea-4e5a-b565-723830bcc095"
-subscription_id = "0add5c8e-50a6-4821-be0f-7a47c879b009"
-resource_group_name = "uksouth-firewall"
-ip_group_name = "frontdoor_backend_v4"
