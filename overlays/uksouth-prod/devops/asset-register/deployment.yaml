@@ -26,6 +26,8 @@ spec:
       labels:
         app: asset-register
     spec:
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
       containers:
         - name: app
           image: binkcore.azurecr.io/asset-register:latest
