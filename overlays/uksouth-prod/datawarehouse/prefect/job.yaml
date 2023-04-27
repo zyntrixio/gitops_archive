@@ -57,6 +57,7 @@ spec:
             - /bin/bash
             - -c
             - >-
+              sleep 10 &&
               make deploy-prod
           volumeMounts:
             - mountPath: /root/.prefect
@@ -69,6 +70,7 @@ spec:
             - /bin/bash
             - -c
             - >-
+              sleep 10 &&
               make deploy-prod
           volumeMounts:
             - mountPath: /root/.prefect
