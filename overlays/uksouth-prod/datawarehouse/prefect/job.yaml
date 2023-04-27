@@ -54,7 +54,10 @@ spec:
           workingDir: /app/data-warehouse/Prefect
           command: ["linkerd-await", "--shutdown", "--"]
           args:
-            - make deploy-prod
+            - /bin/bash
+            - -c
+            - >-
+              make deploy-prod
           volumeMounts:
             - mountPath: /root/.prefect
               name: config
@@ -63,7 +66,10 @@ spec:
           workingDir: /app/data-warehouse-dashboards/Prefect
           command: ["linkerd-await", "--shutdown", "--"]
           args:
-            - make deploy-prod
+            - /bin/bash
+            - -c
+            - >-
+              make deploy-prod
           volumeMounts:
             - mountPath: /root/.prefect
               name: config
