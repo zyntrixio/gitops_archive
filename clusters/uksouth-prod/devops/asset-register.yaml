@@ -6,8 +6,8 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/devops/asset-register
-  # dependsOn:
-  #   - name: linkerd-control-plane
+  dependsOn:
+    - name: linkerd-control-plane
   prune: true
   sourceRef:
     kind: GitRepository
@@ -27,7 +27,7 @@ metadata:
   namespace: flux-system
 spec:
   image: binkcore.azurecr.io/asset-register
-  interval: 1m0s
+  interval: 10m0s
   secretRef:
     name: binkcore.azurecr.io
 ---
