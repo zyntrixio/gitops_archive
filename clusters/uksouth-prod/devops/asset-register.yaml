@@ -6,8 +6,8 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/devops/asset-register
-  dependsOn:
-    - name: linkerd-control-plane
+  # dependsOn:
+  #   - name: linkerd-control-plane
   prune: true
   sourceRef:
     kind: GitRepository
