@@ -34,7 +34,8 @@ spec:
         component: server
     spec:
       initContainers:
-        - name: config_generator
+        - name: config
+          image: binkcore.azurecr.io/data-warehouse:latest
           command:
             - prefect
             - config
@@ -66,10 +67,10 @@ spec:
           resources:
             requests:
               cpu: 250m
-              memory: 4096mb
+              memory: 4096Mi
             limits:
               cpu: 2000m
-              memory: 4096mb
+              memory: 4096Mi
           ports:
             - containerPort: 4200
           volumeMounts:
