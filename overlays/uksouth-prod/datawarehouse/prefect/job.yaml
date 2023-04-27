@@ -11,6 +11,7 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
       labels:
         app: prefect
         component: jobs
@@ -49,7 +50,7 @@ spec:
             - mountPath: /root/.prefect
               name: config
       containers:
-        - name: setup-data-warehouse
+        - name: app
           image: binkcore.azurecr.io/data-warehouse:latest
           workingDir: /app/data-warehouse/Prefect
           command: ["linkerd-await", "--shutdown", "--"]
@@ -57,20 +58,9 @@ spec:
             - /bin/bash
             - -c
             - >-
-              sleep 10 &&
-              make deploy-prod
-          volumeMounts:
-            - mountPath: /root/.prefect
-              name: config
-        - name: setup-data-warehouse-dashboards
-          image: binkcore.azurecr.io/data-warehouse:latest
-          workingDir: /app/data-warehouse-dashboards/Prefect
-          command: ["linkerd-await", "--shutdown", "--"]
-          args:
-            - /bin/bash
-            - -c
-            - >-
-              sleep 10 &&
+              cd /app/data-warehouse/Prefect &&
+              make deploy-prod &&
+              cd /app/data-warehouse-dashboards/Prefect &&
               make deploy-prod
           volumeMounts:
             - mountPath: /root/.prefect
