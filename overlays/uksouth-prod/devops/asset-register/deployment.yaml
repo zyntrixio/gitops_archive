@@ -35,12 +35,13 @@ spec:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: azure-pgfs
-                  key: common_asset_register
+                  name: azure-postgres
+                  key: url_asset_register
           imagePullPolicy: Always
           resources:
             limits:
               memory: 256Mi
+              cpu: 1000m
             requests:
               cpu: 10m
               memory: 256Mi
@@ -59,8 +60,8 @@ spec:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: azure-pgfs
-                  key: common_asset_register
+                  name: azure-postgres
+                  key: url_asset_register
           resources:
             limits:
               memory: 512Mi

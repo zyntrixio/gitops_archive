@@ -5,11 +5,11 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
-  name: asset-register.${cluster_name}.${location}.bink.sh
+  name: asset-register.${cluster_name}.${cluster_location}.bink.sh
   namespace: default
 spec:
   rules:
-    - host: asset-register.${cluster_name}.${location}.bink.sh
+    - host: asset-register.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /
@@ -21,4 +21,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - asset-register.${cluster_name}.${location}.bink.sh
+        - asset-register.${cluster_name}.${cluster_location}.bink.sh
