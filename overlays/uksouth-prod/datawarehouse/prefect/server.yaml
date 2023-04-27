@@ -1,0 +1,80 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prefect-server
+  namespace: datawarehouse
+  labels:
+    app: prefect
+    component: server
+spec:
+  ports:
+    - port: 4200
+      protocol: TCP
+  selector:
+    app: prefect
+    component: server
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prefect-server
+  namespace: datawarehouse
+  labels:
+    app: prefect
+    component: server
+spec:
+  selector:
+    matchLabels:
+      app: prefect
+      component: server
+  template:
+    metadata:
+      labels:
+        app: prefect
+        component: server
+    spec:
+      initContainers:
+        - name: config_generator
+          command:
+            - prefect
+            - config
+            - set
+            - PREFECT_API_DATABASE_CONNECTION_URL="postgresql+asyncpg://$DATABASE_USER:$DATABASE_PASS@$DATABASE_HOST:5432/prefect"
+          env:
+            - name: DATABASE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: server_host
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: server_user
+            - name: DATABASE_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: server_pass
+          volumeMounts:
+            - mountPath: /root/.prefect
+              name: config
+      containers:
+        - name: api
+          image: binkcore.azurecr.io/data-warehouse:latest
+          command: ["prefect", "server", "start", "--host", "0.0.0.0", "--log-level", "WARNING"]
+          resources:
+            requests:
+              cpu: 250m
+              memory: 4096mb
+            limits:
+              cpu: 2000m
+              memory: 4096mb
+          ports:
+            - containerPort: 4200
+          volumeMounts:
+            - mountPath: /root/.prefect
+              name: config
+      volumes:
+        - name: config
+          emptyDir: {}
