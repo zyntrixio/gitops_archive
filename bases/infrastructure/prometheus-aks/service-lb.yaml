@@ -10,7 +10,7 @@ metadata:
   labels:
     app: prometheus
 spec:
-  loadBalancerIP: ${loadbalancer_ip}
+  loadBalancerIP: ${cluster_lb_ip}
   type: LoadBalancer
   selector:
     app: prometheus
