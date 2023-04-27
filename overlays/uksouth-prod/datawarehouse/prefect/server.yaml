@@ -36,11 +36,12 @@ spec:
       initContainers:
         - name: config
           image: binkcore.azurecr.io/data-warehouse:latest
-          command:
-            - prefect
-            - config
-            - set
-            - PREFECT_API_DATABASE_CONNECTION_URL=postgresql+asyncpg://$(DATABASE_USER):$(DATABASE_PASS)@$(DATABASE_HOST):5432/prefect
+          command: ["/bin/bash"]
+          args:
+            - -c
+            - >-
+              prefect config set PREFECT_API_DATABASE_CONNECTION_URL=postgresql+asyncpg://$(DATABASE_USER):$(DATABASE_PASS)@$(DATABASE_HOST):5432/prefect &&
+              prefect config set PREFECT_API_URL=http://0.0.0.0:4200/api
           env:
             - name: DATABASE_HOST
               valueFrom:
