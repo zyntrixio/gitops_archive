@@ -16,7 +16,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: prefect
+                name: prefect-server
                 port:
                   number: 4200
   tls:
