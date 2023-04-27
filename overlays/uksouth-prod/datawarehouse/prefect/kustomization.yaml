@@ -1,3 +1,4 @@
 resources:
   - server.yaml
+  - agent.yaml
   - ingress.yaml

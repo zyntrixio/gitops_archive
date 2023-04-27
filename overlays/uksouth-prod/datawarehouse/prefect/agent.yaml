@@ -1,40 +1,24 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: prefect-server
-  namespace: datawarehouse
-  labels:
-    app: prefect
-    component: server
-spec:
-  ports:
-    - port: 4200
-      protocol: TCP
-  selector:
-    app: prefect
-    component: server
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prefect-server
+  name: prefect-agents
   namespace: datawarehouse
   labels:
     app: prefect
-    component: server
+    component: agents
 spec:
   selector:
     matchLabels:
       app: prefect
-      component: server
+      component: agents
   template:
     metadata:
       annotations:
         linkerd.io/inject: enabled
-        kubectl.kubernetes.io/default-container: app
+        kubectl.kubernetes.io/default-container: bink-agent
       labels:
         app: prefect
-        component: server
+        component: agents
     spec:
       initContainers:
         - name: setup
@@ -44,7 +28,7 @@ spec:
             - -c
             - >-
               prefect config set PREFECT_API_DATABASE_CONNECTION_URL=postgresql+asyncpg://$(DATABASE_USER):$(DATABASE_PASS)@$(DATABASE_HOST):5432/prefect &&
-              prefect config set PREFECT_API_URL=https://prefect.gb.bink.com/api
+              prefect config set PREFECT_API_URL=http://prefect-server:4200/api
           env:
             - name: DATABASE_HOST
               valueFrom:
@@ -64,10 +48,36 @@ spec:
           volumeMounts:
             - mountPath: /root/.prefect
               name: config
-      containers:
-        - name: app
+        - name: setup-data-warehouse
           image: binkcore.azurecr.io/data-warehouse:latest
-          command: ["prefect", "server", "start", "--host", "0.0.0.0", "--log-level", "WARNING"]
+          workingDir: /app/data-warehouse/Prefect
+          command: ["linkerd-await", "--shutdown", "--"]
+          args:
+            - /bin/bash
+            - -c
+            - >-
+              sleep 10 &&
+              make deploy-prod
+          volumeMounts:
+            - mountPath: /root/.prefect
+              name: config
+        - name: setup-data-warehouse-dashboards
+          image: binkcore.azurecr.io/data-warehouse:latest
+          workingDir: /app/data-warehouse-dashboards/Prefect
+          command: ["linkerd-await", "--shutdown", "--"]
+          args:
+            - /bin/bash
+            - -c
+            - >-
+              sleep 10 &&
+              make deploy-prod
+          volumeMounts:
+            - mountPath: /root/.prefect
+              name: config
+      containers:
+        - name: bink-agent
+          image: binkcore.azurecr.io/data-warehouse:latest
+          args: ["prefect", "agent", "start", "-q", "prod-agent"]
           resources:
             requests:
               cpu: 250m
@@ -75,8 +85,19 @@ spec:
             limits:
               cpu: 2000m
               memory: 1024Mi
-          ports:
-            - containerPort: 4200
+          volumeMounts:
+            - mountPath: /root/.prefect
+              name: config
+        - name: default-agent
+          image: binkcore.azurecr.io/data-warehouse:latest
+          args: ["prefect", "agent", "start", "-q", "default"]
+          resources:
+            requests:
+              cpu: 250m
+              memory: 1024Mi
+            limits:
+              cpu: 2000m
+              memory: 1024Mi
           volumeMounts:
             - mountPath: /root/.prefect
               name: config
