@@ -1,0 +1,12 @@
+resources:
+  - ../../../../bases/infrastructure/healthz
+
+namespace: datawarehouse
+
+patches:
+  - target:
+      kind: ServiceProfile
+    patch: |
+      - op: replace
+        path: /metadata/name
+        value: healthz.tableau.svc.cluster.local

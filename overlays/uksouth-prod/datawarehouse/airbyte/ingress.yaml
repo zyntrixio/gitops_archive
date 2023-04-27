@@ -5,20 +5,20 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
-  name: tableau.${cluster_name}.${cluster_location}.bink.sh
-  namespace: tableau
+  name: airbyte.${cluster_name}.${cluster_location}.bink.sh
+  namespace: datawarehouse
 spec:
   rules:
-    - host: tableau.${cluster_name}.${cluster_location}.bink.sh
+    - host: airbyte.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: tableau
+                name: airbyte
                 port:
-                  number: 80
+                  number: 8000
   tls:
     - hosts:
-        - tableau.${cluster_name}.${cluster_location}.bink.sh
+        - airbyte.${cluster_name}.${cluster_location}.bink.sh
