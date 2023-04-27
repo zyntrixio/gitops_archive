@@ -14,7 +14,7 @@ spec:
     name: flux-system
   images:
     - name: binkcore.azurecr.io/asset-register
-      newTag: 2023-04-27T222400Z # {"$imagepolicy": "flux-system:asset-register:tag"}
+      newTag: 2023-04-27T223300Z # {"$imagepolicy": "flux-system:asset-register:tag"}
   postBuild:
     substituteFrom:
       - kind: ConfigMap
