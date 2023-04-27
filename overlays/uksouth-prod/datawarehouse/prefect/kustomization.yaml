@@ -3,3 +3,5 @@ resources:
   - agent.yaml
   - job.yaml
   - ingress.yaml
+
+namespace: datawarehouse
