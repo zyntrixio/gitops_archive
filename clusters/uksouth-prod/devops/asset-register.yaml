@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-prod/asset-register
+  path: ./overlays/uksouth-prod/devops/asset-register
   dependsOn:
     - name: linkerd-control-plane
   prune: true
