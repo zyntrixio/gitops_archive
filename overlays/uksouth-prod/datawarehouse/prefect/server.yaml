@@ -76,6 +76,8 @@ spec:
           volumeMounts:
             - mountPath: /root/.prefect
               name: config
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
       volumes:
         - name: config
           emptyDir: {}
