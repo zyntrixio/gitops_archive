@@ -23,13 +23,17 @@ spec:
           image: binkcore.azurecr.io/bridge:latest
           env:
             - name: CONNECTION_STRING
-              value: DefaultEndpointsProtocol=https;AccountName=binkuksouthprod;AccountKey=91n6awMXsn2TwMFuk18HZJFAbWalexuZR9CVwPO4xMPu0fBcnIkx4ejIUsiLF+8A/Y/Q3Km3ML+uJAsZlSU7Jw==;EndpointSuffix=core.windows.net
+              valueFrom:
+               secretKeyRef:
+                 name: azure-storage
+                 key: connection_string_primary
           ports:
             - containerPort: 6502
               name: http
           resources:
             limits:
               memory: 256Mi
+              cpu: 1000m
             requests:
               cpu: 10m
               memory: 256Mi

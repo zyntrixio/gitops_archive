@@ -6,11 +6,11 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
     nginx.ingress.kubernetes.io/proxy-body-size: 200m
-  name: bridge.${cluster_name}.${location}.bink.sh
+  name: bridge.${cluster_name}.${cluster_location}.bink.sh
   namespace: default
 spec:
   rules:
-    - host: bridge.${cluster_name}.${location}.bink.sh
+    - host: bridge.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /
@@ -22,4 +22,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - bridge.${cluster_name}.${location}.bink.sh
+        - bridge.${cluster_name}.${cluster_location}.bink.sh
