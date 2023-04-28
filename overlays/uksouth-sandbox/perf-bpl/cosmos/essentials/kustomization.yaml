@@ -2,7 +2,7 @@
 bases:
   - ../../../../../bases/cosmos/cosmos/essentials
 
-namespace: bpl
+namespace: perf-bpl
 
 resources:
   - aad.yaml
