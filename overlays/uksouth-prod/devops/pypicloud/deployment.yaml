@@ -27,7 +27,8 @@ spec:
         app: pypi
     spec:
       containers:
-        - image: binkcore.azurecr.io/pypicloud:1.3.12
+        - image: binkcore.azurecr.io/pypi:latest
+          command: ["uwsgi", "--die-on-term", "/etc/pypicloud/config.ini"]
           name: pypi
           ports:
             - containerPort: 8080
