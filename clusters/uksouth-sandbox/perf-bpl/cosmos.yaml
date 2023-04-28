@@ -34,7 +34,7 @@ spec:
   prune: true
   force: true
   dependsOn:
-  - name: bpl-cosmos-essentials
+  - name: perf-bpl-cosmos-essentials
   sourceRef:
     kind: GitRepository
     name: flux-system
