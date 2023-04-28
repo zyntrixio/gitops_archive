@@ -29,13 +29,24 @@ spec:
       containers:
         - image: binkcore.azurecr.io/pypicloud:1.3.12
           name: pypi
+          env:
+            - name: AZURE_STORAGE_ACCOUNT
+              valueFrom:
+                secretKeyRef:
+                  name: azure-storage
+                  key: account_name
+            - name: AZURE_STORAGE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: azure-storage
+                  key: key_primary
           ports:
             - containerPort: 8080
           livenessProbe:
             httpGet:
               path: /health
               port: 8080
-            initialDelaySeconds: 5
+            initialDelaySeconds: 60
             periodSeconds: 5
           imagePullPolicy: Always
           volumeMounts:
@@ -45,9 +56,10 @@ spec:
           resources:
             requests:
               cpu: 100m
-              memory: 2048Mi
+              memory: 4096Mi
             limits:
-              memory: 2048Mi
+              cpu: 4000m
+              memory: 4096Mi
       imagePullSecrets:
         - name: binkcore.azurecr.io
       dnsPolicy: ClusterFirst
