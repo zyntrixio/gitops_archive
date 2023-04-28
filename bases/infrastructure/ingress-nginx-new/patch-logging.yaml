@@ -17,3 +17,4 @@ data:
     "$http_x_azure_ref"}'
   server-tokens: 'false'
   enable-underscores-in-headers: 'true'
+  use-forwarded-headers: 'true'
