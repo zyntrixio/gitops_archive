@@ -28,14 +28,13 @@ spec:
     spec:
       containers:
         - image: binkcore.azurecr.io/pypi:latest
-          command: ["uwsgi", "/etc/pypicloud/config.ini"]
           name: pypi
           ports:
-            - containerPort: 8080
+            - containerPort: 6502
           livenessProbe:
             httpGet:
               path: /health
-              port: 8080
+              port: 6502
             initialDelaySeconds: 60
             periodSeconds: 5
           imagePullPolicy: Always
