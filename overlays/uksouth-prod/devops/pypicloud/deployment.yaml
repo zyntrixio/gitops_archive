@@ -1,0 +1,70 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pypi
+  name: pypi
+  namespace: default
+  annotations:
+    buoyant.cloud/excluded: 'true'
+spec:
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: pypi
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: pypi
+      labels:
+        app: pypi
+    spec:
+      containers:
+        - image: binkcore.azurecr.io/pypicloud:1.3.12
+          name: pypi
+          env:
+            - name: AZURE_STORAGE_ACCOUNT
+              valueForm:
+                secretKeyRef:
+                  - name: azure-storage
+                    key: account_name
+            - name: AZURE_STORAGE_KEY
+              valueForm:
+                secretKeyRef:
+                  - name: azure-storage
+                    key: key_primary
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: config
+              mountPath: /etc/pypicloud/
+              readOnly: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 4096Mi
+            limits:
+              cpu: 4000m
+              memory: 4096Mi
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      volumes:
+        - name: config
+          secret:
+            secretName: pypi-config

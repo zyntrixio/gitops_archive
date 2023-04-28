@@ -1,0 +1,13 @@
+---
+resources:
+  - namespace.yaml
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+
+namespace: devops
+
+secretGenerator:
+  - name: pypi-config
+    files:
+      - config/config.ini
