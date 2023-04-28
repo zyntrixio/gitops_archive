@@ -6,6 +6,9 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
     nginx.ingress.kubernetes.io/proxy-body-size: 200m
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header X-Forwarded-Host pypi.gb.bink.com;
+      proxy_set_header X-Forwarded-Proto https;
   name: pypi.${cluster_name}.${cluster_location}.bink.sh
   namespace: default
 spec:
