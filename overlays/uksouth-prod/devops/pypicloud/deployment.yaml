@@ -29,17 +29,6 @@ spec:
       containers:
         - image: binkcore.azurecr.io/pypicloud:1.3.12
           name: pypi
-          env:
-            - name: AZURE_STORAGE_ACCOUNT
-              valueFrom:
-                secretKeyRef:
-                  name: azure-storage
-                  key: account_name
-            - name: AZURE_STORAGE_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: azure-storage
-                  key: key_primary
           ports:
             - containerPort: 8080
           livenessProbe:
