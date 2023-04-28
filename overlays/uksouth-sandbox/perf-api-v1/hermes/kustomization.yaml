@@ -64,10 +64,35 @@ patches:
                       secretKeyRef:
                         name: azure-storage-perf-api-v1
                         key: connection_string
-                  - name: HERMES_DATABASE_URL_BARE
+                  - name: HERMES_DATABASE_URL
                     valueFrom:
                       secretKeyRef:
                         name: azure-pgfs
                         key: common_perf_api_v1_hermes
-                  - name: HERMES_DATABASE_URL
-                    value: $(HERMES_DATABASE_URL_BARE)&application_name=hermes
+  - target:
+      kind: Deployment
+      name: hermes-api
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: SENTRY_SAMPLE_RATE
+          value: "0.5"
+  - target:
+      kind: Deployment
+      name: hermes-celery
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: SENTRY_SAMPLE_RATE
+          value: "0.01"
+  - target:
+      kind: Deployment
+      name: hermes-beat
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: SENTRY_SAMPLE_RATE
+          value: "0.00"
