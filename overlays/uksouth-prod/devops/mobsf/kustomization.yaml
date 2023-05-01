@@ -1,0 +1,9 @@
+---
+resources:
+  - deployment.yaml
+  - auth-secret.yaml
+  - ingress.yaml
+  - service.yaml
+  - pvc.yaml
+
+namespace: devops

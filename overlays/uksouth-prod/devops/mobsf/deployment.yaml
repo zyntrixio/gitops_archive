@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mobsf
+  labels:
+    app: mobsf
+  namespace: default
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mobsf
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+      labels:
+        app: mobsf
+    spec:
+      initContainers:
+        - name: chown
+          command: [chown, -R, 9901:9901, /mobsf]
+          image: docker.io/alpine:3
+          volumeMounts:
+            - name: mobsf
+              mountPath: /mobsf/
+      containers:
+        - name: app
+          command:
+            - tail
+            - -f
+            - /dev/null
+          image: docker.io/opensecurity/mobile-security-framework-mobsf:v3.6.0
+          ports:
+            - containerPort: 8000
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 2Gi
+            requests:
+              cpu: 10m
+              memory: 2Gi
+          volumeMounts:
+            - name: mobsf
+              mountPath: /home/mobsf/.MobSF
+      volumes:
+        - name: mobsf
+          persistentVolumeClaim:
+            claimName: mobsf
