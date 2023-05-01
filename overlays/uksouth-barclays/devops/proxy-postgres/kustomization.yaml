@@ -1,0 +1,27 @@
+---
+bases:
+  - ../../../../bases/infrastructure/simpleproxy
+
+namespace: devops
+
+commonLabels:
+  app: proxy-postgres
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: proxy-postgres
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/args
+        value:
+          - -L
+          - 0.0.0.0:5432
+          - -R
+          - uksouth-barclays-19o1.postgres.database.azure.com:5432
+          - -v
