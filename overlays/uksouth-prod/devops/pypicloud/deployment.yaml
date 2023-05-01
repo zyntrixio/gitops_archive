@@ -29,6 +29,17 @@ spec:
       containers:
         - image: binkcore.azurecr.io/pypi:latest
           name: pypi
+          env:
+            - name: AZURE_STORAGE_ACCOUNT
+              valueFrom:
+                secretKeyRef:
+                  key: account_name
+                  name: azure-storage
+            - name: AZURE_STORAGE_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: key_primary
+                  name: azure-storage
           ports:
             - containerPort: 6502
           readinessProbe:
