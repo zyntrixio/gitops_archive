@@ -7,7 +7,11 @@ resources:
 
 namespace: devops
 
-secretGenerator:
-  - name: pypi-config
+replicas:
+  - name: pypi
+    count: 3
+
+configMapGenerator:
+  - name: pypi
     files:
       - config/config.ini

@@ -31,12 +31,19 @@ spec:
           name: pypi
           ports:
             - containerPort: 6502
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 6502
+            initialDelaySeconds: 10
+            periodSeconds: 5
           livenessProbe:
             httpGet:
               path: /health
               port: 6502
             initialDelaySeconds: 60
-            periodSeconds: 5
+            periodSeconds: 300
+            failureThreshold: 3
           imagePullPolicy: Always
           volumeMounts:
             - name: config
@@ -44,16 +51,16 @@ spec:
               readOnly: true
           resources:
             requests:
-              cpu: 100m
-              memory: 4096Mi
+              cpu: 10m
+              memory: 256Mi
             limits:
-              cpu: 4000m
-              memory: 4096Mi
+              cpu: 2000m
+              memory: 256Mi
       imagePullSecrets:
         - name: binkcore.azurecr.io
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       volumes:
         - name: config
-          secret:
-            secretName: pypi-config
+          configMap:
+            name: pypi
