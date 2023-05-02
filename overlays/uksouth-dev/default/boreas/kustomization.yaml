@@ -1,7 +1,6 @@
 ---
 resources:
   - ../../../../bases/olympus/boreas/api
-  - ../../../../bases/olympus/boreas/consumer-dlx
   - aad.yaml
 
 configMapGenerator:
