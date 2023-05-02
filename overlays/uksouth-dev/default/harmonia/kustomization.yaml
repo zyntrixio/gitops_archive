@@ -1,11 +1,12 @@
 ---
-bases:
+resources:
   - ../../../../bases/olympus/harmonia/api
   - ../../../../bases/olympus/harmonia/export-agent-iceland-bonus-card
   - ../../../../bases/olympus/harmonia/export-retry-worker
   - ../../../../bases/olympus/harmonia/export-worker
   - ../../../../bases/olympus/harmonia/import-agent-amex-auth
   - ../../../../bases/olympus/harmonia/import-agent-amex-settlement
+  - ../../../../bases/olympus/harmonia/import-agent-costa
   - ../../../../bases/olympus/harmonia/import-agent-iceland-bonus-card
   - ../../../../bases/olympus/harmonia/import-agent-mastercard-auth
   - ../../../../bases/olympus/harmonia/import-agent-mastercard-settled
@@ -20,8 +21,6 @@ bases:
   - ../../../../bases/olympus/harmonia/streaming-worker
   - ../../../../bases/olympus/harmonia/purgedb
   - ../../../../bases/olympus/harmonia/migrator
-
-resources:
   - aad.yaml
 
 configMapGenerator:
