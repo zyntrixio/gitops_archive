@@ -1,0 +1,21 @@
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: hermes
+  namespace: olympus
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+spec:
+  type: 0
+  resourceID: /subscriptions/64678f82-1a1b-4096-b7e9-41b1bdcdc024/resourcegroups/uksouth-retail/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-retail-hermes
+  clientID: f0173b59-6675-46f0-847a-789e450296b1
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: hermes
+  namespace: olympus
+spec:
+  azureIdentity: hermes
+  selector: hermes

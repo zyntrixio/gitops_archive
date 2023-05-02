@@ -1,0 +1,48 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: midas
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-barclays/olympus/midas
+  prune: true
+  dependsOn:
+    - name: linkerd-control-plane
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
+  images:
+    - name: ghcr.io/binkhq/midas
+      newName: ghcr.io/binkhq/midas
+      newTag: 0.7.0 # {"$imagepolicy": "flux-system:barclays-midas:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: midas
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/midas
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: barclays-midas
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: midas
+  filterTags:
+    pattern: staging-(?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    semver:
+      range: '>0.1.0'

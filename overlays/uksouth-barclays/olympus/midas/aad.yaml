@@ -1,0 +1,21 @@
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: midas-identity
+  namespace: olympus
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+spec:
+  type: 0
+  resourceID: /subscriptions/64678f82-1a1b-4096-b7e9-41b1bdcdc024/resourcegroups/uksouth-barclays/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-barclays-midas
+  clientID: 9148be5a-8e68-4968-a60d-e6ecb9754b90
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: midas-identity-binding
+  namespace: olympus
+spec:
+  azureIdentity: midas-identity
+  selector: midas

@@ -1,0 +1,48 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: hades
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-lloyds/olympus/hades
+  prune: true
+  dependsOn:
+    - name: linkerd-control-plane
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
+  images:
+    - name: ghcr.io/binkhq/hades
+      newName: ghcr.io/binkhq/hades
+      newTag: 0.7.0 # {"$imagepolicy": "flux-system:lloyds-hades:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: hades
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/hades
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: lloyds-hades
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: hades
+  filterTags:
+    pattern: staging-(?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    semver:
+      range: '>0.1.0'
