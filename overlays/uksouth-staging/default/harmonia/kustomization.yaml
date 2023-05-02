@@ -6,6 +6,7 @@ bases:
   - ../../../../bases/olympus/harmonia/export-worker
   - ../../../../bases/olympus/harmonia/import-agent-amex-auth
   - ../../../../bases/olympus/harmonia/import-agent-amex-settlement
+  - ../../../../bases/olympus/harmonia/import-agent-costa
   - ../../../../bases/olympus/harmonia/import-agent-iceland-bonus-card
   - ../../../../bases/olympus/harmonia/import-agent-mastercard-auth
   - ../../../../bases/olympus/harmonia/import-agent-mastercard-settled
