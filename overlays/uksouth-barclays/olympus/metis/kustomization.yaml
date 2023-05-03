@@ -1,7 +1,7 @@
 ---
 resources:
-  - ../../../bases/olympus/metis/api
-  - ../../../bases/olympus/metis/celery
+  - ../../../../bases/olympus/metis/api
+  - ../../../../bases/olympus/metis/celery
 
 namespace: olympus
 

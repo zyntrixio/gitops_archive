@@ -1,7 +1,7 @@
 ---
 resources:
-  - ../../../bases/olympus/hades/api
-  - ../../../bases/olympus/hades/migrator
+  - ../../../../bases/olympus/hades/api
+  - ../../../../bases/olympus/hades/migrator
 
 namespace: olympus
 

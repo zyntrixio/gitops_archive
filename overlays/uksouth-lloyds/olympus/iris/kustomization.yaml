@@ -1,6 +1,6 @@
 ---
 resources:
-  - ../../../bases/olympus/iris
+  - ../../../../bases/olympus/iris
 
 namespace: olympus
 

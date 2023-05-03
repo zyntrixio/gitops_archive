@@ -1,6 +1,6 @@
 ---
 bases:
-  - ../../../bases/olympus/angelia
+  - ../../../../bases/olympus/angelia
 
 resources:
   - aad.yaml

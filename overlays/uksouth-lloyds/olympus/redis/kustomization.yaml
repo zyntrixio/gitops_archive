@@ -1,5 +1,5 @@
 ---
 resources:
-  - ../../../bases/infrastructure/redis
+  - ../../../../bases/infrastructure/redis
 
 namespace: olympus

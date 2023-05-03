@@ -1,11 +1,11 @@
 ---
 resources:
-  - ../../../bases/olympus/hermes/core
-  - ../../../bases/olympus/hermes/api
-  - ../../../bases/olympus/hermes/beat
-  - ../../../bases/olympus/hermes/celery
-  - ../../../bases/olympus/hermes/migrator
-  - ../../../bases/olympus/hermes/logic
+  - ../../../../bases/olympus/hermes/core
+  - ../../../../bases/olympus/hermes/api
+  - ../../../../bases/olympus/hermes/beat
+  - ../../../../bases/olympus/hermes/celery
+  - ../../../../bases/olympus/hermes/migrator
+  - ../../../../bases/olympus/hermes/logic
   - aad.yaml
 
 namespace: olympus

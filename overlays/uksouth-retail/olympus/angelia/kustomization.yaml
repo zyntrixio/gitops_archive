@@ -1,6 +1,6 @@
 ---
 resources:
-  - ../../../bases/olympus/angelia
+  - ../../../../bases/olympus/angelia
   - aad.yaml
 
 namespace: olympus

@@ -1,6 +1,6 @@
 ---
 resources:
-  - ../../../bases/oss/api-reflector
+  - ../../../../bases/oss/api-reflector
 namespace: olympus
 
 configMapGenerator:

@@ -1,6 +1,6 @@
 ---
 resources:
-  - ../../../bases/oss/callbacca
+  - ../../../../bases/oss/callbacca
   - aad.yaml
 
 namespace: olympus

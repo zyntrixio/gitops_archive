@@ -1,6 +1,6 @@
 ---
 resources:
-  - ../../../bases/olympus/pelops
+  - ../../../../bases/olympus/pelops
 
 namespace: olympus
 
