@@ -1,0 +1,23 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: flux-system
+  namespace: flux-system
+spec:
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  git:
+    checkout:
+      ref:
+        branch: master
+    commit:
+      author:
+        email: support@weave.works
+        name: Flux Weave
+      messageTemplate: '[ci skip] {{range .Updated.Images}}{{println .}}{{end}}'
+  interval: 1m0s
+  update:
+    strategy: Setters
+    path: ./clusters/uksouth-retail
