@@ -10,7 +10,7 @@ metadata:
   namespace: olympus
 spec:
   rules:
-    - host: reflector.${cluster_name}.${location}.bink.sh
+    - host: reflector.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /
