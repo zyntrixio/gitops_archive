@@ -34,3 +34,8 @@ patches:
                       secretKeyRef:
                         name: azure-postgres
                         key: url_europa
+                  - name: KEYVAULT_URI
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault

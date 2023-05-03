@@ -41,3 +41,8 @@ patches:
                       secretKeyRef:
                         name: azure-postgres
                         key: url_midas
+                  - name: VAULT_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault

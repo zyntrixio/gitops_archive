@@ -49,3 +49,8 @@ patches:
                         key: url_hermes
                   - name: HERMES_DATABASE_URL
                     value: $(HERMES_DATABASE_URL_BARE)&application_name=hermes
+                  - name: VAULT_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault
