@@ -117,6 +117,122 @@ spec:
                 name: pelops
                 port:
                   number: 80
+
+# v2 Stuff
+
+          - path: /v2/wallet
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/add
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/add_and_authorise
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/[0-9]+/authorise
+            pathType: Prefix
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/add_and_register
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/[0-9]+/register
+            pathType: Prefix
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/join
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/[0-9]+/join
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_cards/[0-9]+
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_plans
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_plans/[0-9]+
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/loyalty_plans/[0-9]+/journey_fields
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/me
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/payment_accounts
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/payment_accounts/[0-9]+
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/token
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+
   tls:
     - hosts:
         - api.${cluster_name}.${cluster_location}.bink.sh
