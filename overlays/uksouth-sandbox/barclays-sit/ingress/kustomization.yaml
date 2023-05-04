@@ -1,5 +1,0 @@
----
-resources:
-  - ingress.yaml
-
-namespace: barclays-sit
