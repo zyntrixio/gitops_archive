@@ -14,7 +14,7 @@ replicas:
   - name: midas-beat
     count: 3
   - name: midas-migrator
-    count: 3
+    count: 1
 
 namespace: default
 
