@@ -6,6 +6,9 @@ metadata:
   namespace: rabbitmq
 spec:
   rabbitmq:
+    additionalConfig: |
+      default_user=guest
+      default_pass=guest
     additionalPlugins:
       - rabbitmq_shovel
       - rabbitmq_shovel_management
