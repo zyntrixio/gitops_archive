@@ -15,7 +15,8 @@ message_sender = SendingService(
 
 
 def to_midas(message: Message) -> None:
-    if message.metadata["loyalty_plan"] == "iceland-bonus-card":
+    if message.metadata["loyalty-plan"] == "iceland-bonus-card":
+        print("Iceland Bonus Card detected, implementing hack hold")
         message_sender.send(message.body, message.metadata, f"{settings.MIDAS_QUEUE_NAME}-hold")
     else:
         message_sender.send(message.body, message.metadata, settings.MIDAS_QUEUE_NAME)
