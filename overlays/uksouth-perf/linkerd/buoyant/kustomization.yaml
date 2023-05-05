@@ -1,0 +1,16 @@
+resources:
+  - ../../../../bases/linkerd/buoyant
+
+patches:
+  - target:
+      kind: HelmRelease
+      name: linkerd-buoyant
+    patch: |-
+      - op: add
+        path: /spec/values
+        value:
+          metadata:
+            agentName: uksouth-perf
+          api:
+            clientID: gf15lobqAKKXfUZA
+            clientSecret: 22dec155a64cbef68697457cbc0e0a6ec520543561ddaa3e6e836f97c956ab5b

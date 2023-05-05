@@ -1,0 +1,21 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: linkerd-buoyant
+  namespace: flux-system
+spec:
+  interval: 120m
+  path: ./overlays/uksouth-perf/linkerd/buoyant
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  dependsOn:
+    - name: linkerd-control-plane
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: linkerd-buoyant
+      namespace: buoyant-cloud
+  timeout: 5m
