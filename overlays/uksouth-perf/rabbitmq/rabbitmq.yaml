@@ -1,0 +1,33 @@
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata:
+  name: rabbitmq
+  namespace: rabbitmq
+spec:
+  rabbitmq:
+    additionalPlugins:
+      - rabbitmq_shovel
+      - rabbitmq_shovel_management
+  replicas: 3
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 26G
+    limits:
+      cpu: 4000m
+      memory: 26G
+  tolerations:
+    - key: app
+      operator: Equal
+      value: rabbitmq
+      effect: NoSchedule
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: agentpool
+                operator: In
+                values:
+                  - rabbitmq
