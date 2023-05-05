@@ -1,0 +1,21 @@
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+spec:
+  type: 0
+  resourceID: /subscriptions/c49c2fde-9e7d-41c6-ac61-f85f9fa51416/resourcegroups/uksouth-perf/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-perf-cert-manager
+  clientID: 2b53e722-ffd4-4c9f-b60a-69cdab736754
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+spec:
+  azureIdentity: cert-manager
+  selector: cert-manager
