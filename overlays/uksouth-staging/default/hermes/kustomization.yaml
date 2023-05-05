@@ -20,6 +20,9 @@ configMapGenerator:
   - name: hermes
     envs:
       - env.ini
+  - name: hermes-hacks
+    files:
+      - hacks/midas_messaging.py
 
 patches:
   - target:
@@ -32,8 +35,19 @@ patches:
       spec:
         template:
           spec:
+            volumes:
+              - name: hacks
+                configMap:
+                  name: hermes-hacks
+                  items:
+                    - key: midas_messaging.py
+                      path: midas_messaging.py
             containers:
               - name: app
+                volumeMounts:
+                  - name: hacks
+                    mountPath: /app/api_messaging/midas_messaging.py
+                    subPath: midas_messaging.py
                 envFrom:
                   - configMapRef:
                       name: hermes
