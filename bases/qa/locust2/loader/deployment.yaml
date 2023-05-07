@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-loader
+  namespace: default
+  labels:
+    app: locust
+    component: loader
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: locust
+      component: loader
+  template:
+    metadata:
+      labels:
+        app: locust
+        component: loader
+        azure.workload.identity/use: "true"
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+    spec:
+      containers:
+        - command: ["linkerd-await", "--"]
+          args: ["tail", "-f", "/dev/null"]
+          image: binkcore.azurecr.io/ubiquity-performance:latest
+          imagePullPolicy: Always
+          name: app
+          resources:
+            limits:
+              memory: 8192Mi
+            requests:
+              memory: 8192Mi
+          volumeMounts:
+            - mountPath: /app/tsv
+              name: store
+      volumes:
+        - name: store
+          persistentVolumeClaim:
+            claimName: locust-loader
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+      serviceAccountName: locust

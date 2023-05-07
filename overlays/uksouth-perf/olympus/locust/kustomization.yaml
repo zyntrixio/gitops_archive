@@ -1,0 +1,39 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - patches/core
+  - patches/loader
+  - patches/api-v1
+  - patches/api-v2
+namespace: olympus
+configMapGenerator:
+  - name: locust
+    envs:
+      - env.ini
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: locust
+      - op: replace
+        path: /spec/template/spec/containers/0/env
+        value:
+          - name: DB_CONNECTION_URI
+            valueFrom:
+              secretKeyRef:
+                name: azure-postgres
+                key: url_postgres
+          - name: VAULT_URL
+            valueFrom:
+              secretKeyRef:
+                name: azure-keyvault
+                key: url
+          - name: REDIS_URL
+            valueFrom:
+              secretKeyRef:
+                name: azure-redis
+                key: url_primary

@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-controller
+  namespace: default
+  labels:
+    app: locust
+    component: controller
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: locust
+      component: controller
+  template:
+    metadata:
+      labels:
+        app: locust
+        component: controller
+        azure.workload.identity/use: "true"
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+    spec:
+      containers:
+        - command: ["linkerd-await", "--"]
+          args: ["tail", "-f", "/dev/null"]
+          image: binkcore.azurecr.io/ubiquity-performance:latest
+          imagePullPolicy: Always
+          name: app
+          ports:
+            - containerPort: 5557
+              name: api
+            - containerPort: 8089
+              name: webui
+          resources:
+            limits:
+              memory: 1024Mi
+            requests:
+              memory: 1024Mi
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
+      priorityClassName: bink-high-component
+      serviceAccountName: locust
