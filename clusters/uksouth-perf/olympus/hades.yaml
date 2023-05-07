@@ -1,48 +1,44 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: locust
+  name: olympus-hades
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-perf/olympus/locust
+  path: ./overlays/uksouth-perf/olympus/hades
   prune: true
   dependsOn:
-  - name: linkerd-control-plane
+    - name: linkerd-control-plane
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/ubiquity-performance
-    newName: binkcore.azurecr.io/ubiquity-performance
-    newTag: 2023-05-02-125420 # {"$imagepolicy": "flux-system:locust:tag"}
-  postBuild:
-    substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
+    - name: binkcore.azurecr.io/hades
+      newName: binkcore.azurecr.io/hades
+      newTag: staging-2.8.0 # {"$imagepolicy": "flux-system:hades:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
-  name: locust
+  name: hades
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: locust
+    name: hades
   filterTags:
-    pattern: (?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$
+    pattern: staging-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: '>0.0.1'
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
-  name: locust
+  name: hades
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/ubiquity-performance
+  image: binkcore.azurecr.io/hades
   interval: 1m0s
   secretRef:
     name: binkcore.azurecr.io

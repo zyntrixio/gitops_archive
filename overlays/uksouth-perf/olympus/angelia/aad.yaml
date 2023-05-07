@@ -1,0 +1,21 @@
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: angelia
+  namespace: default
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+spec:
+  type: 0
+  resourceID: /subscriptions/c49c2fde-9e7d-41c6-ac61-f85f9fa51416/resourcegroups/uksouth-perf/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-perf-angelia
+  clientID: 14380306-a344-4cf3-86d6-0c319bd1e7a2
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: angelia
+  namespace: default
+spec:
+  azureIdentity: angelia
+  selector: angelia

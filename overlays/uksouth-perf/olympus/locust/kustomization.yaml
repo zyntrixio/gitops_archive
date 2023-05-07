@@ -5,6 +5,7 @@ resources:
   - patches/loader
   - patches/api-v1
   - patches/api-v2
+  - ingress.yaml
 namespace: olympus
 configMapGenerator:
   - name: locust

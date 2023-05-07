@@ -1,0 +1,102 @@
+---
+bases:
+  - ../../../../bases/olympus/hermes/core
+  - ../../../../bases/olympus/hermes/api
+  - ../../../../bases/olympus/hermes/celery
+  - ../../../../bases/olympus/hermes/migrator
+  - ../../../../bases/olympus/hermes/logic
+
+namespace: olympus
+
+resources:
+  - aad.yaml
+
+configMapGenerator:
+  - name: hermes
+    envs:
+      - env.ini
+
+replicas:
+  - name: hermes-celery
+    count: 4
+  - name: hermes-logic
+    count: 4
+
+patches:
+  - target:
+      kind: Deployment
+      name: hermes-api
+    patch: |-
+      - op: remove
+        path: /spec/template/spec/containers/0/livenessProbe
+      - op: remove
+        path: /spec/template/spec/containers/0/readinessProbe
+  - target:
+      kind: ServiceProfile
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: hermes-api.olympus.svc.cluster.local
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: hermes
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: hermes
+                env:
+                  - name: HERMES_BLOB_STORAGE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-storage
+                        key: connection_string_primary
+                  - name: HERMES_DATABASE_URL
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-postgres
+                        key: url_hermes
+                  - name: REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-redis
+                        key: url_primary
+                  - name: VAULT_URL
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-keyvault
+                        key: url
+  - target:
+      kind: Deployment
+      name: hermes-api
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: SENTRY_SAMPLE_RATE
+          value: "0.5"
+  - target:
+      kind: Deployment
+      name: hermes-celery
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: SENTRY_SAMPLE_RATE
+          value: "0.01"
+  - target:
+      kind: Deployment
+      name: hermes-beat
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: SENTRY_SAMPLE_RATE
+          value: "0.01"

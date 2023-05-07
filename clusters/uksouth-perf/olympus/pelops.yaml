@@ -1,36 +1,33 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: locust
+  name: olympus-pelops
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-perf/olympus/locust
-  prune: true
+  path: ./overlays/uksouth-perf/olympus/pelops
   dependsOn:
-  - name: linkerd-control-plane
+    - name: aad-pod-identity
+    - name: linkerd-control-plane
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/ubiquity-performance
-    newName: binkcore.azurecr.io/ubiquity-performance
-    newTag: 2023-05-02-125420 # {"$imagepolicy": "flux-system:locust:tag"}
-  postBuild:
-    substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
+    - name: binkcore.azurecr.io/pelops
+      newName: binkcore.azurecr.io/pelops
+      newTag: 2022-12-15T171524Z # {"$imagepolicy": "flux-system:pelops:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
-  name: locust
+  name: pelops
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: locust
+    name: pelops
   filterTags:
-    pattern: (?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
     extract: $ts
   policy:
     alphabetical:
@@ -39,10 +36,10 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
-  name: locust
+  name: pelops
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/ubiquity-performance
+  image: binkcore.azurecr.io/pelops
   interval: 1m0s
   secretRef:
     name: binkcore.azurecr.io

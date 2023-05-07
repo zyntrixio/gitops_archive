@@ -1,0 +1,25 @@
+---
+bases:
+  - ../../../../bases/olympus/pelops
+
+namespace: olympus
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: pelops
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: REDIS_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-redis
+                        key: url_primary

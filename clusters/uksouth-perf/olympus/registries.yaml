@@ -1,0 +1,14 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: registries-olympus
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./bases/registries
+  prune: true
+  targetNamespace: olympus
+  sourceRef:
+    kind: GitRepository
+    name: flux-system

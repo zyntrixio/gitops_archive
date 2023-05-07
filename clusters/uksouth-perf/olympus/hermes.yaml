@@ -1,21 +1,22 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: locust
+  name: olympus-hermes
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-perf/olympus/locust
-  prune: true
+  path: ./overlays/uksouth-perf/olympus/hermes
   dependsOn:
+  - name: aad-pod-identity
   - name: linkerd-control-plane
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/ubiquity-performance
-    newName: binkcore.azurecr.io/ubiquity-performance
-    newTag: 2023-05-02-125420 # {"$imagepolicy": "flux-system:locust:tag"}
+  - name: binkcore.azurecr.io/hermes
+    newName: binkcore.azurecr.io/hermes
+    newTag: perf-2023-04-28T120702Z # {"$imagepolicy": "flux-system:hermes:tag"}
   postBuild:
     substituteFrom:
       - kind: ConfigMap
@@ -24,13 +25,13 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
-  name: locust
+  name: hermes
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: locust
+    name: hermes
   filterTags:
-    pattern: (?P<ts>\d{4}-\d{2}-\d{2}-\d{6})$
+    pattern: perf-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
     extract: $ts
   policy:
     alphabetical:
@@ -39,10 +40,10 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
-  name: locust
+  name: hermes
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/ubiquity-performance
+  image: binkcore.azurecr.io/hermes
   interval: 1m0s
   secretRef:
     name: binkcore.azurecr.io

@@ -1,0 +1,38 @@
+---
+bases:
+  - ../../../../bases/olympus/metis/api
+  - ../../../../bases/olympus/metis/celery
+
+namespace: olympus
+
+configMapGenerator:
+  - name: metis
+    envs:
+      - env.ini
+
+replicas:
+  - name: metis-api
+    count: 5
+
+patches:
+  - target:
+      kind: ServiceProfile
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: metis-api.olympus.svc.cluster.local
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: metis
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: metis
