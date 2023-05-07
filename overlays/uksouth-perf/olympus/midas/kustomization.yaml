@@ -1,13 +1,11 @@
 ---
-bases:
+resources:
   - ../../../../bases/olympus/midas/api
   - ../../../../bases/olympus/midas/beat
   - ../../../../bases/olympus/midas/celery
   - ../../../../bases/olympus/midas/consumer
   - ../../../../bases/olympus/midas/migrator
   - ../../../../bases/olympus/midas/worker
-
-resources:
   - aad.yaml
 
 namespace: olympus

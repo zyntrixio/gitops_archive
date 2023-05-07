@@ -1,12 +1,10 @@
 ---
-bases:
+resources:
   - ../../../../bases/olympus/europa/api
   - ../../../../bases/olympus/europa/migrator
+  - aad.yaml
 
 namespace: olympus
-
-resources:
-  - aad.yaml
 
 configMapGenerator:
   - name: europa

@@ -1,15 +1,14 @@
 ---
-bases:
+resources:
   - ../../../../bases/olympus/hermes/core
   - ../../../../bases/olympus/hermes/api
   - ../../../../bases/olympus/hermes/celery
   - ../../../../bases/olympus/hermes/migrator
   - ../../../../bases/olympus/hermes/logic
+  - aad.yaml
+  - ingress.yaml
 
 namespace: olympus
-
-resources:
-  - aad.yaml
 
 configMapGenerator:
   - name: hermes
