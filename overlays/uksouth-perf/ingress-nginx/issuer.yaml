@@ -1,0 +1,19 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: acme-azuredns-bink-sh
+  namespace: ingress-nginx
+spec:
+  acme:
+    email: onlineservices@bink.com
+    privateKeySecretRef:
+      name: acme-azuredns-bink-sh
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+      - dns01:
+          azureDNS:
+            subscriptionID: 0add5c8e-50a6-4821-be0f-7a47c879b009
+            resourceGroupName: uksouth-dns
+            hostedZoneName: bink.sh
+            environment: AzurePublicCloud
