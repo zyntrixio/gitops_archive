@@ -4,7 +4,7 @@ kind: Service
 metadata:
   labels:
     app: locust
-    role: controller
+    component: controller
   name: locust-controller
   namespace: default
 spec:
@@ -15,5 +15,5 @@ spec:
       port: 8089
   selector:
     app: locust
-    role: controller
+    component: controller
   type: ClusterIP
