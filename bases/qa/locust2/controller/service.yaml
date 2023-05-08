@@ -11,8 +11,6 @@ spec:
   ports:
     - name: api
       port: 5557
-    - name: zmq
-      port: 5558
     - name: ui
       port: 8089
   selector:
