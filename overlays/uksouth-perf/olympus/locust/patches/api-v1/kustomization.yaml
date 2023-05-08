@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../../../../../../bases/qa/locust2/controller
   - ../../../../../../bases/qa/locust2/worker
+  - ingress.yaml
 nameSuffix: -v1
 commonLabels:
   api: v1
