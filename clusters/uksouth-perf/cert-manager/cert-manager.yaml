@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-prod/cert-manager
+  path: ./overlays/uksouth-perf/cert-manager
   dependsOn:
     - name: aad-pod-identity
   prune: true
