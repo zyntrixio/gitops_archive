@@ -1,0 +1,58 @@
+---
+resources:
+  - github.com/binkhq/postgres-to-azureblob/deploy
+
+namespace: backups
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: add
+        path: /metadata/annotations/buoyant.cloud~1excluded
+        value: "true"
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: harmonia-hourly
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: replace
+        path: /spec/schedule
+        value: "0 * * * *"
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: replace
+        path: /spec/suspend
+        value: false
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env
+        value:
+          - name: blob_storage_connection_string
+            valueFrom:
+              secretKeyRef:
+                key: connection_string_primary
+                name: azure-storage
+          - name: blob_storage_container
+            value: backups
+          - name: blob_storage_path_prefix
+            value: hourly
+          - name: psql_connection_string
+            valueFrom:
+              secretKeyRef:
+                key: url_harmonia
+                name: azure-postgres
+          - name: redis_url
+            valueFrom:
+              secretKeyRef:
+                key: url_primary
+                name: azure-redis
+          - name: leader_election_enabled
+            value: 'true'
