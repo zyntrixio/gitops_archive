@@ -15,7 +15,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/kratos
       newName: binkcore.azurecr.io/kratos
-      newTag: 2023-05-09T170232Z # {"$imagepolicy": "flux-system:uksouth-prod-kratos:tag"}
+      newTag: 2023-05-09T173222Z # {"$imagepolicy": "flux-system:uksouth-prod-kratos:tag"}
   postBuild:
     substituteFrom:
       - kind: ConfigMap
