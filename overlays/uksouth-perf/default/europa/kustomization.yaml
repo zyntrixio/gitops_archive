@@ -4,7 +4,7 @@ resources:
   - ../../../../bases/olympus/europa/migrator
   - aad.yaml
 
-namespace: olympus
+namespace: default
 
 configMapGenerator:
   - name: europa
