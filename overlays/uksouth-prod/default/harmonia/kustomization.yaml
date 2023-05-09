@@ -123,7 +123,7 @@ patches:
                 args: ["tximport", "--agent", "wasabi-club", "--no-user-input", "--quiet"]
                 resources:
                   limits:
-                    memory: 5Gi
+                    memory: 1Gi
                   requests:
-                    memory: 5Gi
+                    memory: 1Gi
             priorityClassName: bink-low-tasks
