@@ -26,6 +26,13 @@ spec:
                 name: kratos
                 port:
                   number: 80
+          - path: /givex
+            pathType: Prefix
+            backend:
+              service:
+                name: kratos
+                port:
+                  number: 80
   tls:
     - hosts:
         - kratos.${cluster_name}.${cluster_location}.bink.sh
