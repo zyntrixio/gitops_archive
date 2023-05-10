@@ -1,0 +1,44 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: hermes-pcui-endpoint-mock
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-perf/txm/hermes-pcui-endpoint-mock
+  prune: true
+  dependsOn:
+    - name: linkerd-control-plane
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/hermes-pcui-endpoint-mock
+      newName: binkcore.azurecr.io/hermes-pcui-endpoint-mock
+      newTag: 2022-11-09T151357Z # {"$imagepolicy": "flux-system:hermes-pcui-endpoint-mock:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: hermes-pcui-endpoint-mock
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: hermes-pcui-endpoint-mock
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: hermes-pcui-endpoint-mock
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/hermes-pcui-endpoint-mock
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io

@@ -1,0 +1,21 @@
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: harmonia
+  namespace: default
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+spec:
+  type: 0
+  resourceID: /subscriptions/c49c2fde-9e7d-41c6-ac61-f85f9fa51416/resourcegroups/uksouth-perf/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-perf-harmonia
+  clientID: d543a76f-0522-4204-86eb-b1c20523502b
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: harmonia
+  namespace: default
+spec:
+  azureIdentity: harmonia
+  selector: harmonia
