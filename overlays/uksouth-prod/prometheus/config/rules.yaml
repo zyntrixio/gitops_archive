@@ -256,7 +256,7 @@ groups:
         expr: (increase(blobstorage_files_total{name="wasabihack"}[46m]) or on() vector(0)) < 1 and ON() hour() > 13 < 23
         for: 3m
         labels:
-          severity: S2
+          severity: p2
           cluster: prod
           resolve: false
         annotations:
