@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-prod/datawarehouse/prefect
+  path: ./overlays/uksouth-staging/datawarehouse/prefect
   dependsOn:
     - name: ingress-nginx
   prune: true
@@ -20,7 +20,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/data-warehouse
       newName: binkcore.azurecr.io/data-warehouse
-      newTag: 2023-04-27T181815Z # {"$imagepolicy": "flux-system:uksouth-prod-data-warehouse:tag"}
+      newTag: 2023-04-27T181815Z # {"$imagepolicy": "flux-system:uksouth-staging-data-warehouse:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
@@ -36,13 +36,13 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
-  name: uksouth-prod-data-warehouse
+  name: uksouth-staging-data-warehouse
   namespace: flux-system
 spec:
   imageRepositoryRef:
     name: data-warehouse
   filterTags:
-    pattern: prod-(?P<ts>\d+(\.\d+)*)$
+    pattern: staging-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     alphabetical:

@@ -1,0 +1,69 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: prefect-builds
+  namespace: datawarehouse
+  labels:
+    app: prefect
+    component: jobs
+spec:
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: prefect
+        component: jobs
+    spec:
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
+      volumes:
+        - name: config
+          emptyDir: {}
+      initContainers:
+        - name: setup
+          image: binkcore.azurecr.io/data-warehouse:latest
+          command: ["/bin/bash"]
+          args:
+            - -c
+            - >-
+              prefect config set PREFECT_API_DATABASE_CONNECTION_URL=postgresql+asyncpg://$(DATABASE_USER):$(DATABASE_PASS)@$(DATABASE_HOST):5432/prefect &&
+              prefect config set PREFECT_API_URL=http://prefect-server:4200/api
+          env:
+            - name: DATABASE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: server_host
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: server_user
+            - name: DATABASE_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: server_pass
+          volumeMounts:
+            - mountPath: /root/.prefect
+              name: config
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/data-warehouse:latest
+          workingDir: /app/data-warehouse/Prefect
+          command: ["linkerd-await", "--shutdown", "--"]
+          args:
+            - /bin/bash
+            - -c
+            - >-
+              cd /app/data-warehouse/Prefect &&
+              make deploy-dev &&
+              cd /app/data-warehouse-dashboards/Prefect &&
+              make deploy-dev
+          volumeMounts:
+            - mountPath: /root/.prefect
+              name: config
+      restartPolicy: Never
+  backoffLimit: 4
