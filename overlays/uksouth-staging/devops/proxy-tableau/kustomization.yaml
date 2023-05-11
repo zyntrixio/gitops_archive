@@ -1,0 +1,27 @@
+---
+bases:
+  - ../../../../bases/infrastructure/simpleproxy
+
+namespace: devops
+
+commonLabels:
+  app: proxy-tableau
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: proxy-tableau
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/args
+        value:
+          - -L
+          - 0.0.0.0:2222
+          - -R
+          - 10.31.131.4:22
+          - -v

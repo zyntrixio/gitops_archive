@@ -1,0 +1,17 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: proxy-tableau
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-staging/devops/proxy-tableau
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: ghcr.io/binkhq/simpleproxy
+      newName: ghcr.io/binkhq/simpleproxy
+      newTag: latest
