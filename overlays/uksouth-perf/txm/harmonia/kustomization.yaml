@@ -58,7 +58,7 @@ patches:
                     valueFrom:
                       secretKeyRef:
                         name: azure-postgres
-                        key: harmonia
+                        key: url_harmonia
                   - name: TXM_REDIS_URL
                     valueFrom:
                       secretKeyRef:
