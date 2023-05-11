@@ -42,7 +42,7 @@ spec:
   imageRepositoryRef:
     name: data-warehouse
   filterTags:
-    pattern: prod-(?P<ts>\d+(\.\d+)*)$
+    pattern: staging-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     alphabetical:
