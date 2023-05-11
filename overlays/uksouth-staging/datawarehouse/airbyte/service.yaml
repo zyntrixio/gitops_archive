@@ -16,6 +16,6 @@ metadata:
   namespace: datawarehouse
 subsets:
   - addresses:
-      - ip: 10.11.131.4
+      - ip: 10.31.131.4
     ports:
       - port: 8000

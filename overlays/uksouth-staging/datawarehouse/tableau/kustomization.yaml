@@ -1,0 +1,6 @@
+resources:
+  - service.yaml
+  - ingress-admin.yaml
+  - ingress.yaml
+
+namespace: datawarehouse
