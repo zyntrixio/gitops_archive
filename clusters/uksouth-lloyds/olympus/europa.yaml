@@ -19,7 +19,7 @@ spec:
   images:
     - name: ghcr.io/binkhq/europa
       newName: ghcr.io/binkhq/europa
-      newTag: 0.7.0 # {"$imagepolicy": "flux-system:lloyds-europa:tag"}
+      newTag: staging-1.6.3 # {"$imagepolicy": "flux-system:lloyds-europa:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
