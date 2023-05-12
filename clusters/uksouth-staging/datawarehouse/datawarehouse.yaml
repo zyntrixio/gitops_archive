@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: dwh-prefect
+  name: dwh
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-staging/datawarehouse/prefect
+  path: ./overlays/uksouth-staging/datawarehouse
   dependsOn:
     - name: ingress-nginx
   prune: true
