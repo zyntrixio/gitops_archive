@@ -1,5 +1,0 @@
-resources:
-  - service.yaml
-  - ingress.yaml
-
-namespace: datawarehouse
