@@ -2,7 +2,7 @@
 bases:
   - ../../../../bases/qa/hermes-pcui-endpoint-mock
 
-namespace: txm
+namespace: olympus
 
 replicas:
   - name: hermes-pcui-endpoint-mock-api

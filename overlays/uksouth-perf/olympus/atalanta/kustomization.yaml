@@ -11,7 +11,7 @@ resources:
   - ../../../../bases/retailer/atalanta/transactors/viator
   - ../../../../bases/retailer/atalanta/transactors/wasabi
 
-namespace: perf-txm-e2e
+namespace: olympus
 
 configMapGenerator:
   - name: atalanta

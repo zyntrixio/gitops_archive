@@ -30,7 +30,7 @@ configMapGenerator:
     envs:
       - env.ini
 
-namespace: txm
+namespace: olympus
 
 patches:
   - target:

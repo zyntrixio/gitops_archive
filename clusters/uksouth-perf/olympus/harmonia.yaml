@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-perf/txm/harmonia
+  path: ./overlays/uksouth-perf/olympus/harmonia
   dependsOn:
   - name: aad-pod-identity
   prune: true

@@ -13,7 +13,7 @@ patches:
     patch: |
       - op: replace
         path: /spec/jobTemplate/spec/template/spec/containers/0/args
-        value: [ cargo, run, --bin, distributor ]
+        value: [ distributor ]
       - op: replace
         path: /spec/schedule
         value: "*/15 * * * *"

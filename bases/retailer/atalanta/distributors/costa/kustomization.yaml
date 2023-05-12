@@ -13,4 +13,4 @@ patches:
     patch: |
       - op: replace
         path: /spec/template/spec/containers/0/args
-        value: [ cargo, run, --bin, distributor ]
+        value: [ distributor ]
