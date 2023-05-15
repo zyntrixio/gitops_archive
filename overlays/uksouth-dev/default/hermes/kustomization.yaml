@@ -20,6 +20,12 @@ configMapGenerator:
 patches:
   - target:
       kind: Deployment
+      name: hermes-api
+    patch: |
+      - op: remove
+        path: /spec/template/spec/containers/0/args
+  - target:
+      kind: Deployment
     patch: |-
       apiVersion: apps/v1
       kind: Deployment
