@@ -22,8 +22,13 @@ patches:
       kind: Deployment
       name: hermes-api
     patch: |
-      - op: remove
+      - op: replace
         path: /spec/template/spec/containers/0/args
+        value: [
+          "gunicorn", "--workers=2", "--error-logfile=-", "--access-logfile=-",
+          "--bind=0.0.0.0:9000", "--logger-class=hermes.reporting.CustomGunicornLogger",
+          "hermes.wsgi"
+        ]
   - target:
       kind: Deployment
     patch: |-
