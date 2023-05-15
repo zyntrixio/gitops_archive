@@ -16,7 +16,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: boreas
+                name: boreas-api
                 port:
                   number: 80
   tls:
