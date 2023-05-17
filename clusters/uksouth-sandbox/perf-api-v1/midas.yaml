@@ -16,4 +16,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/midas
       newName: binkcore.azurecr.io/midas
-      newTag: staging-3.40.4 # {"$imagepolicy": "flux-system:perf-midas:tag"}
+      newTag: staging-3.40.5 # {"$imagepolicy": "flux-system:perf-midas:tag"}
