@@ -19,7 +19,7 @@ spec:
   images:
     - name: ghcr.io/binkhq/metis
       newName: ghcr.io/binkhq/metis
-      newTag: staging-1.28.2 # {"$imagepolicy": "flux-system:lloyds-metis:tag"}
+      newTag: staging-1.29.0 # {"$imagepolicy": "flux-system:lloyds-metis:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
