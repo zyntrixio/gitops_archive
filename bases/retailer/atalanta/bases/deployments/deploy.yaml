@@ -34,7 +34,10 @@ spec:
                       values:
                         - atalanta
                 topologyKey: topology.kubernetes.io/zone
-      volumes: []
+      volumes:
+        - name: locust
+          persistentVolumeClaim:
+            claimName: locust-loader
       containers:
         - image: binkcore.azurecr.io/atalanta:latest
           securityContext:
@@ -44,12 +47,18 @@ spec:
           name: app
           command: [linkerd-await, --]
           args: []
-          volumeMounts: []
+          volumeMounts:
+            - mountPath: /mnt/locust
+              name: locust
           env:
             - name: AMQP_DSN
               value: amqp://guest:guest@rabbitmq.rabbitmq:5672/
-            - name: CONFIG_PATH
+            - name: CONFIG_FILE_PATH
               value: /app/config.toml
+            - name: MIDS_FILE_PATH
+              value: /app/mids.csv
+            - name: TOKENS_FILE_PATH
+              value: /mnt/locust/harmonia_token_to_slug.csv
           resources:
             limits:
               memory: 128Mi

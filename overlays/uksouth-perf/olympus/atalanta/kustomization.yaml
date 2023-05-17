@@ -21,6 +21,7 @@ configMapGenerator:
       - config/visa-auth.toml
       - config/visa-settlement.toml
       - config/wasabi.toml
+      - config/mids.csv
 
 patches:
   - target:
@@ -32,6 +33,12 @@ patches:
           name: config
           configMap:
             name: atalanta
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/volumeMounts/-
+        value:
+          mountPath: /app/mids.csv
+          subPath: mids.csv
+          name: config
   - target:
       kind: Deployment
     patch: |
@@ -41,6 +48,12 @@ patches:
           name: config
           configMap:
             name: atalanta
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts/-
+        value:
+          mountPath: /app/mids.csv
+          subPath: mids.csv
+          name: config
   - target:
       labelSelector: entity=costa
     patch: |
