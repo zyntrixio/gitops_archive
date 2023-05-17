@@ -1,0 +1,44 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: pyqa-portal
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-staging/portal/pyqa-portal
+  dependsOn:
+  - name: aad-pod-identity
+  - name: linkerd-control-plane
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/portal-rf-automation
+    newTag: 2023-04-11T121957Z # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-portal:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: pyqa-portal
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/portal-rf-automation
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: uksouth-staging-pyqa-portal
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: pyqa-portal
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc
