@@ -44,7 +44,7 @@ spec:
                   name: data
             - name: app
               command: [linkerd-await, --]
-              args: ["bash", "-c", "robot -d /tmp/reports . && echo $? > /tmp/status.txt || true"]
+              args: ["bash", "-c", "robot -d /tmp . && echo $? > /tmp/status.txt || true"]
               image: binkcore.azurecr.io/portal-rf-automation:latest
               volumeMounts:
                 - mountPath: /tmp
