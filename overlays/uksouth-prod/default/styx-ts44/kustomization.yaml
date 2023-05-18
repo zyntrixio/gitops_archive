@@ -20,3 +20,7 @@ patches:
               secretKeyRef:
                 name: azure-redis
                 key: url_primary
+          - name: vault_url_storage
+            value: https://uksouth-prod-qj46.vault.azure.net/
+          - name: vault_url_sftp
+            value: https://uksouth-prod-qj46.vault.azure.net/
