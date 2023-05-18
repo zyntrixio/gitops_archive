@@ -15,7 +15,7 @@ spec:
     name: flux-system
   images:
   - name: binkcore.azurecr.io/portal-rf-automation
-    newTag: 2023-05-18T132424Z # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-portal:tag"}
+    newTag: 2023-05-18T142548Z # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-portal:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
