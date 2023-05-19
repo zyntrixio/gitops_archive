@@ -16,7 +16,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/atalanta
       newName: binkcore.azurecr.io/atalanta
-      newTag: 2023-05-19T142035Z # {"$imagepolicy": "flux-system:atalanta:tag"}
+      newTag: 2023-05-19T145101Z # {"$imagepolicy": "flux-system:atalanta:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
