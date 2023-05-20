@@ -2,7 +2,9 @@
 "root_redirect_path" = "/v2"
 
 [routes]
-"v2" = "apiv2/staging.html"
+"v1.2" = "wallet/1.2.html"
+"v1.3" = "wallet/1.3.html"
+"v2" = "wallet/2.0.html"
 
 "extras/appendix" = "extras/appendix.html"
 "extras/changelog" = "extras/changelog.html"

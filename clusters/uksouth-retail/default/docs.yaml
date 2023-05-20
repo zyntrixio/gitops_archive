@@ -42,7 +42,7 @@ spec:
   imageRepositoryRef:
     name: docs
   filterTags:
-    pattern: retail-(?P<ts>\d+(\.\d+)*)$
+    pattern: retail-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:

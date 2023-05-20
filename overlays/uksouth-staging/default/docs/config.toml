@@ -2,9 +2,9 @@
 "root_redirect_path" = "/v2"
 
 [routes]
-"v1.2" = "apiv1/1.2.html"
-"v1.3" = "apiv1/1.3.html"
-"v2" = "apiv2/staging.html"
+"v1.2" = "wallet/1.2.html"
+"v1.3" = "wallet/1.3.html"
+"v2" = "wallet/2.0.html"
 "bpl" = "bpl/index.html"
 "portal" = "portal/index.html"
 "transaction" = "merchant/retail_transaction_api.html"

@@ -42,7 +42,7 @@ spec:
   imageRepositoryRef:
     name: docs
   filterTags:
-    pattern: barclays-(?P<ts>\d+(\.\d+)*)$
+    pattern: barclays-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:

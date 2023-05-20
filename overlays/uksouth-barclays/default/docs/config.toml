@@ -1,9 +1,10 @@
 [general]
-"root_redirect_path" = "/banking"
+"root_redirect_path" = "/v2"
 
 [routes]
-"banking" = "apiv2/sandbox-banking.html"
-"retail" = "apiv2/sandbox-retail.html"
+"v1.2" = "wallet/1.2.html"
+"v1.3" = "wallet/1.3.html"
+"v2" = "wallet/2.0.html"
 "transaction" = "merchant/retail_transaction_api.html"
 
 "appendix" = "extras/appendix.html"

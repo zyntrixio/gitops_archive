@@ -42,7 +42,7 @@ spec:
   imageRepositoryRef:
     name: docs
   filterTags:
-    pattern: lloyds-(?P<ts>\d+(\.\d+)*)$
+    pattern: lloyds-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:
