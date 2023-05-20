@@ -41,7 +41,7 @@ spec:
   imageRepositoryRef:
     name: docs
   filterTags:
-    pattern: prod-v(?P<ts>\d+(\.\d+)*)$
+    pattern: production-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:
