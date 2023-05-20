@@ -28,7 +28,7 @@ spec:
               mountPath: /pvc
       containers:
         - name: grafana
-          image: docker.io/grafana/grafana-oss:9.2.4
+          image: docker.io/grafana/grafana-oss:9.5.2
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
