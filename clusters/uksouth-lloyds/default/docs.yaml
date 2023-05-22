@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/docs
     newName: binkcore.azurecr.io/docs
-    newTag: lloyds-v1.0.0 # {"$imagepolicy": "flux-system:docs:tag"}
+    newTag: lloyds-v1.0.1 # {"$imagepolicy": "flux-system:docs:tag"}
   postBuild:
     substituteFrom:
     - kind: ConfigMap
