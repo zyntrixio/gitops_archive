@@ -21,6 +21,7 @@ configMapGenerator:
       - config/visa-auth.toml
       - config/visa-settlement.toml
       - config/wasabi.toml
+      - config/viator.toml
       - config/mids.csv
 
 patches:
