@@ -1,6 +1,6 @@
 ---
 bases:
-  - github.com/kubernetes/ingress-nginx/deploy/static/provider/cloud?ref=controller-v1.7.0
+  - github.com/kubernetes/ingress-nginx/deploy/static/provider/cloud?ref=controller-v1.7.1
 
 replicas:
   - name: ingress-nginx-controller
