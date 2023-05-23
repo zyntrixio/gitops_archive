@@ -61,10 +61,10 @@ spec:
               value: /mnt/locust/harmonia_token_to_slug.csv
           resources:
             limits:
-              memory: 128Mi
+              memory: 256Mi
             requests:
               cpu: 10m
-              memory: 128Mi
+              memory: 256Mi
       serviceAccountName: atalanta
       imagePullSecrets:
         - name: binkcore.azurecr.io
