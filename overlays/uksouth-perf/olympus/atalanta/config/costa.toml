@@ -7,4 +7,4 @@ percentage = [['visa', 100], ['mastercard', 0], ['amex', 0]]
 batch_size = 1
 
 [sender.API]
-url = "http://boreas/costa/transactions"
+url = "http://boreas-api/costa/transactions"
