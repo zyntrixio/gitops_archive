@@ -61,7 +61,7 @@ spec:
               value: /mnt/locust/harmonia_token_to_slug.csv
           resources:
             limits:
-              memory: 256Mi
+              memory: 384Mi
             requests:
               cpu: 10m
               memory: 256Mi
