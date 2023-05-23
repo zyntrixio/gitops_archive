@@ -1,0 +1,49 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: boreas
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-perf/olympus/boreas
+  dependsOn:
+  - name: aad-pod-identity
+  - name: linkerd-control-plane
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: cluster-vars
+  images:
+  - name: binkcore.azurecr.io/boreas
+    newName: binkcore.azurecr.io/boreas
+    newTag: staging-v0.0.7 # {"$imagepolicy": "flux-system:boreas:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: boreas
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/boreas
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: uksouth-staging-boreas
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: boreas
+  filterTags:
+    pattern: staging-v(?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc
