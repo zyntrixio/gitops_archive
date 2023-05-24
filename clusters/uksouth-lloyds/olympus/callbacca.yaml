@@ -19,7 +19,7 @@ spec:
   images:
     - name: ghcr.io/binkhq/callbacca
       newName: ghcr.io/binkhq/callbacca
-      newTag: 0.7.0 # {"$imagepolicy": "flux-system:lloyds-callbacca:tag"}
+      newTag: 0.7.0 # {"$imagepolicy": "flux-system:callbacca:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
@@ -28,21 +28,21 @@ metadata:
   namespace: flux-system
 spec:
   image: binkcore.azurecr.io/callbacca
-  interval: 1m0s
+  interval: 20m0s
   secretRef:
     name: binkcore.azurecr.io
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
-  name: lloyds-callbacca
+  name: callbacca
   namespace: flux-system
 spec:
   imageRepositoryRef:
     name: callbacca
   filterTags:
-    pattern: staging-(?P<ts>\d+(\.\d+)*)$
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
     extract: $ts
   policy:
-    semver:
-      range: '>0.1.0'
+    alphabetical:
+      order: asc
