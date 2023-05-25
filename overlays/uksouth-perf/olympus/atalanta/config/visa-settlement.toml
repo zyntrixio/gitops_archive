@@ -3,4 +3,4 @@ routing_key = "transactions.visa.*"
 batch_size = 1
 
 [sender.API]
-url = "http://api-reflector/mock/auth_transactions/visa"
+url = "http://zephyrus-api/auth_transactions/visa"
