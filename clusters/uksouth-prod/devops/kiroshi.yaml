@@ -15,7 +15,7 @@ spec:
     name: flux-system
   images:
     - name: binkcore.azurecr.io/kiroshi
-      newTag: 2023-04-23T140455Z # {"$imagepolicy": "flux-system:kiroshi:tag"}
+      newTag: 2023-05-25T115313Z # {"$imagepolicy": "flux-system:kiroshi:tag"}
   postBuild:
     substituteFrom:
       - kind: ConfigMap
