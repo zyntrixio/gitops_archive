@@ -37,6 +37,8 @@ patches:
               secretKeyRef:
                 key: url_primary
                 name: azure-redis
+          - name: secret_store
+            value: /mnt/secrets
   - target:
       kind: Job
     patch: |
