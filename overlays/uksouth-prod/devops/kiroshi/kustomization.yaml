@@ -9,6 +9,12 @@ namespace: devops
 
 patches:
   - target:
+      kind: SecretProviderClass
+    patch: |
+      - op: replace
+        path: /spec/parameters/clientID
+        value: c0c883a1-19f1-48ba-ade2-889a109278d2
+  - target:
       kind: ServiceAccount
     patch: |
       - op: add
