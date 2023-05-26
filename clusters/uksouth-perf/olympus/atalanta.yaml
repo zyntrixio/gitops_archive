@@ -16,13 +16,13 @@ spec:
   images:
     - name: binkcore.azurecr.io/atalanta
       newName: binkcore.azurecr.io/atalanta
-      newTag: 2023-05-26T112529Z # {"$imagepolicy": "flux-system:atalanta:tag"}
+      newTag: 2023-05-26T151001Z # {"$imagepolicy": "flux-system:atalanta:tag"}
   postBuild:
     substituteFrom:
-    - kind: Secret
-      name: azure-identities
-    - kind: Secret
-      name: azure-keyvault
+      - kind: Secret
+        name: azure-identities
+      - kind: Secret
+        name: azure-keyvault
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
