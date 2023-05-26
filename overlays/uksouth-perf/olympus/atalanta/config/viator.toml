@@ -1,5 +1,5 @@
 transactions_per_second = 1
-provider_slug = "viator"
+provider_slug = "bpl-viator"
 amount_min = 5000
 amount_max = 50000
 percentage = [['visa', 100], ['mastercard', 0], ['amex', 0]]
