@@ -9,7 +9,7 @@ nameSuffix: -transactor-squaremeal
 
 patches:
   - target:
-      kind: Deployments
+      kind: Deployment
     patch: |
       - op: replace
         path: /spec/template/spec/containers/0/args
