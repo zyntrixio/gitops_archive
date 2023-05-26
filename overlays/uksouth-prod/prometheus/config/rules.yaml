@@ -253,16 +253,16 @@ groups:
           resource: '{{ $labels.slug }}'
           summary: There has been an increase of 5 in failed logins in 10 mins
 
-      # - alert: Files not received - wasabi
-      #   expr: (increase(blobstorage_files_total{name="wasabihack"}[46m]) or on() vector(0)) < 1 and ON() hour() > 13 < 23
-      #   for: 3m
-      #   labels:
-      #     severity: p2
-      #     cluster: prod
-      #     resolve: false
-      #   annotations:
-      #     resource: '{{ $labels.name }}'
-      #     summary: Three missing files over 45 minute period - check latest Wasabi import (Transaction log lands every 15 minutes between the hours of 1pm and 11pm)
+      - alert: Files not received - wasabi
+        expr: (increase(blobstorage_files_total{name="wasabihack"}[46m]) or on() vector(0)) < 1 and ON() hour() > 13 < 23
+        for: 3m
+        labels:
+          severity: p2
+          cluster: prod
+          resolve: false
+        annotations:
+          resource: '{{ $labels.name }}'
+          summary: Three missing files over 45 minute period - check latest Wasabi import (Transaction log lands every 15 minutes between the hours of 1pm and 11pm)
 
 # Alerts for the state of our certificates
   - name: Certificates
