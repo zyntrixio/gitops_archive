@@ -39,6 +39,12 @@ spec:
             - name: locust
               persistentVolumeClaim:
                 claimName: locust-loader
+            - name: keyvault
+              csi:
+                driver: secrets-store.csi.k8s.io
+                readOnly: true
+                volumeAttributes:
+                  secretProviderClass: atalanta
           containers:
             - name: app
               command: [linkerd-await, --shutdown, --]
@@ -47,6 +53,8 @@ spec:
               volumeMounts:
                 - mountPath: /mnt/locust/
                   name: locust
+                - mountPath: /mnt/secrets
+                  name: keyvault
               imagePullPolicy: Always
               env:
                 - name: AMQP_DSN

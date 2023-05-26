@@ -9,5 +9,6 @@ batch_size = 10000
 [sender.SFTP]
 host = "sftp.gb.bink.com"
 port = 22
-username = "binktest_dev"
+username = "binktest_perf"
 upload_path = "uploads"
+key_file_path = "/mnt/secrets/atalanta-sftp-key"
