@@ -16,7 +16,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/atalanta
       newName: binkcore.azurecr.io/atalanta
-      newTag: 2023-05-26T153143Z # {"$imagepolicy": "flux-system:atalanta:tag"}
+      newTag: 2023-05-30T133646Z # {"$imagepolicy": "flux-system:atalanta:tag"}
   postBuild:
     substituteFrom:
       - kind: Secret
