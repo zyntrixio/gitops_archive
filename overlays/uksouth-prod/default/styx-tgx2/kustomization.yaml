@@ -15,12 +15,10 @@ patches:
         value:
           - name: mode
             value: TGX2
-          - name: redis_url
+          - name: storage_connection_string
             valueFrom:
               secretKeyRef:
-                name: azure-redis
-                key: url_primary
-          - name: vault_url_storage
-            value: https://uksouth-prod-qj46.vault.azure.net/
-          - name: vault_url_sftp
+                name: azure-storage
+                key: connection_string_primary
+          - name: vault_url
             value: https://uksouth-prod-qj46.vault.azure.net/
