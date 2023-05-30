@@ -17,4 +17,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/styx
       newName: binkcore.azurecr.io/styx
-      newTag: 2023-02-20T212336Z # {"$imagepolicy": "flux-system:uksouth-prod-styx:tag"}
+      newTag: 2023-05-30T142148Z # {"$imagepolicy": "flux-system:uksouth-prod-styx:tag"}
