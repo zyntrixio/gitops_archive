@@ -5,7 +5,7 @@ dbname = "bullsquid"
 domain = "https://bink.eu.auth0.com/"
 
 [txm]
-base_url = "http://harmonia-api"
+base_url = "http://harmonia-api.default"
 api_key = "F616CE5C88744DD52DB628FAD8B3D"
 
 [sentry]
