@@ -1,0 +1,66 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: backup
+  namespace: backups
+  labels:
+    app: backup
+spec:
+  schedule: "0 * * * *"
+  jobTemplate:
+    metadata:
+      labels:
+        app: backup
+    spec:
+      template:
+        metadata:
+          labels:
+            app: backup
+          annotations:
+            kubectl.kubernetes.io/default-container: pgdump
+        spec:
+          initContainers:
+            - name: mkdir
+              image: docker.io/ubuntu:latest
+              command: ["/bin/bash", "-c"]
+              args: ["mkdir -p /mnt/backups/$(date +'%Y/%m/%d/%H00')"]
+              volumeMounts:
+                - name: backups
+                  mountPath: /mnt/backups
+              imagePullPolicy: IfNotPresent
+          containers:
+            - name: pgdump
+              image: docker.io/postgres:14
+              imagePullPolicy: IfNotPresent
+              command: ["/bin/bash", "-c"]
+              args: ["pg_dump -Fc > /mnt/backups/$(date +'%Y/%m/%d/%H00')/$(date +'%FT%H%M%SZ')-$PGDATABASE.sql"]
+              env:
+                - name: PGHOST
+                  valueFrom:
+                    secretKeyRef:
+                      key: server_host
+                      name: azure-postgres
+                - name: PGPORT
+                  value: "5432"
+                - name: PGUSER
+                  valueFrom:
+                    secretKeyRef:
+                      key: server_user
+                      name: azure-postgres
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: server_pass
+                      name: azure-postgres
+                - name: PGSSLMODE
+                  value: require
+              volumeMounts:
+                - name: backups
+                  mountPath: /mnt/backups
+          volumes:
+            - name: backups
+              persistentVolumeClaim:
+                claimName: backups
+          restartPolicy: Never
+          imagePullSecrets:
+            - name: binkcore.azurecr.io

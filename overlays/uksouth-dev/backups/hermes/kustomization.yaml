@@ -1,45 +1,16 @@
----
-bases:
-  - github.com/binkhq/postgres-to-azureblob/deploy
-
-namespace: backups
-
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../../../bases/devops/backups/cronjob
+nameSuffix: -hermes
+commonLabels:
+  database: hermes
 patches:
   - target:
       kind: CronJob
-    patch: |-
+    patch: |
       - op: add
-        path: /metadata/annotations/buoyant.cloud~1excluded
-        value: "true"
-  - target:
-      kind: CronJob
-    patch: |-
-      - op: replace
-        path: /metadata/name
-        value: hermes-hourly
-  - target:
-      kind: CronJob
-    patch: |-
-      - op: replace
-        path: /spec/schedule
-        value: "0 * * * *"
-  - target:
-      kind: CronJob
-    patch: |-
-      - op: replace
-        path: /spec/jobTemplate/spec/template/spec/containers/0/env
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env/-
         value:
-          - name: blob_storage_connection_string
-            valueFrom:
-              secretKeyRef:
-                key: connection_string_primary
-                name: azure-storage
-          - name: blob_storage_container
-            value: backups
-          - name: blob_storage_path_prefix
-            value: hourly
-          - name: psql_connection_string
-            valueFrom:
-              secretKeyRef:
-                key: url_hermes
-                name: azure-postgres
+          name: PGDATABASE
+          value: hermes

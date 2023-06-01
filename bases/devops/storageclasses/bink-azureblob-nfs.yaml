@@ -1,0 +1,10 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: bink-azureblob-nfs
+provisioner: blob.csi.azure.com
+parameters:
+  protocol: nfs
+  skuName: Standard_ZRS
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
