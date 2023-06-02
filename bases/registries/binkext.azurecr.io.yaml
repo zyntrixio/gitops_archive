@@ -1,9 +1,0 @@
----
-apiVersion: v1
-data:
-  .dockerconfigjson: eyJhdXRocyI6IHsiYmlua2V4dC5henVyZWNyLmlvIjogeyJ1c2VybmFtZSI6ICJiaW5rZXh0IiwgInBhc3N3b3JkIjogInNEOG5yRmg1T1o2ST1qMnpHYlBHZ28xYmhoRmpkOWVWIiwgImVtYWlsIjogImRldm9wc0BiaW5rLmNvbSIsICJhdXRoIjogIlltbHVhMlY0ZERwelJEaHVja1pvTlU5YU5razlhako2UjJKUVIyZHZNV0pvYUVacVpEbGxWZz09In19fQ==
-kind: Secret
-metadata:
-  name: binkext.azurecr.io
-  namespace: default
-type: kubernetes.io/dockerconfigjson

@@ -23,7 +23,7 @@ spec:
             - name: mkdir
               image: docker.io/ubuntu:latest
               command: ["/bin/bash", "-c"]
-              args: ["mkdir -p /mnt/backups/$(date +'%Y/%m/%d/%H00')"]
+              args: ["mkdir -p /mnt/backups/hourly/$(date +'%Y/%m/%d/%H00')"]
               volumeMounts:
                 - name: backups
                   mountPath: /mnt/backups
@@ -33,7 +33,7 @@ spec:
               image: docker.io/postgres:14
               imagePullPolicy: IfNotPresent
               command: ["/bin/bash", "-c"]
-              args: ["pg_dump -Fc > /mnt/backups/$(date +'%Y/%m/%d/%H00')/$(date +'%FT%H%M%SZ')-$PGDATABASE.sql"]
+              args: ["pg_dump -Fc > /mnt/backups/hourly/$(date +'%Y/%m/%d/%H00')/$(date +'%FT%H%M%SZ')-$PGDATABASE.sql"]
               env:
                 - name: PGHOST
                   valueFrom:

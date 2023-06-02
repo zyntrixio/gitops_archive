@@ -10,4 +10,4 @@ spec:
     requests:
       storage: 1Ti
   volumeName: backups
-  storageClassName: azureblob-nfs-standard
+  storageClassName: bink-azureblob-nfs

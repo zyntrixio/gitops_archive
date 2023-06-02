@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: redis-exporter
-          image: binkext.azurecr.io/redis_exporter:v1.13.1
+          image: docker.io/oliver006/redis_exporter:v1.50.0
           imagePullPolicy: Always
           ports:
             - containerPort: 9100
@@ -36,5 +36,3 @@ spec:
               memory: 256Mi
             requests:
               memory: 128Mi
-      imagePullSecrets:
-        - name: binkext.azurecr.io

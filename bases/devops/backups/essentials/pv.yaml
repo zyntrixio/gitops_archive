@@ -11,13 +11,13 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: azureblob-nfs-standard
+  storageClassName: bink-azureblob-nfs
   csi:
     driver: blob.csi.azure.com
     readOnly: false
-    volumeHandle: ${account_resource_group}#${account_name}#backups
+    volumeHandle: ${nfs_resource_group}#${nfs_account_name}#backups
     volumeAttributes:
-      resourceGroup: ${account_resource_group}
-      storageAccount: ${account_name}
+      resourceGroup: ${nfs_resource_group}
+      storageAccount: ${nfs_account_name}
       containerName: backups
       protocol: nfs
