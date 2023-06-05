@@ -1,11 +1,15 @@
 ---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 resources:
   - ../../../../bases/devops/docs
-  - ingress/root.yaml
-
+  - ingress.yaml
 namespace: default
-
 configMapGenerator:
   - name: docs-config
     files:
       - config.toml
+secretGenerator:
+  - name: ingress-docs-auth
+    literals:
+      - auth=docs:$apr1$bGpHOIJv$HRx0WceXaCmUYcFCAAnw90 # docs : imagination-situation-migration-exchange
