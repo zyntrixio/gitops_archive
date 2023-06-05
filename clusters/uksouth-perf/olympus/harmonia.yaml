@@ -18,7 +18,7 @@ spec:
     newTag: 2023-06-05T101502Z # {"$imagepolicy": "flux-system:harmonia:tag"}
   - name: binkcore.azurecr.io/harmonia_bulkload
     newName: binkcore.azurecr.io/harmonia
-    newTag: harness-2023-06-02T153115Z # {"$imagepolicy": "flux-system:harmonia-harness:tag"}
+    newTag: harness-2023-06-05T101502Z # {"$imagepolicy": "flux-system:harmonia-harness:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
