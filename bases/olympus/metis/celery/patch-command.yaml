@@ -12,7 +12,7 @@ spec:
           command:
             - celery
             - -A
-            - app.tasks
+            - metis.tasks
             - worker
             - --without-gossip
             - --without-mingle
