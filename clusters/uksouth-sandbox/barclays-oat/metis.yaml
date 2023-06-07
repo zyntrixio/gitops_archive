@@ -16,4 +16,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/metis
       newName: binkcore.azurecr.io/metis
-      newTag: sandbox-1.28.2 # {"$imagepolicy": "flux-system:sandbox-metis:tag"}
+      newTag: sandbox-1.30.0 # {"$imagepolicy": "flux-system:sandbox-metis:tag"}
