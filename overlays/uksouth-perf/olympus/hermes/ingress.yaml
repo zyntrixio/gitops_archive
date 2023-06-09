@@ -12,6 +12,13 @@ spec:
     - host: olympus.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hermes-api
+                port:
+                  number: 80
           - path: /admin
             pathType: Prefix
             backend:
