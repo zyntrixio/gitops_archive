@@ -6,6 +6,8 @@ resources:
   - pv.yaml
   - pvc.yaml
   - deploy.yaml
+  - service.yaml
+  - ingress.yaml
 configMapGenerator:
   - name: grafana
     files:
