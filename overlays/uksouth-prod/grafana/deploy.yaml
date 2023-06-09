@@ -1,0 +1,76 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: grafana
+  name: grafana
+  namespace: grafana
+spec:
+  selector:
+    matchLabels:
+      app: grafana
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels:
+        app: grafana
+    spec:
+      initContainers:
+        - name: chown
+          image: docker.io/alpine:latest
+          imagePullPolicy: IfNotPresent
+          command: [chown, -R, 472:0, /pvc]
+          volumeMounts:
+            - name: data
+              mountPath: /pvc
+      containers:
+        - name: grafana
+          image: docker.io/grafana/grafana-oss:9.5.3
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /robots.txt
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 2
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 3000
+            timeoutSeconds: 1
+          resources:
+            requests:
+              cpu: 250m
+              memory: 1024Mi
+            limits:
+              cpu: 2000m
+              memory: 1024Mi
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/grafana
+            - name: config
+              mountPath: /etc/grafana/grafana.ini
+              subPath: grafana.ini
+      restartPolicy: Always
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: grafana
+        - name: config
+          configMap:
+            name: grafana
