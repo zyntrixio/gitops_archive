@@ -16,6 +16,7 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: grafana
       labels:
         app: grafana
     spec:
@@ -64,22 +65,6 @@ spec:
             - name: config
               mountPath: /etc/grafana/grafana.ini
               subPath: grafana.ini
-        # TODO: DEVOPS-1815 (https://hellobink.atlassian.net/browse/DEVOPS-1815)
-        - name: blob-copy
-          image: docker.io/alpine:latest
-          command:
-            - tail
-            - -f
-            - /dev/null
-          resources:
-            requests:
-              cpu: 100m
-              memory: 256Mi
-            limits:
-              memory: 256Mi
-          volumeMounts:
-            - mountPath: /var/lib/grafana
-              name: data
       restartPolicy: Always
       volumes:
         - name: data
