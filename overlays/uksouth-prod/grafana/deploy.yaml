@@ -16,6 +16,7 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: grafana
       labels:
         app: grafana
     spec:
