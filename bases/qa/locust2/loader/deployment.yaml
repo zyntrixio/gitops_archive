@@ -38,10 +38,18 @@ spec:
           volumeMounts:
             - mountPath: /app/tsv
               name: store
+            - mountPath: /mnt/secrets
+              name: keyvault
       volumes:
         - name: store
           persistentVolumeClaim:
             claimName: locust-loader
+        - name: keyvault
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: locust
       imagePullSecrets:
         - name: binkcore.azurecr.io
       priorityClassName: bink-low-tasks
