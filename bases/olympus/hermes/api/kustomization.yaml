@@ -38,7 +38,7 @@ patches:
             containers:
               - name: app
                 command: ["/app/entrypoint.sh"]
-                args: ["gunicorn", "--workers=2", "--error-logfile=-", "--access-logfile=-", "--bind=0.0.0.0:9000", "hermes.wsgi"]
+                args: ["gunicorn", "--workers=1", "--error-logfile=-", "--access-logfile=-", "--bind=0.0.0.0:9000", "hermes.wsgi"]
                 resources:
                   limits:
                     memory: 512Mi
