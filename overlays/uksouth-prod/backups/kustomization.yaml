@@ -9,7 +9,6 @@ resources:
 - ./hades
 - ./harmonia
 - ./hermes
-- ./midas
 - ./polaris
 - ./pontus
 - ./vela
