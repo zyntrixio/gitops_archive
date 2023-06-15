@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/midas
     newName: binkcore.azurecr.io/midas
-    newTag: staging-3.40.14 # {"$imagepolicy": "flux-system:uksouth-staging-midas:tag"}
+    newTag: staging-3.40.15 # {"$imagepolicy": "flux-system:uksouth-staging-midas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
