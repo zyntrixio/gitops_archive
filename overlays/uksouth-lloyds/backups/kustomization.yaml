@@ -4,14 +4,8 @@ resources:
 - ../../../bases/devops/backups/essentials/
 - ./api_reflector
 - ./atlas
-- ./carina
-- ./eos
 - ./europa
 - ./hades
-- ./harmonia
 - ./hermes
 - ./midas
-- ./polaris
-- ./pontus
-- ./vela
 namespace: backups
