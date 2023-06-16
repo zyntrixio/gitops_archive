@@ -19,7 +19,7 @@ spec:
   images:
     - name: ghcr.io/binkhq/api-reflector
       newName: ghcr.io/binkhq/api-reflector
-      newTag: 0.8.0 # {"$imagepolicy": "flux-system:perf-txm-api-reflector:tag"}
+      newTag: 0.8.1 # {"$imagepolicy": "flux-system:perf-txm-api-reflector:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
