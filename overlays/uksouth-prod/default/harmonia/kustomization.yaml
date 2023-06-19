@@ -39,7 +39,7 @@ patches:
     patch: |
       - op: add
         path: /spec/template/spec/containers/0/env/-
-        value: {"name": "TXM_BLOB_STORAGE_DSN", "valueFrom": {"secretKeyRef": {"key": "connection_string_primary", "name": "azure-stroage"}}}
+        value: {"name": "TXM_BLOB_STORAGE_DSN", "valueFrom": {"secretKeyRef": {"key": "connection_string_primary", "name": "azure-storage"}}}
       - op: add
         path: /spec/template/spec/containers/0/env/-
         value: {"name": "TXM_REDIS_URL", "valueFrom": {"secretKeyRef": {"key": "url_primary", "name": "azure-redis"}}}
@@ -51,7 +51,7 @@ patches:
     patch: |
       - op: add
         path: /spec/jobTemplate/spec/template/spec/containers/0/env/-
-        value: {"name": "TXM_BLOB_STORAGE_DSN", "valueFrom": {"secretKeyRef": {"key": "connection_string_primary", "name": "azure-stroage"}}}
+        value: {"name": "TXM_BLOB_STORAGE_DSN", "valueFrom": {"secretKeyRef": {"key": "connection_string_primary", "name": "azure-storage"}}}
       - op: add
         path: /spec/jobTemplate/spec/template/spec/containers/0/env/-
         value: {"name": "TXM_REDIS_URL", "valueFrom": {"secretKeyRef": {"key": "url_primary", "name": "azure-redis"}}}
