@@ -38,25 +38,26 @@ patches:
       kind: Deployment
     patch: |
       - op: add
-        path: /spec/template/spec/containers/0/env
-        value:
-          - name: TXM_BLOB_STORAGE_DSN
-            valueFrom:
-              secretKeyRef:
-                key: connection_string_primary
-                name: azure-storage
-          - name: TXM_REDIS_URL
-            valueFrom:
-              secretKeyRef:
-                key: url_primary
-                name: azure-redis
-          - name: TXM_POSTGRES_URI
-            valueFrom:
-              secretKeyRef:
-                name: azure-postgres
-                key: url_harmonia
-          - name: TXM_LOG_LEVEL
-            value: info
+        path: /spec/template/spec/containers/0/env/-
+        value: {"name": "TXM_BLOB_STORAGE_DSN", "valueFrom": {"secretKeyRef": {"key": "connection_string_primary", "name": "azure-stroage"}}}
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value: {"name": "TXM_REDIS_URL", "valueFrom": {"secretKeyRef": {"key": "url_primary", "name": "azure-redis"}}}
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value: {"name": "TXM_POSTGRES_URI", "valueFrom": {"secretKeyRef": {"key": "url_harmonia", "name": "azure-postgres"}}}
+  - target:
+      kind: CronJob
+    patch: |
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env/-
+        value: {"name": "TXM_BLOB_STORAGE_DSN", "valueFrom": {"secretKeyRef": {"key": "connection_string_primary", "name": "azure-stroage"}}}
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env/-
+        value: {"name": "TXM_REDIS_URL", "valueFrom": {"secretKeyRef": {"key": "url_primary", "name": "azure-redis"}}}
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env/-
+        value: {"name": "TXM_POSTGRES_URI", "valueFrom": {"secretKeyRef": {"key": "url_harmonia", "name": "azure-postgres"}}}
 
   - target:
       kind: CronJob
