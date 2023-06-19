@@ -36,79 +36,121 @@ configMapGenerator:
 patches:
   - target:
       kind: Deployment
-    patch: |
-      - op: add
-        path: /spec/template/spec/containers/0/env
-        value:
-          - name: TXM_BLOB_STORAGE_DSN
-            valueFrom:
-              secretKeyRef:
-                key: connection_string_primary
-                name: azure-storage
-          - name: TXM_REDIS_URL
-            valueFrom:
-              secretKeyRef:
-                key: url_primary
-                name: azure-redis
-          - name: TXM_POSTGRES_URI
-            valueFrom:
-              secretKeyRef:
-                name: azure-postgres
-                key: url_harmonia
-          - name: TXM_LOG_LEVEL
-            value: info
-
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: harmonia
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: harmonia
+                env:
+                  - name: TXM_BLOB_STORAGE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string_primary
+                        name: azure-storage
+                  - name: TXM_REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url_primary
+                        name: azure-redis
+                  - name: TXM_POSTGRES_URI
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-postgres
+                        key: url_harmonia
+                  - name: TXM_LOG_LEVEL
+                    value: info
   - target:
       kind: CronJob
-    patch: |
-      - op: replace
-        path: /spec/jobTemplate/spec/template/spec/containers/0/env
-        value:
-          - name: TXM_BLOB_STORAGE_DSN
-            valueFrom:
-              secretKeyRef:
-                key: connection_string_primary
-                name: azure-storage
-          - name: TXM_REDIS_URL
-            valueFrom:
-              secretKeyRef:
-                key: url_primary
-                name: azure-redis
-          - name: TXM_POSTGRES_URI
-            valueFrom:
-              secretKeyRef:
-                name: azure-postgres
-                key: url_harmonia
+    patch: |-
+      apiVersion: apps/v1
+      kind: CronJob
+      metadata:
+        name: harmonia
+      spec:
+        jobTemplate:
+          spec:
+            template:
+              spec:
+                containers:
+                  - name: app
+                    envFrom:
+                      - configMapRef:
+                          name: harmonia
+                    env:
+                      - name: TXM_BLOB_STORAGE_DSN
+                        valueFrom:
+                          secretKeyRef:
+                            key: connection_string_primary
+                            name: azure-storage
+                      - name: TXM_REDIS_URL
+                        valueFrom:
+                          secretKeyRef:
+                            key: url_primary
+                            name: azure-redis
+                      - name: TXM_POSTGRES_URI
+                        valueFrom:
+                          secretKeyRef:
+                            name: azure-postgres
+                            key: url_harmonia
 
   - target:
       kind: Deployment
       name: harmonia-import-agent-wasabi-club
     patch: |
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/limits/memory
-        value: 5Gi
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/requests/memory
-        value: 5Gi
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: harmonia-import-agent-wasabi-club
+        namespace: default
+      spec:
+        template:
+          metadata:
+            annotations:
+              prometheus.io/port: '9100'
+              prometheus.io/scrape: 'true'
+              prometheus.io/job: harmonia-import-agent-wasabi-club
+          spec:
+            containers:
+              - name: app
+                args: ["tximport", "--agent", "wasabi-club", "--no-user-input", "--quiet"]
+                resources:
+                  limits:
+                    memory: 5Gi
+                  requests:
+                    memory: 5Gi
+            priorityClassName: bink-low-tasks
 
   - target:
       kind: Deployment
       name: harmonia-matching-worker
     patch: |
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/limits/memory
-        value: 1Gi
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/requests/memory
-        value: 1Gi
-
-  - target:
+      apiVersion: apps/v1
       kind: Deployment
-      name: harmonia-export-worker
-    patch: |
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/limits/memory
-        value: 500Mi
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/requests/memory
-        value: 500Mi
+      metadata:
+        name: harmonia-matching-worker
+        namespace: default
+      spec:
+        template:
+          metadata:
+            annotations:
+              prometheus.io/port: '9100'
+              prometheus.io/scrape: 'true'
+              prometheus.io/job: harmonia-matching-worker
+          spec:
+            containers:
+              - name: app
+                args: ["txcore", "worker"]
+                resources:
+                  limits:
+                    memory: 1Gi
+                  requests:
+                    memory: 1Gi
+            priorityClassName: bink-low-tasks
