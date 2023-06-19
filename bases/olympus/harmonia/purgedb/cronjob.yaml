@@ -35,9 +35,6 @@ spec:
               - --no-user-input
               - --leader-election
             image: binkcore.azurecr.io/harmonia:latest
-            envFrom:
-              - configMapRef:
-                  name: harmonia
             securityContext:
               runAsGroup: 65534
               runAsUser: 65534

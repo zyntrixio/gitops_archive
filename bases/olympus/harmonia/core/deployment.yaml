@@ -43,9 +43,6 @@ spec:
             runAsUser: 65534
           imagePullPolicy: Always
           name: app
-          envFrom:
-            - configMapRef:
-                name: harmonia
           resources:
             limits:
               memory: 128Mi
