@@ -35,6 +35,7 @@ spec:
               - --no-user-input
               - --leader-election
             image: binkcore.azurecr.io/harmonia:latest
+            env: []
             envFrom:
               - configMapRef:
                   name: harmonia
