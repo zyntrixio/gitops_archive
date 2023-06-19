@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/plutus
     newName: binkcore.azurecr.io/plutus
-    newTag: prod-0.0.2 # {"$imagepolicy": "flux-system:uksouth-prod-plutus:tag"}
+    newTag: prod-0.0.3 # {"$imagepolicy": "flux-system:uksouth-prod-plutus:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
