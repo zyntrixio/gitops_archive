@@ -1,36 +1,11 @@
 bases:
   - ../../../../../bases/devops/snowstorm/essentials
 
-resources:
-  - aad.yaml
-
 patches:
   - target:
-      kind: Job
-      name: snowstorm-migrator
+      kind: ServiceAccount
     patch: |
-      apiVersion: batch/v1
-      kind: Job
-      metadata:
-        name: snowstorm-migrator
-      spec:
-        template:
-          spec:
-            containers:
-            - name: app
-              env:
-                - name: database_dsn
-                  valueFrom:
-                    secretKeyRef:
-                      key: url_snowstorm
-                      name: azure-postgres
-                - name: storage_account_name
-                  valueFrom:
-                    secretKeyRef:
-                      key: account_name
-                      name: azure-storage
-                - name: storage_account_auth
-                  valueFrom:
-                    secretKeyRef:
-                      key: key_primary
-                      name: azure-storage
+      - op: add
+        path: /metadata/annotations
+        value:
+          azure.workload.identity/client-id: ac932c41-d1a8-4640-94ea-4bb4479543b2

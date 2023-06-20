@@ -3,7 +3,6 @@ kind: Service
 metadata:
   labels:
     app: snowstorm
-    component: webserver
   name: snowstorm-webserver
   namespace: default
 spec:
@@ -14,6 +13,5 @@ spec:
     targetPort: http
   selector:
     app: snowstorm
-    component: webserver
   sessionAffinity: None
   type: ClusterIP

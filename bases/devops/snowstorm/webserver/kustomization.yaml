@@ -2,6 +2,32 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - deployment.yaml
   - service.yaml
   - ingress.yaml
+  - ../bases/deployment
+
+commonLabels:
+  component: webserver
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/args
+        value: ["stormctl", "mi", "webserver"]
+      - op: add
+        path: /spec/template/spec/containers/0/readinessProbe
+        value: {"httpGet":{"path":"/readyz","port":"http"}}
+      - op: add
+        path: /spec/template/spec/containers/0/livenessProbe
+        value: {"httpGet":{"path":"/livez","port":"http"}}
+      - op: add
+        path: /spec/template/spec/containers/0/ports
+        value: [{"containerPort":6502,"name":"http"}]
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-low-api
+      - op: add
+        path: /metadata/name
+        value: snowstorm-webserver

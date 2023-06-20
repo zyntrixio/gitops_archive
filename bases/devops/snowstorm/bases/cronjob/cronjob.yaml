@@ -1,0 +1,64 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: snowstorm
+  namespace: default
+  labels:
+    app: snowstorm
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    metadata:
+      labels:
+        app: snowstorm
+    spec:
+      template:
+        metadata:
+          annotations:
+            linkerd.io/inject: enabled
+            kubectl.kubernetes.io/default-container: app
+          labels:
+            app: snowstorm
+        spec:
+          containers:
+            - name: app
+              image: binkcore.azurecr.io/snowstorm:latest
+              command: ["linkerd-await", "--shutdown", "--"]
+              env:
+                - name: database_dsn
+                  valueFrom:
+                    secretKeyRef:
+                      key: url_snowstorm
+                      name: azure-postgres
+                - name: rabbitmq_dsn
+                  value: amqp://guest:guest@rabbitmq.rabbitmq:5672
+                - name: redis_dsn
+                  valueFrom:
+                    secretKeyRef:
+                      key: url_primary
+                      name: azure-redis
+                - name: storage_account_name
+                  valueFrom:
+                    secretKeyRef:
+                      key: account_name
+                      name: azure-storage
+                - name: storage_account_auth
+                  valueFrom:
+                    secretKeyRef:
+                      key: key_primary
+                      name: azure-storage
+              resources:
+                requests:
+                  cpu: 10m
+                  memory: 512Mi
+                limits:
+                  memory: 512Mi
+              securityContext:
+                runAsGroup: 65534
+                runAsUser: 65534
+          restartPolicy: Never
+          priorityClassName: bink-high-tasks
+          serviceAccountName: snowstorm
+          imagePullSecrets:
+            - name: binkcore.azurecr.io
+      backoffLimit: 3
