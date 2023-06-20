@@ -9,12 +9,22 @@ patches:
       - op: add
         path: /spec/template/spec/containers/0/env/1/value
         value: amqp://guest:guest@rabbitmq:5672/
+      - op: add
+        path: /spec/template/spec/containers/0/env/2/value
+        value: redis://redis:6379/0
+      - op: remove
+        path: /spec/template/spec/containers/0/env/2/valueFrom
   - target:
       kind: CronJob
     patch: |
       - op: add
         path: /spec/jobTemplate/spec/template/spec/containers/0/env/1/value
         value: amqp://guest:guest@rabbitmq:5672/
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env/2/value
+        value: redis://redis:6379/0
+      - op: remove
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env/2/valueFrom
       - op: replace
         path: /spec/jobTemplate/spec/template/spec/containers/0/args
         value: ["stormctl", "job", "apistats", "--days=1", "--domain=api.dev.gb.bink.com"]

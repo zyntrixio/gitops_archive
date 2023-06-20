@@ -9,3 +9,11 @@ patches:
         path: /metadata/annotations
         value:
           azure.workload.identity/client-id: 85227e05-3a9b-4355-a18f-b3be821c9b80
+  - target:
+      kind: Job
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/env/2/value
+        value: redis://redis:6379/0
+      - op: remove
+        path: /spec/template/spec/containers/0/env/2/valueFrom
