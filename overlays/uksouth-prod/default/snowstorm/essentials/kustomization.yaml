@@ -2,36 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - aad.yaml
   - ../../../../../bases/devops/snowstorm/essentials
 
 patches:
   - target:
-      kind: Job
-      name: snowstorm-migrator
+      kind: ServiceAccount
     patch: |
-      apiVersion: batch/v1
-      kind: Job
-      metadata:
-        name: snowstorm-migrator
-      spec:
-        template:
-          spec:
-            containers:
-            - name: app
-              env:
-                - name: database_dsn
-                  valueFrom:
-                    secretKeyRef:
-                      key: url_snowstorm
-                      name: azure-postgres
-                - name: storage_account_name
-                  valueFrom:
-                    secretKeyRef:
-                      key: account_name
-                      name: azure-storage
-                - name: storage_account_auth
-                  valueFrom:
-                    secretKeyRef:
-                      key: key_primary
-                      name: azure-storage
+      - op: add
+        path: /metadata/annotations
+        value:
+          azure.workload.identity/client-id: 92210658-fbb1-4ffa-a923-ac94e5ea64d5

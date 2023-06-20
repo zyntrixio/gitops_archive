@@ -2,4 +2,20 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - job.yaml
+  - ../bases/cronjob
+
+nameSuffix: -viator
+
+commonLabels:
+  component: viator
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |
+      - op: replace
+        path: /spec/schedule
+        value: "0 14 * * 4"
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/args
+        value: ["stormctl", "job", "viator"]
