@@ -25,6 +25,16 @@ patches:
                     value: amqp://guest:guest@rabbitmq:5672/
                   - name: redis_dsn
                     value: redis://redis:6379/0
+                  - name: storage_account_name
+                    valueFrom:
+                      secretKeyRef:
+                        key: account_name
+                        name: azure-storage
+                  - name: storage_account_auth
+                    valueFrom:
+                      secretKeyRef:
+                        key: key_primary
+                        name: azure-storage
   - target:
       kind: CronJob
     patch: |
@@ -49,6 +59,16 @@ patches:
                         value: amqp://guest:guest@rabbitmq:5672/
                       - name: redis_dsn
                         value: redis://redis:6379/0
+                      - name: storage_account_name
+                        valueFrom:
+                          secretKeyRef:
+                            key: account_name
+                            name: azure-storage
+                      - name: storage_account_auth
+                        valueFrom:
+                          secretKeyRef:
+                            key: key_primary
+                            name: azure-storage
   - target:
       kind: CronJob
       name: snowstorm-apistats
