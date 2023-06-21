@@ -47,7 +47,7 @@ spec:
             requests:
               cpu: 10m
               memory: 384Mi
-          volumesMounts:
+          volumeMounts:
             - name: keyvault
               mountPath: "/mnt/secrets"
               readOnly: true
