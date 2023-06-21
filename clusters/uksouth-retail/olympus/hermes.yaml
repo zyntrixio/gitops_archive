@@ -21,6 +21,8 @@ spec:
     substituteFrom:
       - kind: Secret
         name: azure-keyvault
+      - kind: Secret
+        name: azure-identities
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

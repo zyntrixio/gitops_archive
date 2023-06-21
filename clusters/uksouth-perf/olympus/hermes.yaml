@@ -23,6 +23,8 @@ spec:
       name: cluster-vars
     - kind: Secret
       name: azure-keyvault
+    - kind: Secret
+      name: azure-identities
 # ---
 # apiVersion: image.toolkit.fluxcd.io/v1beta1
 # kind: ImagePolicy
