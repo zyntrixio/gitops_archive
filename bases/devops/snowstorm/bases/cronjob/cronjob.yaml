@@ -17,9 +17,9 @@ spec:
           annotations:
             linkerd.io/inject: enabled
             kubectl.kubernetes.io/default-container: app
-            azure.workload.identity/use: "true"
           labels:
             app: snowstorm
+            azure.workload.identity/use: "true"
         spec:
           containers:
             - name: app
