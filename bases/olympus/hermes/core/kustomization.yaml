@@ -4,6 +4,7 @@ resources:
   - serviceaccount.yaml
   - priorityclass.yaml
   - lsp.yaml
+  - secrets.yaml
 
 secretGenerator:
   - name: sign-in-with-apple
