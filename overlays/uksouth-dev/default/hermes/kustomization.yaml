@@ -19,6 +19,61 @@ configMapGenerator:
 
 patches:
   - target:
+      kind: SecretProviderClass
+    patch: |
+      - op: replace
+        path: /spec/parameters/objects
+        value: |
+          array:
+            - |
+              objectName: aes-keys
+              objectType: secret
+            - |
+              objectName: barclays-hermes-sftp
+              objectType: secret
+            - |
+              objectName: secret-keys
+              objectType: secret
+            - |
+              objectName: ubiquity-channel-barclays-bmb
+              objectType: secret
+            - |
+              objectName: ubiquity-channel-barclays-test
+              objectType: secret
+            - |
+              objectName: ubiquity-channel-bink-wallet
+              objectType: secret
+            - |
+              objectName: ubiquity-channel-bink20dev
+              objectType: secret
+            - |
+              objectName: ubiquity-channel-daedalus
+              objectType: secret
+            - |
+              objectName: ubiquity-channel-performance-one
+              objectType: secret
+            - |
+              objectName: ubiquity-channel-performance-restricted
+              objectType: secret
+            - |
+              objectName: ubiquity-channel-performance-two
+              objectType: secret
+            - |
+              objectName: ubiquity-channel-restricted-test
+              objectType: secret
+            - |
+              objectName: ubiquity-channel-test-1
+              objectType: secret
+            - |
+              objectName: ubiquity-channel-test-2
+              objectType: secret
+            - |
+              objectName: ubiquity-channel-trenette-bink-web
+              objectType: secret
+            - |
+              objectName: ubiquity-channel-wasabi-bink-web
+              objectType: secret
+  - target:
       kind: Deployment
       name: hermes-api
     patch: |
