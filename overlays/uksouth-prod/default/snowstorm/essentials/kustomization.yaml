@@ -9,6 +9,5 @@ patches:
       kind: ServiceAccount
     patch: |
       - op: add
-        path: /metadata/annotations
-        value:
-          azure.workload.identity/client-id: 92210658-fbb1-4ffa-a923-ac94e5ea64d5
+        path: /metadata/labels/azure.workload.identity~1client-id
+        value: 92210658-fbb1-4ffa-a923-ac94e5ea64d5
