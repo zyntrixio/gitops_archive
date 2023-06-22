@@ -1,0 +1,28 @@
+resources:
+  - ../../../bases/cronjobs
+
+commonLabels:
+  component: sftp-blobcopy
+  retailer: viator
+
+nameSuffix: -sftp-blobcopy-viator
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |
+      - op: replace
+        path: /spec/schedule
+        value: "*/15 * * * *"
+  - target:
+      kind: CronJob
+    patch: |
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/args
+        value:
+          - kiroshi
+          - sftp
+          - blobcopy
+          - --sftp-container-name=viator
+          - --blob-container-name=carina-imports
+          - --blob-directory-name=viator
