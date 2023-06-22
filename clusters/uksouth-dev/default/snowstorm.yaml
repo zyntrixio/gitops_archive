@@ -18,6 +18,10 @@ spec:
   - name: binkcore.azurecr.io/snowstorm
     newName: binkcore.azurecr.io/snowstorm
     newTag: 2023-04-27T124107Z # {"$imagepolicy": "flux-system:snowstorm:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
