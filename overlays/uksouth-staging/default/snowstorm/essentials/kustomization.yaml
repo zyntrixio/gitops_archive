@@ -3,12 +3,6 @@ bases:
 
 patches:
   - target:
-      kind: ServiceAccount
-    patch: |
-      - op: add
-        path: /metadata/labels/azure.workload.identity~1client-id
-        value: ac932c41-d1a8-4640-94ea-4bb4479543b2
-  - target:
       kind: Job
     patch: |
       - op: add

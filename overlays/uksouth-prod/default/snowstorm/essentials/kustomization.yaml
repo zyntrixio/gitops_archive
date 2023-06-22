@@ -3,11 +3,3 @@ kind: Kustomization
 
 resources:
   - ../../../../../bases/devops/snowstorm/essentials
-
-patches:
-  - target:
-      kind: ServiceAccount
-    patch: |
-      - op: add
-        path: /metadata/labels/azure.workload.identity~1client-id
-        value: 92210658-fbb1-4ffa-a923-ac94e5ea64d5

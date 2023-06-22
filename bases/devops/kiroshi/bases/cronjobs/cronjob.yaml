@@ -25,6 +25,29 @@ spec:
             - name: app
               image: binkcore.azurecr.io/kiroshi:latest
               command: ["linkerd-await", "--shutdown", "--"]
+              env:
+                - name: sftp_storage_account_dsn
+                  valueFrom:
+                    secretKeyRef:
+                      name: azure-storage
+                      key: sftp_connection_string_primary
+                - name: blob_storage_account_dsn
+                  valueFrom:
+                    secretKeyRef:
+                      name: azure-storage
+                      key: blob_connection_string_primary
+                - name: database_dsn
+                  valueFrom:
+                    secretKeyRef:
+                      key: url_kiroshi
+                      name: azure-postgres
+                - name: redis_dsn
+                  valueFrom:
+                    secretKeyRef:
+                      key: url_primary
+                      name: azure-redis
+                - name: secret_store
+                  value: /mnt/secrets
               args: ["sleep", "60"]
               resources:
                 requests:

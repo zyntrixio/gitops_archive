@@ -22,6 +22,12 @@ spec:
           image: binkcore.azurecr.io/kiroshi:latest
           command: ["linkerd-await", "--shutdown", "--"]
           args: ["alembic", "upgrade", "head"]
+          env:
+            - name: database_dsn
+              valueFrom:
+                secretKeyRef:
+                  key: url_kiroshi
+                  name: azure-postgres
           resources:
             requests:
               memory: 128Mi
