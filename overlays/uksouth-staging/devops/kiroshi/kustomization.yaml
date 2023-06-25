@@ -1,0 +1,5 @@
+resources:
+  - ../../../../bases/devops/kiroshi/essentials
+  - ../../../../bases/devops/kiroshi/jobs/migrator
+
+namespace: devops

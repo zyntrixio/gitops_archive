@@ -1,22 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 resources:
   - ../../../bases/cronjobs
-
-commonLabels:
-  component: sftp-blobcopy
-  retailer: viator
-
+labels:
+  - includeSelectors: true
+    pairs:
+      component: sftp-blobcopy
+      retailer: viator
 nameSuffix: -sftp-blobcopy-viator
-
 patches:
-  - target:
-      kind: CronJob
-    patch: |
+  - patch: |
       - op: replace
         path: /spec/schedule
         value: "*/15 * * * *"
-  - target:
+    target:
       kind: CronJob
-    patch: |
+  - patch: |
       - op: replace
         path: /spec/jobTemplate/spec/template/spec/containers/0/args
         value:
@@ -26,3 +25,5 @@ patches:
           - --sftp-container-name=viator
           - --blob-container-name=carina-imports
           - --blob-directory-name=viator
+    target:
+      kind: CronJob

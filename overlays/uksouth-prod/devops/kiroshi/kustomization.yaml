@@ -1,9 +1,10 @@
 resources:
-  - ../../../../bases/devops/kiroshi/common
-  - ../../../../bases/devops/kiroshi/frontdoor-ips
-  - ../../../../bases/devops/kiroshi/frontdoor-ranges
-  - ../../../../bases/devops/kiroshi/frontdoor-traffic
-  - ../../../../bases/devops/kiroshi/spreedly-certs
+  - ../../../../bases/devops/kiroshi/essentials
+  - ../../../../bases/devops/kiroshi/jobs/migrator
+  - ../../../../bases/devops/kiroshi/checks/frontdoor/ips
+  - ../../../../bases/devops/kiroshi/checks/frontdoor/ranges
+  - ../../../../bases/devops/kiroshi/checks/frontdoor/traffic
+  - ../../../../bases/devops/kiroshi/checks/spreedly/certs
   - ../../../../bases/devops/kiroshi/sftp/blobcopy/viator
 
 namespace: devops

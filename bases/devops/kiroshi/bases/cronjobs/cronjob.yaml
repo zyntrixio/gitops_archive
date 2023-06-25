@@ -41,11 +41,6 @@ spec:
                     secretKeyRef:
                       key: url_kiroshi
                       name: azure-postgres
-                - name: redis_dsn
-                  valueFrom:
-                    secretKeyRef:
-                      key: url_primary
-                      name: azure-redis
                 - name: secret_store
                   value: /mnt/secrets
               args: ["sleep", "60"]

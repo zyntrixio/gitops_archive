@@ -1,0 +1,44 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../bases/cronjobs
+  - secrets.yaml
+labels:
+  - includeSelectors: true
+    pairs:
+      component: spreedly-certs
+nameSuffix: -spreedly-certs
+patches:
+  - patch: |
+      - op: replace
+        path: /spec/schedule
+        value: "0 * * * *"
+    target:
+      kind: CronJob
+  - patch: |
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/args
+        value: ["kiroshi", "checks", "spreedly", "certificates"]
+    target:
+      kind: CronJob
+  - patch: |
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/volumeMounts
+        value:
+          - name: keyvault
+            mountPath: "/mnt/secrets"
+            readOnly: true
+    target:
+      kind: CronJob
+  - patch: |
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/volumes
+        value:
+          - name: keyvault
+            csi:
+              driver: secrets-store.csi.k8s.io
+              readOnly: true
+              volumeAttributes:
+                secretProviderClass: kirohsi-spreedly-certs
+    target:
+      kind: CronJob
