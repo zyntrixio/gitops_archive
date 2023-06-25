@@ -1,0 +1,57 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: harmonia-migrator
+  namespace: devops
+  labels:
+    app: harmonia
+    component: migrator
+spec:
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: harmonia
+        component: migrator
+        azure.workload.identity/use: "true"
+    spec:
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/harmonia:latest
+          command: ["linkerd-await", "--shutdown", "--"]
+          args: ["alembic", "upgrade", "head"]
+          env:
+            - name: TXM_BLOB_STORAGE_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: connection_string_primary
+                  name: azure-storage
+            - name: TXM_POSTGRES_URI
+              valueFrom:
+                secretKeyRef:
+                  key: url_harmonia
+                  name: azure-postgres
+            - name: TXM_VAULT_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-keyvault
+          envFrom:
+            - configMapRef:
+                name: harmonia
+          resources:
+            requests:
+              memory: 2Gi
+            limits:
+              memory: 2Gi
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+      restartPolicy: Never
+      serviceAccountName: harmonia
+      priorityClassName: bink-high-tasks
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
+  backoffLimit: 3

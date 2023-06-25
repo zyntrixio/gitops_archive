@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../bases/deployment
+labels:
+  - includeSelectors: true
+    pairs:
+      component: import-agent-harvey-nichols
+nameSuffix: -import-agent-harvey-nichols
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/metadata/annotations/prometheus.io~1job
+        value: harmonia-import-agent-harvey-nichols
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["tximport", "--agent", "harvey-nichols", "--no-user-input", "--quiet"]

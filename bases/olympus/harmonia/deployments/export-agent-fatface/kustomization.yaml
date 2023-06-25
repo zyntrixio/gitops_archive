@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../bases/deployment
+labels:
+  - includeSelectors: true
+    pairs:
+      component: export-agent-fatface
+nameSuffix: -export-agent-fatface
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/metadata/annotations/prometheus.io~1job
+        value: harmonia-export-agent-fatface
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["txexport", "--agent", "fatface", "--no-user-input", "--quiet"]

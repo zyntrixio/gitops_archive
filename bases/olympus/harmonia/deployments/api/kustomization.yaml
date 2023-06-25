@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../bases/deployment
+  - service.yaml
+labels:
+  - includeSelectors: true
+    pairs:
+      component: api
+nameSuffix: -api
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/metadata/annotations/prometheus.io~1job
+        value: harmonia-api
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["gunicorn", "-b", "0.0.0.0:9000", "--access-logfile", "-", "--error-logfile", "-", "app.api.app:app"]
+      - op: replace
+        path: /spec/template/spec/priorityClassName
+        value: bink-low-api

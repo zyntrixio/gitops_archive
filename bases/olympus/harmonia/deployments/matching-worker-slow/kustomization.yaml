@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../bases/deployment
+labels:
+  - includeSelectors: true
+    pairs:
+      component: matching-worker-slow
+nameSuffix: -matching-worker-slow
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/metadata/annotations/prometheus.io~1job
+        value: harmonia-matching-worker-slow
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["txcore", "worker"]
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 384Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 384Mi
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value: {"name":"TXM_RQ_QUEUES","value":"matching_slow"}

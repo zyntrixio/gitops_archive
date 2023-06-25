@@ -1,0 +1,65 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: harmonia
+  namespace: default
+  labels:
+    app: harmonia
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  schedule: "* * * * *"
+  jobTemplate:
+    metadata:
+      labels:
+        app: harmonia
+    spec:
+      template:
+        metadata:
+          labels:
+            app: harmonia
+            azure.workload.identity/use: "true"
+          annotations:
+            linkerd.io/inject: enabled
+            kubectl.kubernetes.io/default-container: app
+        spec:
+          containers:
+          - name: app
+            command: ["linkerd-await", "--shutdown", "--"]
+            image: binkcore.azurecr.io/harmonia:latest
+            env:
+              - name: TXM_BLOB_STORAGE_DSN
+                valueFrom:
+                  secretKeyRef:
+                    key: connection_string_primary
+                    name: azure-storage
+              - name: TXM_POSTGRES_URI
+                valueFrom:
+                  secretKeyRef:
+                    key: url_harmonia
+                    name: azure-postgres
+              - name: TXM_VAULT_URL
+                valueFrom:
+                  secretKeyRef:
+                    key: url
+                    name: azure-keyvault
+            envFrom:
+              - configMapRef:
+                  name: harmonia
+            securityContext:
+              runAsGroup: 65534
+              runAsUser: 65534
+            imagePullPolicy: Always
+            resources:
+              limits:
+                memory: 128Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+          restartPolicy: Never
+          priorityClassName: bink-high-tasks
+          serviceAccountName: harmonia
+          imagePullSecrets:
+            - name: binkcore.azurecr.io

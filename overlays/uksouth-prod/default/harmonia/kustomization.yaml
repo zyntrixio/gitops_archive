@@ -1,86 +1,50 @@
----
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 resources:
-  - ../../../../bases/olympus/harmonia/api
-  - ../../../../bases/olympus/harmonia/export-agent-iceland-bonus-card
-  - ../../../../bases/olympus/harmonia/export-retry-worker
-  - ../../../../bases/olympus/harmonia/export-worker
-  - ../../../../bases/olympus/harmonia/import-agent-amex-auth
-  - ../../../../bases/olympus/harmonia/import-agent-amex-settlement
-  - ../../../../bases/olympus/harmonia/import-agent-iceland-bonus-card
-  - ../../../../bases/olympus/harmonia/import-agent-mastercard-auth
-  - ../../../../bases/olympus/harmonia/import-agent-mastercard-settled
-  - ../../../../bases/olympus/harmonia/import-agent-visa-auth
-  - ../../../../bases/olympus/harmonia/import-agent-visa-refund
-  - ../../../../bases/olympus/harmonia/import-agent-visa-settle
-  - ../../../../bases/olympus/harmonia/import-agent-wasabi-club
-  - ../../../../bases/olympus/harmonia/import-worker
-  - ../../../../bases/olympus/harmonia/identify-worker
-  - ../../../../bases/olympus/harmonia/matching-worker
-  - ../../../../bases/olympus/harmonia/matching-worker-slow
-  - ../../../../bases/olympus/harmonia/streaming-worker
-  - ../../../../bases/olympus/harmonia/purgedb
-  - ../../../../bases/olympus/harmonia/migrator
-  - aad.yaml
-
-replicas:
-  - name: harmonia
-    count: 1
-
+  - ../../../../bases/olympus/harmonia/essentials
+  - ../../../../bases/olympus/harmonia/deployments/api
+  - ../../../../bases/olympus/harmonia/deployments/export-agent-iceland-bonus-card
+  - ../../../../bases/olympus/harmonia/deployments/export-retry-worker
+  - ../../../../bases/olympus/harmonia/deployments/export-worker
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-amex-auth
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-amex-settlement
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-iceland-bonus-card
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-mastercard-auth
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-mastercard-settled
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-visa-auth
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-visa-refund
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-visa-settle
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-wasabi-club
+  - ../../../../bases/olympus/harmonia/deployments/import-worker
+  - ../../../../bases/olympus/harmonia/deployments/identify-worker
+  - ../../../../bases/olympus/harmonia/deployments/matching-worker
+  - ../../../../bases/olympus/harmonia/deployments/matching-worker-slow
+  - ../../../../bases/olympus/harmonia/deployments/streaming-worker
+  - ../../../../bases/olympus/harmonia/deployments/purgedb
 namespace: default
-
 configMapGenerator:
   - name: harmonia
     envs:
       - env.ini
-
 patches:
   - target:
       kind: Deployment
     patch: |
       - op: add
         path: /spec/template/spec/containers/0/env/-
-        value: {"name": "TXM_BLOB_STORAGE_DSN", "valueFrom": {"secretKeyRef": {"key": "connection_string_primary", "name": "azure-storage"}}}
+        value: {"name":"TXM_REDIS_URL","valueFrom":{"secretKeyRef":{"key":"url_primary","name":"azure-redis"}}}
+  - target:
+      kind: Job
+    patch: |
       - op: add
         path: /spec/template/spec/containers/0/env/-
-        value: {"name": "TXM_REDIS_URL", "valueFrom": {"secretKeyRef": {"key": "url_primary", "name": "azure-redis"}}}
-      - op: add
-        path: /spec/template/spec/containers/0/env/-
-        value: {"name": "TXM_POSTGRES_URI", "valueFrom": {"secretKeyRef": {"key": "url_harmonia", "name": "azure-postgres"}}}
+        value: {"name":"TXM_REDIS_URL","valueFrom":{"secretKeyRef":{"key":"url_primary","name":"azure-redis"}}}
   - target:
       kind: CronJob
     patch: |
       - op: add
         path: /spec/jobTemplate/spec/template/spec/containers/0/env/-
-        value: {"name": "TXM_BLOB_STORAGE_DSN", "valueFrom": {"secretKeyRef": {"key": "connection_string_primary", "name": "azure-storage"}}}
-      - op: add
-        path: /spec/jobTemplate/spec/template/spec/containers/0/env/-
-        value: {"name": "TXM_REDIS_URL", "valueFrom": {"secretKeyRef": {"key": "url_primary", "name": "azure-redis"}}}
-      - op: add
-        path: /spec/jobTemplate/spec/template/spec/containers/0/env/-
-        value: {"name": "TXM_POSTGRES_URI", "valueFrom": {"secretKeyRef": {"key": "url_harmonia", "name": "azure-postgres"}}}
-
-  - target:
-      kind: CronJob
-    patch: |
-      - op: replace
-        path: /spec/jobTemplate/spec/template/spec/containers/0/env
-        value:
-          - name: TXM_BLOB_STORAGE_DSN
-            valueFrom:
-              secretKeyRef:
-                key: connection_string_primary
-                name: azure-storage
-          - name: TXM_REDIS_URL
-            valueFrom:
-              secretKeyRef:
-                key: url_primary
-                name: azure-redis
-          - name: TXM_POSTGRES_URI
-            valueFrom:
-              secretKeyRef:
-                name: azure-postgres
-                key: url_harmonia
-
+        value: {"name":"TXM_REDIS_URL","valueFrom":{"secretKeyRef":{"key":"url_primary","name":"azure-redis"}}}
   - target:
       kind: Deployment
       name: harmonia-import-agent-wasabi-club
@@ -91,7 +55,6 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/resources/requests/memory
         value: 5Gi
-
   - target:
       kind: Deployment
       name: harmonia-matching-worker
@@ -102,7 +65,6 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/resources/requests/memory
         value: 1Gi
-
   - target:
       kind: Deployment
       name: harmonia-export-worker

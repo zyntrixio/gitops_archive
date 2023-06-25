@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../bases/deployment
+labels:
+  - includeSelectors: true
+    pairs:
+      component: import-agent-visa-settle
+nameSuffix: -import-agent-visa-settle
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/metadata/annotations/prometheus.io~1job
+        value: harmonia-import-agent-visa-settle
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["tximport", "--agent", "visa-settlement", "--no-user-input", "--quiet"]

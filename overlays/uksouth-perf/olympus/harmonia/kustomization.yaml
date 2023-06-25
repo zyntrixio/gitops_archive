@@ -1,71 +1,41 @@
 ---
-bases:
-  - ../../../../bases/olympus/harmonia/api
-  - ../../../../bases/olympus/harmonia/export-agent-iceland-bonus-card
-  - ../../../../bases/olympus/harmonia/export-retry-worker
-  - ../../../../bases/olympus/harmonia/export-worker
-  - ../../../../bases/olympus/harmonia/import-agent-amex-auth
-  - ../../../../bases/olympus/harmonia/import-agent-amex-settlement
-  - ../../../../bases/olympus/harmonia/import-agent-harvey-nichols
-  - ../../../../bases/olympus/harmonia/import-agent-iceland-bonus-card
-  - ../../../../bases/olympus/harmonia/import-agent-mastercard-auth
-  - ../../../../bases/olympus/harmonia/import-agent-mastercard-settled
-  - ../../../../bases/olympus/harmonia/import-agent-visa-auth
-  - ../../../../bases/olympus/harmonia/import-agent-visa-refund
-  - ../../../../bases/olympus/harmonia/import-agent-visa-settle
-  - ../../../../bases/olympus/harmonia/import-agent-wasabi-club
-  - ../../../../bases/olympus/harmonia/import-worker
-  - ../../../../bases/olympus/harmonia/identify-worker
-  - ../../../../bases/olympus/harmonia/matching-worker
-  - ../../../../bases/olympus/harmonia/matching-worker-slow
-  - ../../../../bases/olympus/harmonia/streaming-worker
-  - ../../../../bases/olympus/harmonia/migrator
-  - ../../../../bases/olympus/harmonia/throughput-test
-
 resources:
-  - aad.yaml
-
+  - ../../../../bases/olympus/harmonia/essentials
+  - ../../../../bases/olympus/harmonia/deployments/api
+  - ../../../../bases/olympus/harmonia/deployments/export-agent-iceland-bonus-card
+  - ../../../../bases/olympus/harmonia/deployments/export-retry-worker
+  - ../../../../bases/olympus/harmonia/deployments/export-worker
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-amex-auth
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-amex-settlement
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-harvey-nichols
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-iceland-bonus-card
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-mastercard-auth
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-mastercard-settled
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-visa-auth
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-visa-refund
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-visa-settle
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-wasabi-club
+  - ../../../../bases/olympus/harmonia/deployments/import-worker
+  - ../../../../bases/olympus/harmonia/deployments/identify-worker
+  - ../../../../bases/olympus/harmonia/deployments/matching-worker
+  - ../../../../bases/olympus/harmonia/deployments/matching-worker-slow
+  - ../../../../bases/olympus/harmonia/deployments/streaming-worker
+  - ../../../../bases/olympus/harmonia/deployments/throughput-test
+namespace: olympus
 configMapGenerator:
   - name: harmonia
     envs:
       - env.ini
-
-namespace: olympus
-
 patches:
   - target:
       kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: harmonia
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                envFrom:
-                  - configMapRef:
-                      name: harmonia
-                env:
-                  - name: TXM_BLOB_STORAGE_DSN
-                    valueFrom:
-                      secretKeyRef:
-                        key: connection_string_primary
-                        name: azure-storage
-                  - name: TXM_POSTGRES_URI
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-postgres
-                        key: url_harmonia
-                  - name: TXM_REDIS_URL
-                    valueFrom:
-                      secretKeyRef:
-                        key: url_primary
-                        name: azure-redis
-                  - name: TXM_VAULT_URL
-                    valueFrom:
-                      secretKeyRef:
-                        key: url
-                        name: azure-keyvault
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value: {"name":"TXM_REDIS_URL","valueFrom":{"secretKeyRef":{"key":"url_primary","name":"azure-redis"}}}
+  - target:
+      kind: Job
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value: {"name":"TXM_REDIS_URL","valueFrom":{"secretKeyRef":{"key":"url_primary","name":"azure-redis"}}}

@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../bases/deployment
+labels:
+  - includeSelectors: true
+    pairs:
+      component: export-worker
+nameSuffix: -export-worker
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/metadata/annotations/prometheus.io~1job
+        value: harmonia-export-worker
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["txcore", "worker"]
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value: {"name":"TXM_RQ_QUEUES","value":"export"}
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 192Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 192Mi

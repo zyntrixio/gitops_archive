@@ -9,6 +9,7 @@ spec:
   dependsOn:
   - name: aad-pod-identity
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -19,6 +20,12 @@ spec:
   - name: binkcore.azurecr.io/harmonia_bulkload
     newName: binkcore.azurecr.io/harmonia
     newTag: harness-2023-06-23T163611Z # {"$imagepolicy": "flux-system:harmonia-harness:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-storage
+    - kind: Secret
+      name: azure-identities
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy

@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../bases/deployment
+labels:
+  - includeSelectors: true
+    pairs:
+      component: import-agent-whsmith-rewards
+nameSuffix: -import-agent-whsmith-rewards
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/metadata/annotations/prometheus.io~1job
+        value: harmonia-import-agent-whsmith-rewards
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["tximport", "--agent", "whsmith-rewards", "--no-user-input", "--quiet"]

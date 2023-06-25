@@ -1,0 +1,34 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../bases/deployment
+labels:
+- includeSelectors: true
+  pairs:
+    component: throughput-test
+nameSuffix: -throughput-test
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: remove
+        path: /spec/template/metadata/annotations/prometheus.io~1job
+      - op: remove
+        path: /spec/template/metadata/annotations/prometheus.io~1port
+      - op: remove
+        path: /spec/template/metadata/annotations/prometheus.io~1scrape
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: binkcore.azurecr.io/harmonia_bulkload:latest
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value: {"name":"TXM_RQ_QUEUES","value":"import"}
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 4Gi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 4Gi
+      - op: replace
+        path: /spec/template/spec/priorityClassName
+        value: bink-high-tasks

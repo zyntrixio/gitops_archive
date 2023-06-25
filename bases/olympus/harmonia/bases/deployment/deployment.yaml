@@ -1,0 +1,92 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: harmonia
+  namespace: default
+  labels:
+    app: harmonia
+spec:
+  selector:
+    matchLabels:
+      app: harmonia
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: harmonia
+        azure.workload.identity/use: "true"
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+        prometheus.io/job: harmonia
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - harmonia
+                topologyKey: topology.kubernetes.io/zone
+      containers:
+        - image: binkcore.azurecr.io/harmonia:latest
+          command: ["linkerd-await", "--"]
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+          imagePullPolicy: Always
+          name: app
+          env:
+            - name: TXM_BLOB_STORAGE_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: connection_string_primary
+                  name: azure-storage
+            - name: TXM_POSTGRES_URI
+              valueFrom:
+                secretKeyRef:
+                  key: url_harmonia
+                  name: azure-postgres
+            - name: TXM_VAULT_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-keyvault
+          envFrom:
+            - configMapRef:
+                name: harmonia
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              memory: 128Mi
+              cpu: 10m
+          volumeMounts:
+            - name: harmonia-archive
+              mountPath: /mnt/harmonia-archive
+            - name: harmonia-exports
+              mountPath: /mnt/harmonia-exports
+            - name: harmonia-imports
+              mountPath: /mnt/harmonia-imports
+      volumes:
+        - name: harmonia-archive
+          persistentVolumeClaim:
+            claimName: harmonia-archive
+        - name: harmonia-exports
+          persistentVolumeClaim:
+            claimName: harmonia-exports
+        - name: harmonia-imports
+          persistentVolumeClaim:
+            claimName: harmonia-imports
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+      serviceAccountName: harmonia

@@ -10,6 +10,7 @@ spec:
     - name: aad-pod-identity
     - name: linkerd-control-plane
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -17,6 +18,12 @@ spec:
     - name: binkcore.azurecr.io/harmonia
       newName: binkcore.azurecr.io/harmonia
       newTag: prod-2.27.3 # {"$imagepolicy": "flux-system:uksouth-prod-harmonia:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-storage
+    - kind: Secret
+      name: azure-identities
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
