@@ -1,19 +1,19 @@
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: styx-tgx4
-  namespace: flux-system
-spec:
-  interval: 60m0s
-  path: ./overlays/uksouth-staging/default/styx-tgx4
-  dependsOn:
-    - name: aad-pod-identity
-    - name: linkerd-control-plane
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  images:
-    - name: binkcore.azurecr.io/styx
-      newName: binkcore.azurecr.io/styx
-      newTag: 2023-05-30T142148Z # {"$imagepolicy": "flux-system:uksouth-staging-styx:tag"}
+# apiVersion: kustomize.toolkit.fluxcd.io/v1
+# kind: Kustomization
+# metadata:
+#   name: styx-tgx4
+#   namespace: flux-system
+# spec:
+#   interval: 60m0s
+#   path: ./overlays/uksouth-staging/default/styx-tgx4
+#   dependsOn:
+#     - name: aad-pod-identity
+#     - name: linkerd-control-plane
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-system
+#   images:
+#     - name: binkcore.azurecr.io/styx
+#       newName: binkcore.azurecr.io/styx
+#       newTag: 2023-05-30T142148Z # {"$imagepolicy": "flux-system:uksouth-staging-styx:tag"}

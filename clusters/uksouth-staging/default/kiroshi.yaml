@@ -1,22 +1,22 @@
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: default-kiroshi
-  namespace: flux-system
-spec:
-  interval: 60m0s
-  path: ./overlays/uksouth-staging/default/kiroshi
-  dependsOn:
-    - name: linkerd-control-plane
-  prune: true
-  force: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  images:
-    - name: binkcore.azurecr.io/kiroshi
-      newTag: staging-v1.1.1 # {"$imagepolicy": "flux-system:kiroshi:tag"}
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: azure-identities
+# apiVersion: kustomize.toolkit.fluxcd.io/v1
+# kind: Kustomization
+# metadata:
+#   name: default-kiroshi
+#   namespace: flux-system
+# spec:
+#   interval: 60m0s
+#   path: ./overlays/uksouth-staging/default/kiroshi
+#   dependsOn:
+#     - name: linkerd-control-plane
+#   prune: true
+#   force: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-system
+#   images:
+#     - name: binkcore.azurecr.io/kiroshi
+#       newTag: staging-v1.1.1 # {"$imagepolicy": "flux-system:kiroshi:tag"}
+#   postBuild:
+#     substituteFrom:
+#       - kind: Secret
+#         name: azure-identities
