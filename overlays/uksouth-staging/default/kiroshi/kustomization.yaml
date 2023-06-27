@@ -17,5 +17,5 @@ patches:
           - --host=uksouthstagingsftpc75y.blob.core.windows.net
           - --user=uksouthstagingsftpc75y.mastercard.kiroshi
           - --port=22
-          - --keypath=/mnt/secrets/mastercard-sftp-keyfile
+          - --keypath=/mnt/secrets/kiroshi-sftp-keyfile
           - --directories=/0073185/test/download/TGX4:/mnt/harmonia-imports/test/mastercard-settlement
