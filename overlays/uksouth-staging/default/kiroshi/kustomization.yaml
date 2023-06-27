@@ -3,3 +3,19 @@ resources:
   - ../../../../bases/devops/kiroshi/sftp/mastercard
 
 namespace: default
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/args
+        value:
+          - kiroshi
+          - sftp
+          - mastercard
+          - --host=uksouthstagingsftpc75y.blob.core.windows.net
+          - --user=uksouthstagingsftpc75y.mastercard.kiroshi
+          - --port=22
+          - --keypath=/mnt/secrets/mastercard-sftp-keyfile
+          - --directories=/0073185/test/download/TGX4:/mnt/harmonia-imports/test/mastercard-settlement
