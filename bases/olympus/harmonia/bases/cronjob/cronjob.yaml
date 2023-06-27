@@ -30,11 +30,11 @@ spec:
             command: ["linkerd-await", "--shutdown", "--"]
             image: binkcore.azurecr.io/harmonia:latest
             env:
-              - name: TXM_BLOB_STORAGE_DSN
-                valueFrom:
-                  secretKeyRef:
-                    key: connection_string_primary
-                    name: azure-storage
+              # - name: TXM_BLOB_STORAGE_DSN
+              #   valueFrom:
+              #     secretKeyRef:
+              #       key: blob_connection_string_primary
+              #       name: azure-storage
               - name: TXM_POSTGRES_URI
                 valueFrom:
                   secretKeyRef:

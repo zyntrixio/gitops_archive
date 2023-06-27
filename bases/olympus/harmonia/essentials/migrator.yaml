@@ -26,7 +26,7 @@ spec:
             - name: TXM_BLOB_STORAGE_DSN
               valueFrom:
                 secretKeyRef:
-                  key: connection_string_primary
+                  key: blob_connection_string_primary
                   name: azure-storage
             - name: TXM_POSTGRES_URI
               valueFrom:
