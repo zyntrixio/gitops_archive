@@ -19,7 +19,7 @@ spec:
   images:
     - name: ghcr.io/binkhq/midas
       newName: ghcr.io/binkhq/midas
-      newTag: staging-3.41.0 # {"$imagepolicy": "flux-system:lloyds-midas:tag"}
+      newTag: staging-3.41.1 # {"$imagepolicy": "flux-system:lloyds-midas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
