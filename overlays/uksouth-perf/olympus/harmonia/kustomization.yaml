@@ -20,7 +20,6 @@ resources:
   - ../../../../bases/olympus/harmonia/deployments/matching-worker
   - ../../../../bases/olympus/harmonia/deployments/matching-worker-slow
   - ../../../../bases/olympus/harmonia/deployments/streaming-worker
-  - ../../../../bases/olympus/harmonia/deployments/throughput-test
 namespace: olympus
 configMapGenerator:
   - name: harmonia
