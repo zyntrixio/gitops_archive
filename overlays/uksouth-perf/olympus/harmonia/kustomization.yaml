@@ -41,7 +41,7 @@ patches:
       kind: Job
     patch: |
       - op: add
-        path: /spec/jobTemplate/spec/template/spec/containers/0/env/-
+        path: /spec/template/spec/containers/0/env/-
         value: {"name":"TXM_BLOB_STORAGE_DSN","valueFrom":{"secretKeyRef":{"key":"nfs_connection_string_primary","name":"azure-storage"}}}
       - op: add
         path: /spec/template/spec/containers/0/env/-
