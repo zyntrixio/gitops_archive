@@ -7,6 +7,7 @@ resources:
   - ../../../../bases/olympus/harmonia/deployments/export-worker
   - ../../../../bases/olympus/harmonia/deployments/import-agent-amex-auth
   - ../../../../bases/olympus/harmonia/deployments/import-agent-amex-settlement
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-costa
   - ../../../../bases/olympus/harmonia/deployments/import-agent-harvey-nichols
   - ../../../../bases/olympus/harmonia/deployments/import-agent-iceland-bonus-card
   - ../../../../bases/olympus/harmonia/deployments/import-agent-mastercard-auth
