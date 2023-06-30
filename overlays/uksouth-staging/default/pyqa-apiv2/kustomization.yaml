@@ -20,7 +20,12 @@ patches:
           - name: BLOB_STORAGE_DSN
             valueFrom:
               secretKeyRef:
-                key: connection_string_primary
+                key: blob_connection_string_primary
+                name: azure-storage
+          - name: NFS_STORAGE_DSN
+            valueFrom:
+              secretKeyRef:
+                key: nfs_connection_string_primary
                 name: azure-storage
           - name: VAULT_URL
             valueFrom:
