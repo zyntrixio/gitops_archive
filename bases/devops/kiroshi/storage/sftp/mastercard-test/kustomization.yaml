@@ -28,7 +28,7 @@ patches:
           - --key=/mnt/secrets/kiroshi-sftp-keyfile
           - --path=/0073185/test/download/TGX4
           - --blob_path=harmonia-imports:mastercard
-          - --hacks=mastercard
+          - --hacks=mastercard_testing
   - target:
       kind: CronJob
     patch: |
