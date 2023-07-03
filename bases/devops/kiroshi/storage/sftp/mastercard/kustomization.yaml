@@ -1,0 +1,58 @@
+resources:
+  - ../../../bases/cronjobs
+  - secrets.yaml
+
+commonLabels:
+  component: storage-sftp-mastercard
+
+nameSuffix: -storage-sftp-mastercard
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |
+      - op: replace
+        path: /spec/schedule
+        value: "*/15 * * * *"
+  - target:
+      kind: CronJob
+    patch: |
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/args
+        value:
+          - kiroshi
+          - storage
+          - sftp
+          - --host=mtf.files.mastercard.com
+          - --user=Z218502
+          - --port=16022
+          - --key=/mnt/secrets/mastercard-sftp-keyfile
+          - --path=/0073185/test/download/TGX4
+          - --blob_path=harmonia-imports:mastercard
+          - --hacks=mastercard
+  - target:
+      kind: CronJob
+    patch: |
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/volumeMounts
+        value:
+          - name: keyvault
+            mountPath: "/mnt/secrets"
+            readOnly: true
+          - name: harmonia-imports
+            mountPath: /mnt/harmonia-imports
+  - target:
+      kind: CronJob
+    patch: |
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/volumes
+        value:
+          - name: harmonia-imports
+            persistentVolumeClaim:
+              claimName: harmonia-imports
+          - name: keyvault
+            csi:
+              driver: secrets-store.csi.k8s.io
+              readOnly: true
+              volumeAttributes:
+                secretProviderClass: kirohsi-storage-sftp-mastercard

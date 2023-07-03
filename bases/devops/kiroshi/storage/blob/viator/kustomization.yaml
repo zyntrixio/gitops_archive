@@ -5,9 +5,8 @@ resources:
 labels:
   - includeSelectors: true
     pairs:
-      component: sftp-blobcopy
-      retailer: viator
-nameSuffix: -sftp-blobcopy-viator
+      component: storage-blob-viator
+nameSuffix: -storage-blob-viator
 patches:
   - patch: |
       - op: replace
@@ -20,10 +19,9 @@ patches:
         path: /spec/jobTemplate/spec/template/spec/containers/0/args
         value:
           - kiroshi
-          - sftp
-          - blobcopy
-          - --sftp-container-name=viator
-          - --blob-container-name=carina-imports
-          - --blob-directory-name=viator
+          - storage
+          - blob
+          - --source=sftp:viator:uploads
+          - --destination=blob:carina-imports:viator
     target:
       kind: CronJob

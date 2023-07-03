@@ -36,6 +36,11 @@ spec:
                     secretKeyRef:
                       name: azure-storage
                       key: blob_connection_string_primary
+                - name: nfs_storage_account_dsn
+                  valueFrom:
+                    secretKeyRef:
+                      name: azure-storage
+                      key: nfs_connection_string_primary
                 - name: database_dsn
                   valueFrom:
                     secretKeyRef:
