@@ -36,3 +36,8 @@ patches:
                       secretKeyRef:
                         name: azure-postgres
                         key: url_hermes
+                  - name: REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url_primary
+                        name: azure-redis
