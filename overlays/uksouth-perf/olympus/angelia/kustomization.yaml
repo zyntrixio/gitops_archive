@@ -47,3 +47,8 @@ patches:
                       secretKeyRef:
                         name: azure-keyvault
                         key: url
+                  - name: REDIS_URL
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-redis
+                        key: url_primary
