@@ -1,0 +1,21 @@
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: pyqa-bpl
+  namespace: default
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+spec:
+  type: 0
+  resourceID: /subscriptions/e28b2912-1f6d-4ac7-9cd7-443d73876e10/resourcegroups/uksouth-staging/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-staging-pyqa
+  clientID: 70e789f7-0419-41ed-95ba-ee59f0fd7662
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: pyqa-bpl
+  namespace: default
+spec:
+  azureIdentity: pyqa-bpl-auto
+  selector: pyqa-bpl

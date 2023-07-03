@@ -1,0 +1,68 @@
+---
+bases:
+  - ../../../../bases/cosmos/vela/core
+  - ../../../../bases/cosmos/vela/api
+  - ../../../../bases/cosmos/vela/migrator
+  - ../../../../bases/cosmos/vela/task-worker
+  - ../../../../bases/cosmos/vela/cron-scheduler
+
+namespace: bpl-testing
+
+resources:
+  - aad.yaml
+
+configMapGenerator:
+  - name: vela
+    envs:
+      - env.ini
+  - name: vela-scripts
+    files:
+      - migrator.py
+
+patches:
+  - target:
+      kind: Deployment
+      name: vela-migrator
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: vela
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                args: ["python", "/app/migrator.py"]
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: vela
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: KEY_VAULT_URI
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault
+                envFrom:
+                  - configMapRef:
+                      name: vela
+                volumeMounts:
+                  - name: vela-scripts
+                    mountPath: /app/migrator.py
+                    subPath: migrator.py
+            volumes:
+              - name: vela-scripts
+                configMap:
+                  name: vela-scripts
+                  items:
+                    - key: migrator.py
+                      path: migrator.py

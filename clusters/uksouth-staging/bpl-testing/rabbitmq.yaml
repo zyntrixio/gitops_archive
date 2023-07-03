@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: bpl-testing-rabbitmq
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./bases/infrastructure/rabbitmq
+  prune: true
+  targetNamespace: bpl-testing
+  dependsOn:
+    - name: linkerd-control-plane
+  sourceRef:
+    kind: GitRepository
+    name: flux-system

@@ -1,0 +1,47 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: bpl-testing-cosmos-essentials
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-staging/bpl-testing/cosmos/essentials
+  prune: true
+  force: true
+  wait: true
+  dependsOn:
+  - name: linkerd-control-plane
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/cosmos
+    newName: binkcore.azurecr.io/cosmos
+    newTag: 2023-05-09T181346Z # {"$imagepolicy": "flux-system:uksouth-staging-cosmos:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: cluster-vars
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: bpl-testing-cosmos-deployments
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-staging/bpl-testing/cosmos/deployments
+  prune: true
+  force: true
+  dependsOn:
+  - name: bpl-testing-cosmos-essentials
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/cosmos
+    newName: binkcore.azurecr.io/cosmos
+    newTag: 2023-05-09T181346Z # {"$imagepolicy": "flux-system:uksouth-staging-cosmos:tag"}
+  - name: binkcore.azurecr.io/cosmos-admin
+    newName: binkcore.azurecr.io/cosmos-admin
+    newTag: 2023-05-09T181346Z # {"$imagepolicy": "flux-system:uksouth-staging-cosmos-admin:tag"}

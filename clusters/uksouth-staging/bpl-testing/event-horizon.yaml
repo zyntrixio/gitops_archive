@@ -1,0 +1,19 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: bpl-testing-event-horizon
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-staging/bpl-testing/event-horizon
+  dependsOn:
+  - name: aad-pod-identity
+  - name: linkerd-control-plane
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/event-horizon
+    newName: binkcore.azurecr.io/event-horizon
+    newTag: staging-1.7.15 # {"$imagepolicy": "flux-system:uksouth-staging-event-horizon:tag"}

@@ -1,0 +1,62 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pyqa-bpl
+  namespace: default
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  schedule: 00 22 * * *
+  jobTemplate:
+    spec:
+      backoffLimit: 3
+      template:
+        metadata:
+          annotations:
+            linkerd.io/inject: enabled
+            config.linkerd.io/shutdown-grace-period: "30s"
+            kubectl.kubernetes.io/default-container: app
+          labels:
+            app: pyqa-bpl
+            aadpodidbinding: pyqa-bpl
+        spec:
+          restartPolicy: Never
+          imagePullSecrets:
+            - name: binkcore.azurecr.io
+          volumes:
+            - name: data
+              emptyDir: {}
+          containers:
+            - name: script
+              command: [linkerd-await, --shutdown, --]
+              args:
+                - bash
+                - -c
+                - ./report-render.sh
+              image: binkcore.azurecr.io/pyqa-bpl:latest
+              securityContext:
+                runAsGroup: 0
+                runAsUser: 0
+              imagePullPolicy: Always
+              volumeMounts:
+                - mountPath: /tmp
+                  name: data
+            - name: app
+              command: [linkerd-await, --]
+              args: ["bash", "-c", "pytest --html /tmp/report.html --self-contained-html -m bpl && echo $? > /tmp/status.txt || true"]
+              image: binkcore.azurecr.io/pyqa-bpl:latest
+              volumeMounts:
+                - mountPath: /tmp
+                  name: data
+              securityContext:
+                runAsGroup: 0
+                runAsUser: 0
+              imagePullPolicy: Always
+              resources:
+                limits:
+                  memory: 500Mi
+                requests:
+                  cpu: 10m
+                  memory: 500Mi

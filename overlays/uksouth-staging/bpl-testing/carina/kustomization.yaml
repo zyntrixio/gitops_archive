@@ -1,0 +1,73 @@
+---
+bases:
+  - ../../../../bases/cosmos/carina/core
+  - ../../../../bases/cosmos/carina/api
+  - ../../../../bases/cosmos/carina/migrator
+  - ../../../../bases/cosmos/carina/task-worker
+  - ../../../../bases/cosmos/carina/cron-scheduler
+
+namespace: bpl-testing
+
+configMapGenerator:
+  - name: carina
+    envs:
+      - env.ini
+  - name: carina-scripts
+    files:
+      - migrator.py
+
+resources:
+  - aad.yaml
+
+patches:
+  - target:
+      kind: Deployment
+      name: carina-migrator
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: carina
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                args: ["python", "/app/migrator.py"]
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: carina
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                envFrom:
+                  - configMapRef:
+                      name: carina
+                env:
+                  - name: BLOB_STORAGE_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: connection_string_primary
+                        name: azure-storage
+                  - name: KEY_VAULT_URI
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault
+                volumeMounts:
+                - name: carina-scripts
+                  mountPath: /app/migrator.py
+                  subPath: migrator.py
+            volumes:
+              - name: carina-scripts
+                configMap:
+                  name: carina-scripts
+                  items:
+                    - key: migrator.py
+                      path: migrator.py

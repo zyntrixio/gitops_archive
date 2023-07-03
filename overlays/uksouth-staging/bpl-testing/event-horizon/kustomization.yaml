@@ -1,0 +1,36 @@
+---
+bases:
+  - ../../../../bases/cosmos/event-horizon
+
+namespace: bpl-testing
+
+resources:
+  - aad.yaml
+
+configMapGenerator:
+  - name: event-horizon
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: event-horizon
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: KEY_VAULT_URI
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-keyvault
+                envFrom:
+                  - configMapRef:
+                      name: event-horizon
