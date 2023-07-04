@@ -2,6 +2,10 @@ bases:
   - ../../../../../bases/devops/snowstorm/apistats
   - ../../../../../bases/devops/snowstorm/event_processor
 
+replicas:
+  - name: snowstorm-event-processor-harmonia
+    count: 0
+
 patches:
   - target:
       kind: Deployment
