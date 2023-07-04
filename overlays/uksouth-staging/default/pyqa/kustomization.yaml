@@ -46,6 +46,11 @@ patches:
               secretKeyRef:
                 key: connection_string_primary
                 name: azure-storage
+          - name: NFS_STORAGE_DSN
+            valueFrom:
+              secretKeyRef:
+                key: nfs_connection_string_primary
+                name: azure-storage
           - name: HERMES_DATABASE_URI
             valueFrom:
               secretKeyRef:
