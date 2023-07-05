@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/ubiquity-performance
     newName: binkcore.azurecr.io/ubiquity-performance
-    newTag: 2023-06-30-142803 # {"$imagepolicy": "flux-system:locust:tag"}
+    newTag: 2023-07-05-091305 # {"$imagepolicy": "flux-system:locust:tag"}
   postBuild:
     substituteFrom:
     - kind: ConfigMap
