@@ -1,5 +1,0 @@
----
-bases:
-  - ../../../bases/infrastructure/alertmanager
-
-namespace: grafana

@@ -1,5 +1,0 @@
----
-bases:
-  - ../../../bases/infrastructure/cert-manager
-resources:
-  - aad.yaml

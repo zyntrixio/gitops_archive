@@ -1,6 +1,0 @@
----
-bases:
-  - generate/
-  - rabbit/
-
-namespace: default

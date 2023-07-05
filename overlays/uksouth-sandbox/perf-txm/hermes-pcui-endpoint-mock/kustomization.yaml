@@ -1,9 +1,0 @@
----
-bases:
-  - ../../../../bases/qa/hermes-pcui-endpoint-mock
-
-namespace: perf-txm
-
-replicas:
-  - name: hermes-pcui-endpoint-mock-api
-    count: 6
