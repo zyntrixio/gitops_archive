@@ -16,7 +16,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/hermes
       newName: binkcore.azurecr.io/hermes
-      newTag: lloyds-3.19.0 # {"$imagepolicy": "flux-system:lloyds-hermes:tag"}
+      newTag: lloyds-3.19.1 # {"$imagepolicy": "flux-system:lloyds-hermes:tag"}
   postBuild:
     substituteFrom:
       - kind: Secret
