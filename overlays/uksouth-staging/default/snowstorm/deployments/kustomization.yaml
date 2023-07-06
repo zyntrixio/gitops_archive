@@ -4,7 +4,7 @@ bases:
 
 replicas:
   - name: snowstorm-event-processor-harmonia
-    count: 0
+    count: 1
 
 patches:
   - target:
