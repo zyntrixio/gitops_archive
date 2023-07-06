@@ -16,7 +16,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/hermes
     newName: binkcore.azurecr.io/hermes
-    newTag: 2023-07-05T155827Z # {"$imagepolicy": "flux-system:uksouth-dev-hermes:tag"}
+    newTag: 2023-07-06T154824Z # {"$imagepolicy": "flux-system:uksouth-dev-hermes:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
