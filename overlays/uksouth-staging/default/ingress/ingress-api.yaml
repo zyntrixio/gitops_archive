@@ -75,6 +75,20 @@ spec:
                 name: angelia-api
                 port:
                   number: 80
+          - path: /v2/magic_link
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
+          - path: /v2/magic_link/access_token
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-api
+                port:
+                  number: 80
           - path: /auth_transactions/authorize
             pathType: Prefix
             backend:
