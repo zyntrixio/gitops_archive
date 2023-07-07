@@ -5,6 +5,8 @@ metadata:
   name: rabbitmq
   namespace: rabbitmq
 spec:
+  persistence:
+    storageClassName: azurefile-zrs
   rabbitmq:
     additionalConfig: |
       default_user=guest
