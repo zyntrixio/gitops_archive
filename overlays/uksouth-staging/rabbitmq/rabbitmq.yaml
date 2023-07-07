@@ -18,20 +18,6 @@ spec:
   resources:
     requests:
       cpu: 1000m
-      memory: 800M
+      memory: 4G
     limits:
-      memory: 800M
-  tolerations:
-    - key: app
-      operator: Equal
-      value: rabbitmq
-      effect: NoSchedule
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-              - key: agentpool
-                operator: In
-                values:
-                  - rabbitmq
+      memory: 4G
