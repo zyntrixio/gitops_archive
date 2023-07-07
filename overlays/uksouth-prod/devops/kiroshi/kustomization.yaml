@@ -8,3 +8,12 @@ resources:
   - ../../../../bases/devops/kiroshi/storage/blob/viator
 
 namespace: devops
+
+patches:
+  - target:
+      kind: CronJob
+      name: kiroshi-traffic
+    patch: |
+      - op: replace
+        path: /spec/suspend
+        value: true
