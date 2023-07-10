@@ -59,8 +59,6 @@ spec:
             - -c
             - >-
               cd /app/data-warehouse/Prefect &&
-              make deploy-dev &&
-              cd /app/data-warehouse-dashboards/Prefect &&
               make deploy-dev
           volumeMounts:
             - mountPath: /root/.prefect
