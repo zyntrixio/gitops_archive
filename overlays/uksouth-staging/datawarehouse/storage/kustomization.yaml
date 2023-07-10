@@ -12,7 +12,7 @@ patches:
         path: /spec/template/spec/containers/0/volumeMounts/-
         value:
           name: keyvault
-          mountPath: /app/data-warehouse/Prefect
+          mountPath: /mnt/secrets
           readOnly: true
       - op: add
         path: /spec/template/spec/volumes/-
@@ -30,7 +30,7 @@ patches:
         path: /spec/template/spec/containers/0/volumeMounts/-
         value:
           name: keyvault
-          mountPath: /app/data-warehouse/Prefect
+          mountPath: /mnt/secrets
           readOnly: true
       - op: add
         path: /spec/template/spec/volumes/-
