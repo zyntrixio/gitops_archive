@@ -3,3 +3,4 @@ resources:
   - ../../../bases/datawarehouse/airbyte
   - ../../../bases/datawarehouse/prefect
   - ../../../bases/datawarehouse/tableau
+  - ../../../bases/datawarehouse/storage
