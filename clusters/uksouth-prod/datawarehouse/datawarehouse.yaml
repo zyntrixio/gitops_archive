@@ -17,6 +17,10 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: cluster-vars
+      - kind: Secret
+        name: azure-identities
+      - kind: Secret
+        name: azure-keyvault
   images:
     - name: binkcore.azurecr.io/data-warehouse
       newName: binkcore.azurecr.io/data-warehouse

@@ -1,8 +1,8 @@
 ---
 resources:
   - ../../../bases/datawarehouse/airbyte
-  - ../../../bases/datawarehouse/prefect
   - ../../../bases/datawarehouse/tableau
+  - ./storage
 
 patches:
   - target:
