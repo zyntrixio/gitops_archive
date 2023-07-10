@@ -46,8 +46,8 @@ spec:
   imageRepositoryRef:
     name: data-warehouse
   filterTags:
-    pattern: staging-v(?P<ts>\d+(\.\d+)*)$
+    pattern: staging-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: '>0.0.1'
