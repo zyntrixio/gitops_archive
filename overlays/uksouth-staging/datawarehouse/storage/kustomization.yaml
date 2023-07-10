@@ -1,6 +1,8 @@
 resources:
   - secrets.yaml
-  - ../prefect
+  - ../../../bases/datawarehouse/prefect
+
+namespace: datawarehouse
 
 patches:
   - target:
