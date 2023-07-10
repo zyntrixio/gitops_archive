@@ -12,7 +12,8 @@ patches:
         path: /spec/template/spec/containers/0/volumeMounts/-
         value:
           name: keyvault
-          mountPath: /mnt/secrets
+          mountPath: /app/data-warehouse/Prefect/prefect.yml
+          subPath: prefect-profile
           readOnly: true
       - op: add
         path: /spec/template/spec/volumes/-
