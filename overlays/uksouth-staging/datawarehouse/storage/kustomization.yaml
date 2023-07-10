@@ -9,35 +9,35 @@ patches:
       kind: Job
     patch: |
       - op: add
-        path: /spec/template/spec/containers/0/volumeMounts
+        path: /spec/template/spec/containers/0/volumeMounts/-
         value:
-          - name: keyvault
-            mountPath: /app/data-warehouse/Prefect
-            readOnly: true
+          name: keyvault
+          mountPath: /app/data-warehouse/Prefect
+          readOnly: true
       - op: add
-        path: /spec/template/spec/volumes
+        path: /spec/template/spec/volumes/-
         value:
-          - name: keyvault
-            csi:
-              driver: secrets-store.csi.k8s.io
-              readOnly: true
-              volumeAttributes:
-                secretProviderClass: prefect
+          name: keyvault
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: prefect
   - target:
       kind: Deployment
     patch: |
       - op: add
-        path: /spec/template/spec/containers/0/volumeMounts
+        path: /spec/template/spec/containers/0/volumeMounts/-
         value:
-          - name: keyvault
-            mountPath: /app/data-warehouse/Prefect
-            readOnly: true
+          name: keyvault
+          mountPath: /app/data-warehouse/Prefect
+          readOnly: true
       - op: add
-        path: /spec/template/spec/volumes
+        path: /spec/template/spec/volumes/-
         value:
-          - name: keyvault
-            csi:
-              driver: secrets-store.csi.k8s.io
-              readOnly: true
-              volumeAttributes:
-                secretProviderClass: prefect
+          name: keyvault
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: prefect
