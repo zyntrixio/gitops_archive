@@ -1,0 +1,41 @@
+resources:
+  - secrets.yaml
+  - ../prefect
+
+patches:
+  - target:
+      kind: Job
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts
+        value:
+          - name: keyvault
+            mountPath: /app/data-warehouse/Prefect
+            readOnly: true
+      - op: add
+        path: /spec/template/spec/volumes
+        value:
+          - name: keyvault
+            csi:
+              driver: secrets-store.csi.k8s.io
+              readOnly: true
+              volumeAttributes:
+                secretProviderClass: prefect
+  - target:
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts
+        value:
+          - name: keyvault
+            mountPath: /app/data-warehouse/Prefect
+            readOnly: true
+      - op: add
+        path: /spec/template/spec/volumes
+        value:
+          - name: keyvault
+            csi:
+              driver: secrets-store.csi.k8s.io
+              readOnly: true
+              volumeAttributes:
+                secretProviderClass: prefect
