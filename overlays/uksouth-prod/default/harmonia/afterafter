@@ -1,0 +1,1749 @@
+apiVersion: v1
+data:
+  TXM_AAD_TENANT_ID: a6e2367a-92ea-4e5a-b565-723830bcc095
+  TXM_AMQP_DSN: amqp://guest:guest@rabbitmq.rabbitmq:5672
+  TXM_ATLAS_URL: http://atlas-api/audit
+  TXM_DEBUG: "false"
+  TXM_EUROPA_URL: http://europa-api/config_service
+  TXM_HERMES_URL: http://hermes-api
+  TXM_MASTERCARD_TGX2_ENABLED: "true"
+  TXM_RABBITMQ_HOST: dummy
+  TXM_RABBITMQ_PASS: dummpy
+  TXM_RABBITMQ_PORT: "1234"
+  TXM_RABBITMQ_USER: dummy
+  TXM_SENTRY_DSN: https://39134637f8aa4bd190c23db0b23f6413@o503751.ingest.sentry.io/5609964
+  TXM_SENTRY_ENV: prod
+  TXM_SIMULATE_EXPORTS: "false"
+  TXM_USE_BLOB_STORAGE: "true"
+  TXM_VAULT_TOKEN: "123"
+  TXM_VAULT_URL: https://uksouth-prod-qj46.vault.azure.net/
+kind: ConfigMap
+metadata:
+  name: harmonia-8f9hcdm75b
+  namespace: default
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: harmonia
+    component: api
+  name: harmonia-api
+  namespace: default
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 9000
+  selector:
+    app: harmonia
+    component: api
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: api
+  name: harmonia-api
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: api
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-api
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: api
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - gunicorn
+        - -b
+        - 0.0.0.0:9000
+        - --access-logfile
+        - '-'
+        - --error-logfile
+        - '-'
+        - app.api.app:app
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-api
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: export-agent-iceland-bonus-card
+  name: harmonia-export-agent-iceland-bonus-card
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: export-agent-iceland-bonus-card
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-export-agent-iceland-bonus-card
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: export-agent-iceland-bonus-card
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - txexport
+        - --agent
+        - iceland-bonus-card
+        - --no-user-input
+        - --quiet
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: export-retry-worker
+  name: harmonia-export-retry-worker
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: export-retry-worker
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-export-retry-worker
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: export-retry-worker
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - txcore
+        - export-retry
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: export-worker
+  name: harmonia-export-worker
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: export-worker
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-export-worker
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: export-worker
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - txcore
+        - worker
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 500Mi
+          requests:
+            cpu: 10m
+            memory: 500Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: identify-worker
+  name: harmonia-identify-worker
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: identify-worker
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-identify-worker
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: identify-worker
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - txcore
+        - worker
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: import-agent-amex-auth
+  name: harmonia-import-agent-amex-auth
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: import-agent-amex-auth
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-import-agent-amex-auth
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: import-agent-amex-auth
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - tximport
+        - --agent
+        - amex-auth
+        - --no-user-input
+        - --quiet
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: import-agent-amex-settlement
+  name: harmonia-import-agent-amex-settlement
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: import-agent-amex-settlement
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-import-agent-amex-settlement
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: import-agent-amex-settlement
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - tximport
+        - --agent
+        - amex-settlement
+        - --no-user-input
+        - --quiet
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: import-agent-iceland-bonus-card
+  name: harmonia-import-agent-iceland-bonus-card
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: import-agent-iceland-bonus-card
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-import-agent-iceland-bonus-card
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: import-agent-iceland-bonus-card
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - tximport
+        - --agent
+        - iceland-bonus-card
+        - --no-user-input
+        - --quiet
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            cpu: 10m
+            memory: 512Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: import-agent-mastercard-auth
+  name: harmonia-import-agent-mastercard-auth
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: import-agent-mastercard-auth
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-import-agent-mastercard-auth
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: import-agent-mastercard-auth
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - tximport
+        - --agent
+        - mastercard-auth
+        - --no-user-input
+        - --quiet
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: import-agent-mastercard-settled
+  name: harmonia-import-agent-mastercard-settled
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: import-agent-mastercard-settled
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-import-agent-mastercard-settled
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: import-agent-mastercard-settled
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - tximport
+        - --agent
+        - mastercard-settled
+        - --no-user-input
+        - --quiet
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: import-agent-visa-auth
+  name: harmonia-import-agent-visa-auth
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: import-agent-visa-auth
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-import-agent-visa-auth
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: import-agent-visa-auth
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - tximport
+        - --agent
+        - visa-auth
+        - --no-user-input
+        - --quiet
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: import-agent-visa-refund
+  name: harmonia-import-agent-visa-refund
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: import-agent-visa-refund
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-import-agent-visa-refund
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: import-agent-visa-refund
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - tximport
+        - --agent
+        - visa-refund
+        - --no-user-input
+        - --quiet
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: import-agent-visa-settle
+  name: harmonia-import-agent-visa-settle
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: import-agent-visa-settle
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-import-agent-visa-settle
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: import-agent-visa-settle
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - tximport
+        - --agent
+        - visa-settlement
+        - --no-user-input
+        - --quiet
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: import-agent-wasabi-club
+  name: harmonia-import-agent-wasabi-club
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: import-agent-wasabi-club
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-import-agent-wasabi-club
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: import-agent-wasabi-club
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - tximport
+        - --agent
+        - wasabi-club
+        - --no-user-input
+        - --quiet
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 5Gi
+          requests:
+            cpu: 10m
+            memory: 5Gi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: import-worker
+  name: harmonia-import-worker
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: import-worker
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-import-worker
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: import-worker
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - txcore
+        - worker
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: matching-worker
+  name: harmonia-matching-worker
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: matching-worker
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-matching-worker
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: matching-worker
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - txcore
+        - worker
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 1Gi
+          requests:
+            cpu: 10m
+            memory: 1Gi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: matching-worker-slow
+  name: harmonia-matching-worker-slow
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: matching-worker-slow
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-matching-worker-slow
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: matching-worker-slow
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - txcore
+        - worker
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: migrator
+  name: harmonia-migrator
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: migrator
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: migrator
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - bash
+        - -c
+        - alembic upgrade head; echo Done; tail -f /dev/null
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            cpu: 10m
+            memory: 512Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-high-tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: harmonia
+    component: streaming-worker
+  name: harmonia-streaming-worker
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: harmonia
+      component: streaming-worker
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+        prometheus.io/job: harmonia-streaming-worker
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+      labels:
+        aadpodidbinding: harmonia
+        app: harmonia
+        component: streaming-worker
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - harmonia
+              topologyKey: topology.kubernetes.io/zone
+            weight: 100
+      containers:
+      - args:
+        - txcore
+        - worker
+        env:
+        - name: TXM_BLOB_STORAGE_DSN
+          valueFrom:
+            secretKeyRef:
+              key: connection_string_primary
+              name: azure-storage
+        - name: TXM_REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              key: url_primary
+              name: azure-redis
+        - name: TXM_POSTGRES_URI
+          valueFrom:
+            secretKeyRef:
+              key: url_harmonia
+              name: azure-postgres
+        envFrom:
+        - configMapRef:
+            name: harmonia-8f9hcdm75b
+        image: binkcore.azurecr.io/harmonia:latest
+        imagePullPolicy: Always
+        name: app
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi
+        securityContext:
+          runAsGroup: 65534
+          runAsUser: 65534
+      imagePullSecrets:
+      - name: binkcore.azurecr.io
+      priorityClassName: bink-low-tasks
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  labels:
+    app: harmonia
+    component: purgedb
+  name: harmonia-purgedb
+  namespace: default
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    metadata:
+      labels:
+        app: harmonia
+        component: purgedb
+    spec:
+      template:
+        metadata:
+          annotations:
+            kubectl.kubernetes.io/default-container: app
+            linkerd.io/inject: enabled
+          labels:
+            app: harmonia
+            component: purgedb
+        spec:
+          containers:
+          - args:
+            - txcore
+            - purgedb
+            - --no-user-input
+            - --leader-election
+            command:
+            - linkerd-await
+            - --shutdown
+            - --
+            env:
+            - name: TXM_BLOB_STORAGE_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: connection_string_primary
+                  name: azure-storage
+            - name: TXM_REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url_primary
+                  name: azure-redis
+            - name: TXM_POSTGRES_URI
+              valueFrom:
+                secretKeyRef:
+                  key: url_harmonia
+                  name: azure-postgres
+            envFrom:
+            - configMapRef:
+                name: harmonia-8f9hcdm75b
+            image: binkcore.azurecr.io/harmonia:latest
+            imagePullPolicy: Always
+            name: app
+            resources:
+              limits:
+                memory: 128Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            securityContext:
+              runAsGroup: 65534
+              runAsUser: 65534
+          imagePullSecrets:
+          - name: binkcore.azurecr.io
+          priorityClassName: bink-high-tasks
+          restartPolicy: Never
+  schedule: 45 2 * * *
+  successfulJobsHistoryLimit: 1
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  annotations:
+    aadpodidentity.k8s.io/Behavior: namespaced
+  name: harmonia
+  namespace: default
+spec:
+  clientID: 3830745f-1ad4-462e-9af1-32be6d23c025
+  resourceID: /subscriptions/42706d13-8023-4b0c-b98a-1a562cb9ac40/resourcegroups/uksouth-prod/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-prod-harmonia
+  type: 0
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: harmonia
+  namespace: default
+spec:
+  azureIdentity: harmonia
+  selector: harmonia

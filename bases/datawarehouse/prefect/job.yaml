@@ -65,5 +65,6 @@ spec:
           volumeMounts:
             - mountPath: /root/.prefect
               name: config
+      priorityClassName: bink-high-api
       restartPolicy: Never
   backoffLimit: 4

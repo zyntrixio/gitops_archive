@@ -82,5 +82,6 @@ spec:
           imagePullPolicy: Always
           name: app
       serviceAccountName: aquila
+      priorityClassName: bink-high-api
       imagePullSecrets:
         - name: binkcore.azurecr.io

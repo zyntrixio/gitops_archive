@@ -4,31 +4,22 @@ bases:
 
 nameSuffix: -migrator
 
+commonLabels:
+  component: migrator
+
 patches:
   - target:
       kind: Deployment
     patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: carina
-        labels:
-          component: migrator
-      spec:
-        selector:
-          matchLabels:
-            component: migrator
-        template:
-          metadata:
-            labels:
-              component: migrator
-          spec:
-            containers:
-              - name: app
-                command: ["linkerd-await", "--"]
-                args: ["bash", "-c", "alembic upgrade head; echo Done; tail -f /dev/null"]
-                resources:
-                  limits:
-                    memory: 1Gi
-                  requests:
-                    memory: 1Gi
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-high-tasks
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["bash", "-c", "alembic upgrade head; echo Done; tail -f /dev/null"]
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 1Gi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 1Gi

@@ -11,6 +11,9 @@ patches:
   - target:
       kind: Deployment
     patch: |-
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-medium-tasks
       - op: replace
         path: /spec/template/spec/containers/0/args
         value: ["cosmos", "cron-scheduler"]

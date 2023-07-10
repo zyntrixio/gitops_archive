@@ -4,30 +4,19 @@ bases:
 
 nameSuffix: -task-worker
 
+commonLabels:
+  component: task-worker
+
 patches:
   - target:
       kind: Deployment
     patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: polaris
-        labels:
-          component: task-worker
-      spec:
-        selector:
-          matchLabels:
-            component: task-worker
-        template:
-          metadata:
-            annotations:
-              prometheus.io/port: '9100'
-              prometheus.io/scrape: 'true'
-              prometheus.io/job: task-worker
-            labels:
-              component: task-worker
-          spec:
-            containers:
-              - name: app
-                command: ["linkerd-await", "--"]
-                args: ["python", "-m", "polaris.core.cli", "task-worker"]
+      - op: add
+        path: /spec/template/metadata
+        value: {"annotations":{"prometheus.io/port":"9100","prometheus.io/scrape":"true","prometheus.io/job":"polaris"}}
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-high-tasks
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "-m", "polaris.core.cli", "task-worker"]

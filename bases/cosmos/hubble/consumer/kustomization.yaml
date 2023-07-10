@@ -1,5 +1,5 @@
 ---
-bases:
+resources:
   - ../base
 
 nameSuffix: -consumer
@@ -11,14 +11,12 @@ patches:
   - target:
       kind: Deployment
     patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: hubble
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                command: ["linkerd-await", "--"]
-                args: ["python", "-m", "hubble.cli", "activity-consumer"]
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-low-tasks
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "-m", "hubble.cli", "activity-consumer"]
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: binkcore.azurecr.io/cosmos-admin:latest

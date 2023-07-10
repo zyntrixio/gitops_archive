@@ -1,13 +1,21 @@
 ---
-bases:
-  - ../base
-
 resources:
+  - ../base
   - service.yaml
 
 nameSuffix: -api
 
+commonLabels:
+  component: api
+
 patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      op: add
+      path: /spec/strategy
+      value: {"rollingUpdate":{"maxSurge":"25%","maxUnavailable":"25%"},"type":"RollingUpdate"}
+
   - target:
       kind: Deployment
     patch: |-
