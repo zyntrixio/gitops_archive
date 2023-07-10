@@ -2,4 +2,4 @@
 resources:
   - ../../../bases/datawarehouse/airbyte
   - ../../../bases/datawarehouse/tableau
-  - ../../../bases/datawarehouse/storage
+  - ./storage

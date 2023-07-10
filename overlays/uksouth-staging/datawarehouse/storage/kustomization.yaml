@@ -1,6 +1,6 @@
 resources:
   - secrets.yaml
-  - ../../../bases/datawarehouse/prefect
+  - ../../../../bases/datawarehouse/prefect
 
 namespace: datawarehouse
 
