@@ -1,54 +1,26 @@
 ---
-bases:
+resources:
   - ../base
+  - service.yaml
 
 nameSuffix: -api
 
-resources:
-  - service.yaml
+commonLabels:
+  component: api
 
 patches:
   - target:
       kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: vela
-        labels:
-          component: api
-      spec:
-        selector:
-          matchLabels:
-            component: api
-        template:
-          metadata:
-            annotations:
-              prometheus.io/port: '9100'
-              prometheus.io/scrape: 'true'
-              prometheus.io/job: vela
-            labels:
-              component: api
-          spec:
-            containers:
-              - name: app
-                livenessProbe:
-                  failureThreshold: 3
-                  httpGet:
-                    path: /livez
-                    port: 9000
-                    scheme: HTTP
-                  initialDelaySeconds: 15
-                  periodSeconds: 60
-                  successThreshold: 1
-                  timeoutSeconds: 10
-                readinessProbe:
-                  failureThreshold: 3
-                  httpGet:
-                    path: /readyz
-                    port: 9000
-                    scheme: HTTP
-                  initialDelaySeconds: 15
-                  periodSeconds: 60
-                  successThreshold: 1
-                  timeoutSeconds: 10
+    patch: |
+      - op: add
+        path: /spec/template/metadata
+        value: {"annotations":{"prometheus.io/port":"9100","prometheus.io/scrape":"true","prometheus.io/job":"vela"}}
+      - op: add
+        path: /spec/template/spec/containers/0/readinessProbe
+        value: {"httpGet":{"path":"/readyz","port":"9000","scheme":"HTTP"}}
+      - op: add
+        path: /spec/template/spec/containers/0/livenessProbe
+        value: {"httpGet":{"path":"/livez","port":"9000","scheme":"HTTP"}}
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-medium-api

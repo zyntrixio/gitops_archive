@@ -41,7 +41,7 @@ spec:
             - name: web
               containerPort: 15672
       serviceAccountName: rabbitmq
-      priorityClassName: rabbitmq
+      priorityClassName: bink-critical
       volumes:
         - name: config
           configMap:

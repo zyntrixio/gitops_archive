@@ -51,4 +51,3 @@ spec:
       imagePullSecrets:
         - name: binkcore.azurecr.io
       serviceAccountName: hubble
-      priorityClassName: hubble

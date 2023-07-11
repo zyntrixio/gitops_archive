@@ -37,7 +37,7 @@ spec:
                 topologyKey: topology.kubernetes.io/zone
               weight: 100
       serviceAccountName: event-horizon
-      priorityClassName: event-horizon
+      priorityClassName: bink-low-tasks
       containers:
         - name: app
           image: binkcore.azurecr.io/event-horizon:latest

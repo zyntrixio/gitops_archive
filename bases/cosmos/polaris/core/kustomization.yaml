@@ -2,5 +2,4 @@
 resources:
   - namespace.yaml
   - serviceaccount.yaml
-  - priorityclass.yaml
   - lsp.yaml

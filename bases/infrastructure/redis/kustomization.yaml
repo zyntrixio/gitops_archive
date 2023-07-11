@@ -1,22 +1,14 @@
 ---
-bases:
-  - github.com/binkhq/distroless-redis/deploy
-
 resources:
-  - priorityclass.yaml
+  - github.com/binkhq/distroless-redis/deploy
 
 patches:
   - target:
       kind: Deployment
     patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: redis
-      spec:
-        template:
-          metadata:
-            annotations:
-              linkerd.io/inject: enabled
-          spec:
-            priorityClassName: redis
+      - op: add
+        path: /spec/template/metadata/annotations
+        value: {"linkerd.io/inject":"enabled", "kubectl.kubernetes.io/default-container": "app"}
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-critical

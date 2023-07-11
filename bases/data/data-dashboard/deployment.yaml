@@ -39,5 +39,6 @@ spec:
         - name: app
           image: binkcore.azurecr.io/data-dashboard:latest
           imagePullPolicy: Always
+      priorityClassName: bink-high-tasks
       imagePullSecrets:
         - name: binkcore.azurecr.io

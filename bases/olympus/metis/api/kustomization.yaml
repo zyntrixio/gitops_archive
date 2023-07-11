@@ -12,3 +12,10 @@ patches:
   - path: patch-name.yaml
     target:
       kind: Deployment
+
+  - target:
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-low-api

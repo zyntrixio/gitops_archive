@@ -4,26 +4,16 @@ bases:
 
 nameSuffix: -tx-history-consumer
 
+commonLabels:
+  component: tx-history-consumer
+
 patches:
   - target:
       kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: polaris
-        labels:
-          component: tx-history-consumer
-      spec:
-        selector:
-          matchLabels:
-            component: tx-history-consumer
-        template:
-          metadata:
-            labels:
-              component: tx-history-consumer
-          spec:
-            containers:
-              - name: app
-                command: ["linkerd-await", "--"]
-                args: ["python", "-m", "polaris.core.cli", "tx-history-consumer"]
+    patch: |
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-high-tasks
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "-m", "polaris.core.cli", "tx-history-consumer"]
