@@ -10,7 +10,7 @@ commonLabels:
 patches:
   - target:
       kind: Deployment
-    patch: |-
+    patch: |
       - op: replace
         path: /spec/template/spec/containers/0/args
         value: ["hubble", "cron-scheduler"]

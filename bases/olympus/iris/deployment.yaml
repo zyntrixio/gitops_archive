@@ -72,5 +72,6 @@ spec:
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534
+      priorityClassName: bink-low-api
       imagePullSecrets:
         - name: binkcore.azurecr.io

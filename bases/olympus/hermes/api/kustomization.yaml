@@ -12,13 +12,6 @@ patches:
   - target:
       kind: Deployment
     patch: |-
-      op: add
-      path: /spec/strategy
-      value: {"rollingUpdate":{"maxSurge":"25%","maxUnavailable":"25%"},"type":"RollingUpdate"}
-
-  - target:
-      kind: Deployment
-    patch: |-
       apiVersion: apps/v1
       kind: Deployment
       metadata:

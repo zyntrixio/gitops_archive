@@ -11,4 +11,4 @@ patches:
         value: {"linkerd.io/inject":"enabled", "kubectl.kubernetes.io/default-container": "app"}
       - op: add
         path: /spec/template/spec/priorityClassName
-        value: bink-high-tasks
+        value: bink-critical

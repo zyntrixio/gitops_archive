@@ -10,7 +10,7 @@ commonLabels:
 patches:
   - target:
       kind: Deployment
-    patch: |-
+    patch: |
       - op: add
         path: /spec/template/metadata
         value: {"annotations":{"prometheus.io/port":"9100","prometheus.io/scrape":"true","prometheus.io/job":"carina"}}

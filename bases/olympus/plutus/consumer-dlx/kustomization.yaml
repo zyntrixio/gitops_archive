@@ -11,19 +11,12 @@ patches:
   - target:
       kind: Deployment
     patch: |
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: plutus-consumer-dlx
-        namespace: default
-      spec:
-        template:
-          metadata:
-            annotations:
-              prometheus.io/port: '9100'
-              prometheus.io/scrape: 'true'
-              prometheus.io/job: plutus-consumer-dlx
-          spec:
-            containers:
-              - name: app
-                args: ["python", "/app/app/dead_letter_consumer.py"]
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-low-tasks
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "/app/app/dead_letter_consumer.py"]
+      - op: add
+        path: /spec/template/metadata/annotations/prometheus.io~1job
+        value: plutus-consumer-dlx
