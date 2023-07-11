@@ -24,7 +24,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/data-warehouse
       newName: binkcore.azurecr.io/data-warehouse
-      newTag: staging-v1.0.4 # {"$imagepolicy": "flux-system:uksouth-staging-data-warehouse:tag"}
+      newTag: staging-v1.0.5 # {"$imagepolicy": "flux-system:uksouth-staging-data-warehouse:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
