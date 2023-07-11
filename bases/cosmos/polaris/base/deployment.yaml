@@ -52,4 +52,3 @@ spec:
       imagePullSecrets:
         - name: binkcore.azurecr.io
       serviceAccountName: polaris
-      priorityClassName: polaris

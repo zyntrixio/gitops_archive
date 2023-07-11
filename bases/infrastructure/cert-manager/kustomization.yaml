@@ -1,5 +1,5 @@
 ---
-bases:
+resources:
   - https://github.com/jetstack/cert-manager/releases/download/v1.7.1/cert-manager.yaml
 
 patches:
@@ -37,3 +37,6 @@ patches:
       - op: add
         path: /metadata/annotations/buoyant.cloud~1excluded
         value: "true"
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-high-tasks

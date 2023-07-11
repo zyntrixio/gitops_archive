@@ -4,35 +4,25 @@ bases:
 
 nameSuffix: -cron-scheduler
 
+commonLabels:
+  component: cron-scheduler
+
 patches:
   - target:
       kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: polaris
-        labels:
-          component: cron-scheduler
-      spec:
-        selector:
-          matchLabels:
-            component: cron-scheduler
-        template:
-          metadata:
-            labels:
-              component: cron-scheduler
-            annotations:
-              prometheus.io/port: '9100'
-              prometheus.io/scrape: 'true'
-              prometheus.io/job: polaris
-          spec:
-            containers:
-              - name: app
-                command: ["linkerd-await", "--"]
-                args: ["python", "-m", "polaris.core.cli", "cron-scheduler"]
-                resources:
-                  limits:
-                    memory: 1Gi
-                  requests:
-                    memory: 1Gi
+    patch: |
+      - op: add
+        path: /spec/template/metadata/annotations
+        value: {"prometheus.io/port":"9100","prometheus.io/scrape":"true","prometheus.io/job":"polaris"}
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-medium-tasks
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "-m", "polaris.core.cli", "cron-scheduler"]
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 1Gi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 1Gi

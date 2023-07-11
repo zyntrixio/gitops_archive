@@ -1,11 +1,12 @@
 ---
-bases:
-  - ../base
-
 resources:
+  - ../base
   - service.yaml
 
 nameSuffix: -api
+
+commonLabels:
+  component: api
 
 patches:
   - target:

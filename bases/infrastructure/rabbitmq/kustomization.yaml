@@ -4,7 +4,6 @@ resources:
   - service.yaml
   - serviceaccount.yaml
   - deploy.yaml
-  - priorityclass.yaml
 
 configMapGenerator:
   - name: rabbitmq

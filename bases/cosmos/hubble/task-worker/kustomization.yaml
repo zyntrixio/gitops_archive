@@ -7,15 +7,10 @@ nameSuffix: -task-worker
 patches:
   - target:
       kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: hubble
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                command: ["linkerd-await", "--"]
-                args: ["python", "-m", "hubble.cli", "task-worker"]
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "-m", "hubble.cli", "task-worker"]
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-medium-tasks

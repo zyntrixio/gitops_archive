@@ -10,7 +10,10 @@ commonLabels:
 patches:
   - target:
       kind: Deployment
-    patch: |-
+    patch: |
       - op: replace
         path: /spec/template/spec/containers/0/args
         value: ["hubble", "cron-scheduler"]
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-medium-tasks

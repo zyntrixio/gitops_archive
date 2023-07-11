@@ -10,15 +10,10 @@ commonLabels:
 patches:
   - target:
       kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: hubble
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                command: ["linkerd-await", "--"]
-                args: ["bash", "-c", "alembic upgrade head; echo Done; tail -f /dev/null"]
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["bash", "-c", "alembic upgrade head; echo Done; tail -f /dev/null"]
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-high-tasks

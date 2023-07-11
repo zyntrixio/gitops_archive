@@ -1,8 +1,11 @@
 ---
-bases:
+resources:
   - ../core
 
 nameSuffix: -migrator
+
+commonLabels:
+  component: migrator
 
 replicas:
   - name: midas-migrator
@@ -11,31 +14,16 @@ replicas:
 patches:
   - target:
       kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: midas
-        labels:
-          app: midas
-          component: migrator
-      spec:
-        selector:
-          matchLabels:
-            app: midas
-            component: migrator
-        template:
-          metadata:
-            labels:
-              app: midas
-              component: migrator
-          spec:
-            containers:
-              - name: app
-                command: ["linkerd-await", "--"]
-                args: ["bash", "-c", "alembic upgrade head; echo Done; tail -f /dev/null"]
-                resources:
-                  limits:
-                    memory: 500Mi
-                  requests:
-                    memory: 500Mi
+    patch: |
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-high-tasks
+      - op: replace
+        path: /spec/template/spec/containers/1/args
+        value: ["bash", "-c", "alembic upgrade head; echo Done; tail -f /dev/null"]
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 500Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 500Mi

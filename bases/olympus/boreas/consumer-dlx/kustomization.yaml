@@ -11,19 +11,12 @@ patches:
   - target:
       kind: Deployment
     patch: |
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: boreas-consumer-dlx
-        namespace: default
-      spec:
-        template:
-          metadata:
-            annotations:
-              prometheus.io/port: '9100'
-              prometheus.io/scrape: 'true'
-              prometheus.io/job: boreas-consumer-dlx
-          spec:
-            containers:
-              - name: app
-                args: ["python", "/app/dlx_consumer.py"]
+      - op: add
+        path: /spec/template/metadata/annotations
+        value: {"prometheus.io/port":"9100","prometheus.io/scrape":"true","prometheus.io/job":"boreas-consumer-dlx"}
+      - op: add
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "/app/dlx_consumer.py"]
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-low-api
