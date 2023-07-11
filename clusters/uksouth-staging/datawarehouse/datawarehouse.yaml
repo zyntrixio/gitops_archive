@@ -17,10 +17,14 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: cluster-vars
+      - kind: Secret
+        name: azure-identities
+      - kind: Secret
+        name: azure-keyvault
   images:
     - name: binkcore.azurecr.io/data-warehouse
       newName: binkcore.azurecr.io/data-warehouse
-      newTag: staging-v0.0.9 # {"$imagepolicy": "flux-system:uksouth-staging-data-warehouse:tag"}
+      newTag: staging-v1.0.5 # {"$imagepolicy": "flux-system:uksouth-staging-data-warehouse:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
@@ -45,5 +49,5 @@ spec:
     pattern: staging-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: '>0.0.1'

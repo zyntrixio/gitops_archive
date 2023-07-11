@@ -1,8 +1,8 @@
 ---
 resources:
   - ../../../bases/datawarehouse/airbyte
-  - ../../../bases/datawarehouse/prefect
   - ../../../bases/datawarehouse/tableau
+  - ./storage
 
 patches:
   - target:
@@ -33,4 +33,4 @@ patches:
     patch: |
       - op: replace
         path: /spec/template/spec/containers/0/args
-        value: ["/bin/bash", "-c", "cd /app/data-warehouse/Prefect && make deploy-prod && cd /app/data-warehouse-dashboards/Prefect && make deploy-prod"]
+        value: ["/bin/bash", "-c", "cd /app/data-warehouse/Prefect && make deploy-prod"]
