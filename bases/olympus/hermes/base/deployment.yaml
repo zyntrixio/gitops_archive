@@ -53,6 +53,7 @@ spec:
               readOnly: true
       imagePullSecrets:
         - name: binkcore.azurecr.io
+      priorityClassName: bink-high-api
       serviceAccountName: hermes
       volumes:
         - name: keyvault

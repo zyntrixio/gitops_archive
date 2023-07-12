@@ -11,6 +11,9 @@ patches:
   - target:
       kind: Deployment
     patch: |
+      - op: replace
+        path: /spec/template/metadata/annotations/prometheus.io~1scrape
+        value: "false"
       - op: add
         path: /spec/template/spec/priorityClassName
         value: bink-high-tasks
