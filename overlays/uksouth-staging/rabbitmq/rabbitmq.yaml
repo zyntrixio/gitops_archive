@@ -18,16 +18,20 @@ spec:
   resources:
     requests:
       cpu: 1000m
-      memory: 4G
+      memory: 20G
     limits:
-      memory: 4G
+      memory: 20G
+  tolerations:
+    - key: app
+      operator: Equal
+      value: rabbitmq
+      effect: NoSchedule
   affinity:
-    podAntiAffinity:
+    nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-              - key: app.kubernetes.io/name
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: agentpool
                 operator: In
                 values:
                   - rabbitmq
-          topologyKey: topology.kubernetes.io/zone
