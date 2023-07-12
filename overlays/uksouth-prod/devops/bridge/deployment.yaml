@@ -37,5 +37,6 @@ spec:
             requests:
               cpu: 10m
               memory: 256Mi
+      priorityClassName: bink-high-tasks
       imagePullSecrets:
         - name: binkcore.azurecr.io

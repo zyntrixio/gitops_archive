@@ -12,56 +12,30 @@ patches:
   - target:
       kind: Deployment
     patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: hermes
-        labels:
-          component: api
-      spec:
-        selector:
-          matchLabels:
-            component: api
-        strategy:
-          rollingUpdate:
-            maxSurge: 25%
-            maxUnavailable: 25%
-          type: RollingUpdate
-        template:
-          metadata:
-            annotations:
-              prometheus.io/port: '9100'
-              prometheus.io/scrape: 'true'
-              prometheus.io/job: hermes
-            labels:
-              component: api
-          spec:
-            containers:
-              - name: app
-                command: ["/app/entrypoint.sh"]
-                args: ["gunicorn", "--workers=2", "--error-logfile=-", "--access-logfile=-", "--bind=0.0.0.0:9000", "hermes.wsgi"]
-                resources:
-                  limits:
-                    memory: 512Mi
-                  requests:
-                    memory: 512Mi
-                livenessProbe:
-                  failureThreshold: 3
-                  httpGet:
-                    path: /livez
-                    port: 9000
-                    scheme: HTTP
-                  initialDelaySeconds: 15
-                  periodSeconds: 60
-                  successThreshold: 1
-                  timeoutSeconds: 5
-                readinessProbe:
-                  failureThreshold: 3
-                  httpGet:
-                    path: /readyz
-                    port: 9000
-                    scheme: HTTP
-                  initialDelaySeconds: 15
-                  periodSeconds: 15
-                  successThreshold: 1
-                  timeoutSeconds: 5
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-high-api
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 512Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 512Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/command
+        value: ["/app/entrypoint.sh"]
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["gunicorn", "--workers=2", "--error-logfile=-", "--access-logfile=-", "--bind=0.0.0.0:9000", "hermes.wsgi"]
+      - op: add
+        path: /spec/template/metadata/annotations
+        value: {"prometheus.io/port":"9100","prometheus.io/scrape":"true","prometheus.io/job":"hermes"}
+      - op: add
+        path: /spec/strategy
+        value: {"rollingUpdate":{"maxSurge":25%,"maxUnavailable":25%},"type":"RollingUpdate"}
+      - op: add
+        path: /spec/template/spec/containers/0/readinessProbe
+        value: {"httpGet":{"path":"/readyz","port":9000,"scheme":"HTTP"},"initialDelaySeconds":15,"periodSeconds":60,"successThreshold":1,"timeoutSeconds":10}
+      - op: add
+        path: /spec/template/spec/containers/0/livenessProbe
+        value: {"httpGet":{"path":"/livez","port":9000,"scheme":"HTTP"},"initialDelaySeconds":15,"periodSeconds":60,"successThreshold":1,"timeoutSeconds":10}

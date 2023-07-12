@@ -20,6 +20,7 @@ spec:
       labels:
         app: redis-exporter
     spec:
+      priorityClassName: bink-medium-tasks
       containers:
         - name: redis-exporter
           image: docker.io/oliver006/redis_exporter:v1.50.0

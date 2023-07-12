@@ -9,3 +9,6 @@ patches:
       - op: add
         path: /metadata/annotations/buoyant.cloud~1excluded
         value: "true"
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: 

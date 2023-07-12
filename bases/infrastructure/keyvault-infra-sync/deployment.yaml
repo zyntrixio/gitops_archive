@@ -26,6 +26,7 @@ spec:
           volumeMounts:
             - mountPath: /app/templates
               name: template-config
+      priorityClassName: bink-low-tasks
       volumes:
         - name: template-config
           configMap:

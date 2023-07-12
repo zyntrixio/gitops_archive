@@ -65,5 +65,6 @@ spec:
               cpu: 10m
               memory: 256Mi
       serviceAccountName: kratos
+      priorityClassName: bink-low-api
       imagePullSecrets:
         - name: binkcore.azurecr.io

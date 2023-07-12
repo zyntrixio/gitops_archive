@@ -52,4 +52,5 @@ spec:
             runAsUser: 65534
       nodeSelector:
         kubernetes.io/os: linux
+      priorityClassName: bink-high-tasks
       serviceAccountName: kube-state-metrics

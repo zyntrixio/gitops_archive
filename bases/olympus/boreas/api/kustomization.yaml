@@ -12,15 +12,9 @@ patches:
   - target:
       kind: Deployment
     patch: |
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: boreas-api
-        namespace: default
-      spec:
-        template:
-          metadata:
-            annotations:
-              prometheus.io/port: '9100'
-              prometheus.io/scrape: 'true'
-              prometheus.io/job: boreas-api
+      - op: add
+        path: /spec/template/metadata/annotations
+        value: {"prometheus.io/port":"9100","prometheus.io/scrape":"true","prometheus.io/job":"polaris"}
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-low-api

@@ -39,5 +39,6 @@ spec:
         - name: app
           image: binkcore.azurecr.io/aperture:latest
           imagePullPolicy: Always
+      priorityClassName: bink-high-api
       imagePullSecrets:
         - name: binkcore.azurecr.io

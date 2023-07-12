@@ -50,5 +50,6 @@ spec:
             limits:
               memory: 256Mi
           imagePullPolicy: Always
+      priorityClassName: bink-low-tasks
       imagePullSecrets:
         - name: binkcore.azurecr.io

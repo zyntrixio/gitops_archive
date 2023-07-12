@@ -4,6 +4,9 @@ bases:
 
 nameSuffix: -migrator
 
+commonLabels:
+  component: migrator
+
 replicas:
   - name: hermes-migrator
     count: 1
@@ -12,29 +15,15 @@ patches:
   - target:
       kind: Deployment
     patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: hermes
-        labels:
-          component: migrator
-      spec:
-        selector:
-          matchLabels:
-            component: migrator
-        template:
-          metadata:
-            labels:
-              component: migrator
-          spec:
-            containers:
-              - name: app
-                args:
-                  - bash
-                  - -c
-                  - sleep 10; python manage.py migrate; echo Done; tail -f /dev/null
-                resources:
-                  limits:
-                    memory: 512Mi
-                  requests:
-                    memory: 512Mi
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-high-tasks
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 512Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 512Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["bash", "-c", "sleep 10; python manage.py migrate; echo Done; tail -f /dev/null"]
