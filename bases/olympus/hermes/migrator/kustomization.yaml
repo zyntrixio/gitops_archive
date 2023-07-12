@@ -27,3 +27,6 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/args
         value: ["bash", "-c", "sleep 10; python manage.py migrate; echo Done; tail -f /dev/null"]
+      - op: replace
+        path: /spec/template/metadata/annotations/prometheus.io~1scrape
+        value: "false"

@@ -17,6 +17,3 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/args
         value: ["celery", "-A", "hermes", "beat", "--schedule", "/tmp/beat", "--pidfile", "/tmp/beat.pid"]
-      - op: add
-        path: /spec/template/metadata/annotations
-        value: {"prometheus.io/port":"9100","prometheus.io/scrape":"true","prometheus.io/job":"hermes"}

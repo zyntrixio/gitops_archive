@@ -12,8 +12,8 @@ patches:
       kind: Deployment
     patch: |
       - op: add
-        path: /spec/template/metadata/annotations
-        value: {"prometheus.io/port":"9100","prometheus.io/scrape":"true","prometheus.io/job":"boreas-consumer-dlx"}
+        path: /spec/template/metadata/annotations/prometheus.io~1job
+        value: boreas-consumer-dlx
       - op: add
         path: /spec/template/spec/containers/0/args
         value: ["python", "/app/dlx_consumer.py"]

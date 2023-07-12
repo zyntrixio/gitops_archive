@@ -13,8 +13,5 @@ patches:
       kind: Deployment
     patch: |
       - op: add
-        path: /spec/template/metadata/annotations
-        value: {"prometheus.io/port":"9100","prometheus.io/scrape":"true","prometheus.io/job":"polaris"}
-      - op: add
         path: /spec/template/spec/priorityClassName
         value: bink-low-api

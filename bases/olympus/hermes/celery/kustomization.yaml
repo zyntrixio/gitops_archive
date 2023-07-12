@@ -17,6 +17,3 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/args
         value: ["celery", "-A", "hermes", "worker", "--without-gossip", "--without-mingle", "--loglevel=info", "--pool=prefork", "--concurrency=2", "--queues=ubiquity-async-midas,record-history", "--events"]
-      - op: add
-        path: /spec/template/metadata/annotations
-        value: {"prometheus.io/port":"9100","prometheus.io/scrape":"true","prometheus.io/job":"hermes"}

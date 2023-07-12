@@ -28,9 +28,6 @@ patches:
         path: /spec/template/spec/containers/0/args
         value: ["gunicorn", "--workers=2", "--error-logfile=-", "--access-logfile=-", "--bind=0.0.0.0:9000", "hermes.wsgi"]
       - op: add
-        path: /spec/template/metadata/annotations
-        value: {"prometheus.io/port":"9100","prometheus.io/scrape":"true","prometheus.io/job":"hermes"}
-      - op: add
         path: /spec/strategy
         value: {"rollingUpdate":{"maxSurge":25%,"maxUnavailable":25%},"type":"RollingUpdate"}
       - op: add
