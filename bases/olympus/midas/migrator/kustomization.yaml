@@ -1,5 +1,5 @@
 ---
-bases:
+resources:
   - ../core
 
 nameSuffix: -migrator
@@ -19,7 +19,7 @@ patches:
         path: /spec/template/spec/priorityClassName
         value: bink-high-tasks
       - op: replace
-        path: /spec/template/spec/containers/0/args
+        path: /spec/template/spec/containers/1/args
         value: ["bash", "-c", "alembic upgrade head; echo Done; tail -f /dev/null"]
       - op: replace
         path: /spec/template/spec/containers/0/resources/limits/memory

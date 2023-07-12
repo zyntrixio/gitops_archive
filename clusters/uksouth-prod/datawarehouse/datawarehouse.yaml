@@ -17,10 +17,14 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: cluster-vars
+      - kind: Secret
+        name: azure-identities
+      - kind: Secret
+        name: azure-keyvault
   images:
     - name: binkcore.azurecr.io/data-warehouse
       newName: binkcore.azurecr.io/data-warehouse
-      newTag: prod-v0.0.9 # {"$imagepolicy": "flux-system:uksouth-prod-data-warehouse:tag"}
+      newTag: prod-v1.0.5 # {"$imagepolicy": "flux-system:uksouth-prod-data-warehouse:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

@@ -80,6 +80,7 @@ spec:
           volumeMounts:
             - mountPath: /root/.prefect
               name: config
+      serviceAccountName: prefect
       imagePullSecrets:
         - name: binkcore.azurecr.io
       volumes:

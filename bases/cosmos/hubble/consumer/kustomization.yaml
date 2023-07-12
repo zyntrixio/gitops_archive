@@ -17,6 +17,3 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/args
         value: ["python", "-m", "hubble.cli", "activity-consumer"]
-      - op: replace
-        path: /spec/template/spec/containers/0/image
-        value: binkcore.azurecr.io/cosmos-admin:latest

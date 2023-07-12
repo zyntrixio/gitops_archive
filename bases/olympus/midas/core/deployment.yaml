@@ -4,7 +4,12 @@ kind: Deployment
 metadata:
   name: midas
   namespace: default
+  labels:
+    app: midas
 spec:
+  selector:
+    matchLabels:
+      app: midas
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -12,6 +17,8 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      labels:
+        app: midas
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app

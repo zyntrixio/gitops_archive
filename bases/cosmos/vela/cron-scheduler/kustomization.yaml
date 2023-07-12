@@ -12,8 +12,8 @@ patches:
       kind: Deployment
     patch: |
       - op: add
-        path: /spec/template/metadata
-        value: {"annotations":{"prometheus.io/port":"9100","prometheus.io/scrape":"true","prometheus.io/job":"vela"}}
+        path: /spec/template/metadata/annotations
+        value: {"prometheus.io/port":"9100","prometheus.io/scrape":"true","prometheus.io/job":"vela"}
       - op: add
         path: /spec/template/spec/priorityClassName
         value: bink-high-tasks
