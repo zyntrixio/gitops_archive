@@ -4,7 +4,12 @@ kind: Deployment
 metadata:
   name: metis
   namespace: default
+  labels:
+    app: /metadata/annotations/buoyant.cloud
 spec:
+  selector:
+    matchLabels:
+      app: metis
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -12,6 +17,9 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      labels:
+        app: metis
+        aadpodidbinding: metis
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
