@@ -20,6 +20,9 @@ spec:
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
+        prometheus.io/job: vela
       labels:
         app: vela
         aadpodidbinding: vela
