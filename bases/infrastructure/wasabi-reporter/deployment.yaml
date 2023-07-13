@@ -42,5 +42,6 @@ spec:
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
+      priorityClassName: bink-medium-tasks
       imagePullSecrets:
         - name: binkcore.azurecr.io

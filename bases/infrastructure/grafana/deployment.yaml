@@ -32,6 +32,7 @@ spec:
             - containerPort: 3000
               protocol: TCP
       dnsPolicy: ClusterFirst
+      priorityClassName: bink-low-tasks
       imagePullSecrets:
         - name: binkcore.azurecr.io
       restartPolicy: Always

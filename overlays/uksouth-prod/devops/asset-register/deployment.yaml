@@ -68,6 +68,7 @@ spec:
             limits:
               memory: 512Mi
           imagePullPolicy: Always
+      priorityClassName: bink-low-api
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 30

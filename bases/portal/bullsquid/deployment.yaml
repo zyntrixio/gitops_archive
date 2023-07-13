@@ -61,5 +61,6 @@ spec:
             limits:
               cpu: 1000m
               memory: 256Mi
+      priorityClassName: bink-low-api
       imagePullSecrets:
         - name: binkcore.azurecr.io

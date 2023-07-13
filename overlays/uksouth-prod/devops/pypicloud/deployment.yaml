@@ -59,6 +59,7 @@ spec:
       imagePullSecrets:
         - name: binkcore.azurecr.io
       dnsPolicy: ClusterFirst
+      priorityClassName: bink-medium-tasks
       restartPolicy: Always
       volumes:
         - name: config

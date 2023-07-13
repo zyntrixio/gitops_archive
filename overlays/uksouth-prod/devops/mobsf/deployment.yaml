@@ -43,6 +43,7 @@ spec:
           volumeMounts:
             - name: mobsf
               mountPath: /home/mobsf/.MobSF
+      priorityClassName: bink-high-tasks
       volumes:
         - name: mobsf
           persistentVolumeClaim:
