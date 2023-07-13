@@ -15,5 +15,5 @@ patches:
         path: /spec/template/spec/priorityClassName
         value: bink-high-tasks
       - op: replace
-        path: /spec/template/spec/containers/0/args
+        path: /spec/template/spec/containers/1/args
         value: ["celery", "-A", "hermes", "beat", "--schedule", "/tmp/beat", "--pidfile", "/tmp/beat.pid"]
