@@ -17,7 +17,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/harmonia
     newName: binkcore.azurecr.io/harmonia
-    newTag: staging-2.28.5 # {"$imagepolicy": "flux-system:uksouth-staging-harmonia:tag"}
+    newTag: staging-2.28.6 # {"$imagepolicy": "flux-system:uksouth-staging-harmonia:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
