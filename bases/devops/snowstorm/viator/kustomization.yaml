@@ -21,4 +21,4 @@ patches:
         value: ["stormctl", "job", "viator"]
       - op: add
         path: /spec/suspend
-        value: true
+        value: false
