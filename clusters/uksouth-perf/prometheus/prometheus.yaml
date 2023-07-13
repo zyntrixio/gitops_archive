@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-sandbox/prometheus
+  path: ./overlays/uksouth-perf/prometheus
   dependsOn: []
   prune: true
   sourceRef:
