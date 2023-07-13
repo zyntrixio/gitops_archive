@@ -19,3 +19,6 @@ patches:
       - op: add
         path: /spec/jobTemplate/spec/template/spec/containers/0/args
         value: ["stormctl", "job", "viator"]
+      - op: add
+        path: /spec/suspend
+        value: true
