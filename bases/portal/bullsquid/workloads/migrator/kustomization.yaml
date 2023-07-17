@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../bases/jobs
+nameSuffix: -migrator
+labels:
+- includeSelectors: true
+  pairs:
+    component: migrator
+patches:
+- patch: |
+    - op: add
+      path: /spec/template/spec/containers/0/args
+      value: [piccolo migrations forward all]
+  target:
+    kind: Job

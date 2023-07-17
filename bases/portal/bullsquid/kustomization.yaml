@@ -1,8 +1,9 @@
 ---
 resources:
   - namespace.yaml
-  - service.yaml
-  - migrator.yaml
-  - deployment.yaml
+  - serviceaccount.yaml
+  - secretproviderclass.yaml
   - lsp.yaml
-  - worker.yaml
+  - workloads/migrator
+  - workloads/api
+  - workloads/worker

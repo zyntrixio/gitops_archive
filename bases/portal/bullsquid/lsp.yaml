@@ -2,8 +2,8 @@
 apiVersion: linkerd.io/v1alpha2
 kind: ServiceProfile
 metadata:
-  name: bullsquid-api.default.svc.cluster.local
-  namespace: default
+  name: bullsquid.portal.svc.cluster.local
+  namespace: portal
 spec:
   routes:
     - condition:
@@ -284,4 +284,3 @@ spec:
       name: PUT /api/v1/customer_wallet/user_lookups (Upsert User Lookup)
       isRetryable: true
       timeout: 2000ms
-

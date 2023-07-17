@@ -1,57 +1,9 @@
----
-bases:
-  - ../../../../bases/portal/bullsquid
-
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../../../bases/portal/bullsquid
 namespace: portal
-
 configMapGenerator:
-  - name: bullsquid
-    files:
-      - config/config.toml
-
-patches:
-  - target:
-      kind: ServiceProfile
-    patch: |-
-      - op: replace
-        path: /metadata/name
-        value: bullsquid.portal.svc.cluster.local
-  - target:
-      kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: bullsquid
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                envFrom:
-                  - configMapRef:
-                      name: bullsquid
-                env:
-                  - name: DATABASE_DSN
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-postgres
-                        key: url_placeholder
-                volumeMounts:
-                  - name: config
-                    mountPath: /app/config.toml
-                    subPath: config.toml
-                  - name: database-dsn
-                    mountPath: /var/run/secrets/bullsquid
-                    readOnly: true
-            volumes:
-              - name: config
-                configMap:
-                  defaultMode: 400
-                  name: bullsquid
-              - name: database-dsn
-                secret:
-                  secretName: azure-postgres
-                  items:
-                    - key: url_placeholder
-                      path: database_dsn
+- files:
+  - config/config.toml
+  name: bullsquid
