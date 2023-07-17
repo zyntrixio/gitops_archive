@@ -11,6 +11,6 @@ patches:
 - patch: |
     - op: add
       path: /spec/template/spec/containers/0/args
-      value: [piccolo migrations forward all]
+      value: ["piccolo", "migrations", "forward", "all"]
   target:
     kind: Job
