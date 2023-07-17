@@ -8,8 +8,6 @@ spec:
   interval: 60m0s
   path: ./bases/registries
   prune: true
-  dependsOn:
-  - name: linkerd-control-plane
   targetNamespace: bpl
   sourceRef:
     kind: GitRepository

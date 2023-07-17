@@ -8,8 +8,6 @@ spec:
   interval: 60m0s
   path: ./bases/infrastructure/rabbitmq
   prune: true
-  dependsOn:
-    - name: linkerd-control-plane
   sourceRef:
     kind: GitRepository
     name: flux-system

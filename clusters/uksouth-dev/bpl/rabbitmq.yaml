@@ -9,8 +9,6 @@ spec:
   path: ./bases/infrastructure/rabbitmq
   prune: true
   targetNamespace: bpl
-  dependsOn:
-    - name: linkerd-control-plane
   sourceRef:
     kind: GitRepository
     name: flux-system

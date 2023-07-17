@@ -7,8 +7,6 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-barclays/olympus/iris
   prune: true
-  dependsOn:
-    - name: linkerd-control-plane
   sourceRef:
     kind: GitRepository
     name: flux-system

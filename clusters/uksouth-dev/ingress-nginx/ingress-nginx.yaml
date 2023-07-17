@@ -7,8 +7,6 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-dev/ingress-nginx
-  dependsOn:
-    - name: linkerd-control-plane
   prune: true
   force: true
   sourceRef:

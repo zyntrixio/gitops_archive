@@ -7,7 +7,6 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-dev/default/zephyrus
   dependsOn:
-    - name: linkerd-control-plane
     - name: aad-pod-identity
   prune: true
   sourceRef:

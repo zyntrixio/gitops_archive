@@ -8,7 +8,6 @@ spec:
   path: ./overlays/uksouth-staging/default/harmonia
   dependsOn:
   - name: aad-pod-identity
-  - name: linkerd-control-plane
   prune: true
   force: true
   sourceRef:
