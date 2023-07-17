@@ -4,8 +4,7 @@ kind: Service
 metadata:
   labels:
     app: bullsquid
-    component: api
-  name: bullsquid-api
+  name: bullsquid
   namespace: default
 spec:
   ports:
@@ -15,6 +14,5 @@ spec:
       targetPort: 6502
   selector:
     app: bullsquid
-    component: api
   sessionAffinity: None
   type: ClusterIP
