@@ -68,7 +68,7 @@ spec:
               secretProviderClass: bullsquid
         - name: config
           configMap:
-            defaultMode: 400
+            defaultMode: 444
             name: bullsquid
       priorityClassName: bink-low-api
       serviceAccountName: bullsquid

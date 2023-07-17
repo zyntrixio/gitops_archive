@@ -51,7 +51,7 @@ spec:
               secretProviderClass: bullsquid
         - name: config
           configMap:
-            defaultMode: 400
+            defaultMode: 444
             name: bullsquid
       imagePullSecrets:
         - name: binkcore.azurecr.io
