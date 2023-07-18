@@ -27,7 +27,8 @@ spec:
                   key: url_placeholder
           volumeMounts:
             - name: keyvault
-              mountPath: "/mnt/secrets"
+              mountPath: /mnt/secrets/oauth_mgmt_client_secret
+              subPath: bullsquid-oauth-mgmt-client-secret
               readOnly: true
             - name: config
               mountPath: /app/config.toml
