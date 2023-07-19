@@ -45,11 +45,11 @@ spec:
           imagePullPolicy: Always
           name: app
           env:
-            # - name: TXM_BLOB_STORAGE_DSN
-            #   valueFrom:
-            #     secretKeyRef:
-            #       key: blob_connection_string_primary
-            #       name: azure-storage
+            - name: TXM_BLOB_STORAGE_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: blob_connection_string_primary
+                  name: azure-storage
             - name: TXM_POSTGRES_URI
               valueFrom:
                 secretKeyRef:
@@ -70,22 +70,16 @@ spec:
               memory: 128Mi
               cpu: 10m
           volumeMounts:
-            - name: harmonia-archive
-              mountPath: /mnt/harmonia-archive
-            - name: harmonia-exports
-              mountPath: /mnt/harmonia-exports
-            - name: harmonia-imports
-              mountPath: /mnt/harmonia-imports
+            - name: keyvault
+              mountPath: /mnt/secrets
+              readOnly: true
       volumes:
-        - name: harmonia-archive
-          persistentVolumeClaim:
-            claimName: harmonia-archive
-        - name: harmonia-exports
-          persistentVolumeClaim:
-            claimName: harmonia-exports
-        - name: harmonia-imports
-          persistentVolumeClaim:
-            claimName: harmonia-imports
+        - name: keyvault
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: harmonia
       imagePullSecrets:
         - name: binkcore.azurecr.io
       priorityClassName: bink-low-tasks
