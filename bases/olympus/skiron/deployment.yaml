@@ -40,6 +40,12 @@ spec:
               weight: 100
       containers:
         - name: app
+          env:
+            - name: AMQP_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-cloudamqp
           image: binkcore.azurecr.io/skiron:latest
           imagePullPolicy: Always
           resources:

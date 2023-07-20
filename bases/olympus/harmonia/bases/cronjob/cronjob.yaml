@@ -45,6 +45,11 @@ spec:
                   secretKeyRef:
                     key: url
                     name: azure-keyvault
+              - name: TXM_AMQP_DSN
+                valueFrom:
+                  secretKeyRef:
+                    key: url
+                    name: azure-cloudamqp
             envFrom:
               - configMapRef:
                   name: harmonia

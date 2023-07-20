@@ -42,6 +42,12 @@ spec:
               weight: 100
       containers:
         - name: app
+          env:
+            - name: RABBITMQ_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-cloudamqp
           livenessProbe:
             failureThreshold: 3
             httpGet:

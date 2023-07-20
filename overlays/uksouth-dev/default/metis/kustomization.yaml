@@ -39,3 +39,8 @@ patches:
                       secretKeyRef:
                         key: url
                         name: azure-keyvault
+                  - name: CELERY_BROKER_URL
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-cloudamqp

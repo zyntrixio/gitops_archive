@@ -37,6 +37,12 @@ spec:
               weight: 100
       containers:
         - name: app
+          env:
+            - name: RABBIT_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-cloudamqp
           image: binkcore.azurecr.io/hubble:latest
           imagePullPolicy: Always
           securityContext:

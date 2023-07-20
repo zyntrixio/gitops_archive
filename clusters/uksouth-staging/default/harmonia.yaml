@@ -23,6 +23,8 @@ spec:
       name: azure-storage
     - kind: Secret
       name: azure-identities
+    - kind: Secret
+      name: azure-keyvault
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

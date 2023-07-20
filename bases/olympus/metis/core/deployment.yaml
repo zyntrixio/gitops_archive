@@ -38,6 +38,17 @@ spec:
                 topologyKey: topology.kubernetes.io/zone
       containers:
         - image: binkcore.azurecr.io/metis:latest
+          env:
+            - name: AMQP_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-cloudamqp
+            - name: CELERY_BROKER_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-cloudamqp
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534

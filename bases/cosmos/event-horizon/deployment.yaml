@@ -41,6 +41,12 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/event-horizon:latest
+          env:
+            - name: RABBITMQ_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-cloudamqp
           imagePullPolicy: Always
           command: ["linkerd-await", "--"]
           args:

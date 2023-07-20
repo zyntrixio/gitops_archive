@@ -2,12 +2,6 @@
 bases:
   - ../../../../bases/olympus/skiron
 
-configMapGenerator:
-  - name: skiron
-    namespace: default
-    envs:
-      - env.ini
-
 patches:
   - target:
       kind: Deployment
@@ -21,6 +15,9 @@ patches:
           spec:
             containers:
               - name: app
-                envFrom:
-                  - configMapRef:
-                      name: skiron
+                env:
+                  - name: AMQP_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-cloudamqp

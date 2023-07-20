@@ -37,6 +37,12 @@ spec:
                 topologyKey: topology.kubernetes.io/zone
       containers:
         - image: binkcore.azurecr.io/midas:latest
+          env:
+            - name: AMQP_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-cloudamqp
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534

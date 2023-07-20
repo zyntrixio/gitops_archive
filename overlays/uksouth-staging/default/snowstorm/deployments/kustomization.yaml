@@ -11,9 +11,6 @@ patches:
       kind: Deployment
     patch: |
       - op: add
-        path: /spec/template/spec/containers/0/env/1/value
-        value: amqp://guest:guest@rabbitmq:5672/
-      - op: add
         path: /spec/template/spec/containers/0/env/2/value
         value: redis://redis:6379/0
       - op: remove
@@ -21,9 +18,6 @@ patches:
   - target:
       kind: CronJob
     patch: |
-      - op: add
-        path: /spec/jobTemplate/spec/template/spec/containers/0/env/1/value
-        value: amqp://guest:guest@rabbitmq:5672/
       - op: add
         path: /spec/jobTemplate/spec/template/spec/containers/0/env/2/value
         value: redis://redis:6379/0

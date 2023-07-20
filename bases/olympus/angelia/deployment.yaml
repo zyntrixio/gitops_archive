@@ -44,6 +44,12 @@ spec:
                 topologyKey: topology.kubernetes.io/zone
       containers:
         - image: binkcore.azurecr.io/angelia:latest
+          env:
+            - name: RABBIT_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-cloudamqp
           ports:
             - containerPort: 9000
               name: api

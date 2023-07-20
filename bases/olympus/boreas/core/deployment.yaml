@@ -23,7 +23,7 @@ spec:
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
-        prometheus.io/port: "9100"
+        prometheus.io/port: "6502"
         prometheus.io/scrape: "true"
         prometheus.io/job: "boreas"
     spec:
@@ -41,6 +41,17 @@ spec:
                 topologyKey: topology.kubernetes.io/zone
       containers:
         - image: binkcore.azurecr.io/boreas:latest
+          env:
+            - name: RABBITMQ_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-cloudamqp
+            - name: KEYVAULT_URI
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-keyvault
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534

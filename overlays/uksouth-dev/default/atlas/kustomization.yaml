@@ -32,3 +32,8 @@ patches:
                       secretKeyRef:
                         name: azure-postgres
                         key: url_atlas
+                  - name: AMQP_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-cloudamqp

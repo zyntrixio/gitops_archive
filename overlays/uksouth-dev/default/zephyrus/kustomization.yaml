@@ -33,3 +33,8 @@ patches:
                       secretKeyRef:
                         key: url
                         name: azure-keyvault
+                  - name: AMQP_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-cloudamqp

@@ -28,7 +28,10 @@ spec:
                   key: url_snowstorm
                   name: azure-postgres
             - name: rabbitmq_dsn
-              value: amqp://guest:guest@rabbitmq.rabbitmq:5672
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-cloudamqp
             - name: redis_dsn
               valueFrom:
                 secretKeyRef:
