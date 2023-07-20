@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/bullsquid
     newName: binkcore.azurecr.io/bullsquid
-    newTag: 2023-07-19T105036Z # {"$imagepolicy": "flux-system:uksouth-dev-bullsquid:tag"}
+    newTag: 2023-07-20T125732Z # {"$imagepolicy": "flux-system:uksouth-dev-bullsquid:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
