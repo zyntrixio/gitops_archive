@@ -1,12 +1,2 @@
 bases:
   - ../../../../../bases/devops/snowstorm/essentials
-
-patches:
-  - target:
-      kind: Job
-    patch: |
-      - op: add
-        path: /spec/template/spec/containers/0/env/2/value
-        value: redis://redis:6379/0
-      - op: remove
-        path: /spec/template/spec/containers/0/env/2/valueFrom

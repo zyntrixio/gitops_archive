@@ -43,6 +43,11 @@ spec:
                 secretKeyRef:
                   key: url
                   name: azure-cloudamqp
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url_primary
+                  name: azure-redis
           image: binkcore.azurecr.io/hubble:latest
           imagePullPolicy: Always
           securityContext:

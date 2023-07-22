@@ -15,8 +15,6 @@ patches:
         value:
           - name: mode
             value: TGX4
-          - name: redis_url
-            value: redis://redis:6379/0
           - name: vault_url_storage
             value: https://bink-uksouth-staging-inf.vault.azure.net/
           - name: vault_url_sftp

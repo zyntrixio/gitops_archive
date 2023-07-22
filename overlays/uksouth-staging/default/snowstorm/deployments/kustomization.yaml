@@ -8,21 +8,8 @@ replicas:
 
 patches:
   - target:
-      kind: Deployment
-    patch: |
-      - op: add
-        path: /spec/template/spec/containers/0/env/2/value
-        value: redis://redis:6379/0
-      - op: remove
-        path: /spec/template/spec/containers/0/env/2/valueFrom
-  - target:
       kind: CronJob
     patch: |
-      - op: add
-        path: /spec/jobTemplate/spec/template/spec/containers/0/env/2/value
-        value: redis://redis:6379/0
-      - op: remove
-        path: /spec/jobTemplate/spec/template/spec/containers/0/env/2/valueFrom
       - op: replace
         path: /spec/jobTemplate/spec/template/spec/containers/0/args
         value: ["stormctl", "job", "apistats", "--days=1", "--domain=api.staging.gb.bink.com"]

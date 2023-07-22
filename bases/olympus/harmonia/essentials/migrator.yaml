@@ -38,6 +38,11 @@ spec:
                 secretKeyRef:
                   key: url
                   name: azure-keyvault
+            - name: TXM_REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url_primary
+                  name: azure-redis
           envFrom:
             - configMapRef:
                 name: harmonia

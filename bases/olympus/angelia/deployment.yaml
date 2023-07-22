@@ -50,6 +50,11 @@ spec:
                 secretKeyRef:
                   key: url
                   name: azure-cloudamqp
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url_primary
+                  name: azure-redis
           ports:
             - containerPort: 9000
               name: api

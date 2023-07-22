@@ -42,11 +42,6 @@ patches:
                       secretKeyRef:
                         name: azure-postgres
                         key: url_carina
-                  - name: REDIS_URL
-                    valueFrom:
-                      secretKeyRef:
-                        key: url_primary
-                        name: azure-redis
                   - name: BLOB_STORAGE_DSN
                     valueFrom:
                       secretKeyRef:

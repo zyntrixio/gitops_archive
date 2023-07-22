@@ -1,7 +1,0 @@
----
-bases:
-  - https://raw.githubusercontent.com/kubernetes-sigs/azuredisk-csi-driver/master/deploy/v1.11.0/csi-azuredisk-driver.yaml
-  - https://raw.githubusercontent.com/kubernetes-sigs/azuredisk-csi-driver/master/deploy/v1.11.0/rbac-csi-azuredisk-controller.yaml
-  - https://raw.githubusercontent.com/kubernetes-sigs/azuredisk-csi-driver/master/deploy/v1.11.0/rbac-csi-azuredisk-node.yaml
-  - https://raw.githubusercontent.com/kubernetes-sigs/azuredisk-csi-driver/master/deploy/v1.11.0/csi-azuredisk-controller.yaml
-  - https://raw.githubusercontent.com/kubernetes-sigs/azuredisk-csi-driver/master/deploy/v1.11.0/csi-azuredisk-node.yaml

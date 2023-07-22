@@ -47,11 +47,6 @@ patches:
                       secretKeyRef:
                         name: azure-postgres
                         key: url_placeholder
-                  - name: REDIS_URL
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-redis
-                        key: url_primary
                   - name: VAULT_URL
                     valueFrom:
                       secretKeyRef:

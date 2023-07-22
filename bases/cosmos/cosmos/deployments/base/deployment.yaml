@@ -48,6 +48,11 @@ spec:
                 secretKeyRef:
                   key: url
                   name: azure-cloudamqp
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url_primary
+                  name: azure-redis
           livenessProbe:
             failureThreshold: 3
             httpGet:

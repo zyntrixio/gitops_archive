@@ -26,11 +26,6 @@ patches:
             containers:
               - name: app
                 env:
-                  - name: REDIS_URL
-                    valueFrom:
-                      secretKeyRef:
-                        key: url_primary
-                        name: azure-redis
                   - name: EOS_DATABASE_URI
                     valueFrom:
                       secretKeyRef:

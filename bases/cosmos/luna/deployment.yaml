@@ -41,6 +41,12 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/luna:latest
+          env:
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url_primary
+                  name: azure-redis
           imagePullPolicy: Always
           securityContext:
             runAsGroup: 65534

@@ -29,24 +29,6 @@ configMapGenerator:
 patches:
   - target:
       kind: Deployment
-    patch: |
-      - op: add
-        path: /spec/template/spec/containers/0/env/-
-        value: {"name":"TXM_REDIS_URL","valueFrom":{"secretKeyRef":{"key":"url_primary","name":"azure-redis"}}}
-  - target:
-      kind: Job
-    patch: |
-      - op: add
-        path: /spec/template/spec/containers/0/env/-
-        value: {"name":"TXM_REDIS_URL","valueFrom":{"secretKeyRef":{"key":"url_primary","name":"azure-redis"}}}
-  - target:
-      kind: CronJob
-    patch: |
-      - op: add
-        path: /spec/jobTemplate/spec/template/spec/containers/0/env/-
-        value: {"name":"TXM_REDIS_URL","valueFrom":{"secretKeyRef":{"key":"url_primary","name":"azure-redis"}}}
-  - target:
-      kind: Deployment
       name: harmonia-import-agent-wasabi-club
     patch: |
       - op: replace

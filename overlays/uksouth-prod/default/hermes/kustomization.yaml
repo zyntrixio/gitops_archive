@@ -47,11 +47,6 @@ patches:
                       secretKeyRef:
                         key: connection_string_primary
                         name: azure-storage
-                  - name: REDIS_URL
-                    valueFrom:
-                      secretKeyRef:
-                        key: url_primary
-                        name: azure-redis
                   - name: HERMES_DATABASE_URL
                     valueFrom:
                       secretKeyRef:
