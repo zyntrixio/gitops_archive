@@ -31,6 +31,21 @@ spec:
                 secretKeyRef:
                   key: url_primary
                   name: azure-redis
+            - name: BLOB_STORAGE_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: connection_string_primary
+                  name: azure-storage
+            - name: SQLALCHEMY_DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  key: url_cosmos
+                  name: azure-postgres
+            - name: KEY_VAULT_URI
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-keyvault
           command: ["linkerd-await", "--shutdown", "--"]
           args: ["alembic", "upgrade", "head"]
           resources:

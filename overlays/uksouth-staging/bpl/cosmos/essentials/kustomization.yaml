@@ -7,18 +7,3 @@ namespace: bpl
 resources:
   - aad.yaml
   - ingress.yaml
-
-patches:
-  - target:
-      kind: Job
-    patch: |-
-      - op: replace
-        path: /spec/template/spec/containers/0/env
-        value:
-          - name: PUBLIC_URL
-            value: https://cosmos.staging.gb.bink.com/
-          - name: SQLALCHEMY_DATABASE_URI
-            valueFrom:
-              secretKeyRef:
-                key: url_cosmos
-                name: azure-postgres
