@@ -18,10 +18,16 @@ patches:
       kind: Deployment
     patch: |-
       - op: add
+        path: /spec/template/spec/containers/0/env
+        value: [
+          {"name":"REDIS_HOST","valueFrom":{"secretKeyRef":{"key":"host","name":"azure-redis"}}},
+          {"name":"REDIS_PORT","valueFrom":{"secretKeyRef":{"key":"port","name":"azure-redis"}}}
+        ]
+      - op: add
         path: /spec/template/spec/containers/0/args
         value:
           - -L
-          - 0.0.0.0:6380
+          - 0.0.0.0:$(REDIS_PORT)
           - -R
-          - uksouth-prod-k74j.redis.cache.windows.net:6380
+          - $(REDIS_HOST):$(REDIS_PORT)
           - -v
