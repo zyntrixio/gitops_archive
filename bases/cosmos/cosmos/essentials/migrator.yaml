@@ -47,7 +47,7 @@ spec:
                   key: url
                   name: azure-keyvault
             - name: PUBLIC_URL
-              value: dummy
+              value: http://dummy
           command: ["linkerd-await", "--shutdown", "--"]
           args: ["alembic", "upgrade", "head"]
           resources:
