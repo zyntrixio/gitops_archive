@@ -39,17 +39,12 @@ patches:
           - name: keyvault
             mountPath: "/mnt/secrets"
             readOnly: true
-          - name: harmonia-imports
-            mountPath: /mnt/harmonia-imports
   - target:
       kind: CronJob
     patch: |
       - op: replace
         path: /spec/jobTemplate/spec/template/spec/volumes
         value:
-          - name: harmonia-imports
-            persistentVolumeClaim:
-              claimName: harmonia-imports
           - name: keyvault
             csi:
               driver: secrets-store.csi.k8s.io
