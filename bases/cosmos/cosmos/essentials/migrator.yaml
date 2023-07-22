@@ -46,6 +46,8 @@ spec:
                 secretKeyRef:
                   key: url
                   name: azure-keyvault
+            - name: PUBLIC_URL
+              value: dummy
           command: ["linkerd-await", "--shutdown", "--"]
           args: ["alembic", "upgrade", "head"]
           resources:
