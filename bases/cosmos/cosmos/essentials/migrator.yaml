@@ -20,6 +20,17 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/cosmos:latest
+          env:
+            - name: RABBITMQ_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-cloudamqp
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url_primary
+                  name: azure-redis
           command: ["linkerd-await", "--shutdown", "--"]
           args: ["alembic", "upgrade", "head"]
           resources:
