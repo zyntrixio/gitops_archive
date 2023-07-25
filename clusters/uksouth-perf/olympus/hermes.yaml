@@ -24,29 +24,29 @@ spec:
       name: azure-keyvault
     - kind: Secret
       name: azure-identities
-# ---
-# apiVersion: image.toolkit.fluxcd.io/v1beta1
-# kind: ImagePolicy
-# metadata:
-#   name: hermes
-#   namespace: flux-system
-# spec:
-#   imageRepositoryRef:
-#     name: hermes
-#   filterTags:
-#     pattern: perf-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
-#     extract: $ts
-#   policy:
-#     alphabetical:
-#       order: asc
-# ---
-# apiVersion: image.toolkit.fluxcd.io/v1beta1
-# kind: ImageRepository
-# metadata:
-#   name: hermes
-#   namespace: flux-system
-# spec:
-#   image: binkcore.azurecr.io/hermes
-#   interval: 1m0s
-#   secretRef:
-#     name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: hermes
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: hermes
+  filterTags:
+    pattern: perf-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: hermes
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/hermes
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
