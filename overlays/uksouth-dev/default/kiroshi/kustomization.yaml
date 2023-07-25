@@ -1,6 +1,0 @@
-resources:
-  - ../../../../bases/devops/kiroshi/essentials
-  - ../../../../bases/devops/kiroshi/server/images
-  - ingress.yaml
-
-namespace: default

@@ -41,13 +41,6 @@ spec:
                 name: carina-api
                 port:
                   number: 80
-          - path: /content
-            pathType: Prefix
-            backend:
-              service:
-                name: iris-api
-                port:
-                  number: 80
           - path: /reward
             pathType: Exact
             backend:

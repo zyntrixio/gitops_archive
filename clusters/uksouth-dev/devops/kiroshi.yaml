@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: default-kiroshi
+  name: devops-kiroshi
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/default/kiroshi
+  path: ./overlays/uksouth-dev/devops/kiroshi
   prune: true
   force: true
   sourceRef:
