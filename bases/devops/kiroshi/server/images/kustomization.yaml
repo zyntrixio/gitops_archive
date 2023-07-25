@@ -15,5 +15,5 @@ patches:
         path: /spec/template/spec/containers/0/args
         value: ["kiroshi","server","image"]
       - op: add
-        path: /spec/template/spec/containers/0/containerPorts
-        value: [{"name":"http","port":6502}]
+        path: /spec/template/spec/containers/0/ports
+        value: [{"name":"http","containerPort":6502,"protocol":"TCP"}]
