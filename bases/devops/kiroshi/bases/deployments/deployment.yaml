@@ -1,0 +1,64 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kiroshi
+  name: kiroshi
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kiroshi
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: kiroshi
+        azure.workload.identity/use: "true"
+    spec:
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/kiroshi:latest
+          command: ["linkerd-await", "--"]
+          env:
+            - name: sftp_storage_account_dsn
+              valueFrom:
+                secretKeyRef:
+                  name: azure-storage
+                  key: sftp_connection_string_primary
+            - name: blob_storage_account_dsn
+              valueFrom:
+                secretKeyRef:
+                  name: azure-storage
+                  key: blob_connection_string_primary
+            - name: nfs_storage_account_dsn
+              valueFrom:
+                secretKeyRef:
+                  name: azure-storage
+                  key: nfs_connection_string_primary
+            - name: database_dsn
+              valueFrom:
+                secretKeyRef:
+                  key: url_kiroshi
+                  name: azure-postgres
+            - name: secret_store
+              value: /mnt/secrets
+          resources:
+            requests:
+              cpu: 10m
+              memory: 128Mi
+            limits:
+              memory: 128Mi
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+      terminationGracePeriodSeconds: 30
+      serviceAccountName: kiroshi
+      imagePullSecrets:
+        - name: binkcore.azurecr.io

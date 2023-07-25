@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../bases/deployments
+- service.yaml
+nameSuffix: -server-images
+commonLabels:
+  component: server
+  sub-component: images
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/args
+        value: ["kiroshi","server","image"]
+      - op: add
+        path: /spec/template/spec/containers/0/containerPorts
+        value: [{"name":"http","port":6502}]

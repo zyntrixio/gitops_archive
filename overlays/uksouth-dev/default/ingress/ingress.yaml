@@ -180,13 +180,6 @@ spec:
                 name: hermes-api
                 port:
                   number: 80
-          - path: /content
-            pathType: Prefix
-            backend:
-              service:
-                name: iris-api
-                port:
-                  number: 80
           - path: /payment_service
             pathType: Prefix
             backend:

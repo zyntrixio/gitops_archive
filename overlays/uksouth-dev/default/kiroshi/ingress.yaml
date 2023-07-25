@@ -1,0 +1,26 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/service-upstream: 'true'
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "container: media";
+  name: api.${cluster_name}.${cluster_location}.bink.sh
+  namespace: default
+spec:
+  rules:
+    - host: api.${cluster_name}.${cluster_location}.bink.sh
+      http:
+        paths:
+          - path: /content
+            pathType: Prefix
+            backend:
+              service:
+                name: kiroshi-server-images
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - api.${cluster_name}.${cluster_location}.bink.sh
