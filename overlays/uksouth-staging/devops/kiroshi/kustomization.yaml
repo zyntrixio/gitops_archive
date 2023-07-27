@@ -1,5 +1,7 @@
-resources:
-  - ../../../../bases/devops/kiroshi/essentials
-  - ../../../../bases/devops/kiroshi/jobs/migrator
-
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 namespace: devops
+resources:
+- ../../../../bases/devops/kiroshi/essentials
+- ../../../../bases/devops/kiroshi/jobs/migrator
+- ../../../../bases/devops/kiroshi/server/images

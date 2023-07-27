@@ -3,14 +3,18 @@ kind: Kustomization
 resources:
 - ../../bases/deployments
 - service.yaml
-nameSuffix: -server-images
+- ingress.yaml
 commonLabels:
+  app: kiroshi
   component: server
   sub-component: images
 patches:
   - target:
       kind: Deployment
     patch: |
+      - op: replace
+        path: /metadata/name
+        value: kiroshi-server-images
       - op: add
         path: /spec/template/spec/containers/0/args
         value: ["kiroshi","server","image"]

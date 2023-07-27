@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/service-upstream: 'true'
     nginx.ingress.kubernetes.io/configuration-snippet: |
       proxy_set_header container media;
-  name: kiroshi-api.${cluster_name}.${cluster_location}.bink.sh
+  name: api.${cluster_name}.${cluster_location}.bink.sh-kiroshi
   namespace: default
 spec:
   rules:
@@ -33,7 +33,7 @@ metadata:
     nginx.ingress.kubernetes.io/service-upstream: 'true'
     nginx.ingress.kubernetes.io/configuration-snippet: |
       proxy_set_header container bpl-media;
-  name: kiroshi-bpl.${cluster_name}.${cluster_location}.bink.sh
+  name: bpl.${cluster_name}.${cluster_location}.bink.sh-kiroshi
   namespace: default
 spec:
   rules:
