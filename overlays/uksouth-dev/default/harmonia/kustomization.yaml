@@ -10,6 +10,7 @@ resources:
   - ../../../../bases/olympus/harmonia/deployments/import-agent-amex-settlement
   - ../../../../bases/olympus/harmonia/deployments/import-agent-costa
   - ../../../../bases/olympus/harmonia/deployments/import-agent-iceland-bonus-card
+  - ../../../../bases/olympus/harmonia/deployments/import-agent-itsu
   - ../../../../bases/olympus/harmonia/deployments/import-agent-mastercard-auth
   - ../../../../bases/olympus/harmonia/deployments/import-agent-mastercard-settled
   - ../../../../bases/olympus/harmonia/deployments/import-agent-mastercard-refund

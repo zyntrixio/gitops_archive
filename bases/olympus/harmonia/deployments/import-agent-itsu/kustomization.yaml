@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../bases/deployment
+labels:
+  - includeSelectors: true
+    pairs:
+      component: import-agent-itsu
+nameSuffix: -import-agent-itsu
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/metadata/annotations/prometheus.io~1job
+        value: harmonia-import-agent-itsu
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["tximport", "--agent", "itsu", "--no-user-input", "--quiet"]
