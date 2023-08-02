@@ -53,5 +53,5 @@ patches:
         value: |
           array:
             - |
-              objectName: itsu-outbound-compound-key-join
+              objectName: itsu-harmonia-oauth-key
               objectType: secret
