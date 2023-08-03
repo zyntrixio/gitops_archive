@@ -16,15 +16,15 @@ spec:
   images:
     - name: binkcore.azurecr.io/harmonia
       newName: binkcore.azurecr.io/harmonia
-      newTag: prod-2.27.3 # {"$imagepolicy": "flux-system:uksouth-prod-harmonia:tag"}
+      newTag: prod-2.28.7 # {"$imagepolicy": "flux-system:uksouth-prod-harmonia:tag"}
   postBuild:
     substituteFrom:
-    - kind: Secret
-      name: azure-storage
-    - kind: Secret
-      name: azure-identities
-    - kind: Secret
-      name: azure-keyvault
+      - kind: Secret
+        name: azure-storage
+      - kind: Secret
+        name: azure-identities
+      - kind: Secret
+        name: azure-keyvault
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
