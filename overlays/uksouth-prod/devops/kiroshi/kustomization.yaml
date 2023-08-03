@@ -6,6 +6,7 @@ resources:
   - ../../../../bases/devops/kiroshi/checks/frontdoor/traffic
   - ../../../../bases/devops/kiroshi/checks/spreedly/certs
   - ../../../../bases/devops/kiroshi/storage/blob/viator
+  - ../../../../bases/devops/kiroshi/storage/sftp/mastercard
 
 namespace: devops
 
