@@ -42,7 +42,7 @@ spec:
       containers:
         - name: app
           env:
-            - name: RABBITMQ_DSN
+            - name: RABBITMQ_URI
               valueFrom:
                 secretKeyRef:
                   key: url
