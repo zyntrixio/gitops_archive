@@ -1,8 +1,0 @@
----
-resources:
-  - ../../../../bases/infrastructure/binklink
-  - ingress.yaml
-
-replicas:
-  - name: binklink
-    count: 3
