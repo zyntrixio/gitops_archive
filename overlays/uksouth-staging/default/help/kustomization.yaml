@@ -1,7 +1,0 @@
----
-bases:
-  - ../../../../bases/olympus/help
-
-replicas:
-  - name: help
-    count: 1
