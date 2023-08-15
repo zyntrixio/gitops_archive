@@ -23,6 +23,12 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/starbug:latest
+          env:
+            - name: AZURE_STORAGE_BLOB_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: blob_connection_string_primary
+                  name: azure-storage
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534
