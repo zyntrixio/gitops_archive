@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: starbug
+    component: api
+  name: starbug-api
+  namespace: starbug
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: starbug
+      component: api
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: starbug
+        component: api
+    spec:
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/starbug:latest
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+      terminationGracePeriodSeconds: 30
+      serviceAccountName: starbug
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
