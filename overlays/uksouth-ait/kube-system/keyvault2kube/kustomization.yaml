@@ -1,0 +1,51 @@
+---
+bases:
+  - github.com/terrycain/keyvault2kube/deploy?ref=2.3.2
+
+configMapGenerator:
+  - name: keyvault2kube
+    namespace: kube-system
+    files:
+      - config/pgbouncer.yaml
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env
+        value:
+          - name: KEY_VAULT_URLS
+            value: ${environment_keyvault}
+          - name: ALL_NAMESPACES
+            value: "True"
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts/-
+        value:
+          mountPath: /app/templates
+          name: template-config
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/spec/volumes/-
+        value:
+          name: template-config
+          configMap:
+            defaultMode: 420
+            name: keyvault2kube
+  - target:
+      kind: AzureIdentity
+    patch: |-
+      - op: replace
+        path: /spec/resourceID
+        value: /subscriptions/6a36a6fd-e97c-42f2-88ff-2484d8165f53/resourcegroups/uksouth-dev/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-dev-keyvault2kube
+  - target:
+      kind: AzureIdentity
+    patch: |-
+      - op: replace
+        path: /spec/clientID
+        value: 37f7fed9-db82-4bf8-985c-7bb2b5c503f5
