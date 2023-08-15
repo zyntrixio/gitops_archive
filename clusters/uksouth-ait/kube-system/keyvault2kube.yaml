@@ -6,6 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
+  timeout: 5m
   path: ./overlays/uksouth-ait/kube-system/keyvault2kube
   dependsOn:
     - name: aad-pod-identity
