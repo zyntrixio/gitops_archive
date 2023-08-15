@@ -42,10 +42,10 @@ patches:
     patch: |-
       - op: replace
         path: /spec/resourceID
-        value: /subscriptions/0b92124d-e5fe-4c9a-a898-1fdf02502e01/resourcegroups/uksouth-ait/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-ait-keyvault2kube
+        value: /subscriptions/6a36a6fd-e97c-42f2-88ff-2484d8165f53/resourcegroups/uksouth-dev/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uksouth-dev-keyvault2kube
   - target:
       kind: AzureIdentity
     patch: |-
       - op: replace
         path: /spec/clientID
-        value: 00946a90-183a-412d-b82f-15448cd03715
+        value: 37f7fed9-db82-4bf8-985c-7bb2b5c503f5
