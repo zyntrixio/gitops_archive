@@ -13,11 +13,11 @@ spec:
     name: flux-system
   images:
     - name: binkcore.azurecr.io/starbug
-      newTag: v0.0.1 # {"$imagepolicy": "flux-system:starbug:tag"}
+      newTag: v0.0.2 # {"$imagepolicy": "flux-system:starbug:tag"}
   postBuild:
     substituteFrom:
-    - kind: Secret
-      name: azure-storage
+      - kind: Secret
+        name: azure-storage
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
