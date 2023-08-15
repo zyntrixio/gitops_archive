@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - serviceaccount.yaml
+- clusterrolebinding.yaml
 - service.yaml
 - deployment.yaml
 - volume.yaml
