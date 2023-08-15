@@ -4,7 +4,7 @@ metadata:
   annotations:
     pv.kubernetes.io/provisioned-by: blob.csi.azure.com
   name: starbug-reports
-  namespace: backups
+  namespace: starbug
 spec:
   capacity:
     storage: 1Pi
@@ -26,7 +26,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: starbug-reports
-  namespace: backups
+  namespace: starbug
 spec:
   accessModes:
     - ReadWriteMany
