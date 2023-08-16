@@ -24,6 +24,16 @@ configMapGenerator:
 patches:
   - target:
       kind: Deployment
+      name: hermes-celery
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/1/resources/limits/memory
+        value: 16Gi
+      - op: replace
+        path: /spec/template/spec/containers/1/resources/requests/memory
+        value: 16Gi
+  - target:
+      kind: Deployment
       name: hermes-api
     patch: |
       - op: replace
