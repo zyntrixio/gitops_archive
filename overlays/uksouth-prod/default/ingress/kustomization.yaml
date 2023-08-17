@@ -2,4 +2,3 @@
 resources:
   - ingress-api.yaml
   - ingress-policies.yaml
-  - ingress-help.yaml
