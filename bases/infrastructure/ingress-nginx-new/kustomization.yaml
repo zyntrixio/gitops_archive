@@ -25,6 +25,7 @@ patches:
               config.linkerd.io/skip-inbound-ports: 80,443
               kubectl.kubernetes.io/default-container: controller
           spec:
+            priorityClassName: bink-critical
             affinity:
               podAntiAffinity:
                 preferredDuringSchedulingIgnoredDuringExecution:
