@@ -6,4 +6,3 @@ resources:
 - clusterrolebinding.yaml
 - service.yaml
 - deployment.yaml
-- volume.yaml

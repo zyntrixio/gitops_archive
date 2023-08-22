@@ -32,14 +32,7 @@ spec:
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534
-          volumeMounts:
-            - name: reports
-              mountPath: /mnt/reports
       terminationGracePeriodSeconds: 30
       serviceAccountName: starbug
       imagePullSecrets:
         - name: binkcore.azurecr.io
-      volumes:
-        - name: reports
-          persistentVolumeClaim:
-            claimName: starbug-reports
