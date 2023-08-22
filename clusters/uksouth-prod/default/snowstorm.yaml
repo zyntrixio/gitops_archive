@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/snowstorm
     newName: binkcore.azurecr.io/snowstorm
-    newTag: prod-v1.10.0 # {"$imagepolicy": "flux-system:snowstorm:tag"}
+    newTag: prod-v1.10.1 # {"$imagepolicy": "flux-system:snowstorm:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
@@ -39,7 +39,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/snowstorm
     newName: binkcore.azurecr.io/snowstorm
-    newTag: prod-v1.10.0 # {"$imagepolicy": "flux-system:snowstorm:tag"}
+    newTag: prod-v1.10.1 # {"$imagepolicy": "flux-system:snowstorm:tag"}
   postBuild:
     substituteFrom:
     - kind: ConfigMap
