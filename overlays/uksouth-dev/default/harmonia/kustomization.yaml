@@ -44,14 +44,3 @@ patches:
       - op: add
         path: /spec/template/spec/containers/0/env/-
         value: {"name":"TXM_LOG_LEVEL","value":"info"}
-  - target:
-      kind: SecretProviderClass
-      name: harmonia
-    patch: |
-      - op: replace
-        path: /spec/parameters/objects
-        value: |
-          array:
-            - |
-              objectName: itsu-outbound-compound-key-join
-              objectType: secret
