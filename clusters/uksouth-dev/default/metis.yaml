@@ -15,7 +15,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/metis
       newName: binkcore.azurecr.io/metis
-      newTag: 2023-08-23T143055Z # {"$imagepolicy": "flux-system:uksouth-dev-metis:tag"}
+      newTag: 2023-08-23T155644Z # {"$imagepolicy": "flux-system:uksouth-dev-metis:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
