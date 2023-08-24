@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 120m
-  path: ./bases/linkerd/base
+  path: ./bases/linkerd/base-canary
   prune: true
   sourceRef:
     kind: GitRepository

@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 120m
-  path: ./bases/linkerd/control-plane
+  path: ./bases/linkerd/control-plane-canary
   prune: true
   sourceRef:
     kind: GitRepository

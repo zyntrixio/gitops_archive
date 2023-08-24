@@ -1,0 +1,7 @@
+---
+resources:
+  - namespace.yaml
+  - issuer-root.yaml
+  - issuer-identity.yaml
+  - certificate-root.yaml
+  - certificate-identity.yaml
