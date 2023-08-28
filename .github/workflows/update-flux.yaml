@@ -7,9 +7,6 @@ on:
   schedule:
     - cron: "0 * * * *"
 
-permissions:
-  contents: write
-
 jobs:
   components:
     runs-on: ubuntu-latest
