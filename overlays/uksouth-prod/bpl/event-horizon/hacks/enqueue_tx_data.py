@@ -58,7 +58,11 @@ for event in data:
 
         # Query hubble table
         hubble_result = (
-            hubble_db_session.execute(select(Activity.id).where(Activity.activity_identifier == transaction_id))
+            hubble_db_session.execute(
+                select(Activity.id).where(
+                    Activity.activity_identifier == transaction_id, Activity.type != "REFUND_NOT_RECOUPED"
+                )
+            )
             .scalars()
             .all()
         )
