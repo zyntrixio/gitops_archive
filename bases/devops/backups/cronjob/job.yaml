@@ -30,7 +30,7 @@ spec:
               imagePullPolicy: IfNotPresent
           containers:
             - name: pgdump
-              image: docker.io/postgres:15
+              image: docker.io/postgres:14
               imagePullPolicy: IfNotPresent
               command: ["/bin/bash", "-c"]
               args: ["pg_dump -Fc > /mnt/backups/hourly/$(date +'%Y/%m/%d/%H00')/$(date +'%FT%H%M%SZ')-$PGDATABASE.sql"]
