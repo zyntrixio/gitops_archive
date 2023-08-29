@@ -59,3 +59,13 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/resources/requests/memory
         value: 500Mi
+  - target:
+      kind: Deployment
+      name: harmonia-import-agent-itsu
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 1G
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 1G
