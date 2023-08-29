@@ -42,7 +42,7 @@ patches:
             containers:
               - name: app
                 volumeMounts:
-                  - name: eh-hacks
+                  - name: hacks
                     mountPath: /app/hacks/
                 envFrom:
                   - configMapRef:
