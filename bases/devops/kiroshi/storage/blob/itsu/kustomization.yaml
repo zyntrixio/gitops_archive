@@ -1,0 +1,27 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../bases/cronjobs
+labels:
+  - includeSelectors: true
+    pairs:
+      component: storage-blob-itsu
+nameSuffix: -storage-blob-itsu
+patches:
+  - patch: |
+      - op: replace
+        path: /spec/schedule
+        value: "*/15 * * * *"
+    target:
+      kind: CronJob
+  - patch: |
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/args
+        value:
+          - kiroshi
+          - storage
+          - blob
+          - --source=sftp:itsu:uploads
+          - --destination=blob:harmonia-imports:scheme/itsu
+    target:
+      kind: CronJob
