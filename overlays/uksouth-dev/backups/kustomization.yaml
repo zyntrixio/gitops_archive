@@ -15,3 +15,11 @@ resources:
 - ./pontus
 - ./vela
 namespace: backups
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/image
+        value: docker.io/postgres:15
