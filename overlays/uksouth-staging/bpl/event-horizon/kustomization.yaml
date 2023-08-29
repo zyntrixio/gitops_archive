@@ -42,15 +42,8 @@ patches:
             containers:
               - name: app
                 volumeMounts:
-                  - name: enqueue-hacks
-                    mountPath: /app/hacks/enqueue_tx_data.py
-                    subPath: enqueue_tx_data.py
-                  - name: insert-hacks
-                    mountPath: /app/hacks/insert_tx_direct.py
-                    subPath: insert_tx_direct.py
-                  - name: json-hacks
-                    mountPath: /app/hacks/staging-cleaned.json
-                    subPath: staging-cleaned.json
+                  - name: eh-hacks
+                    mountPath: /app/hacks/
                 envFrom:
                   - configMapRef:
                       name: event-horizon
