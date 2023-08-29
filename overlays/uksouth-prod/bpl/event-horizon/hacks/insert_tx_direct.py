@@ -27,25 +27,20 @@ PolarisModelBase.prepare(polaris_sync_engine, reflect=True)
 HubbleModelBase.prepare(hubble_sync_engine, reflect=True)
 PolarisSyncSessionMaker = sessionmaker(bind=polaris_sync_engine, future=True, expire_on_commit=False)
 
-# Staging for testing
+# Activity identifiers
 TX_IDS_TO_FETCH = (
-    "202307311322",
-    "202307311351",
-    "202307311326",
-    "202307311323",
-    "202307311358",
-    "202307311360",
-    "202307311352",
-    "202307311361",
-    "202307311356",
-    "202307311349",
-    "202307311321",
-    "202307311325",
-    "202307311324",
-    "202307311350",
-    "202307311355",
-    "202307311359",
-    "202307311357",
+    "bpl-viator-c4a13f2f52ee0078198ccafa57119ba28b989a70",
+    "bpl-viator-44e7cc414e85357e15485fc96ec730938b20ea0e",
+    "bpl-viator-7bb7f3bfe22515f73daff27276812e4b0cb3cc90",
+    "bpl-viator-620fa02496eb299212b7e82b385ce8070a84b3fd",
+    "bpl-viator-b19c4e0aecc80fb3306adaed67498813353bc0cb",
+    "bpl-viator-838a8c69ab2203eefd2c64ac5633ef19a9cef7f1",
+    "bpl-viator-1361fb5fe825db28debbb66946ee1c3483e6d92b",
+    "bpl-viator-cc49c77366ad1ed45c53e52735f6268c2bd47d67",
+    "bpl-viator-b2b1be66e5a0240f25d9e1e5d1ca846ff2bb53cf",
+    "bpl-viator-16f3c6ea65d0c45b4fa023277e533ebd544414d9",
+    "bpl-viator-801c87255f4b08e08effbe91ba78287b544bb898",
+    "bpl-viator-991ff572b1f6aecd66f5c5c6bef8cc359dd849aa",
 )
 
 
