@@ -11,6 +11,11 @@ configMapGenerator:
   - name: event-horizon
     envs:
       - env.ini
+  - name: eh-hacks
+    files:
+      - hacks/enqueue_tx_data.py
+      - hacks/insert_tx_direct.py
+      - hacks/staging-cleaned.json
 
 patches:
   - target:
@@ -23,8 +28,29 @@ patches:
       spec:
         template:
           spec:
+            volumes:
+              - name: hacks
+                configMap:
+                  name: eh-hacks
+                  items:
+                    - key: enqueue_tx_data.py
+                      path: enqueue_tx_data.py
+                    - key: insert_tx_direct.py
+                      path: insert_tx_direct.py
+                    - key: staging-cleaned.json
+                      path: staging-cleaned.json
             containers:
               - name: app
+                volumeMounts:
+                  - name: enqueue-hacks
+                    mountPath: /app/hacks/enqueue_tx_data.py
+                    subPath: enqueue_tx_data.py
+                  - name: insert-hacks
+                    mountPath: /app/hacks/insert_tx_direct.py
+                    subPath: insert_tx_direct.py
+                  - name: json-hacks
+                    mountPath: /app/hacks/staging-cleaned.json
+                    subPath: staging-cleaned.json
                 envFrom:
                   - configMapRef:
                       name: event-horizon

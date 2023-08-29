@@ -1,0 +1,907 @@
+[
+    {
+        "id": "2069965e-dcc0-465e-a15d-1d1ad04784ab",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:51:53.872608Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Processed for Loyalteas (MID: 9999980001)",
+        "reasons": [
+            "transaction amount \u00a31.11 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311361",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.11",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311361",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.11",
+            "amount_currency": "GBP",
+            "store_name": "Loyalteas",
+            "earned": [
+                {
+                    "value": "1",
+                    "type": "STAMPS"
+                }
+            ],
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "89983074-f4e4-49c9-9be1-179e3c067b27",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:51:53.879788Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311361",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.11",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311361",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.11",
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "40c9a8fc-c178-4559-a540-0299b54024ae",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:51:45.886833Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311360",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.10",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311360",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.10",
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "c623a01b-35ed-4d0d-9947-82133af39fc2",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:51:45.878974Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Processed for Loyalteas (MID: 9999980001)",
+        "reasons": [
+            "transaction amount \u00a31.10 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311360",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.10",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311360",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.10",
+            "amount_currency": "GBP",
+            "store_name": "Loyalteas",
+            "earned": [
+                {
+                    "value": "1",
+                    "type": "STAMPS"
+                }
+            ],
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "76c94463-ff68-4252-ac98-ed1175ce8163",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:51:37.503686Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311359",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.09",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311359",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.09",
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "a98435aa-7425-49a1-b0a4-c69e1ea31153",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:51:37.494563Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Processed for Loyalteas (MID: 9999980001)",
+        "reasons": [
+            "transaction amount \u00a31.09 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311359",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.09",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311359",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.09",
+            "amount_currency": "GBP",
+            "store_name": "Loyalteas",
+            "earned": [
+                {
+                    "value": "1",
+                    "type": "STAMPS"
+                }
+            ],
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "29d5415c-143e-4936-8711-e4edeedc2385",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:51:29.196394Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311358",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.08",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311358",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.08",
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "b53b2d94-aeb6-4c76-aa4d-0831fcd35328",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:51:29.188696Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Processed for Loyalteas (MID: 9999980001)",
+        "reasons": [
+            "transaction amount \u00a31.08 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311358",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.08",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311358",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.08",
+            "amount_currency": "GBP",
+            "store_name": "Loyalteas",
+            "earned": [
+                {
+                    "value": "1",
+                    "type": "STAMPS"
+                }
+            ],
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "28610996-fe36-47bd-acd1-7bf4caccc6b4",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:51:18.096547Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311357",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.07",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311357",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.07",
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "572a9308-8794-444e-b1f9-7f1726ce69d0",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:51:18.088280Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Processed for Loyalteas (MID: 9999980001)",
+        "reasons": [
+            "transaction amount \u00a31.07 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311357",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.07",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311357",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.07",
+            "amount_currency": "GBP",
+            "store_name": "Loyalteas",
+            "earned": [
+                {
+                    "value": "1",
+                    "type": "STAMPS"
+                }
+            ],
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "239de3c3-6cea-4169-9e56-fadf32621495",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:51:10.893530Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Processed for Loyalteas (MID: 9999980001)",
+        "reasons": [
+            "transaction amount \u00a31.06 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311356",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.06",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311356",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.06",
+            "amount_currency": "GBP",
+            "store_name": "Loyalteas",
+            "earned": [
+                {
+                    "value": "1",
+                    "type": "STAMPS"
+                }
+            ],
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "79ee25d3-fcfa-411f-bb98-1603c3a35b9d",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:51:10.901875Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311356",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.06",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311356",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.06",
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "b15e29b4-f3a8-4928-9599-27a70257f457",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:51:01.811740Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311355",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.05",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311355",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.05",
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "cfaca117-5639-4c75-a905-c7afb2a79fe0",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:51:01.804426Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Processed for Loyalteas (MID: 9999980001)",
+        "reasons": [
+            "transaction amount \u00a31.05 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311355",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.05",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311355",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.05",
+            "amount_currency": "GBP",
+            "store_name": "Loyalteas",
+            "earned": [
+                {
+                    "value": "1",
+                    "type": "STAMPS"
+                }
+            ],
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "a2871f94-168a-45c6-8445-877024bcc3ce",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:50:39.276175Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Processed for Loyalteas (MID: 9999980001)",
+        "reasons": [
+            "transaction amount \u00a31.04 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311352",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.04",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311352",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.04",
+            "amount_currency": "GBP",
+            "store_name": "Loyalteas",
+            "earned": [
+                {
+                    "value": "1",
+                    "type": "STAMPS"
+                }
+            ],
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "41cb3f31-6110-4131-9faa-abb4dac91158",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:50:39.284139Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311352",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.04",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311352",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.04",
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "3958c907-3439-463f-8360-ffd2042a21d5",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:50:28.493442Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311351",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.03",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311351",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.03",
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "1a3fd6e0-a0f7-4b26-bbd1-0f2b0c450431",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:50:28.486059Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Processed for Loyalteas (MID: 9999980001)",
+        "reasons": [
+            "transaction amount \u00a31.03 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311351",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.03",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311351",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.03",
+            "amount_currency": "GBP",
+            "store_name": "Loyalteas",
+            "earned": [
+                {
+                    "value": "1",
+                    "type": "STAMPS"
+                }
+            ],
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "b5377cae-9b98-436d-8730-832be0ac7ab5",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:50:18.115414Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Processed for Loyalteas (MID: 9999980001)",
+        "reasons": [
+            "transaction amount \u00a31.02 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311350",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.02",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311350",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.02",
+            "amount_currency": "GBP",
+            "store_name": "Loyalteas",
+            "earned": [
+                {
+                    "value": "1",
+                    "type": "STAMPS"
+                }
+            ],
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "294d28e6-56aa-4e23-9155-336499b66f99",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:50:18.126530Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311350",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.02",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311350",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.02",
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "ec7c2f7f-8a95-4143-872d-b0e9bb975750",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:50:04.122109Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Processed for Loyalteas (MID: 9999980001)",
+        "reasons": [
+            "transaction amount \u00a31.01 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311349",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.01",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311349",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.01",
+            "amount_currency": "GBP",
+            "store_name": "Loyalteas",
+            "earned": [
+                {
+                    "value": "1",
+                    "type": "STAMPS"
+                }
+            ],
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "e3a90e0c-cc28-4485-88e6-34b465640d24",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:50:04.135554Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "cortado Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311349",
+        "user_id": "172bdce3-237f-4f96-898c-aaf480b33411",
+        "associated_value": "\u00a31.01",
+        "retailer": "cortado",
+        "campaigns": [
+            "cortado"
+        ],
+        "data": {
+            "transaction_id": "202307311349",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "1.01",
+            "mid": "9999980001"
+        }
+    },
+    {
+        "id": "150900ad-bb1f-4b7a-a14c-7ef647a99700",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:24:33.051427Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "trenette Transaction Processed for Bink Sweet Reward (MID: 9999999999)",
+        "reasons": [
+            "transaction amount \u00a349.85 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311326",
+        "user_id": "f1f76007-461f-4548-b36b-c8826c39236b",
+        "associated_value": "\u00a349.85",
+        "retailer": "trenette",
+        "campaigns": [
+            "trenette-campaign2"
+        ],
+        "data": {
+            "transaction_id": "202307311326",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "49.85",
+            "amount_currency": "GBP",
+            "store_name": "Bink Sweet Reward",
+            "earned": [
+                {
+                    "value": "\u00a349.85",
+                    "type": "ACCUMULATOR"
+                }
+            ],
+            "mid": "9999999999"
+        }
+    },
+    {
+        "id": "f956f830-f67a-4fa0-9f18-f0c2643c7434",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:24:33.058957Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "trenette Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311326",
+        "user_id": "f1f76007-461f-4548-b36b-c8826c39236b",
+        "associated_value": "\u00a349.85",
+        "retailer": "trenette",
+        "campaigns": [
+            "trenette-campaign2"
+        ],
+        "data": {
+            "transaction_id": "202307311326",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "49.85",
+            "mid": "9999999999"
+        }
+    },
+    {
+        "id": "2ca94b89-038e-41e4-a0df-958555a1d965",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:24:06.082102Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "trenette Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311325",
+        "user_id": "f1f76007-461f-4548-b36b-c8826c39236b",
+        "associated_value": "\u00a3100.05",
+        "retailer": "trenette",
+        "campaigns": [
+            "trenette-campaign2"
+        ],
+        "data": {
+            "transaction_id": "202307311325",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "100.05",
+            "mid": "9999999999"
+        }
+    },
+    {
+        "id": "f43d213f-baaf-479c-b19a-150d1a82d545",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:24:06.073314Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "trenette Transaction Processed for Bink Sweet Reward (MID: 9999999999)",
+        "reasons": [
+            "transaction amount \u00a3100.05 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311325",
+        "user_id": "f1f76007-461f-4548-b36b-c8826c39236b",
+        "associated_value": "\u00a3100.05",
+        "retailer": "trenette",
+        "campaigns": [
+            "trenette-campaign2"
+        ],
+        "data": {
+            "transaction_id": "202307311325",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "100.05",
+            "amount_currency": "GBP",
+            "store_name": "Bink Sweet Reward",
+            "earned": [
+                {
+                    "value": "\u00a3100.05",
+                    "type": "ACCUMULATOR"
+                }
+            ],
+            "mid": "9999999999"
+        }
+    },
+    {
+        "id": "81c10717-d313-4de5-8b71-5a89ae811bc2",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:23:50.469466Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "trenette Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311324",
+        "user_id": "f1f76007-461f-4548-b36b-c8826c39236b",
+        "associated_value": "\u00a3100.04",
+        "retailer": "trenette",
+        "campaigns": [
+            "trenette-campaign2"
+        ],
+        "data": {
+            "transaction_id": "202307311324",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "100.04",
+            "mid": "9999999999"
+        }
+    },
+    {
+        "id": "8584f122-6371-4038-9919-10ce3cd214f4",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:23:50.460296Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "trenette Transaction Processed for Bink Sweet Reward (MID: 9999999999)",
+        "reasons": [
+            "transaction amount \u00a3100.04 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311324",
+        "user_id": "f1f76007-461f-4548-b36b-c8826c39236b",
+        "associated_value": "\u00a3100.04",
+        "retailer": "trenette",
+        "campaigns": [
+            "trenette-campaign2"
+        ],
+        "data": {
+            "transaction_id": "202307311324",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "100.04",
+            "amount_currency": "GBP",
+            "store_name": "Bink Sweet Reward",
+            "earned": [
+                {
+                    "value": "\u00a3100.04",
+                    "type": "ACCUMULATOR"
+                }
+            ],
+            "mid": "9999999999"
+        }
+    },
+    {
+        "id": "13dc2a9f-9ed5-465a-8381-8d962d6c0d08",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:23:42.483573Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "trenette Transaction Processed for Bink Sweet Reward (MID: 9999999999)",
+        "reasons": [
+            "transaction amount \u00a3100.03 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311323",
+        "user_id": "f1f76007-461f-4548-b36b-c8826c39236b",
+        "associated_value": "\u00a3100.03",
+        "retailer": "trenette",
+        "campaigns": [
+            "trenette-campaign2"
+        ],
+        "data": {
+            "transaction_id": "202307311323",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "100.03",
+            "amount_currency": "GBP",
+            "store_name": "Bink Sweet Reward",
+            "earned": [
+                {
+                    "value": "\u00a3100.03",
+                    "type": "ACCUMULATOR"
+                }
+            ],
+            "mid": "9999999999"
+        }
+    },
+    {
+        "id": "107cc6a9-f836-444f-aa63-7bf93f542fbc",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:23:42.490487Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "trenette Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311323",
+        "user_id": "f1f76007-461f-4548-b36b-c8826c39236b",
+        "associated_value": "\u00a3100.03",
+        "retailer": "trenette",
+        "campaigns": [
+            "trenette-campaign2"
+        ],
+        "data": {
+            "transaction_id": "202307311323",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "100.03",
+            "mid": "9999999999"
+        }
+    },
+    {
+        "id": "908196d5-e0a2-48a3-b2a2-cb760530aa6c",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:23:31.714521Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "trenette Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311322",
+        "user_id": "f1f76007-461f-4548-b36b-c8826c39236b",
+        "associated_value": "\u00a3100.02",
+        "retailer": "trenette",
+        "campaigns": [
+            "trenette-campaign2"
+        ],
+        "data": {
+            "transaction_id": "202307311322",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "100.02",
+            "mid": "9999999999"
+        }
+    },
+    {
+        "id": "691413ce-6e6a-40dc-9efa-2d1e7b0bd61c",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:23:31.680551Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "trenette Transaction Processed for Bink Sweet Reward (MID: 9999999999)",
+        "reasons": [
+            "transaction amount \u00a3100.02 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311322",
+        "user_id": "f1f76007-461f-4548-b36b-c8826c39236b",
+        "associated_value": "\u00a3100.02",
+        "retailer": "trenette",
+        "campaigns": [
+            "trenette-campaign2"
+        ],
+        "data": {
+            "transaction_id": "202307311322",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "100.02",
+            "amount_currency": "GBP",
+            "store_name": "Bink Sweet Reward",
+            "earned": [
+                {
+                    "value": "\u00a3100.02",
+                    "type": "ACCUMULATOR"
+                }
+            ],
+            "mid": "9999999999"
+        }
+    },
+    {
+        "id": "7d2dbd00-e0fc-4fd6-827c-3aa23d096ce4",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:23:18.829045Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "trenette Transaction Imported",
+        "reasons": [],
+        "activity_identifier": "202307311321",
+        "user_id": "f1f76007-461f-4548-b36b-c8826c39236b",
+        "associated_value": "\u00a3100.01",
+        "retailer": "trenette",
+        "campaigns": [
+            "trenette-campaign2"
+        ],
+        "data": {
+            "transaction_id": "202307311321",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "100.01",
+            "mid": "9999999999"
+        }
+    },
+    {
+        "id": "4254c96a-ccd8-483b-a84b-c0f481244718",
+        "type": "TX_HISTORY",
+        "datetime": "2023-07-31T12:23:18.727376Z",
+        "underlying_datetime": "2023-07-31T12:23:09Z",
+        "summary": "trenette Transaction Processed for Bink Sweet Reward (MID: 9999999999)",
+        "reasons": [
+            "transaction amount \u00a3100.01 meets the required threshold \u00a31.00"
+        ],
+        "activity_identifier": "202307311321",
+        "user_id": "f1f76007-461f-4548-b36b-c8826c39236b",
+        "associated_value": "\u00a3100.01",
+        "retailer": "trenette",
+        "campaigns": [
+            "trenette-campaign2"
+        ],
+        "data": {
+            "transaction_id": "202307311321",
+            "datetime": "2023-07-31T12:23:09Z",
+            "amount": "100.01",
+            "amount_currency": "GBP",
+            "store_name": "Bink Sweet Reward",
+            "earned": [
+                {
+                    "value": "\u00a3100.01",
+                    "type": "ACCUMULATOR"
+                }
+            ],
+            "mid": "9999999999"
+        }
+    },
+    {
+        "id": "0a984d8a-c4f0-493b-83ea-a71b3ecf4264",
+        "type": "TX_IMPORT",
+        "datetime": "2023-07-31T12:22:28.525629Z",
+        "underlying_datetime": "2023-04-13T00:30:00Z",
+        "summary": "trenette Transaction Import Failed",
+        "reasons": [
+            "Transaction dated before user join"
+        ],
+        "activity_identifier": "202307311321",
+        "user_id": "f1f76007-461f-4548-b36b-c8826c39236b",
+        "associated_value": "\u00a3100.01",
+        "retailer": "trenette",
+        "campaigns": [],
+        "data": {
+            "transaction_id": "202307311321",
+            "datetime": "2023-04-13T00:30:00Z",
+            "amount": "100.01",
+            "mid": "9999999999"
+        }
+    }
+]
