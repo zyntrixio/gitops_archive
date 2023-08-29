@@ -50,24 +50,28 @@ for event in data:
     # Check polaris and hubble to make sure transaction_id doesn't exist
     with HubbleSyncSessionMaker() as hubble_db_session, PolarisSyncSessionMaker() as polaris_db_session:
         # Query polaris table
-        polaris_result = polaris_db_session.execute(
-            select(AccountHolderTransactionHistory.id).where(
-                AccountHolderTransactionHistory.transaction_id == transaction_id
-            )
-        ).one_or_none()
+        if event["type"] == "TX_HISTORY":
+            polaris_result = polaris_db_session.execute(
+                select(AccountHolderTransactionHistory.id).where(
+                    AccountHolderTransactionHistory.transaction_id == transaction_id
+                )
+            ).one_or_none()
+
+            if polaris_result:
+                continue
 
         # Query hubble table
         hubble_result = (
             hubble_db_session.execute(
                 select(Activity.id).where(
-                    Activity.activity_identifier == transaction_id, Activity.type != "REFUND_NOT_RECOUPED"
+                    Activity.activity_identifier == transaction_id, Activity.type != event["type"]
                 )
             )
             .scalars()
             .all()
         )
 
-    if not polaris_result and not hubble_result:
+    if not hubble_result:
         tx_ids.add(transaction_id)
 
         match event["type"]:
@@ -96,6 +100,7 @@ if not dry_run:
     print(f"No. of TX_IMPORT events queued: {tx_import_event_count}")
     print(f"No. of TX_HISTORY events queued: {tx_history_event_count}")
 else:
+    print(len(tx_ids))
     print(f"tx_ids for events to be queued: {list(tx_ids)}")
     print(f"No. of TX_IMPORT events to be queued: {tx_import_event_count}")
     print(f"No. of TX_HISTORY events to be queued: {tx_history_event_count}")
