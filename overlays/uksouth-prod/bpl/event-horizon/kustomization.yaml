@@ -13,13 +13,6 @@ configMapGenerator:
   - name: event-horizon
     envs:
       - env.ini
-  - name: eh-hacks
-    files:
-      - hacks/enqueue_tx_data.py
-      - hacks/enqueue_tx_data_1.py
-      - hacks/insert_tx_direct.py
-      - hacks/prod-cleaned.json
-
 
 patches:
   - target:
@@ -32,24 +25,8 @@ patches:
       spec:
         template:
           spec:
-            volumes:
-              - name: hacks
-                configMap:
-                  name: eh-hacks
-                  items:
-                    - key: enqueue_tx_data.py
-                      path: enqueue_tx_data.py
-                    - key: enqueue_tx_data_1.py
-                      path: enqueue_tx_data_1.py
-                    - key: insert_tx_direct.py
-                      path: insert_tx_direct.py
-                    - key: prod-cleaned.json
-                      path: prod-cleaned.json
             containers:
               - name: app
-                volumeMounts:
-                  - name: hacks
-                    mountPath: /app/hacks/
                 envFrom:
                   - configMapRef:
                       name: event-horizon
