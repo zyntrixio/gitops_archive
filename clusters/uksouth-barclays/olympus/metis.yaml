@@ -15,8 +15,8 @@ spec:
       - kind: ConfigMap
         name: cluster-vars
   images:
-    - name: ghcr.io/binkhq/metis
-      newName: ghcr.io/binkhq/metis
+    - name: binkcore.azurecr.io/metis
+      newName: binkcore.azurecr.io/metis
       newTag: staging-1.32.1 # {"$imagepolicy": "flux-system:barclays-metis:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1

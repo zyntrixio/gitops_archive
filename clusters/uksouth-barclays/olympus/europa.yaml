@@ -15,8 +15,8 @@ spec:
       - kind: ConfigMap
         name: cluster-vars
   images:
-    - name: ghcr.io/binkhq/europa
-      newName: ghcr.io/binkhq/europa
+    - name: binkcore.azurecr.io/europa
+      newName: binkcore.azurecr.io/europa
       newTag: staging-1.6.4 # {"$imagepolicy": "flux-system:barclays-europa:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
