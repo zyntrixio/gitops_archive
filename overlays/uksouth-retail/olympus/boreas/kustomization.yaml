@@ -2,6 +2,7 @@
 resources:
   - ../../../../bases/olympus/boreas/api
   - aad.yaml
+  - ingress.yaml
 
 configMapGenerator:
   - name: boreas
