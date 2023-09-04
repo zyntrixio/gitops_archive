@@ -21,7 +21,6 @@ spec:
     installNamespace: false
     defaultRegistry: ghcr.io/linkerd
     enablePodAntiAffinity: true
-    prometheusUrl: http://prometheus.prometheus:9090/
     tap:
       replicas: 3
       resources:
@@ -42,6 +41,6 @@ spec:
     tapInjector:
       replicas: 3
     grafana:
-      externalUrl: https://grafana.tools.uksouth.bink.sh/
+      enabled: true
     prometheus:
-      enabled: false
+      enabled: true

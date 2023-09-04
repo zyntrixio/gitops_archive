@@ -25,49 +25,6 @@ scrape_configs:
         regex: ()
         replacement: ${cluster_name}
 
-  - job_name: linkerd-proxy
-    kubernetes_sd_configs:
-      - role: pod
-    relabel_configs:
-      - source_labels:
-          - __meta_kubernetes_pod_container_name
-          - __meta_kubernetes_pod_container_port_name
-          - __meta_kubernetes_pod_label_linkerd_io_control_plane_ns
-        action: keep
-        regex: ^linkerd-proxy;linkerd-admin;linkerd$
-      - source_labels: [__meta_kubernetes_namespace]
-        action: replace
-        target_label: namespace
-      - source_labels: [__meta_kubernetes_pod_name]
-        action: replace
-        target_label: pod
-      - source_labels: [__meta_kubernetes_pod_label_linkerd_io_proxy_job]
-        action: replace
-        target_label: k8s_job
-      - action: labeldrop
-        regex: __meta_kubernetes_pod_label_linkerd_io_proxy_job
-      - action: labelmap
-        regex: __meta_kubernetes_pod_label_linkerd_io_proxy_(.+)
-      - action: labeldrop
-        regex: __meta_kubernetes_pod_label_linkerd_io_proxy_(.+)
-      - action: labelmap
-        regex: __meta_kubernetes_pod_label_linkerd_io_(.+)
-      - action: labelmap
-        regex: __meta_kubernetes_pod_label_(.+)
-        replacement: __tmp_pod_label_$1
-      - action: labelmap
-        regex: __tmp_pod_label_linkerd_io_(.+)
-        replacement: __tmp_pod_label_$1
-      - action: labeldrop
-        regex: __tmp_pod_label_linkerd_io_(.+)
-      - action: labelmap
-        regex: __tmp_pod_label_(.+)
-      - source_labels: [kubernetes_cluster]
-        target_label: kubernetes_cluster
-        action: replace
-        regex: ()
-        replacement: ${cluster_name}
-
   - job_name: pods
     kubernetes_sd_configs:
       - role: pod
