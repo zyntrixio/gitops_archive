@@ -15,9 +15,6 @@ patches:
       spec:
         template:
           metadata:
-            annotations:
-              prometheus.io/port: '9100'
-              prometheus.io/scrape: 'true'
             labels:
               aadpodidbinding: cert-manager
           spec:
@@ -29,7 +26,6 @@ patches:
                   - --leader-election-namespace=kube-system
                   - --dns01-recursive-nameservers=1.1.1.1:53,1.0.0.1:53
                   - --dns01-recursive-nameservers-only
-                  - --metrics-listen-address=0.0.0.0:9100
                   - --issuer-ambient-credentials
   - target:
       kind: Deployment
