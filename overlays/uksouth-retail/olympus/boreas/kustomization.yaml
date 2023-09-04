@@ -1,0 +1,12 @@
+---
+resources:
+  - ../../../../bases/olympus/boreas/api
+  - aad.yaml
+
+configMapGenerator:
+  - name: boreas
+    namespace: olympus
+    envs:
+      - env.ini
+
+namespace: olympus
