@@ -167,7 +167,7 @@ groups:
       #       not found.
 
       - alert: Failed exports excluding receipt not found
-        expr: sum(failed_requests_total{response_result!="receipt no not found"})
+        expr: sum(failed_requests_total{response_result!="receipt no not found", slug!="wasabi-club"})
           > 100
         for: 1m
         labels:
