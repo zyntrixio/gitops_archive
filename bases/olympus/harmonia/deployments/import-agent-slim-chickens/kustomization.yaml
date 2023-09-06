@@ -5,7 +5,7 @@ resources:
 labels:
   - includeSelectors: true
     pairs:
-      component: import-agent-wasabi-club
+      component: import-agent-slim-checkins
 nameSuffix: -import-agent-slim-chickens
 patches:
   - target:
