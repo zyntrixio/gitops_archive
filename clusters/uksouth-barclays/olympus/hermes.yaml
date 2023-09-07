@@ -46,5 +46,5 @@ spec:
     pattern: barclays-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: '>0.0.1'
