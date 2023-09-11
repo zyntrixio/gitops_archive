@@ -16,7 +16,6 @@ resources:
   - ../../../../bases/olympus/harmonia/deployments/import-agent-visa-auth
   - ../../../../bases/olympus/harmonia/deployments/import-agent-visa-refund
   - ../../../../bases/olympus/harmonia/deployments/import-agent-visa-settle
-  - ../../../../bases/olympus/harmonia/deployments/import-agent-wasabi-club
   - ../../../../bases/olympus/harmonia/deployments/import-worker
   - ../../../../bases/olympus/harmonia/deployments/identify-worker
   - ../../../../bases/olympus/harmonia/deployments/matching-worker
