@@ -14,9 +14,3 @@ patches:
         value:
           name: PGDATABASE
           value: europa
-  - target:
-      kind: CronJob
-    patch: |
-      - op: add
-        path: /spec/jobTemplate/spec/template/spec/containers/0/image
-        value: docker.io/postgres:15
