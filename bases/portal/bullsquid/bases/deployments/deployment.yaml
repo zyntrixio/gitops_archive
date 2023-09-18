@@ -46,6 +46,11 @@ spec:
                 secretKeyRef:
                   name: azure-postgres
                   key: url_placeholder
+            - name: blob_storage_dsn
+              valueFrom:
+                secretKeyRef:
+                  name: azure-storage
+                  key: connection_string_primary
           volumeMounts:
             - name: keyvault
               mountPath: /mnt/secrets/oauth_mgmt_client_secret
