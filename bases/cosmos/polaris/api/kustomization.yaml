@@ -17,7 +17,7 @@ patches:
         value: bink-medium-api
       - op: add
         path: /spec/template/spec/containers/0/readinessProbe
-        value: {"httpGet":{"path":"/readyz","port":9000,"scheme":"HTTP"},"initialDelaySeconds":15,"periodSeconds":60,"successThreshold":1,"timeoutSeconds":10}
+        value: {"httpGet":{"path":"/readyz","port":9000,"scheme":"HTTP"},"initialDelaySeconds":15,"periodSeconds":15,"successThreshold":1,"timeoutSeconds":10}
       - op: add
         path: /spec/template/spec/containers/0/livenessProbe
-        value: {"httpGet":{"path":"/livez","port":9000,"scheme":"HTTP"},"initialDelaySeconds":15,"periodSeconds":60,"successThreshold":1,"timeoutSeconds":10}
+        value: {"httpGet":{"path":"/livez","port":9000,"scheme":"HTTP"},"initialDelaySeconds":15,"periodSeconds":15,"successThreshold":1,"timeoutSeconds":10}

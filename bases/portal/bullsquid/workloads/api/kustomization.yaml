@@ -15,6 +15,6 @@ patches:
       value: {"httpGet":{"path":"/livez","scheme":"HTTP","port":6502},"periodSeconds":30}
     - op: add
       path: /spec/template/spec/containers/0/readinessProbe
-      value: {"httpGet":{"path":"/readyz","scheme":"HTTP","port":6502},"periodSeconds":30}
+      value: {"httpGet":{"path":"/readyz","scheme":"HTTP","port":6502},"periodSeconds":15}
   target:
     kind: Deployment
