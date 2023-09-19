@@ -26,7 +26,7 @@ spec:
           image: binkcore.azurecr.io/starbug:latest
           env:
             - name: database_dsn
-              value: postgresql://satyr:fPc5YUoQZcBkzswUonze9ziI@uksouth-ait-39sr.postgres.database.azure.com/postgres?sslmode=require
+              value: postgresql+psycopg://satyr:fPc5YUoQZcBkzswUonze9ziI@uksouth-ait-39sr.postgres.database.azure.com/postgres?sslmode=require
             - name: redis_dsn
               value: rediss://:tKOrjP1goQYL4ofpvrpNr7dztDEfabnfKAzCaOtIjYY=@uksouth-ait-f38c.redis.cache.windows.net:6380/0
           securityContext:
