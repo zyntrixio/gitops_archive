@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: app
-          args: ["rq", "worker"]
+          args: ["rq", "worker", "--url=rediss://:tKOrjP1goQYL4ofpvrpNr7dztDEfabnfKAzCaOtIjYY=@uksouth-ait-f38c.redis.cache.windows.net:6380/0"]
           image: binkcore.azurecr.io/starbug:latest
           env:
             - name: database_dsn
