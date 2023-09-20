@@ -29,6 +29,13 @@ spec:
               value: postgresql+psycopg://satyr:fPc5YUoQZcBkzswUonze9ziI@uksouth-ait-39sr.postgres.database.azure.com/starbug?sslmode=require
             - name: redis_dsn
               value: rediss://:tKOrjP1goQYL4ofpvrpNr7dztDEfabnfKAzCaOtIjYY=@uksouth-ait-f38c.redis.cache.windows.net:6380/0
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534
