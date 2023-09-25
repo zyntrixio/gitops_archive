@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/bullsquid
     newName: binkcore.azurecr.io/bullsquid
-    newTag: staging-v0.57.0 # {"$imagepolicy": "flux-system:uksouth-staging-bullsquid:tag"}
+    newTag: staging-v0.58.0 # {"$imagepolicy": "flux-system:uksouth-staging-bullsquid:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
