@@ -4,7 +4,6 @@ dbname = "bullsquid"
 [oauth]
 domain = "https://bink-prod.uk.auth0.com/"
 mgmt_client_id = "AcR3Yx8w7SyC0arLlsPAdrMo84yJa63Z"
-mgmt_client_secret = "Pq-qo2BissVN6I33QEmXwOiTyXbQVY8WpwxpPIpfZZl8CZ0WHY58QRasJRoV8NwZ"
 
 [txm]
 base_url = "http://harmonia-api.default"
