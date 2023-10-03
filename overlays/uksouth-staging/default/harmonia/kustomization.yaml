@@ -58,3 +58,13 @@ patches:
             - |
               objectName: slim-chickens-tx-export-secrets
               objectType: secret
+  - target:
+      kind: Deployment
+      name: harmonia-api
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 2Gi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 2Gi
