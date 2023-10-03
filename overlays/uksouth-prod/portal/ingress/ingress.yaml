@@ -20,6 +20,34 @@ spec:
                 name: aperture
                 port:
                   number: 80
+          - path: /api/v1/plans
+            pathType: Prefix
+            backend:
+              service:
+                name: bullsquid-api
+                port:
+                  number: 80
+          - path: /api/v1/customer_wallet
+            pathType: Prefix
+            backend:
+              service:
+                name: bullsquid-api
+                port:
+                  number: 80
+          - path: /api/v1/directory_comments
+            pathType: Prefix
+            backend:
+              service:
+                name: bullsquid-api
+                port:
+                  number: 80
+          - path: /fe2
+            pathType: Prefix
+            backend:
+              service:
+                name: bullsquid-api
+                port:
+                  number: 80
   tls:
     - hosts:
         - portal.${cluster_name}.${cluster_location}.bink.sh
