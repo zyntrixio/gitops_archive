@@ -1,0 +1,15 @@
+[database]
+dbname = "bullsquid"
+
+[oauth]
+domain = "https://bink-prod.uk.auth0.com/"
+mgmt_client_id = "AcR3Yx8w7SyC0arLlsPAdrMo84yJa63Z"
+mgmt_client_secret = "Pq-qo2BissVN6I33QEmXwOiTyXbQVY8WpwxpPIpfZZl8CZ0WHY58QRasJRoV8NwZ"
+
+[txm]
+base_url = "http://harmonia-api.default"
+api_key = "F616CE5C88744DD52DB628FAD8B3D"
+
+[sentry]
+dsn = "https://43a7f303ba504429b75d68f42338b2d1@o503751.ingest.sentry.io/6533846"
+env = "production"
