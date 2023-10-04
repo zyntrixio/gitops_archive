@@ -15,7 +15,7 @@ spec:
   images:
     - name: binkcore.azurecr.io/angelia
       newName: binkcore.azurecr.io/angelia
-      newTag: lloyds-1.18.1 # {"$imagepolicy": "flux-system:angelia:tag"}
+      newTag: lloyds-1.21.0 # {"$imagepolicy": "flux-system:angelia:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
