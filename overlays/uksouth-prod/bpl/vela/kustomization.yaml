@@ -19,6 +19,9 @@ configMapGenerator:
   - name: vela
     envs:
       - env.ini
+  - name: vela-scripts
+    files:
+      - scripts/trigger_reward_adjustments.py
 
 patches:
   - target:
@@ -42,3 +45,11 @@ patches:
                       secretKeyRef:
                         name: azure-postgres
                         key: url_vela
+                volumeMounts:
+                  - name: scripts
+                    mountPath: /app/scripts
+                    readOnly: true
+            volumes:
+              - name: scripts
+                configMap:
+                  name: vela-scripts
