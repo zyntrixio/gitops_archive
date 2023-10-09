@@ -5,18 +5,18 @@ resources:
 labels:
   - includeSelectors: true
     pairs:
-      component: import-agent-slim-chickens
-nameSuffix: -import-agent-slim-chickens
+      component: import-agent-stonegate
+nameSuffix: -import-agent-stonegate
 patches:
   - target:
       kind: Deployment
     patch: |
       - op: replace
         path: /spec/template/metadata/annotations/prometheus.io~1job
-        value: harmonia-import-agent-slim-chickens
+        value: harmonia-import-agent-stonegate
       - op: replace
         path: /spec/template/spec/containers/0/args
-        value: ["tximport", "--agent", "slim-chickens", "--no-user-input", "--quiet"]
+        value: ["tximport", "--agent", "stonegate", "--no-user-input", "--quiet"]
       - op: replace
         path: /spec/template/spec/containers/0/resources/limits/memory
         value: 512Mi
