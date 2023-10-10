@@ -3,6 +3,7 @@ resources:
   - ../../../../bases/olympus/atlas/api
   - ../../../../bases/olympus/atlas/consumer
   - ../../../../bases/olympus/atlas/migrator
+  - ingress.yaml
 
 namespace: default
 
