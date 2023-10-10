@@ -35,11 +35,6 @@ patches:
                       secretKeyRef:
                         name: azure-postgres
                         key: url_atlas
-                  - name: BLOB_STORAGE_DSN
-                    valueFrom:
-                      secretKeyRef:
-                        key: connection_string_primary
-                        name: azure-storage
                 envFrom:
                   - configMapRef:
                       name: atlas
