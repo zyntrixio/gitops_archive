@@ -37,6 +37,16 @@ spec:
                 secretKeyRef:
                   key: url_primary
                   name: azure-redis
+            - name: EOS_DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: url_eos
+            - name: KEY_VAULT
+              valueFrom:
+                secretKeyRef:
+                  name: azure-keyvault
+                  key: url
           imagePullPolicy: Always
           securityContext:
             runAsGroup: 65534

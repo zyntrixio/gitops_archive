@@ -1,0 +1,21 @@
+---
+resources:
+  - ../../../../../bases/olympus/eos/deployments/api
+  - ../../../../../bases/olympus/eos/deployments/worker
+
+namespace: default
+
+configMapGenerator:
+  - name: eos
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: eos

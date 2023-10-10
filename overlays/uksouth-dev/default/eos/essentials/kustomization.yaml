@@ -1,0 +1,4 @@
+resources:
+  - ../../../../../bases/olympus/eos/essentials
+
+namespace: default
