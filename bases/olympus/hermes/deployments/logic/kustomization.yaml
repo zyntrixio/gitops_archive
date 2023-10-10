@@ -1,0 +1,19 @@
+---
+resources:
+  - ../../bases/deployment
+
+nameSuffix: -logic
+
+commonLabels:
+  component: logic
+
+patches:
+  - target:
+      kind: Deploymentq
+    patch: |-
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-high-tasks
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "api_messaging/run.py"]
