@@ -152,13 +152,6 @@ spec:
                 name: midas-api
                 port:
                   number: 80
-          - path: /audit
-            pathType: Prefix
-            backend:
-              service:
-                name: atlas-api
-                port:
-                  number: 80
           - path: /txm/config/keys
             pathType: Prefix
             backend:

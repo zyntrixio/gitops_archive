@@ -19,13 +19,6 @@ spec:
                 name: angelia-api
                 port:
                   number: 80
-          - path: /audit
-            pathType: Prefix
-            backend:
-              service:
-                name: atlas-api
-                port:
-                  number: 80
           - path: /eos
             pathType: Prefix
             backend:
