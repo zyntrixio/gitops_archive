@@ -1,0 +1,35 @@
+---
+resources:
+  - ../../../../../bases/olympus/hermes/deployments/api
+  - ../../../../../bases/olympus/hermes/deployments/beat
+  - ../../../../../bases/olympus/hermes/deployments/celery
+  - ../../../../../bases/olympus/hermes/deployments/logic
+
+namespace: default
+
+configMapGenerator:
+  - name: hermes
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+      name: hermes-api
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: [
+          "gunicorn", "--workers=2", "--error-logfile=-", "--access-logfile=-",
+          "--bind=0.0.0.0:9000", "--logger-class=hermes.reporting.CustomGunicornLogger",
+          "hermes.wsgi"
+        ]
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: hermes
+              
