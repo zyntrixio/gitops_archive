@@ -1,4 +1,4 @@
-bases:
+resources:
   - ../core
 
 nameSuffix: -migrator

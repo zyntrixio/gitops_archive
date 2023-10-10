@@ -1,5 +1,5 @@
 ---
-bases:
+resources:
   - ../core
 
 nameSuffix: -consumer
