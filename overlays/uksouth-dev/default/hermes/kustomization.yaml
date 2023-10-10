@@ -1,13 +1,10 @@
 ---
-bases:
-  - ../../../../bases/olympus/hermes/core
-  - ../../../../bases/olympus/hermes/api
-  - ../../../../bases/olympus/hermes/beat
-  - ../../../../bases/olympus/hermes/celery
-  - ../../../../bases/olympus/hermes/migrator
-  - ../../../../bases/olympus/hermes/logic
-
 resources:
+  - ../../../../bases/olympus/hermes/essentials
+  - ../../../../bases/olympus/hermes/deployments/api
+  - ../../../../bases/olympus/hermes/deployments/beat
+  - ../../../../bases/olympus/hermes/deployments/celery
+  - ../../../../bases/olympus/hermes/deployments/logic
   - aad.yaml
 
 namespace: default
@@ -78,7 +75,7 @@ patches:
       name: hermes-api
     patch: |
       - op: replace
-        path: /spec/template/spec/containers/1/args
+        path: /spec/template/spec/containers/0/args
         value: [
           "gunicorn", "--workers=2", "--error-logfile=-", "--access-logfile=-",
           "--bind=0.0.0.0:9000", "--logger-class=hermes.reporting.CustomGunicornLogger",
