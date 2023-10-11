@@ -1,21 +1,47 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: europa
+  name: europa-essentials
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/default/europa
-  dependsOn:
-    - name: aad-pod-identity
+  path: ./overlays/uksouth-dev/default/europa/essentials
   prune: true
+  force: true 
+  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/europa
-      newName: binkcore.azurecr.io/europa
-      newTag: 2023-07-13T080836Z # {"$imagepolicy": "flux-system:uksouth-dev-europa:tag"}
+  - name: binkcore.azurecr.io/europa
+    newName: binkcore.azurecr.io/europa
+    newTag: 2023-07-13T080836Z # {"$imagepolicy": "flux-system:uksouth-dev-europa:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
+    - kind: Secret
+      name: azure-keyvault
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: europa-deployments
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-dev/default/europa/deployments
+  dependsOn:
+  - name: europa-essentials
+  prune: true
+  force: true 
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/europa
+    newName: binkcore.azurecr.io/europa
+    newTag: 2023-07-13T080836Z # {"$imagepolicy": "flux-system:uksouth-dev-europa:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

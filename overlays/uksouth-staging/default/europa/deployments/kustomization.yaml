@@ -1,0 +1,19 @@
+---
+resources:
+  - ../../../../../bases/olympus/europa/deployments/api
+
+configMapGenerator:
+  - name: europa
+    namespace: default
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: europa

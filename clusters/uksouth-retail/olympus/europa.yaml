@@ -1,23 +1,49 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: europa
+  name: europa-essentials
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-retail/olympus/europa
+  path: ./overlays/uksouth-retail/olympus/europa/essentials
   prune: true
+  force: true
+  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   postBuild:
     substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
+    - kind: ConfigMap
+      name: cluster-vars
+    - kind: Secret
+      name: azure-identities
+    - kind: Secret
+      name: azure-keyvault
   images:
-    - name: binkcore.azurecr.io/europa
-      newName: binkcore.azurecr.io/europa
-      newTag: staging-1.6.4 # {"$imagepolicy": "flux-system:retail-europa:tag"}
+  - name: binkcore.azurecr.io/europa
+    newName: binkcore.azurecr.io/europa
+    newTag: staging-1.6.4 # {"$imagepolicy": "flux-system:retail-europa:tag"}
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: europa-deployments
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-retail/olympus/europa/deployments
+  dependsOn:
+  - name: europa-essentials
+  prune: true
+  force: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/europa
+    newName: binkcore.azurecr.io/europa
+    newTag: staging-1.6.4 # {"$imagepolicy": "flux-system:retail-europa:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
