@@ -1,0 +1,21 @@
+---
+resources:
+  - ../../../../../bases/olympus/hades/deployments/api
+
+namespace: default
+
+configMapGenerator:
+  - name: hades
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: hades
+              
