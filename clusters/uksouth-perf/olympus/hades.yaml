@@ -1,34 +1,45 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: olympus-hades
+  name: hades-essentials
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-perf/olympus/hades
+  path: ./overlays/uksouth-perf/default/hades/essentials
   prune: true
+  force: true
+  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/hades
-      newName: binkcore.azurecr.io/hades
-      newTag: staging-2.8.0 # {"$imagepolicy": "flux-system:hades:tag"}
+  - name: binkcore.azurecr.io/hades
+    newName: binkcore.azurecr.io/hades
+    newTag: 2023-03-03T143316Z # {"$imagepolicy": "flux-system:uksouth-perf-hades:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImagePolicy
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
 metadata:
-  name: hades
+  name: hades-deployments
   namespace: flux-system
 spec:
-  imageRepositoryRef:
-    name: hades
-  filterTags:
-    pattern: staging-(?P<ts>\d+(\.\d+)*)$
-    extract: $ts
-  policy:
-    semver:
-      range: '>0.0.1'
+  interval: 60m0s
+  path: ./overlays/uksouth-perf/default/hades/deployments
+  dependsOn:
+  - name: hades-essentials
+  prune: true
+  force: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/hades
+    newName: binkcore.azurecr.io/hades
+    newTag: 2023-03-03T143316Z # {"$imagepolicy": "flux-system:uksouth-perf-hades:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
@@ -40,3 +51,18 @@ spec:
   interval: 1m0s
   secretRef:
     name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: uksouth-perf-hades
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: hades
+  filterTags:
+    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    extract: $ts
+  policy:
+    alphabetical:
+      order: asc
