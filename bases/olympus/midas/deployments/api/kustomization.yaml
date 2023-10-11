@@ -1,0 +1,19 @@
+---
+resources:
+  - ../../bases/deployment
+  - service.yaml
+
+nameSuffix: -api
+
+commonLabels:
+  app: midas
+  component: api
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-high-api
+        

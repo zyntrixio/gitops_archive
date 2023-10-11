@@ -1,13 +1,39 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: midas
+  name: midas-essentials
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/default/midas
-  dependsOn:
-  - name: aad-pod-identity
+  path: ./overlays/uksouth-dev/default/midas/essentials
+  force: true
+  wait: true
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/midas
+    newName: binkcore.azurecr.io/midas
+    newTag: 2023-10-09T142212Z # {"$imagepolicy": "flux-system:uksouth-dev-midas:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
+    - kind: Secret
+      name: azure-keyvault
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: midas-deployments
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-dev/default/midas/deployments
+  dependsOn: 
+  - name: midas-essentials
+  force: true
   prune: true
   sourceRef:
     kind: GitRepository

@@ -1,0 +1,32 @@
+---
+resources:
+  - ../../../../../bases/olympus/midas/deployments/api
+  - ../../../../../bases/olympus/midas/deployments/beat
+  - ../../../../../bases/olympus/midas/deployments/celery
+  - ../../../../../bases/olympus/midas/deployments/consumer
+  - ../../../../../bases/olympus/midas/deployments/worker
+
+namespace: default
+
+replicas:
+  - name: midas
+    count: 3
+  - name: midas-beat
+    count: 3
+  - name: midas-migrator
+    count: 1
+
+configMapGenerator:
+  - name: midas
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: midas
