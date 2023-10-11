@@ -25,7 +25,7 @@ spec:
         prometheus.io/job: vela
       labels:
         app: vela
-        aadpodidbinding: vela
+        azure.workload.identity/use: "true"
     spec:
       affinity:
         podAntiAffinity:
@@ -52,6 +52,16 @@ spec:
                 secretKeyRef:
                   key: url_primary
                   name: azure-redis
+            - name: SQLALCHEMY_DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: url_vela
+            - name: KEY_VAULT_URI
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-keyvault
           image: binkcore.azurecr.io/vela:latest
           imagePullPolicy: Always
           securityContext:

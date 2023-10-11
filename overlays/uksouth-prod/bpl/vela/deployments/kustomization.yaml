@@ -1,0 +1,43 @@
+---
+resources:
+  - ../../../../../bases/cosmos/vela/deployments/api
+  - ../../../../../bases/cosmos/vela/deployments/cron-scheduler
+  - ../../../../../bases/cosmos/vela/deployments/task-worker
+
+namespace: bpl
+
+replicas:
+  - name: vela-api
+    count: 3 
+  - name: vela-task-worker
+    count: 3
+
+configMapGenerator:
+  - name: vela
+    envs:
+      - env.ini
+  - name: vela-scripts
+    files:
+      - scripts/trigger_reward_adjustments.py
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: vela
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts
+        value:
+          name: scripts
+          mountPath: /app/scripts
+          readOnly: true
+      - op: add
+        path: /spec/template/spec/volumes
+        value:
+          name: scripts
+          configMap:
+            name: vela-scripts

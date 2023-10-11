@@ -1,6 +1,6 @@
 ---
 resources:
-  - ../base
+  - ../../bases/deployment
   - service.yaml
 
 nameSuffix: -api

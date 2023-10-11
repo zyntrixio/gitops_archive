@@ -1,14 +1,38 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: bpl-vela
+  name: bpl-vela-essentials
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-staging/bpl/vela
-  dependsOn:
-  - name: aad-pod-identity
+  path: ./overlays/uksouth-staging/bpl/vela/essentials
   prune: true
+  force: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/vela
+    newName: binkcore.azurecr.io/vela
+    newTag: staging-2.5.7 # {"$imagepolicy": "flux-system:uksouth-staging-vela:tag"}
+  postBuild:
+  substituteFrom:
+    - kind: Secret
+      name: azure-identities
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: bpl-vela-deployments
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-staging/bpl/vela/deployments
+  dependsOn:
+  - name: bpl-vela-essentials
+  prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system

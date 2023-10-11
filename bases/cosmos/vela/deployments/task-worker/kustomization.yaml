@@ -1,11 +1,11 @@
 ---
-bases:
-  - ../base
+resources:
+  - ../../bases/deployment
 
-nameSuffix: -cron-scheduler
+nameSuffix: -task-worker
 
 commonLabels:
-  component: cron-scheduler
+  component: task-worker
 
 patches:
   - target:
@@ -14,6 +14,6 @@ patches:
       - op: add
         path: /spec/template/spec/priorityClassName
         value: bink-high-tasks
-      - op: add
+      - op: replace
         path: /spec/template/spec/containers/0/args
-        value: ["python", "-m", "vela.core.cli", "cron-scheduler"]
+        value: ["python", "-m", "vela.core.cli", "task-worker"]

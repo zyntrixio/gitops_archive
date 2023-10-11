@@ -1,0 +1,23 @@
+---
+resources:
+  - ../../../../../bases/cosmos/vela/deployments/api
+  - ../../../../../bases/cosmos/vela/deployments/cron-scheduler
+  - ../../../../../bases/cosmos/vela/deployments/task-worker
+
+namespace: bpl
+
+configMapGenerator:
+  - name: vela
+    namespace: default
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: vela
