@@ -1,0 +1,27 @@
+---
+resources:
+  - ../../bases/deployment
+  - service.yaml
+
+nameSuffix: -api
+
+commonAnnotations:
+  prometheus.io/port: '9100'
+  prometheus.io/scrape: 'true'
+  prometheus.io/job: atlas
+
+commonLabels:
+  component: api
+  app: atlas
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-high-api
+      - op: add
+        path: /spec/template/spec/containers/0/livenessProbe
+        value: {"httpGet":{"path":"/healthz","port":9000,"scheme":"HTTP"},"initialDelaySeconds":15,"periodSeconds":60,"successThreshold":1,"timeoutSeconds":10, "failureThreshold": 3}
+        
