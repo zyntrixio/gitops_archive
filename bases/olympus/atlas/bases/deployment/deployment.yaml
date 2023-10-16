@@ -48,11 +48,6 @@ spec:
                 secretKeyRef:
                   name: azure-postgres
                   key: url_atlas
-            - name: KEY_VAULT
-              valueFrom:
-                secretKeyRef:
-                  name: azure-keyvault
-                  key: url
           imagePullPolicy: Always
           securityContext:
             runAsGroup: 65534
