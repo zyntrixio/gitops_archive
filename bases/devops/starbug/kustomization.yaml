@@ -8,3 +8,5 @@ resources:
 - api.yaml
 - worker.yaml
 - ingress.yaml
+
+namespace: starbug
