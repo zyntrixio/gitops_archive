@@ -1,10 +1,11 @@
 ---
 resources:
-  - ../base
+  - ../../bases/deployment
 
 nameSuffix: -consumer
 
 commonLabels:
+  app: hubble
   component: consumer
 
 patches:

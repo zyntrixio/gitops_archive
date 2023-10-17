@@ -22,6 +22,7 @@ spec:
         kubectl.kubernetes.io/default-container: app
       labels:
         app: hubble
+        azure.workload.identity/use: "true"
     spec:
       affinity:
         podAntiAffinity:

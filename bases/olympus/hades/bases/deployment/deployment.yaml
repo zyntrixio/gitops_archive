@@ -4,6 +4,8 @@ kind: Deployment
 metadata:
   name: hades
   namespace: default
+  labels:
+    app: hades
 spec:
   strategy:
     rollingUpdate:

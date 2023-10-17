@@ -1,0 +1,23 @@
+---
+resources:
+  - ../../../../../bases/cosmos/hubble/deployments/consumer
+  - ../../../../../bases/cosmos/hubble/deployments/task-worker
+  - ../../../../../bases/cosmos/hubble/deployments/cron-scheduler
+
+namespace: bpl
+
+configMapGenerator:
+  - name: hubble
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: hubble
+              

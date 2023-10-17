@@ -1,10 +1,11 @@
 ---
 resources:
-  - ../base
+  - ../../bases/deployment
 
 nameSuffix: -cron-scheduler
 
 commonLabels:
+  app: hubble
   component: cron-scheduler
 
 patches:
