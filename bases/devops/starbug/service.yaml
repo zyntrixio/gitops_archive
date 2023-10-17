@@ -11,7 +11,7 @@ spec:
   - name: http
     port: 80
     protocol: TCP
-    targetPort: http
+    targetPort: 6502
   selector:
     app: starbug
     component: api
