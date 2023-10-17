@@ -7,3 +7,4 @@ resources:
 - service.yaml
 - api.yaml
 - worker.yaml
+- ingress.yaml
