@@ -4,7 +4,7 @@ metadata:
   labels:
     app: starbug
     component: api
-  name: starbug-api
+  name: starbug
   namespace: starbug
 spec:
   ports:
