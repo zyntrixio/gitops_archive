@@ -16,7 +16,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: starbug-api
+                name: starbug
                 port:
                   number: 80
   tls:
