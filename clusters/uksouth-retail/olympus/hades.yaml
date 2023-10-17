@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-retail/default/hades/essentials
+  path: ./overlays/uksouth-retail/olympus/hades/essentials
   prune: true
   force: true
   wait: true
@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/hades
     newName: binkcore.azurecr.io/hades
-    newTag: 2023-03-03T143316Z # {"$imagepolicy": "flux-system:uksouth-retail-hades:tag"}
+    newTag: staging-2.8.0 # {"$imagepolicy": "flux-system:retail-hades:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
@@ -28,7 +28,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-retail/default/hades/deployments
+  path: ./overlays/uksouth-retail/olympus/hades/deployments
   dependsOn:
   - name: hades-essentials
   prune: true
@@ -39,7 +39,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/hades
     newName: binkcore.azurecr.io/hades
-    newTag: 2023-03-03T143316Z # {"$imagepolicy": "flux-system:uksouth-retail-hades:tag"}
+    newTag: staging-2.8.0 # {"$imagepolicy": "flux-system:retail-hades:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
@@ -55,14 +55,14 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
-  name: uksouth-retail-hades
+  name: retail-hades
   namespace: flux-system
 spec:
   imageRepositoryRef:
     name: hades
   filterTags:
-    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    pattern: staging-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: '>0.0.1'
