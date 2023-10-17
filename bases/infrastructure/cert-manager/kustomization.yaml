@@ -19,7 +19,7 @@ patches:
               aadpodidbinding: cert-manager
           spec:
             containers:
-              - name: cert-manager
+              - name: cert-manager-controller
                 args:
                   - --v=2
                   - --cluster-resource-namespace=$(POD_NAMESPACE)
