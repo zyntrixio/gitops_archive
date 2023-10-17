@@ -18,7 +18,7 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: cluster-vars
-      - kind: ConfigMap
+      - kind: Secret
         name: azure-identities
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
