@@ -66,4 +66,4 @@ scrape_configs:
     # metrics_path defaults to '/metrics', which is the one used by cloudamqp instances so no need to define.
     # static_configs allows specifying a list of targets and a common label set for them.
     static_configs:
-    - targets: ${host}
+    - targets: [${host}]
