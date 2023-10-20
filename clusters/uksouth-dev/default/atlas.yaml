@@ -13,9 +13,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/atlas
-      newName: binkcore.azurecr.io/atlas
-      newTag: 2023-10-10T130827Z # {"$imagepolicy": "flux-system:uksouth-dev-atlas:tag"}
+  - name: binkcore.azurecr.io/atlas
+    newName: binkcore.azurecr.io/atlas
+    newTag: 2023-10-10T130827Z # {"$imagepolicy": "flux-system:uksouth-dev-atlas:tag"}
   postBuild:
     substituteFrom:
       - kind: Secret
