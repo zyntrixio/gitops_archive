@@ -22,3 +22,4 @@ spec:
   tls:
     - hosts:
         - audit.${cluster_name}.${cluster_location}.bink.sh
+        
