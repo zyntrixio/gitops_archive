@@ -13,3 +13,4 @@ secretGenerator:
   - name: ingress-docs-auth
     literals:
       - auth=docs:$apr1$bGpHOIJv$HRx0WceXaCmUYcFCAAnw90 # docs : imagination-situation-migration-exchange
+      - auth=rbc:$apr1$ZZajI1ok$2Nd12.eZAio4KPD/WRB1Y0 # rbc : suitable-platform-solve-backup
