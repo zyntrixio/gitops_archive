@@ -1,6 +1,6 @@
 ---
 resources:
-  - ../base
+  - ../../bases/deployment
 
 nameSuffix: -cron-scheduler
 
@@ -10,7 +10,7 @@ commonLabels:
 patches:
   - target:
       kind: Deployment
-    patch: |
+    patch: |-
       - op: add
         path: /spec/template/spec/priorityClassName
         value: bink-medium-tasks

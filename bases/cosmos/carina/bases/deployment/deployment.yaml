@@ -17,15 +17,15 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      labels:
+        app: carina
+        azure.workload.identity/use: "true"
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
         prometheus.io/port: "9100"
         prometheus.io/scrape: "true"
-        prometheus.io/job: carina
-      labels:
-        app: carina
-        aadpodidbinding: carina
+        prometheus.io/job: carina      
     spec:
       affinity:
         podAntiAffinity:
@@ -52,6 +52,21 @@ spec:
                 secretKeyRef:
                   key: url_primary
                   name: azure-redis
+            - name: SQLALCHEMY_DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  key: url_carina
+                  name: azure-postgres
+            - name: BLOB_STORAGE_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: connection_string_primary
+                  name: azure-storage
+            - name: KEY_VAULT_URI
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-keyvault               
           image: binkcore.azurecr.io/carina:latest
           imagePullPolicy: Always
           securityContext:
@@ -65,4 +80,3 @@ spec:
               memory: 256Mi
       imagePullSecrets:
         - name: binkcore.azurecr.io
-      serviceAccountName: carina

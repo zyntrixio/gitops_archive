@@ -1,0 +1,45 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: carina-migrator
+  namespace: default
+  labels:
+    app: carina
+    component: migrator
+spec:
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+        prometheus.io~1scrape: "false"
+      labels:
+        app: carina
+        component: migrator
+        azure.workload.identity/use: "true"
+    spec:
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/carina:latest
+          command: ["linkerd-await", "--shutdown", "--"]
+          args: ["bash", "-c", "alembic upgrade head; echo Done"]
+          env:
+            - name: SQLALCHEMY_DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: url_carina
+          resources:
+            requests:
+              memory: 384Mi
+            limits:
+              memory: 384Mi
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+      restartPolicy: Never
+      serviceAccountName: carina
+      priorityClassName: bink-high-tasks
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
+  backoffLimit: 3

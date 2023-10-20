@@ -1,0 +1,22 @@
+---
+resources:
+  - ../../../../../bases/cosmos/carina/deployments/api
+  - ../../../../../bases/cosmos/carina/deployments/task-worker
+  - ../../../../../bases/cosmos/carina/deployments/cron-scheduler
+
+namespace: bpl
+
+configMapGenerator:
+  - name: carina
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: carina

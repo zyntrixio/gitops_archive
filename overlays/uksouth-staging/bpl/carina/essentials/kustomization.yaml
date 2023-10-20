@@ -1,0 +1,5 @@
+---
+resources:
+- ../../../../../bases/cosmos/carina/essentials
+
+namespace: bpl

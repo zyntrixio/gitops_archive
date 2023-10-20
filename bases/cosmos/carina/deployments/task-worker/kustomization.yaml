@@ -1,15 +1,16 @@
 ---
 bases:
-  - ../base
+  - ../../bases/deployment
 
 nameSuffix: -task-worker
+
 commonLabels:
   component: task-worker
 
 patches:
   - target:
       kind: Deployment
-    patch: |
+    patch: |-
       - op: add
         path: /spec/template/spec/priorityClassName
         value: bink-medium-tasks

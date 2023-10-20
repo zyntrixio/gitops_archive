@@ -1,0 +1,5 @@
+---
+resources:
+  - migrator.yaml
+  - lsp.yaml
+  - serviceaccount.yaml

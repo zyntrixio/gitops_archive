@@ -1,6 +1,6 @@
 ---
 resources:
-  - ../base
+  - ../../bases/deployment
   - service.yaml
 
 nameSuffix: -api
@@ -11,7 +11,7 @@ commonLabels:
 patches:
   - target:
       kind: Deployment
-    patch: |
+    patch: |-
       - op: add
         path: /spec/template/spec/containers/0/readinessProbe
         value: {"httpGet":{"path":"/readyz","port":9000,"scheme":"HTTP"},"initialDelaySeconds":15,"periodSeconds":15,"successThreshold":1,"timeoutSeconds":10}

@@ -19,9 +19,9 @@ spec:
   postBuild:
     substituteFrom:
     - kind: Secret
-          name: azure-identities
-        - kind: Secret
-          name: azure-keyvault
+      name: azure-identities
+    - kind: Secret
+      name: azure-keyvault
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
