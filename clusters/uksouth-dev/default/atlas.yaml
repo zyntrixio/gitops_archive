@@ -20,6 +20,8 @@ spec:
     substituteFrom:
       - kind: Secret
         name: azure-identities
+      - kind: ConfigMap
+        name: cluster-vars
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -40,6 +42,10 @@ spec:
     - name: binkcore.azurecr.io/atlas
       newName: binkcore.azurecr.io/atlas
       newTag: 2023-10-10T130827Z # {"$imagepolicy": "flux-system:uksouth-dev-atlas:tag"}
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

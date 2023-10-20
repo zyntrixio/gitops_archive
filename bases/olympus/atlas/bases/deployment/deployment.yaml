@@ -5,6 +5,9 @@ metadata:
   name: atlas
   namespace: default
 spec:
+  selector:
+    matchLabels:
+      app: atlas
   strategy:
     rollingUpdate:
       maxSurge: 25%

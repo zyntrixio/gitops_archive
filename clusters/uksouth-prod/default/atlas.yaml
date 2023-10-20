@@ -15,11 +15,13 @@ spec:
   images:
   - name: binkcore.azurecr.io/atlas
     newName: binkcore.azurecr.io/atlas
-    newTag: prod-2.6.0 # {"$imagepolicy": "flux-system:uksouth-prod-atlas:tag"}
+    newTag: prod-2.7.0 # {"$imagepolicy": "flux-system:uksouth-prod-atlas:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
       name: azure-identities
+    - kind: ConfigMap
+      name: cluster-vars
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -39,7 +41,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/atlas
     newName: binkcore.azurecr.io/atlas
-    newTag: prod-2.6.0 # {"$imagepolicy": "flux-system:uksouth-prod-atlas:tag"}
+    newTag: prod-2.7.0 # {"$imagepolicy": "flux-system:uksouth-prod-atlas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

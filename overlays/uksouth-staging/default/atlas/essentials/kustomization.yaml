@@ -1,3 +1,4 @@
+---
 resources:
   - ../../../../../bases/olympus/atlas/essentials
   - ingress.yaml
