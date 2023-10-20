@@ -11,5 +11,5 @@ configMapGenerator:
       - config.toml
 secretGenerator:
   - name: ingress-docs-auth
-    literals:
-      - auth=docs:$apr1$bGpHOIJv$HRx0WceXaCmUYcFCAAnw90\nrbc:$apr1$ZZajI1ok$2Nd12.eZAio4KPD/WRB1Y0 # rbc : suitable-platform-solve-backup # docs : imagination-situation-migration-exchange
+    files:
+      - auth # rbc : suitable-platform-solve-backup # docs : imagination-situation-migration-exchange
