@@ -36,9 +36,9 @@ patches:
       - op: add
         path: /spec/template/spec/containers/0/volumeMounts
         value:
-          name: scripts
-          mountPath: /app/scripts
-          readOnly: true
+          - name: scripts
+            mountPath: /app/scripts
+            readOnly: true
       - op: add
         path: /spec/template/spec/volumes
         value:
