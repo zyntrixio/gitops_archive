@@ -30,3 +30,18 @@ patches:
         value:
           - configMapRef:
               name: vela
+  - target:
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts
+        value:
+          name: scripts
+          mountPath: /app/scripts
+          readOnly: true
+      - op: add
+        path: /spec/template/spec/volumes
+        value:
+          name: scripts
+          configMap:
+            name: vela-scripts
