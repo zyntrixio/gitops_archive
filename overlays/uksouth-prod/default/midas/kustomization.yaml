@@ -1,10 +1,11 @@
 ---
 resources:
-  - ../../../../../bases/olympus/midas/deployments/api
-  - ../../../../../bases/olympus/midas/deployments/beat
-  - ../../../../../bases/olympus/midas/deployments/celery
-  - ../../../../../bases/olympus/midas/deployments/consumer
-  - ../../../../../bases/olympus/midas/deployments/worker
+  - ../../../../bases/olympus/midas/deployments/api
+  - ../../../../bases/olympus/midas/deployments/beat
+  - ../../../../bases/olympus/midas/deployments/celery
+  - ../../../../bases/olympus/midas/deployments/consumer
+  - ../../../../bases/olympus/midas/deployments/worker
+  - ../../../../bases/olympus/midas/essentials
 
 namespace: default
 
@@ -23,7 +24,7 @@ configMapGenerator:
 
 patches:
   - target:
-      kind: Deployment
+      kind: Deployment|Job
     patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/envFrom

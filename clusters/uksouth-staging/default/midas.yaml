@@ -1,13 +1,12 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: midas-essentials
+  name: midas
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-staging/default/midas/essentials
+  path: ./overlays/uksouth-staging/default/midas
   force: true
-  wait: true
   prune: true
   sourceRef:
     kind: GitRepository
@@ -20,26 +19,6 @@ spec:
     substituteFrom:
     - kind: Secret
       name: azure-identities
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: midas-deployments
-  namespace: flux-system
-spec:
-  interval: 60m0s
-  path: ./overlays/uksouth-staging/default/midas/deployments
-  dependsOn: 
-  - name: midas-essentials
-  force: true
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  images:
-  - name: binkcore.azurecr.io/midas
-    newName: binkcore.azurecr.io/midas
-    newTag: staging-3.44.1 # {"$imagepolicy": "flux-system:uksouth-staging-midas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
