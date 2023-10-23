@@ -42,6 +42,6 @@ patches:
       - op: add
         path: /spec/template/spec/volumes
         value:
-          name: scripts
-          configMap:
-            name: vela-scripts
+          - name: scripts
+            configMap:
+              name: vela-scripts
