@@ -1,6 +1,7 @@
 ---
 resources:
-  - ../../../../../bases/olympus/europa/deployments/api
+  - ../../../../bases/olympus/europa/essentials
+  - ../../../../bases/olympus/europa/deployments/api
 
 configMapGenerator:
   - name: europa
@@ -10,7 +11,7 @@ configMapGenerator:
 
 patches:
   - target:
-      kind: Deployment
+      kind: Deployment|Job
     patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/envFrom
