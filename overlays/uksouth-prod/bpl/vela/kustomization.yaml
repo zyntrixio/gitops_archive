@@ -1,14 +1,15 @@
 ---
 resources:
-  - ../../../../../bases/cosmos/vela/deployments/api
-  - ../../../../../bases/cosmos/vela/deployments/cron-scheduler
-  - ../../../../../bases/cosmos/vela/deployments/task-worker
+  - ../../../../bases/cosmos/vela/deployments/api
+  - ../../../../bases/cosmos/vela/deployments/cron-scheduler
+  - ../../../../bases/cosmos/vela/deployments/task-worker
+  - ../../../../bases/cosmos/vela/essentials
 
 namespace: bpl
 
 replicas:
   - name: vela-api
-    count: 3 
+    count: 3
   - name: vela-task-worker
     count: 3
 
@@ -22,7 +23,7 @@ configMapGenerator:
 
 patches:
   - target:
-      kind: Deployment
+      kind: Deployment|Job
     patch: |
       - op: replace
         path: /spec/template/spec/containers/0/envFrom
