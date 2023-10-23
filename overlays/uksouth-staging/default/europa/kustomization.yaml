@@ -3,9 +3,10 @@ resources:
   - ../../../../bases/olympus/europa/essentials
   - ../../../../bases/olympus/europa/deployments/api
 
+namespace: default
+
 configMapGenerator:
   - name: europa
-    namespace: default
     envs:
       - env.ini
 
