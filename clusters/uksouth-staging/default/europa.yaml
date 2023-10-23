@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-staging/olympus/europa
+  path: ./overlays/uksouth-staging/default/europa
   prune: true
   force: true
   sourceRef:
