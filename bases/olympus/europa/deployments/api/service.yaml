@@ -5,7 +5,7 @@ metadata:
   labels:
     app: europa
     component: api
-  name: europa-api
+  name: europa
   namespace: default
 spec:
   ports:

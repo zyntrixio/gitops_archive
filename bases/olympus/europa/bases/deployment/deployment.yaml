@@ -5,6 +5,9 @@ metadata:
   name: europa
   namespace: default
 spec:
+  selector:
+    matchLabels:
+      app: europa
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -12,6 +15,9 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      labels:
+        app: europa
+        azure.workload.identity/use: "true"
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
@@ -31,6 +37,17 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/europa:latest
+          env:
+            - name: EUROPA_DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: url_europa
+            - name: KEYVAULT_URI
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-keyvault
           imagePullPolicy: Always
           securityContext:
             runAsGroup: 65534
@@ -41,5 +58,14 @@ spec:
             requests:
               cpu: 10m
               memory: 192Mi
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /livez
+              port: api
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
       imagePullSecrets:
         - name: binkcore.azurecr.io
