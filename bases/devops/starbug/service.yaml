@@ -4,14 +4,14 @@ metadata:
   labels:
     app: starbug
     component: api
-  name: starbug-api
+  name: starbug
   namespace: starbug
 spec:
   ports:
   - name: http
     port: 80
     protocol: TCP
-    targetPort: http
+    targetPort: 6502
   selector:
     app: starbug
     component: api

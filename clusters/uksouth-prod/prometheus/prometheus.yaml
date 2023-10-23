@@ -16,3 +16,5 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: cluster-vars
+      - kind: Secret
+        name: azure-cloudamqp

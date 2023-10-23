@@ -23,7 +23,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/europa
     newName: binkcore.azurecr.io/europa
-    newTag: staging-1.6.4 # {"$imagepolicy": "flux-system:lloyds-europa:tag"}
+    newTag: staging-1.6.5 # {"$imagepolicy": "flux-system:lloyds-europa:tag"}
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -36,14 +36,13 @@ spec:
   dependsOn:
   - name: europa-essentials
   prune: true
-  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
   - name: binkcore.azurecr.io/europa
     newName: binkcore.azurecr.io/europa
-    newTag: staging-1.6.4 # {"$imagepolicy": "flux-system:lloyds-europa:tag"}
+    newTag: staging-1.6.5 # {"$imagepolicy": "flux-system:lloyds-europa:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

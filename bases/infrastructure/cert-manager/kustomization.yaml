@@ -1,6 +1,6 @@
 ---
 resources:
-  - https://github.com/jetstack/cert-manager/releases/download/v1.7.1/cert-manager.yaml
+  - https://github.com/jetstack/cert-manager/releases/download/v1.13.1/cert-manager.yaml
 
 patches:
   - target:
@@ -19,7 +19,7 @@ patches:
               aadpodidbinding: cert-manager
           spec:
             containers:
-              - name: cert-manager
+              - name: cert-manager-controller
                 args:
                   - --v=2
                   - --cluster-resource-namespace=$(POD_NAMESPACE)

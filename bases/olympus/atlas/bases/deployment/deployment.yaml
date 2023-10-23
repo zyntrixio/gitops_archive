@@ -5,6 +5,9 @@ metadata:
   name: atlas
   namespace: default
 spec:
+  selector:
+    matchLabels:
+      app: atlas
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -12,9 +15,15 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      labels:
+        app: atlas
+        azure.workload.identity/use: "true"
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
+        prometheus.io/port: '9100'
+        prometheus.io/scrape: 'true'
+        prometheus.io/job: atlas
     spec:
       affinity:
         podAntiAffinity:
@@ -30,13 +39,18 @@ spec:
               weight: 100
       containers:
         - name: app
+          image: binkcore.azurecr.io/atlas:latest
           env:
             - name: AMQP_DSN
               valueFrom:
                 secretKeyRef:
                   key: url
                   name: azure-cloudamqp
-          image: binkcore.azurecr.io/atlas:latest
+            - name: ATLAS_DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: url_atlas
           imagePullPolicy: Always
           securityContext:
             runAsGroup: 65534
