@@ -1,3 +1,4 @@
 ---
 resources:
   - migrator.yaml
+  - serviceaccount.yaml
