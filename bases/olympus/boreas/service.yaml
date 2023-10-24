@@ -4,7 +4,7 @@ kind: Service
 metadata:
   labels:
     app: boreas
-  name: boreas
+  name: boreas-api
   namespace: default
 spec:
   ports:
