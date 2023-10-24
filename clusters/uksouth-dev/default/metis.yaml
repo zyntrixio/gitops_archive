@@ -6,12 +6,17 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-dev/default/metis
-  dependsOn:
-    - name: aad-pod-identity
+  force: true
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
+      - kind: Secret
+        name: azure-identities
   images:
     - name: binkcore.azurecr.io/metis
       newName: binkcore.azurecr.io/metis

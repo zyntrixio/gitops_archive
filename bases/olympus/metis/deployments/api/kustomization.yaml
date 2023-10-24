@@ -1,18 +1,15 @@
 ---
-bases:
-  - ../core
-
 resources:
+  - ../../bases
   - service.yaml
-  - lsp.yaml
+
+nameSuffix: -api
+
+commonLabels:
+  app: atlas
+  component: api
 
 patches:
-  - path: patch-annotations.yaml
-  - path: patch-labels.yaml
-  - path: patch-name.yaml
-    target:
-      kind: Deployment
-
   - target:
       kind: Deployment
     patch: |

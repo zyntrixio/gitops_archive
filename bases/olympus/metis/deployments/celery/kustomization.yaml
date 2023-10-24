@@ -1,0 +1,28 @@
+---
+resources:
+  - ../../bases
+
+nameSuffix: -celery
+
+commonLabels:
+  app: metis
+  component: celery
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-low-tasks
+      - op: replace
+        path: /spec/template/spec/containers/0/command
+        value:
+          - celery
+          - -A
+          - metis.tasks
+          - worker
+          - --without-gossip
+          - --without-mingle
+          - --loglevel=info
+          - --pool=solo
