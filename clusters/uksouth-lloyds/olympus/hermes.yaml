@@ -6,9 +6,8 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-lloyds/olympus/hermes
-  dependsOn:
-    - name: aad-pod-identity
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system

@@ -6,8 +6,7 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-perf/olympus/hermes
-  dependsOn:
-  - name: aad-pod-identity
+  force: true
   prune: true
   sourceRef:
     kind: GitRepository

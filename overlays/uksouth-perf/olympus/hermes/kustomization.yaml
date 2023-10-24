@@ -1,12 +1,10 @@
 ---
 resources:
-  - ../../../../bases/olympus/hermes/core
-  - ../../../../bases/olympus/hermes/api
-  - ../../../../bases/olympus/hermes/celery
-  - ../../../../bases/olympus/hermes/migrator
-  - ../../../../bases/olympus/hermes/logic
-  - ../../../../bases/olympus/hermes/beat
-  - aad.yaml
+  - ../../../../bases/olympus/hermes/deployments/api
+  - ../../../../bases/olympus/hermes/deployments/beat
+  - ../../../../bases/olympus/hermes/deployments/celery
+  - ../../../../bases/olympus/hermes/deployments/logic
+  - ../../../../bases/olympus/hermes/essentials
   - ingress.yaml
 
 namespace: olympus
@@ -38,36 +36,13 @@ patches:
         path: /metadata/name
         value: hermes-api.olympus.svc.cluster.local
   - target:
-      kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: hermes
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                envFrom:
-                  - configMapRef:
-                      name: hermes
-                env:
-                  - name: HERMES_BLOB_STORAGE_DSN
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-storage
-                        key: connection_string_primary
-                  - name: HERMES_DATABASE_URL
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-postgres
-                        key: url_hermes
-                  - name: VAULT_URL
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-keyvault
-                        key: url
+      kind: Deployment|Job
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: hermes
   - target:
       kind: Deployment
       name: hermes-api
