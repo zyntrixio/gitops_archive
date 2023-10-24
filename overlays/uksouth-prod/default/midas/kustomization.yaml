@@ -13,7 +13,7 @@ replicas:
   - name: midas
     count: 3
   - name: midas-beat
-    count: 3
+    count: 1
 
 configMapGenerator:
   - name: midas
