@@ -18,4 +18,4 @@ patches:
         value: bink-medium-tasks
       - op: replace
         path: /spec/template/spec/containers/0/args
-        valuee: ["python", "consumer.py"]
+        value: ["python", "consumer.py"]
