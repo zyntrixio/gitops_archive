@@ -44,13 +44,3 @@ patches:
       - op: add
         path: /spec/template/spec/containers/0/env/-
         value: {"name":"TXM_LOG_LEVEL","value":"info"}
-  - target:
-      kind: Deployment
-      name: harmonia-api
-    patch: |
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/limits/memory
-        value: 1G
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/requests/memory
-        value: 1G
