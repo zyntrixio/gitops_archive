@@ -6,16 +6,21 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/default/europa
-  dependsOn:
-    - name: aad-pod-identity
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/europa
-      newName: binkcore.azurecr.io/europa
-      newTag: prod-1.6.4 # {"$imagepolicy": "flux-system:uksouth-prod-europa:tag"}
+  - name: binkcore.azurecr.io/europa
+    newName: binkcore.azurecr.io/europa
+    newTag: prod-1.6.4 # {"$imagepolicy": "flux-system:uksouth-prod-europa:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
+    - kind: Secret
+      name: azure-keyvault
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

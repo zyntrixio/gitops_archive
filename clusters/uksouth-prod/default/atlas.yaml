@@ -1,19 +1,47 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: atlas
+  name: atlas-essentials
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-prod/default/atlas
+  path: ./overlays/uksouth-prod/default/atlas/essentials
   prune: true
+  force: true
+  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/atlas
-      newName: binkcore.azurecr.io/atlas
-      newTag: prod-2.6.0 # {"$imagepolicy": "flux-system:uksouth-prod-atlas:tag"}
+  - name: binkcore.azurecr.io/atlas
+    newName: binkcore.azurecr.io/atlas
+    newTag: prod-2.7.0 # {"$imagepolicy": "flux-system:uksouth-prod-atlas:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
+    - kind: ConfigMap
+      name: cluster-vars
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: atlas-deployments
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod/default/atlas/deployments
+  dependsOn:
+  - name: atlas-essentials
+  prune: true
+  force: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/atlas
+    newName: binkcore.azurecr.io/atlas
+    newTag: prod-2.7.0 # {"$imagepolicy": "flux-system:uksouth-prod-atlas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

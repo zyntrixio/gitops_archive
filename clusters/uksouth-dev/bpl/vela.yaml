@@ -7,8 +7,7 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-dev/bpl/vela
   prune: true
-  dependsOn:
-  - name: aad-pod-identity
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -16,6 +15,10 @@ spec:
   - name: binkcore.azurecr.io/vela
     newName: binkcore.azurecr.io/vela
     newTag: 2023-05-09T170926Z # {"$imagepolicy": "flux-system:uksouth-dev-vela:tag"}
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: azure-identities
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

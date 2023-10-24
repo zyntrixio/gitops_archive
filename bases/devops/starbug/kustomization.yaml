@@ -6,4 +6,7 @@ resources:
 - clusterrolebinding.yaml
 - service.yaml
 - api.yaml
-- rq.yaml
+- worker.yaml
+- ingress.yaml
+
+namespace: starbug

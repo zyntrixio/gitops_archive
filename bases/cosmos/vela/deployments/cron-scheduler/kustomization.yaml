@@ -1,0 +1,19 @@
+---
+resources:
+  - ../../bases/deployment
+
+nameSuffix: -cron-scheduler
+
+commonLabels:
+  component: cron-scheduler
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-high-tasks
+      - op: add
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "-m", "vela.core.cli", "cron-scheduler"]

@@ -14,7 +14,6 @@ resources:
   - ../../../../bases/olympus/harmonia/deployments/import-agent-mastercard-auth
   - ../../../../bases/olympus/harmonia/deployments/import-agent-mastercard-settled
   - ../../../../bases/olympus/harmonia/deployments/import-agent-mastercard-refund
-  - ../../../../bases/olympus/harmonia/deployments/import-agent-slim-chickens
   - ../../../../bases/olympus/harmonia/deployments/import-agent-stonegate
   - ../../../../bases/olympus/harmonia/deployments/import-agent-visa-auth
   - ../../../../bases/olympus/harmonia/deployments/import-agent-visa-refund
@@ -59,3 +58,13 @@ patches:
             - |
               objectName: slim-chickens-tx-export-secrets
               objectType: secret
+  - target:
+      kind: Deployment
+      name: harmonia-api
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 1G
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 1G
