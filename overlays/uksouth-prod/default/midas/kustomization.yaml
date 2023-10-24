@@ -14,8 +14,6 @@ replicas:
     count: 3
   - name: midas-beat
     count: 3
-  - name: midas-migrator
-    count: 1
 
 configMapGenerator:
   - name: midas
