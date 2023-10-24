@@ -1,11 +1,9 @@
 ---
-bases:
-  - ../../../../bases/cosmos/hubble/core
-  - ../../../../bases/cosmos/hubble/consumer
-  - ../../../../bases/cosmos/hubble/migrator
-  - ../../../../bases/cosmos/hubble/task-worker
-  - ../../../../bases/cosmos/hubble/cron-scheduler
-
+resources:
+  - ../../../../bases/cosmos/hubble/deployments/consumer
+  - ../../../../bases/cosmos/hubble/deployments/cron-scheduler
+  - ../../../../bases/cosmos/hubble/deployments/task-worker
+  - ../../../../bases/cosmos/hubble/essentials
 
 namespace: bpl
 
@@ -16,23 +14,10 @@ configMapGenerator:
 
 patches:
   - target:
-      kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: hubble
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                envFrom:
-                  - configMapRef:
-                      name: hubble
-                env:
-                  - name: DATABASE_URI
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-postgres
-                        key: url_placeholder
+      kind: Deployment|Job
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: hubble

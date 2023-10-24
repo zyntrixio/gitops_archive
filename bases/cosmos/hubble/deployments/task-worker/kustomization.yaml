@@ -1,11 +1,8 @@
 ---
-bases:
-  - ../base
+resources:
+  - ../../bases
 
-nameSuffix: -migrator
-
-commonLabels:
-  component: migrator
+nameSuffix: -task-worker
 
 patches:
   - target:
@@ -13,7 +10,7 @@ patches:
     patch: |
       - op: replace
         path: /spec/template/spec/containers/0/args
-        value: ["bash", "-c", "alembic upgrade head; echo Done; tail -f /dev/null"]
+        value: ["python", "-m", "hubble.cli", "task-worker"]
       - op: add
         path: /spec/template/spec/priorityClassName
-        value: bink-high-tasks
+        value: bink-medium-tasks

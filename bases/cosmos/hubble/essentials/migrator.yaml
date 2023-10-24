@@ -1,0 +1,44 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hubble-migrator
+  namespace: default
+  labels:
+    app: hubble
+    component: migrator
+spec:
+  backoffLimit: 3
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: hubble
+        component: migrator
+        azure.workload.identity/use: "true"
+    spec:
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/hubble:latest
+          command: ["linkerd-await", "--shutdown", "--"]
+          args: ["alembic", "upgrade", "head"]
+          env:
+            - name: DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: url_placeholder
+          resources:
+            requests:
+              memory: 384Mi
+            limits:
+              memory: 384Mi
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+      restartPolicy: Never
+      serviceAccountName: hubble
+      priorityClassName: bink-high-tasks
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
