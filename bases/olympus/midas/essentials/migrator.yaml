@@ -7,6 +7,7 @@ metadata:
     app: midas
     component: migrator
 spec:
+  backoffLimit: 3
   template:
     metadata:
       annotations:
@@ -21,7 +22,7 @@ spec:
         - name: app
           image: binkcore.azurecr.io/midas:latest
           command: ["linkerd-await", "--shutdown", "--"]
-          args: ["bash", "-c", "alembic upgrade head; echo Done"]
+          args: ["alembic", "upgrade", "head"]
           env:
             - name: POSTGRES_DSN
               valueFrom:
@@ -41,4 +42,3 @@ spec:
       priorityClassName: bink-high-tasks
       imagePullSecrets:
         - name: binkcore.azurecr.io
-  backoffLimit: 3
