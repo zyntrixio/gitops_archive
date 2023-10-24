@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: europa
+    component: api
+  name: europa
+  namespace: default
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 9000
+  selector:
+    app: europa
+    component: api
+  sessionAffinity: None
+  type: ClusterIP

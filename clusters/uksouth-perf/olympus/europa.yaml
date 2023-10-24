@@ -6,16 +6,32 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-perf/olympus/europa
-  dependsOn:
-    - name: aad-pod-identity
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
+    - kind: Secret
+      name: azure-keyvault
   images:
-    - name: binkcore.azurecr.io/europa
-      newName: binkcore.azurecr.io/europa
-      newTag: staging-1.6.4 # {"$imagepolicy": "flux-system:europa:tag"}
+  - name: binkcore.azurecr.io/europa
+    newName: binkcore.azurecr.io/europa
+    newTag: staging-1.6.5 # {"$imagepolicy": "flux-system:perf-europa:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: europa
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/europa
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
@@ -31,14 +47,3 @@ spec:
   policy:
     semver:
       range: '>0.0.1'
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImageRepository
-metadata:
-  name: europa
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/europa
-  interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io

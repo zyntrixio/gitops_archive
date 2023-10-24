@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/service-upstream: 'true'
+  name: starbug.${cluster_name}.${cluster_location}.bink.sh
+  namespace: default
+spec:
+  rules:
+    - host: starbug.${cluster_name}.${cluster_location}.bink.sh
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: starbug
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - starbug.${cluster_name}.${cluster_location}.bink.sh

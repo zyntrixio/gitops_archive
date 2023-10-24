@@ -1,14 +1,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: eos-essentials
+  name: eos
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-prod/default/eos/essentials
+  path: ./overlays/uksouth-prod/default/eos
   prune: true
   force: true
-  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -20,26 +19,6 @@ spec:
     substituteFrom:
     - kind: Secret
       name: azure-identities
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: eos-deployments
-  namespace: flux-system
-spec:
-  interval: 60m0s
-  path: ./overlays/uksouth-prod/default/eos/deployments
-  dependsOn:
-  - name: eos-essentials
-  prune: true
-  force: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  images:
-  - name: binkcore.azurecr.io/eos
-    newName: binkcore.azurecr.io/eos
-    newTag: prod-1.0.6 # {"$imagepolicy": "flux-system:uksouth-prod-eos:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

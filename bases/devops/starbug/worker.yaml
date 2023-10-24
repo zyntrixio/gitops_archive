@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: starbug
+    component: worker
+  name: starbug-worker
+  namespace: starbug
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: starbug
+      component: worker
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: starbug
+        component: worker
+        azure.workload.identity/use: "true"
+    spec:
+      containers:
+        - name: app
+          args: ["starbug", "worker"]
+          image: binkcore.azurecr.io/starbug:latest
+          env:
+            - name: STORAGE_ACCOUNT_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: blob_connection_string_primary
+                  name: azure-storage
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+      terminationGracePeriodSeconds: 30
+      serviceAccountName: starbug
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
