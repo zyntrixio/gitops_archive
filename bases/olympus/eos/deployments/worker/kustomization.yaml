@@ -1,0 +1,23 @@
+---
+resources:
+  - ../../bases/deployment
+
+nameSuffix: -worker
+
+commonLabels:
+  component: worker
+  app: eos
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-low-tasks
+      - op: replace
+        path: /spec/template/spec/containers/0/command
+        value: ["linkerd-await", "--"]
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["python", "manage.py", "worker"]

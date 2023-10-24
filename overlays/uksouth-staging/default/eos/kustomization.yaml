@@ -1,11 +1,8 @@
 ---
-bases:
-  - ../../../../bases/olympus/eos/api
-  - ../../../../bases/olympus/eos/worker
-  - ../../../../bases/olympus/eos/migrator
-
 resources:
-  - aad.yaml
+  - ../../../../bases/olympus/eos/deployments/api
+  - ../../../../bases/olympus/eos/deployments/worker
+  - ../../../../bases/olympus/eos/essentials
 
 namespace: default
 
@@ -16,30 +13,10 @@ configMapGenerator:
 
 patches:
   - target:
-      kind: Deployment
+      kind: Deployment|Job
     patch: |
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: eos
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                envFrom:
-                  - configMapRef:
-                      name: eos
-                env:
-                  - name: OAUTH_CLIENT_SECRET
-                    value: 7~PF_wKl33M6Ed9w1.kW-stIzgbt~yP_It
-                  - name: EOS_DATABASE_URI
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-postgres
-                        key: url_eos
-                  - name: KEY_VAULT
-                    valueFrom:
-                      secretKeyRef:
-                        key: url
-                        name: azure-keyvault
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: eos

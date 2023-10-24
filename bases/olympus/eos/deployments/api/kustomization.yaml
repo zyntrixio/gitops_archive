@@ -1,0 +1,21 @@
+---
+resources:
+  - ../../bases/deployment
+  - service.yaml
+
+nameSuffix: -api
+
+commonLabels:
+  component: api
+  app: eos
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-high-api
+      - op: add
+        path: /spec/template/spec/containers/0/livenessProbe
+        value: {"httpGet":{"path":"/livez","port":9000,"scheme":"HTTP"},"initialDelaySeconds":15,"periodSeconds":60,"successThreshold":1,"timeoutSeconds":10}
