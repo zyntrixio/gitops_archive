@@ -6,8 +6,7 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-dev/default/angelia
-  dependsOn:
-  - name: aad-pod-identity
+  force: true
   prune: true
   sourceRef:
     kind: GitRepository
@@ -16,6 +15,10 @@ spec:
   - name: binkcore.azurecr.io/angelia
     newName: binkcore.azurecr.io/angelia
     newTag: 2023-10-19T092226Z # {"$imagepolicy": "flux-system:uksouth-dev-angelia:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

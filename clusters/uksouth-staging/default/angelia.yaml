@@ -9,6 +9,7 @@ spec:
   dependsOn:
   - name: aad-pod-identity
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -16,6 +17,10 @@ spec:
   - name: binkcore.azurecr.io/angelia
     newName: binkcore.azurecr.io/angelia
     newTag: staging-1.24.0 # {"$imagepolicy": "flux-system:uksouth-staging-angelia:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
