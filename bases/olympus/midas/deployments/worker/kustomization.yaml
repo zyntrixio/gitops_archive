@@ -1,7 +1,6 @@
 ---
 resources:
   - ../../bases/deployment
-  - service.yaml
 
 nameSuffix: -worker
 
