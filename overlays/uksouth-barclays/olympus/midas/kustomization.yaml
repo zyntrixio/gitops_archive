@@ -23,3 +23,9 @@ patches:
         value:
           - configMapRef:
               name: midas
+  - target:
+      kind: ServiceProfile
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: midas-api.olympus.svc.cluster.local
