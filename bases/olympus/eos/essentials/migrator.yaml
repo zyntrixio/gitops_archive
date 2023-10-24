@@ -24,11 +24,21 @@ spec:
           command: ["linkerd-await", "--shutdown", "--"]
           args: ["python", "manage.py", "migrate"]
           env:
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url_primary
+                  name: azure-redis
             - name: EOS_DATABASE_URI
               valueFrom:
                 secretKeyRef:
                   name: azure-postgres
                   key: url_eos
+            - name: KEY_VAULT
+              valueFrom:
+                secretKeyRef:
+                  name: azure-keyvault
+                  key: url
           resources:
             requests:
               memory: 384Mi
