@@ -68,3 +68,13 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/resources/requests/memory
         value: 1G
+  - target:
+      kind: Deployment
+      name: harmonia-api
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 1G
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 1G
