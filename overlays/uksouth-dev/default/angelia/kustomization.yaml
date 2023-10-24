@@ -10,7 +10,7 @@ configMapGenerator:
 
 patches:
   - target:
-      kind: Deployment|Job
+      kind: Deployment
     patch: |
       - op: replace
         path: /spec/template/spec/containers/0/envFrom

@@ -21,7 +21,7 @@ patches:
         path: /metadata/name
         value: angelia-api.olympus.svc.cluster.local
   - target:
-      kind: Deployment|Job
+      kind: Deployment
     patch: |
       - op: replace
         path: /spec/template/spec/containers/0/envFrom
