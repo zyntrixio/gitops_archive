@@ -22,7 +22,7 @@ spec:
       labels:
         app: angelia
         component: api
-        aadpodidbinding: angelia
+        azure.workload.identity/use: "true"
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
