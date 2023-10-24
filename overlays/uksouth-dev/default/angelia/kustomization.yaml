@@ -1,9 +1,6 @@
 ---
-bases:
-  - ../../../../bases/olympus/angelia
-
 resources:
-  - aad.yaml
+  - ../../../../bases/olympus/angelia
 
 configMapGenerator:
   - name: angelia
