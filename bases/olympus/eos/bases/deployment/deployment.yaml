@@ -5,6 +5,9 @@ metadata:
   name: eos
   namespace: default
 spec:
+  selector:
+    matchLabels:
+      app: eos
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -50,9 +53,15 @@ spec:
                 secretKeyRef:
                   name: azure-keyvault
                   key: url
+          resources:
+            limits:
+              memory: 192Mi
+            requests:
+              memory: 192Mi
           imagePullPolicy: Always
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534
+      serviceAccountName: eos
       imagePullSecrets:
         - name: binkcore.azurecr.io

@@ -1,8 +1,8 @@
 ---
 resources:
-  - ../../../../../bases/olympus/eos/deployments/api
-  - ../../../../../bases/olympus/eos/deployments/worker
-  - ../../../../../bases/olympus/eos/essentials
+  - ../../../../bases/olympus/eos/deployments/api
+  - ../../../../bases/olympus/eos/deployments/worker
+  - ../../../../bases/olympus/eos/essentials
 
 namespace: default
 
