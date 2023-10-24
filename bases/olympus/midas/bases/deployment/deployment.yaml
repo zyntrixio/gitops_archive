@@ -73,5 +73,19 @@ spec:
             requests:
               memory: 512Mi
               cpu: 100m
+        - name: pushgateway
+          image: binkcore.azurecr.io/pushgateway:v1.5.1
+          args:
+            - --web.listen-address=0.0.0.0:9100
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9100
+              protocol: TCP
+          resources:
+            limits:
+              memory: 64Mi
+            requests:
+              cpu: 10m
+              memory: 64Mi
       imagePullSecrets:
         - name: binkcore.azurecr.io
