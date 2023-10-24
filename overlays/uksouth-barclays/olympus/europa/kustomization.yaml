@@ -1,9 +1,7 @@
 ---
 resources:
-  - ../../../../bases/olympus/europa/api
-  - ../../../../bases/olympus/europa/migrator
-  - aad.yaml
-
+  - ../../../../bases/olympus/europa/essentials
+  - ../../../../bases/olympus/europa/deployments/api
 
 namespace: olympus
 
@@ -14,33 +12,10 @@ configMapGenerator:
 
 patches:
   - target:
-      kind: Deployment
+      kind: Deployment|Job
     patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: europa
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                envFrom:
-                  - configMapRef:
-                      name: europa
-                env:
-                  - name: EUROPA_DATABASE_URI
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-postgres
-                        key: url_europa
-                  - name: KEY_VAULT_URI
-                    valueFrom:
-                      secretKeyRef:
-                        key: url
-                        name: azure-keyvault
-                  - name: KEYVAULT_URI
-                    valueFrom:
-                      secretKeyRef:
-                        key: url
-                        name: azure-keyvault
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: europa

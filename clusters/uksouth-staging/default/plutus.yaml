@@ -15,7 +15,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/plutus
     newName: binkcore.azurecr.io/plutus
-    newTag: staging-0.0.9 # {"$imagepolicy": "flux-system:uksouth-staging-plutus:tag"}
+    newTag: staging-0.0.11 # {"$imagepolicy": "flux-system:uksouth-staging-plutus:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
@@ -40,5 +40,5 @@ spec:
     pattern: staging-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: '>0.0.1'
