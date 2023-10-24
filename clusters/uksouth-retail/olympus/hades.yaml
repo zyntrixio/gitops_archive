@@ -5,10 +5,9 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-retail/olympus/hades/essentials
+  path: ./overlays/uksouth-retail/olympus/hades
   prune: true
   force: true
-  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -18,28 +17,10 @@ spec:
     newTag: staging-2.8.0 # {"$imagepolicy": "flux-system:retail-hades:tag"}
   postBuild:
     substituteFrom:
+    - kind: ConfigMap
+      name: cluster-vars
     - kind: Secret
       name: azure-identities
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: hades-deployments
-  namespace: flux-system
-spec:
-  interval: 60m0s
-  path: ./overlays/uksouth-retail/olympus/hades/deployments
-  dependsOn:
-  - name: hades-essentials
-  prune: true
-  force: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  images:
-  - name: binkcore.azurecr.io/hades
-    newName: binkcore.azurecr.io/hades
-    newTag: staging-2.8.0 # {"$imagepolicy": "flux-system:retail-hades:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

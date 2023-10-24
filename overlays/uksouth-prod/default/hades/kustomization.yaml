@@ -1,6 +1,7 @@
 ---
 resources:
   - ../../../../../bases/olympus/hades/deployments/api
+  - ../../../../../bases/olympus/hades/essentials
 
 namespace: default
 
@@ -11,11 +12,10 @@ configMapGenerator:
 
 patches:
   - target:
-      kind: Deployment
+      kind: Deployment|Job
     patch: |
       - op: replace
         path: /spec/template/spec/containers/0/envFrom
         value:
           - configMapRef:
               name: hades
-              
