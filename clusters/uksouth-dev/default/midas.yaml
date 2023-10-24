@@ -6,8 +6,7 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-dev/default/midas
-  dependsOn:
-  - name: aad-pod-identity
+  force: true
   prune: true
   sourceRef:
     kind: GitRepository
@@ -16,6 +15,12 @@ spec:
   - name: binkcore.azurecr.io/midas
     newName: binkcore.azurecr.io/midas
     newTag: 2023-10-19T084900Z # {"$imagepolicy": "flux-system:uksouth-dev-midas:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
+    - kind: Secret
+      name: azure-keyvault
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

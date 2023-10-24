@@ -1,10 +1,11 @@
 ---
 resources:
-  - ../../../../bases/olympus/midas/api
-  - ../../../../bases/olympus/midas/beat
-  - ../../../../bases/olympus/midas/celery
-  - ../../../../bases/olympus/midas/consumer
-  - aad.yaml
+  - ../../../../bases/olympus/midas/deployments/api
+  - ../../../../bases/olympus/midas/deployments/beat
+  - ../../../../bases/olympus/midas/deployments/celery
+  - ../../../../bases/olympus/midas/deployments/consumer
+  - ../../../../bases/olympus/midas/deployments/worker
+  - ../../../../bases/olympus/midas/essentials
 
 namespace: olympus
 
@@ -15,34 +16,16 @@ configMapGenerator:
 
 patches:
   - target:
+      kind: Deployment|Job
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: midas
+  - target:
       kind: ServiceProfile
     patch: |-
       - op: replace
         path: /metadata/name
-        value: midas-api.barclays-sit.svc.cluster.local
-  - target:
-      kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: midas
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                envFrom:
-                  - configMapRef:
-                      name: midas
-                env:
-                  - name: POSTGRES_DSN
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-postgres
-                        key: url_midas
-                  - name: VAULT_URL
-                    valueFrom:
-                      secretKeyRef:
-                        key: url
-                        name: azure-keyvault
+        value: midas-api.olympus.svc.cluster.local

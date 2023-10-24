@@ -1,0 +1,21 @@
+---
+resources:
+  - ../../bases/deployment
+  - service.yaml
+
+nameSuffix: -consumer
+
+commonLabels:
+  app: midas
+  component: consumer
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-medium-tasks
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        valuee: ["python", "consumer.py"]

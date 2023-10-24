@@ -7,6 +7,7 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-retail/olympus/midas
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -14,10 +15,14 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: cluster-vars
+      - kind: Secret
+        name: azure-identities
+      - kind: Secret
+        name: azure-keyvault
   images:
-    - name: binkcore.azurecr.io/midas
-      newName: binkcore.azurecr.io/midas
-      newTag: staging-3.44.4 # {"$imagepolicy": "flux-system:retail-midas:tag"}
+  - name: binkcore.azurecr.io/midas
+    newName: binkcore.azurecr.io/midas
+    newTag: staging-3.44.4 # {"$imagepolicy": "flux-system:retail-midas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

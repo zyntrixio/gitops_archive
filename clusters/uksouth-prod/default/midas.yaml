@@ -6,17 +6,19 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/default/midas
-  dependsOn:
-    - name: aad-pod-identity
   prune: true
   force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/midas
-      newName: binkcore.azurecr.io/midas
-      newTag: prod-3.44.4 # {"$imagepolicy": "flux-system:uksouth-prod-midas:tag"}
+  - name: binkcore.azurecr.io/midas
+    newName: binkcore.azurecr.io/midas
+    newTag: prod-3.44.4 # {"$imagepolicy": "flux-system:uksouth-prod-midas:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
