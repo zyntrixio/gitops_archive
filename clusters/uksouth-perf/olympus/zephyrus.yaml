@@ -6,12 +6,15 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-perf/olympus/zephyrus
-  dependsOn:
-    - name: aad-pod-identity
+  force: true
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
   images:
     - name: binkcore.azurecr.io/zephyrus
       newName: binkcore.azurecr.io/zephyrus
