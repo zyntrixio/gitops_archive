@@ -86,4 +86,4 @@ patches:
         path: /spec/template/spec/containers/0/envFrom
         value:
           - configMapRef:
-              name: hermes-api
+              name: hermes
