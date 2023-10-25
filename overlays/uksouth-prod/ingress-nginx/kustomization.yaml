@@ -10,7 +10,7 @@ namespace: ingress-nginx
 
 replicas:
   - name: ingress-nginx-controller
-    count: 1
+    count: 3
 
 patches:
   - target:
