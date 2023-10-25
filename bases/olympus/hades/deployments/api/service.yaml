@@ -5,7 +5,7 @@ metadata:
   labels:
     app: hades
     component: api
-  name: hades-api
+  name: hades
   namespace: default
 spec:
   ports:

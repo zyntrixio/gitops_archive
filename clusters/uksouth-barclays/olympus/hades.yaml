@@ -7,17 +7,20 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-barclays/olympus/hades
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
+  images:
+  - name: binkcore.azurecr.io/hades
+    newName: binkcore.azurecr.io/hades
+    newTag: staging-2.8.0 # {"$imagepolicy": "flux-system:barclays-hades:tag"}
   postBuild:
     substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
-  images:
-    - name: binkcore.azurecr.io/hades
-      newName: binkcore.azurecr.io/hades
-      newTag: staging-2.8.0 # {"$imagepolicy": "flux-system:barclays-hades:tag"}
+    - kind: ConfigMap
+      name: cluster-vars
+    - kind: Secret
+      name: azure-identities
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

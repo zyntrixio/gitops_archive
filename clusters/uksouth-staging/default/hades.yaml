@@ -7,6 +7,7 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-staging/default/hades
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -14,6 +15,12 @@ spec:
   - name: binkcore.azurecr.io/hades
     newName: binkcore.azurecr.io/hades
     newTag: staging-2.8.0 # {"$imagepolicy": "flux-system:uksouth-staging-hades:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: cluster-vars
+    - kind: Secret
+      name: azure-identities
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

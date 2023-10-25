@@ -1,19 +1,18 @@
 ---
-bases:
-  - ../core
-
 resources:
+  - ../../bases/deployment
   - service.yaml
 
-patches:
-  - path: patch-labels.yaml
-  - path: patch-name.yaml
-    target:
-      kind: Deployment
+nameSuffix: -api
 
+commonLabels:
+  component: api
+  app: hades
+
+patches:
   - target:
       kind: Deployment
-    patch: |
+    patch: |-
       - op: add
         path: /spec/template/spec/priorityClassName
         value: bink-high-api

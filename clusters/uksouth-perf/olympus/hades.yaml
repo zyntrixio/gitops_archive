@@ -7,13 +7,31 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-perf/olympus/hades
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
-    - name: binkcore.azurecr.io/hades
-      newName: binkcore.azurecr.io/hades
-      newTag: staging-2.8.0 # {"$imagepolicy": "flux-system:hades:tag"}
+  - name: binkcore.azurecr.io/hades
+    newName: binkcore.azurecr.io/hades
+    newTag: staging-2.8.0 # {"$imagepolicy": "flux-system:hades:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: cluster-vars
+    - kind: Secret
+      name: azure-identities
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: hades
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/hades
+  interval: 1m0s
+  secretRef:
+    name: binkcore.azurecr.io
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
@@ -29,14 +47,3 @@ spec:
   policy:
     semver:
       range: '>0.0.1'
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImageRepository
-metadata:
-  name: hades
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/hades
-  interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io
