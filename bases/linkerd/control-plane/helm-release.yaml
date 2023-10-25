@@ -12,7 +12,7 @@ spec:
   chart:
     spec:
       chart: linkerd-control-plane
-      version: 1.12.6
+      version: 1.16.2
       sourceRef:
         kind: HelmRepository
         name: linkerd
@@ -29,10 +29,6 @@ spec:
     proxy:
       image:
         name: ghcr.io/linkerd/proxy
-      resources:
-        memory:
-          limit: 250Mi
-          request: 20Mi
     policyController:
       image:
         name: ghcr.io/linkerd/policy-controller
@@ -41,50 +37,7 @@ spec:
     identity:
       issuer:
         scheme: kubernetes.io/tls
-    webhookFailurePolicy: Fail
-    controllerReplicas: 3
-    controllerResources:
-      cpu:
-        limit: ''
-        request: 100m
-      memory:
-        limit: 250Mi
-        request: 50Mi
-    destinationResources:
-      cpu:
-        limit: ''
-        request: 100m
-      memory:
-        limit: 250Mi
-        request: 50Mi
-    identityResources:
-      cpu:
-        limit: ''
-        request: 100m
-      memory:
-        limit: 250Mi
-        request: 10Mi
-    heartbeatResources:
-      cpu:
-        limit: ''
-        request: 100m
-      memory:
-        limit: 250Mi
-        request: 50Mi
-    proxyInjectorResources:
-      cpu:
-        limit: ''
-        request: 100m
-      memory:
-        limit: 250Mi
-        request: 50Mi
-    spValidatorResources:
-      cpu:
-        limit: ''
-        request: 100m
-      memory:
-        limit: 250Mi
-        request: 50Mi
+    webhookFailurePolicy: Ignore
   valuesFrom:
     - kind: Secret
       name: linkerd-root
