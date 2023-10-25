@@ -24,6 +24,16 @@ spec:
           command: ["linkerd-await", "--shutdown", "--"]
           args: ["alembic", "upgrade", "head"]
           env:
+            - name: RABBIT_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-cloudamqp
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url_primary
+                  name: azure-redis
             - name: DATABASE_URI
               valueFrom:
                 secretKeyRef:

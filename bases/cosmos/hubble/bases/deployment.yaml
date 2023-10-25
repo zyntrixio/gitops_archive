@@ -49,6 +49,11 @@ spec:
                 secretKeyRef:
                   key: url_primary
                   name: azure-redis
+            - name: DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  key: url_placeholder
+                  name: azure-postgres
           image: binkcore.azurecr.io/hubble:latest
           imagePullPolicy: Always
           securityContext:
