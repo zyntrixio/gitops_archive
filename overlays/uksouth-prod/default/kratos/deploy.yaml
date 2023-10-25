@@ -23,7 +23,7 @@ spec:
         linkerd.io/inject: enabled
       labels:
         app: kratos
-        aadpodidbinding: kratos
+        azure.workload.identity/use: "true"
     spec:
       affinity:
         podAntiAffinity:
