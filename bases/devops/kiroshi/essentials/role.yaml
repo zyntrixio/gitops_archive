@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: ClusterRole
+metadata:
+  name: kiroshi
+rules:
+- apiGroups: [""]
+  resources: "pods"
+  verbs: ["get", "list", "delete"]
+---
+apiVersion: v1
+kind: ClusterRoleBinding
+metadata:
+  name: kiroshi
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kiroshi
+subjects:
+- kind: ServiceAccount
+  name: kiroshi
+  namespace: devops

@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - serviceaccount.yaml
+  - role.yaml
 namespace: devops
