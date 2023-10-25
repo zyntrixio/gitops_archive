@@ -8,6 +8,11 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-ait/cert-manager
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
