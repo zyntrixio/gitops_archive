@@ -1,6 +1,6 @@
 ---
 resources:
-  - ../base
+  - ../../bases
 
 nameSuffix: -consumer
 
