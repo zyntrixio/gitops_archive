@@ -7,6 +7,7 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-retail/olympus/metis
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -14,6 +15,8 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: cluster-vars
+      - kind: Secret
+        name: azure-identities
   images:
     - name: binkcore.azurecr.io/metis
       newName: binkcore.azurecr.io/metis

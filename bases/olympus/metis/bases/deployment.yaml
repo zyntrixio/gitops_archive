@@ -19,10 +19,13 @@ spec:
     metadata:
       labels:
         app: metis
-        aadpodidbinding: metis
+        azure.workload.identity/use: "true"
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
+        prometheus.io/port: '9100'
+        prometheus.io/scrape: 'true'
+        prometheus.io/job: metis
     spec:
       affinity:
         podAntiAffinity:
@@ -49,6 +52,16 @@ spec:
                 secretKeyRef:
                   key: url
                   name: azure-cloudamqp
+            - name: PONTUS_DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  key: url_pontus
+                  name: azure-postgres
+            - name: AZURE_VAULT_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-keyvault
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534
@@ -57,7 +70,24 @@ spec:
           resources:
             limits:
               memory: 384Mi
+              cpu: 10m
             requests:
               memory: 384Mi
+        - name: pushgateway
+          image: binkcore.azurecr.io/pushgateway:v1.5.1
+          args:
+            - --web.listen-address=0.0.0.0:9100
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9100
+              protocol: TCP
+          resources:
+            limits:
+              memory: 64Mi
+              cpu: 10m
+            requests:
+              cpu: 10m
+              memory: 64Mi
+      serviceAccountName: metis
       imagePullSecrets:
         - name: binkcore.azurecr.io

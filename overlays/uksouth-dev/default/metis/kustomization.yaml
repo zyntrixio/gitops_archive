@@ -1,46 +1,22 @@
 ---
-bases:
-  - ../../../../bases/olympus/metis/api
-  - ../../../../bases/olympus/metis/celery
-
 resources:
-  - aad.yaml
+  - ../../../../bases/olympus/metis/deployments/api
+  - ../../../../bases/olympus/metis/deployments/celery
+  - ../../../../bases/olympus/metis/essentials
+
+namespace: default
 
 configMapGenerator:
   - name: metis
-    namespace: default
     envs:
       - env.ini
 
 patches:
   - target:
       kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: metis
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                envFrom:
-                  - configMapRef:
-                      name: metis
-                env:
-                  - name: PONTUS_DATABASE_URI
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-postgres
-                        key: url_pontus
-                  - name: AZURE_VAULT_URL
-                    valueFrom:
-                      secretKeyRef:
-                        key: url
-                        name: azure-keyvault
-                  - name: CELERY_BROKER_URL
-                    valueFrom:
-                      secretKeyRef:
-                        key: url
-                        name: azure-cloudamqp
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: metis
