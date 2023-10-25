@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: hades
+  name: olympus-hades
   namespace: flux-system
 spec:
   interval: 60m0s

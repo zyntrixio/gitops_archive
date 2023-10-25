@@ -1,7 +1,7 @@
 ---
 resources:
-  - ../../../../../bases/olympus/hades/deployments/api
-  - ../../../../../bases/olympus/hades/essentials
+  - ../../../../bases/olympus/hades/deployments/api
+  - ../../../../bases/olympus/hades/essentials
 
 namespace: default
 

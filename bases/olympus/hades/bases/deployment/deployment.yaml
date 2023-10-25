@@ -7,6 +7,9 @@ metadata:
   labels:
     app: hades
 spec:
+  selector:
+    matchLabels:
+      app: hades
   strategy:
     rollingUpdate:
       maxSurge: 25%
