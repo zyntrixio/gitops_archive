@@ -1,25 +1,22 @@
 ---
 resources:
-  - ../base
+  - ../../bases
 
-nameSuffix: -migrator
+nameSuffix: -cron-scheduler
 
 commonLabels:
-  component: migrator
+  component: cron-scheduler
 
 patches:
   - target:
       kind: Deployment
     patch: |
-      - op: replace
-        path: /spec/template/metadata/annotations/prometheus.io~1scrape
-        value: "false"
       - op: add
         path: /spec/template/spec/priorityClassName
-        value: bink-high-tasks
+        value: bink-medium-tasks
       - op: replace
         path: /spec/template/spec/containers/0/args
-        value: ["bash", "-c", "alembic upgrade head; echo Done; tail -f /dev/null"]
+        value: ["python", "-m", "polaris.core.cli", "cron-scheduler"]
       - op: replace
         path: /spec/template/spec/containers/0/resources/limits/memory
         value: 1Gi

@@ -1,14 +1,16 @@
----
 resources:
-  - ../../../../bases/cosmos/polaris/core
-  - ../../../../bases/cosmos/polaris/api
-  - ../../../../bases/cosmos/polaris/migrator
-  - ../../../../bases/cosmos/polaris/task-worker
-  - ../../../../bases/cosmos/polaris/cron-scheduler
-  - ../../../../bases/cosmos/polaris/tx-history-consumer
-  - aad.yaml
+  - ../../../../bases/cosmos/polaris/deployments/api
+  - ../../../../bases/cosmos/polaris/deployments/task-worker
+  - ../../../../bases/cosmos/polaris/deployments/cron-scheduler
+  - ../../../../bases/cosmos/polaris/deployments/tx-history-consumer
+  - ../../../../bases/cosmos/polaris/essentials
 
 namespace: bpl
+
+configMapGenerator:
+  - name: polaris
+    envs:
+      - env.ini
 
 replicas:
   - name: polaris-api
@@ -16,35 +18,12 @@ replicas:
   - name: polaris-task-worker
     count: 3
 
-configMapGenerator:
-  - name: polaris
-    envs:
-      - env.ini
-
 patches:
   - target:
-      kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: polaris
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                env:
-                  - name: SQLALCHEMY_DATABASE_URI
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-postgres
-                        key: url_polaris
-                  - name: BLOB_STORAGE_DSN
-                    valueFrom:
-                      secretKeyRef:
-                        key: connection_string_primary
-                        name: azure-storage
-                envFrom:
-                  - configMapRef:
-                      name: polaris
+      kind: Deployment|Job
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: polaris
