@@ -1,5 +1,4 @@
 ---
 resources:
-  - ../../../../bases/olympus/boreas/api
+  - ../../../../bases/olympus/boreas
   - ingress.yaml
-  - aad.yaml

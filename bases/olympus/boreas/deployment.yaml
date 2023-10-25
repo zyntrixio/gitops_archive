@@ -2,14 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: boreas
+  name: boreas-api
   namespace: default
   labels:
     app: boreas
+    component: api
 spec:
   selector:
     matchLabels:
       app: boreas
+      component: api
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,7 +21,8 @@ spec:
     metadata:
       labels:
         app: boreas
-        aadpodidbinding: boreas
+        component: api
+        azure.workload.identity/use: "true"
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
@@ -63,5 +66,6 @@ spec:
             requests:
               memory: 128Mi
               cpu: 10m
+      serviceAccountName: boreas
       imagePullSecrets:
         - name: binkcore.azurecr.io

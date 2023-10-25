@@ -1,12 +1,8 @@
 ---
 resources:
-  - ../core
+  - deployment.yaml
   - service.yaml
-
-commonLabels:
-  component: api
-
-nameSuffix: -api
+  - serviceaccount.yaml
 
 patches:
   - target:

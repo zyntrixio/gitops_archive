@@ -6,8 +6,7 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/default/boreas
-  dependsOn:
-  - name: aad-pod-identity
+  force: true
   prune: true
   sourceRef:
     kind: GitRepository
@@ -16,6 +15,8 @@ spec:
     substituteFrom:
     - kind: ConfigMap
       name: cluster-vars
+    - kind: Secret
+      name: azure-identities
   images:
   - name: binkcore.azurecr.io/boreas
     newName: binkcore.azurecr.io/boreas

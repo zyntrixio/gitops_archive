@@ -1,11 +1,16 @@
 ---
 resources:
-  - ../../../../bases/olympus/boreas/api
+  - ../../../../bases/olympus/boreas
   - ingress.yaml
-  - aad.yaml
 
-configMapGenerator:
-  - name: boreas
-    namespace: default
-    envs:
-      - env.ini
+namespace: default
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: DEBUG
+          value: True
