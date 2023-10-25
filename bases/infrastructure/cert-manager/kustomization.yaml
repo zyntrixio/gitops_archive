@@ -5,6 +5,18 @@ resources:
 patches:
   - target:
       kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: cert-manager
+      spec:
+        template:
+          metadata:
+            labels:
+              azure.workload.identity/use: "true"
+  - target:
+      kind: Deployment
       name: cert-manager
     patch: |-
       apiVersion: apps/v1
@@ -14,9 +26,6 @@ patches:
         namespace: cert-manager
       spec:
         template:
-          metadata:
-            labels:
-              azure.workload.identity/use: "true"
           spec:
             containers:
               - name: cert-manager-controller
@@ -36,3 +45,9 @@ patches:
       - op: add
         path: /spec/template/spec/priorityClassName
         value: bink-high-tasks
+  - target:
+      kind: ServiceAccount
+    patch: |-
+      - op: add
+        path: /metadata/annotations/azure.workload.identity~1client-id
+        value: ${cert_manager_client_id}
