@@ -1,9 +1,6 @@
 ---
-bases:
-  - ../../../../bases/olympus/zephyrus
-
 resources:
-  - aad.yaml
+  - ../../../../bases/olympus/zephyrus
 
 configMapGenerator:
   - name: zephyrus
@@ -14,27 +11,9 @@ configMapGenerator:
 patches:
   - target:
       kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: zephyrus
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                envFrom:
-                  - configMapRef:
-                      name: zephyrus
-                env:
-                  - name: KEYVAULT_URI
-                    valueFrom:
-                      secretKeyRef:
-                        key: url
-                        name: azure-keyvault
-                  - name: AMQP_DSN
-                    valueFrom:
-                      secretKeyRef:
-                        key: url
-                        name: azure-cloudamqp
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: zephyrus

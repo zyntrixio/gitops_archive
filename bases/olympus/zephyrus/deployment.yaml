@@ -50,6 +50,11 @@ spec:
                 secretKeyRef:
                   key: url
                   name: azure-cloudamqp
+            - name: KEYVAULT_URI
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-keyvault
           image: binkcore.azurecr.io/zephyrus:latest
           imagePullPolicy: Always
           resources:
@@ -81,6 +86,7 @@ spec:
             periodSeconds: 15
             successThreshold: 1
             timeoutSeconds: 10
+      serviceAccountName: zephyrus
       priorityClassName: bink-high-api
       imagePullSecrets:
         - name: binkcore.azurecr.io
