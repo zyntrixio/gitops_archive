@@ -1,12 +1,13 @@
 ---
 resources:
-  - ../base
+  - ../../bases
   - service.yaml
 
 nameSuffix: -api
 
 commonLabels:
   component: api
+  app: polaris
 
 patches:
   - target:

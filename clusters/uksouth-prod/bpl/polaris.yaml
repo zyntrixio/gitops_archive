@@ -6,12 +6,15 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/bpl/polaris
-  dependsOn:
-    - name: aad-pod-identity
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
   images:
     - name: binkcore.azurecr.io/polaris
       newName: binkcore.azurecr.io/polaris

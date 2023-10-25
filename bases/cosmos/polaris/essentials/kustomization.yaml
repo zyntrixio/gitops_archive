@@ -1,5 +1,6 @@
 ---
 resources:
+  - lsp.yaml
+  - migrator.yaml
   - namespace.yaml
   - serviceaccount.yaml
-  - lsp.yaml

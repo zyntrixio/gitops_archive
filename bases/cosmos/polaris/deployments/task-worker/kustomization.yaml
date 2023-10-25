@@ -1,11 +1,11 @@
 ---
 resources:
-  - ../base
+  - ../../bases
 
-nameSuffix: -tx-history-consumer
+nameSuffix: -task-worker
 
 commonLabels:
-  component: tx-history-consumer
+  component: task-worker
 
 patches:
   - target:
@@ -16,4 +16,4 @@ patches:
         value: bink-high-tasks
       - op: replace
         path: /spec/template/spec/containers/0/args
-        value: ["python", "-m", "polaris.core.cli", "tx-history-consumer"]
+        value: ["python", "-m", "polaris.core.cli", "task-worker"]
