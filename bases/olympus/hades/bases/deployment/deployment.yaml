@@ -44,6 +44,12 @@ spec:
             requests:
               cpu: 10m
               memory: 384Mi
+          env:
+            - name: HADES_DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: url_hades
           image: binkcore.azurecr.io/hades:latest
           imagePullPolicy: Always
           securityContext:

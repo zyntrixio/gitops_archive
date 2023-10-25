@@ -24,7 +24,7 @@ spec:
           command: ["linkerd-await", "--shutdown", "--"]
           args: ["alembic", "upgrade", "head"]
           env:
-            - name: HADES_DATABASE_URI
+            - name: HADES_DATABASE_URL
               valueFrom:
                 secretKeyRef:
                   name: azure-postgres
