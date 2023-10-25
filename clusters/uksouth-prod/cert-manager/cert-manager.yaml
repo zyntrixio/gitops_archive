@@ -7,9 +7,12 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/cert-manager
-  dependsOn:
-    - name: aad-pod-identity
+  force: true
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities

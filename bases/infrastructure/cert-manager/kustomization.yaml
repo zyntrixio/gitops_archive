@@ -16,7 +16,7 @@ patches:
         template:
           metadata:
             labels:
-              aadpodidbinding: cert-manager
+              azure.workload.identity/use: "true"
           spec:
             containers:
               - name: cert-manager-controller
