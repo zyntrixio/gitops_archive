@@ -1,7 +1,6 @@
 ---
 resources:
   - ../../../../bases/olympus/cyclops
-  - aad.yaml
 
 namespace: default
 
