@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/midas
     newName: binkcore.azurecr.io/midas
-    newTag: staging-3.44.4 # {"$imagepolicy": "flux-system:midas:tag"}
+    newTag: staging-3.44.5 # {"$imagepolicy": "flux-system:midas:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
