@@ -22,7 +22,7 @@ spec:
       labels:
         app: zephyrus
         component: api
-        aadpodidbinding: zephyrus
+        azure.workload.identity/use: "true"
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
