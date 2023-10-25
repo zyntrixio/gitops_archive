@@ -22,7 +22,7 @@ spec:
       labels:
         app: angelia
         component: api
-        aadpodidbinding: angelia
+        azure.workload.identity/use: "true"
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
@@ -55,6 +55,16 @@ spec:
                 secretKeyRef:
                   key: url_primary
                   name: azure-redis
+            - name: POSTGRES_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: url_hermes
+            - name: VAULT_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-keyvault
           ports:
             - containerPort: 9000
               name: api
