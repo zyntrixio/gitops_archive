@@ -70,7 +70,6 @@ spec:
           resources:
             limits:
               memory: 384Mi
-              cpu: 10m
             requests:
               memory: 384Mi
         - name: pushgateway
@@ -84,7 +83,6 @@ spec:
           resources:
             limits:
               memory: 64Mi
-              cpu: 10m
             requests:
               cpu: 10m
               memory: 64Mi
