@@ -6,7 +6,7 @@ resources:
 nameSuffix: -api
 
 commonLabels:
-  app: atlas
+  app: metis
   component: api
 
 patches:
