@@ -7,6 +7,7 @@ spec:
   interval: 60m0s
   path: ./overlays/uksouth-prod/default/kratos
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -18,6 +19,8 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: cluster-vars
+      - kind: Secret
+        name: azure-identities
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
