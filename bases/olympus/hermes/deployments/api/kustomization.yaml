@@ -17,23 +17,23 @@ patches:
         path: /spec/template/spec/priorityClassName
         value: bink-high-api
       - op: replace
-        path: /spec/template/spec/containers/1/resources/limits/memory
+        path: /spec/template/spec/containers/0/resources/limits/memory
         value: 512Mi
       - op: replace
-        path: /spec/template/spec/containers/1/resources/requests/memory
+        path: /spec/template/spec/containers/0/resources/requests/memory
         value: 512Mi
       - op: replace
-        path: /spec/template/spec/containers/1/command
+        path: /spec/template/spec/containers/0/command
         value: ["/app/entrypoint.sh"]
       - op: replace
-        path: /spec/template/spec/containers/1/args
+        path: /spec/template/spec/containers/0/args
         value: ["gunicorn", "--workers=2", "--error-logfile=-", "--access-logfile=-", "--bind=0.0.0.0:9000", "hermes.wsgi"]
       - op: add
         path: /spec/strategy
         value: {"rollingUpdate":{"maxSurge":25%,"maxUnavailable":25%},"type":"RollingUpdate"}
       - op: add
-        path: /spec/template/spec/containers/1/readinessProbe
+        path: /spec/template/spec/containers/0/readinessProbe
         value: {"httpGet":{"path":"/readyz","port":9000,"scheme":"HTTP"},"initialDelaySeconds":15,"periodSeconds":15,"successThreshold":1,"timeoutSeconds":10}
       - op: add
-        path: /spec/template/spec/containers/1/livenessProbe
+        path: /spec/template/spec/containers/0/livenessProbe
         value: {"httpGet":{"path":"/livez","port":9000,"scheme":"HTTP"},"initialDelaySeconds":15,"periodSeconds":60,"successThreshold":1,"timeoutSeconds":10}

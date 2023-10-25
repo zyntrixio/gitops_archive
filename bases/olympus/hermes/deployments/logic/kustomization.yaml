@@ -15,11 +15,11 @@ patches:
         path: /spec/template/spec/priorityClassName
         value: bink-high-tasks
       - op: replace
-        path: /spec/template/spec/containers/1/args
+        path: /spec/template/spec/containers/0/args
         value: ["python", "api_messaging/run.py"]
       - op: replace
-        path: /spec/template/spec/containers/1/resources/limits/memory
+        path: /spec/template/spec/containers/0/resources/limits/memory
         value: 512Mi
       - op: replace
-        path: /spec/template/spec/containers/1/resources/requests/memory
+        path: /spec/template/spec/containers/0/resources/requests/memory
         value: 512Mi
