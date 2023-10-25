@@ -1,0 +1,7 @@
+---
+resources:
+  - namespace.yaml
+  - serviceaccount.yaml
+  - lsp.yaml
+  - secrets.yaml
+  - migrator.yaml

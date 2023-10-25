@@ -1,6 +1,6 @@
 ---
-bases:
-  - ../base
+resources:
+  - ../../bases
 
 nameSuffix: -beat
 

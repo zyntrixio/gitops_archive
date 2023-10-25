@@ -1,14 +1,9 @@
----
-bases:
-  - ../../../../bases/olympus/hermes/core
-  - ../../../../bases/olympus/hermes/api
-  - ../../../../bases/olympus/hermes/beat
-  - ../../../../bases/olympus/hermes/celery
-  - ../../../../bases/olympus/hermes/migrator
-  - ../../../../bases/olympus/hermes/logic
-
 resources:
-  - aad.yaml
+  - ../../../../bases/olympus/hermes/deployments/api
+  - ../../../../bases/olympus/hermes/deployments/beat
+  - ../../../../bases/olympus/hermes/deployments/celery
+  - ../../../../bases/olympus/hermes/deployments/logic
+  - ../../../../bases/olympus/hermes/essentials
 
 namespace: default
 
@@ -85,40 +80,10 @@ patches:
           "hermes.wsgi"
         ]
   - target:
-      kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: hermes
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                envFrom:
-                  - configMapRef:
-                      name: hermes
-                env:
-                  - name: HERMES_BLOB_STORAGE_DSN
-                    valueFrom:
-                      secretKeyRef:
-                        key: connection_string_primary
-                        name: azure-storage
-                  - name: HERMES_DATABASE_URL_BARE
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-postgres
-                        key: url_hermes
-                  - name: HERMES_DATABASE_URL
-                    value: $(HERMES_DATABASE_URL_BARE)&application_name=hermes
-                  - name: APPLE_CLIENT_SECRET
-                    valueFrom:
-                      secretKeyRef:
-                        key: key
-                        name: sign-in-with-apple
-                  - name: VAULT_URL
-                    valueFrom:
-                      secretKeyRef:
-                        key: url
-                        name: azure-keyvault
+      kind: Deployment|Job
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: hermes-api

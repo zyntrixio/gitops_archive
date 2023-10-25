@@ -1,0 +1,66 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hermes-migrator
+  namespace: default
+  labels:
+    app: hermes
+    component: migrator
+spec:
+  backoffLimit: 3
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: hermes
+        component: migrator
+        azure.workload.identity/use: "true"
+    spec:
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/hermes:latest
+          command: ["linkerd-await", "--shutdown", "--"]
+          args: ["python", "manage.py", "migrate"]
+          env:
+            - name: RABBIT_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-cloudamqp
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url_primary
+                  name: azure-redis
+            - name: HERMES_BLOB_STORAGE_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: connection_string_primary
+                  name: azure-storage
+            - name: HERMES_DATABASE_URL_BARE
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: url_hermes
+            - name: HERMES_DATABASE_URL
+              value: $(HERMES_DATABASE_URL_BARE)&application_name=hermes
+            - name: VAULT_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-keyvault
+          resources:
+            requests:
+              memory: 384Mi
+            limits:
+              memory: 384Mi
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+      restartPolicy: Never
+      serviceAccountName: hermes
+      priorityClassName: bink-high-tasks
+      imagePullSecrets:
+        - name: binkcore.azurecr.io

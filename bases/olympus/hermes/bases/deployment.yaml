@@ -15,7 +15,7 @@ spec:
   template:
     metadata:
       labels:
-        aadpodidbinding: hermes
+        azure.workload.identity/use: "true"
         app: hermes
       annotations:
         linkerd.io/inject: enabled
@@ -50,6 +50,21 @@ spec:
                 secretKeyRef:
                   key: url_primary
                   name: azure-redis
+            - name: HERMES_BLOB_STORAGE_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: connection_string_primary
+                  name: azure-storage
+            - name: HERMES_DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: url_hermes
+            - name: VAULT_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-keyvault
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534
