@@ -23,7 +23,7 @@ patches:
       name: hermes-api
     patch: |
       - op: replace
-        path: /spec/template/spec/containers/1/args
+        path: /spec/template/spec/containers/0/args
         value: [
           "gunicorn", "--workers=2", "--error-logfile=-", "--access-logfile=-",
           "--bind=0.0.0.0:9000", "--logger-class=hermes.reporting.CustomGunicornLogger",
