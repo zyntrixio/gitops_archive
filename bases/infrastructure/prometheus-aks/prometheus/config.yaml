@@ -60,10 +60,15 @@ scrape_configs:
         replacement: ${cluster_name}
   - job_name: cloudamqp
     basic_auth:
-      username: ${user}
-      password: ${pass}
+      username: ${cloudamqp_user}
+      password: ${cloudamqp_pass}
     scheme: https #necessary for cloudamqp instances
     # metrics_path defaults to '/metrics', which is the one used by cloudamqp instances so no need to define.
+    metrics_path: "/metrics/detailed"
+    params:
+      family:
+        - "queue_metrics"
+
     # static_configs allows specifying a list of targets and a common label set for them.
     static_configs:
     - targets: [${host}]
