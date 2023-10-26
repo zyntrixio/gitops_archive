@@ -1,10 +1,11 @@
 ---
 resources:
-  - ../base
+  - ../../bases
 
-nameSuffix: -task-worker
+nameSuffix: -cron-scheduler
+
 commonLabels:
-  component: task-worker
+  component: cron-scheduler
 
 patches:
   - target:
@@ -15,4 +16,4 @@ patches:
         value: bink-medium-tasks
       - op: replace
         path: /spec/template/spec/containers/0/args
-        value: ["python", "-m", "carina.core.cli", "task-worker"]
+        value: ["python", "-m", "carina.core.cli", "cron-scheduler"]
