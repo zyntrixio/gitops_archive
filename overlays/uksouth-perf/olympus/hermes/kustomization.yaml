@@ -26,9 +26,9 @@ patches:
       name: hermes-api
     patch: |-
       - op: remove
-        path: /spec/template/spec/containers/1/livenessProbe
+        path: /spec/template/spec/containers/0/livenessProbe
       - op: remove
-        path: /spec/template/spec/containers/1/readinessProbe
+        path: /spec/template/spec/containers/0/readinessProbe
   - target:
       kind: ServiceProfile
     patch: |-
