@@ -68,6 +68,7 @@ scrape_configs:
     params:
       family:
         - "queue_metrics"
+        - "queue_coarse_metrics"
 
     # static_configs allows specifying a list of targets and a common label set for them.
     static_configs:
