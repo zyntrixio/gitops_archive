@@ -1,0 +1,64 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: carina-migrator
+  namespace: default
+  labels:
+    app: carina
+    component: migrator
+spec:
+  backoffLimit: 3
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        kubectl.kubernetes.io/default-container: app
+        prometheus.io~1scrape: "false"
+      labels:
+        app: carina
+        component: migrator
+    spec:
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/hubble:latest
+          command: ["linkerd-await", "--shutdown", "--"]
+          args: ["alembic", "upgrade", "head"]
+          env:
+            - name: RABBITMQ_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-cloudamqp
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  key: url_primary
+                  name: azure-redis
+            - name: SQLALCHEMY_DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: url_carina
+            - name: BLOB_STORAGE_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: connection_string_primary
+                  name: azure-storage
+            - name: KEY_VAULT_URI
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: azure-keyvault
+          resources:
+            requests:
+              memory: 1Gi
+            limits:
+              memory: 1Gi
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+      restartPolicy: Never
+      serviceAccountName: carina
+      priorityClassName: bink-high-tasks
+      imagePullSecrets:
+        - name: binkcore.azurecr.io

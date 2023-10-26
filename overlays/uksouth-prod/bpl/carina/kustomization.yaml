@@ -1,11 +1,9 @@
 ---
 resources:
-  - ../../../../bases/cosmos/carina/core
-  - ../../../../bases/cosmos/carina/api
-  - ../../../../bases/cosmos/carina/migrator
-  - ../../../../bases/cosmos/carina/task-worker
-  - ../../../../bases/cosmos/carina/cron-scheduler
-  - aad.yaml
+  - ../../../../bases/cosmos/carina/deployments/api
+  - ../../../../bases/cosmos/carina/deployments/cron-scheduler
+  - ../../../../bases/cosmos/carina/deployments/task-worker
+  - ../../../../bases/cosmos/carina/essentials
 
 namespace: bpl
 
@@ -14,36 +12,12 @@ configMapGenerator:
     envs:
       - env.ini
 
-replicas:
-  - name: carina-api
-    count: 3
-  - name: carina-task-worker
-    count: 3
-
 patches:
   - target:
-      kind: Deployment
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: carina
-      spec:
-        template:
-          spec:
-            containers:
-              - name: app
-                envFrom:
-                  - configMapRef:
-                      name: carina
-                env:
-                  - name: SQLALCHEMY_DATABASE_URI
-                    valueFrom:
-                      secretKeyRef:
-                        name: azure-postgres
-                        key: url_carina
-                  - name: BLOB_STORAGE_DSN
-                    valueFrom:
-                      secretKeyRef:
-                        key: connection_string_primary
-                        name: azure-storage
+      kind: Deployment|Job
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: carina
