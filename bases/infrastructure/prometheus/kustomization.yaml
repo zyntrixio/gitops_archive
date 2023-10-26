@@ -1,9 +1,0 @@
----
-resources:
-  - azureidentity.yaml
-  - clusterrole.yaml
-  - clusterrolebinding.yaml
-  - deployment.yaml
-  - service.yaml
-  - serviceaccount.yaml
-  - volumeclaim.yaml

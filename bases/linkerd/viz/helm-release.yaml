@@ -12,7 +12,7 @@ spec:
   chart:
     spec:
       chart: linkerd-viz
-      version: 30.8.6
+      version: 30.12.2
       sourceRef:
         kind: HelmRepository
         name: linkerd
@@ -21,25 +21,6 @@ spec:
     installNamespace: false
     defaultRegistry: ghcr.io/linkerd
     enablePodAntiAffinity: true
-    tap:
-      replicas: 3
-      resources:
-        cpu:
-          limit: ''
-          request: 100m
-        memory:
-          limit: 250Mi
-          request: 50Mi
-    dashboard:
-      resources:
-        cpu:
-          limit: ''
-          request: 100m
-        memory:
-          limit: 250Mi
-          request: 50Mi
-    tapInjector:
-      replicas: 3
     grafana:
       enabled: true
     prometheus:
