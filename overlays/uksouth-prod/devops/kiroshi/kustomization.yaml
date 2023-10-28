@@ -2,7 +2,6 @@ resources:
   - ../../../../bases/devops/kiroshi/essentials
   - ../../../../bases/devops/kiroshi/jobs/migrator
   - ../../../../bases/devops/kiroshi/checks/frontdoor/ranges
-  - ../../../../bases/devops/kiroshi/checks/frontdoor/traffic
   - ../../../../bases/devops/kiroshi/checks/spreedly/certs
   - ../../../../bases/devops/kiroshi/storage/blob/itsu
   - ../../../../bases/devops/kiroshi/storage/blob/viator
@@ -11,14 +10,6 @@ resources:
 namespace: devops
 
 patches:
-  - target:
-      kind: CronJob
-      name: kiroshi-traffic
-    patch: |
-      - op: replace
-        path: /spec/suspend
-        value: false
-
   - target:
       kind: CronJob
       name: kiroshi-storage-sftp-mastercard
