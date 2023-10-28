@@ -124,20 +124,6 @@ spec:
                 name: hermes-api
                 port:
                   number: 80
-          - path: /users
-            pathType: Prefix
-            backend:
-              service:
-                name: hermes-api
-                port:
-                  number: 80
-          - path: /ubiquity
-            pathType: Prefix
-            backend:
-              service:
-                name: hermes-api
-                port:
-                  number: 80
           - path: /join
             pathType: Prefix
             backend:

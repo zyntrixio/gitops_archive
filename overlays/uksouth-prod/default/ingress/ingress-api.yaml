@@ -131,13 +131,6 @@ spec:
                 name: hermes-api
                 port:
                   number: 80
-          - path: /users
-            pathType: Prefix
-            backend:
-              service:
-                name: hermes-api
-                port:
-                  number: 80
           - path: /payment_service
             pathType: Prefix
             backend:
