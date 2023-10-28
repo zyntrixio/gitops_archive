@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - patches/core
   - patches/loader
-  - patches/api-v1
   - patches/api-v2
 namespace: olympus
 configMapGenerator:
