@@ -1,27 +1,34 @@
----
-bases:
-  - ../../../../bases/infrastructure/simpleproxy
-
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 namespace: configuration
-
-commonLabels:
-  app: proxy-postgres
-
+resources:
+- ../../../../bases/infrastructure/simpleproxy
 patches:
-  - target:
-      kind: Deployment
-    patch: |-
-      - op: replace
-        path: /metadata/name
-        value: proxy-postgres
-  - target:
-      kind: Deployment
-    patch: |-
-      - op: add
-        path: /spec/template/spec/containers/0/args
-        value:
-          - -L
-          - 0.0.0.0:5432
-          - -R
-          - uksouth-ait-39sr.postgres.database.azure.com:5432
-          - -v
+- target:
+    kind: Namespace
+  patch: |
+    - op: add
+      path: /metadata/annotations
+      value:
+        linkerd.io/inject: enabled
+- target:
+    kind: Deployment
+  patch: |
+    - op: replace
+      path: /metadata/name
+      value: proxy-postgres
+- target:
+    kind: Deployment
+  patch: |
+    - op: add
+      path: /spec/template/spec/containers/0/args
+      value:
+        - -L
+        - 0.0.0.0:5432
+        - -R
+        - uksouth-ait-39sr.postgres.database.azure.com:5432
+        - -v
+labels:
+- includeSelectors: true
+  pairs:
+    app: proxy-postgres
