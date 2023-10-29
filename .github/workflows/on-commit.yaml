@@ -10,10 +10,10 @@ on:
       - master
 
 jobs:
-  posix-newlines:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update
       - run: sudo apt-get install -y ripgrep
-      - run: rg -Ul '[^\n]\z' && (echo "Files with no trailing newline found" && exit 1)
+      - run: s/lint.sh
