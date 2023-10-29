@@ -25,6 +25,11 @@ patches:
           type: Recreate
       - op: remove
         path: /spec/template/spec/affinity
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: STATIC_URL
+          value: /config_service/static/
       - op: replace
         path: /spec/template/spec/containers/0/args
         value:
