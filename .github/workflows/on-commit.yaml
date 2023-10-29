@@ -16,4 +16,4 @@ jobs:
       - uses: actions/checkout@v4
       - run: sudo apt-get update
       - run: sudo apt-get install -y ripgrep
-      - run: rg -Ul '[^\n]\z' || (echo "Files with no trailing newline found" && exit 1)
+      - run: rg -Ul '[^\n]\z' && (echo "Files with no trailing newline found" && exit 1)
