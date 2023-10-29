@@ -24,16 +24,16 @@ groups:
         annotations:
           title: 'Dev - Container restarts'
           description: 'Container: {{$labels.container}} in Deploy: {{$labels.pod}} in Namespace: {{$labels.namespace}} is restarting alot'
-      
+
       - alert: Kube pod waiting status
         expr: sum by (reason, pod)(kube_pod_container_status_waiting_reason) > 0
         for: 5m
-        labels: 
+        labels:
           severity: p2
           cluster: dev
           component: Kubernetes
           resolve: true
-        annotations:  
+        annotations:
           title: 'Dev - Pod waiting status'
           description: 'Pod: {{$labels.pod}} is in this State: {{$labels.reason}} in this Namespace: {{$labels.namespace}}'
 
@@ -45,6 +45,3 @@ groups:
       #   annotations:
       #     resource: '{{ $labels.name }}'
       #     summary: Check sftp virtual machines - bad up state for over 3 minutes
-
-
-  

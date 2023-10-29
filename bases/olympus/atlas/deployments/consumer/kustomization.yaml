@@ -18,4 +18,3 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/command
         value: ["python","manage.py","consume"]
-        

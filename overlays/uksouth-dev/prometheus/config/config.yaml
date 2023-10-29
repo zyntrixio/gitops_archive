@@ -101,7 +101,7 @@ scrape_configs:
         action: replace
         regex: ()
         replacement: ${cluster_name}
-  
+
   - job-name: node
     static_configs:
     - targets: [localhost:9100]
