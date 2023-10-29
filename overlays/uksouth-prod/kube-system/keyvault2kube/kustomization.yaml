@@ -1,5 +1,5 @@
 ---
-bases:
+resources:
   - github.com/terrycain/keyvault2kube/deploy?ref=2.3.2
 
 configMapGenerator:

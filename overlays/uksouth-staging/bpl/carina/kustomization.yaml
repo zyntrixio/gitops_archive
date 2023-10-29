@@ -1,10 +1,11 @@
 ---
-bases:
+resources:
   - ../../../../bases/cosmos/carina/core
   - ../../../../bases/cosmos/carina/api
   - ../../../../bases/cosmos/carina/migrator
   - ../../../../bases/cosmos/carina/task-worker
   - ../../../../bases/cosmos/carina/cron-scheduler
+  - aad.yaml
 
 namespace: bpl
 
@@ -12,9 +13,6 @@ configMapGenerator:
   - name: carina
     envs:
       - env.ini
-
-resources:
-  - aad.yaml
 
 patches:
   - target:

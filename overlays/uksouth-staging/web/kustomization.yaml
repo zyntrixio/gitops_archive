@@ -1,5 +1,5 @@
 ---
-bases:
+resources:
   - ../../../bases/web/core
   - ../../../bases/web/bink
   - ../../../bases/web/wasabi

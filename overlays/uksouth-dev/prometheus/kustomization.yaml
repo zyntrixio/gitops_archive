@@ -1,4 +1,4 @@
-bases:
+resources:
   - ../../../bases/infrastructure/prometheus
 
 namespace: prometheus

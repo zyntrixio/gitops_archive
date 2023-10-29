@@ -1,9 +1,7 @@
 ---
-bases:
-  - ../../../../../bases/cosmos/cosmos/essentials
-
-namespace: bpl
-
 resources:
+  - ../../../../../bases/cosmos/cosmos/essentials
   - aad.yaml
   - ingress.yaml
+
+namespace: bpl

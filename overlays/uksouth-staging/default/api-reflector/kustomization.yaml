@@ -1,8 +1,6 @@
 ---
-bases:
-  - ../../../../bases/oss/api-reflector
-
 resources:
+  - ../../../../bases/oss/api-reflector
   - ingress.yaml
 
 configMapGenerator:

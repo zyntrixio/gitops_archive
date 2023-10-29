@@ -1,11 +1,9 @@
 ---
-bases:
+resources:
   - ../../../../bases/cosmos/event-horizon
+  - aad.yaml
 
 namespace: bpl
-
-resources:
-  - aad.yaml
 
 configMapGenerator:
   - name: event-horizon

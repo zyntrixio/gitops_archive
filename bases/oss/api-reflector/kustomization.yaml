@@ -1,5 +1,5 @@
 ---
-bases:
+resources:
   - github.com/binkhq/api-reflector/deploy/kube
 
 patches:

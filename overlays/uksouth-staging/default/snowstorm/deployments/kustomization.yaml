@@ -1,4 +1,4 @@
-bases:
+resources:
   - ../../../../../bases/devops/snowstorm/apistats
   - ../../../../../bases/devops/snowstorm/event_processor
 

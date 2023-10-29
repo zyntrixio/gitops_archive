@@ -1,9 +1,7 @@
 ---
 resources:
-  - aad.yaml
-
-bases:
   - ../../../../bases/oss/callbacca
+  - aad.yaml
 
 namespace: default
 

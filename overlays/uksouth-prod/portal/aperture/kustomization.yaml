@@ -1,5 +1,5 @@
 ---
-bases:
+resources:
   - ../../../../bases/portal/aperture/core
 
 namespace: portal

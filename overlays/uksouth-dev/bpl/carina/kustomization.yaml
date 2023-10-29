@@ -1,5 +1,5 @@
 ---
-bases:
+resources:
   - ../../../../bases/cosmos/carina/core
   - ../../../../bases/cosmos/carina/api
   - ../../../../bases/cosmos/carina/migrator
