@@ -1,8 +1,0 @@
----
-resources:
-  - namespace.yaml
-  - serviceaccount.yaml
-  - server.yaml
-  - service.yaml
-  - deployment.yaml
-  - priorityclass.yaml
