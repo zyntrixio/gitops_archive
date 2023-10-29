@@ -1,8 +1,0 @@
----
-apiVersion: scheduling.k8s.io/v1
-kind: PriorityClass
-metadata:
-  name: linkerd
-value: 900000000
-globalDefault: false
-description: This priority class should be used for linkerd pods only

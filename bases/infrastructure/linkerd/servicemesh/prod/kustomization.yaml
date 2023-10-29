@@ -1,6 +1,0 @@
----
-bases:
-  - ../base
-
-resources:
-  - helm.yaml
