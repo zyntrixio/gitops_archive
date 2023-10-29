@@ -5,14 +5,14 @@ name: update-flux
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "0 12 * * *"
 
 jobs:
   components:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Flux CLI
         uses: fluxcd/flux2/action@main
       - name: Check for updates
