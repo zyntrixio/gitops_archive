@@ -1,6 +1,7 @@
 ---
 bases:
   - https://raw.githubusercontent.com/Azure/aad-pod-identity/v1.8.9/deploy/infra/deployment-rbac.yaml
+  - https://raw.githubusercontent.com/Azure/aad-pod-identity/v1.8.9/deploy/infra/mic-exception.yaml
 
 namespace: kube-system
 
@@ -17,3 +18,17 @@ patches:
       - op: add
         path: /metadata/annotations/buoyant.cloud~1excluded
         value: "true"
+  - target:
+      kind: DaemonSet
+      name: nmi
+    patch: |-
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: system-cluster-critical
+  - target:
+      kind: Deployment
+      name: mic
+    patch: |-
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: system-cluster-critical
