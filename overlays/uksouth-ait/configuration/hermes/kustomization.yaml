@@ -1,6 +1,7 @@
 resources:
   - ../../../../bases/olympus/hermes/deployments/api
   - ../../../../bases/olympus/hermes/essentials
+  - ingress.yaml
 
 namespace: configuration
 patches:
