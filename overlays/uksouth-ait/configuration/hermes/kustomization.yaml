@@ -1,0 +1,82 @@
+resources:
+  - ../../../../bases/olympus/hermes/deployments/api
+  - ../../../../bases/olympus/hermes/essentials
+
+namespace: configuration
+patches:
+  - target:
+      kind: Namespace
+    patch: |
+      - op: replace
+        path: /metadata/annotations
+        value:
+          linkerd.io/inject: enabled
+  - target:
+      kind: Deployment|Job
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/env
+        value:
+          - name: ENVIRONMENT_COLOR
+            value: "#FF69B4"
+          - name: ENVIRONMENT_NAME
+            value: "AIT Configuration"
+          - name: HADES_URL
+            value: "http://hades"
+          - name: HERMES_CUSTOM_DOMAIN
+            value: "https://configuration.${cluster_name}.${cluster_location}.bink.sh"
+          - name: HERMES_DEBUG
+            value: "False"
+          - name: METIS_URL
+            value: "http://metis"
+          - name: MIDAS_URL
+            value: "http://midas"
+          - name: SECURE_COOKIES
+            value: "False"
+          - name: SPREEDLY_BASE_URL
+            value: "http://pelops/spreedly"
+          - name: SSO_OFF
+            value: "True"
+          - name: RABBIT_DSN
+            valueFrom:
+              secretKeyRef:
+                key: url
+                name: azure-cloudamqp
+          - name: REDIS_URL
+            valueFrom:
+              secretKeyRef:
+                key: url_primary
+                name: azure-redis
+          - name: HERMES_DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: azure-postgres
+                key: url_hermes
+          - name: VAULT_URL
+            valueFrom:
+              secretKeyRef:
+                key: url
+                name: azure-keyvault
+      - op: remove
+        path: /spec/template/spec/priorityClassName
+  - target:
+      kind: Deployment
+    patch: |
+      - op: remove
+        path: /spec/template/metadata/annotations/linkerd.io~1inject
+      - op: remove
+        path: /spec/template/metadata/annotations/prometheus.io~1job
+      - op: remove
+        path: /spec/template/metadata/annotations/prometheus.io~1port
+      - op: remove
+        path: /spec/template/metadata/annotations/prometheus.io~1scrape
+      - op: remove
+        path: /spec/template/spec/affinity
+      - op: remove
+        path: /spec/template/spec/containers/0/volumeMounts
+      - op: remove
+        path: /spec/template/spec/volumes
+      - op: remove
+        path: /spec/template/spec/containers/1
+  - path: delete-serviceprofile.yaml
+  - path: delete-secretproviderclass.yaml
