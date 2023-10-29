@@ -54,9 +54,15 @@ patches:
                 name: azure-keyvault
       - op: remove
         path: /spec/template/spec/priorityClassName
+      - op: remove
+        path: /spec/template/spec/containers/0/resources
   - target:
       kind: Deployment
     patch: |
+      - op: replace
+        path: /spec/strategy
+        value:
+          type: Recreate
       - op: replace
         path: /spec/template/spec/containers/0/args
         value:

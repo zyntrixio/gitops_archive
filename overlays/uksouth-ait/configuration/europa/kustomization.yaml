@@ -1,0 +1,42 @@
+---
+resources:
+  - ../../../../bases/olympus/europa/essentials
+  - ../../../../bases/olympus/europa/deployments/api
+  - ingress.yaml
+
+namespace: default
+
+patches:
+  - target:
+      kind: Deployment|Job
+    patch: |
+      - op: remove
+        path: /spec/template/metadata/annotations/linkerd.io~1inject
+      - op: remove
+        path: /spec/template/spec/priorityClassName
+      - op: remove
+        path: /spec/template/spec/containers/0/resources
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/strategy
+        value:
+          type: Recreate
+      - op: remove
+        path: /spec/template/spec/affinity
+
+# configMapGenerator:
+#   - name: europa
+#     envs:
+#       - env.ini
+
+# patches:
+#   - target:
+#       kind: Deployment|Job
+#     patch: |-
+#       - op: replace
+#         path: /spec/template/spec/containers/0/envFrom
+#         value:
+#           - configMapRef:
+#               name: europa

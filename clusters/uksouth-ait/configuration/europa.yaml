@@ -1,0 +1,49 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: configuration-europa
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-ait/configuration/europa
+  prune: true
+  force: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: cluster-vars
+    - kind: Secret
+      name: azure-identities
+  images:
+  - name: binkcore.azurecr.io/europa
+    newName: binkcore.azurecr.io/europa
+    newTag: staging-1.6.5 # {"$imagepolicy": "flux-system:staging-europa:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: europa
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/europa
+  interval: 30m0s
+  secretRef:
+    name: binkcore.azurecr.io
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: staging-europa
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: europa
+  filterTags:
+    pattern: staging-(?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    semver:
+      range: '>0.0.1'

@@ -10,11 +10,11 @@ spec:
     - host: configuration.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
-          - path: /
+          - path: /config_service
             pathType: Prefix
             backend:
               service:
-                name: hermes-api
+                name: europa-api
                 port:
                   number: 80
   tls:
