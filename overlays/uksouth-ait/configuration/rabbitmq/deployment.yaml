@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+  namespace: configuration
+  labels:
+    app: rabbitmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      serviceAccountName: rabbitmq
+      containers:
+      - name: rabbitmq
+        image: docker.io/rabbitmq:3-management
+        imagePullPolicy: Always
+        ports:
+        - name: amqp
+          containerPort: 5672
+        - name: http
+          containerPort: 15672

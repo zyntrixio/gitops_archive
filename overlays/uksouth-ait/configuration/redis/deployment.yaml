@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: configuration
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      serviceAccountName: redis
+      containers:
+      - name: redis
+        image: docker.io/redis:6
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 6379
+          name: redis
