@@ -38,15 +38,9 @@ patches:
           - name: SSO_OFF
             value: "True"
           - name: RABBIT_DSN
-            valueFrom:
-              secretKeyRef:
-                key: url
-                name: azure-cloudamqp
+            value: "amqp://guest:guest@rabbitmq:5672/"
           - name: REDIS_URL
-            valueFrom:
-              secretKeyRef:
-                key: url_primary
-                name: azure-redis
+            value: "redis://redis:6379/0"
           - name: HERMES_DATABASE_URL
             valueFrom:
               secretKeyRef:
