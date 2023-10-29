@@ -7,18 +7,6 @@ namespace: kube-system
 
 patches:
   - target:
-      kind: Deployment
-    patch: |-
-      - op: add
-        path: /metadata/annotations/buoyant.cloud~1excluded
-        value: "true"
-  - target:
-      kind: DaemonSet
-    patch: |-
-      - op: add
-        path: /metadata/annotations/buoyant.cloud~1excluded
-        value: "true"
-  - target:
       kind: DaemonSet
       name: nmi
     patch: |-

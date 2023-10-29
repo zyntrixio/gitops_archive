@@ -40,9 +40,6 @@ patches:
       kind: Deployment
     patch: |-
       - op: add
-        path: /metadata/annotations/buoyant.cloud~1excluded
-        value: "true"
-      - op: add
         path: /spec/template/spec/priorityClassName
         value: bink-high-tasks
   - target:

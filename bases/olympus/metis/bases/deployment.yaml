@@ -5,7 +5,7 @@ metadata:
   name: metis
   namespace: default
   labels:
-    app: /metadata/annotations/buoyant.cloud
+    app: metis
 spec:
   selector:
     matchLabels:

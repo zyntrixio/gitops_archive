@@ -6,8 +6,6 @@ metadata:
     app: pypi
   name: pypi
   namespace: default
-  annotations:
-    buoyant.cloud/excluded: 'true'
 spec:
   revisionHistoryLimit: 0
   selector:
