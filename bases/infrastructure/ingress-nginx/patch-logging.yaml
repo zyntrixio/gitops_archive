@@ -18,3 +18,4 @@ data:
   server-tokens: 'false'
   enable-underscores-in-headers: 'true'
   use-forwarded-headers: 'true'
+  allow-snippet-annotations: 'true'
