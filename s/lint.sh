@@ -6,5 +6,6 @@ if rg -Ul '[^\n]\z'; then
     echo "Files must end in a newline character" >&2
     exit 1
 else
+    echo "All files end in a newline character"
     exit 0
 fi
