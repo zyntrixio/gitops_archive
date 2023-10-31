@@ -26,7 +26,7 @@ spec:
       labels:
         app: cosmos
         component: api
-        aadpodidbinding: cosmos
+        azure.workload.identity/use: "true"
     spec:
       affinity:
         podAntiAffinity:
