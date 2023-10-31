@@ -13,7 +13,6 @@ spec:
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
-        prometheus.io~1scrape: "false"
       labels:
         app: carina
         component: migrator
