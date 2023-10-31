@@ -31,9 +31,9 @@ spec:
                   key: url_placeholder
           resources:
             requests:
-              memory: 384Mi
+              memory: 2Gi
             limits:
-              memory: 384Mi
+              memory: 2Gi
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534

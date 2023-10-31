@@ -35,9 +35,9 @@ spec:
               subPath: config.toml
           resources:
             requests:
-              memory: 512Mi
+              memory: 2Gi
             limits:
-              memory: 512Mi
+              memory: 2Gi
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534

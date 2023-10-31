@@ -30,10 +30,10 @@ spec:
                   name: azure-postgres
           resources:
             requests:
-              memory: 128Mi
-            limits:
               cpu: 1000m
-              memory: 128Mi
+              memory: 2Gi
+            limits:
+              memory: 2Gi
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534
