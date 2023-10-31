@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: binkcore.azurecr.io/hubble:latest
+          image: binkcore.azurecr.io/carina:latest
           command: ["linkerd-await", "--shutdown", "--"]
           args: ["alembic", "upgrade", "head"]
           env:
