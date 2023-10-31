@@ -7,7 +7,7 @@ metadata:
   name: kratos
   namespace: default
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: kratos
@@ -60,10 +60,10 @@ spec:
             initialDelaySeconds: 10
           resources:
             limits:
-              memory: 256Mi
+              memory: 128Mi
             requests:
               cpu: 10m
-              memory: 256Mi
+              memory: 128Mi
       serviceAccountName: kratos
       priorityClassName: bink-low-api
       imagePullSecrets:
