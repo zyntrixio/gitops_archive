@@ -7,6 +7,7 @@ metadata:
   labels:
     app: event-horizon
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: event-horizon
@@ -22,7 +23,7 @@ spec:
         kubectl.kubernetes.io/default-container: app
       labels:
         app: event-horizon
-        aadpodidbinding: event-horizon
+        azure.workload.identity/use: "true"
     spec:
       affinity:
         podAntiAffinity:
@@ -52,21 +53,6 @@ spec:
                 secretKeyRef:
                   key: url_primary
                   name: azure-redis
-            - name: POLARIS_DATABASE_URI
-              valueFrom:
-                secretKeyRef:
-                  name: azure-postgres
-                  key: url_polaris
-            - name: VELA_DATABASE_URI
-              valueFrom:
-                secretKeyRef:
-                  name: azure-postgres
-                  key: url_vela
-            - name: CARINA_DATABASE_URI
-              valueFrom:
-                secretKeyRef:
-                  name: azure-postgres
-                  key: url_carina
             - name: DATABASE_URI
               valueFrom:
                 secretKeyRef:

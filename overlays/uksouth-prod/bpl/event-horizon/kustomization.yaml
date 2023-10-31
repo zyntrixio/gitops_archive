@@ -4,10 +4,6 @@ resources:
 
 namespace: bpl
 
-replicas:
-  - name: event-horizon
-    count: 3
-
 configMapGenerator:
   - name: event-horizon
     envs:
