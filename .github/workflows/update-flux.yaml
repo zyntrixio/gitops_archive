@@ -23,7 +23,6 @@ jobs:
               ./clusters/uksouth-barclays/flux-system/gotk-components.yaml \
               ./clusters/uksouth-dev/flux-system/gotk-components.yaml \
               ./clusters/uksouth-lloyds/flux-system/gotk-components.yaml \
-              ./clusters/uksouth-perf/flux-system/gotk-components.yaml \
               ./clusters/uksouth-prod/flux-system/gotk-components.yaml \
               ./clusters/uksouth-retail/flux-system/gotk-components.yaml \
               ./clusters/uksouth-staging/flux-system/gotk-components.yaml

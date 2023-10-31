@@ -1,6 +1,0 @@
-provider_slug = "visa-settlement"
-routing_key = "transactions.visa.*"
-batch_size = 1
-
-[sender.API]
-url = "http://zephyrus-api/auth_transactions/visa"
