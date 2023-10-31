@@ -9,6 +9,7 @@ spec:
   dependsOn:
     - name: aad-pod-identity
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
