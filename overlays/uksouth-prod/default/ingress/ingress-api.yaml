@@ -103,13 +103,6 @@ spec:
                 name: zephyrus-api
                 port:
                   number: 80
-          - path: /content
-            pathType: Prefix
-            backend:
-              service:
-                name: iris-api
-                port:
-                  number: 80
           - path: /admin
             pathType: Prefix
             backend:

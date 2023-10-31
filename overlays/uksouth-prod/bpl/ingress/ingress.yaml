@@ -27,20 +27,6 @@ spec:
                 name: polaris-api
                 port:
                   number: 80
-          - path: /content
-            pathType: Prefix
-            backend:
-              service:
-                name: iris-api
-                port:
-                  number: 80
-          - path: /hypercounter
-            pathType: Prefix
-            backend:
-              service:
-                name: hypercounter-api
-                port:
-                  number: 80
           - path: /reward
             pathType: Exact
             backend:
