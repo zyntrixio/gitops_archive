@@ -16,9 +16,9 @@ spec:
     - kind: Secret
       name: azure-identities
   images:
-    - name: binkcore.azurecr.io/cyclops
-      newName: binkcore.azurecr.io/cyclops
-      newTag: 2023-01-01T234028Z # {"$imagepolicy": "flux-system:uksouth-prod-cyclops:tag"}
+  - name: binkcore.azurecr.io/cyclops
+    newName: binkcore.azurecr.io/cyclops
+    newTag: 2023-10-31T095216Z # {"$imagepolicy": "flux-system:uksouth-prod-cyclops:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
