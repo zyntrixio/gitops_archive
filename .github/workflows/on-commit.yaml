@@ -15,8 +15,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update
-      - run: sudo apt-get install -y ripgrep xxd
-      - run: xxd bases/temp/test.yaml
+      - run: sudo apt-get install -y ripgrep
       - run: s/lint.sh
-      - run: rg '[^\n]\z' bases/temp/test.yaml
-      - run: rg '[^\n]\z' bases/cosmos/aquila/deployment.yaml
