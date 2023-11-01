@@ -10,6 +10,7 @@ resources:
   - ../../../../bases/devops/kiroshi/storage/blob/viator
   - ../../../../bases/devops/kiroshi/storage/sftp/mastercard
   - ../../../../bases/devops/kiroshi/server/images
+  - ../../../../bases/devops/kiroshi/kubernetes/linkerd
 
 namespace: devops
 
