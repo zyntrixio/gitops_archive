@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/angelia
     newName: binkcore.azurecr.io/angelia
-    newTag: 2023-10-19T092226Z # {"$imagepolicy": "flux-system:uksouth-dev-angelia:tag"}
+    newTag: 2023-11-01T153514Z # {"$imagepolicy": "flux-system:uksouth-dev-angelia:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
