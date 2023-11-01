@@ -67,6 +67,8 @@ spec:
                 secretKeyRef:
                   key: url
                   name: azure-keyvault
+            - name: USE_CALLBACK_OAUTH2
+              value: "False"
           image: binkcore.azurecr.io/polaris:latest
           imagePullPolicy: Always
           securityContext:

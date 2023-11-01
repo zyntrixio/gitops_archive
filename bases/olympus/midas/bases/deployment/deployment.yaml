@@ -62,6 +62,8 @@ spec:
                 secretKeyRef:
                   key: url
                   name: azure-keyvault
+            - name: TXM_API_AUTH_ENABLED
+              value: "False"
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534
