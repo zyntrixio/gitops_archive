@@ -18,3 +18,5 @@ jobs:
       - run: sudo apt-get install -y ripgrep xxd
       - run: xxd bases/temp/test.yaml
       - run: s/lint.sh
+      - run: rg '[^\n]\z' bases/temp/test.yaml
+      - run: rg '[^\n]\z' bases/cosmos/aquila/deployment.yaml
