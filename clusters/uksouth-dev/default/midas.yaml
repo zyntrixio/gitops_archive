@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/midas
     newName: binkcore.azurecr.io/midas
-    newTag: 2023-10-25T162646Z # {"$imagepolicy": "flux-system:uksouth-dev-midas:tag"}
+    newTag: 2023-11-02T120503Z # {"$imagepolicy": "flux-system:uksouth-dev-midas:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
