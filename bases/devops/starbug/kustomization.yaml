@@ -4,6 +4,7 @@ resources:
 - namespace.yaml
 - serviceaccount.yaml
 - clusterrolebinding.yaml
+- rolebinding.yaml
 - service.yaml
 - api.yaml
 - worker.yaml
