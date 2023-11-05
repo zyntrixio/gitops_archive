@@ -20,9 +20,10 @@ spec:
           labels:
             app: pyqa-apiv2
             org: apiv2
-            aadpodidbinding: pyqa-apiv2
+            azure.workload.identity/use: "true"
         spec:
           restartPolicy: Never
+          serviceAccountName: pyqa
           imagePullSecrets:
             - name: binkcore.azurecr.io
           volumes:

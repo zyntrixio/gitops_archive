@@ -19,9 +19,10 @@ spec:
             kubectl.kubernetes.io/default-container: app
           labels:
             app: pyqa-portal
-            aadpodidbinding: pyqa-portal
+            azure.workload.identity/use: "true"
         spec:
           restartPolicy: Never
+          serviceAccountName: pyqa
           imagePullSecrets:
             - name: binkcore.azurecr.io
           volumes:

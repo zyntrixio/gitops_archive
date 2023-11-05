@@ -14,6 +14,10 @@ spec:
   - name: binkcore.azurecr.io/callbacca
     newName: binkcore.azurecr.io/callbacca
     newTag: 2023-01-24T115854Z # {"$imagepolicy": "flux-system:uksouth-staging-callbacca:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

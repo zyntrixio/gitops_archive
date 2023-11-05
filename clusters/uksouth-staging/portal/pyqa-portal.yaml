@@ -15,6 +15,10 @@ spec:
   images:
   - name: binkcore.azurecr.io/portal-rf-automation
     newTag: 2023-05-19T091609Z # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-portal:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository

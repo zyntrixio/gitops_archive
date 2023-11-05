@@ -1,7 +1,7 @@
 ---
 resources:
-  - aad.yaml
   - cronjob.yaml
+  - serviceaccount.yaml
 
 namespace: default
 

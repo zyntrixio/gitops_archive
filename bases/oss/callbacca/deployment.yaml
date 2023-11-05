@@ -22,7 +22,6 @@ spec:
         linkerd.io/inject: enabled
       labels:
         app: callbacca
-        aadpodidbinding: callbacca
     spec:
       containers:
         - image: binkcore.azurecr.io/callbacca:latest
@@ -37,9 +36,10 @@ spec:
             - containerPort: 9000
           resources:
             limits:
-              memory: 256M
+              memory: 96M
             requests:
-              memory: 256M
+              memory: 96M
       priorityClassName: bink-low-tasks
+      serviceAccountName: callbacca
       imagePullSecrets:
         - name: binkcore.azurecr.io
