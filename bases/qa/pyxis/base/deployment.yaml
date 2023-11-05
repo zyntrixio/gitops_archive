@@ -16,7 +16,6 @@ spec:
         kubectl.kubernetes.io/default-container: app
       labels:
         app: pyxis
-        aadpodidbinding: pyxis
     spec:
       affinity:
         podAntiAffinity:

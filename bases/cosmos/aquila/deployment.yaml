@@ -19,7 +19,6 @@ spec:
     metadata:
       labels:
         app: aquila
-        aadpodidbinding: aquila
       annotations:
         linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
