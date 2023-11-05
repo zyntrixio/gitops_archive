@@ -73,4 +73,4 @@ scrape_configs:
 
     # static_configs allows specifying a list of targets and a common label set for them.
     static_configs:
-    - targets: ["${cloudamqp_nodes}"]
+    - targets: [${cloudamqp_nodes}]
