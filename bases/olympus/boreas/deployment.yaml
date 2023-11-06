@@ -62,10 +62,9 @@ spec:
           name: app
           resources:
             limits:
-              memory: 128Mi
+              memory: 256Mi
             requests:
-              memory: 128Mi
-              cpu: 10m
+              memory: 256Mi
       serviceAccountName: boreas
       imagePullSecrets:
         - name: binkcore.azurecr.io

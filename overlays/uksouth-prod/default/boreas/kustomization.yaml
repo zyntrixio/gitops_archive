@@ -2,3 +2,7 @@
 resources:
   - ../../../../bases/olympus/boreas
   - ingress.yaml
+
+replicas:
+  - name: boreas
+    count: 3
