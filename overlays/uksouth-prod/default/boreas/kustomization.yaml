@@ -4,5 +4,5 @@ resources:
   - ingress.yaml
 
 replicas:
-  - name: boreas
+  - name: boreas-api
     count: 3
