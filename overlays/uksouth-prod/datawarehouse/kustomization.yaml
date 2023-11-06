@@ -19,7 +19,7 @@ patches:
       - op: replace
         path: /spec/template/spec/initContainers/0/args
         value: ["-c", "prefect config set PREFECT_API_DATABASE_CONNECTION_URL=postgresql+asyncpg://$(DATABASE_USER):$(DATABASE_PASS)@$(DATABASE_HOST):5432/prefect && prefect config set PREFECT_API_URL=https://prefect.gb.bink.com/api"]
-  
+
   - target:
       kind: Deployment
       name: prefect-agent

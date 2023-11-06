@@ -24,16 +24,16 @@ groups:
         annotations:
           title: 'Staging - Container restarts'
           description: 'Container: {{$labels.container}} in Deploy: {{$labels.pod}} in Namespace: {{$labels.namespace}} is restarting alot'
-      
+
       - alert: Kube pod waiting status
         expr: sum by (reason, pod)(kube_pod_container_status_waiting_reason) > 0
         for: 5m
-        labels: 
+        labels:
           severity: p2
           cluster: staging
           component: Kubernetes
           resolve: true
-        annotations:  
+        annotations:
           title: 'Staging - Pod waiting status'
           description: 'Pod: {{$labels.pod}} is in this State: {{$labels.reason}} in this Namespace: {{$labels.namespace}}'
 
@@ -45,7 +45,7 @@ groups:
           cluster: staging
           component: Kubernetes
           resolve: true
-        annotations: 
+        annotations:
           title: 'Staging - Pods in failed or unknown phase'
           description: 'Pod: {{$labels.pod}} is in State: {{$labels.phase}}'
       # - alert: core sftp up state

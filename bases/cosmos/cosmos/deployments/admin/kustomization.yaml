@@ -17,7 +17,7 @@ patches:
         value: bink-low-tasks
       - op: replace
         path: /spec/template/spec/containers/0/args
-        value: [ 
+        value: [
           "gunicorn",
           "--workers=2",
           "--threads=2",

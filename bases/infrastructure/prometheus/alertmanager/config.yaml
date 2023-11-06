@@ -12,7 +12,7 @@ route:
   receiver: teams_alerts_devops_no_resolve
   routes:
     #Production
-    - match: 
+    - match:
         severity: p1
         cluster: prod
         resolve: ^(true|false)$

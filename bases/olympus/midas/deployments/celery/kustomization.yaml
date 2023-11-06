@@ -18,10 +18,10 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/args
         value: [
-            "celery", "-A", 
-            "app.api.celery", 
-            "worker", "--without-gossip", 
-            "--without-mingle", 
-            "--loglevel=info", 
+            "celery", "-A",
+            "app.api.celery",
+            "worker", "--without-gossip",
+            "--without-mingle",
+            "--loglevel=info",
             "--pool=solo"
           ]

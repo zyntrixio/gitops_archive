@@ -25,7 +25,7 @@ data:
 
     opendistro_security.auth.type: "openid"
     opendistro_security.openid.connect_url: "https://login.microsoftonline.com/a6e2367a-92ea-4e5a-b565-723830bcc095/v2.0/.well-known/openid-configuration"
-    opendistro_security.openid.client_id: "d1901850-48b0-4d3e-95f1-161095364504" 
+    opendistro_security.openid.client_id: "d1901850-48b0-4d3e-95f1-161095364504"
     opendistro_security.openid.client_secret: "DOU_R2D.b85f3SA-UL.-.JtHijGQNWB2H9"
     opendistro_security.openid.base_redirect_url: "https://kibana.uksouth.bink.sh"
 
