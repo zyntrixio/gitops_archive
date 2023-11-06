@@ -13,7 +13,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/bink-api-v2-automation-suite
     newName: binkcore.azurecr.io/bink-api-v2-automation-suite
-    newTag: 2023-11-01T225549Z # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-apiv2:tag"}
+    newTag: 2023-11-06T114130Z # {"$imagepolicy": "flux-system:uksouth-staging-pyqa-apiv2:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
