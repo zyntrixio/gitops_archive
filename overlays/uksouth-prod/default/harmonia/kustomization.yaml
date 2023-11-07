@@ -24,6 +24,9 @@ resources:
   - ../../../../bases/olympus/harmonia/deployments/streaming-worker
   - ../../../../bases/olympus/harmonia/deployments/purgedb
 namespace: default
+replicas:
+  - name: harmonia-matching-worker
+    count: 9
 configMapGenerator:
   - name: harmonia
     envs:
