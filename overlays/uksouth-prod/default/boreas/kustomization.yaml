@@ -5,4 +5,4 @@ resources:
 
 replicas:
   - name: boreas-api
-    count: 3
+    count: 9
