@@ -15,7 +15,7 @@ spec:
     newName: binkcore.azurecr.io/skiron
     newTag: 2022-11-02T173253Z # {"$imagepolicy": "flux-system:uksouth-staging-skiron:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: skiron
@@ -23,10 +23,9 @@ metadata:
 spec:
   image: binkcore.azurecr.io/skiron
   interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io
+  provider: azure
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: uksouth-staging-skiron

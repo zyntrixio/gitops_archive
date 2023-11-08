@@ -19,7 +19,7 @@ spec:
       newName: binkcore.azurecr.io/iris
       newTag: staging-1.4.2 # {"$imagepolicy": "flux-system:retail-iris:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: iris
@@ -27,10 +27,9 @@ metadata:
 spec:
   image: binkcore.azurecr.io/iris
   interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io
+  provider: azure
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: retail-iris

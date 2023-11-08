@@ -43,7 +43,7 @@ spec:
     newName: binkcore.azurecr.io/atlas
     newTag: prod-2.7.0 # {"$imagepolicy": "flux-system:uksouth-prod-atlas:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: atlas
@@ -51,10 +51,9 @@ metadata:
 spec:
   image: binkcore.azurecr.io/atlas
   interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io
+  provider: azure
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: uksouth-prod-atlas

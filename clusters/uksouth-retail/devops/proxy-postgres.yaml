@@ -15,7 +15,7 @@ spec:
       newName: ghcr.io/binkhq/simpleproxy
       newTag: 2023-10-29T123113Z # {"$imagepolicy": "flux-system:uksouth-dev-simpleproxy:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: simpleproxy
@@ -24,7 +24,7 @@ spec:
   image: ghcr.io/binkhq/simpleproxy
   interval: 120m0s
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: uksouth-dev-simpleproxy

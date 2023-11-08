@@ -24,7 +24,7 @@ spec:
     newName: binkcore.azurecr.io/midas
     newTag: staging-3.45.2 # {"$imagepolicy": "flux-system:lloyds-midas:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: midas
@@ -32,10 +32,9 @@ metadata:
 spec:
   image: binkcore.azurecr.io/midas
   interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io
+  provider: azure
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: lloyds-midas

@@ -47,7 +47,7 @@ spec:
     newName: binkcore.azurecr.io/cosmos-admin
     newTag: 2023-05-09T181346Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos-admin:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: cosmos
@@ -55,10 +55,9 @@ metadata:
 spec:
   image: binkcore.azurecr.io/cosmos
   interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io
+  provider: azure
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: cosmos-admin
@@ -66,10 +65,9 @@ metadata:
 spec:
   image: binkcore.azurecr.io/cosmos-admin
   interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io
+  provider: azure
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: uksouth-dev-cosmos
@@ -84,7 +82,7 @@ spec:
     alphabetical:
       order: asc
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: uksouth-dev-cosmos-admin

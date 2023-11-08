@@ -19,7 +19,7 @@ spec:
     newName: binkcore.azurecr.io/api-reflector
     newTag: 0.8.2 # {"$imagepolicy": "flux-system:uksouth-staging-api-reflector:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: api-reflector
@@ -28,7 +28,7 @@ spec:
   image: binkcore.azurecr.io/api-reflector
   interval: 10m0s
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: uksouth-staging-api-reflector

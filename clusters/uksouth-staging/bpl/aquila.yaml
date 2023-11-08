@@ -15,7 +15,7 @@ spec:
     newName: binkcore.azurecr.io/aquila
     newTag: staging-1.1.0 # {"$imagepolicy": "flux-system:uksouth-staging-aquila:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: aquila
@@ -23,10 +23,9 @@ metadata:
 spec:
   image: binkcore.azurecr.io/aquila
   interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io
+  provider: azure
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: uksouth-staging-aquila

@@ -20,7 +20,7 @@ spec:
     newName: binkcore.azurecr.io/cyclops
     newTag: 2023-10-31T095216Z # {"$imagepolicy": "flux-system:uksouth-prod-cyclops:tag"}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: cyclops
@@ -28,10 +28,9 @@ metadata:
 spec:
   image: binkcore.azurecr.io/cyclops
   interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io
+  provider: azure
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: uksouth-prod-cyclops

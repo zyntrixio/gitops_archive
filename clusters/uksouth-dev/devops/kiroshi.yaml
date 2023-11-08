@@ -23,7 +23,7 @@ spec:
       - kind: ConfigMap
         name: cluster-vars
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: kiroshi
@@ -31,10 +31,9 @@ metadata:
 spec:
   image: binkcore.azurecr.io/kiroshi
   interval: 10m0s
-  secretRef:
-    name: binkcore.azurecr.io
+  provider: azure
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: kiroshi

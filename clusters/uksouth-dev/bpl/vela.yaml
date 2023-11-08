@@ -20,7 +20,7 @@ spec:
       - kind: Secret
         name: azure-identities
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: vela
@@ -28,10 +28,9 @@ metadata:
 spec:
   image: binkcore.azurecr.io/vela
   interval: 1m0s
-  secretRef:
-    name: binkcore.azurecr.io
+  provider: azure
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: uksouth-dev-vela
