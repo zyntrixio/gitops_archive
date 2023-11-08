@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./clusters/uksouth-sandbox/flux-system
+  path: ./clusters/uksouth-sandbox
   prune: true
   sourceRef:
     kind: GitRepository
