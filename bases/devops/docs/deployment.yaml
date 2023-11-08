@@ -36,8 +36,6 @@ spec:
               subPath: config.toml
               name: config
       serviceAccountName: docs
-      imagePullSecrets:
-        - name: binkcore.azurecr.io
       volumes:
         - name: config
           configMap:

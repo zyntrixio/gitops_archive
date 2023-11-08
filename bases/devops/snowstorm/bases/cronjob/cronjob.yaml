@@ -63,6 +63,4 @@ spec:
           restartPolicy: Never
           priorityClassName: bink-high-tasks
           serviceAccountName: snowstorm
-          imagePullSecrets:
-            - name: binkcore.azurecr.io
       backoffLimit: 3

@@ -62,5 +62,3 @@ spec:
               persistentVolumeClaim:
                 claimName: backups
           restartPolicy: Never
-          imagePullSecrets:
-            - name: binkcore.azurecr.io

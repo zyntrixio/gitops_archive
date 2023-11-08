@@ -51,5 +51,3 @@ spec:
             runAsUser: 65534
       terminationGracePeriodSeconds: 30
       serviceAccountName: snowstorm
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

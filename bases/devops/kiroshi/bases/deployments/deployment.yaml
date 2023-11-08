@@ -60,5 +60,3 @@ spec:
             runAsUser: 65534
       terminationGracePeriodSeconds: 30
       serviceAccountName: kiroshi
-      imagePullSecrets:
-        - name: binkcore.azurecr.io
