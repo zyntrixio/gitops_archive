@@ -1,0 +1,6 @@
+---
+resources:
+  - ../../../../bases/olympus/boreas
+  - ingress.yaml
+
+namespace: olympus
