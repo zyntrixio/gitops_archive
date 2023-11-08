@@ -4,3 +4,6 @@ resources:
 - certificate.yaml
 - issuer.yaml
 - ../../../bases/infrastructure/ingress-nginx
+replicas:
+- count: 1
+  name: ingress-nginx-controller
