@@ -40,5 +40,3 @@ spec:
       restartPolicy: Never
       serviceAccountName: midas
       priorityClassName: bink-high-tasks
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

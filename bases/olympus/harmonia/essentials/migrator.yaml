@@ -57,6 +57,4 @@ spec:
       restartPolicy: Never
       serviceAccountName: harmonia
       priorityClassName: bink-high-tasks
-      imagePullSecrets:
-        - name: binkcore.azurecr.io
   backoffLimit: 3

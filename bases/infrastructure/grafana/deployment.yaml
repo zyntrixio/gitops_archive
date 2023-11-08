@@ -33,8 +33,6 @@ spec:
               protocol: TCP
       dnsPolicy: ClusterFirst
       priorityClassName: bink-low-tasks
-      imagePullSecrets:
-        - name: binkcore.azurecr.io
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}

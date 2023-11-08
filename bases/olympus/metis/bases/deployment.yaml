@@ -87,5 +87,3 @@ spec:
               cpu: 10m
               memory: 64Mi
       serviceAccountName: metis
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

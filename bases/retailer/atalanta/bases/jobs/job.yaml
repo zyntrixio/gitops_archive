@@ -76,5 +76,3 @@ spec:
                   memory: 128Mi
           serviceAccountName: atalanta
           restartPolicy: Never
-          imagePullSecrets:
-            - name: binkcore.azurecr.io

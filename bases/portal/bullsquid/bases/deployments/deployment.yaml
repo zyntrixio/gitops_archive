@@ -81,5 +81,3 @@ spec:
             name: bullsquid
       priorityClassName: bink-low-api
       serviceAccountName: bullsquid
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

@@ -67,5 +67,3 @@ spec:
             runAsGroup: 65534
             runAsUser: 65534
       serviceAccountName: hermes-pcui-endpoint-mock
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

@@ -66,5 +66,3 @@ spec:
             requests:
               memory: 256Mi
       serviceAccountName: boreas
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

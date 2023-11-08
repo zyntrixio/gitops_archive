@@ -40,5 +40,3 @@ spec:
       restartPolicy: Never
       serviceAccountName: hades
       priorityClassName: bink-medium-tasks
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

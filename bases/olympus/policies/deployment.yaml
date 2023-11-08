@@ -50,5 +50,3 @@ spec:
               memory: 64Mi
               cpu: 10m
       priorityClassName: bink-medium-api
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

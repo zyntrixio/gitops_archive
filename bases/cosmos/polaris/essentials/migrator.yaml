@@ -60,5 +60,3 @@ spec:
       restartPolicy: Never
       serviceAccountName: polaris
       priorityClassName: bink-high-tasks
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

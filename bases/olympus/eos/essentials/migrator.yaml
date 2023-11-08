@@ -50,5 +50,3 @@ spec:
       restartPolicy: Never
       serviceAccountName: eos
       priorityClassName: bink-high-tasks
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

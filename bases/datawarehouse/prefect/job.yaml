@@ -16,8 +16,6 @@ spec:
         app: prefect
         component: jobs
     spec:
-      imagePullSecrets:
-        - name: binkcore.azurecr.io
       volumes:
         - name: config
           emptyDir: {}

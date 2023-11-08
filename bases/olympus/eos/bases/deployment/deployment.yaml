@@ -63,5 +63,3 @@ spec:
             runAsGroup: 65534
             runAsUser: 65534
       serviceAccountName: eos
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

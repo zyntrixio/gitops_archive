@@ -77,7 +77,5 @@ spec:
             periodSeconds: 15
             successThreshold: 1
             timeoutSeconds: 10
-      imagePullSecrets:
-        - name: binkcore.azurecr.io
       serviceAccountName: luna
       priorityClassName: bink-low-api

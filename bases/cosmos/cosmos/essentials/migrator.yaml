@@ -60,6 +60,4 @@ spec:
             runAsUser: 65534
       restartPolicy: Never
       serviceAccountName: cosmos
-      imagePullSecrets:
-        - name: binkcore.azurecr.io
   backoffLimit: 3

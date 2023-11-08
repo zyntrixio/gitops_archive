@@ -50,7 +50,5 @@ spec:
             readOnly: true
             volumeAttributes:
               secretProviderClass: locust
-      imagePullSecrets:
-        - name: binkcore.azurecr.io
       priorityClassName: bink-low-tasks
       serviceAccountName: locust

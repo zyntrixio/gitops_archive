@@ -41,5 +41,3 @@ spec:
               memory: 96M
       priorityClassName: bink-low-tasks
       serviceAccountName: callbacca
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

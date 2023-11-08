@@ -68,5 +68,3 @@ spec:
             successThreshold: 1
             timeoutSeconds: 2
       serviceAccountName: europa
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

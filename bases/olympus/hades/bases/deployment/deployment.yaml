@@ -56,5 +56,3 @@ spec:
             runAsGroup: 65534
             runAsUser: 65534
       serviceAccountName: hades
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

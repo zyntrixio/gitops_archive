@@ -107,5 +107,3 @@ spec:
           name: app
       priorityClassName: bink-high-api
       serviceAccountName: angelia
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

@@ -90,7 +90,5 @@ spec:
             readOnly: true
             volumeAttributes:
               secretProviderClass: harmonia
-      imagePullSecrets:
-        - name: binkcore.azurecr.io
       priorityClassName: bink-low-tasks
       serviceAccountName: harmonia

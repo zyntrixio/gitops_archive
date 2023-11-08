@@ -39,6 +39,4 @@ spec:
       restartPolicy: Never
       serviceAccountName: atlas
       priorityClassName: bink-high-tasks
-      imagePullSecrets:
-        - name: binkcore.azurecr.io
   backoffLimit: 3

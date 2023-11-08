@@ -39,5 +39,3 @@ spec:
             runAsGroup: 65534
             runAsUser: 65534
       serviceAccountName: cyclops
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

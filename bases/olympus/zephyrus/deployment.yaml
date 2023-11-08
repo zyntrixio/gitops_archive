@@ -88,5 +88,3 @@ spec:
             timeoutSeconds: 10
       serviceAccountName: zephyrus
       priorityClassName: bink-high-api
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

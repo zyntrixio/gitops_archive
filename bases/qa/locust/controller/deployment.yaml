@@ -40,7 +40,5 @@ spec:
               memory: 1024Mi
             requests:
               memory: 1024Mi
-      imagePullSecrets:
-        - name: binkcore.azurecr.io
       priorityClassName: bink-high-component
       serviceAccountName: locust

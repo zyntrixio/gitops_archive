@@ -77,5 +77,3 @@ spec:
               cpu: 10m
               memory: 256Mi
       serviceAccountName: atalanta
-      imagePullSecrets:
-        - name: binkcore.azurecr.io

@@ -82,8 +82,6 @@ spec:
               name: config
       serviceAccountName: prefect
       priorityClassName: bink-high-tasks
-      imagePullSecrets:
-        - name: binkcore.azurecr.io
       volumes:
         - name: config
           emptyDir: {}

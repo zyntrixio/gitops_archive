@@ -54,6 +54,4 @@ spec:
           configMap:
             defaultMode: 444
             name: bullsquid
-      imagePullSecrets:
-        - name: binkcore.azurecr.io
   backoffLimit: 3

@@ -64,6 +64,4 @@ spec:
             requests:
               cpu: 10m
               memory: 256Mi
-      imagePullSecrets:
-        - name: binkcore.azurecr.io
       serviceAccountName: hubble
