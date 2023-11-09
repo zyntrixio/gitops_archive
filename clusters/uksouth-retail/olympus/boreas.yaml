@@ -20,7 +20,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/boreas
     newName: binkcore.azurecr.io/boreas
-    newTag: staging-v0.1.3 # {"$imagepolicy": "flux-system:uksouth-retail-boreas:tag"}
+    newTag: staging-v0.1.4 # {"$imagepolicy": "flux-system:uksouth-retail-boreas:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
