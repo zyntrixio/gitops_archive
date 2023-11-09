@@ -45,6 +45,8 @@ spec:
       containers:
         - image: binkcore.azurecr.io/boreas:latest
           env:
+            - name: SENTRY_DSN
+              value: https://3da15a03d0ceedea0c4b0f5c862e711e@o503751.ingest.sentry.io/4506190606041088
             - name: RABBITMQ_DSN
               valueFrom:
                 secretKeyRef:

@@ -2,3 +2,13 @@
 resources:
   - ../../../../bases/olympus/boreas
   - ingress.yaml
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: SENTRY_ENVIRONMENT
+          value: development
