@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: app
-          args: ["starbug", "server", "0.0.0.0"]
+          args: ["starbug", "server", "--host=0.0.0.0"]
           image: binkcore.azurecr.io/starbug:latest
           containerPorts:
             - name: http
