@@ -1,0 +1,31 @@
+---
+resources:
+  - ../../../../bases/cosmos/cosmos/essentials
+  - ../../../../bases/cosmos/cosmos/deployments/admin
+  - ../../../../bases/cosmos/cosmos/deployments/accounts-api
+  - ../../../../bases/cosmos/cosmos/deployments/campaigns-api
+  - ../../../../bases/cosmos/cosmos/deployments/public-api
+  - ../../../../bases/cosmos/cosmos/deployments/transactions-api
+  - ../../../../bases/cosmos/cosmos/deployments/cron-scheduler
+  - ../../../../bases/cosmos/cosmos/deployments/task-worker
+  - ingress.yaml
+
+components:
+  - ../../../../bases/components/spotnode
+
+namespace: bpl
+
+configMapGenerator:
+  - name: cosmos
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: cosmos

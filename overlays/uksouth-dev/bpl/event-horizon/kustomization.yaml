@@ -2,6 +2,9 @@
 resources:
   - ../../../../bases/cosmos/event-horizon
 
+components:
+  - ../../../../bases/components/spotnode
+
 namespace: bpl
 
 configMapGenerator:

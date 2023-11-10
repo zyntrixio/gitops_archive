@@ -6,6 +6,9 @@ resources:
   - ../../../../bases/cosmos/polaris/deployments/tx-history-consumer
   - ../../../../bases/cosmos/polaris/essentials
 
+components:
+  - ../../../../bases/components/spotnode
+
 namespace: bpl
 
 configMapGenerator:

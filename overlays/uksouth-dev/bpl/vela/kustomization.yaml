@@ -5,6 +5,9 @@ resources:
   - ../../../../bases/cosmos/vela/deployments/task-worker
   - ../../../../bases/cosmos/vela/essentials
 
+components:
+  - ../../../../bases/components/spotnode
+
 namespace: bpl
 
 configMapGenerator:

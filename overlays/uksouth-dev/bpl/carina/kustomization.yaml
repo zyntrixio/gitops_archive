@@ -5,6 +5,9 @@ resources:
   - ../../../../bases/cosmos/carina/deployments/task-worker
   - ../../../../bases/cosmos/carina/essentials
 
+components:
+  - ../../../../bases/components/spotnode
+
 namespace: bpl
 
 configMapGenerator:

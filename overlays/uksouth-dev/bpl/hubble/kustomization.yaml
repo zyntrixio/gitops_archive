@@ -5,6 +5,9 @@ resources:
   - ../../../../bases/cosmos/hubble/deployments/task-worker
   - ../../../../bases/cosmos/hubble/essentials
 
+components:
+  - ../../../../bases/components/spotnode
+
 namespace: bpl
 
 configMapGenerator:

@@ -1,6 +1,0 @@
----
-resources:
-  - ../../../../../bases/cosmos/cosmos/essentials
-  - ingress.yaml
-
-namespace: bpl
