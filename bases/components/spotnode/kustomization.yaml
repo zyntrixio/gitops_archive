@@ -8,5 +8,5 @@ patches:
       metadata:
         name: irrelevant
         annotations:
-          scheduler.alpha.kubernetes.io/defaultTolerations: '["Key": "kubernetes.azure.com/scalesetpriority", "Operator": "Equal", "Value": "spot", "Effect": "NoSchedule"]'
+          scheduler.alpha.kubernetes.io/defaultTolerations: '[{"key": "kubernetes.azure.com/scalesetpriority", "operator": "Equal", "value": "spot", "effect": "NoSchedule"]}'
           scheduler.alpha.kubernetes.io/node-selector: kubernetes.azure.com/scalesetpriority=spot
