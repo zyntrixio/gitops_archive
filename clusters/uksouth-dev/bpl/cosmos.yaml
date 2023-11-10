@@ -19,6 +19,12 @@ spec:
   - name: binkcore.azurecr.io/cosmos-admin
     newName: binkcore.azurecr.io/cosmos-admin
     newTag: 2023-05-09T181346Z # {"$imagepolicy": "flux-system:uksouth-dev-cosmos-admin:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: cluster-vars
+    - kind: Secret
+      name: azure-identities
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
