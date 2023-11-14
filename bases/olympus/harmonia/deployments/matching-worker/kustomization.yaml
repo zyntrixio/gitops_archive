@@ -23,6 +23,9 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/resources/requests/memory
         value: 384Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/cpu
+        value: 1000m
       - op: add
         path: /spec/template/spec/containers/0/env/-
         value: {"name":"TXM_RQ_QUEUES","value":"matching"}
