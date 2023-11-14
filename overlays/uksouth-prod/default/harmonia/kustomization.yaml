@@ -34,16 +34,6 @@ configMapGenerator:
 patches:
   - target:
       kind: Deployment
-      name: harmonia-import-agent-wasabi-club
-    patch: |
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/limits/memory
-        value: 5Gi
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/requests/memory
-        value: 5Gi
-  - target:
-      kind: Deployment
       name: harmonia-matching-worker
     patch: |
       - op: replace
