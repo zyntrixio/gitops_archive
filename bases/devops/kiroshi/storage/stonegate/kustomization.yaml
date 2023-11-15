@@ -1,0 +1,32 @@
+resources:
+  - ../../bases/cronjobs
+
+commonLabels:
+  component: storage-stonegate
+
+nameSuffix: -storage-stonegate
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |
+      - op: replace
+        path: /spec/schedule
+        value: "0 * * * *"
+  - target:
+      kind: CronJob
+    patch: |
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/args
+        value:
+          - kiroshi
+          - storage
+          - stonegate
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/resources
+        value:
+          requests:
+            cpu: 10m
+            memory: 192Mi
+          limits:
+            memory: 192Mi
