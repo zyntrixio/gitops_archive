@@ -9,6 +9,7 @@ resources:
   - ../../../../bases/devops/kiroshi/storage/blob/itsu
   - ../../../../bases/devops/kiroshi/storage/blob/viator
   - ../../../../bases/devops/kiroshi/storage/sftp/mastercard
+  - ../../../../bases/devops/kiroshi/storage/stonegate
   - ../../../../bases/devops/kiroshi/server/images
   - ../../../../bases/devops/kiroshi/kubernetes/linkerd
 
