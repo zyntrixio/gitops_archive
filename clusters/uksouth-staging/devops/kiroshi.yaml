@@ -45,5 +45,5 @@ spec:
     pattern: staging-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
-    semver:
-      range: '>0.0.1'
+    alphabetical:
+      order: asc
