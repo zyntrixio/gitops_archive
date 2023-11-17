@@ -21,8 +21,10 @@ patches:
         path: /spec/template/spec/containers/0/env/-
         value: {"name":"TXM_RQ_QUEUES","value":"export"}
       - op: replace
-        path: /spec/template/spec/containers/0/resources/limits/memory
-        value: 192Mi
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/requests/memory
-        value: 192Mi
+        path: /spec/jobTemplate/spec/template/spec/containers/0/resources
+        value:
+          requests:
+            cpu: 500m
+            memory: 256Mi
+          limits:
+            memory: 256Mi
