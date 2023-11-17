@@ -21,7 +21,7 @@ patches:
         path: /spec/template/spec/containers/0/env/-
         value: {"name":"TXM_RQ_QUEUES","value":"import"}
       - op: replace
-        path: /spec/jobTemplate/spec/template/spec/containers/0/resources
+        path: /spec/template/spec/containers/0/resources
         value:
           requests:
             cpu: 500m
