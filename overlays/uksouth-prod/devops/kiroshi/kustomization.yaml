@@ -15,6 +15,10 @@ resources:
 
 namespace: devops
 
+replicas:
+  - name: kiroshi-server-images
+    count: 3
+
 patches:
   - target:
       kind: CronJob

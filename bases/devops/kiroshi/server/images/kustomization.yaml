@@ -21,3 +21,11 @@ patches:
       - op: add
         path: /spec/template/spec/containers/0/ports
         value: [{"name":"http","containerPort":6502,"protocol":"TCP"}]
+      - op: replace
+        path: /spec/template/spec/containers/0/resources
+        value:
+          requests:
+            cpu: 10m
+            memory: 192Mi
+          limits:
+            memory: 192Mi
