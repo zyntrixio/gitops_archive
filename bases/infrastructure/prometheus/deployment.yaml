@@ -87,7 +87,6 @@ spec:
               name: prometheus
           resources:
             requests:
-              cpu: 500m
               memory: 8Gi
             limits:
               cpu: 2000m

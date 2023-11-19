@@ -31,5 +31,4 @@ patches:
                   limits:
                     memory: 4Gi
                   requests:
-                    cpu: 1000m
                     memory: 4Gi
