@@ -74,6 +74,7 @@ spec:
             limits:
               memory: 384Mi
             requests:
+              cpu: 10m
               memory: 384Mi
           volumeMounts:
             - name: keyvault
@@ -91,6 +92,7 @@ spec:
             limits:
               memory: 64Mi
             requests:
+              cpu: 10m
               memory: 64Mi
       priorityClassName: bink-high-api
       serviceAccountName: hermes

@@ -74,6 +74,7 @@ spec:
               memory: 512Mi
             requests:
               memory: 512Mi
+              cpu: 10m
         - name: pushgateway
           image: binkcore.azurecr.io/pushgateway:v1.5.1
           args:
@@ -86,5 +87,6 @@ spec:
             limits:
               memory: 64Mi
             requests:
+              cpu: 10m
               memory: 64Mi
       serviceAccountName: midas

@@ -70,6 +70,7 @@ spec:
           command: ["prefect", "server", "start", "--host", "0.0.0.0", "--log-level", "WARNING"]
           resources:
             requests:
+              cpu: 10m
               memory: 1024Mi
             limits:
               cpu: 2000m

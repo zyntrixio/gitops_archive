@@ -62,6 +62,7 @@ spec:
             limits:
               memory: 128Mi
             requests:
+              cpu: 10m
               memory: 128Mi
       serviceAccountName: kratos
       priorityClassName: bink-low-api

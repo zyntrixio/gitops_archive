@@ -34,6 +34,7 @@ spec:
               memory: 128Mi
             requests:
               memory: 128Mi
+              cpu: 10m
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534

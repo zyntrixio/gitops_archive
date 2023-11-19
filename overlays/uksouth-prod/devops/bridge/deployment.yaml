@@ -35,6 +35,7 @@ spec:
               memory: 256Mi
               cpu: 1000m
             requests:
+              cpu: 10m
               memory: 256Mi
       priorityClassName: bink-high-tasks
       imagePullSecrets:
