@@ -54,6 +54,7 @@ spec:
           args: ["prefect", "agent", "start", "-q", "prod-agent"]
           resources:
             requests:
+              cpu: 250m
               memory: 1024Mi
             limits:
               cpu: 2000m
