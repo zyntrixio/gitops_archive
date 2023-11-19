@@ -38,8 +38,6 @@ patches:
       kind: Deployment
       name: harmonia-export-worker|harmonia-matching-worker
     patch: |
-      - op: remove
-        path: /spec/template/spec/affinity
       - op: add
         path: /spec/template/spec/nodeSelector
         value:

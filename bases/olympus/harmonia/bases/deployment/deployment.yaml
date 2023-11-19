@@ -24,18 +24,6 @@ spec:
         prometheus.io/port: "9100"
         prometheus.io/scrape: "true"
     spec:
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                        - harmonia
-                topologyKey: topology.kubernetes.io/zone
       containers:
         - image: binkcore.azurecr.io/harmonia:latest
           command: ["linkerd-await", "--"]
