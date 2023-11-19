@@ -28,7 +28,7 @@ spec:
         name: ghcr.io/linkerd/proxy-init
       resources:
         cpu:
-          request: 0m
+          request: 1m
     proxy:
       image:
         name: ghcr.io/linkerd/proxy
