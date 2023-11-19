@@ -36,26 +36,6 @@ configMapGenerator:
 patches:
   - target:
       kind: Deployment
-      name: harmonia-matching-worker
-    patch: |
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/limits/memory
-        value: 1Gi
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/requests/memory
-        value: 1Gi
-  - target:
-      kind: Deployment
-      name: harmonia-export-worker
-    patch: |
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/limits/memory
-        value: 500Mi
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/requests/memory
-        value: 500Mi
-  - target:
-      kind: Deployment
       name: harmonia-export-worker|harmonia-matching-worker
     patch: |
       - op: remove
