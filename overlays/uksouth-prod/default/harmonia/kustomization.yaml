@@ -26,7 +26,9 @@ resources:
 namespace: default
 replicas:
   - name: harmonia-matching-worker
-    count: 18
+    count: 30
+  - name: harmonia-export-worker
+    count: 4
 configMapGenerator:
   - name: harmonia
     envs:
@@ -52,6 +54,23 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/resources/requests/memory
         value: 500Mi
+  - target:
+      kind: Deployment
+      name: harmonia-export-worker|harmonia-matching-worker
+    patch: |
+      - op: remove
+        path: /spec/template/spec/affinity
+      - op: add
+        path: /spec/template/spec/nodeSelector
+        value:
+          kubernetes.azure.com/scalesetpriority: spot
+      - op: add
+        path: /spec/template/spec/tolerations
+        value:
+          - key: "kubernetes.azure.com/scalesetpriority"
+            operator: "Equal"
+            value: "spot"
+            effect: "NoSchedule"
   - target:
       kind: Deployment
       name: harmonia-import-agent-itsu
