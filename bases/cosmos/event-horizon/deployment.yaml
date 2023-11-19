@@ -75,7 +75,6 @@ spec:
             limits:
               memory: 1664Mi
             requests:
-              cpu: 10m
               memory: 1664Mi
           securityContext:
             runAsGroup: 65534

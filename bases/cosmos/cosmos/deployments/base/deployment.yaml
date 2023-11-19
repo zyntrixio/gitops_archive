@@ -97,6 +97,5 @@ spec:
             limits:
               memory: 256Mi
             requests:
-              cpu: 10m
               memory: 256Mi
       serviceAccountName: cosmos

@@ -56,7 +56,6 @@ spec:
             limits:
               memory: 192Mi
             requests:
-              cpu: 10m
               memory: 192Mi
           livenessProbe:
             failureThreshold: 3

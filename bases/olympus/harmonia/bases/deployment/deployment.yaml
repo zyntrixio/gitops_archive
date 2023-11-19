@@ -66,7 +66,6 @@ spec:
               memory: 128Mi
             requests:
               memory: 128Mi
-              cpu: 10m
           volumeMounts:
             - name: keyvault
               mountPath: /mnt/secrets

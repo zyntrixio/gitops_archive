@@ -48,5 +48,4 @@ spec:
               memory: 64Mi
             requests:
               memory: 64Mi
-              cpu: 10m
       priorityClassName: bink-medium-api
