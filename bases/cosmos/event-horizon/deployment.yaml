@@ -7,7 +7,6 @@ metadata:
   labels:
     app: event-horizon
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: event-horizon
