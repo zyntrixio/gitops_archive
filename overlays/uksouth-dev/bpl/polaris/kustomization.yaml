@@ -1,21 +1,17 @@
----
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 resources:
   - ../../../../bases/cosmos/polaris/deployments/api
   - ../../../../bases/cosmos/polaris/deployments/task-worker
   - ../../../../bases/cosmos/polaris/deployments/cron-scheduler
   - ../../../../bases/cosmos/polaris/deployments/tx-history-consumer
   - ../../../../bases/cosmos/polaris/essentials
-
 components:
-  - ../../../../bases/components/spotnode
-
-namespace: bpl
-
+  - ../../../../bases/components/remove-default-namespace
 configMapGenerator:
   - name: polaris
     envs:
       - env.ini
-
 patches:
   - target:
       kind: Deployment|Job

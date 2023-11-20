@@ -1,4 +1,5 @@
----
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 resources:
   - ../../../../bases/cosmos/cosmos/essentials
   - ../../../../bases/cosmos/cosmos/deployments/admin
@@ -9,17 +10,12 @@ resources:
   - ../../../../bases/cosmos/cosmos/deployments/cron-scheduler
   - ../../../../bases/cosmos/cosmos/deployments/task-worker
   - ingress.yaml
-
 components:
-  - ../../../../bases/components/spotnode
-
-namespace: bpl
-
+  - ../../../../bases/components/remove-default-namespace
 configMapGenerator:
   - name: cosmos
     envs:
       - env.ini
-
 patches:
   - target:
       kind: Deployment

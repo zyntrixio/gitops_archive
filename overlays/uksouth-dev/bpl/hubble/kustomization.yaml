@@ -1,20 +1,16 @@
----
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 resources:
   - ../../../../bases/cosmos/hubble/deployments/consumer
   - ../../../../bases/cosmos/hubble/deployments/cron-scheduler
   - ../../../../bases/cosmos/hubble/deployments/task-worker
   - ../../../../bases/cosmos/hubble/essentials
-
 components:
-  - ../../../../bases/components/spotnode
-
-namespace: bpl
-
+  - ../../../../bases/components/remove-default-namespace
 configMapGenerator:
   - name: hubble
     envs:
       - env.ini
-
 patches:
   - target:
       kind: Deployment|Job
