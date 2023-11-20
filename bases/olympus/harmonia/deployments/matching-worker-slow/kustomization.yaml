@@ -17,12 +17,14 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/args
         value: ["txcore", "worker"]
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/limits/memory
-        value: 384Mi
-      - op: replace
-        path: /spec/template/spec/containers/0/resources/requests/memory
-        value: 384Mi
       - op: add
         path: /spec/template/spec/containers/0/env/-
         value: {"name":"TXM_RQ_QUEUES","value":"matching_slow"}
+      - op: replace
+        path: /spec/template/spec/containers/0/resources
+        value:
+          requests:
+            cpu: 500m
+            memory: 512Mi
+          limits:
+            memory: 512Mi
