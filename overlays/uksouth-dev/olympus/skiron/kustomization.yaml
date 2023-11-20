@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../bases/olympus/skiron
+  - ingress.yaml
+components:
+  - ../../../../bases/components/remove-default-namespace
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: skiron
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: AMQP_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: url
+                        name: azure-cloudamqp

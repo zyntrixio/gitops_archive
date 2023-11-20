@@ -4,5 +4,19 @@ namespace: olympus
 resources:
   - namespace.yaml
   - ./angelia
-  - ./hermes
+  - ./api-reflector
+  - ./asteria
+  - ./atlas
+  - ./boreas
+  - ./callbacca
+  - ./docs
+  - ./eos
   - ./europa
+  - ./hades
+  - ./hermes
+  - ./metis
+  - ./midas
+  - ./plutus
+  - ./skiron
+  - ./snowstorm
+  - ./zephyrus

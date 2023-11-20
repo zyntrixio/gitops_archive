@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../bases/olympus/midas/deployments/api
+  - ../../../../bases/olympus/midas/deployments/beat
+  - ../../../../bases/olympus/midas/deployments/celery
+  - ../../../../bases/olympus/midas/deployments/consumer
+  - ../../../../bases/olympus/midas/deployments/worker
+  - ../../../../bases/olympus/midas/essentials
+configMapGenerator:
+  - name: midas
+    envs:
+      - env.ini
+patches:
+  - target:
+      kind: Deployment|Job
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: midas

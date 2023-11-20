@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/service-upstream: 'true'
+  name: api.${cluster_name}.${cluster_location}.bink.sh-eos
+  namespace: default
+spec:
+  rules:
+    - host: api.${cluster_name}.${cluster_location}.bink.sh
+      http:
+        paths:
+          - path: /eos
+            pathType: Prefix
+            backend:
+              service:
+                name: eos-api
+                port:
+                  number: 80
