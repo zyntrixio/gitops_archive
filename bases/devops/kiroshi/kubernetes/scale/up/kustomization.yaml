@@ -17,6 +17,6 @@ patches:
 - patch: |
     - op: replace
       path: /spec/jobTemplate/spec/template/spec/containers/0/args
-      value: ["kiroshi", "kubernetes", "scale", "--namespaces=olympus,txm,portal", "--replicas=1"]
+      value: ["kiroshi", "kubernetes", "scale", "--namespaces=olympus,bpl,txm,portal", "--replicas=1"]
   target:
     kind: CronJob
