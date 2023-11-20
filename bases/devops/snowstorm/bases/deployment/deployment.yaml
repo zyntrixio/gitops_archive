@@ -7,7 +7,6 @@ metadata:
   name: snowstorm
   namespace: default
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: snowstorm
