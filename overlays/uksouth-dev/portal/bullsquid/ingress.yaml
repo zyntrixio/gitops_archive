@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/service-upstream: 'true'
+  name: portal.${cluster_name}.${cluster_location}.bink.sh-bullsquid
+  namespace: default
+spec:
+  rules:
+    - host: portal.${cluster_name}.${cluster_location}.bink.sh
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: bullsquid-api
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - portal.${cluster_name}.${cluster_location}.bink.sh

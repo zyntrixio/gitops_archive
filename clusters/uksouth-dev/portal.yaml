@@ -1,0 +1,29 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: portal
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-dev/portal
+  prune: true
+  force: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/aperture
+    newName: binkcore.azurecr.io/aperture
+    newTag: 2023-10-26T151859Z # {"$imagepolicy": "flux-system:aperture:tag"}
+  - name: binkcore.azurecr.io/bullsquid
+    newName: binkcore.azurecr.io/bullsquid
+    newTag: 2023-11-20T151547Z # {"$imagepolicy": "flux-system:bullsquid:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: cluster-vars
+    - kind: Secret
+      name: azure-identities
+    - kind: Secret
+      name: azure-keyvault

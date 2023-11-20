@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/service-upstream: 'true'
+  name: portal.${cluster_name}.${cluster_location}.bink.sh-aperture
+  namespace: default
+spec:
+  rules:
+    - host: portal.${cluster_name}.${cluster_location}.bink.sh
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: aperture
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - portal.${cluster_name}.${cluster_location}.bink.sh
