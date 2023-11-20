@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../bases/olympus/angelia
+components:
+  - ../../../../bases/components/remove-default-namespace
+configMapGenerator:
+  - name: angelia
+    envs:
+      - env.ini
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: angelia

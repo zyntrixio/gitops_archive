@@ -20,29 +20,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/metis
       newName: binkcore.azurecr.io/metis
-      newTag: 2023-10-30T115600Z # {"$imagepolicy": "flux-system:uksouth-dev-metis:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: metis
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/metis
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-dev-metis
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: metis
-  filterTags:
-    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
-    extract: $ts
-  policy:
-    alphabetical:
-      order: asc
+      newTag: 2023-10-30T115600Z # {"$imagepolicy": "flux-system:metis:tag"}

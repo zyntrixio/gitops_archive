@@ -17,28 +17,4 @@ spec:
   images:
     - name: binkcore.azurecr.io/api-reflector
       newName: binkcore.azurecr.io/api-reflector
-      newTag: 0.8.2 # {"$imagepolicy": "flux-system:uksouth-dev-api-reflector:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: api-reflector
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/api-reflector
-  interval: 10m0s
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-dev-api-reflector
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: api-reflector
-  filterTags:
-    pattern: (?P<ts>\d+(\.\d+)*)$
-    extract: $ts
-  policy:
-    semver:
-      range: '>0.1.0'
+      newTag: 0.8.2 # {"$imagepolicy": "flux-system:api-reflector:tag"}

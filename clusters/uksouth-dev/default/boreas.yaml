@@ -20,29 +20,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/boreas
     newName: binkcore.azurecr.io/boreas
-    newTag: 2023-11-11T161849Z # {"$imagepolicy": "flux-system:uksouth-dev-boreas:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: boreas
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/boreas
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-dev-boreas
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: boreas
-  filterTags:
-    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
-    extract: $ts
-  policy:
-    alphabetical:
-      order: asc
+    newTag: 2023-11-11T161849Z # {"$imagepolicy": "flux-system:boreas:tag"}

@@ -1,12 +1,12 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: angelia
+  name: olympus
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/default/angelia
-  force: true
+  path: ./overlays/uksouth-dev/olympus
   prune: true
   sourceRef:
     kind: GitRepository
@@ -15,7 +15,14 @@ spec:
   - name: binkcore.azurecr.io/angelia
     newName: binkcore.azurecr.io/angelia
     newTag: 2023-11-15T133650Z # {"$imagepolicy": "flux-system:angelia:tag"}
+  - name: binkcore.azurecr.io/hermes
+    newName: binkcore.azurecr.io/hermes
+    newTag: 2023-11-16T095103Z # {"$imagepolicy": "flux-system:hermes:tag"}
   postBuild:
     substituteFrom:
+    - kind: ConfigMap
+      name: cluster-vars
+    - kind: Secret
+      name: azure-keyvault
     - kind: Secret
       name: azure-identities

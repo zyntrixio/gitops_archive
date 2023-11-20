@@ -40,28 +40,3 @@ spec:
   - name: binkcore.azurecr.io/snowstorm
     newName: binkcore.azurecr.io/snowstorm
     newTag: 2023-11-16T130938Z # {"$imagepolicy": "flux-system:snowstorm:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: snowstorm
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/snowstorm
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: snowstorm
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: snowstorm
-  filterTags:
-    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
-    extract: $ts
-  policy:
-    alphabetical:
-      order: asc
