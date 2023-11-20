@@ -5,3 +5,4 @@ resources:
 - ../../../../bases/devops/kiroshi/essentials
 - ../../../../bases/devops/kiroshi/server/images
 - ../../../../bases/devops/kiroshi/kubernetes/linkerd
+- ../../../../bases/devops/kiroshi/kubernetes/scale
