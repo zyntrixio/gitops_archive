@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bpl
+  annotations:
+    scheduler.alpha.kubernetes.io/defaultTolerations: '[
+        {"key": "bink.com/workload", "operator": "Equal", "value": "bpl", "effect": "NoSchedule"}
+      ]'
+    scheduler.alpha.kubernetes.io/node-selector: bink.com/workload=bpl
+    linkerd.io/inject: enabled

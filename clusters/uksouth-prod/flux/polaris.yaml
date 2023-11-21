@@ -1,0 +1,25 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: polaris
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/polaris
+  interval: 5m0s
+  provider: azure
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: polaris
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: polaris
+  filterTags:
+    pattern: prod-(?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    semver:
+      range: '>0.0.1'

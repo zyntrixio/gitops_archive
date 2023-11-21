@@ -1,0 +1,39 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: bpl
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod/bpl
+  prune: true
+  force: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: binkcore.azurecr.io/aquila
+    newName: binkcore.azurecr.io/aquila
+    newTag: prod-1.0.3 # {"$imagepolicy": "flux-system:aquila:tag"}
+  - name: binkcore.azurecr.io/carina
+    newName: binkcore.azurecr.io/carina
+    newTag: prod-3.1.0 # {"$imagepolicy": "flux-system:carina:tag"}
+  - name: binkcore.azurecr.io/event-horizon
+    newName: binkcore.azurecr.io/event-horizon
+    newTag: prod-1.7.15 # {"$imagepolicy": "flux-system:event-horizon:tag"}
+  - name: binkcore.azurecr.io/hubble
+    newName: binkcore.azurecr.io/hubble
+    newTag: prod-1.4.1 # {"$imagepolicy": "flux-system:uksouth-prod-hubble:tag"}
+  - name: binkcore.azurecr.io/polaris
+    newName: binkcore.azurecr.io/polaris
+    newTag: prod-3.4.2 # {"$imagepolicy": "flux-system:uksouth-prod-polaris:tag"}
+  - name: binkcore.azurecr.io/vela
+    newName: binkcore.azurecr.io/vela
+    newTag: prod-2.5.7 # {"$imagepolicy": "flux-system:uksouth-prod-vela:tag"}
+  postBuild:
+    substituteFrom:
+    - kind: Secret
+      name: azure-identities
+    - kind: ConfigMap
+      name: cluster-vars

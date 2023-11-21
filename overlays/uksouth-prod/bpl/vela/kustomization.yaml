@@ -1,18 +1,17 @@
----
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 resources:
   - ../../../../bases/cosmos/vela/deployments/api
   - ../../../../bases/cosmos/vela/deployments/cron-scheduler
   - ../../../../bases/cosmos/vela/deployments/task-worker
   - ../../../../bases/cosmos/vela/essentials
-
-namespace: bpl
-
+components:
+  - ../../../../bases/components/remove-default-namespace
 replicas:
   - name: vela-api
     count: 3
   - name: vela-task-worker
-    count: 3
-
+    count: 1
 configMapGenerator:
   - name: vela
     envs:
@@ -20,7 +19,6 @@ configMapGenerator:
   - name: vela-scripts
     files:
       - scripts/trigger_reward_adjustments.py
-
 patches:
   - target:
       kind: Deployment|Job

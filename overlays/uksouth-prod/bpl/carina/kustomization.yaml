@@ -1,17 +1,16 @@
----
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 resources:
   - ../../../../bases/cosmos/carina/deployments/api
   - ../../../../bases/cosmos/carina/deployments/cron-scheduler
   - ../../../../bases/cosmos/carina/deployments/task-worker
   - ../../../../bases/cosmos/carina/essentials
-
-namespace: bpl
-
+components:
+  - ../../../../bases/components/remove-default-namespace
 configMapGenerator:
   - name: carina
     envs:
       - env.ini
-
 patches:
   - target:
       kind: Deployment|Job

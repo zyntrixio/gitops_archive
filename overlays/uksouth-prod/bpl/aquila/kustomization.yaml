@@ -1,17 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 resources:
-- ../../../../bases/cosmos/aquila
-
-namespace: bpl
-
+  - ../../../../bases/cosmos/aquila
+components:
+  - ../../../../bases/components/remove-default-namespace
 replicas:
   - count: 1
     name: aquila
-
 configMapGenerator:
   - name: aquila
     envs:
       - env.ini
-
 patches:
   - target:
       kind: Deployment
