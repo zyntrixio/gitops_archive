@@ -88,5 +88,4 @@ patches:
         path: /spec/template/spec/volumes
       - op: remove
         path: /spec/template/spec/containers/1
-  - path: delete-serviceprofile.yaml
   - path: delete-secretproviderclass.yaml

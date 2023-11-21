@@ -1,5 +1,0 @@
-$patch: delete
-apiVersion: linkerd.io/v1alpha2
-kind: ServiceProfile
-metadata:
-  name: hermes-api.default.svc.cluster.local

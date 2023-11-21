@@ -15,12 +15,6 @@ configMapGenerator:
       - env.ini
 patches:
   - target:
-      kind: ServiceProfile
-    patch: |-
-      - op: replace
-        path: /metadata/name
-        value: hermes-api.barclays-sit.svc.cluster.local
-  - target:
       kind: Deployment|Job
     patch: |
       - op: replace

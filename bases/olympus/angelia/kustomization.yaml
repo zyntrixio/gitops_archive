@@ -4,4 +4,3 @@ resources:
   - serviceaccount.yaml
   - service.yaml
   - deployment.yaml
-  - lsp.yaml
