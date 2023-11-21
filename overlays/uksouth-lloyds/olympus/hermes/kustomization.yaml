@@ -1,18 +1,18 @@
----
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 resources:
   - ../../../../bases/olympus/hermes/deployments/api
   - ../../../../bases/olympus/hermes/deployments/beat
   - ../../../../bases/olympus/hermes/deployments/celery
   - ../../../../bases/olympus/hermes/deployments/logic
   - ../../../../bases/olympus/hermes/essentials
-
-namespace: olympus
-
+  - ingress.yaml
+components:
+  - ../../../../bases/components/remove-default-namespace
 configMapGenerator:
   - name: hermes
     envs:
       - env.ini
-
 patches:
   - target:
       kind: ServiceProfile

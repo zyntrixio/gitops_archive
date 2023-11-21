@@ -4,21 +4,20 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
-    nginx.ingress.kubernetes.io/use-regex: 'true'
-  name: reflector.${cluster_name}.${cluster_location}.bink.sh
+  name: audit.${cluster_name}.${cluster_location}.bink.sh
   namespace: default
 spec:
   rules:
-    - host: reflector.${cluster_name}.${cluster_location}.bink.sh
+    - host: audit.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: api-reflector
+                name: atlas-api
                 port:
                   number: 80
   tls:
     - hosts:
-        - reflector.${cluster_name}.${cluster_location}.bink.sh
+        - audit.${cluster_name}.${cluster_location}.bink.sh
