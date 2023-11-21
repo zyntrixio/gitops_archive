@@ -23,7 +23,8 @@ resources:
   - ../../../../bases/olympus/harmonia/deployments/matching-worker-slow
   - ../../../../bases/olympus/harmonia/deployments/streaming-worker
   - ../../../../bases/olympus/harmonia/deployments/purgedb
-namespace: default
+components:
+  - ../../../../bases/components/remove-default-namespace
 replicas:
   - name: harmonia-matching-worker
     count: 42
@@ -34,21 +35,6 @@ configMapGenerator:
     envs:
       - env.ini
 patches:
-  - target:
-      kind: Deployment
-      name: harmonia-export-worker|harmonia-matching-worker
-    patch: |
-      - op: add
-        path: /spec/template/spec/nodeSelector
-        value:
-          kubernetes.azure.com/scalesetpriority: spot
-      - op: add
-        path: /spec/template/spec/tolerations
-        value:
-          - key: "kubernetes.azure.com/scalesetpriority"
-            operator: "Equal"
-            value: "spot"
-            effect: "NoSchedule"
   - target:
       kind: Deployment
       name: harmonia-import-agent-itsu
