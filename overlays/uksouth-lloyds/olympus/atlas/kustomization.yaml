@@ -1,15 +1,14 @@
----
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 resources:
-  - ../../../../../bases/olympus/atlas/deployments/api
-  - ../../../../../bases/olympus/atlas/deployments/consumer
-
-namespace: olympus
-
+  - ../../../../bases/olympus/atlas/deployments/api
+  - ../../../../bases/olympus/atlas/deployments/consumer
+  - ../../../../bases/olympus/atlas/essentials
+  - ingress.yaml
 configMapGenerator:
   - name: atlas
     envs:
       - env.ini
-
 patches:
   - target:
       kind: Deployment
