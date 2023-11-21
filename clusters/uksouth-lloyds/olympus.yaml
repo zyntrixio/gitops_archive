@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/angelia
     newName: binkcore.azurecr.io/angelia
-    newTag: staging-1.26.0 # {"$imagepolicy": "flux-system:angelia:tag"}
+    newTag: lloyds-1.26.0 # {"$imagepolicy": "flux-system:angelia:tag"}
   - name: binkcore.azurecr.io/api-reflector
     newName: binkcore.azurecr.io/api-reflector
     newTag: 0.7.0 # {"$imagepolicy": "flux-system:api-reflector:tag"}
@@ -26,7 +26,7 @@ spec:
     newTag: 2023-01-24T115854Z # {"$imagepolicy": "flux-system:callbacca:tag"}
   - name: binkcore.azurecr.io/docs
     newName: binkcore.azurecr.io/docs
-    newTag: staging-v1.2.0 # {"$imagepolicy": "flux-system:docs:tag"}
+    newTag: lloyds-v1.2.0 # {"$imagepolicy": "flux-system:docs:tag"}
   - name: binkcore.azurecr.io/europa
     newName: binkcore.azurecr.io/europa
     newTag: staging-1.6.5 # {"$imagepolicy": "flux-system:europa:tag"}
