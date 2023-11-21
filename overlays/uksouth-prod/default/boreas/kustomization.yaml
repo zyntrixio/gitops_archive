@@ -5,7 +5,7 @@ resources:
 
 replicas:
   - name: boreas-api
-    count: 9
+    count: 3
 
 patches:
   - target:
