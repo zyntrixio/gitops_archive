@@ -9,7 +9,7 @@ components:
   - ../../../../bases/components/remove-default-namespace
 replicas:
   - name: vela-api
-    count: 3
+    count: 2
   - name: vela-task-worker
     count: 1
 configMapGenerator:

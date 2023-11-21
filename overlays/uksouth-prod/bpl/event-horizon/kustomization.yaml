@@ -4,6 +4,9 @@ resources:
   - ../../../../bases/cosmos/event-horizon
 components:
   - ../../../../bases/components/remove-default-namespace
+replicas:
+  - name: event-horizon
+    count: 1
 configMapGenerator:
   - name: event-horizon
     envs:

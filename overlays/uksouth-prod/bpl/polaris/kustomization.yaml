@@ -14,7 +14,7 @@ configMapGenerator:
       - env.ini
 replicas:
   - name: polaris-api
-    count: 3
+    count: 2
   - name: polaris-task-worker
     count: 1
 patches:
