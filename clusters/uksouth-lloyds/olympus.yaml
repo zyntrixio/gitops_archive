@@ -46,8 +46,8 @@ spec:
     newName: binkcore.azurecr.io/midas
     newTag: staging-3.46.0 # {"$imagepolicy": "flux-system:midas:tag"}
   - name: binkcore.azurecr.io/pelops
-  newName: binkcore.azurecr.io/pelops
-  newTag: staging-1.1.7 # {"$imagepolicy": "flux-system:pelops:tag"}
+    newName: binkcore.azurecr.io/pelops
+    newTag: staging-1.1.7 # {"$imagepolicy": "flux-system:pelops:tag"}
   postBuild:
     substituteFrom:
     - kind: ConfigMap
