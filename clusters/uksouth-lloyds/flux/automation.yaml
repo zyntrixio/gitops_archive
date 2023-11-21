@@ -17,7 +17,7 @@ spec:
         email: support@weave.works
         name: Flux Weave
       messageTemplate: '[ci skip] {{range .Updated.Images}}{{println .}}{{end}}'
-  interval: 1m0s
+  interval: 5m0s
   update:
     strategy: Setters
     path: ./clusters/uksouth-lloyds
