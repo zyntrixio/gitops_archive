@@ -3,7 +3,6 @@ resources:
   - namespace.yaml
   - serviceaccount.yaml
   - secretproviderclass.yaml
-  - lsp.yaml
   - workloads/migrator
   - workloads/api
   - workloads/worker

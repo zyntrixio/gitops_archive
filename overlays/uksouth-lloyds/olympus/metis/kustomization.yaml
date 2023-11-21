@@ -13,12 +13,6 @@ configMapGenerator:
 
 patches:
   - target:
-      kind: ServiceProfile
-    patch: |-
-      - op: replace
-        path: /metadata/name
-        value: metis-api.lloyds-sit.svc.cluster.local
-  - target:
       kind: Deployment
     patch: |
       - op: replace
