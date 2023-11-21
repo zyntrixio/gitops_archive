@@ -24,13 +24,13 @@ spec:
     newTag: prod-1.7.15 # {"$imagepolicy": "flux-system:event-horizon:tag"}
   - name: binkcore.azurecr.io/hubble
     newName: binkcore.azurecr.io/hubble
-    newTag: prod-1.4.1 # {"$imagepolicy": "flux-system:uksouth-prod-hubble:tag"}
+    newTag: prod-1.4.1 # {"$imagepolicy": "flux-system:hubble:tag"}
   - name: binkcore.azurecr.io/polaris
     newName: binkcore.azurecr.io/polaris
-    newTag: prod-3.4.2 # {"$imagepolicy": "flux-system:uksouth-prod-polaris:tag"}
+    newTag: prod-3.4.2 # {"$imagepolicy": "flux-system:polaris:tag"}
   - name: binkcore.azurecr.io/vela
     newName: binkcore.azurecr.io/vela
-    newTag: prod-2.5.7 # {"$imagepolicy": "flux-system:uksouth-prod-vela:tag"}
+    newTag: prod-2.5.7 # {"$imagepolicy": "flux-system:vela:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
