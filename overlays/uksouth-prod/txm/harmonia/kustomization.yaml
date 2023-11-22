@@ -27,7 +27,7 @@ components:
   - ../../../../bases/components/remove-default-namespace
 replicas:
   - name: harmonia-matching-worker
-    count: 42
+    count: 70
   - name: harmonia-export-worker
     count: 4
 configMapGenerator:
