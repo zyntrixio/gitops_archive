@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exporter-rq
+  namespace: exporters
+  labels:
+    kind: exporter
+    component: rq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      kind: exporter
+      component: rq
+  template:
+    metadata:
+      labels:
+        kind: exporter
+        component: rq
+    spec:
+      containers:
+        - name: app
+          image: docker.io/mdawar/rq-exporter:v2.1.0
+          imagePullPolicy: Always
+          env:
+            - name: RQ_REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: azure-redis
+                  key: url_primary
+          resources:
+            limits:
+              memory: 256Mi
+              cpu: 1000m
+            requests:
+              memory: 256Mi
+              cpu: 200m
+          ports:
+            - containerPort: 9726
+              name: http
+              protocol: TCP
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: false
+            runAsUser: 999
