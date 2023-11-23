@@ -17,6 +17,11 @@ spec:
       labels:
         kind: exporter
         component: rq
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        prometheus.io/port: '9726'
+        prometheus.io/scrape: 'true'
+        prometheus.io/job: rq
     spec:
       containers:
         - name: app
