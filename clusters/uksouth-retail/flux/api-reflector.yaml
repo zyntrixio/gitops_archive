@@ -2,24 +2,24 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: docs
+  name: api-reflector
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/docs
+  image: binkcore.azurecr.io/api-reflector
   interval: 5m0s
   provider: azure
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: docs
+  name: api-reflector
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: docs
+    name: api-reflector
   filterTags:
-    pattern: staging-v(?P<ts>\d+(\.\d+)*)$
+    pattern: staging-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:
-      range: '>0.0.1'
+      range: '>0.1.0'
