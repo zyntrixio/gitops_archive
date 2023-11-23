@@ -2,23 +2,23 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: docs
+  name: midas
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/docs
+  image: binkcore.azurecr.io/midas
   interval: 5m0s
   provider: azure
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: docs
+  name: midas
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: docs
+    name: midas
   filterTags:
-    pattern: staging-v(?P<ts>\d+(\.\d+)*)$
+    pattern: staging-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:

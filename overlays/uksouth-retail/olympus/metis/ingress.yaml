@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/service-upstream: 'true'
+  name: api.${cluster_name}.${cluster_location}.bink.sh-metis
+  namespace: default
+spec:
+  rules:
+    - host: api.${cluster_name}.${cluster_location}.bink.sh
+      http:
+        paths:
+          - path: /payment_service
+            pathType: Prefix
+            backend:
+              service:
+                name: metis-api
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - api.${cluster_name}.${cluster_location}.bink.sh
