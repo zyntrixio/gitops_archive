@@ -6,7 +6,7 @@ domain = "https://bink-prod.uk.auth0.com/"
 mgmt_client_id = "AcR3Yx8w7SyC0arLlsPAdrMo84yJa63Z"
 
 [txm]
-base_url = "http://harmonia-api.default"
+base_url = "http://harmonia-api.txm"
 api_key = "F616CE5C88744DD52DB628FAD8B3D"
 
 [sentry]
