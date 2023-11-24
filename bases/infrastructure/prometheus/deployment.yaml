@@ -77,7 +77,7 @@ spec:
               mountPath: /configmap
       containers:
         - name: prometheus
-          image: docker.io/prom/prometheus:v2.38.0
+          image: docker.io/prom/prometheus:v2.48.0
           args:
             - --storage.tsdb.retention.time=30d
             - --config.file=/etc/prometheus/prometheus.yaml
