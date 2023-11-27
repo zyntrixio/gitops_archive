@@ -9,12 +9,19 @@ replicas:
 patches:
   - target:
       kind: Deployment
-    patch: |
-      - op: add
-        path: /spec/template/spec/containers/0/env
-        value:
-          name: POSTGRES_DSN
-          valueFrom:
-            secretKeyRef:
-              name: azure-postgres
-              key: url_hermes
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: asteria
+      spec:
+        template:
+          spec:
+            containers:
+              - name: app
+                env:
+                  - name: POSTGRES_DSN
+                    valueFrom:
+                      secretKeyRef:
+                        key: url_hermes
+                        name: azure-postgres
