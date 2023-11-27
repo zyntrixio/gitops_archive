@@ -1,7 +1,7 @@
 ---
 resources:
   - ../../../../bases/olympus/zephyrus
-  # - ingress.yaml
+  - ingress.yaml
 
 components:
   - ../../../../bases/components/remove-default-namespace

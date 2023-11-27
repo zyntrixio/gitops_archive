@@ -3,7 +3,7 @@ resources:
   - ../../../../bases/olympus/eos/deployments/api
   - ../../../../bases/olympus/eos/deployments/worker
   - ../../../../bases/olympus/eos/essentials
-  # - ingress.yaml
+  - ingress.yaml
 
 namespace: olympus
 
