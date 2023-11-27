@@ -3,6 +3,9 @@ resources:
   - ../../../../bases/olympus/zephyrus
   - ingress.yaml
 
+components:
+  - ../../../../bases/components/remove-default-namespace
+
 namespace: olympus
 
 configMapGenerator:

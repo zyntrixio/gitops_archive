@@ -6,6 +6,9 @@ resources:
   - ../../../../bases/olympus/hermes/deployments/logic
   - ../../../../bases/olympus/hermes/essentials
 
+components:
+  - ../../../../bases/components/remove-default-namespace
+
 namespace: olympus
 
 replicas:
