@@ -1,7 +1,7 @@
 ---
 resources:
   - ../../../../bases/oss/api-reflector
-  # - ingress.yaml
+  - ingress.yaml
 
 namespace: olympus
 
