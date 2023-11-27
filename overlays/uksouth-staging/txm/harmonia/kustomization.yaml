@@ -25,6 +25,8 @@ resources:
   - ../../../../bases/olympus/harmonia/deployments/streaming-worker
   - ../../../../bases/olympus/harmonia/deployments/purgedb
   - ingress.yaml
+components:
+  - ../../../../bases/components/remove-default-namespace
 namespace: txm
 configMapGenerator:
   - name: harmonia
