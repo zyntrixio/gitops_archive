@@ -2,8 +2,6 @@
 resources:
   - ../../../../bases/oss/callbacca
 
-namespace: olympus
-
 configMapGenerator:
   - name: callbacca
     envs:

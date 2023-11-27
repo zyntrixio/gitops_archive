@@ -5,8 +5,6 @@ resources:
   - ../../../../bases/olympus/eos/essentials
   - ingress.yaml
 
-namespace: olympus
-
 configMapGenerator:
   - name: eos
     envs:

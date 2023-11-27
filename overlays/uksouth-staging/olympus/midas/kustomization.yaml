@@ -7,8 +7,6 @@ resources:
   - ../../../../bases/olympus/midas/deployments/worker
   - ../../../../bases/olympus/midas/essentials
 
-namespace: olympus
-
 configMapGenerator:
   - name: midas
     envs:

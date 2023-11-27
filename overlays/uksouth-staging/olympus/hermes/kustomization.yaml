@@ -10,8 +10,6 @@ resources:
 components:
   - ../../../../bases/components/remove-default-namespace
 
-namespace: olympus
-
 replicas:
   - name: hermes-api
     count: 1

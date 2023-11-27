@@ -3,8 +3,6 @@ resources:
   - cronjob.yaml
   - serviceaccount.yaml
 
-namespace: olympus
-
 configMapGenerator:
   - name: pyqa-apiv2
     envs:

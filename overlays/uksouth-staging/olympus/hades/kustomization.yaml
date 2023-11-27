@@ -3,8 +3,6 @@ resources:
   - ../../../../bases/olympus/hades/deployments/api
   - ../../../../bases/olympus/hades/essentials
 
-namespace: olympus
-
 configMapGenerator:
   - name: hades
     envs:

@@ -3,7 +3,8 @@ resources:
   - ../../../../bases/olympus/angelia
   - ingress.yaml
 
-namespace: olympus
+components:
+  - ../../../../bases/components/remove-default-namespace
 
 configMapGenerator:
   - name: angelia

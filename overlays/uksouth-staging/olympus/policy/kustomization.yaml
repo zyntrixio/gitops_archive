@@ -3,8 +3,6 @@ resources:
   - ../../../../bases/olympus/policies
   - ingress.yaml
 
-namespace: olympus
-
 replicas:
   - name: policies
     count: 1

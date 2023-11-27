@@ -6,8 +6,6 @@ resources:
 components:
   - ../../../../bases/components/remove-default-namespace
 
-namespace: olympus
-
 configMapGenerator:
   - name: zephyrus
     envs:

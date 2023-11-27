@@ -4,8 +4,6 @@ resources:
   - ../../../../bases/olympus/metis/deployments/celery
   - ../../../../bases/olympus/metis/essentials
 
-namespace: olympus
-
 configMapGenerator:
   - name: metis
     envs:

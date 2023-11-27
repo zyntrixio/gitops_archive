@@ -6,7 +6,7 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/service-upstream: 'true'
   name: audit.${cluster_name}.${cluster_location}.bink.sh
-  namespace: olympus
+  namespace: default
 spec:
   rules:
     - host: audit.${cluster_name}.${cluster_location}.bink.sh

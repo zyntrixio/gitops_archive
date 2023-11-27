@@ -3,8 +3,6 @@ resources:
   - ../../../../bases/olympus/pelops
   - ingress.yaml
 
-namespace: olympus
-
 configMapGenerator:
   - name: pelops
     envs:

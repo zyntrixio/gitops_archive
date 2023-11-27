@@ -6,8 +6,6 @@ replicas:
   - name: asteria
     count: 1
 
-namespace: olympus
-
 patches:
   - target:
       kind: Deployment
