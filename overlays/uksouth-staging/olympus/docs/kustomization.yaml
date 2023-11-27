@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: olympus
 resources:
   - ../../../../bases/devops/docs
-  # - ingress/root.yaml
+  - ingress/root.yaml
 configMapGenerator:
   - name: docs-config
     files:
