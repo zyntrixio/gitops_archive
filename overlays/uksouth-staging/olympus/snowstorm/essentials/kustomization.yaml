@@ -2,6 +2,6 @@ resources:
   - ../../../../../bases/devops/snowstorm/essentials
 
 components:
-  - ../../../../bases/components/remove-default-namespace
+  - ../../../../../bases/components/remove-default-namespace
 
 namespace: olympus
