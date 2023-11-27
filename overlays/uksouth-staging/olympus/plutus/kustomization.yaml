@@ -3,9 +3,10 @@ resources:
   - ../../../../bases/olympus/plutus/consumer
   - ../../../../bases/olympus/plutus/consumer-dlx
 
+namespace: olympus
+
 configMapGenerator:
   - name: plutus
-    namespace: olympus
     envs:
       - env.ini
 
