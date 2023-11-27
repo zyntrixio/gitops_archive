@@ -5,6 +5,7 @@ resources:
   - ../../../../bases/olympus/hermes/deployments/celery
   - ../../../../bases/olympus/hermes/deployments/logic
   - ../../../../bases/olympus/hermes/essentials
+  - ingress.yaml
 
 components:
   - ../../../../bases/components/remove-default-namespace
