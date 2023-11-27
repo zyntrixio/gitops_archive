@@ -1,7 +1,7 @@
 ---
 resources:
   - ../../../../bases/olympus/policies
-  - ingress.yaml
+  # - ingress.yaml
 
 namespace: olympus
 
