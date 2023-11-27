@@ -1,0 +1,21 @@
+---
+resources:
+  - ../../../../bases/olympus/zephyrus
+  - ingress.yaml
+
+namespace: olympus
+
+configMapGenerator:
+  - name: zephyrus
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: zephyrus

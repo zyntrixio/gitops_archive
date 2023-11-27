@@ -1,0 +1,4 @@
+resources:
+  - ../../../../../bases/devops/snowstorm/essentials
+
+namespace: olympus

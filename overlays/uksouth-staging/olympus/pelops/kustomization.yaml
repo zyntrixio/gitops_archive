@@ -1,0 +1,24 @@
+---
+resources:
+  - ../../../../bases/olympus/pelops
+  - ingress.yaml
+
+namespace: olympus
+
+configMapGenerator:
+  - name: pelops
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: pelops
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-low-api

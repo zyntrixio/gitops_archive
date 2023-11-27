@@ -1,0 +1,21 @@
+---
+resources:
+  - ../../../../bases/olympus/angelia
+  - ingress.yaml
+
+namespace: olympus
+
+configMapGenerator:
+  - name: angelia
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: angelia

@@ -1,0 +1,6 @@
+---
+resources:
+  - ../../../../bases/olympus/skiron
+  - ingress.yaml
+
+namespace: olympus

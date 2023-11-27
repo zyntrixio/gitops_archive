@@ -1,0 +1,23 @@
+---
+resources:
+  - ../../../../bases/olympus/eos/deployments/api
+  - ../../../../bases/olympus/eos/deployments/worker
+  - ../../../../bases/olympus/eos/essentials
+  - ingress.yaml
+
+namespace: olympus
+
+configMapGenerator:
+  - name: eos
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment|Job
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: eos
