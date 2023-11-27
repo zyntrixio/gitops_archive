@@ -12,7 +12,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: snowstorm
+  name: uksouth-staging-snowstorm
   namespace: flux-system
 spec:
   imageRepositoryRef:
