@@ -1,7 +1,7 @@
 ---
 resources:
   - ../../../../bases/olympus/angelia
-  - ingress.yaml
+  # - ingress.yaml
 
 namespace: olympus
 
