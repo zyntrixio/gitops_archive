@@ -18,6 +18,12 @@ patches:
           spec:
             containers:
               - name: app
+                env:
+                  - name: postgres_dsn
+                    valueFrom:
+                      secretKeyRef:
+                        name: azure-postgres
+                        key: url_api_reflector
                 livenessProbe:
                   failureThreshold: 3
                   httpGet:
