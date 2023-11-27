@@ -2,7 +2,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: policies
+  name: uksouth-staging-policies
   namespace: flux-system
 spec:
   image: binkcore.azurecr.io/policies.gb.bink.com

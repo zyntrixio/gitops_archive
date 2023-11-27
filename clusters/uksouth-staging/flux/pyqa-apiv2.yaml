@@ -2,7 +2,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: pyqa-apiv2
+  name: uksouth-staging-pyqa-apiv2
   namespace: flux-system
 spec:
   image: binkcore.azurecr.io/bink-api-v2-automation-suite
