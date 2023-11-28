@@ -3,6 +3,9 @@ kind: Kustomization
 resources:
   - github.com/cpressland/rq-autoscaler/deploy
 nameSuffix: -export
+commonLabels:
+  app: rq-autoscaler
+  queue: export
 patches:
   - target:
       kind: CronJob
