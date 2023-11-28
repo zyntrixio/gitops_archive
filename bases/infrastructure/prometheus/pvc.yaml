@@ -10,7 +10,6 @@ spec:
   resources:
     requests:
       storage: 256Gi
-  storageClassName: azurefile-zrs
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -23,4 +22,3 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: azurefile-zrs
