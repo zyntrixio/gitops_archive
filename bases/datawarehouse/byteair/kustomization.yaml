@@ -9,3 +9,6 @@ configMapGenerator:
     namespace: airbyte
     files:
       - values.yaml
+
+configurations:
+  - kustomizeconfig.yaml
