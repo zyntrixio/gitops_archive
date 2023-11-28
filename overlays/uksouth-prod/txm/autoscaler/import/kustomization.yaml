@@ -1,0 +1,27 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - github.com/cpressland/rq-autoscaler/deploy
+nameSuffix: -import
+patches:
+  - target:
+      kind: CronJob
+    patch: |
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env
+        value:
+          - name: REDIS_URL
+            valueFrom:
+              secretKeyRef:
+                name: azure-redis
+                key: url_primary
+          - name: DEPLOYMENT
+            value: txm/harmonia-import-worker
+          - name: QUEUE
+            value: import
+          - name: MIN_REPLICAS
+            value: "0"
+          - name: MAX_REPLICAS
+            value: "10"
+          - name: TASKS_PER_REPLICA
+            value: "5000"
