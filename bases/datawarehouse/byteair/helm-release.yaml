@@ -6,8 +6,8 @@ metadata:
 spec:
   interval: 5m
   valuesFrom:
-  - chartFileRef:
-      path: values.yaml
+  - kind: ConfigMap
+    name: airbyte-values
   chart:
     spec:
       chart: airbyte
