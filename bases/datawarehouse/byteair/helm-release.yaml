@@ -8,7 +8,6 @@ spec:
   valueFrom:
   - kind: ConfigMap
     name: airbyte-values
-    valuesKey: values.yaml
   chart:
     spec:
       chart: airbyte

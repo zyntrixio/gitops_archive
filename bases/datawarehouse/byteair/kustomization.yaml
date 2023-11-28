@@ -5,3 +5,8 @@ resources:
   - serviceaccount.yaml
 
 namespace: airbyte
+
+configMapGenerator:
+  - name: airbyte-values
+    envs:
+      - values.yaml
