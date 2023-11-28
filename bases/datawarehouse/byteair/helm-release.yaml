@@ -5,6 +5,10 @@ metadata:
   namespace: airbyte
 spec:
   interval: 5m
+  valueFrom:
+  - kind: ConfigMap
+    name: airbyte-values
+    valuesKey: values.yaml
   chart:
     spec:
       chart: airbyte
@@ -13,7 +17,3 @@ spec:
         name: airbyte
         namespace: flux-system
       interval: 1m
-      valueFrom:
-      - kind: ConfigMap
-        name: airbyte-values
-        valuesKey: values.yaml
