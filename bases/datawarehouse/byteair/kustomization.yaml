@@ -6,5 +6,6 @@ resources:
 
 configMapGenerator:
   - name: airbyte-values
+    namespace: airbyte
     files:
       - values.yaml
