@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: airbyte
+  namespace: airbyte
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: airbyte
+      sourceRef:
+        kind: HelmRepository
+        name: airbyte
+        namespace: flux-system
+      interval: 1m
+      valueFrom:
+      - kind: ConfigMap
+        name: airbyte-values
+        valuesKey: values.yaml

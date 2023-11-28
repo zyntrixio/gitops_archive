@@ -1,0 +1,7 @@
+resources:
+  - namespace.yaml
+  - helm-release.yaml
+  - helm-repo.yaml
+  - serviceaccount.yaml
+
+namespace: airbyte
