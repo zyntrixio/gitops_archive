@@ -25,13 +25,6 @@ resources:
   - ../../../../bases/olympus/harmonia/deployments/purgedb
 components:
   - ../../../../bases/components/remove-default-namespace
-replicas:
-  - name: harmonia-import-worker
-    count: 10
-  - name: harmonia-matching-worker
-    count: 80
-  - name: harmonia-export-worker
-    count: 4
 configMapGenerator:
   - name: harmonia
     envs:
