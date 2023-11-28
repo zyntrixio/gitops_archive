@@ -5,6 +5,9 @@ metadata:
   namespace: airbyte
 spec:
   interval: 5m
+  valuesFrom:
+  - chartFileRef:
+      path: values.yaml
   chart:
     spec:
       chart: airbyte
@@ -12,6 +15,4 @@ spec:
         kind: HelmRepository
         name: airbyte
         namespace: flux-system
-      valuesFiles:
-        - values.yaml
       interval: 1m
