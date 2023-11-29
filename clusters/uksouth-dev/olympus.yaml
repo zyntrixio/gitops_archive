@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/angelia
     newName: binkcore.azurecr.io/angelia
-    newTag: 2023-11-22T134611Z # {"$imagepolicy": "flux-system:angelia:tag"}
+    newTag: 2023-11-28T145048Z # {"$imagepolicy": "flux-system:angelia:tag"}
   - name: binkcore.azurecr.io/api-reflector
     newName: binkcore.azurecr.io/api-reflector
     newTag: 0.8.2 # {"$imagepolicy": "flux-system:api-reflector:tag"}
@@ -26,7 +26,7 @@ spec:
     newTag: 2023-10-10T130827Z # {"$imagepolicy": "flux-system:atlas:tag"}
   - name: binkcore.azurecr.io/boreas
     newName: binkcore.azurecr.io/boreas
-    newTag: 2023-11-11T161849Z # {"$imagepolicy": "flux-system:boreas:tag"}
+    newTag: 2023-11-28T121324Z # {"$imagepolicy": "flux-system:boreas:tag"}
   - name: binkcore.azurecr.io/callbacca
     newName: binkcore.azurecr.io/callbacca
     newTag: 2023-01-24T115854Z # {"$imagepolicy": "flux-system:callbacca:tag"}
@@ -44,7 +44,7 @@ spec:
     newTag: 2023-03-22T164730Z # {"$imagepolicy": "flux-system:hades:tag"}
   - name: binkcore.azurecr.io/metis
     newName: binkcore.azurecr.io/metis
-    newTag: 2023-10-30T115600Z # {"$imagepolicy": "flux-system:metis:tag"}
+    newTag: 2023-11-28T154637Z # {"$imagepolicy": "flux-system:metis:tag"}
   - name: binkcore.azurecr.io/midas
     newName: binkcore.azurecr.io/midas
     newTag: 2023-11-21T103249Z # {"$imagepolicy": "flux-system:midas:tag"}

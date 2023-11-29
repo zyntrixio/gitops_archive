@@ -1,4 +1,3 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -15,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/harmonia
     newName: binkcore.azurecr.io/harmonia
-    newTag: 2023-11-14T121145Z # {"$imagepolicy": "flux-system:harmonia:tag"}
+    newTag: 2023-11-27T121150Z # {"$imagepolicy": "flux-system:harmonia:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
