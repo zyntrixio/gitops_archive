@@ -1214,7 +1214,7 @@ temporal:
   ##  temporal.replicaCount The number of temporal replicas to deploy
   replicaCount: 1
 
-  env_vars: {"SQL_TLS":"true","SQL_TLS_DISABLE_HOST_VERIFICATION":"true"}
+  env_vars: {"SQL_TLS":"true","SQL_TLS_DISABLE_HOST_VERIFICATION":"true","SQL_TLS_ENABLED":"true","SQL_HOST_VERIFICATION":"false"}
 
   ##  temporal.image.repository The temporal image repository to use
   ##  temporal.image.pullPolicy The pull policy for the temporal image
