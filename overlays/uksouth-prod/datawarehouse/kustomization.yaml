@@ -3,6 +3,8 @@ resources:
   - ../../../bases/datawarehouse/tableau
   - ./storage
 
+namespace: datawarehouse
+
 patches:
   - target:
       kind: Endpoints
