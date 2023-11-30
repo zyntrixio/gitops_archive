@@ -1,0 +1,18 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: airbyte
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./bases/datawarehouse/byteair
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: azure-postgres
+      - kind: ConfigMap
+        name: cluster-vars
