@@ -5,9 +5,6 @@ metadata:
   namespace: airbyte
 spec:
   interval: 5m
-  valuesFrom:
-  - kind: ConfigMap
-    name: airbyte-values
   chart:
     spec:
       chart: airbyte
@@ -17,3 +14,13 @@ spec:
         name: airbyte
         namespace: flux-system
       interval: 1m
+  values:
+    postgresql:
+      enabled: false
+    externalDatabase:
+      host: ${server_host}
+      user: ${server_user}
+      password: ${server_pass}
+      database: airbyte
+      port: 5432
+      jdbcUrl: "jdbc:postgresql://${server_host}/airbyte?sslmode=require"
