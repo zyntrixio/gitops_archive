@@ -1,5 +1,4 @@
 ---
 resources:
-  - ../../../bases/datawarehouse/airbyte
   - ../../../bases/datawarehouse/tableau
   - ./storage
