@@ -14,3 +14,5 @@ spec:
     substituteFrom:
       - kind: Secret
         name: azure-postgres
+      - kind: ConfigMap
+        name: cluster-vars
