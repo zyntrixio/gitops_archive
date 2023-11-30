@@ -1,4 +1,6 @@
 ---
 resources:
   - ../../../bases/datawarehouse/tableau
+  - ../../../bases/datawarehouse/byteair
   - ./storage
+  - ingress.yaml

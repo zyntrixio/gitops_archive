@@ -21,6 +21,8 @@ spec:
         name: azure-identities
       - kind: Secret
         name: azure-keyvault
+      - kind: Secret
+        name: azure-postgres
   images:
     - name: binkcore.azurecr.io/data-warehouse
       newName: binkcore.azurecr.io/data-warehouse
