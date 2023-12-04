@@ -12,7 +12,7 @@ patches:
     patch: |
       - op: replace
         path: /spec/schedule
-        value: "0 * * * *"
+        value: "*/15 * * * *"
   - target:
       kind: CronJob
     patch: |
