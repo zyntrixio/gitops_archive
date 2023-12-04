@@ -18,5 +18,11 @@ patches:
     - op: replace
       path: /spec/jobTemplate/spec/template/spec/containers/0/args
       value: ["kiroshi", "kubernetes", "linkerd"]
+    - op: replace
+      path: /spec/jobTemplate/spec/template/spec/containers/0/resources/requests/memory
+      value: 192Mi
+    - op: replace
+      path: /spec/jobTemplate/spec/template/spec/containers/0/resources/limits/memory
+      value: 192Mi
   target:
     kind: CronJob
