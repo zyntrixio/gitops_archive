@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../../../../bases/olympus/boreas
-  # - ingress.yaml
+  - ingress.yaml
 replicas:
   - name: boreas-api
     count: 3
