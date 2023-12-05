@@ -18,6 +18,10 @@ spec:
         name: traefik
         namespace: flux-system
   values:
+    logs:
+      access:
+        enabled: true
+        format: json
     ingressRoute:
       dashboard:
         matchRule: Host(`traefik.${cluster_name}.${cluster_location}.bink.sh`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
