@@ -12,5 +12,3 @@ spec:
       - kind: Service
         name: angelia-api
         port: 80
-      middlewares:
-        - name: api-reflector-custom-headers
