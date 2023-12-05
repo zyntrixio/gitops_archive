@@ -13,29 +13,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/plutus
     newName: binkcore.azurecr.io/plutus
-    newTag: prod-0.0.11 # {"$imagepolicy": "flux-system:uksouth-prod-plutus:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: plutus
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/plutus
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-prod-plutus
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: plutus
-  filterTags:
-    pattern: prod-(?P<ts>\d+(\.\d+)*)$
-    extract: $ts
-  policy:
-    semver:
-      range: '>0.0.1'
+    newTag: prod-0.0.11 # {"$imagepolicy": "flux-system:plutus:tag"}

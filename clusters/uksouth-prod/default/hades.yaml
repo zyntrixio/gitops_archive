@@ -14,35 +14,10 @@ spec:
   images:
   - name: binkcore.azurecr.io/hades
     newName: binkcore.azurecr.io/hades
-    newTag:  prod-2.8.0 # {"$imagepolicy": "flux-system:uksouth-prod-hades:tag"}
+    newTag:  prod-2.8.0 # {"$imagepolicy": "flux-system:hades:tag"}
   postBuild:
     substituteFrom:
     - kind: ConfigMap
       name: cluster-vars
     - kind: Secret
       name: azure-identities
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: hades
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/hades
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-prod-hades
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: hades
-  filterTags:
-    pattern: prod-(?P<ts>\d+(\.\d+)*)$
-    extract: $ts
-  policy:
-    semver:
-      range: '>0.0.1'

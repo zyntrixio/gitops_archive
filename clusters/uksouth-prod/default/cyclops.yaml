@@ -18,28 +18,4 @@ spec:
   images:
   - name: binkcore.azurecr.io/cyclops
     newName: binkcore.azurecr.io/cyclops
-    newTag: 2023-10-31T095216Z # {"$imagepolicy": "flux-system:uksouth-prod-cyclops:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: cyclops
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/cyclops
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-prod-cyclops
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: cyclops
-  filterTags:
-    pattern: \d{4}-\d{2}-\d{2}T\d{6}Z$
-  policy:
-    alphabetical:
-      order: asc
+    newTag: 2023-10-31T095216Z # {"$imagepolicy": "flux-system:cyclops:tag"}

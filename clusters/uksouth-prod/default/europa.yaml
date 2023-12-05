@@ -14,35 +14,10 @@ spec:
   images:
   - name: binkcore.azurecr.io/europa
     newName: binkcore.azurecr.io/europa
-    newTag: prod-1.6.4 # {"$imagepolicy": "flux-system:uksouth-prod-europa:tag"}
+    newTag: prod-1.6.4 # {"$imagepolicy": "flux-system:europa:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
       name: azure-identities
     - kind: Secret
       name: azure-keyvault
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: europa
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/europa
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-prod-europa
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: europa
-  filterTags:
-    pattern: prod-(?P<ts>\d+(\.\d+)*)$
-    extract: $ts
-  policy:
-    semver:
-      range: '>0.0.1'

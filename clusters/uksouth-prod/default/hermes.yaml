@@ -14,35 +14,10 @@ spec:
   images:
     - name: binkcore.azurecr.io/hermes
       newName: binkcore.azurecr.io/hermes
-      newTag: prod-3.42.0 # {"$imagepolicy": "flux-system:uksouth-prod-hermes:tag"}
+      newTag: prod-3.42.0 # {"$imagepolicy": "flux-system:hermes:tag"}
   postBuild:
     substituteFrom:
       - kind: Secret
         name: azure-keyvault
       - kind: Secret
         name: azure-identities
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: hermes
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/hermes
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-prod-hermes
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: hermes
-  filterTags:
-    pattern: prod-(?P<ts>\d+(\.\d+)*)$
-    extract: $ts
-  policy:
-    semver:
-      range: '>0.0.1'

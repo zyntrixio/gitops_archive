@@ -14,33 +14,8 @@ spec:
   images:
     - name: binkcore.azurecr.io/angelia
       newName: binkcore.azurecr.io/angelia
-      newTag: prod-1.26.0 # {"$imagepolicy": "flux-system:uksouth-prod-angelia:tag"}
+      newTag: prod-1.26.0 # {"$imagepolicy": "flux-system:angelia:tag"}
   postBuild:
     substituteFrom:
       - kind: Secret
         name: azure-identities
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: angelia
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/angelia
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-prod-angelia
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: angelia
-  filterTags:
-    pattern: prod-(?P<ts>\d+(\.\d+)*)$
-    extract: $ts
-  policy:
-    semver:
-      range: '>0.0.1'
