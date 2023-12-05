@@ -7,7 +7,6 @@ metadata:
     nginx.ingress.kubernetes.io/service-upstream: 'true'
     nginx.ingress.kubernetes.io/use-regex: "true"
   name: retailer.${cluster_name}.${cluster_location}.bink.sh
-  namespace: default
 spec:
   rules:
     - host: retailer.${cluster_name}.${cluster_location}.bink.sh

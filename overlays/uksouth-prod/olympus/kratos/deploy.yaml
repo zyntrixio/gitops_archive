@@ -5,7 +5,6 @@ metadata:
   labels:
     app: kratos
   name: kratos
-  namespace: default
 spec:
   replicas: 1
   selector:

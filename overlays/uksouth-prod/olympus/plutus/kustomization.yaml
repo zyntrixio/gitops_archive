@@ -8,7 +8,6 @@ replicas:
     count: 1
 configMapGenerator:
   - name: plutus
-    namespace: default
     envs:
       - env.ini
 patches:
