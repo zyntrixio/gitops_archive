@@ -26,6 +26,10 @@ spec:
       dashboard:
         matchRule: Host(`traefik.${cluster_name}.${cluster_location}.bink.sh`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
         entryPoints: ["websecure"]
+      healthcheck:
+        enabled: true
+        matchRule: Host(`traefik.${cluster_name}.${cluster_location}.bink.sh`) && PathPrefix(`/ping`)
+        entryPoints: ["websecure"]
     service:
       type: LoadBalancer
       annotations:
