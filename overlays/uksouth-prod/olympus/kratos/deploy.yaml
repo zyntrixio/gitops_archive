@@ -1,0 +1,71 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kratos
+  name: kratos
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kratos
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+        linkerd.io/inject: enabled
+      labels:
+        app: kratos
+        azure.workload.identity/use: "true"
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - kratos
+                topologyKey: topology.kubernetes.io/zone
+              weight: 100
+      containers:
+        - image: binkcore.azurecr.io/kratos:latest
+          env:
+            - name: KEYVAULT_URL
+              value: https://uksouth-prod-qj46.vault.azure.net/
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 6502
+              scheme: HTTP
+            initialDelaySeconds: 10
+          name: app
+          ports:
+            - containerPort: 6502
+              name: http
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 6502
+              scheme: HTTP
+            initialDelaySeconds: 10
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 10m
+              memory: 128Mi
+      serviceAccountName: kratos
+      priorityClassName: bink-low-api
+      imagePullSecrets:
+        - name: binkcore.azurecr.io

@@ -1,7 +1,0 @@
----
-resources:
-  - ../../../../bases/olympus/policies
-
-replicas:
-  - name: policies
-    count: 3
