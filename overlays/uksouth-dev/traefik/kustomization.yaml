@@ -1,7 +1,4 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../../../bases/traefik
-- certificate.yaml
-- issuer.yaml
-- tlsstore.yaml
+  - ../../../bases/traefik

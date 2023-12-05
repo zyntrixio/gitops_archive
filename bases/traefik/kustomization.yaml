@@ -4,3 +4,6 @@ resources:
   - namespace.yaml
   - helm-repo.yaml
   - helm-release.yaml
+  - certificate.yaml
+  - issuer.yaml
+  - tlsstore.yaml
