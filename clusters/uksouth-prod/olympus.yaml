@@ -38,10 +38,10 @@ spec:
       newTag: prod-1.6.4 # {"$imagepolicy": "flux-system:europa:tag"}
     - name: binkcore.azurecr.io/hades
       newName: binkcore.azurecr.io/hades
-      newTag:  prod-2.8.0 # {"$imagepolicy": "flux-system:hades:tag"}
+      newTag: prod-2.8.0 # {"$imagepolicy": "flux-system:hades:tag"}
     - name: binkcore.azurecr.io/hermes
       newName: binkcore.azurecr.io/hermes
-      newTag: prod-3.42.0 # {"$imagepolicy": "flux-system:hermes:tag"}
+      newTag: prod-3.44.0 # {"$imagepolicy": "flux-system:hermes:tag"}
     - name: binkcore.azurecr.io/kratos
       newName: binkcore.azurecr.io/kratos
       newTag: 2023-10-26T123323Z # {"$imagepolicy": "flux-system:kratos:tag"}
