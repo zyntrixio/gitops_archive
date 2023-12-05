@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-dev/traefik
+  path: ./bases/traefik
   prune: true
   force: true
   sourceRef:
