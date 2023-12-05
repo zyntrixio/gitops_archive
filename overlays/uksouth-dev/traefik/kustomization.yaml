@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - certificate.yaml
 - issuer.yaml
-# - ../../../bases/traefik
+- ../../../bases/traefik
