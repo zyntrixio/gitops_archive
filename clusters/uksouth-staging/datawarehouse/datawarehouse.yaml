@@ -6,8 +6,6 @@ metadata:
 spec:
   interval: 60m0s
   path: ./overlays/uksouth-staging/datawarehouse
-  dependsOn:
-    - name: ingress-nginx
   prune: true
   force: true
   sourceRef:
