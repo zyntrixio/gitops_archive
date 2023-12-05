@@ -26,7 +26,7 @@ spec:
     newTag: 2023-10-10T130827Z # {"$imagepolicy": "flux-system:atlas:tag"}
   - name: binkcore.azurecr.io/boreas
     newName: binkcore.azurecr.io/boreas
-    newTag: 2023-11-28T121324Z # {"$imagepolicy": "flux-system:boreas:tag"}
+    newTag: 2023-12-05T134811Z # {"$imagepolicy": "flux-system:boreas:tag"}
   - name: binkcore.azurecr.io/callbacca
     newName: binkcore.azurecr.io/callbacca
     newTag: 2023-01-24T115854Z # {"$imagepolicy": "flux-system:callbacca:tag"}
