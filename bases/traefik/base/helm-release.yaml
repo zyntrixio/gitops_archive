@@ -19,7 +19,7 @@ spec:
         namespace: flux-system
   values:
     deployment:
-      podLabels:
+      podAnnotations:
         kubectl.kubernetes.io/default-container: traefik
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
