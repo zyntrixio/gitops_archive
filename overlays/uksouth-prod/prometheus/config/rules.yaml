@@ -95,18 +95,18 @@ groups:
 
   - name: Service Team
     rules:
-      - alert: Exported transactions
-        expr: sum(increase(transactions_total{slug!="iceland-bonus-card"}[2h])) by
-          (slug) < 1 and europe_london_hour != 12 < 23
-        for: 1m
-        labels:
-          severity: p2
-          cluster: prod
-          component: harmonia
-          resolve: false
-        annotations:
-          resource: '{{ $labels.slug }}'
-          sumamry: There have been no exports between 12:00 and 23:00
+      # - alert: Exported transactions
+      #   expr: sum(increase(transactions_total{slug!="iceland-bonus-card"}[2h])) by
+      #     (slug) < 1 and europe_london_hour != 12 < 23
+      #   for: 1m
+      #   labels:
+      #     severity: p2
+      #     cluster: prod
+      #     component: harmonia
+      #     resolve: false
+      #   annotations:
+      #     resource: '{{ $labels.slug }}'
+      #     sumamry: There have been no exports between 12:00 and 23:00
 
       # - alert: Payment cards processing slowly
       #   expr: (sum(payment_card_processing_seconds_histogram_sum{}) by (provider)
