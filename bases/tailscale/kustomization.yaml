@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - https://github.com/tailscale/tailscale/blob/49fd0a62c9bd24eaed7e612d1eeb3ca4b89575fe/cmd/k8s-operator/deploy/manifests/operator.yaml?raw=true
+patches:
+  - target:
+      kind: Namespace
+    patch: |
+      - op: add
+        path: /metadata/annotations
+        value:
+          linkerd.io/inject: enabled
+  - target:
+      kind: Secret
+      name: operator-oauth
+    patch: |
+      - op: replace
+        path: /stringData/client_id
+        value: kCBHrX6CNTRL
+      - op: replace
+        path: /stringData/client_secret
+        value: tskey-client-kCBHrX6CNTRL-WzLERtcBL5SN3PwEWgSn5SNyAG7P7jbBX
