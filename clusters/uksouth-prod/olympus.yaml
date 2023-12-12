@@ -59,7 +59,7 @@ spec:
       newTag: prod-2023-10-31T102959Z # {"$imagepolicy": "flux-system:policies:tag"}
     - name: binkcore.azurecr.io/snowstorm
       newName: binkcore.azurecr.io/snowstorm
-      newTag: prod-v1.12.0 # {"$imagepolicy": "flux-system:snowstorm:tag"}
+      newTag: prod-v1.12.1 # {"$imagepolicy": "flux-system:snowstorm:tag"}
     - name: binkcore.azurecr.io/zephyrus
       newName: binkcore.azurecr.io/zephyrus
       newTag: prod-1.10.1 # {"$imagepolicy": "flux-system:zephyrus:tag"}
