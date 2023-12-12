@@ -17,7 +17,7 @@ spec:
                 name: angelia-api
                 port:
                   number: 80
-          - path: /wallet/payment_account_channel_links
+          - path: /v2/wallet/payment_account_channel_links
             pathType: Exact
             backend:
               service:
