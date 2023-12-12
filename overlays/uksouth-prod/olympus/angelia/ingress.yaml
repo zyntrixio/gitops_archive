@@ -17,6 +17,13 @@ spec:
                 name: angelia-api
                 port:
                   number: 80
+          - path: /wallet/payment_account_channel_links
+            pathType: Exact
+            backend:
+              service:
+                name: angelia-blackhole
+                port:
+                  number: 80
   tls:
     - hosts:
         - api.${cluster_name}.${cluster_location}.bink.sh
