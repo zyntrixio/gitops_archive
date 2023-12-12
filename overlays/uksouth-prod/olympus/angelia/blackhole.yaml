@@ -5,3 +5,10 @@ metadata:
     app: angelia
     component: blackhole
   name: angelia-blackhole
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  type: ClusterIP
