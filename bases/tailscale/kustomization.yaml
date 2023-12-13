@@ -8,8 +8,8 @@ secretGenerator:
     namespace: tailscale
     behavior: replace
     literals:
-      - client_id=kdwBjb6CNTRL
-      - client_secret=tskey-client-kdwBjb6CNTRL-6EdLB1kQpkDx2pYhCPLtmDjtSaxEghyYg
+      - client_id=kNvPeQ2CNTRL
+      - client_secret=tskey-client-kNvPeQ2CNTRL-L9R2f3DqnWiJskqdn2DeWiaZjEc9a9iWh
 patches:
   - target:
       kind: Deployment
