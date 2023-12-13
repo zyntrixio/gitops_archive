@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/harmonia
     newName: binkcore.azurecr.io/harmonia
-    newTag: prod-2.36.0 # {"$imagepolicy": "flux-system:harmonia:tag"}
+    newTag: prod-2.37.0 # {"$imagepolicy": "flux-system:harmonia:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
