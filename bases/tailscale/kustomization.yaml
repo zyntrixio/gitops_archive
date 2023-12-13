@@ -10,8 +10,8 @@ secretGenerator:
     options:
       disableNameSuffixHash: true
     literals:
-      - client_id=kr7saW3CNTRL
-      - client_secret=tskey-client-kr7saW3CNTRL-YD8SWKE7qWLpzMYGSkeHXLZxuxirhG7nS
+      - client_id=kfAK5T2CNTRL
+      - client_secret=tskey-client-kfAK5T2CNTRL-2G7tptiGnhMc884Si1MYiMdMjtciGf68K
 patches:
   - target:
       kind: Deployment
