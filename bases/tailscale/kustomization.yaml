@@ -7,9 +7,11 @@ secretGenerator:
   - name: operator-oauth
     namespace: tailscale
     behavior: replace
+    options:
+      disableNameSuffixHash: true
     literals:
-      - client_id=kNvPeQ2CNTRL
-      - client_secret=tskey-client-kNvPeQ2CNTRL-L9R2f3DqnWiJskqdn2DeWiaZjEc9a9iWh
+      - client_id=kr7saW3CNTRL
+      - client_secret=tskey-client-kr7saW3CNTRL-YD8SWKE7qWLpzMYGSkeHXLZxuxirhG7nS
 patches:
   - target:
       kind: Deployment
