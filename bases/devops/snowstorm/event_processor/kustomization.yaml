@@ -12,14 +12,6 @@ patches:
       - op: add
         path: /spec/template/spec/containers/0/args
         value: ["stormctl", "deploy", "events", "--queues=clickhouse_hermes,tx_export_dw"]
-      - op: replace
-        path: /spec/template/spec/containers/0/resources
-        value:
-          requests:
-            cpu: 10m
-            memory: 256Mi
-          limits:
-            memory: 256Mi
       - op: add
         path: /spec/template/spec/priorityClassName
         value: bink-high-tasks
