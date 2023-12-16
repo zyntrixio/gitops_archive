@@ -62,7 +62,7 @@ spec:
     newTag: 2022-11-02T173253Z # {"$imagepolicy": "flux-system:skiron:tag"}
   - name: binkcore.azurecr.io/snowstorm
     newName: binkcore.azurecr.io/snowstorm
-    newTag: 2023-12-16T214938Z # {"$imagepolicy": "flux-system:snowstorm:tag"}
+    newTag: 2023-12-16T220718Z # {"$imagepolicy": "flux-system:snowstorm:tag"}
   - name: binkcore.azurecr.io/zephyrus
     newName: binkcore.azurecr.io/zephyrus
     newTag: 2023-05-22T132505Z # {"$imagepolicy": "flux-system:zephyrus:tag"}
