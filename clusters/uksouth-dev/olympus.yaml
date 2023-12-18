@@ -47,7 +47,7 @@ spec:
     newTag: 2023-11-28T154637Z # {"$imagepolicy": "flux-system:metis:tag"}
   - name: binkcore.azurecr.io/midas
     newName: binkcore.azurecr.io/midas
-    newTag: 2023-12-05T155511Z # {"$imagepolicy": "flux-system:midas:tag"}
+    newTag: 2023-12-18T091146Z # {"$imagepolicy": "flux-system:midas:tag"}
   - name: binkcore.azurecr.io/hermes
     newName: binkcore.azurecr.io/hermes
     newTag: 2023-12-14T120127Z # {"$imagepolicy": "flux-system:hermes:tag"}
