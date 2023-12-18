@@ -166,30 +166,30 @@ groups:
       #     summary: There have been failed exports from harmonia returning receipt
       #       not found.
 
-      - alert: Failed exports excluding receipt not found
-        expr: sum(failed_requests_total{response_result!="receipt no not found", slug!="wasabi-club"})
-          > 100
-        for: 1m
-        labels:
-          severity: p2
-          cluster: prod
-          component: harmonia
-          resolve: false
-        annotations:
-          resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }}
-            - {{ $labels.response_result }}'
-          summary: There have been failed exports from harmonia.
-      - alert: midas - failed http requests to merchants
-        expr: sum(increase(request_fail_total{}[1h])) by (error, slug) > 6
-        for: 90m
-        labels:
-          severity: p2
-          cluster: prod
-          resolve: false
-        annotations:
-          resource: '{{ $labels.slug }} - {{ $labels.error }}'
-          summary: There has been an increase in failed HTTP requests from Midas to
-            {{$labels.slug}}
+      # - alert: Failed exports excluding receipt not found
+      #   expr: sum(failed_requests_total{response_result!="receipt no not found", slug!="wasabi-club"})
+      #     > 100
+      #   for: 1m
+      #   labels:
+      #     severity: p2
+      #     cluster: prod
+      #     component: harmonia
+      #     resolve: false
+      #   annotations:
+      #     resource: '{{ $labels.view }} - {{ $labels.status }} - {{ $labels.slug }}
+      #       - {{ $labels.response_result }}'
+      #     summary: There have been failed exports from harmonia.
+      # - alert: midas - failed http requests to merchants
+      #   expr: sum(increase(request_fail_total{}[1h])) by (error, slug) > 6
+      #   for: 90m
+      #   labels:
+      #     severity: p2
+      #     cluster: prod
+      #     resolve: false
+      #   annotations:
+      #     resource: '{{ $labels.slug }} - {{ $labels.error }}'
+      #     summary: There has been an increase in failed HTTP requests from Midas to
+      #       {{$labels.slug}}
 
       - alert: midas - failed login is increasing
         expr: sum(increase(log_in_fail_total{}[10m])) by (slug) > 5
