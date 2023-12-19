@@ -44,7 +44,7 @@ spec:
       newTag: prod-3.45.3 # {"$imagepolicy": "flux-system:hermes:tag"}
     - name: binkcore.azurecr.io/kratos
       newName: binkcore.azurecr.io/kratos
-      newTag: 2023-10-26T123323Z # {"$imagepolicy": "flux-system:kratos:tag"}
+      newTag: 2023-12-19T152545Z # {"$imagepolicy": "flux-system:kratos:tag"}
     - name: binkcore.azurecr.io/metis
       newName: binkcore.azurecr.io/metis
       newTag: prod-1.34.0 # {"$imagepolicy": "flux-system:metis:tag"}
