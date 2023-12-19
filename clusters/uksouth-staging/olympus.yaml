@@ -53,7 +53,7 @@ spec:
     newTag: staging-3.45.3 # {"$imagepolicy": "flux-system:hermes:tag"}
   - name: binkcore.azurecr.io/kiroshi
     newName: binkcore.azurecr.io/kiroshi
-    newTag: staging-v1.5.8 # {"$imagepolicy": "flux-system:kiroshi:tag"}
+    newTag: staging-v1.5.9 # {"$imagepolicy": "flux-system:kiroshi:tag"}
   - name: binkcore.azurecr.io/pelops
     newName: binkcore.azurecr.io/pelops
     newTag: 2022-12-15T171524Z # {"$imagepolicy": "flux-system:pelops:tag"}
