@@ -41,6 +41,8 @@ spec:
           env:
             - name: KEYVAULT_URL
               value: https://uksouth-prod-qj46.vault.azure.net/
+            - name: V2_URL
+              value: http://angelia-api/v2/
           livenessProbe:
             httpGet:
               path: /healthz
