@@ -15,5 +15,14 @@ patches:
       - op: add
         path: /spec/template/spec/priorityClassName
         value: bink-high-tasks
+      - op: add
+        path: /spec/template/metadata/annotations
+        value: {
+          prometheus.io/port: '9100',
+          prometheus.io/scrape: 'true',
+          prometheus.io/job: snowstorm,
+          linkerd.io/inject: enabled,
+          kubectl.kubernetes.io/default-container: app
+        }
     target:
       kind: Deployment
