@@ -65,7 +65,7 @@ spec:
     newTag: staging-2023-10-30T153223Z # {"$imagepolicy": "flux-system:policies:tag"}
   - name: binkcore.azurecr.io/bink-api-v2-automation-suite
     newName: binkcore.azurecr.io/bink-api-v2-automation-suite
-    newTag: 2023-12-21T114444Z # {"$imagepolicy": "flux-system:pyqa-apiv2:tag"}
+    newTag: 2023-12-21T142313Z # {"$imagepolicy": "flux-system:pyqa-apiv2:tag"}
   - name: binkcore.azurecr.io/skiron
     newName: binkcore.azurecr.io/skiron
     newTag: 2022-11-02T173253Z # {"$imagepolicy": "flux-system:skiron:tag"}
