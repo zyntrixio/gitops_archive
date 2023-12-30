@@ -1,0 +1,13 @@
+apiVersion: tailscale.io/v1alpha1
+kind: Connector
+metadata:
+  name: routes
+  namespace: tailscale
+spec:
+  subnetRouter:
+    routes:
+    - "${postgres_subnet}"
+    - "${redis_subnet}"
+    tags:
+    - "tag:${cluster_name}"
+    hostname: "${cluster_location}-${cluster_name}-subnet-router"
