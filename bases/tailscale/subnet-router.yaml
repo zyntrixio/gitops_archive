@@ -55,16 +55,6 @@ spec:
             value: ${cluster_location}-${cluster_name}-subnet-router
           - name: TS_USERSPACE
             value: "true"
-          - name: TS_API_CLIENT_ID
-            valueFrom:
-              secretKeyRef:
-                name: operator-oauth
-                key: client_id
-          - name: TS_API_CLIENT_SECRET
-            valueFrom:
-              secretKeyRef:
-                name: operator-oauth
-                key: client_secret
           - name: TS_ROUTES
             value: ${postgres_subnet},${redis_subnet}
           - name: PROXY_TAGS
