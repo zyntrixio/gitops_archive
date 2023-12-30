@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - https://github.com/tailscale/tailscale/blob/49fd0a62c9bd24eaed7e612d1eeb3ca4b89575fe/cmd/k8s-operator/deploy/manifests/operator.yaml?raw=true
-  - subnet-router.yaml
 namespace: tailscale
 secretGenerator:
   - name: operator-oauth
