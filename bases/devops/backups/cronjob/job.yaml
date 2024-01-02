@@ -39,19 +39,19 @@ spec:
                   valueFrom:
                     secretKeyRef:
                       key: server_host
-                      name: azure-postgres-core
+                      name: azure-postgres
                 - name: PGPORT
                   value: "5432"
                 - name: PGUSER
                   valueFrom:
                     secretKeyRef:
                       key: server_user
-                      name: azure-postgres-core
+                      name: azure-postgres
                 - name: PGPASSWORD
                   valueFrom:
                     secretKeyRef:
                       key: server_pass
-                      name: azure-postgres-core
+                      name: azure-postgres
                 - name: PGSSLMODE
                   value: require
               volumeMounts:
