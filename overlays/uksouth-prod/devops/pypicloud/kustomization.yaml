@@ -1,0 +1,17 @@
+---
+resources:
+  - namespace.yaml
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+
+namespace: devops
+
+replicas:
+  - name: pypi
+    count: 1
+
+configMapGenerator:
+  - name: pypi
+    files:
+      - config/config.ini
