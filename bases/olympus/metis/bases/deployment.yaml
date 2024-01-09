@@ -52,11 +52,6 @@ spec:
                 secretKeyRef:
                   key: url
                   name: azure-cloudamqp
-            - name: PONTUS_DATABASE_URI
-              valueFrom:
-                secretKeyRef:
-                  key: url_pontus
-                  name: azure-postgres
             - name: AZURE_VAULT_URL
               valueFrom:
                 secretKeyRef:

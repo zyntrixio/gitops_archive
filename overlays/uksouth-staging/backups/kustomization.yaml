@@ -11,6 +11,5 @@ resources:
 - ./hermes
 - ./midas
 - ./polaris
-- ./pontus
 - ./vela
 namespace: backups
