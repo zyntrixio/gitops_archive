@@ -14,3 +14,6 @@ patches:
       - op: add
         path: /spec/template/spec/priorityClassName
         value: bink-critical
+      - op: add
+        path: /spec/template/metadata/annotations
+        value: {"prometheus.io/scrape": "true", "prometheus.io/port": "8080"}
