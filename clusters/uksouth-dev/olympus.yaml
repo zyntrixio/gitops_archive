@@ -20,7 +20,7 @@ spec:
     newTag: 0.8.2 # {"$imagepolicy": "flux-system:api-reflector:tag"}
   - name: binkcore.azurecr.io/asteria
     newName: binkcore.azurecr.io/asteria
-    newTag: 2023-07-20T120957Z # {"$imagepolicy": "flux-system:asteria:tag"}
+    newTag: 2024-01-15T152632Z # {"$imagepolicy": "flux-system:asteria:tag"}
   - name: binkcore.azurecr.io/atlas
     newName: binkcore.azurecr.io/atlas
     newTag: 2023-10-10T130827Z # {"$imagepolicy": "flux-system:atlas:tag"}
@@ -44,7 +44,7 @@ spec:
     newTag: 2023-03-22T164730Z # {"$imagepolicy": "flux-system:hades:tag"}
   - name: binkcore.azurecr.io/metis
     newName: binkcore.azurecr.io/metis
-    newTag: 2023-11-28T154637Z # {"$imagepolicy": "flux-system:metis:tag"}
+    newTag: 2024-01-15T152636Z # {"$imagepolicy": "flux-system:metis:tag"}
   - name: binkcore.azurecr.io/midas
     newName: binkcore.azurecr.io/midas
     newTag: 2024-01-04T094622Z # {"$imagepolicy": "flux-system:midas:tag"}
