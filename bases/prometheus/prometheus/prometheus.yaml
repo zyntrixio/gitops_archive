@@ -13,6 +13,8 @@ spec:
     requests:
       memory: 4Gi
   enableAdminAPI: false
+  initChownData:
+    enabled: true
   storage:
     volumeClaimTemplate:
       spec:
