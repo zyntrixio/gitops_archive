@@ -25,6 +25,22 @@ scrape_configs:
         regex: ()
         replacement: ${cluster_name}
 
+  - job_name: "kubernetes-cadvisor"
+    honor_timestamps: true
+    scrape_interval: 15s
+    scrape_timeout: 10s
+    metrics_path: /metrics
+    kubernetes_sd_configs:
+      - role: node
+    relabel_configs:
+      - action: labelmap
+        regex: __meta_kubernetes_node_label_(.+)
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: ${cluster_name}
+
   - job_name: pods
     kubernetes_sd_configs:
       - role: pod
