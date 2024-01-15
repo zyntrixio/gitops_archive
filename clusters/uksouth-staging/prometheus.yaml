@@ -20,6 +20,8 @@ metadata:
 spec:
   interval: 60m0s
   path: ./bases/prometheus/prometheus
+  dependsOn:
+    - name: prometheus-operator
   prune: true
   force: false
   sourceRef:
