@@ -9,8 +9,5 @@ spec:
   selector:
     matchLabels:
       operated-prometheus: "true"
-  namespaceSelector:
-    matchLabels:
-      name: prometheus
   endpoints:
     - port: web
