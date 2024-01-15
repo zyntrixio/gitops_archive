@@ -11,3 +11,6 @@ patches:
       - op: add
         path: /spec/template/spec/tolerations
         value: [{"operator": "Exists"}]
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-critical
