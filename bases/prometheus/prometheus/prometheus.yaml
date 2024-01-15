@@ -13,13 +13,13 @@ spec:
     requests:
       memory: 4Gi
   enableAdminAPI: false
-  initContainers:
-    - name: init-chown-data
-      image: busybox
-      command: ["chown", "-R", "65534:65534", "/data"]
-      volumeMounts:
-        - name: prometheus-storage
-          mountPath: /data
+  # initContainers:
+  #   - name: init-chown-data
+  #     image: busybox
+  #     command: ["chown", "-R", "65534:65534", "/data"]
+  #     volumeMounts:
+  #       - name: prometheus-storage
+  #         mountPath: /data
   storage:
     volumeClaimTemplate:
       spec:
