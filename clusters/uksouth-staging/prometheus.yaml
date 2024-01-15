@@ -11,3 +11,17 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: prometheus-prometheus
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./bases/prometheus/prometheus
+  prune: true
+  force: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system

@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: prometheus
+  namespace: prometheus
+spec:
+  serviceAccountName: prometheus
+  serviceMonitorSelector: {}
+  serviceMonitorNamespaceSelector: {}
+  podMonitorSelector: {}
+  podMonitorNamespaceSelector: {}
+  resources:
+    requests:
+      memory: 4Gi
+  enableAdminAPI: false
+  storage:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: default
+        resources:
+          requests:
+            storage: 32Gi
