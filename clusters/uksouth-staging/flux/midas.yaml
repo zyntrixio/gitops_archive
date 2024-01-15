@@ -18,7 +18,7 @@ spec:
   imageRepositoryRef:
     name: midas
   filterTags:
-    pattern: staging-(?P<ts>\d+(\.\d+)*)$
+    pattern: staging-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:
