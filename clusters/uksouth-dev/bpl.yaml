@@ -35,7 +35,7 @@ spec:
     newTag: 2022-11-14T123351Z # {"$imagepolicy": "flux-system:luna:tag"}
   - name: binkcore.azurecr.io/polaris
     newName: binkcore.azurecr.io/polaris
-    newTag: 2023-05-09T170756Z # {"$imagepolicy": "flux-system:polaris:tag"}
+    newTag: 2024-01-16T144232Z # {"$imagepolicy": "flux-system:polaris:tag"}
   - name: binkcore.azurecr.io/vela
     newName: binkcore.azurecr.io/vela
     newTag: 2023-05-09T170926Z # {"$imagepolicy": "flux-system:vela:tag"}
