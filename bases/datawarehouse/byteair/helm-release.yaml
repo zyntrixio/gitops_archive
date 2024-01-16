@@ -26,8 +26,10 @@ spec:
       jdbcUrl: "jdbc:postgresql://${server_host}/airbyte?sslmode=require"
     temporal:
       env_vars: {"SQL_TLS":"true","SQL_TLS_DISABLE_HOST_VERIFICATION":"true","SQL_TLS_ENABLED":"true","SQL_HOST_VERIFICATION":"false"}
+      podAnnotations:
+        linkerd.io/inject: enabled
     s3:
       bucket: ""
-    server:
-      podAnnotations:
+    kube:
+      annotations:
         linkerd.io/inject: enabled
