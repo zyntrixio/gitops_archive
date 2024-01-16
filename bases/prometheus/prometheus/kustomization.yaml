@@ -3,6 +3,8 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - rbac.yaml
-- prometheus.yaml
-- service_monitor.yaml
+- deploy.yaml
+- PodMonitors/cadvisor.yaml
+- ServiceMonitors/hermes.yaml
+- ServiceMonitors/prometheus.yaml
 namespace: prometheus
