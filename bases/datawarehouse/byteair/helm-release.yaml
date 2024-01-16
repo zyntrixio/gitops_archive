@@ -30,6 +30,24 @@ spec:
         linkerd.io/inject: enabled
     s3:
       bucket: ""
-    kube:
-      annotations:
+    airbyte-api-server:
+      podAnnotations:
+        linkerd.io/inject: enabled
+    connector-builder-server:
+      podAnnotations:
+        linkerd.io/inject: enabled
+    cron:
+      podAnnotations:
+        linkerd.io/inject: enabled
+    pod-sweeper:
+      podAnnotations:
+        linkerd.io/inject: enabled
+    server:
+      podAnnotations:
+        linkerd.io/inject: enabled
+    webapp:
+      podAnnotations:
+        linkerd.io/inject: enabled
+    worker:
+      podAnnotations:
         linkerd.io/inject: enabled
