@@ -28,3 +28,6 @@ spec:
       env_vars: {"SQL_TLS":"true","SQL_TLS_DISABLE_HOST_VERIFICATION":"true","SQL_TLS_ENABLED":"true","SQL_HOST_VERIFICATION":"false"}
     s3:
       bucket: ""
+    server:
+      podAnnotations:
+        linkerd.io/inject: enabled
