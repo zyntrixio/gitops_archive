@@ -1,50 +1,26 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: bpl-cosmos-essentials
+  name: bpl-cosmos
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-staging/bpl/cosmos/essentials
+  path: ./overlays/uksouth-staging/bpl/cosmos
   prune: true
   force: true
-  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
   - name: binkcore.azurecr.io/cosmos
     newName: binkcore.azurecr.io/cosmos
-    newTag: 2024-01-16T111408Z # {"$imagepolicy": "flux-system:uksouth-staging-cosmos:tag"}
+    newTag: 2024-01-16T111408Z # {"$imagepolicy": "flux-system:cosmos:tag"}
   postBuild:
     substituteFrom:
     - kind: ConfigMap
       name: cluster-vars
     - kind: Secret
       name: azure-identities
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: bpl-cosmos-deployments
-  namespace: flux-system
-spec:
-  interval: 60m0s
-  path: ./overlays/uksouth-staging/bpl/cosmos/deployments
-  prune: true
-  force: true
-  dependsOn:
-  - name: bpl-cosmos-essentials
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  images:
-  - name: binkcore.azurecr.io/cosmos
-    newName: binkcore.azurecr.io/cosmos
-    newTag: 2024-01-16T111408Z # {"$imagepolicy": "flux-system:uksouth-staging-cosmos:tag"}
-  - name: binkcore.azurecr.io/cosmos-admin
-    newName: binkcore.azurecr.io/cosmos-admin
-    newTag: 2023-05-09T181346Z # {"$imagepolicy": "flux-system:uksouth-staging-cosmos-admin:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
@@ -53,45 +29,20 @@ metadata:
   namespace: flux-system
 spec:
   image: binkcore.azurecr.io/cosmos
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: cosmos-admin
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/cosmos-admin
-  interval: 1m0s
+  interval: 5m0s
   provider: azure
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: uksouth-staging-cosmos
+  name: cosmos
   namespace: flux-system
 spec:
   imageRepositoryRef:
     name: cosmos
   filterTags:
-    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
+    pattern: staging-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
-    alphabetical:
-      order: asc
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-staging-cosmos-admin
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: cosmos-admin
-  filterTags:
-    pattern: ^(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
-    extract: $ts
-  policy:
-    alphabetical:
-      order: asc
+    semver:
+      range: '>0.0.1'

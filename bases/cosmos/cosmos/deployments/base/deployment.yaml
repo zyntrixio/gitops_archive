@@ -42,6 +42,7 @@ spec:
               weight: 100
       containers:
         - name: app
+          command: ["linkerd-await", "--"]
           env:
             - name: RABBITMQ_DSN
               valueFrom:

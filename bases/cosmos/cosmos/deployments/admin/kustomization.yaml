@@ -26,6 +26,3 @@ patches:
           "--bind=0.0.0.0:9000",
           "wsgi:app",
         ]
-      - op: replace
-        path: /spec/template/spec/containers/0/image
-        value: binkcore.azurecr.io/cosmos-admin:latest
