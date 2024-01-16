@@ -20,7 +20,7 @@ spec:
     newTag: 2023-05-09T170635Z # {"$imagepolicy": "flux-system:carina:tag"}
   - name: binkcore.azurecr.io/cosmos
     newName: binkcore.azurecr.io/cosmos
-    newTag: 2023-05-09T181346Z # {"$imagepolicy": "flux-system:cosmos:tag"}
+    newTag: 2024-01-16T111408Z # {"$imagepolicy": "flux-system:cosmos:tag"}
   - name: binkcore.azurecr.io/cosmos-admin
     newName: binkcore.azurecr.io/cosmos-admin
     newTag: 2023-05-09T181346Z # {"$imagepolicy": "flux-system:cosmos-admin:tag"}
