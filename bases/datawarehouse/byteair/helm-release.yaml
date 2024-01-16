@@ -51,3 +51,6 @@ spec:
     worker:
       podAnnotations:
         linkerd.io/inject: enabled
+    minio:
+      podAnnotations:
+        linkerd.io/inject: enabled
