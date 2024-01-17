@@ -24,8 +24,6 @@ spec:
         spec:
           restartPolicy: Never
           serviceAccountName: pyqa
-          imagePullSecrets:
-            - name: binkcore.azurecr.io
           volumes:
             - name: data
               emptyDir: {}
