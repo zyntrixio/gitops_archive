@@ -20,7 +20,7 @@ spec:
       newTag: 2024-01-15T152632Z # {"$imagepolicy": "flux-system:asteria:tag"}
     - name: binkcore.azurecr.io/atlas
       newName: binkcore.azurecr.io/atlas
-      newTag: prod-2.7.0 # {"$imagepolicy": "flux-system:atlas:tag"}
+      newTag: prod-2.8.0 # {"$imagepolicy": "flux-system:atlas:tag"}
     - name: binkcore.azurecr.io/boreas
       newName: binkcore.azurecr.io/boreas
       newTag: prod-v1.0.0 # {"$imagepolicy": "flux-system:boreas:tag"}
