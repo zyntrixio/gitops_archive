@@ -38,7 +38,7 @@ spec:
     newTag: 2024-01-16T151305Z # {"$imagepolicy": "flux-system:polaris:tag"}
   - name: binkcore.azurecr.io/vela
     newName: binkcore.azurecr.io/vela
-    newTag: 2023-05-09T170926Z # {"$imagepolicy": "flux-system:vela:tag"}
+    newTag: 2024-01-17T095858Z # {"$imagepolicy": "flux-system:vela:tag"}
   postBuild:
     substituteFrom:
     - kind: Secret
