@@ -14,7 +14,7 @@ spec:
   images:
   - name: binkcore.azurecr.io/cosmos
     newName: binkcore.azurecr.io/cosmos
-    newTag: staging-v0.0.7 # {"$imagepolicy": "flux-system:cosmos:tag"}
+    newTag: staging-v0.0.8 # {"$imagepolicy": "flux-system:cosmos:tag"}
   postBuild:
     substituteFrom:
     - kind: ConfigMap
