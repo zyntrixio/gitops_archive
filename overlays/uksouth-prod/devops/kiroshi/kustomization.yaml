@@ -4,7 +4,7 @@ resources:
   - ../../../../bases/devops/kiroshi/essentials
   - ../../../../bases/devops/kiroshi/jobs/migrator
   - ../../../../bases/devops/kiroshi/checks/frontdoor/ranges
-  - ../../../../bases/devops/kiroshi/checks/frontdoor/traffic
+  # - ../../../../bases/devops/kiroshi/checks/frontdoor/traffic
   - ../../../../bases/devops/kiroshi/checks/spreedly/certs
   - ../../../../bases/devops/kiroshi/storage/blob/itsu
   - ../../../../bases/devops/kiroshi/storage/blob/viator
