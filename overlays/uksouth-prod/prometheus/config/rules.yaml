@@ -1,7 +1,6 @@
 ---
 groups:
-
-# Set London time
+  # Set London time
   - name: daylight_saving
     rules:
       - record: is_european_summer_time
@@ -20,45 +19,45 @@ groups:
 
   - name: Infrastructure
     rules:
-      - alert: Unavailable Replicas
-        expr: sum by(deployment, namespace) (kube_deployment_status_replicas_unavailable)
-          > 0
-        for: 5m
-        labels:
-          severity: p2
-          cluster: prod
-          component: Kubernetes
-          resolve: true
-        annotations:
-          title: Prod - {{ $labels.deployment}}
-          description: 'Deployment: {{ $labels.deployment}} in Namespace: {{$labels.namespace}}
-            has unavailable replicas.'
+      # - alert: Unavailable Replicas
+      #   expr: sum by(deployment, namespace) (kube_deployment_status_replicas_unavailable)
+      #     > 0
+      #   for: 5m
+      #   labels:
+      #     severity: p2
+      #     cluster: prod
+      #     component: Kubernetes
+      #     resolve: true
+      #   annotations:
+      #     title: Prod - {{ $labels.deployment}}
+      #     description: 'Deployment: {{ $labels.deployment}} in Namespace: {{$labels.namespace}}
+      #       has unavailable replicas.'
 
-      - alert: Container Restarts
-        expr: increase(kube_pod_container_status_restarts_total{namespace!="kube-system"}[1h]) > 1.01
-        for: 1s
-        labels:
-          severity: p2
-          cluster: prod
-          resolve: true
-          component: Kubernetes
-        annotations:
-          title: Prod - Container restarts
-          description: 'Container: {{$labels.container}} in Deploy: {{$labels.pod}}
-            in Namespace: {{$labels.namespace}} is restarting alot'
+      # - alert: Container Restarts
+      #   expr: increase(kube_pod_container_status_restarts_total{namespace!="kube-system"}[1h]) > 1.01
+      #   for: 1s
+      #   labels:
+      #     severity: p2
+      #     cluster: prod
+      #     resolve: true
+      #     component: Kubernetes
+      #   annotations:
+      #     title: Prod - Container restarts
+      #     description: 'Container: {{$labels.container}} in Deploy: {{$labels.pod}}
+      #       in Namespace: {{$labels.namespace}} is restarting alot'
 
-      - alert: Kube pod waiting status
-        expr: sum by (reason, pod)(kube_pod_container_status_waiting_reason) > 0
-        for: 5m
-        labels:
-          severity: p2
-          cluster: prod
-          resolve: true
-          component: Kubernetes
-        annotations:
-          title: Prod - Pod waiting status
-          description: 'Pod: {{$labels.pod}} is in this State: {{$labels.reason}}
-            in this Namespace: {{$labels.namespace}}, in this cluster: {{$labels.kubernetes_cluster}}'
+      # - alert: Kube pod waiting status
+      #   expr: sum by (reason, pod)(kube_pod_container_status_waiting_reason) > 0
+      #   for: 5m
+      #   labels:
+      #     severity: p2
+      #     cluster: prod
+      #     resolve: true
+      #     component: Kubernetes
+      #   annotations:
+      #     title: Prod - Pod waiting status
+      #     description: 'Pod: {{$labels.pod}} is in this State: {{$labels.reason}}
+      #       in this Namespace: {{$labels.namespace}}, in this cluster: {{$labels.kubernetes_cluster}}'
 
       # - alert: Copybot Hermes - No Jobs Processed
       #   expr: increase(events_processed_total{job="copybot-hermes"}[10m]) < 1
@@ -137,7 +136,8 @@ groups:
       #       24 hours
 
       - alert: Vop status stuck in transitory state
-        expr: sum by (status)(hermes_current_vop_activation_status_total{status=~"Deactivating|Activating"})
+        expr:
+          sum by (status)(hermes_current_vop_activation_status_total{status=~"Deactivating|Activating"})
           > sum by (status)(hermes_current_vop_activation_status_total{status=~"Deactivating|Activating"}
           offset 15m)
         for: 15m
@@ -147,8 +147,9 @@ groups:
           component: asteria
           resolve: false
         annotations:
-          resource: '{{$labels.status}}'
-          summary: VOP account status in {{$labels.status}} state for over 15 minutes
+          resource: "{{$labels.status}}"
+          summary:
+            VOP account status in {{$labels.status}} state for over 15 minutes
             - check
 
       # - alert: Failed exports - receipt number not found
@@ -199,14 +200,15 @@ groups:
           cluster: prod
           resolve: false
         annotations:
-          resource: '{{ $labels.slug }}'
+          resource: "{{ $labels.slug }}"
           summary: There has been an increase of 5 in failed logins in 10 mins
 
-# Alerts for the state of our certificates
+  # Alerts for the state of our certificates
   - name: Certificates
     rules:
       - alert: core ssl external (non-letsencrypt) 10 days
-        expr: ((ssl_cert_not_after{cn!~".*(COMODO RSA Domain Validation|Sectigo RSA
+        expr:
+          ((ssl_cert_not_after{cn!~".*(COMODO RSA Domain Validation|Sectigo RSA
           Domain Validation|RSA Certification Authority|Let's Encrypt Authority X3|R3).*",issuer_cn!~".*(Let's
           Encrypt|COMODO RSA Domain Validation|R3).*"} - time()) / 24 / 60 / 60) <
           10
@@ -215,11 +217,12 @@ groups:
           cluster: prod
           resolve: false
         annotations:
-          resource: '{{ $labels.instance }}'
+          resource: "{{ $labels.instance }}"
           summary: Cert less than 10 days from expiring
 
       - alert: core ssl external (non-letsencrypt) 30 days
-        expr: ((ssl_cert_not_after{cn!~".*(COMODO RSA Domain Validation|Sectigo RSA
+        expr:
+          ((ssl_cert_not_after{cn!~".*(COMODO RSA Domain Validation|Sectigo RSA
           Domain Validation|RSA Certification Authority|Let's Encrypt Authority X3|R3).*",issuer_cn!~".*(Let's
           Encrypt|COMODO RSA Domain Validation|R3).*"} - time()) / 24 / 60 / 60) <
           30
@@ -228,11 +231,12 @@ groups:
           cluster: prod
           resolve: false
         annotations:
-          resource: '{{ $labels.instance }}'
+          resource: "{{ $labels.instance }}"
           summary: Cert less than 30 days from expiring
 
       - alert: core ssl external (letsencrypt) 05 days
-        expr: ((ssl_cert_not_after{cn!~".*(COMODO RSA Domain Validation|Sectigo RSA
+        expr:
+          ((ssl_cert_not_after{cn!~".*(COMODO RSA Domain Validation|Sectigo RSA
           Domain Validation|RSA Certification Authority|Let's Encrypt Authority X3).*",issuer_cn=~".*(Let's
           Encrypt|R3).*"} - time())/24/60/60) < 5
         labels:
@@ -240,11 +244,12 @@ groups:
           cluster: prod
           resolve: false
         annotations:
-          resource: '{{ $labels.instance }}'
+          resource: "{{ $labels.instance }}"
           summary: Let's Encrypt cert less than 05 days from expiring
 
       - alert: core ssl external (letsencrypt) 10 days
-        expr: ((ssl_cert_not_after{cn!~".*(COMODO RSA Domain Validation|Sectigo RSA
+        expr:
+          ((ssl_cert_not_after{cn!~".*(COMODO RSA Domain Validation|Sectigo RSA
           Domain Validation|RSA Certification Authority|Let's Encrypt Authority X3).*",issuer_cn=~".*(Let's
           Encrypt|R3).*"} - time())/24/60/60) < 10
         labels:
@@ -255,23 +260,25 @@ groups:
           summary: Let's Encrypt cert less than 10 days from expiring
 
       - alert: core ssl kubernetes internal (letsencrypt) 05 days
-        expr: (certmanager_certificate_expiration_timestamp_seconds - time())/24/60/60
+        expr:
+          (certmanager_certificate_expiration_timestamp_seconds - time())/24/60/60
           < 5
         labels:
           severity: p1
           cluster: prod
           resolve: false
         annotations:
-          resource: '{{ $labels.name }}'
+          resource: "{{ $labels.name }}"
           summary: Let's Encrypt Kubernetes cert less than 05 days from expiring
 
       - alert: core ssl kubernetes internal (letsencrypt) 10 days
-        expr: (certmanager_certificate_expiration_timestamp_seconds - time())/24/60/60
+        expr:
+          (certmanager_certificate_expiration_timestamp_seconds - time())/24/60/60
           < 10
         labels:
           severity: p2
           cluster: prod
           resolve: false
         annotations:
-          resource: '{{ $labels.name }}'
+          resource: "{{ $labels.name }}"
           summary: Let's Encrypt Kubernetes cert less than 10 days from expiring
