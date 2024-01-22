@@ -5,7 +5,7 @@ metadata:
   name: pyqa-apiv2
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/bink-api-v2-automation-suite
+  image: binkcore.azurecr.io/pyqa-apiv2
   interval: 1m0s
   provider: azure
 ---
