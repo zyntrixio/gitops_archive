@@ -34,7 +34,7 @@ spec:
                 - bash
                 - -c
                 - ./report-render.sh
-              image: binkcore.azurecr.io/bink-apiv2:latest
+              image: binkcore.azurecr.io/pyqa-apiv2:latest
               securityContext:
                 runAsGroup: 0
                 runAsUser: 0
@@ -50,7 +50,7 @@ spec:
                   "-c",
                   "pytest --html /tmp/report.html --self-contained-html -m bink_regression_api2 --channel bink --env staging && echo $? > /tmp/status.txt || true",
                 ]
-              image: binkcore.azurecr.io/bink-apiv2:latest
+              image: binkcore.azurecr.io/pyqa-apiv2:latest
               volumeMounts:
                 - mountPath: /tmp
                   name: data
