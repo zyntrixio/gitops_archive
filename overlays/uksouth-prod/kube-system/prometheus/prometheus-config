@@ -1,0 +1,36 @@
+global:
+  scrape_interval: "30s"
+scrape_configs:
+  - job_name: kube-state-metrics
+    static_configs:
+      - targets: [kube-state-metrics.kube-system.svc.cluster.local:9100]
+    relabel_configs:
+      - source_labels: [kubernetes_cluster]
+        target_label: kubernetes_cluster
+        action: replace
+        regex: ()
+        replacement: ${cluster_name}
+
+  - job_name: "checkly"
+    scrape_interval: 30s
+    metrics_path: "https://api.checklyhq.com/accounts/da41e9cc-d34a-4cab-b7d6-44740d1c7d2b/v2/prometheus/metrics"
+    bearer_token: "pUZDW0IXdDBWoDCxAgJ3eRsZ"
+    scheme: https
+    static_configs:
+      - targets: ["api.checklyhq.com"]
+
+  - job_name: cloudamqp
+    basic_auth:
+      username: ${cloudamqp_user}
+      password: ${cloudamqp_pass}
+    scheme: https #necessary for cloudamqp instances
+    # metrics_path defaults to '/metrics', which is the one used by cloudamqp instances so no need to define.
+    metrics_path: "/metrics/detailed"
+    params:
+      family:
+        - "queue_metrics"
+        - "queue_coarse_metrics"
+
+    # static_configs allows specifying a list of targets and a common label set for them.
+    static_configs:
+      - targets: [${cloudamqp_nodes}]
