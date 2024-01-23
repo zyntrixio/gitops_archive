@@ -21,9 +21,6 @@ spec:
     deployment:
       podAnnotations:
         kubectl.kubernetes.io/default-container: traefik
-        prometheus.io/port: '9100'
-        prometheus.io/scrape: 'true'
-        prometheus.io/job: traefik
     logs:
       access:
         enabled: true
