@@ -30,7 +30,6 @@ spec:
   template:
     metadata:
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
       labels:
         app: prefect
@@ -67,7 +66,16 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/data-warehouse:latest
-          command: ["prefect", "server", "start", "--host", "0.0.0.0", "--log-level", "WARNING"]
+          command:
+            [
+              "prefect",
+              "server",
+              "start",
+              "--host",
+              "0.0.0.0",
+              "--log-level",
+              "WARNING",
+            ]
           resources:
             requests:
               cpu: 10m

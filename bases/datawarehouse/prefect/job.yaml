@@ -10,7 +10,6 @@ spec:
   template:
     metadata:
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
       labels:
         app: prefect
@@ -51,8 +50,7 @@ spec:
         - name: app
           image: binkcore.azurecr.io/data-warehouse:latest
           workingDir: /app/data-warehouse/Prefect
-          command: ["linkerd-await", "--shutdown", "--"]
-          args:
+          command:
             - /bin/bash
             - -c
             - >-
