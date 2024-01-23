@@ -25,29 +25,12 @@ spec:
       port: 5432
       jdbcUrl: "jdbc:postgresql://${server_host}/airbyte?sslmode=require"
     temporal:
-      env_vars: {"SQL_TLS":"true","SQL_TLS_DISABLE_HOST_VERIFICATION":"true","SQL_TLS_ENABLED":"true","SQL_HOST_VERIFICATION":"false"}
-      podAnnotations:
-        linkerd.io/inject: enabled
+      env_vars:
+        {
+          "SQL_TLS": "true",
+          "SQL_TLS_DISABLE_HOST_VERIFICATION": "true",
+          "SQL_TLS_ENABLED": "true",
+          "SQL_HOST_VERIFICATION": "false",
+        }
     s3:
       bucket: ""
-    airbyte-api-server:
-      podAnnotations:
-        linkerd.io/inject: enabled
-    connector-builder-server:
-      podAnnotations:
-        linkerd.io/inject: enabled
-    cron:
-      podAnnotations:
-        linkerd.io/inject: enabled
-    pod-sweeper:
-      podAnnotations:
-        linkerd.io/inject: enabled
-    server:
-      podAnnotations:
-        linkerd.io/inject: enabled
-    webapp:
-      podAnnotations:
-        linkerd.io/inject: enabled
-    worker:
-      podAnnotations:
-        linkerd.io/inject: enabled
