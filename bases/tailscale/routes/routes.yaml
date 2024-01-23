@@ -5,9 +5,10 @@ metadata:
   namespace: tailscale
 spec:
   subnetRouter:
-    routes:
-    - "${postgres_subnet}"
-    - "${redis_subnet}"
+    advertiseRoutes:
+      - "${postgres_subnet}"
+      - "${redis_subnet}"
     tags:
-    - "tag:${cluster_name}"
+      - "tag:${cluster_name}"
     hostname: "${cluster_location}-${cluster_name}-subnet-router"
+    exitNode: false
