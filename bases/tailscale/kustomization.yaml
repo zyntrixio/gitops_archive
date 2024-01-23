@@ -1,8 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - https://github.com/tailscale/tailscale/blob/1a08ea5990c30caef5ad2c207c7e9ff2a94e8859/cmd/k8s-operator/deploy/manifests/operator.yaml?raw=true
-  - connector_crd.yaml
+  - https://github.com/tailscale/tailscale/blob/dfc5715d9473ad16b132d1b7f4d22e5a607202e1/cmd/k8s-operator/deploy/manifests/operator.yaml?raw=true
 namespace: tailscale
 secretGenerator:
   - name: operator-oauth
