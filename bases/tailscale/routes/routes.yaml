@@ -8,6 +8,7 @@ spec:
     advertiseRoutes:
       - "${postgres_subnet}"
       - "${redis_subnet}"
+      - "${grafana_subnet}"
   tags:
     - "tag:${cluster_name}"
   hostname: "${cluster_location}-${cluster_name}-subnet-router"
