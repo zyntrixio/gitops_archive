@@ -29,7 +29,7 @@ spec:
     newTag: 2023-12-05T134811Z # {"$imagepolicy": "flux-system:boreas:tag"}
   - name: binkcore.azurecr.io/callbacca
     newName: binkcore.azurecr.io/callbacca
-    newTag: 2023-01-24T115854Z # {"$imagepolicy": "flux-system:callbacca:tag"}
+    newTag: 2024-01-24T115516Z # {"$imagepolicy": "flux-system:callbacca:tag"}
   - name: binkcore.azurecr.io/europa
     newName: binkcore.azurecr.io/europa
     newTag: 2023-10-19T143649Z # {"$imagepolicy": "flux-system:europa:tag"}
