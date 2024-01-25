@@ -29,7 +29,7 @@ patches:
           - name: QUEUE
             value: matching
           - name: MIN_REPLICAS
-            value: "0"
+            value: "1"
           - name: MAX_REPLICAS
             value: "70"
           - name: TASKS_PER_REPLICA
