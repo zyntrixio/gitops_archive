@@ -42,5 +42,7 @@ spec:
         service.beta.kubernetes.io/azure-pls-ip-configuration-ip-address: ${cluster_pls_ip}
         service.beta.kubernetes.io/azure-pls-visibility: "*"
         service.beta.kubernetes.io/azure-pls-auto-approval: c1bc5dd7-ea97-469c-89fa-8f26624902fd
+        tailscale.com/expose: "true"
+        tailscale.com/hostname: ${cluster_location}-${cluster_name}-traefik
       spec:
         loadBalancerIP: ${cluster_lb_ip}
