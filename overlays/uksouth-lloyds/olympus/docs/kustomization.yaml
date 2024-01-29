@@ -9,5 +9,7 @@ configMapGenerator:
       - config.toml
 secretGenerator:
   - name: ingress-docs-auth
+    options:
+      disableNameSuffixHash: true
     literals:
       - auth=docs:$apr1$3QupKMKT$7ENOqM5/R04IhDc48d6CE0 # docs : huge-guilt-meshwork-pizza
