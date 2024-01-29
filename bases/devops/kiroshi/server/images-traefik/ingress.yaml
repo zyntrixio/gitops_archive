@@ -16,7 +16,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`api.${cluster_name}.${cluster_location}.bink.sh`) && Path(`/content`) || Host(`bpl.${cluster_name}.${cluster_location}.bink.sh`) && Path(`/content`)
+      match: Host(`api.${cluster_name}.${cluster_location}.bink.sh`, `bpl.${cluster_name}.${cluster_location}.bink.sh`) && PathPrefix(`/content`)
       services:
         - kind: Service
           name: kiroshi-server-images
