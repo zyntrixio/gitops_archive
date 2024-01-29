@@ -1,0 +1,25 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: kiroshi-server-images-custom-headers
+spec:
+  headers:
+    customRequestHeaders:
+      container: media
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kiroshi-server-images
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`api.${cluster_name}.${cluster_location}.bink.sh`) || Host(`bpl.${cluster_name}.${cluster_location}.bink.sh`)
+      services:
+        - kind: Service
+          name: kiroshi-server-images
+          port: 80
+      middlewares:
+        - name: kiroshi-server-images-custom-headers
