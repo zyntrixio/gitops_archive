@@ -15,7 +15,7 @@ spec:
     - name: binkcore.azurecr.io/kiroshi
       newTag: staging-v1.5.9 # {"$imagepolicy": "flux-system:kiroshi:tag"}
     - name: binkcore.azurecr.io/nightcity
-      newTag: staging-v0.1.2 # {"$imagepolicy": "flux-system:nightcity:tag"}
+      newTag: staging-v0.1.3 # {"$imagepolicy": "flux-system:nightcity:tag"}
   postBuild:
     substituteFrom:
       - kind: Secret
