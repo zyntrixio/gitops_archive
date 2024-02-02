@@ -36,6 +36,11 @@ spec:
                 secretKeyRef:
                   name: azure-keyvault
                   key: url
+            - name: POSTGRES_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: azure-postgres
+                  key: server_host
           resources:
             requests:
               memory: "256Mi"
