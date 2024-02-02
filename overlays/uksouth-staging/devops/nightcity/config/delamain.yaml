@@ -1,4 +1,4 @@
-dns_rewites:
+dns_rewrites:
   a:
     - uksouth-staging-2o6h.postgres.database.azure.com
     - uksouth-staging-q263.redis.cache.windows.net
