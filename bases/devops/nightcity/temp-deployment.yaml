@@ -28,6 +28,12 @@ spec:
             - tail
             - -f
             - /dev/null
+          env:
+            - name: KEYVAULT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: azure-keyvault
+                  key: url
           resources:
             requests:
               memory: "256Mi"
