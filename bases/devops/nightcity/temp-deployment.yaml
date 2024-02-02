@@ -13,6 +13,7 @@ spec:
       labels:
         app.kubernetes.io/name: nightcity
         azure.workload.identity/use: "true"
+        kubectl.kubernetes.io/default-container: app
     spec:
       serviceAccountName: nightcity
       priorityClassName: bink-medium-tasks
