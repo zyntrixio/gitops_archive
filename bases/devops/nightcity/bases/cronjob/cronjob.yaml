@@ -66,8 +66,8 @@ spec:
               volumeMounts:
                 - name: config
                   mountPath: /var/config
-        restartPolicy: Never
-        volumes:
-          - name: config
-            configMap:
-              name: nightcity-config
+          restartPolicy: Never
+          volumes:
+            - name: config
+              configMap:
+                name: nightcity-config
