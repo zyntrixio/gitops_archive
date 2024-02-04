@@ -25,6 +25,10 @@ spec:
             - name: app
               image: binkcore.azurecr.io/nightcity:latest
               imagePullPolicy: IfNotPresent
+              command:
+                - linkerd-await
+                - --shutdown
+                - --
               args:
                 - tail
                 - -f
