@@ -4,19 +4,8 @@ configMapGenerator:
   - name: nightcity-config
     files:
       - config/delamain.yaml
+  - name: nightcity
+    envs:
+      - env.ini
 resources:
   - ../../../../bases/devops/nightcity
-patches:
-  - target:
-      kind: Deployment
-    patch: |
-      - op: add
-        path: /spec/template/spec/containers/0/env/-
-        value:
-          name: ENTRA_POSTGRES_ADMINS_GROUP_ID
-          value: 614f8517-7f78-4a55-b33b-851186bf83cc
-      - op: add
-        path: /spec/template/spec/containers/0/env/-
-        value:
-          name: ENTRA_POSTGRES_READERS_GROUP_ID
-          value: fecb77ec-99cc-4301-b633-3281cf456a83

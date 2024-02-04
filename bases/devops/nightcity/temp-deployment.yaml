@@ -30,6 +30,9 @@ spec:
             - tail
             - -f
             - /dev/null
+          envFrom:
+            - configMapRef:
+                name: nightcity
           env:
             - name: KEYVAULT_URL
               valueFrom:
@@ -41,6 +44,16 @@ spec:
                 secretKeyRef:
                   name: azure-postgres
                   key: server_host
+            - name: BLOB_STORAGE_ACCOUNT_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: azure-storage
+                  key: blob_account_name
+            - name: SFTP_STORAGE_ACCOUNT_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: azure-storage
+                  key: sftp_account_name
           resources:
             requests:
               memory: "256Mi"
