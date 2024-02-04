@@ -57,16 +57,16 @@ spec:
               envFrom:
                 - configMapRef:
                     name: nightcity
-          resources:
-            requests:
-              memory: 128Mi
-              cpu: 10m
-            limits:
-              memory: 128Mi
-          volumeMounts:
-            - name: config
-              mountPath: /var/config
-          restartPolicy: Never
+              resources:
+                requests:
+                  memory: 128Mi
+                  cpu: 10m
+                limits:
+                  memory: 128Mi
+              volumeMounts:
+                - name: config
+                  mountPath: /var/config
+              restartPolicy: Never
         volumes:
           - name: config
             configMap:
