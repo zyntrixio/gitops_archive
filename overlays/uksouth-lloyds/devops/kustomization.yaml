@@ -3,6 +3,4 @@ kind: Kustomization
 namespace: devops
 resources:
   - namespace.yaml
-  - proxy-postgres
-  - proxy-redis
   - kiroshi
