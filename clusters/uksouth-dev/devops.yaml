@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-lloyds/devops
+  path: ./overlays/uksouth-dev/devops
   prune: true
   force: true
   sourceRef:
@@ -13,11 +13,7 @@ spec:
     name: flux-system
   images:
     - name: binkcore.azurecr.io/kiroshi
-      newTag: prod-v1.5.9 # {"$imagepolicy": "flux-system:kiroshi:tag"}
-    - name: ghcr.io/binkhq/simpleproxy
-      newTag: 2023-10-29T123113Z # {"$imagepolicy": "flux-system:simpleproxy:tag"}
-    - name: binkcore.azurecr.io/nightcity
-      newTag: v0.3.0 # {"$imagepolicy": "flux-system:nightcity:tag"}
+      newTag: dev-v1.5.9 # {"$imagepolicy": "flux-system:kiroshi:tag"}
   postBuild:
     substituteFrom:
       - kind: Secret

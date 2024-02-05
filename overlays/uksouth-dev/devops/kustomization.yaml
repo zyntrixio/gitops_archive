@@ -4,4 +4,3 @@ namespace: devops
 resources:
   - namespace.yaml
   - kiroshi
-  - nightcity
