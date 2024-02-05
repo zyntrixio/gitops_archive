@@ -1,0 +1,48 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: configuration-nightcity
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-ait/configuration/nightcity
+  prune: true
+  force: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
+      - kind: Secret
+        name: azure-identities
+  images:
+    - name: binkcore.azurecr.io/nightcity
+      newName: binkcore.azurecr.io/nightcity
+      newTag: staging-0.1.0 # {"$imagepolicy": "flux-system:staging-nightcity:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: nightcity
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/nightcity
+  interval: 30m0s
+  provider: azure
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: staging-nightcity
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: nightcity
+  filterTags:
+    pattern: staging-(?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    semver:
+      range: ">0.0.1"

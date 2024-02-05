@@ -1,0 +1,7 @@
+dns_rewrites:
+  a:
+    - uksouth-dev-n71o.postgres.database.azure.com
+    - uksouth-dev-05da.redis.cache.windows.net
+  cname:
+    - name: dev.uksouth.bink.sh
+      record: uksouth-dev-traefik.alpine-monster.ts.net

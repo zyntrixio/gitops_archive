@@ -1,0 +1,7 @@
+dns_rewrites:
+  a:
+    - uksouth-retail-77lu.postgres.database.azure.com
+    - uksouth-retail-5653.redis.cache.windows.net
+  cname:
+    - name: sandbox.uksouth.bink.sh
+      record: uksouth-sandbox-traefik.alpine-monster.ts.net
