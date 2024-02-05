@@ -10,4 +10,5 @@ configMapGenerator:
       - env.ini
 resources:
   - ../../../../bases/devops/nightcity
+  - ../../../../bases/devops/nightcity/delamain
   - ../../../../bases/devops/nightcity/screamsheet

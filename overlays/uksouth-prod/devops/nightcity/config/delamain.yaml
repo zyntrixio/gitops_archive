@@ -2,6 +2,4 @@ dns_rewrites:
   a:
     - uksouth-prod-57fu.postgres.database.azure.com
     - uksouth-prod-k74j.redis.cache.windows.net
-  cname:
-    - name: prod.uksouth.bink.sh
-      record: uksouth-prod-traefik.alpine-monster.ts.net
+  cname: []
