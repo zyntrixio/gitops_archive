@@ -12,3 +12,9 @@ resources:
   - ../../../../bases/devops/nightcity
   - ../../../../bases/devops/nightcity/brendan
   - ../../../../bases/devops/nightcity/delamain
+patches:
+  - target:
+      kind: CronJob
+    patch: |
+      - op: remove
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env/1
