@@ -3,11 +3,11 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
-  name: api.${cluster_name}.${cluster_location}.bink.sh-hermes
+  name: hermes.${cluster_name}.${cluster_location}.bink.sh
   namespace: default
 spec:
   rules:
-    - host: api.${cluster_name}.${cluster_location}.bink.sh
+    - host: hermes.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /admin
@@ -17,7 +17,7 @@ spec:
                 name: hermes-api
                 port:
                   number: 80
-          - path: /static
+          - path: /static/
             pathType: Prefix
             backend:
               service:
@@ -26,4 +26,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - api.${cluster_name}.${cluster_location}.bink.sh
+        - hermes.${cluster_name}.${cluster_location}.bink.sh

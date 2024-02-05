@@ -1,16 +1,23 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hermes
-  namespace: configuration
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: traefik
+  name: hermes.${cluster_name}.${cluster_location}.bink.sh
+  namespace: default
 spec:
   rules:
-    - host: configuration.${cluster_name}.${cluster_location}.bink.sh
+    - host: hermes.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
-          - path: /
+          - path: /admin
+            pathType: Prefix
+            backend:
+              service:
+                name: hermes-api
+                port:
+                  number: 80
+          - path: /static/
             pathType: Prefix
             backend:
               service:
@@ -19,4 +26,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - configuration.${cluster_name}.${cluster_location}.bink.sh
+        - hermes.${cluster_name}.${cluster_location}.bink.sh
