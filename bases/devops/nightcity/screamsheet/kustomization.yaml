@@ -13,6 +13,11 @@ patches:
         value:
           - nightcity
           - screamsheet
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env/-
+        value:
+          name: DATABASE_NAME
+          value: polaris
     target:
       kind: CronJob
 labels:

@@ -1,0 +1,49 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: devops-nightcity
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-prod/devops/nightcity
+  prune: true
+  force: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/nightcity
+      newTag: prod-v0.1.0 # {"$imagepolicy": "flux-system:nightcity:tag"}
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: azure-identities
+      - kind: Secret
+        name: azure-keyvault
+      - kind: ConfigMap
+        name: cluster-vars
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: nightcity
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/nightcity
+  interval: 10m0s
+  provider: azure
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: nightcity
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: nightcity
+  filterTags:
+    pattern: production-v(?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    semver:
+      range: ">0.0.1"
