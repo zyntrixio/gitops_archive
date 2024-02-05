@@ -19,6 +19,7 @@ spec:
             azure.workload.identity/use: "true"
           annotations:
             kubectl.kubernetes.io/default-container: app
+            linkerd.io/inject: enabled
         spec:
           serviceAccountName: nightcity
           containers:
