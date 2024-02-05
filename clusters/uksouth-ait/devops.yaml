@@ -18,6 +18,8 @@ spec:
     substituteFrom:
       - kind: Secret
         name: azure-identities
+      - kind: Secret
+        name: azure-keyvault
       - kind: ConfigMap
         name: cluster-vars
 ---
