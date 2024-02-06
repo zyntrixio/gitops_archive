@@ -32,7 +32,7 @@ spec:
     newTag: 2024-01-24T115516Z # {"$imagepolicy": "flux-system:callbacca:tag"}
   - name: binkcore.azurecr.io/europa
     newName: binkcore.azurecr.io/europa
-    newTag: 2023-10-19T143649Z # {"$imagepolicy": "flux-system:europa:tag"}
+    newTag: 2024-02-06T130726Z # {"$imagepolicy": "flux-system:europa:tag"}
   - name: binkcore.azurecr.io/docs
     newName: binkcore.azurecr.io/docs
     newTag: dev-v1.2.0 # {"$imagepolicy": "flux-system:docs:tag"}
