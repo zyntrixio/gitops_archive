@@ -24,9 +24,6 @@ spec:
     - name: binkcore.azurecr.io/boreas
       newName: binkcore.azurecr.io/boreas
       newTag: prod-v1.0.0 # {"$imagepolicy": "flux-system:boreas:tag"}
-    - name: binkcore.azurecr.io/cyclops
-      newName: binkcore.azurecr.io/cyclops
-      newTag: 2024-02-06T153832Z # {"$imagepolicy": "flux-system:cyclops:tag"}
     - name: binkcore.azurecr.io/docs
       newName: binkcore.azurecr.io/docs
       newTag: production-v1.2.0 # {"$imagepolicy": "flux-system:docs:tag"}
