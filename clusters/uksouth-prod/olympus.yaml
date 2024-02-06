@@ -20,7 +20,7 @@ spec:
       newTag: 2024-01-15T152632Z # {"$imagepolicy": "flux-system:asteria:tag"}
     - name: binkcore.azurecr.io/atlas
       newName: binkcore.azurecr.io/atlas
-      newTag: prod-2.8.1 # {"$imagepolicy": "flux-system:atlas:tag"}
+      newTag: prod-2.8.2 # {"$imagepolicy": "flux-system:atlas:tag"}
     - name: binkcore.azurecr.io/boreas
       newName: binkcore.azurecr.io/boreas
       newTag: prod-v1.0.0 # {"$imagepolicy": "flux-system:boreas:tag"}
@@ -32,7 +32,7 @@ spec:
       newTag: production-v1.2.0 # {"$imagepolicy": "flux-system:docs:tag"}
     - name: binkcore.azurecr.io/eos
       newName: binkcore.azurecr.io/eos
-      newTag: prod-1.0.6 # {"$imagepolicy": "flux-system:eos:tag"}
+      newTag: prod-1.0.7 # {"$imagepolicy": "flux-system:eos:tag"}
     - name: binkcore.azurecr.io/europa
       newName: binkcore.azurecr.io/europa
       newTag: prod-1.6.6 # {"$imagepolicy": "flux-system:europa:tag"}
