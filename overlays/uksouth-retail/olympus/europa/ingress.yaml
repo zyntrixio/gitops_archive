@@ -17,6 +17,13 @@ spec:
                 name: europa-api
                 port:
                   number: 80
+          - path: /static
+            pathType: Prefix
+            backend:
+              service:
+                name: europa-api
+                port:
+                  number: 80
   tls:
     - hosts:
         - europa.${cluster_name}.${cluster_location}.bink.sh
