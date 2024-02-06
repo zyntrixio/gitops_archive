@@ -4,11 +4,11 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
-  name: audit.${cluster_name}.${cluster_location}.bink.sh
+  name: atlas.${cluster_name}.${cluster_location}.bink.sh
   namespace: default
 spec:
   rules:
-    - host: audit.${cluster_name}.${cluster_location}.bink.sh
+    - host: atlas.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /
@@ -20,4 +20,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - audit.${cluster_name}.${cluster_location}.bink.sh
+        - atlas.${cluster_name}.${cluster_location}.bink.sh
