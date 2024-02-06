@@ -1,6 +1,7 @@
 ---
 resources:
   - ../../../../bases/cosmos/event-horizon
+  - ingress.yaml
 
 namespace: bpl
 
