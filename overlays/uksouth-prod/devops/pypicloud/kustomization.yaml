@@ -7,6 +7,9 @@ resources:
 
 namespace: devops
 
+components:
+  - ../../../../bases/components/remove-default-namespace
+
 replicas:
   - name: pypi
     count: 1
