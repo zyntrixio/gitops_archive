@@ -29,7 +29,7 @@ spec:
     newTag: staging-v1.2.0 # {"$imagepolicy": "flux-system:docs:tag"}
   - name: binkcore.azurecr.io/europa
     newName: binkcore.azurecr.io/europa
-    newTag: staging-1.6.5 # {"$imagepolicy": "flux-system:europa:tag"}
+    newTag: staging-1.6.6 # {"$imagepolicy": "flux-system:europa:tag"}
   - name: binkcore.azurecr.io/hades
     newName: binkcore.azurecr.io/hades
     newTag: staging-2.8.0 # {"$imagepolicy": "flux-system:hades:tag"}
