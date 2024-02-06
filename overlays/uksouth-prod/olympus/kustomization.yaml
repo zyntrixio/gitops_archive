@@ -7,7 +7,6 @@ resources:
   - ./asteria
   - ./atlas
   - ./boreas
-  - ./cyclops
   - ./docs
   - ./eos
   - ./europa
