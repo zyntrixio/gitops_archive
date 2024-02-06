@@ -13,12 +13,14 @@ spec:
     name: flux-system
   postBuild:
     substituteFrom:
-    - kind: Secret
-      name: azure-identities
+      - kind: Secret
+        name: azure-identities
+      - kind: ConfigMap
+        name: cluster-vars
   images:
-  - name: binkcore.azurecr.io/event-horizon
-    newName: binkcore.azurecr.io/event-horizon
-    newTag: staging-1.7.15 # {"$imagepolicy": "flux-system:uksouth-staging-event-horizon:tag"}
+    - name: binkcore.azurecr.io/event-horizon
+      newName: binkcore.azurecr.io/event-horizon
+      newTag: staging-1.7.15 # {"$imagepolicy": "flux-system:uksouth-staging-event-horizon:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
@@ -43,4 +45,4 @@ spec:
     extract: $ts
   policy:
     semver:
-      range: '>0.0.1'
+      range: ">0.0.1"
