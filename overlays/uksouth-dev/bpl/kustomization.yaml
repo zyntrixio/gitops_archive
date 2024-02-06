@@ -5,7 +5,6 @@ resources:
   - namespace.yaml
   - ./aquila
   - ./carina
-  - ./cosmos
   - ./event-horizon
   - ./hubble
   - ./ingress
