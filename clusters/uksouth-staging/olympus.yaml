@@ -38,7 +38,7 @@ spec:
       newTag: staging-v1.2.0 # {"$imagepolicy": "flux-system:docs:tag"}
     - name: binkcore.azurecr.io/eos
       newName: binkcore.azurecr.io/eos
-      newTag: staging-1.0.6 # {"$imagepolicy": "flux-system:eos:tag"}
+      newTag: staging-1.0.7 # {"$imagepolicy": "flux-system:eos:tag"}
     - name: binkcore.azurecr.io/hades
       newName: binkcore.azurecr.io/hades
       newTag: staging-2.8.0 # {"$imagepolicy": "flux-system:hades:tag"}
