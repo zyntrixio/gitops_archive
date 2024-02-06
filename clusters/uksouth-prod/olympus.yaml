@@ -35,7 +35,7 @@ spec:
       newTag: prod-1.0.6 # {"$imagepolicy": "flux-system:eos:tag"}
     - name: binkcore.azurecr.io/europa
       newName: binkcore.azurecr.io/europa
-      newTag: prod-1.6.4 # {"$imagepolicy": "flux-system:europa:tag"}
+      newTag: prod-1.6.6 # {"$imagepolicy": "flux-system:europa:tag"}
     - name: binkcore.azurecr.io/hades
       newName: binkcore.azurecr.io/hades
       newTag: prod-2.8.0 # {"$imagepolicy": "flux-system:hades:tag"}
