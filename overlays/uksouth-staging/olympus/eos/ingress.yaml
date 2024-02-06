@@ -4,11 +4,11 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
-  name: api.${cluster_name}.${cluster_location}.bink.sh-eos
+  name: eos.${cluster_name}.${cluster_location}.bink.sh
   namespace: default
 spec:
   rules:
-    - host: api.${cluster_name}.${cluster_location}.bink.sh
+    - host: eos.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - path: /eos
@@ -20,4 +20,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - api.${cluster_name}.${cluster_location}.bink.sh
+        - eos.${cluster_name}.${cluster_location}.bink.sh
