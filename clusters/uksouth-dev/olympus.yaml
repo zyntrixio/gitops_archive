@@ -38,7 +38,7 @@ spec:
     newTag: dev-v1.2.0 # {"$imagepolicy": "flux-system:docs:tag"}
   - name: binkcore.azurecr.io/eos
     newName: binkcore.azurecr.io/eos
-    newTag: 2024-02-06T135836Z # {"$imagepolicy": "flux-system:eos:tag"}
+    newTag: 2024-02-06T140441Z # {"$imagepolicy": "flux-system:eos:tag"}
   - name: binkcore.azurecr.io/hades
     newName: binkcore.azurecr.io/hades
     newTag: 2023-03-22T164730Z # {"$imagepolicy": "flux-system:hades:tag"}
