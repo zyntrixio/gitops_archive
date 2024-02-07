@@ -3,6 +3,8 @@ resources:
   - ../../../../bases/oss/api-reflector
   - ingress.yaml
 
+namespace: configuration
+
 configMapGenerator:
   - name: api-reflector
     envs:
