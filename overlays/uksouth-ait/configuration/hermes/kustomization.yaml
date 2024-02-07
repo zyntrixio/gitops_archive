@@ -3,7 +3,8 @@ resources:
   - ../../../../bases/olympus/hermes/essentials
   - ingress.yaml
 
-namespace: configuration
+components:
+  - ../../../../bases/components/remove-default-namespace
 patches:
   - target:
       kind: Namespace

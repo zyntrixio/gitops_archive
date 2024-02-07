@@ -16,7 +16,7 @@ spec:
       author:
         email: support@weave.works
         name: Flux Weave
-      messageTemplate: '[ci skip] {{range .Updated.Images}}{{println .}}{{end}}'
+      messageTemplate: "[ci skip] {{range .Updated.Images}}{{println .}}{{end}}"
   interval: 1m0s
   update:
     strategy: Setters
