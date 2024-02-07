@@ -1,6 +1,0 @@
----
-modules:
-  https_noverify:
-    prober: https
-    tls_config:
-      insecure_skip_verify: true

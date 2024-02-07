@@ -1,7 +1,0 @@
----
-connectors:
-  - alerts_production: https://hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/e6c8fe14130a4c69a213aebd2384ed14/48aca6b1-4d56-4a15-bc92-8aa9d97300df
-  - alerts_staging: https://hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/fa0064dd228d4eca84b3264c13685380/48aca6b1-4d56-4a15-bc92-8aa9d97300df
-  - alerts_development: https://hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/8e773f1f096e468c8689e601f9d64fba/48aca6b1-4d56-4a15-bc92-8aa9d97300df
-  - alerts_devops: https://hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/aaeddfcd407742d398a9e8211e18ad36/48aca6b1-4d56-4a15-bc92-8aa9d97300df
-  - devops_test: https://hellobink.webhook.office.com/webhookb2/bf220ac8-d509-474f-a568-148982784d19@a6e2367a-92ea-4e5a-b565-723830bcc095/IncomingWebhook/02d90eca65584c50ad988122ed58d4f1/48aca6b1-4d56-4a15-bc92-8aa9d97300df
