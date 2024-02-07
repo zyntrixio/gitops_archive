@@ -1,0 +1,22 @@
+---
+resources:
+  - ../../../../bases/oss/api-reflector
+  - ingress.yaml
+
+configMapGenerator:
+  - name: api-reflector
+    envs:
+      - env.ini
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: api-reflector
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-medium-api

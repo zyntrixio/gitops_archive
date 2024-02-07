@@ -1,0 +1,14 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: reflector.${cluster_name}.${cluster_location}.bink.sh
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`reflector.${cluster_name}.${cluster_location}.bink.sh`)
+      services:
+        - kind: Service
+          name: api-reflector
+          port: 80

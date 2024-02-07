@@ -1,0 +1,23 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: configuration-api-reflector
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-ait/configuration/api-reflector
+  prune: true
+  force: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
+      - kind: Secret
+        name: azure-identities
+  images:
+    - name: binkcore.azurecr.io/api-reflector
+      newName: binkcore.azurecr.io/api-reflector
+      newTag: 0.8.2
