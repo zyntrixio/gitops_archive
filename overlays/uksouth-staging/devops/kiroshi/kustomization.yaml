@@ -7,3 +7,13 @@ resources:
   - ../../../../bases/devops/kiroshi/essentials
   - ../../../../bases/devops/kiroshi/jobs/migrator
   - ../../../../bases/devops/kiroshi/server/images-traefik
+  - ../../../../bases/devops/kiroshi/kubernetes/scale
+
+patches:
+  - patch: |
+      - op: replace
+        path: /spec/schedule
+        value: "59 23 * * 1-5"
+    target:
+      kind: CronJob
+      name: kiroshi-kube-scale-down
