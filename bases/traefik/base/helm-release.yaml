@@ -26,6 +26,7 @@ spec:
         enabled: true
         format: json
         fields:
+          defaultMode: keep
           names:
             X-Azure-Ref: keep
     ingressRoute:
