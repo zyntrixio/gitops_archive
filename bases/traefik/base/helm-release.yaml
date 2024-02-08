@@ -25,6 +25,9 @@ spec:
       access:
         enabled: true
         format: json
+        fields:
+          names:
+            x-azure-ref: keep
     ingressRoute:
       dashboard:
         matchRule: Host(`traefik.${cluster_name}.${cluster_location}.bink.sh`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
