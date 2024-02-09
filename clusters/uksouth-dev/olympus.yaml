@@ -17,7 +17,7 @@ spec:
       newTag: 2024-01-11T150526Z # {"$imagepolicy": "flux-system:angelia:tag"}
     - name: ghcr.io/binkhq/api-reflector
       newName: ghcr.io/binkhq/api-reflector
-      newTag: 0.8.2 # {"$imagepolicy": "flux-system:api-reflector:tag"}
+      newTag: v0.8.3 # {"$imagepolicy": "flux-system:api-reflector:tag"}
     - name: binkcore.azurecr.io/asteria
       newName: binkcore.azurecr.io/asteria
       newTag: 2024-01-15T152632Z # {"$imagepolicy": "flux-system:asteria:tag"}
