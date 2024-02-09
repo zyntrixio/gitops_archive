@@ -17,7 +17,7 @@ spec:
       newTag: staging-1.31.0 # {"$imagepolicy": "flux-system:angelia-staging:tag"}
     - name: ghcr.io/binkhq/api-reflector
       newName: ghcr.io/binkhq/api-reflector
-      newTag: 0.7.0 # {"$imagepolicy": "flux-system:api-reflector:tag"}
+      newTag: v0.8.3 # {"$imagepolicy": "flux-system:api-reflector:tag"}
     - name: binkcore.azurecr.io/callbacca
       newName: binkcore.azurecr.io/callbacca
       newTag: 2024-01-24T115516Z # {"$imagepolicy": "flux-system:callbacca:tag"}
