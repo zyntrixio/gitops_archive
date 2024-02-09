@@ -41,7 +41,7 @@ spec:
     - name: binkcore.azurecr.io/kiroshi
       newTag: staging-v1.5.9 # {"$imagepolicy": "flux-system:kiroshi-staging:tag"}
     - name: binkcore.azurecr.io/pelops
-      newTag: staging-1.1.7 # {"$imagepolicy": "flux-system:pelops:tag"}
+      newTag: 2024-02-09T230218Z # {"$imagepolicy": "flux-system:pelops:tag"}
     - name: binkcore.azurecr.io/plutus
       newTag: staging-0.0.11 # {"$imagepolicy": "flux-system:plutus-staging:tag"}
     - name: binkcore.azurecr.io/policies.gb.bink.com
