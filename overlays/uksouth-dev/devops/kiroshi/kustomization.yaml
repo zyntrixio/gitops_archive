@@ -6,3 +6,5 @@ resources:
   - ../../../../bases/devops/kiroshi/server/images-traefik
   - ../../../../bases/devops/kiroshi/kubernetes/linkerd
   - ../../../../bases/devops/kiroshi/kubernetes/scale
+components:
+  - ../../../../bases/components/remove-default-namespace
