@@ -53,7 +53,7 @@ spec:
       newTag: 2024-01-29T144848Z # {"$imagepolicy": "flux-system:hermes:tag"}
     - name: binkcore.azurecr.io/pelops
       newName: binkcore.azurecr.io/pelops
-      newTag: 2022-12-15T171524Z # {"$imagepolicy": "flux-system:pelops:tag"}
+      newTag: 2024-02-09T225721Z # {"$imagepolicy": "flux-system:pelops:tag"}
     - name: binkcore.azurecr.io/plutus
       newName: binkcore.azurecr.io/plutus
       newTag: 2023-10-16T134823Z # {"$imagepolicy": "flux-system:plutus:tag"}
