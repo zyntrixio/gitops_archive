@@ -3,5 +3,3 @@ kind: Kustomization
 resources:
   - ../../../../bases/devops/kiroshi/essentials
   - ../../../../bases/devops/kiroshi/server/images-traefik
-components:
-  - ../../../../bases/components/remove-default-namespace
