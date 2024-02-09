@@ -11,11 +11,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: policies
+  name: policies-staging
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: policies-staging
+    name: policies
   filterTags:
     pattern: staging-(?P<ts>\d{4}-\d{2}-\d{2}T\d{6}Z)$
     extract: $ts
