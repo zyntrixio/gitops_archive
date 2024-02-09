@@ -17,7 +17,7 @@ spec:
       newTag: staging-1.31.0 # {"$imagepolicy": "flux-system:angelia-staging:tag"}
     - name: ghcr.io/binkhq/api-reflector
       newName: ghcr.io/binkhq/api-reflector
-      newTag: 0.7.0 # {"$imagepolicy": "flux-system:api-reflector:tag"}
+      newTag: v0.8.3 # {"$imagepolicy": "flux-system:api-reflector:tag"}
     - name: binkcore.azurecr.io/atlas
       newName: binkcore.azurecr.io/atlas
       newTag: staging-2.8.2 # {"$imagepolicy": "flux-system:atlas-staging:tag"}
