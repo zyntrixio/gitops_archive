@@ -12,5 +12,4 @@ spec:
     name: flux-system
   images:
     - name: binkcore.azurecr.io/aquila
-      newName: binkcore.azurecr.io/aquila
       newTag: staging-1.1.0 # {"$imagepolicy": "flux-system:aquila-staging:tag"}

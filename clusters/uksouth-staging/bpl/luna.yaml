@@ -12,5 +12,4 @@ spec:
     name: flux-system
   images:
     - name: binkcore.azurecr.io/luna
-      newName: binkcore.azurecr.io/luna
       newTag: staging-0.2.3 # {"$imagepolicy": "flux-system:luna-staging:tag"}

@@ -17,5 +17,4 @@ spec:
         name: azure-identities
   images:
     - name: binkcore.azurecr.io/polaris
-      newName: binkcore.azurecr.io/polaris
       newTag: staging-3.4.2 # {"$imagepolicy": "flux-system:polaris-staging:tag"}

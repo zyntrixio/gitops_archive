@@ -1,23 +1,23 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: hubble
+  name: bullsquid
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/hubble
+  image: binkcore.azurecr.io/bullsquid
   interval: 5m0s
   provider: azure
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: hubble-staging
+  name: bullsquid-staging
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: hubble
+    name: bullsquid
   filterTags:
-    pattern: staging-(?P<ts>\d+(\.\d+)*)$
+    pattern: staging-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:
@@ -26,13 +26,13 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: hubble-prod
+  name: bullsquid-prod
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: hubble
+    name: bullsquid
   filterTags:
-    pattern: prod-(?P<ts>\d+(\.\d+)*)$
+    pattern: prod-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:

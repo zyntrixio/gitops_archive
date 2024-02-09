@@ -23,30 +23,4 @@ spec:
         name: azure-keyvault
   images:
     - name: binkcore.azurecr.io/data-warehouse
-      newName: binkcore.azurecr.io/data-warehouse
-      newTag: prod-v1.7.6 # {"$imagepolicy": "flux-system:uksouth-prod-data-warehouse:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: data-warehouse
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/data-warehouse
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-prod-data-warehouse
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: data-warehouse
-  filterTags:
-    pattern: prod-v(?P<ts>\d+(\.\d+)*)$
-    extract: $ts
-  policy:
-    alphabetical:
-      order: asc
+      newTag: prod-v1.7.6 # {"$imagepolicy": "flux-system:data-warehouse-prod:tag"}

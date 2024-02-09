@@ -13,22 +13,16 @@ spec:
     name: flux-system
   images:
     - name: binkcore.azurecr.io/aquila
-      newName: binkcore.azurecr.io/aquila
       newTag: prod-1.0.3 # {"$imagepolicy": "flux-system:aquila-prod:tag"}
     - name: binkcore.azurecr.io/carina
-      newName: binkcore.azurecr.io/carina
       newTag: prod-3.1.0 # {"$imagepolicy": "flux-system:carina-prod:tag"}
     - name: binkcore.azurecr.io/event-horizon
-      newName: binkcore.azurecr.io/event-horizon
       newTag: prod-1.7.15 # {"$imagepolicy": "flux-system:event-horizon-prod:tag"}
     - name: binkcore.azurecr.io/hubble
-      newName: binkcore.azurecr.io/hubble
       newTag: prod-1.4.1 # {"$imagepolicy": "flux-system:hubble-prod:tag"}
     - name: binkcore.azurecr.io/polaris
-      newName: binkcore.azurecr.io/polaris
       newTag: prod-3.4.2 # {"$imagepolicy": "flux-system:polaris-prod:tag"}
     - name: binkcore.azurecr.io/vela
-      newName: binkcore.azurecr.io/vela
       newTag: prod-2.5.7 # {"$imagepolicy": "flux-system:vela-prod:tag"}
   postBuild:
     substituteFrom:

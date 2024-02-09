@@ -11,35 +11,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/aperture
-    newName: binkcore.azurecr.io/aperture
-    newTag: prod-2.1.48 # {"$imagepolicy": "flux-system:uksouth-prod-aperture:tag"}
+    - name: binkcore.azurecr.io/aperture
+      newTag: prod-2.1.48 # {"$imagepolicy": "flux-system:aperture-prod:tag"}
   postBuild:
     substituteFrom:
-    - kind: ConfigMap
-      name: cluster-vars
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: aperture
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/aperture
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-prod-aperture
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: aperture
-  filterTags:
-    pattern: prod-(?P<ts>\d+(\.\d+)*)$
-    extract: $ts
-  policy:
-    semver:
-      range: '>0.0.1'
+      - kind: ConfigMap
+        name: cluster-vars

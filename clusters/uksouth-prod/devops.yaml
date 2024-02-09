@@ -21,7 +21,6 @@ spec:
     - name: binkcore.azurecr.io/nightcity
       newTag: production-v0.4.0 # {"$imagepolicy": "flux-system:nightcity-prod:tag"}
     - name: ghcr.io/binkhq/simpleproxy
-      newName: ghcr.io/binkhq/simpleproxy
       newTag: latest
   postBuild:
     substituteFrom:

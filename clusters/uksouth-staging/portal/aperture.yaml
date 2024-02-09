@@ -11,35 +11,9 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/aperture
-    newName: binkcore.azurecr.io/aperture
-    newTag: staging-2.1.54 # {"$imagepolicy": "flux-system:uksouth-staging-aperture:tag"}
+    - name: binkcore.azurecr.io/aperture
+      newTag: staging-2.1.54 # {"$imagepolicy": "flux-system:aperture-staging:tag"}
   postBuild:
     substituteFrom:
-    - kind: ConfigMap
-      name: cluster-vars
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: aperture
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/aperture
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-staging-aperture
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: aperture
-  filterTags:
-    pattern: staging-(?P<ts>\d+(\.\d+)*)$
-    extract: $ts
-  policy:
-    semver:
-      range: '>0.0.1'
+      - kind: ConfigMap
+        name: cluster-vars
