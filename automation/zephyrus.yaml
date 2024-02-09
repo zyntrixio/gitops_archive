@@ -26,11 +26,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: zephyrus
+  name: zephyrus-prod
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: zephyrus-prod
+    name: zephyrus
   filterTags:
     pattern: prod-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
