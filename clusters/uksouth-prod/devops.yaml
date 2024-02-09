@@ -15,7 +15,7 @@ spec:
     - name: binkcore.azurecr.io/asset-register
       newTag: 2023-04-27T230000Z # {"$imagepolicy": "flux-system:asset-register:tag"}
     - name: binkcore.azurecr.io/bridge
-      newTag: 2022-08-26T163254Z # {"$imagepolicy": "flux-system:bridge:tag"}
+      newTag: 2024-02-09T234216Z # {"$imagepolicy": "flux-system:bridge:tag"}
     - name: binkcore.azurecr.io/kiroshi
       newTag: prod-v1.5.9 # {"$imagepolicy": "flux-system:kiroshi-prod:tag"}
     - name: binkcore.azurecr.io/nightcity
