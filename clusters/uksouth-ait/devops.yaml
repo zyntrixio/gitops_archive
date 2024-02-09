@@ -13,7 +13,7 @@ spec:
     name: flux-system
   images:
     - name: binkcore.azurecr.io/nightcity
-      newTag: staging-v0.4.0 # {"$imagepolicy": "flux-system:nightcity:tag"}
+      newTag: staging-v0.4.0 # {"$imagepolicy": "flux-system:nightcity-staging:tag"}
   postBuild:
     substituteFrom:
       - kind: Secret
@@ -22,28 +22,3 @@ spec:
         name: azure-keyvault
       - kind: ConfigMap
         name: cluster-vars
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: nightcity
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/nightcity
-  interval: 10m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: nightcity
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: nightcity
-  filterTags:
-    pattern: staging-v(?P<ts>\d+(\.\d+)*)$
-    extract: $ts
-  policy:
-    semver:
-      range: ">0.0.1"

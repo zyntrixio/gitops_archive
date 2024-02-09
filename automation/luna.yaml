@@ -1,38 +1,24 @@
+---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: europa
+  name: luna
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/europa
+  image: binkcore.azurecr.io/luna
   interval: 5m0s
   provider: azure
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: europa-staging
+  name: luna-staging
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: europa
+    name: luna
   filterTags:
     pattern: staging-(?P<ts>\d+(\.\d+)*)$
-    extract: $ts
-  policy:
-    semver:
-      range: ">0.0.1"
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: europa
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: europa-prod
-  filterTags:
-    pattern: prod-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:

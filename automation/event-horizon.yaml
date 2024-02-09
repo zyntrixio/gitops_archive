@@ -1,21 +1,22 @@
+---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: europa
+  name: event-horizon
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/europa
+  image: binkcore.azurecr.io/event-horizon
   interval: 5m0s
   provider: azure
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: europa-staging
+  name: event-horizon-staging
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: europa
+    name: event-horizon
   filterTags:
     pattern: staging-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
@@ -26,11 +27,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: europa
+  name: event-horizon-prod
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: europa-prod
+    name: event-horizon
   filterTags:
     pattern: prod-(?P<ts>\d+(\.\d+)*)$
     extract: $ts

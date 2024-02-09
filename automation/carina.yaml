@@ -1,21 +1,22 @@
+---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: europa
+  name: carina
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/europa
+  image: binkcore.azurecr.io/carina
   interval: 5m0s
   provider: azure
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: europa-staging
+  name: carina-staging
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: europa
+    name: carina
   filterTags:
     pattern: staging-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
@@ -26,11 +27,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: europa
+  name: carina-prod
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: europa-prod
+    name: carina
   filterTags:
     pattern: prod-(?P<ts>\d+(\.\d+)*)$
     extract: $ts

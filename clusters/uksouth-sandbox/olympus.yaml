@@ -13,11 +13,11 @@ spec:
     name: flux-system
   images:
     - name: binkcore.azurecr.io/boreas
-      newTag: staging-v1.0.0 # {"$imagepolicy": "flux-system:boreas:tag"}
+      newTag: staging-v1.0.0 # {"$imagepolicy": "flux-system:boreas-staging:tag"}
     - name: binkcore.azurecr.io/docs
-      newTag: staging-v1.2.0 # {"$imagepolicy": "flux-system:docs:tag"}
+      newTag: staging-v1.2.0 # {"$imagepolicy": "flux-system:docs-staging:tag"}
     - name: binkcore.azurecr.io/zephyrus
-      newTag: staging-1.1.7 # {"$imagepolicy": "flux-system:zephyrus:tag"}
+      newTag: staging-1.1.7 # {"$imagepolicy": "flux-system:zephyrus-staging:tag"}
   postBuild:
     substituteFrom:
       - kind: ConfigMap

@@ -1,21 +1,22 @@
+---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: europa
+  name: midas
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/europa
+  image: binkcore.azurecr.io/midas
   interval: 5m0s
   provider: azure
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: europa-staging
+  name: midas-staging
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: europa
+    name: midas
   filterTags:
     pattern: staging-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
@@ -26,11 +27,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: europa
+  name: midas-prod
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: europa-prod
+    name: midas
   filterTags:
     pattern: prod-(?P<ts>\d+(\.\d+)*)$
     extract: $ts

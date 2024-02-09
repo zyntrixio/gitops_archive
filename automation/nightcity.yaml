@@ -1,23 +1,24 @@
+---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: europa
+  name: nightcity
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/europa
+  image: binkcore.azurecr.io/nightcity
   interval: 5m0s
   provider: azure
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: europa-staging
+  name: nightcity-staging
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: europa
+    name: nightcity
   filterTags:
-    pattern: staging-(?P<ts>\d+(\.\d+)*)$
+    pattern: staging-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:
@@ -26,13 +27,13 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: europa
+  name: nightcity-prod
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: europa-prod
+    name: nightcity
   filterTags:
-    pattern: prod-(?P<ts>\d+(\.\d+)*)$
+    pattern: production-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:

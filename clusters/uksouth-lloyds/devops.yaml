@@ -13,11 +13,9 @@ spec:
     name: flux-system
   images:
     - name: binkcore.azurecr.io/kiroshi
-      newTag: prod-v1.5.9 # {"$imagepolicy": "flux-system:kiroshi:tag"}
-    - name: ghcr.io/binkhq/simpleproxy
-      newTag: 2023-10-29T123113Z # {"$imagepolicy": "flux-system:simpleproxy:tag"}
+      newTag: prod-v1.5.9 # {"$imagepolicy": "flux-system:kiroshi-staging:tag"}
     - name: binkcore.azurecr.io/nightcity
-      newTag: staging-v0.4.0 # {"$imagepolicy": "flux-system:nightcity:tag"}
+      newTag: staging-v0.4.0 # {"$imagepolicy": "flux-system:nightcity-staging:tag"}
   postBuild:
     substituteFrom:
       - kind: Secret

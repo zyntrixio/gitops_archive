@@ -17,9 +17,9 @@ spec:
     - name: binkcore.azurecr.io/bridge
       newTag: 2022-08-26T163254Z # {"$imagepolicy": "flux-system:bridge:tag"}
     - name: binkcore.azurecr.io/kiroshi
-      newTag: prod-v1.5.9 # {"$imagepolicy": "flux-system:kiroshi:tag"}
+      newTag: prod-v1.5.9 # {"$imagepolicy": "flux-system:kiroshi-prod:tag"}
     - name: binkcore.azurecr.io/nightcity
-      newTag: production-v0.4.0 # {"$imagepolicy": "flux-system:nightcity:tag"}
+      newTag: production-v0.4.0 # {"$imagepolicy": "flux-system:nightcity-prod:tag"}
     - name: ghcr.io/binkhq/simpleproxy
       newName: ghcr.io/binkhq/simpleproxy
       newTag: latest

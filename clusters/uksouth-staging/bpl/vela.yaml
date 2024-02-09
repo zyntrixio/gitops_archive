@@ -12,35 +12,10 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/vela
-    newName: binkcore.azurecr.io/vela
-    newTag: staging-2.5.7 # {"$imagepolicy": "flux-system:uksouth-staging-vela:tag"}
+    - name: binkcore.azurecr.io/vela
+      newName: binkcore.azurecr.io/vela
+      newTag: staging-2.5.7 # {"$imagepolicy": "flux-system:vela-staging:tag"}
   postBuild:
     substituteFrom:
       - kind: Secret
         name: azure-identities
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: vela
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/vela
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-staging-vela
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: vela
-  filterTags:
-    pattern: staging-(?P<ts>\d+(\.\d+)*)$
-    extract: $ts
-  policy:
-    semver:
-      range: '>0.0.1'

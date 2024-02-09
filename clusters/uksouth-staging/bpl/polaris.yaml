@@ -13,34 +13,9 @@ spec:
     name: flux-system
   postBuild:
     substituteFrom:
-    - kind: Secret
-      name: azure-identities
+      - kind: Secret
+        name: azure-identities
   images:
-  - name: binkcore.azurecr.io/polaris
-    newName: binkcore.azurecr.io/polaris
-    newTag: staging-3.4.2 # {"$imagepolicy": "flux-system:uksouth-staging-polaris:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: polaris
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/polaris
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-staging-polaris
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: polaris
-  filterTags:
-    pattern: staging-(?P<ts>\d+(\.\d+)*)$
-    extract: $ts
-  policy:
-    semver:
-      range: '>0.0.1'
+    - name: binkcore.azurecr.io/polaris
+      newName: binkcore.azurecr.io/polaris
+      newTag: staging-3.4.2 # {"$imagepolicy": "flux-system:polaris-staging:tag"}

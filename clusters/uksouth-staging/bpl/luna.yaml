@@ -11,31 +11,6 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/luna
-    newName: binkcore.azurecr.io/luna
-    newTag: staging-0.2.3 # {"$imagepolicy": "flux-system:uksouth-staging-luna:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: luna
-  namespace: flux-system
-spec:
-  image: binkcore.azurecr.io/luna
-  interval: 1m0s
-  provider: azure
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: uksouth-staging-luna
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: luna
-  filterTags:
-    pattern: staging-(?P<ts>\d+(\.\d+)*)$
-    extract: $ts
-  policy:
-    semver:
-      range: '>0.0.1'
+    - name: binkcore.azurecr.io/luna
+      newName: binkcore.azurecr.io/luna
+      newTag: staging-0.2.3 # {"$imagepolicy": "flux-system:luna-staging:tag"}

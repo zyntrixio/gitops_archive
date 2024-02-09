@@ -12,16 +12,16 @@ spec:
     kind: GitRepository
     name: flux-system
   images:
-  - name: binkcore.azurecr.io/harmonia
-    newName: binkcore.azurecr.io/harmonia
-    newTag: staging-v2.42.0 # {"$imagepolicy": "flux-system:harmonia:tag"}
+    - name: binkcore.azurecr.io/harmonia
+      newName: binkcore.azurecr.io/harmonia
+      newTag: staging-v2.42.0 # {"$imagepolicy": "flux-system:harmonia-staging:tag"}
   postBuild:
     substituteFrom:
-    - kind: Secret
-      name: azure-storage
-    - kind: Secret
-      name: azure-identities
-    - kind: Secret
-      name: azure-keyvault
-    - kind: ConfigMap
-      name: cluster-vars
+      - kind: Secret
+        name: azure-storage
+      - kind: Secret
+        name: azure-identities
+      - kind: Secret
+        name: azure-keyvault
+      - kind: ConfigMap
+        name: cluster-vars
