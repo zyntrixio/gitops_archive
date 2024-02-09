@@ -26,11 +26,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: europa
+  name: europa-prod
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: europa-prod
+    name: europa
   filterTags:
     pattern: prod-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
