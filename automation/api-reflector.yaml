@@ -4,9 +4,8 @@ metadata:
   name: api-reflector
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/api-reflector
-  interval: 10m0s
-  provider: azure
+  image: ghcr.io/binkhq/api-reflector
+  interval: 5m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy

@@ -5,7 +5,7 @@ metadata:
   name: api-reflector
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/api-reflector
+  image: ghcr.io/binkhq/api-reflector
   interval: 10m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
@@ -21,4 +21,4 @@ spec:
     extract: $ts
   policy:
     semver:
-      range: '>0.1.0'
+      range: ">0.1.0"
