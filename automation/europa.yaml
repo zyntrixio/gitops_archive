@@ -1,21 +1,21 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: hermes
+  name: europa
   namespace: flux-system
 spec:
-  image: binkcore.azurecr.io/hermes
-  interval: 30m0s
+  image: binkcore.azurecr.io/europa
+  interval: 5m0s
   provider: azure
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: hermes
+  name: europa-staging
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: hermes
+    name: europa
   filterTags:
     pattern: staging-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
