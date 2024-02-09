@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkly-agent
+  labels:
+    app: checkly-agent
+spec:
+  selector:
+    matchLabels:
+      app: checkly-agent
+  template:
+    metadata:
+      labels:
+        app: checkly-agent
+    spec:
+      containers:
+        - name: checkly-agent
+          image: docker.io/checkly/agent:latest
+          env:
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: checkly
+                  key: API_KEY
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 100m
+            limits:
+              memory: 128Mi
+              cpu: 250m
