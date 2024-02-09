@@ -14,7 +14,7 @@ spec:
   images:
     - name: ghcr.io/binkhq/api-reflector
       newName: ghcr.io/binkhq/api-reflector
-      newTag: 0.8.2 # {"$imagepolicy": "flux-system:api-reflector:tag"}
+      newTag: v0.8.3 # {"$imagepolicy": "flux-system:api-reflector:tag"}
     - name: binkcore.azurecr.io/europa
       newName: binkcore.azurecr.io/europa
       newTag: staging-1.6.6 # {"$imagepolicy": "flux-system:europa-staging:tag"}
