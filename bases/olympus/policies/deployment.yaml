@@ -7,7 +7,6 @@ metadata:
   name: policies
   namespace: default
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app: policies
