@@ -10,10 +10,6 @@ resources:
 components:
   - ../../../../bases/components/remove-default-namespace
 
-replicas:
-  - name: hermes-api
-    count: 1
-
 configMapGenerator:
   - name: hermes
     envs:
