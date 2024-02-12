@@ -43,7 +43,7 @@ spec:
     - name: binkcore.azurecr.io/snowstorm
       newTag: prod-v1.13.0 # {"$imagepolicy": "flux-system:snowstorm-prod:tag"}
     - name: binkcore.azurecr.io/zephyrus
-      newTag: prod-1.10.1 # {"$imagepolicy": "flux-system:zephyrus-prod:tag"}
+      newTag: prod-v1.10.2 # {"$imagepolicy": "flux-system:zephyrus-prod:tag"}
   postBuild:
     substituteFrom:
       - kind: Secret
