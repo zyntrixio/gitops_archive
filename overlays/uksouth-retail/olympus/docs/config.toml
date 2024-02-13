@@ -6,6 +6,7 @@
 "v1.3" = "wallet/1.3.html"
 "v2" = "wallet/2.0.html"
 "transaction" = "merchant/retail_transaction_api.html"
+"webhook" = "webhook/webhook.html"
 
 "appendix" = "extras/appendix.html"
 "changelog" = "extras/changelog.html"
