@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./bases/infrastructure/checkly
+  path: ./overlays/uksouth-staging/checkly
   prune: true
   force: true
   sourceRef:
