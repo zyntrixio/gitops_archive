@@ -17,7 +17,7 @@ spec:
     - name: binkcore.azurecr.io/docs
       newTag: staging-v1.2.0 # {"$imagepolicy": "flux-system:docs-staging:tag"}
     - name: binkcore.azurecr.io/zephyrus
-      newTag: staging-1.10.1 # {"$imagepolicy": "flux-system:zephyrus-staging:tag"}
+      newTag: staging-v1.10.2 # {"$imagepolicy": "flux-system:zephyrus-staging:tag"}
   postBuild:
     substituteFrom:
       - kind: ConfigMap
