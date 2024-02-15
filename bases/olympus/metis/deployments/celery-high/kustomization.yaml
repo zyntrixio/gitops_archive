@@ -2,11 +2,12 @@
 resources:
   - ../../bases
 
-nameSuffix: -celery
+nameSuffix: -celery-high
 
 commonLabels:
   app: metis
   component: celery
+  queue: high
 
 patches:
   - target:
@@ -22,6 +23,8 @@ patches:
           - -A
           - metis
           - worker
+          - -Q
+          - metis:high
           - --without-gossip
           - --without-mingle
           - --loglevel=info
