@@ -37,7 +37,7 @@ spec:
     - name: binkcore.azurecr.io/midas
       newTag: staging-3.47.3 # {"$imagepolicy": "flux-system:midas-staging:tag"}
     - name: binkcore.azurecr.io/hermes
-      newTag: staging-3.50.0 # {"$imagepolicy": "flux-system:hermes-staging:tag"}
+      newTag: staging-3.51.0 # {"$imagepolicy": "flux-system:hermes-staging:tag"}
     - name: binkcore.azurecr.io/kiroshi
       newTag: staging-v1.5.9 # {"$imagepolicy": "flux-system:kiroshi-staging:tag"}
     - name: binkcore.azurecr.io/pelops
