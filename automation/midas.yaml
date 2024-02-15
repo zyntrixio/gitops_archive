@@ -32,7 +32,7 @@ spec:
   imageRepositoryRef:
     name: midas
   filterTags:
-    pattern: prod-v(?P<ts>\d+(\.\d+)*)$
+    pattern: prod-(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:
