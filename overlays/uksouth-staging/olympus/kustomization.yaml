@@ -14,7 +14,7 @@ resources:
   - ./europa
   - ./hades
   - ./hermes
-  - ./metis
+  # - ./metis
   - ./midas
   - ./pelops
   - ./plutus
