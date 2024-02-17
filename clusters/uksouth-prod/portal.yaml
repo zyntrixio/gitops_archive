@@ -1,17 +1,19 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: bullsquid
+  name: portal
   namespace: flux-system
 spec:
   interval: 60m0s
-  path: ./overlays/uksouth-prod/portal/bullsquid
+  path: ./overlays/uksouth-prod/portal
   prune: true
   force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   images:
+    - name: binkcore.azurecr.io/aperture
+      newTag: prod-2.1.48 # {"$imagepolicy": "flux-system:aperture-prod:tag"}
     - name: binkcore.azurecr.io/bullsquid
       newTag: prod-v1.2.0 # {"$imagepolicy": "flux-system:bullsquid-prod:tag"}
   postBuild:
@@ -20,3 +22,5 @@ spec:
         name: azure-identities
       - kind: Secret
         name: azure-keyvault
+      - kind: ConfigMap
+        name: cluster-vars
