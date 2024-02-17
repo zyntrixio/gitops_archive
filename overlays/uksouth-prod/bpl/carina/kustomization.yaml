@@ -5,8 +5,6 @@ resources:
   - ../../../../bases/cosmos/carina/deployments/cron-scheduler
   - ../../../../bases/cosmos/carina/deployments/task-worker
   - ../../../../bases/cosmos/carina/essentials
-components:
-  - ../../../../bases/components/remove-default-namespace
 configMapGenerator:
   - name: carina
     envs:

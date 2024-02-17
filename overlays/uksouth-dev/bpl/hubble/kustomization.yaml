@@ -5,8 +5,6 @@ resources:
   - ../../../../bases/cosmos/hubble/deployments/cron-scheduler
   - ../../../../bases/cosmos/hubble/deployments/task-worker
   - ../../../../bases/cosmos/hubble/essentials
-components:
-  - ../../../../bases/components/remove-default-namespace
 configMapGenerator:
   - name: hubble
     envs:

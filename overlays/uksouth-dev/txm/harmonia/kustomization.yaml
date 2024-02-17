@@ -24,11 +24,9 @@ resources:
   - ../../../../bases/olympus/harmonia/deployments/matching-worker-slow
   - ../../../../bases/olympus/harmonia/deployments/streaming-worker
   - ../../../../bases/olympus/harmonia/deployments/purgedb
-components:
-  - ../../../../bases/components/remove-default-namespace
 configMapGenerator:
   - envs:
-    - env.ini
+      - env.ini
     name: harmonia
 patches:
   - target:

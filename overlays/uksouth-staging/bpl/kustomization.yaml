@@ -8,13 +8,6 @@ resources:
   - ./event-horizon
   - ./hubble
   - ./ingress
+  - ./luna
   - ./polaris
   - ./vela
-patches:
-  - target:
-      kind: Ingress
-    patch: |
-      - op: replace
-        path: /metadata/annotations
-        value:
-          kubernetes.io/ingress.class: nginx

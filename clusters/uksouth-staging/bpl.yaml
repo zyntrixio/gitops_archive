@@ -1,0 +1,34 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: bpl
+  namespace: flux-system
+spec:
+  interval: 60m0s
+  path: ./overlays/uksouth-staging/bpl
+  prune: true
+  force: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+    - name: binkcore.azurecr.io/aquila
+      newTag: staging-1.1.0 # {"$imagepolicy": "flux-system:aquila-staging:tag"}
+    - name: binkcore.azurecr.io/carina
+      newTag: staging-3.1.0 # {"$imagepolicy": "flux-system:carina-staging:tag"}
+    - name: binkcore.azurecr.io/event-horizon
+      newTag: staging-1.7.15 # {"$imagepolicy": "flux-system:event-horizon-staging:tag"}
+    - name: binkcore.azurecr.io/hubble
+      newTag: staging-1.4.1 # {"$imagepolicy": "flux-system:hubble-staging:tag"}
+    - name: binkcore.azurecr.io/luna
+      newTag: staging-v0.2.6 # {"$imagepolicy": "flux-system:luna-staging:tag"}
+    - name: binkcore.azurecr.io/polaris
+      newTag: staging-3.4.2 # {"$imagepolicy": "flux-system:polaris-staging:tag"}
+    - name: binkcore.azurecr.io/vela
+      newTag: staging-2.5.7 # {"$imagepolicy": "flux-system:vela-staging:tag"}
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: azure-identities
+      - kind: ConfigMap
+        name: cluster-vars

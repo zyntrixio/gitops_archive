@@ -1,7 +1,5 @@
 ---
 resources:
-  - namespace.yaml
   - serviceaccount.yaml
   - service.yaml
   - deployment.yaml
-

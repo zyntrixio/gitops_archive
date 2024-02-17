@@ -8,5 +8,3 @@ resources:
   - ../../../../bases/devops/snowstorm/webserver
   - ../../../../bases/devops/snowstorm/notifications
   - ../../../../bases/devops/snowstorm/viator
-components:
-  - ../../../../bases/components/remove-default-namespace

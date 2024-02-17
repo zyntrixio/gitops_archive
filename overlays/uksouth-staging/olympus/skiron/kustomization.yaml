@@ -2,6 +2,3 @@
 resources:
   - ../../../../bases/olympus/skiron
   - ingress.yaml
-
-components:
-  - ../../../../bases/components/remove-default-namespace

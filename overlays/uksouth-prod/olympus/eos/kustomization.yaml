@@ -4,7 +4,6 @@ resources:
   - ../../../../bases/olympus/eos/deployments/api
   - ../../../../bases/olympus/eos/deployments/worker
   - ../../../../bases/olympus/eos/essentials
-  - ingress.yaml
 configMapGenerator:
   - name: eos
     envs:
@@ -18,3 +17,10 @@ patches:
         value:
           - configMapRef:
               name: eos
+  - target:
+      kind: Ingress
+    patch: |
+      - op: replace
+        path: /metadata/annotations
+        value:
+          kubernetes.io/ingress.class: nginx

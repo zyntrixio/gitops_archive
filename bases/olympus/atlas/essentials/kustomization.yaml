@@ -2,3 +2,4 @@
 resources:
   - migrator.yaml
   - serviceaccount.yaml
+  - ingress.yaml

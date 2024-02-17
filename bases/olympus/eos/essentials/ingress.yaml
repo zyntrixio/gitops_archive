@@ -11,7 +11,7 @@ spec:
     - host: eos.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
-          - path: /eos
+          - path: /
             pathType: Prefix
             backend:
               service:

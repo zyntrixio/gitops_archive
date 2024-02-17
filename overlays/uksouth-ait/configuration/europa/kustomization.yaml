@@ -2,7 +2,6 @@
 resources:
   - ../../../../bases/olympus/europa/essentials
   - ../../../../bases/olympus/europa/deployments/api
-  - ingress.yaml
 
 namespace: configuration
 
