@@ -14,7 +14,7 @@ spec:
       http:
         paths:
           - path: /loyalty/[a-z0-9-]{1,100}/marketing/unsubscribe?.*
-            pathType: Exact
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: polaris-api
