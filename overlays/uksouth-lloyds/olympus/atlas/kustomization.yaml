@@ -4,7 +4,6 @@ resources:
   - ../../../../bases/olympus/atlas/deployments/api
   - ../../../../bases/olympus/atlas/deployments/consumer
   - ../../../../bases/olympus/atlas/essentials
-  - ingress.yaml
 configMapGenerator:
   - name: atlas
     envs:

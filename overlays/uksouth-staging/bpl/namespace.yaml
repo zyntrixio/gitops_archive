@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bpl
+  annotations:
+    scheduler.alpha.kubernetes.io/defaultTolerations: '[{"key": "kubernetes.azure.com/scalesetpriority", "operator": "Equal", "value": "spot", "effect": "NoSchedule"}]'
+    scheduler.alpha.kubernetes.io/node-selector: kubernetes.azure.com/scalesetpriority=spot
+    linkerd.io/inject: enabled

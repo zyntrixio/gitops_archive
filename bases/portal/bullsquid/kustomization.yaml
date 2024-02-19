@@ -1,6 +1,5 @@
 ---
 resources:
-  - namespace.yaml
   - serviceaccount.yaml
   - secretproviderclass.yaml
   - workloads/migrator

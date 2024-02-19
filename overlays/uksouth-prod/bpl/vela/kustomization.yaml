@@ -5,8 +5,6 @@ resources:
   - ../../../../bases/cosmos/vela/deployments/cron-scheduler
   - ../../../../bases/cosmos/vela/deployments/task-worker
   - ../../../../bases/cosmos/vela/essentials
-components:
-  - ../../../../bases/components/remove-default-namespace
 replicas:
   - name: vela-api
     count: 2

@@ -21,3 +21,21 @@ patches:
         value:
           - configMapRef:
               name: metis
+  - target:
+      kind: Deployment
+      name: metis-celery
+    patch: |
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-low-tasks
+      - op: replace
+        path: /spec/template/spec/containers/0/command
+        value:
+          - celery
+          - -A
+          - metis.tasks
+          - worker
+          - --without-gossip
+          - --without-mingle
+          - --loglevel=info
+          - --pool=solo

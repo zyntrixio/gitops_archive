@@ -1,0 +1,31 @@
+---
+resources:
+  - ../../bases
+
+nameSuffix: -celery-high
+
+commonLabels:
+  app: metis
+  component: celery
+  queue: high
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: add
+        path: /spec/template/spec/priorityClassName
+        value: bink-low-tasks
+      - op: replace
+        path: /spec/template/spec/containers/0/command
+        value:
+          - celery
+          - -A
+          - metis
+          - worker
+          - -Q
+          - metis:high
+          - --without-gossip
+          - --without-mingle
+          - --loglevel=info
+          - --pool=solo

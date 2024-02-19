@@ -20,7 +20,7 @@ patches:
         value:
           - celery
           - -A
-          - metis.tasks
+          - metis
           - worker
           - --without-gossip
           - --without-mingle

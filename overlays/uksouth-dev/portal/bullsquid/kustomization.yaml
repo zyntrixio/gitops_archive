@@ -3,9 +3,7 @@ kind: Kustomization
 resources:
   - ../../../../bases/portal/bullsquid
   - ingress.yaml
-components:
-  - ../../../../bases/components/remove-default-namespace
 configMapGenerator:
   - files:
-    - config/config.toml
+      - config/config.toml
     name: bullsquid

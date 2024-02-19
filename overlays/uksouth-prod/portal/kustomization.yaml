@@ -1,0 +1,6 @@
+resources:
+  - namespace.yaml
+  - aperture
+  - bullsquid
+  - ingress
+namespace: portal

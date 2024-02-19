@@ -2,7 +2,6 @@
 "root_redirect_path" = "/v2"
 
 [routes]
-
 "v2" = "wallet/2.0.html"
 "appendix" = "extras/appendix.html"
 "changelog" = "extras/changelog.html"

@@ -4,8 +4,6 @@ resources:
   - ../../../../bases/devops/snowstorm/essentials
   - ../../../../bases/devops/snowstorm/apistats
   - ../../../../bases/devops/snowstorm/event_processor
-components:
-  - ../../../../bases/components/remove-default-namespace
 patches:
   - target:
       kind: CronJob

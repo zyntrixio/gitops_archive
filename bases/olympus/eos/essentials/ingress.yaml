@@ -1,0 +1,23 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  name: eos.${cluster_name}.${cluster_location}.bink.sh
+  namespace: default
+spec:
+  rules:
+    - host: eos.${cluster_name}.${cluster_location}.bink.sh
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: eos-api
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - eos.${cluster_name}.${cluster_location}.bink.sh

@@ -11,13 +11,6 @@ spec:
     - host: bpl.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
-          - path: /admin
-            pathType: Prefix
-            backend:
-              service:
-                name: event-horizon
-                port:
-                  number: 80
           - path: /loyalty
             pathType: Prefix
             backend:
