@@ -5,7 +5,7 @@ metadata:
 spec:
   headers:
     customRequestHeaders:
-      Host: reflector.dev.gb.bink.com
+      Host: reflector.${cluster_name}.${cluster_location}.bink.sh
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
@@ -18,8 +18,8 @@ spec:
     - kind: Rule
       match: Host(`reflector.${cluster_name}.${cluster_location}.bink.sh`)
       services:
-      - kind: Service
-        name: api-reflector
-        port: 80
+        - kind: Service
+          name: api-reflector
+          port: 80
       middlewares:
         - name: api-reflector-custom-headers
