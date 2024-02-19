@@ -21,7 +21,7 @@ spec:
     - name: binkcore.azurecr.io/boreas
       newTag: prod-v1.0.0 # {"$imagepolicy": "flux-system:boreas-prod:tag"}
     - name: binkcore.azurecr.io/docs
-      newTag: production-v1.2.0 # {"$imagepolicy": "flux-system:docs-prod:tag"}
+      newTag: production-v1.3.1 # {"$imagepolicy": "flux-system:docs-prod:tag"}
     - name: binkcore.azurecr.io/eos
       newTag: prod-1.0.7 # {"$imagepolicy": "flux-system:eos-prod:tag"}
     - name: binkcore.azurecr.io/europa
