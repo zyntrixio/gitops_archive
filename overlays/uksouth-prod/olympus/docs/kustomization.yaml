@@ -7,7 +7,3 @@ configMapGenerator:
   - name: docs-config
     files:
       - config.toml
-secretGenerator:
-  - name: ingress-docs-auth
-    files:
-      - auth # rbc : suitable-platform-solve-backup # docs : imagination-situation-migration-exchange
