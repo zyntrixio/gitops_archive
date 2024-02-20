@@ -31,7 +31,7 @@ spec:
     - name: binkcore.azurecr.io/metis
       newTag: staging-v1.36.1 # {"$imagepolicy": "flux-system:metis-staging:tag"}
     - name: binkcore.azurecr.io/midas
-      newTag: staging-v3.48.3 # {"$imagepolicy": "flux-system:midas-staging:tag"}
+      newTag: staging-v3.48.4 # {"$imagepolicy": "flux-system:midas-staging:tag"}
     - name: binkcore.azurecr.io/pelops
       newTag: v2.1.0 # {"$imagepolicy": "flux-system:pelops:tag"}
   postBuild:
