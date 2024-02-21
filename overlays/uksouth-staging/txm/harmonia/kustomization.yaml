@@ -60,3 +60,6 @@ patches:
             - |
               objectName: slim-chickens-tx-export-secrets
               objectType: secret
+            - |
+              objectName: tgi-fridays-client-id
+              objectType: secret
