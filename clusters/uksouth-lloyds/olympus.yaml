@@ -13,7 +13,7 @@ spec:
     name: flux-system
   images:
     - name: binkcore.azurecr.io/angelia
-      newTag: staging-v1.34.0 # {"$imagepolicy": "flux-system:angelia-staging:tag"}
+      newTag: staging-v1.35.0 # {"$imagepolicy": "flux-system:angelia-staging:tag"}
     - name: ghcr.io/binkhq/api-reflector
       newTag: v0.8.4 # {"$imagepolicy": "flux-system:api-reflector:tag"}
     - name: binkcore.azurecr.io/atlas
