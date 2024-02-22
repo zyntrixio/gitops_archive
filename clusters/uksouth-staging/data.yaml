@@ -13,4 +13,4 @@ spec:
     name: flux-system
   images:
     - name: binkcore.azurecr.io/snowboard
-      newTag: v0.0.2 # {"$imagepolicy": "flux-system:snowboard-staging:tag"}
+      newTag: staging-v0.0.2 # {"$imagepolicy": "flux-system:snowboard-staging:tag"}
