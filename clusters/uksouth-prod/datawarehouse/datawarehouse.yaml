@@ -23,4 +23,4 @@ spec:
         name: azure-keyvault
   images:
     - name: binkcore.azurecr.io/data-warehouse
-      newTag: prod-v1.8.0 # {"$imagepolicy": "flux-system:data-warehouse-prod:tag"}
+      newTag: prod-v1.7.9 # {"$imagepolicy": "flux-system:data-warehouse-prod:tag"}
