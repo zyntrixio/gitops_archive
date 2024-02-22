@@ -23,7 +23,7 @@ spec:
         name: azure-postgres
   images:
     - name: binkcore.azurecr.io/data-warehouse
-      newTag: staging-v1.8.0 # {"$imagepolicy": "flux-system:uksouth-staging-data-warehouse:tag"}
+      newTag: staging-v1.8.1 # {"$imagepolicy": "flux-system:uksouth-staging-data-warehouse:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
