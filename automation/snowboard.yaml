@@ -1,0 +1,39 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: snowboard
+  namespace: flux-system
+spec:
+  image: binkcore.azurecr.io/snowboard
+  interval: 5m0s
+  provider: azure
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: snowboard-staging
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: snowboard
+  filterTags:
+    pattern: staging-v(?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    semver:
+      range: ">0.0.1"
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: snowboard-prod
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: snowboard
+  filterTags:
+    pattern: production-v(?P<ts>\d+(\.\d+)*)$
+    extract: $ts
+  policy:
+    semver:
+      range: ">0.0.1"
