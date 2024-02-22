@@ -14,3 +14,9 @@ spec:
   images:
     - name: binkcore.azurecr.io/snowboard
       newTag: production-v0.0.2 # {"$imagepolicy": "flux-system:snowboard-prod:tag"}
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: azure-identities
+      - kind: ConfigMap
+        name: cluster-vars

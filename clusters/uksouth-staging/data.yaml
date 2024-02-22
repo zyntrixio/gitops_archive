@@ -14,3 +14,9 @@ spec:
   images:
     - name: binkcore.azurecr.io/snowboard
       newTag: staging-v0.0.2 # {"$imagepolicy": "flux-system:snowboard-staging:tag"}
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: azure-identities
+      - kind: ConfigMap
+        name: cluster-vars
