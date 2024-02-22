@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: snowboard
+  name: snowboard
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: snowboard
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: app
+      labels:
+        app: snowboard
+        azure.workload.identity/use: "true"
+    spec:
+      containers:
+        - name: app
+          image: binkcore.azurecr.io/snowboard:latest
+          command: ["/usr/local/bin/snowboard", "--host=0.0.0.0", "--port=6502"]
+          ports:
+            - containerPort: 6502
+              name: http
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+            limits:
+              memory: 512Mi
+              cpu: 1000m
+          securityContext:
+            runAsGroup: 65534
+            runAsUser: 65534
+      terminationGracePeriodSeconds: 30
+      serviceAccountName: snowboard
