@@ -32,7 +32,7 @@ spec:
   imageRepositoryRef:
     name: angelia
   filterTags:
-    pattern: prod-(?P<ts>\d+(\.\d+)*)$
+    pattern: prod-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:
