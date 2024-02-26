@@ -31,6 +31,8 @@ spec:
           imagePullPolicy: Always
           name: app
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: TXM_BLOB_STORAGE_DSN
               valueFrom:
                 secretKeyRef:

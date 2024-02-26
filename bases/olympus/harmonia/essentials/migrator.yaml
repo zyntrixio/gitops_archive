@@ -21,6 +21,8 @@ spec:
           image: binkcore.azurecr.io/harmonia:latest
           args: ["alembic", "-c", "/app/alembic.ini", "upgrade", "head"]
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: TXM_BLOB_STORAGE_DSN
               valueFrom:
                 secretKeyRef:

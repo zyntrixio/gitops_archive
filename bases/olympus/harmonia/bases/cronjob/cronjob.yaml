@@ -28,6 +28,8 @@ spec:
           - name: app
             image: binkcore.azurecr.io/harmonia:latest
             env:
+              - name: LINKERD_AWAIT_DISABLED
+                value: "true"
               - name: TXM_BLOB_STORAGE_DSN
                 valueFrom:
                   secretKeyRef:
