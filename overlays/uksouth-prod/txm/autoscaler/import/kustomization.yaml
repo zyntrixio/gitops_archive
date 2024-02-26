@@ -10,12 +10,6 @@ patches:
   - target:
       kind: CronJob
     patch: |
-      - op: add
-        path: /spec/jobTemplate/spec/template/metadata/annotations/linkerd.io~1inject
-        value: disabled
-  - target:
-      kind: CronJob
-    patch: |
       - op: replace
         path: /spec/jobTemplate/spec/template/spec/containers/0/env
         value:

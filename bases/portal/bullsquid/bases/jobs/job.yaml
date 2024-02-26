@@ -9,7 +9,6 @@ spec:
   template:
     metadata:
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
         azure.workload.identity/use: "true"
       labels:
@@ -18,8 +17,9 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/bullsquid:latest
-          command: ["linkerd-await", "--shutdown", "--"]
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: DATABASE_DSN
               valueFrom:
                 secretKeyRef:

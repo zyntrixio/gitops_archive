@@ -19,7 +19,6 @@ spec:
       labels:
         app: atalanta
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
     spec:
       affinity:
@@ -51,7 +50,6 @@ spec:
             runAsUser: 65534
           imagePullPolicy: Always
           name: app
-          command: [linkerd-await, --]
           args: []
           volumeMounts:
             - mountPath: /mnt/locust

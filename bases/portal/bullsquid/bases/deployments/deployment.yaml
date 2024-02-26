@@ -21,7 +21,6 @@ spec:
         app: bullsquid
         azure.workload.identity/use: "true"
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
     spec:
       affinity:
@@ -41,6 +40,8 @@ spec:
           image: binkcore.azurecr.io/bullsquid:latest
           imagePullPolicy: Always
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: DATABASE_DSN
               valueFrom:
                 secretKeyRef:

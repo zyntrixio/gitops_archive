@@ -8,8 +8,6 @@ spec:
   path: ./bases/traefik/base
   prune: true
   force: true
-  dependsOn:
-    - name: linkerd-control-plane
   sourceRef:
     kind: GitRepository
     name: flux-system

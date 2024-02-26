@@ -22,7 +22,6 @@ spec:
   template:
     metadata:
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
       labels:
         app: hermes-pcui-endpoint-mock
@@ -44,6 +43,9 @@ spec:
         - image: binkcore.azurecr.io/hermes-pcui-endpoint-mock:latest
           imagePullPolicy: Always
           name: app
+          env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
           ports:
             - containerPort: 9000
               name: http

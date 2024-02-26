@@ -21,7 +21,6 @@ patches:
           prometheus.io/port: '9100',
           prometheus.io/scrape: 'true',
           prometheus.io/job: snowstorm,
-          linkerd.io/inject: enabled,
           kubectl.kubernetes.io/default-container: app
         }
     target:

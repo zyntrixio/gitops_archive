@@ -10,8 +10,6 @@ patches:
       kind: Deployment|Job
     patch: |
       - op: remove
-        path: /spec/template/metadata/annotations/linkerd.io~1inject
-      - op: remove
         path: /spec/template/spec/priorityClassName
       - op: remove
         path: /spec/template/spec/containers/0/resources

@@ -20,7 +20,6 @@ spec:
       labels:
         app: aperture
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
     spec:
       affinity:
@@ -38,5 +37,8 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/aperture:latest
+          env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
           imagePullPolicy: Always
       priorityClassName: bink-high-api

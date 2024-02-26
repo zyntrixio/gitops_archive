@@ -22,14 +22,15 @@ spec:
         azure.workload.identity/use: "true"
       annotations:
         kubectl.kubernetes.io/default-container: app
-        linkerd.io/inject: enabled
     spec:
       containers:
-        - command: ["linkerd-await", "--"]
-          args: ["tail", "-f", "/dev/null"]
+        - args: ["tail", "-f", "/dev/null"]
           image: binkcore.azurecr.io/ubiquity-performance:latest
           imagePullPolicy: Always
           name: app
+          env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
           resources:
             limits:
               memory: 512Mi

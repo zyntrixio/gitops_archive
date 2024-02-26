@@ -10,7 +10,6 @@ spec:
   template:
     metadata:
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
       labels:
         app: kiroshi
@@ -20,9 +19,10 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/kiroshi:latest
-          command: ["linkerd-await", "--shutdown", "--"]
           args: ["alembic", "upgrade", "head"]
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: database_dsn
               valueFrom:
                 secretKeyRef:

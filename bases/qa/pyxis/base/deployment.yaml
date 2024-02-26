@@ -12,7 +12,6 @@ spec:
   template:
     metadata:
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
       labels:
         app: pyxis
@@ -32,6 +31,9 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/pyxis:latest
+          env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
           resources:
             limits:
               memory: 256Mi

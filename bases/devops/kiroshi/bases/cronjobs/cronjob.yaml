@@ -17,7 +17,6 @@ spec:
         metadata:
           annotations:
             kubectl.kubernetes.io/default-container: app
-            linkerd.io/inject: enabled
           labels:
             app: kiroshi
             azure.workload.identity/use: "true"
@@ -25,8 +24,9 @@ spec:
           containers:
             - name: app
               image: binkcore.azurecr.io/kiroshi:latest
-              command: ["linkerd-await", "--shutdown", "--"]
               env:
+                - name: LINKERD_AWAIT_DISABLED
+                  value: "true"
                 - name: sftp_storage_account_dsn
                   valueFrom:
                     secretKeyRef:

@@ -15,7 +15,6 @@ spec:
       template:
         metadata:
           annotations:
-            linkerd.io/inject: enabled
             kubectl.kubernetes.io/default-container: app
           labels:
             app: pyqa-apiv2
@@ -29,11 +28,13 @@ spec:
               emptyDir: {}
           containers:
             - name: script
-              command: [linkerd-await, --shutdown, --]
               args:
                 - bash
                 - -c
                 - ./report-render.sh
+              env:
+                - name: LINKERD_AWAIT_DISABLED
+                  value: "true"
               image: binkcore.azurecr.io/pyqa-apiv2:latest
               securityContext:
                 runAsGroup: 0
@@ -43,13 +44,15 @@ spec:
                 - mountPath: /tmp
                   name: data
             - name: app
-              command: [linkerd-await, --]
               args:
                 [
                   "bash",
                   "-c",
                   "pytest --html /tmp/report.html --self-contained-html -m bink_regression_api2 --channel bink --env staging && echo $? > /tmp/status.txt || true",
                 ]
+              env:
+                - name: LINKERD_AWAIT_DISABLED
+                  value: "true"
               image: binkcore.azurecr.io/pyqa-apiv2:latest
               volumeMounts:
                 - mountPath: /tmp

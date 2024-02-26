@@ -12,13 +12,12 @@ patches:
         name: api-reflector
       spec:
         template:
-          metadata:
-            annotations:
-              linkerd.io/inject: enabled
           spec:
             containers:
               - name: app
                 env:
+                  - name: LINKERD_AWAIT_DISABLED
+                    value: "true"
                   - name: postgres_dsn
                     valueFrom:
                       secretKeyRef:

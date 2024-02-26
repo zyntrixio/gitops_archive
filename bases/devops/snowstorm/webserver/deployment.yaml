@@ -17,7 +17,6 @@ spec:
   template:
     metadata:
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
       labels:
         app: snowstorm
@@ -27,6 +26,9 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/snowstorm:latest
+          env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
           args: ["stormctl", "mi", "webserver"]
           readinessProbe:
             httpGet:

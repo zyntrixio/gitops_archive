@@ -3,13 +3,6 @@ resources:
   - ../../../../bases/olympus/hermes/essentials
 patches:
   - target:
-      kind: Namespace
-    patch: |
-      - op: replace
-        path: /metadata/annotations
-        value:
-          linkerd.io/inject: enabled
-  - target:
       kind: Deployment|Job
     patch: |
       - op: replace
@@ -69,8 +62,6 @@ patches:
           - --access-logfile=-
           - --bind=0.0.0.0:9000
           - hermes.wsgi
-      - op: remove
-        path: /spec/template/metadata/annotations/linkerd.io~1inject
       - op: remove
         path: /spec/template/metadata/annotations/prometheus.io~1job
       - op: remove

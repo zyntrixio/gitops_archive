@@ -19,22 +19,19 @@ spec:
             azure.workload.identity/use: "true"
           annotations:
             kubectl.kubernetes.io/default-container: app
-            linkerd.io/inject: enabled
         spec:
           serviceAccountName: nightcity
           containers:
             - name: app
               image: binkcore.azurecr.io/nightcity:latest
               imagePullPolicy: IfNotPresent
-              command:
-                - linkerd-await
-                - --shutdown
-                - --
               args:
                 - tail
                 - -f
                 - /dev/null
               env:
+                - name: LINKERD_AWAIT_DISABLED
+                  value: "true"
                 - name: KEYVAULT_URL
                   valueFrom:
                     secretKeyRef:

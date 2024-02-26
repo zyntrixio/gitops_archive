@@ -19,7 +19,6 @@ spec:
     metadata:
       annotations:
         kubectl.kubernetes.io/default-container: app
-        linkerd.io/inject: enabled
       labels:
         app: kratos
         azure.workload.identity/use: "true"
@@ -39,6 +38,8 @@ spec:
       containers:
         - image: binkcore.azurecr.io/kratos:latest
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: KEYVAULT_URL
               value: https://uksouth-prod-qj46.vault.azure.net/
             - name: V2_URL
