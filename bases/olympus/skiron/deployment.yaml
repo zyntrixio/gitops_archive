@@ -23,7 +23,6 @@ spec:
         app: skiron
         component: api
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
     spec:
       affinity:
@@ -41,6 +40,8 @@ spec:
       containers:
         - name: app
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: AMQP_DSN
               valueFrom:
                 secretKeyRef:

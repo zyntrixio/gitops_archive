@@ -24,7 +24,6 @@ spec:
         component: api
         azure.workload.identity/use: "true"
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
@@ -45,6 +44,8 @@ spec:
       containers:
         - image: binkcore.azurecr.io/angelia:latest
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: RABBIT_DSN
               valueFrom:
                 secretKeyRef:

@@ -18,7 +18,6 @@ spec:
   template:
     metadata:
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
       labels:
         app: policies
@@ -39,6 +38,9 @@ spec:
         - name: app
           image: binkcore.azurecr.io/policies.gb.bink.com:latest
           imagePullPolicy: Always
+          env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
           ports:
             - containerPort: 80
               protocol: TCP

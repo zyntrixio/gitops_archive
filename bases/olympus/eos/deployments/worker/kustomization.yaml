@@ -16,8 +16,5 @@ patches:
         path: /spec/template/spec/priorityClassName
         value: bink-low-tasks
       - op: replace
-        path: /spec/template/spec/containers/0/command
-        value: ["linkerd-await", "--"]
-      - op: replace
         path: /spec/template/spec/containers/0/args
         value: ["python", "manage.py", "worker"]

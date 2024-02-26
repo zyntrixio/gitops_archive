@@ -24,7 +24,6 @@ spec:
         component: api
         azure.workload.identity/use: "true"
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
         prometheus.io/port: "6502"
         prometheus.io/scrape: "true"
@@ -45,6 +44,8 @@ spec:
       containers:
         - image: binkcore.azurecr.io/boreas:latest
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: SENTRY_DSN
               value: https://3da15a03d0ceedea0c4b0f5c862e711e@o503751.ingest.sentry.io/4506190606041088
             - name: RABBITMQ_DSN

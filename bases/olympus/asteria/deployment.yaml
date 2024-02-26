@@ -15,7 +15,6 @@ spec:
   template:
     metadata:
       annotations:
-        linkerd.io/inject: enabled
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
         prometheus.io/job: asteria
@@ -28,6 +27,9 @@ spec:
         - image: binkcore.azurecr.io/asteria:latest
           imagePullPolicy: Always
           name: app
+          env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
           ports:
             - containerPort: 9100
               protocol: TCP

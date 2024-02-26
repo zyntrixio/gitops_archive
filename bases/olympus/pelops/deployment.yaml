@@ -23,7 +23,6 @@ spec:
         app: pelops
         component: api
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
     spec:
       affinity:
@@ -42,6 +41,8 @@ spec:
         - name: app
           image: binkcore.azurecr.io/pelops:latest
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: REDIS_DSN
               valueFrom:
                 secretKeyRef:

@@ -19,7 +19,6 @@ spec:
         app: europa
         azure.workload.identity/use: "true"
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
     spec:
       affinity:
@@ -38,6 +37,8 @@ spec:
         - name: app
           image: binkcore.azurecr.io/europa:latest
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: EUROPA_DATABASE_URI
               valueFrom:
                 secretKeyRef:

@@ -2,5 +2,3 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: configuration
-  annotations:
-    linkerd.io/inject: enabled

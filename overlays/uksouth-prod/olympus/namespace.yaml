@@ -7,4 +7,3 @@ metadata:
         {"key": "bink.com/workload", "operator": "Equal", "value": "olympus", "effect": "NoSchedule"}
       ]'
     scheduler.alpha.kubernetes.io/node-selector: bink.com/workload=olympus
-    linkerd.io/inject: enabled
