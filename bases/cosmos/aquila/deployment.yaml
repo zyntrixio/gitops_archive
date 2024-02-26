@@ -20,7 +20,6 @@ spec:
       labels:
         app: aquila
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
         prometheus.io/port: '9100'
         prometheus.io/scrape: 'true'
@@ -40,6 +39,9 @@ spec:
                 topologyKey: topology.kubernetes.io/zone
       containers:
         - image: binkcore.azurecr.io/aquila:latest
+          env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
           ports:
             - containerPort: 9000
               name: api

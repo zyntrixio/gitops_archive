@@ -7,4 +7,3 @@ metadata:
         {"key": "bink.com/workload", "operator": "Equal", "value": "bpl", "effect": "NoSchedule"}
       ]'
     scheduler.alpha.kubernetes.io/node-selector: bink.com/workload=bpl
-    linkerd.io/inject: enabled

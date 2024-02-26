@@ -18,7 +18,6 @@ spec:
   template:
     metadata:
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
         prometheus.io/port: "9100"
         prometheus.io/scrape: "true"
@@ -42,6 +41,8 @@ spec:
       containers:
         - name: app
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: RABBITMQ_URI
               valueFrom:
                 secretKeyRef:

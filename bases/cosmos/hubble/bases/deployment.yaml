@@ -18,7 +18,6 @@ spec:
   template:
     metadata:
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
       labels:
         app: hubble
@@ -38,6 +37,8 @@ spec:
       containers:
         - name: app
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: RABBIT_DSN
               valueFrom:
                 secretKeyRef:

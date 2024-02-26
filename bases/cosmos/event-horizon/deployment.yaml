@@ -18,7 +18,6 @@ spec:
   template:
     metadata:
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
       labels:
         app: event-horizon
@@ -42,6 +41,8 @@ spec:
         - name: app
           image: binkcore.azurecr.io/event-horizon:latest
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: RABBITMQ_DSN
               valueFrom:
                 secretKeyRef:
@@ -63,7 +64,6 @@ spec:
                   key: url
                   name: azure-keyvault
           imagePullPolicy: Always
-          command: ["linkerd-await", "--"]
           args:
             - gunicorn
             - --error-logfile=-

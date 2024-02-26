@@ -10,7 +10,6 @@ spec:
   template:
     metadata:
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
       labels:
         app: cosmos
@@ -20,6 +19,8 @@ spec:
         - name: app
           image: binkcore.azurecr.io/cosmos:latest
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: RABBITMQ_DSN
               valueFrom:
                 secretKeyRef:
@@ -47,7 +48,6 @@ spec:
                   name: azure-keyvault
             - name: PUBLIC_URL
               value: http://dummy
-          command: ["linkerd-await", "--shutdown", "--"]
           args: ["alembic", "upgrade", "head"]
           resources:
             requests:

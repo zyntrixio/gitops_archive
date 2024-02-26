@@ -20,7 +20,6 @@ spec:
   template:
     metadata:
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
       labels:
         app: luna
@@ -42,6 +41,8 @@ spec:
         - name: app
           image: binkcore.azurecr.io/luna:latest
           env:
+            - name: LINKERD_AWAIT_DISABLED
+              value: "true"
             - name: REDIS_URL
               valueFrom:
                 secretKeyRef:
