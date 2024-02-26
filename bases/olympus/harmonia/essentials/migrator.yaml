@@ -10,7 +10,6 @@ spec:
   template:
     metadata:
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
       labels:
         app: harmonia
@@ -20,7 +19,6 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/harmonia:latest
-          command: ["linkerd-await", "--shutdown", "--"]
           args: ["alembic", "-c", "/app/alembic.ini", "upgrade", "head"]
           env:
             - name: TXM_BLOB_STORAGE_DSN

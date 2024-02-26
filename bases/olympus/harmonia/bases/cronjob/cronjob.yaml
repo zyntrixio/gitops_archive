@@ -22,12 +22,10 @@ spec:
             app: harmonia
             azure.workload.identity/use: "true"
           annotations:
-            linkerd.io/inject: enabled
             kubectl.kubernetes.io/default-container: app
         spec:
           containers:
           - name: app
-            command: ["linkerd-await", "--shutdown", "--"]
             image: binkcore.azurecr.io/harmonia:latest
             env:
               - name: TXM_BLOB_STORAGE_DSN

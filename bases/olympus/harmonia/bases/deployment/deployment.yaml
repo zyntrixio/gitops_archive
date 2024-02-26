@@ -18,7 +18,6 @@ spec:
         app: harmonia
         azure.workload.identity/use: "true"
       annotations:
-        linkerd.io/inject: enabled
         kubectl.kubernetes.io/default-container: app
         prometheus.io/job: harmonia
         prometheus.io/port: "9100"
@@ -26,7 +25,6 @@ spec:
     spec:
       containers:
         - image: binkcore.azurecr.io/harmonia:latest
-          command: ["linkerd-await", "--"]
           securityContext:
             runAsGroup: 65534
             runAsUser: 65534

@@ -8,4 +8,3 @@ metadata:
         {"key": "kubernetes.azure.com/scalesetpriority", "operator": "Equal", "value": "spot", "effect": "NoSchedule"}
       ]'
     scheduler.alpha.kubernetes.io/node-selector: bink.com/workload=txm
-    linkerd.io/inject: enabled
