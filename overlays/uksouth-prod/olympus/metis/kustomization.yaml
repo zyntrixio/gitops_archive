@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../../../../bases/olympus/metis/deployments/api
   - ../../../../bases/olympus/metis/deployments/celery
+  - ../../../../bases/olympus/metis/deployments/celery-high
   - ../../../../bases/olympus/metis/essentials
   - ingress.yaml
 replicas:
