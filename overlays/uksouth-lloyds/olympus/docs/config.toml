@@ -4,7 +4,7 @@
 [routes]
 "v1.2" = "wallet/1.2.html"
 "v1.3" = "wallet/1.3.html"
-"v2" = "wallet/2.0.html"
+"v2" = "wallet/api.html"
 "transaction" = "merchant/retail_transaction_api.html"
 "webhook" = "webhook/webhook.html"
 
