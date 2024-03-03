@@ -1,0 +1,44 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  name: api.${cluster_name}.${cluster_location}.bink.sh-zephyrus
+  namespace: olympus
+spec:
+  rules:
+    - host: api.${cluster_name}.${cluster_location}.bink.sh
+      http:
+        paths:
+          - path: /auth_transactions/authorize
+            pathType: Prefix
+            backend:
+              service:
+                name: zephyrus-api
+                port:
+                  number: 80
+          - path: /auth_transactions/amex
+            pathType: Prefix
+            backend:
+              service:
+                name: zephyrus-api
+                port:
+                  number: 80
+          - path: /auth_transactions/mastercard
+            pathType: Prefix
+            backend:
+              service:
+                name: zephyrus-api
+                port:
+                  number: 80
+          - path: /auth_transactions/visa
+            pathType: Prefix
+            backend:
+              service:
+                name: zephyrus-api
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - api.${cluster_name}.${cluster_location}.bink.sh

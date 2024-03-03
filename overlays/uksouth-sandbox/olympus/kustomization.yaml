@@ -14,3 +14,4 @@ resources:
   - ./metis
   - ./midas
   - ./pelops
+  - ./zephyrus
