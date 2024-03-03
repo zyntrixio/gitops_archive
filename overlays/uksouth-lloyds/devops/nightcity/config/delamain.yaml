@@ -1,7 +1,0 @@
-dns_rewrites:
-  a:
-    - uksouth-lloyds-847g.postgres.database.azure.com
-    - uksouth-lloyds-822t.redis.cache.windows.net
-  cname:
-    - name: lloyds.uksouth.bink.sh
-      record: uksouth-lloyds-traefik.alpine-monster.ts.net
