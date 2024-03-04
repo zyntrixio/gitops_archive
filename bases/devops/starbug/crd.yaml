@@ -1,0 +1,81 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: tests.bink.com
+spec:
+  group: bink.com
+  names:
+    kind: StarbugTest
+    plural: tests
+    shortNames:
+      - test
+    singular: test
+  scope: Namespaced
+  versions:
+    - additionalPrinterColumns:
+        - description: The status of the test
+          jsonPath: .status.phase
+          name: Status
+          type: string
+        - description: The results of the test
+          jsonPath: .status.results
+          name: Results
+          type: string
+        - description: The age of the test
+          jsonPath: .metadata.creationTimestamp
+          name: Age
+          type: date
+      name: v1beta1
+      schema:
+        openAPIV3Schema:
+          properties:
+            spec:
+              properties:
+                applications:
+                  items:
+                    properties:
+                      image:
+                        type: string
+                      name:
+                        type: string
+                    type: object
+                  type: array
+                infrastructure:
+                  items:
+                    properties:
+                      image:
+                        type: string
+                      name:
+                        type: string
+                    type: object
+                  type: array
+                test:
+                  properties:
+                    image:
+                      type: string
+                    name:
+                      type: string
+                  type: object
+              type: object
+            status:
+              default: {}
+              properties:
+                finished:
+                  default: false
+                  type: boolean
+                phase:
+                  default: Pending
+                  enum:
+                    - Cancelled
+                    - Completed
+                    - Failed
+                    - Pending
+                    - Running
+                  type: string
+                results:
+                  default: ""
+                  type: string
+              type: object
+          type: object
+      served: true
+      storage: true

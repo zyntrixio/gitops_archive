@@ -8,6 +8,6 @@ roleRef:
   kind: ClusterRole
   name: cluster-admin
 subjects:
-- kind: ServiceAccount
-  name: starbug
-  namespace: starbug
+  - kind: ServiceAccount
+    name: starbug
+    namespace: starbug

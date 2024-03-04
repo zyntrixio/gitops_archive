@@ -4,9 +4,9 @@ metadata:
   name: tests-reader
   namespace: starbug
 rules:
-- apiGroups: ["bink.com"]
-  resources: ["pods", "tests"]
-  verbs: ["get", "watch", "list"]
+  - apiGroups: ["bink.com"]
+    resources: ["pods", "tests"]
+    verbs: ["get", "watch", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -14,9 +14,9 @@ metadata:
   name: allow-tests-list
   namespace: starbug
 subjects:
-- kind: Group
-  name: 219194f6-b186-4146-9be7-34b731e19001 # This is the Azure AD group ID for Backend
-  apiGroup: rbac.authorization.k8s.io
+  - kind: Group
+    name: 219194f6-b186-4146-9be7-34b731e19001 # This is the Azure AD group ID for Backend
+    apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
   name: tests-reader
