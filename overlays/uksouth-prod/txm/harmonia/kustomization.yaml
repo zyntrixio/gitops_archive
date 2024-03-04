@@ -49,3 +49,13 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/resources/requests/memory
         value: 500Mi
+  - target:
+      kind: Deployment
+      name: harmonia-export-retry-worker
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 500Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 500Mi
