@@ -43,7 +43,7 @@ spec:
     - name: binkcore.azurecr.io/pelops
       newTag: v2.1.0 # {"$imagepolicy": "flux-system:pelops:tag"}
     - name: binkcore.azurecr.io/plutus
-      newTag: staging-1.0.0 # {"$imagepolicy": "flux-system:plutus-staging:tag"}
+      newTag: staging-1.1.1 # {"$imagepolicy": "flux-system:plutus-staging:tag"}
     - name: binkcore.azurecr.io/policies.gb.bink.com
       newTag: staging-2023-10-30T153223Z # {"$imagepolicy": "flux-system:policies-staging:tag"}
     - name: binkcore.azurecr.io/pyqa-apiv2
