@@ -21,7 +21,7 @@ spec:
     - name: binkcore.azurecr.io/atlas
       newTag: staging-2.9.0 # {"$imagepolicy": "flux-system:atlas-staging:tag"}
     - name: binkcore.azurecr.io/boreas
-      newTag: staging-v1.0.0 # {"$imagepolicy": "flux-system:boreas-staging:tag"}
+      newTag: staging-v1.1.1 # {"$imagepolicy": "flux-system:boreas-staging:tag"}
     - name: binkcore.azurecr.io/callbacca
       newTag: 2024-01-24T115516Z # {"$imagepolicy": "flux-system:callbacca-staging:tag"}
     - name: binkcore.azurecr.io/europa
