@@ -17,7 +17,7 @@ spec:
     - name: ghcr.io/binkhq/api-reflector
       newTag: v0.8.4 # {"$imagepolicy": "flux-system:api-reflector:tag"}
     - name: binkcore.azurecr.io/atlas
-      newTag: staging-2.8.2 # {"$imagepolicy": "flux-system:atlas-staging:tag"}
+      newTag: staging-2.9.0 # {"$imagepolicy": "flux-system:atlas-staging:tag"}
     - name: binkcore.azurecr.io/callbacca
       newTag: 2024-01-24T115516Z # {"$imagepolicy": "flux-system:callbacca:tag"}
     - name: binkcore.azurecr.io/docs
