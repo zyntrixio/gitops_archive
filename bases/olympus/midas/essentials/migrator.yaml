@@ -20,7 +20,7 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/midas:latest
-          args: ["alembic", "-c", "/app/alembic.ini", "upgrade", "head"]
+          args: ["alembic", "upgrade", "head"]
           env:
             - name: LINKERD_AWAIT_DISABLED
               value: "true"
