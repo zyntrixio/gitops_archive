@@ -4,9 +4,8 @@ kind: Ingress
 metadata:
   name: policies.${cluster_name}.${cluster_location}.bink.sh
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: traefik
 spec:
+  ingressClassName: traefik
   rules:
     - host: policies.${cluster_name}.${cluster_location}.bink.sh
       http:

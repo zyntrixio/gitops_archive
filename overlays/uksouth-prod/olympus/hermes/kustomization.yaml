@@ -28,10 +28,3 @@ patches:
         value:
           - configMapRef:
               name: hermes
-  - target:
-      kind: Ingress
-    patch: |
-      - op: replace
-        path: /metadata/annotations
-        value:
-          kubernetes.io/ingress.class: nginx

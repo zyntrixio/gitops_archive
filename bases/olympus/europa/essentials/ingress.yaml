@@ -3,9 +3,8 @@ kind: Ingress
 metadata:
   name: europa.${cluster_name}.${cluster_location}.bink.sh
   namespace: olympus
-  annotations:
-    kubernetes.io/ingress.class: traefik
 spec:
+  ingressClassName: traefik
   rules:
     - host: europa.${cluster_name}.${cluster_location}.bink.sh
       http:

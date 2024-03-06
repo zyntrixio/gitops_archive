@@ -2,12 +2,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  annotations:
-    nginx.ingress.kubernetes.io/service-upstream: "true"
   name: bpl.${cluster_name}.${cluster_location}.bink.sh
   namespace: bpl
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
     - host: bpl.${cluster_name}.${cluster_location}.bink.sh
       http:

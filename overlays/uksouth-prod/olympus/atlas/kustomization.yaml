@@ -20,10 +20,3 @@ patches:
         value:
           - configMapRef:
               name: atlas
-  - target:
-      kind: Ingress
-    patch: |
-      - op: replace
-        path: /metadata/annotations
-        value:
-          kubernetes.io/ingress.class: nginx

@@ -2,11 +2,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  annotations:
-    kubernetes.io/ingress.class: traefik
   name: retailer.${cluster_name}.${cluster_location}.bink.sh
   namespace: olympus
 spec:
+  ingressClassName: traefik
   rules:
     - host: retailer.${cluster_name}.${cluster_location}.bink.sh
       http:

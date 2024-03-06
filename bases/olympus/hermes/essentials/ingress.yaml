@@ -1,11 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  annotations:
-    kubernetes.io/ingress.class: traefik
   name: hermes.${cluster_name}.${cluster_location}.bink.sh
   namespace: default
 spec:
+  ingressClassName: traefik
   rules:
     - host: hermes.${cluster_name}.${cluster_location}.bink.sh
       http:

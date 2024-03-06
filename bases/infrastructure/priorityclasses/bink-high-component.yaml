@@ -1,6 +1,6 @@
 ---
 apiVersion: scheduling.k8s.io/v1
-description: Bink High Priority Components, such as ingress-nginx, rabbitmq, redis
+description: Bink High Priority Components, such as traefik, rabbitmq, redis
 kind: PriorityClass
 metadata:
   name: bink-high-component

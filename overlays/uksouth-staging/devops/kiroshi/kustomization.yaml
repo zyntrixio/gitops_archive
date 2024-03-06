@@ -4,7 +4,7 @@ namespace: devops
 resources:
   - ../../../../bases/devops/kiroshi/essentials
   - ../../../../bases/devops/kiroshi/jobs/migrator
-  - ../../../../bases/devops/kiroshi/server/images-traefik
+  - ../../../../bases/devops/kiroshi/server/images
   - ../../../../bases/devops/kiroshi/kubernetes/scale
   - ../../../../bases/devops/kiroshi/storage/sftp/mastercard
   - ../../../../bases/devops/kiroshi/storage/sftp/mastercard-test

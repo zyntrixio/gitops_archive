@@ -12,13 +12,14 @@ spec:
   chart:
     spec:
       chart: traefik
-      version: 26.0.0
+      version: 26.1.0
       sourceRef:
         kind: HelmRepository
         name: traefik
         namespace: flux-system
   values:
     deployment:
+      replicas: ${replicas:=1}
       podAnnotations:
         kubectl.kubernetes.io/default-container: traefik
     logs:

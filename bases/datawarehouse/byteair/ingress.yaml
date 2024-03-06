@@ -2,12 +2,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/service-upstream: 'true'
   name: airbyte.${cluster_name}.${cluster_location}.bink.sh
   namespace: airbyte
 spec:
+  ingressClassName: traefik
   rules:
     - host: airbyte.${cluster_name}.${cluster_location}.bink.sh
       http:

@@ -2,11 +2,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  annotations:
-    kubernetes.io/ingress.class: traefik
   name: api.${cluster_name}.${cluster_location}.bink.sh-pelops
   namespace: default
 spec:
+  ingressClassName: traefik
   rules:
     - host: api.${cluster_name}.${cluster_location}.bink.sh
       http:

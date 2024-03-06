@@ -4,10 +4,3 @@ resources:
   - namespace.yaml
   - ../../../bases/data/snowboard/
 namespace: data
-patches:
-  - target:
-      kind: Ingress
-    patch: |
-      - op: replace
-        path: /spec/ingressClassName
-        value: nginx
