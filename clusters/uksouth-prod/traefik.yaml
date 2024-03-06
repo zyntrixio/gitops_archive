@@ -12,8 +12,8 @@ spec:
     kind: GitRepository
     name: flux-system
   postBuild:
-    subtitute:
-      replicas: 3
+    # subtitute:
+    #   replicas: 3
     substituteFrom:
       - kind: ConfigMap
         name: cluster-vars
