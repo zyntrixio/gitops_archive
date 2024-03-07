@@ -13,6 +13,8 @@ patches:
       spec:
         template:
           metadata:
+            annotations:
+              prometheus.io/job: cert-manager
             labels:
               azure.workload.identity/use: "true"
   - target:
