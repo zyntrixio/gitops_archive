@@ -39,7 +39,7 @@ spec:
     - name: binkcore.azurecr.io/plutus
       newTag: prod-0.0.11 # {"$imagepolicy": "flux-system:plutus-prod:tag"}
     - name: binkcore.azurecr.io/policies.gb.bink.com
-      newTag: prod-2023-10-31T102959Z # {"$imagepolicy": "flux-system:policies-prod:tag"}
+      newTag: prod-2024-03-07T114205Z # {"$imagepolicy": "flux-system:policies-prod:tag"}
     - name: binkcore.azurecr.io/snowstorm
       newTag: prod-v1.13.0 # {"$imagepolicy": "flux-system:snowstorm-prod:tag"}
     - name: binkcore.azurecr.io/zephyrus
