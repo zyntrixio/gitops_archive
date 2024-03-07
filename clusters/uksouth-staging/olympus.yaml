@@ -45,7 +45,7 @@ spec:
     - name: binkcore.azurecr.io/plutus
       newTag: staging-1.1.1 # {"$imagepolicy": "flux-system:plutus-staging:tag"}
     - name: binkcore.azurecr.io/policies.gb.bink.com
-      newTag: staging-2024-03-07T104754Z # {"$imagepolicy": "flux-system:policies-staging:tag"}
+      newTag: staging-2024-03-07T104921Z # {"$imagepolicy": "flux-system:policies-staging:tag"}
     - name: binkcore.azurecr.io/pyqa-apiv2
       newTag: v1.1.12 # {"$imagepolicy": "flux-system:pyqa-apiv2:tag"}
     - name: binkcore.azurecr.io/skiron
