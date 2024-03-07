@@ -17,7 +17,7 @@ patches:
         value: harmonia-api
       - op: replace
         path: /spec/template/spec/containers/0/args
-        value: ["gunicorn", "-b", "0.0.0.0:9000", "--access-logfile", "-", "--error-logfile", "-", "app.api.app:app"]
+        value: ["gunicorn", "-b", "0.0.0.0:9000", "--timeout=120", "--access-logfile", "-", "--error-logfile", "-", "app.api.app:app"]
       - op: replace
         path: /spec/template/spec/priorityClassName
         value: bink-low-api
