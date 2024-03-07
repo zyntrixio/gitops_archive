@@ -2,12 +2,12 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: api.${cluster_name}.${cluster_location}.bink.sh-harmonia
+  name: harmonia.${cluster_name}.${cluster_location}.bink.sh-harmonia
   namespace: default
 spec:
   ingressClassName: traefik
   rules:
-    - host: api.${cluster_name}.${cluster_location}.bink.sh
+    - host: harmonia.${cluster_name}.${cluster_location}.bink.sh
       http:
         paths:
           - backend:
@@ -54,4 +54,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - api.${cluster_name}.${cluster_location}.bink.sh
+        - harmonia.${cluster_name}.${cluster_location}.bink.sh
