@@ -8,7 +8,14 @@ spec:
   rules:
     - host: api.${cluster_name}.${cluster_location}.bink.sh
       http:
-        paths:
+        paths:          
+          - path: /txm/config/keys
+            pathType: Prefix
+            backend:
+              service:
+                name: harmonia-api
+                port:
+                  number: 80
           - path: /txm/matching/force_match
             pathType: Prefix
             backend:
