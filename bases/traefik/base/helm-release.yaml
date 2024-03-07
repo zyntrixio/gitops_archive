@@ -22,6 +22,7 @@ spec:
       replicas: ${replicas:=1}
       podAnnotations:
         kubectl.kubernetes.io/default-container: traefik
+        prometheus.io/job: "traefik"
     logs:
       access:
         enabled: true
