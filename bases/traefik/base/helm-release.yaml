@@ -22,8 +22,6 @@ spec:
       replicas: ${replicas:=1}
       podAnnotations:
         kubectl.kubernetes.io/default-container: traefik
-        prometheus.io/port: "9100"
-        prometheus.io/scrape: "true"
     logs:
       access:
         enabled: true
