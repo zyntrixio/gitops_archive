@@ -35,7 +35,7 @@ spec:
     - name: binkcore.azurecr.io/pelops
       newTag: v2.1.0 # {"$imagepolicy": "flux-system:pelops:tag"}
     - name: binkcore.azurecr.io/zephyrus
-      newTag: staging-v1.10.2 # {"$imagepolicy": "flux-system:zephyrus-staging:tag"}
+      newTag: staging-v1.11.0 # {"$imagepolicy": "flux-system:zephyrus-staging:tag"}
   postBuild:
     substituteFrom:
       - kind: ConfigMap
