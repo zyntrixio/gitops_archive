@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: golink
+resources:
+  - namespace.yaml
+secretGenerator:
+  - name: azure-storage
+    options:
+      disableNameSuffixHash: true
+    literals:
+      - azurestorageaccountname=${blob_account_name}
+      - azurestorageaccountkey=${blob_key_primary}
