@@ -15,7 +15,7 @@ spec:
     - name: binkcore.azurecr.io/angelia
       newTag: production-v1.35.0 # {"$imagepolicy": "flux-system:angelia-prod:tag"}
     - name: binkcore.azurecr.io/asteria
-      newTag: 2024-01-15T152632Z # {"$imagepolicy": "flux-system:asteria-production:tag"}
+      newTag: production-v1.4.1 # {"$imagepolicy": "flux-system:asteria-production:tag"}
     - name: binkcore.azurecr.io/atlas
       newTag: prod-2.8.2 # {"$imagepolicy": "flux-system:atlas-prod:tag"}
     - name: binkcore.azurecr.io/boreas
