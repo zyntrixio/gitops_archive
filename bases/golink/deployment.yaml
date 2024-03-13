@@ -25,13 +25,12 @@ spec:
       containers:
         - name: golink
           image: ghcr.io/tailscale/golink:main
-          command:
+          args:
             [
-              "golink",
               "-snapshot",
               "/tmp/snapshot.jsonl",
               "-sqlitedb",
-              "golink.db",
+              "/home/nonroot/golink.db",
             ]
           resources:
             requests:
