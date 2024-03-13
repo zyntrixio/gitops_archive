@@ -17,7 +17,7 @@ spec:
     - name: ghcr.io/binkhq/api-reflector
       newTag: v0.8.4 # {"$imagepolicy": "flux-system:api-reflector:tag"}
     - name: binkcore.azurecr.io/asteria
-      newTag: 2024-01-15T152632Z # {"$imagepolicy": "flux-system:asteria-staging:tag"}
+      newTag: staging-v1.4.1 # {"$imagepolicy": "flux-system:asteria-staging:tag"}
     - name: binkcore.azurecr.io/atlas
       newTag: staging-2.9.0 # {"$imagepolicy": "flux-system:atlas-staging:tag"}
     - name: binkcore.azurecr.io/boreas
