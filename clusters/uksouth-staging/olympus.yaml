@@ -47,7 +47,7 @@ spec:
     - name: binkcore.azurecr.io/policies.gb.bink.com
       newTag: staging-2024-03-07T104921Z # {"$imagepolicy": "flux-system:policies-staging:tag"}
     - name: binkcore.azurecr.io/pyqa-apiv2
-      newTag: v1.1.19 # {"$imagepolicy": "flux-system:pyqa-apiv2:tag"}
+      newTag: v1.1.20 # {"$imagepolicy": "flux-system:pyqa-apiv2:tag"}
     - name: binkcore.azurecr.io/skiron
       newTag: 2024-02-19T124206Z # {"$imagepolicy": "flux-system:skiron:tag"}
     - name: binkcore.azurecr.io/snowstorm
