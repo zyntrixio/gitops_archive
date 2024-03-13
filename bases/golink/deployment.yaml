@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golink
+  namespace: golink
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: golink
+  template:
+    metadata:
+      labels:
+        app: golink
+    spec:
+      initContainers:
+        - name: chown
+          image: debian:12
+          command: ["chown", "-R", "65532:65532", "/home/nonroot"]
+          volumeMounts:
+            - name: golink
+              mountPath: /home/nonroot
+      containers:
+        - name: golink
+          image: ghcr.io/tailscale/golink:main
+          command:
+            [
+              "golink",
+              "-snapshot",
+              "/tmp/snapshot.jsonl",
+              "-sqlitedb",
+              "golink.db",
+            ]
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 100m
+            limits:
+              memory: 128Mi
+              cpu: 500m
+          volumeMounts:
+            - name: golink
+              mountPath: /home/nonroot
+            - name: snapshot
+              mountPath: /tmp/snapshot.jsonl
+              subPath: snapshot.jsonl
+          imagePullPolicy: Always
+      volumes:
+        - name: golink
+          persistentVolumeClaim:
+            claimName: golink
+        - name: snapshot
+          configMap:
+            name: golink-snapshot
+            defaultMode: 444
