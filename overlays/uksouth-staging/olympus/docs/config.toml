@@ -13,3 +13,4 @@
 "changelog" = "extras/changelog.html"
 "loyalty_management" = "events/loyalty_management/async/index.html"
 "reporting_mi" = "events/reporting_mi/async/index.html"
+"events" = "events/index.html"
