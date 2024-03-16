@@ -32,9 +32,6 @@ spec:
             names:
               X-Azure-Ref: keep
               Aztec-Site-ID: keep # This is a custom header that identifies the Stonegate site sending us data
-    ports:
-      web:
-        redirectTo: websecure
     ingressRoute:
       dashboard:
         matchRule: Host(`traefik.${cluster_name}.${cluster_location}.bink.sh`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
