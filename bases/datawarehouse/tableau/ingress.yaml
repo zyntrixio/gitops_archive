@@ -23,6 +23,7 @@ metadata:
   namespace: datawarehouse
 spec:
   entryPoints:
+    - web
     - websecure
   routes:
     - kind: Rule
