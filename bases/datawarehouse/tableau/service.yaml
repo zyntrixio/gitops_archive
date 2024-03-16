@@ -5,7 +5,7 @@ metadata:
   namespace: datawarehouse
 spec:
   type: ExternalName
-  externalName: 10.31.131.4
+  externalName: 10.11.131.4
   ports:
     - name: http
       protocol: TCP
