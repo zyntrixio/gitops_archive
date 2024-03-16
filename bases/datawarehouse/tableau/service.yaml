@@ -24,4 +24,6 @@ subsets:
       - ip: 10.31.131.4
     ports:
       - port: 80
+        name: http
       - port: 8850
+        name: tsm
