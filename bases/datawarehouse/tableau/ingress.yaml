@@ -1,22 +1,42 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: tailscale-allowlist
+  namespace: datawarehouse
+spec:
+  ipAllowList:
+    sourceRange:
+      - 100.64.0.0/10
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  name: tableau-admin
+  namespace: datawarehouse
+spec:
+  insecureSkipVerify: true
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: tableau.${cluster_name}.${cluster_location}.bink.sh
   namespace: datawarehouse
 spec:
-  ingressClassName: traefik
-  rules:
-    - host: tableau.${cluster_name}.${cluster_location}.bink.sh
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: tableau
-                port:
-                  number: 80
-  tls:
-    - hosts:
-        - tableau.${cluster_name}.${cluster_location}.bink.sh
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`tableau.${cluster_name}.${cluster_location}.bink.sh`)
+      services:
+        - kind: Service
+          name: tableau
+          port: 80
+    - kind: Rule
+      match: Host(`tableau-admin.${cluster_name}.${cluster_location}.bink.sh`)
+      services:
+        - name: tableau
+          port: 8850
+          scheme: https
+          serversTransport: tableau-admin
+      middlewares:
+        - name: tailscale-allowlist
