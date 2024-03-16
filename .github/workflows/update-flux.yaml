@@ -1,6 +1,4 @@
----
-# borrowed form https://github.com/fluxcd/flux2/tree/main/action#automate-flux-updates
-name: update-flux
+name: Update Flux
 
 on:
   workflow_dispatch:
@@ -27,13 +25,12 @@ jobs:
           VERSION="$(flux -v | cut -d " " -f 3)"
           echo "::set-output name=flux_version::$VERSION"
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v6
         with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            branch: update-flux-${{ steps.update.outputs.flux_version }}
+            branch: update-flux
+            commit-message: Update Flux to ${{ steps.update.outputs.flux_version }}
+            title: Update Flux to ${{ steps.update.outputs.flux_version }}
             assignees: |
               cpressland
               nathancread93
               thenu97
-            commit-message: Update Flux to ${{ steps.update.outputs.flux_version }}
-            title: Update Flux to ${{ steps.update.outputs.flux_version }}

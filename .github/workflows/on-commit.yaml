@@ -1,5 +1,4 @@
----
-name: on-commit
+name: Linting
 
 on:
   push:

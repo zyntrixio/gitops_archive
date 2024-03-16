@@ -1,0 +1,32 @@
+name: Update Golink
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 12 * * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Tailscale
+        uses: tailscale/github-action@v2
+        with:
+          oauth-client-id: ${{ secrets.TAILSCALE_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TAILSCALE_CLIENT_SECRET }}
+          tags: tag:gha
+      - name: Export Config
+        run: curl http://go/.export > bases/golink/snapshot.jsonl
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: Update Golink Snapshot
+          title: Update Golink Snapshot
+          branch: update-golink
+          delete-branch: true
+          assignees: |
+            cpressland
+            nathancread93
+            thenu97
