@@ -15,7 +15,7 @@ spec:
     - name: binkcore.azurecr.io/aperture
       newTag: staging-2.1.54 # {"$imagepolicy": "flux-system:aperture-staging:tag"}
     - name: binkcore.azurecr.io/bullsquid
-      newTag: staging-v1.3.1 # {"$imagepolicy": "flux-system:bullsquid-staging:tag"}
+      newTag: staging-v1.4.0 # {"$imagepolicy": "flux-system:bullsquid-staging:tag"}
   postBuild:
     substituteFrom:
       - kind: Secret
