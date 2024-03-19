@@ -30,8 +30,6 @@ spec:
                 - -f
                 - /dev/null
               env:
-                - name: LINKERD_AWAIT_DISABLED
-                  value: "true"
                 - name: KEYVAULT_URL
                   valueFrom:
                     secretKeyRef:
@@ -61,11 +59,3 @@ spec:
                   cpu: 10m
                 limits:
                   memory: 192Mi
-              volumeMounts:
-                - name: config
-                  mountPath: /var/config
-          restartPolicy: Never
-          volumes:
-            - name: config
-              configMap:
-                name: nightcity-config
