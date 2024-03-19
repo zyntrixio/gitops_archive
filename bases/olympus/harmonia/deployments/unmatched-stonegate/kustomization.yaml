@@ -16,4 +16,4 @@ patches:
         value: harmonia-unmatched-stonegate
       - op: replace
         path: /spec/template/spec/containers/0/args
-        value: ["txunmatched", "--agent", "stonegate", "--no-user-input", "--quiet"]
+        value: ["txunmatched", "--agent", "stonegate-unmatched", "--no-user-input", "--quiet"]
