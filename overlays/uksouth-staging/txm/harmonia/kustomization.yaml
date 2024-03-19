@@ -24,6 +24,7 @@ resources:
   - ../../../../bases/olympus/harmonia/deployments/matching-worker
   - ../../../../bases/olympus/harmonia/deployments/matching-worker-slow
   - ../../../../bases/olympus/harmonia/deployments/streaming-worker
+  - ../../../../bases/olympus/harmonia/deployments/unmatched-stonegate
   - ../../../../bases/olympus/harmonia/deployments/purgedb
   - ingress.yaml
 namespace: txm

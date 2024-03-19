@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../bases/deployment
+labels:
+  - includeSelectors: true
+    pairs:
+      component: unmatched-stonegate
+nameSuffix: -unmatched-stonegate
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/metadata/annotations/prometheus.io~1job
+        value: harmonia-unmatched-stonegate
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value: ["txunmatched", "--agent", "stonegate", "--no-user-input", "--quiet"]
