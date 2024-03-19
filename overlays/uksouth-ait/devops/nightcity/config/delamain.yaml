@@ -1,6 +1,0 @@
-dns_rewrites:
-  a:
-    - uksouth-ait-39sr.postgres.database.azure.com
-  cname:
-    - name: ait.uksouth.bink.sh
-      record: uksouth-ait-traefik.alpine-monster.ts.net
