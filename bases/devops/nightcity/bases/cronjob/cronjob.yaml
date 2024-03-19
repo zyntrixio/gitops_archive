@@ -20,6 +20,7 @@ spec:
           annotations:
             kubectl.kubernetes.io/default-container: app
         spec:
+          restartPolicy: OnFailure
           serviceAccountName: nightcity
           containers:
             - name: app
