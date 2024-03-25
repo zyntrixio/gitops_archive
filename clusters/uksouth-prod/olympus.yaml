@@ -35,7 +35,7 @@ spec:
     - name: binkcore.azurecr.io/metis
       newTag: production-v1.36.1 # {"$imagepolicy": "flux-system:metis-prod:tag"}
     - name: binkcore.azurecr.io/midas
-      newTag: prod-v3.48.6 # {"$imagepolicy": "flux-system:midas-prod:tag"}
+      newTag: prod-v3.50.0 # {"$imagepolicy": "flux-system:midas-prod:tag"}
     - name: binkcore.azurecr.io/plutus
       newTag: prod-1.1.1 # {"$imagepolicy": "flux-system:plutus-prod:tag"}
     - name: binkcore.azurecr.io/policies.gb.bink.com
