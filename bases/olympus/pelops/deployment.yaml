@@ -43,7 +43,7 @@ spec:
           env:
             - name: LINKERD_AWAIT_DISABLED
               value: "true"
-            - name: REDIS_DSN
+            - name: REDIS_URL
               valueFrom:
                 secretKeyRef:
                   key: url_primary
