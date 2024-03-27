@@ -11,7 +11,7 @@ patches:
   - patch: |
       - op: add
         path: /spec/template/spec/containers/0/args
-        value: ["snowstorm", "event-processor", "--queues=clickhouse_hermes,tx_export_dw"]
+        value: ["event-processor", "--queues=clickhouse_hermes,tx_export_dw"]
       - op: add
         path: /spec/template/spec/priorityClassName
         value: bink-high-tasks
