@@ -4,14 +4,14 @@ resources:
   - ../bases/deployment
 nameSuffix: -event-processor
 labels:
-- includeSelectors: true
-  pairs:
-    component: event-processor
+  - includeSelectors: true
+    pairs:
+      component: event-processor
 patches:
   - patch: |
       - op: add
         path: /spec/template/spec/containers/0/args
-        value: ["stormctl", "deploy", "events", "--queues=clickhouse_hermes,tx_export_dw"]
+        value: ["snowstorm", "event-processor", "--queues=clickhouse_hermes,tx_export_dw"]
       - op: add
         path: /spec/template/spec/priorityClassName
         value: bink-high-tasks
