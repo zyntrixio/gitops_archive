@@ -18,7 +18,8 @@ spec:
       containers:
         - name: app
           image: binkcore.azurecr.io/snowstorm:latest
-          args: ["alembic", "upgrade", "head"]
+          command: ["alembic"]
+          args: ["upgrade", "head"]
           env:
             - name: LINKERD_AWAIT_DISABLED
               value: "true"

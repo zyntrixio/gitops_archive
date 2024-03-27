@@ -18,4 +18,4 @@ patches:
         value: "0 1 * * *"
       - op: add
         path: /spec/jobTemplate/spec/template/spec/containers/0/args
-        value: ["stormctl", "job", "freshservice", "--days=1"]
+        value: ["snowstorm", "freshservice", "--days=1", "--rate-limit-timeout=60"]
