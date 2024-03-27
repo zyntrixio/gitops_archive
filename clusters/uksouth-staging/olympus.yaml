@@ -51,7 +51,7 @@ spec:
     - name: binkcore.azurecr.io/skiron
       newTag: 2024-02-19T124206Z # {"$imagepolicy": "flux-system:skiron:tag"}
     - name: binkcore.azurecr.io/snowstorm
-      newTag: staging-v1.13.0 # {"$imagepolicy": "flux-system:snowstorm-staging:tag"}
+      newTag: staging-v1.14.0 # {"$imagepolicy": "flux-system:snowstorm-staging:tag"}
     - name: binkcore.azurecr.io/zephyrus
       newTag: staging-v1.11.0 # {"$imagepolicy": "flux-system:zephyrus-staging:tag"}
   postBuild:
