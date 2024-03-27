@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - github.com/thenu97/nextdns-invoices/deploy
+
+patches:
+  - target:
+      kind: ServiceAccount
+    patch: |
+      - op: replace
+        path: /metadata/annotations/azure.workload.identity~1client-id
+        value: ${nextdns_invoices_client_id}
