@@ -4,6 +4,11 @@ kind: Kustomization
 resources:
   - github.com/thenu97/nextdns-invoices/deploy
 
+configMapGenerator:
+  - name: invoices
+    envs:
+      - env.ini
+
 patches:
   - target:
       kind: ServiceAccount
@@ -11,3 +16,11 @@ patches:
       - op: replace
         path: /metadata/annotations/azure.workload.identity~1client-id
         value: ${nextdns_invoices_client_id}
+  - target:
+      kind: CronJob
+    patch: |
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/envFrom
+        value:
+          - configMapRef:
+              name: invoices
