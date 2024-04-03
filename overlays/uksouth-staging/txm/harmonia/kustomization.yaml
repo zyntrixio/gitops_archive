@@ -4,6 +4,7 @@ resources:
   - ../../../../bases/olympus/harmonia/essentials
   - ../../../../bases/olympus/harmonia/deployments/api
   - ../../../../bases/olympus/harmonia/deployments/export-agent-iceland-bonus-card
+  - ../../../../bases/olympus/harmonia/deployments/export-agent-stonegate-unmatched
   - ../../../../bases/olympus/harmonia/deployments/export-retry-worker
   - ../../../../bases/olympus/harmonia/deployments/export-worker
   - ../../../../bases/olympus/harmonia/deployments/import-agent-amex-auth
