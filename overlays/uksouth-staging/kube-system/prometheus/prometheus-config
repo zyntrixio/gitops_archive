@@ -32,16 +32,16 @@ scrape_configs:
 
   - job_name: cloudamqp
     basic_auth:
-      username: ${cloudamqp_user}
-      password: ${cloudamqp_pass}
+      username: "${cloudamqp_user}"
+      password: "${cloudamqp_pass}"
     scheme: https
     static_configs:
       - targets: [${cloudamqp_nodes}]
 
   - job_name: cloudamqp-detailed
     basic_auth:
-      username: ${cloudamqp_user}
-      password: ${cloudamqp_pass}
+      username: "${cloudamqp_user}"
+      password: "${cloudamqp_pass}"
     scheme: https
     metrics_path: "/metrics/detailed"
     params:
