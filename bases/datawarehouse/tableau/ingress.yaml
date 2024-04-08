@@ -1,12 +1,12 @@
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: tailscale-allowlist
-  namespace: datawarehouse
-spec:
-  ipAllowList:
-    sourceRange:
-      - 10.11.134.4/32
+# apiVersion: traefik.io/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: tailscale-allowlist
+#   namespace: datawarehouse
+# spec:
+#   ipAllowList:
+#     sourceRange:
+#       - 10.11.134.4/32
 ---
 apiVersion: traefik.io/v1alpha1
 kind: ServersTransport
@@ -38,5 +38,5 @@ spec:
           port: 8850
           scheme: https
           serversTransport: tableau-admin
-      middlewares:
-        - name: tailscale-allowlist
+      # middlewares:
+      #   - name: tailscale-allowlist
