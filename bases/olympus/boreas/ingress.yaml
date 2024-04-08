@@ -1,0 +1,14 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: retailer.${cluster_name}.${cluster_location}.bink.sh
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`retailer.${cluster_name}.${cluster_location}.bink.sh`) && (PathPrefix(`/retailer`) || Path(`/livez`))
+      services:
+        - name: boreas-api
+          port: 80
