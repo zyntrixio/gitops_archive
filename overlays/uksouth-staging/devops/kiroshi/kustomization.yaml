@@ -6,8 +6,6 @@ resources:
   - ../../../../bases/devops/kiroshi/jobs/migrator
   - ../../../../bases/devops/kiroshi/server/images
   - ../../../../bases/devops/kiroshi/kubernetes/scale
-  - ../../../../bases/devops/kiroshi/storage/sftp/mastercard
-  - ../../../../bases/devops/kiroshi/storage/sftp/mastercard-test
 
 patches:
   - patch: |

@@ -9,7 +9,6 @@ resources:
   - ../../../../bases/devops/kiroshi/checks/spreedly/certs
   - ../../../../bases/devops/kiroshi/storage/blob/itsu
   - ../../../../bases/devops/kiroshi/storage/blob/viator
-  - ../../../../bases/devops/kiroshi/storage/sftp/mastercard
   - ../../../../bases/devops/kiroshi/storage/stonegate
   - ../../../../bases/devops/kiroshi/server/images
 
@@ -25,21 +24,3 @@ patches:
       - op: replace
         path: /spec/suspend
         value: false
-
-  - target:
-      kind: CronJob
-      name: kiroshi-storage-sftp-mastercard
-    patch: |
-      - op: replace
-        path: /spec/jobTemplate/spec/template/spec/containers/0/args
-        value:
-          - kiroshi
-          - storage
-          - sftp
-          - --host=files.mastercard.com
-          - --user=Z216458
-          - --port=16022
-          - --key=/mnt/secrets/mastercard-sftp-keyfile
-          - --path=/0073185/production/download/TGX2
-          - --blob_path=harmonia-imports:mastercard
-          - --hacks=mastercard
