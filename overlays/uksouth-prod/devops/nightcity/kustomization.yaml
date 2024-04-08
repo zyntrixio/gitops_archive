@@ -10,4 +10,4 @@ resources:
   - ../../../../bases/devops/nightcity/screamsheet
   - ../../../../bases/devops/nightcity/brendan/postgres
   - ../../../../bases/devops/nightcity/ozob/tgif
-  - ../../../../bases/devops/nightcity/ozob/mastercard-testing
+  - ../../../../bases/devops/nightcity/ozob/mastercard
