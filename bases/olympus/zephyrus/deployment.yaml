@@ -25,8 +25,8 @@ spec:
         azure.workload.identity/use: "true"
       annotations:
         kubectl.kubernetes.io/default-container: app
-        prometheus.io/port: '9100'
-        prometheus.io/scrape: 'true'
+        prometheus.io/port: "9100"
+        prometheus.io/scrape: "true"
         prometheus.io/job: zephyrus
     spec:
       affinity:
@@ -43,6 +43,9 @@ spec:
               weight: 100
       containers:
         - name: app
+          envFrom:
+            - configMapRef:
+                name: zephyrus
           env:
             - name: LINKERD_AWAIT_DISABLED
               value: "true"
