@@ -13,7 +13,7 @@ spec:
     name: flux-system
   images:
     - name: binkcore.azurecr.io/nightcity
-      newTag: staging-v0.14.0 # {"$imagepolicy": "flux-system:nightcity-staging:tag"}
+      newTag: staging-v0.14.1 # {"$imagepolicy": "flux-system:nightcity-staging:tag"}
   postBuild:
     substituteFrom:
       - kind: Secret
