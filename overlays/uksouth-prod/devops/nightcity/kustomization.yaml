@@ -13,3 +13,4 @@ resources:
   - ../../../../bases/devops/nightcity/ozob/mastercard
   - ../../../../bases/devops/nightcity/ncart/itsu
   - ../../../../bases/devops/nightcity/ncart/viator
+  - ../../../../bases/devops/nightcity/quickhacks/stonegate
