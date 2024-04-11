@@ -25,7 +25,7 @@ spec:
     - name: binkcore.azurecr.io/polaris
       newTag: staging-3.5.0 # {"$imagepolicy": "flux-system:polaris-staging:tag"}
     - name: binkcore.azurecr.io/vela
-      newTag: staging-2.6.0 # {"$imagepolicy": "flux-system:vela-staging:tag"}
+      newTag: staging-2.6.1 # {"$imagepolicy": "flux-system:vela-staging:tag"}
   postBuild:
     substituteFrom:
       - kind: Secret
