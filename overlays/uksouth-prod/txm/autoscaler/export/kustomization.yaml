@@ -23,7 +23,7 @@ patches:
           - name: QUEUE
             value: export
           - name: MIN_REPLICAS
-            value: "0"
+            value: "1"
           - name: MAX_REPLICAS
             value: "10"
           - name: TASKS_PER_REPLICA
