@@ -13,6 +13,10 @@ spec:
       app: nightcity
       component: metrics
   template:
+    metadata:
+      labels:
+        app: nightcity
+        component: metrics
     spec:
       containers:
         - name: pushgateway
