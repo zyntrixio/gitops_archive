@@ -4,10 +4,14 @@ kind: Deployment
 metadata:
   name: nightcity-metrics
   namespace: devops
+  labels:
+    app: nightcity
+    component: metrics
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: nightcity
+      app: nightcity
+      component: metrics
   template:
     spec:
       containers:
