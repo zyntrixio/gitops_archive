@@ -11,7 +11,7 @@ patches:
       kind: CronJob
     patch: |
       - op: replace
-        path: /spec/jobTemplate/spec/template/spec/containers/0/env
+        path: /spec/template/spec/containers/0/env
         value:
           - name: REDIS_URL
             valueFrom:
@@ -28,3 +28,5 @@ patches:
             value: "10"
           - name: TASKS_PER_REPLICA
             value: "5000"
+          - name: INTERVAL
+            value: "30"
