@@ -19,7 +19,7 @@ patches:
                 name: azure-redis
                 key: url_primary
           - name: DEPLOYMENT
-            value: txm/harmonia-matching-worker
+            value: harmonia-matching-worker
           - name: QUEUE
             value: matching
           - name: MIN_REPLICAS

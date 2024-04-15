@@ -19,7 +19,7 @@ patches:
                 name: azure-redis
                 key: url_primary
           - name: DEPLOYMENT
-            value: txm/harmonia-export-worker
+            value: harmonia-export-worker
           - name: QUEUE
             value: export
           - name: MIN_REPLICAS
