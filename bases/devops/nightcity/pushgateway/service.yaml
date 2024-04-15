@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: starbug
+    component: api
+  name: starbug
+  namespace: starbug
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 9100
+  selector:
+    app: starbug
+    component: api
+  sessionAffinity: None
+  type: ClusterIP

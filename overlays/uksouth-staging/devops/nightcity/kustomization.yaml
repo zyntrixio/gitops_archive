@@ -8,5 +8,6 @@ configMapGenerator:
 resources:
   - ../../../../bases/devops/nightcity
   - ../../../../bases/devops/nightcity/brendan/postgres
-  - ../../../../bases/devops/nightcity/screamsheet
   - ../../../../bases/devops/nightcity/ozob/mastercard-testing
+  - ../../../../bases/devops/nightcity/pushgateway
+  - ../../../../bases/devops/nightcity/screamsheet

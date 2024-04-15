@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nightcity-metrics
+  namespace: devops
+spec:
+  selector:
+    matchLabels:
+      app: nightcity
+  template:
+    spec:
+      containers:
+        - name: pushgateway
+          image: binkcore.azurecr.io/pushgateway:v1.5.1
+          args:
+            - --web.listen-address=0.0.0.0:9100
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9100
+              protocol: TCP
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              memory: 128Mi
+      imagePullSecrets:
+        - name: binkcore.azurecr.io
