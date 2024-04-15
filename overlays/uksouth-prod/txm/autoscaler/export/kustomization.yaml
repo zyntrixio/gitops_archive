@@ -8,7 +8,7 @@ commonLabels:
   queue: export
 patches:
   - target:
-      kind: CronJob
+      kind: Deployment
     patch: |
       - op: replace
         path: /spec/template/spec/containers/0/env
