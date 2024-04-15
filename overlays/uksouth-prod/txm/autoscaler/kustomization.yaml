@@ -4,3 +4,4 @@ resources:
   - ./export
   - ./import
   - ./matching
+  - ./matching-slow

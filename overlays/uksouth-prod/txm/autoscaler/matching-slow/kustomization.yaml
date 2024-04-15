@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - github.com/cpressland/rq-autoscaler/deploy
+nameSuffix: -matching-slow
+commonLabels:
+  app: rq-autoscaler
+  queue: matching-slow
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/env
+        value:
+          - name: REDIS_URL
+            valueFrom:
+              secretKeyRef:
+                name: azure-redis
+                key: url_primary
+          - name: DEPLOYMENT
+            value: harmonia-matching-worker-slow
+          - name: QUEUE
+            value: matching_slow
+          - name: MIN_REPLICAS
+            value: "1"
+          - name: MAX_REPLICAS
+            value: "70"
+          - name: TASKS_PER_REPLICA
+            value: "10000"
+          - name: INTERVAL
+            value: "30"
