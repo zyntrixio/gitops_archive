@@ -32,7 +32,7 @@ spec:
   imageRepositoryRef:
     name: plutus
   filterTags:
-    pattern: production-(?P<ts>\d+(\.\d+)*)$
+    pattern: production-v(?P<ts>\d+(\.\d+)*)$
     extract: $ts
   policy:
     semver:
