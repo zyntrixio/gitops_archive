@@ -13,7 +13,7 @@ spec:
     name: flux-system
   images:
     - name: binkcore.azurecr.io/angelia
-      newTag: production-v1.35.0 # {"$imagepolicy": "flux-system:angelia-prod:tag"}
+      newTag: production-v1.39.0 # {"$imagepolicy": "flux-system:angelia-prod:tag"}
     - name: binkcore.azurecr.io/asteria
       newTag: production-v1.4.1 # {"$imagepolicy": "flux-system:asteria-production:tag"}
     - name: binkcore.azurecr.io/atlas
@@ -29,13 +29,13 @@ spec:
     - name: binkcore.azurecr.io/hades
       newTag: prod-2.8.0 # {"$imagepolicy": "flux-system:hades-prod:tag"}
     - name: binkcore.azurecr.io/hermes
-      newTag: prod-3.52.0 # {"$imagepolicy": "flux-system:hermes-prod:tag"}
+      newTag: production-v3.60.0 # {"$imagepolicy": "flux-system:hermes-prod:tag"}
     - name: binkcore.azurecr.io/kratos
       newTag: 2024-03-28T153841Z # {"$imagepolicy": "flux-system:kratos:tag"}
     - name: binkcore.azurecr.io/metis
-      newTag: production-v1.36.1 # {"$imagepolicy": "flux-system:metis-prod:tag"}
+      newTag: production-v1.38.1 # {"$imagepolicy": "flux-system:metis-prod:tag"}
     - name: binkcore.azurecr.io/midas
-      newTag: prod-v3.50.0 # {"$imagepolicy": "flux-system:midas-prod:tag"}
+      newTag: prod-v3.51.0 # {"$imagepolicy": "flux-system:midas-prod:tag"}
     - name: binkcore.azurecr.io/plutus
       newTag: prod-1.1.1 # {"$imagepolicy": "flux-system:plutus-prod:tag"}
     - name: binkcore.azurecr.io/policies.gb.bink.com

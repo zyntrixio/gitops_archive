@@ -8,10 +8,10 @@ commonLabels:
   queue: import
 patches:
   - target:
-      kind: CronJob
+      kind: Deployment
     patch: |
       - op: replace
-        path: /spec/jobTemplate/spec/template/spec/containers/0/env
+        path: /spec/template/spec/containers/0/env
         value:
           - name: REDIS_URL
             valueFrom:
@@ -19,12 +19,14 @@ patches:
                 name: azure-redis
                 key: url_primary
           - name: DEPLOYMENT
-            value: txm/harmonia-import-worker
+            value: harmonia-import-worker
           - name: QUEUE
             value: import
           - name: MIN_REPLICAS
-            value: "0"
+            value: "1"
           - name: MAX_REPLICAS
             value: "10"
           - name: TASKS_PER_REPLICA
             value: "5000"
+          - name: INTERVAL
+            value: "30"
