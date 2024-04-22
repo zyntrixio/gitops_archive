@@ -1,0 +1,38 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../bases/deployment
+patches:
+  - target:
+      kind: Deployment
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/args
+        value:
+          - nightcity
+          - quickhacks
+          - cloudamqp
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: CLOUDAMQP_HOSTNAME
+          valueFrom:
+            secretKeyRef:
+              name: azure-cloudamqp
+              key: cloudamqp_host
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: CLOUDAMQP_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: azure-cloudamqp
+              key: cloudamqp_user
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value:
+          name: CLOUDAMQP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: azure-cloudamqp
+              key: cloudamqp_pass
