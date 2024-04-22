@@ -17,3 +17,6 @@ spec:
         kind: HelmRepository
         name: akv2k8s
         namespace: flux-system
+  values:
+    env_injector:
+      replicaCount: 1
