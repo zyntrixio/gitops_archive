@@ -27,8 +27,7 @@ spec:
               image: binkcore.azurecr.io/nightcity:latest
               imagePullPolicy: IfNotPresent
               args:
-                - tail
-                - -f
+                - cat
                 - /dev/null
               env:
                 - name: KEYVAULT_URL
