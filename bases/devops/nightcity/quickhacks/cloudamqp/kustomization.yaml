@@ -1,10 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../../bases/deployment
+  - ../../bases/statefulset
+nameSuffix: -quickhacks-cloudamqp
 patches:
   - target:
-      kind: Deployment
+      kind: StatefulSet
     patch: |
       - op: replace
         path: /spec/template/spec/containers/0/args
@@ -12,27 +13,8 @@ patches:
           - nightcity
           - quickhacks
           - cloudamqp
-      - op: add
-        path: /spec/template/spec/containers/0/env/-
-        value:
-          name: CLOUDAMQP_HOSTNAME
-          valueFrom:
-            secretKeyRef:
-              name: azure-cloudamqp
-              key: cloudamqp_host
-      - op: add
-        path: /spec/template/spec/containers/0/env/-
-        value:
-          name: CLOUDAMQP_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: azure-cloudamqp
-              key: cloudamqp_user
-      - op: add
-        path: /spec/template/spec/containers/0/env/-
-        value:
-          name: CLOUDAMQP_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: azure-cloudamqp
-              key: cloudamqp_pass
+labels:
+  - includeSelectors: true
+    pairs:
+      app.kubernetes.io/component: quickhack
+      bink.com/third-party: cloudamqp
