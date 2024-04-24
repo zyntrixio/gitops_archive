@@ -16,5 +16,6 @@ patches:
 labels:
   - includeSelectors: true
     pairs:
+      app.kubernetes.io/name: nightcity
       app.kubernetes.io/component: quickhack
       bink.com/third-party: cloudamqp

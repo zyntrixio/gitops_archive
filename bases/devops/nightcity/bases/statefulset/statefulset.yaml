@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: nginx
+      app.kubernetes.io/name: nightcity
   serviceName: nightcity
   replicas: 1
   template:
