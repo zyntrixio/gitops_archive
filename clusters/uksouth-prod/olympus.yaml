@@ -27,7 +27,7 @@ spec:
     - name: binkcore.azurecr.io/europa
       newTag: prod-1.6.6 # {"$imagepolicy": "flux-system:europa-prod:tag"}
     - name: binkcore.azurecr.io/hades
-      newTag: prod-2.8.0 # {"$imagepolicy": "flux-system:hades-prod:tag"}
+      newTag: production-v2.9.2 # {"$imagepolicy": "flux-system:hades-prod:tag"}
     - name: binkcore.azurecr.io/hermes
       newTag: production-v3.60.0 # {"$imagepolicy": "flux-system:hermes-prod:tag"}
     - name: binkcore.azurecr.io/kratos
