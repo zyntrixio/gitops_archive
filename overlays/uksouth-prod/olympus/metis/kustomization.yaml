@@ -37,4 +37,4 @@ patches:
           - name: metis-hack
             configMap:
               name: metis-hack
-              defaultMode: 600
+              defaultMode: 0777
