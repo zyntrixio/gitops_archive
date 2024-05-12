@@ -13,6 +13,9 @@ configMapGenerator:
   - name: metis
     envs:
       - env.ini
+  - name: metis-hack
+    files:
+      - hacks/services.py
 patches:
   - target:
       kind: Deployment
@@ -22,3 +25,16 @@ patches:
         value:
           - configMapRef:
               name: metis
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts
+        value:
+          - mountPath: /usr/local/lib/python3.11/site-packages/metis/services.py
+            subPath: services.py
+            name: metis-hack
+      - op: add
+        path: /spec/template/spec/volumes
+        value:
+          - name: metis-hack
+            configMap:
+              name: metis-hack
+              defaultMode: 600
