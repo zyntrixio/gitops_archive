@@ -4,12 +4,14 @@
 {"Short":"bpl-prod","Long":"https://event-horizon.prod.uksouth.bink.sh/admin/","Created":"2024-02-26T20:27:05Z","LastEdit":"2024-02-26T20:27:05Z","Owner":"cpressland@bink.com"}
 {"Short":"bpl-staging","Long":"https://event-horizon.staging.uksouth.bink.sh/admin/","Created":"2024-02-26T20:26:58Z","LastEdit":"2024-02-26T20:26:58Z","Owner":"cpressland@bink.com"}
 {"Short":"confluence","Long":"https://hellobink.atlassian.net/wiki/","Created":"2024-02-26T20:29:08Z","LastEdit":"2024-02-26T20:29:08Z","Owner":"cpressland@bink.com"}
+{"Short":"copilot","Long":"https://copilot.microsoft.com/","Created":"2024-04-23T12:24:35Z","LastEdit":"2024-04-23T12:24:35Z","Owner":"cpressland@bink.com"}
 {"Short":"eos-prod","Long":"https://eos.prod.uksouth.bink.sh/eos/admin/","Created":"2024-02-26T20:26:13Z","LastEdit":"2024-02-26T20:26:13Z","Owner":"cpressland@bink.com"}
 {"Short":"eos-staging","Long":"https://eos.staging.uksouth.bink.sh/eos/admin/","Created":"2024-02-26T20:26:03Z","LastEdit":"2024-02-26T20:26:03Z","Owner":"cpressland@bink.com"}
 {"Short":"europa-prod","Long":"https://europa.prod.uksouth.bink.sh/config_service/admin/","Created":"2024-02-26T20:25:46Z","LastEdit":"2024-02-26T20:25:46Z","Owner":"cpressland@bink.com"}
 {"Short":"europa-staging","Long":"https://europa.staging.uksouth.bink.sh/config_service/admin/","Created":"2024-02-26T20:25:29Z","LastEdit":"2024-02-26T20:25:29Z","Owner":"cpressland@bink.com"}
 {"Short":"grafana","Long":"https://uksouth-grafana-h7f6hnafbwgeg3a0.suk.grafana.azure.com","Created":"2024-03-03T14:56:58Z","LastEdit":"2024-03-03T14:57:29Z","Owner":"cpressland@bink.com"}
 {"Short":"hermes","Long":"https://github.com/binkhq/hermes","Created":"2024-02-26T20:30:57Z","LastEdit":"2024-02-26T20:30:57Z","Owner":"cpressland@bink.com"}
+{"Short":"hermes-ait","Long":"https://hermes.ait.uksouth.bink.sh/admin/","Created":"2024-04-23T09:31:32Z","LastEdit":"2024-04-23T09:31:32Z","Owner":"cpressland@bink.com"}
 {"Short":"hermes-prod","Long":"https://hermes.prod.uksouth.bink.sh/admin/","Created":"2024-02-26T19:55:42Z","LastEdit":"2024-02-26T19:55:42Z","Owner":"cpressland@bink.com"}
 {"Short":"hermes-sandbox","Long":"https://hermes.sandbox.uksouth.bink.sh/admin/","Created":"2024-03-03T15:29:58Z","LastEdit":"2024-03-03T15:29:58Z","Owner":"cpressland@bink.com"}
 {"Short":"hermes-staging","Long":"https://hermes.staging.uksouth.bink.sh/admin/","Created":"2024-02-26T19:58:27Z","LastEdit":"2024-02-26T19:58:27Z","Owner":"cpressland@bink.com"}
